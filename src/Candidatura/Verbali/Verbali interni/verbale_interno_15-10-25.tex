@@ -1,0 +1,231 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana
+\usepackage{lmodern}            % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}           % Per includere immagini
+\usepackage{currfile}
+\graphicspath{{src/immagini/}{\currfiledir contenuti/}{\currfiledir contenuti/immagini/}}
+
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
+
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{hyperref}           % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Documento Progetto - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce tutti i campi
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro in basso
+\renewcommand{\headrulewidth}{0.4pt} % Linea sottile sotto l'header
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: intestazione_titolo.tex
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.jpg}
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+
+
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    % Inserisci qui il titolo specifico del documento
+    {\Large \itshape Verbale Interno del 15 ottobre 2025 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+    
+    % Inserisci qui la data di redazione del documento
+    {\large Data: 15 ottobre 2025 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: indice.tex
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy} % Riattiva lo stile di pagina da qui in poi
+
+% -------------------------------------------------------------------
+%  SEZIONE: informazioni.tex
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 15 ottobre 2025
+    \item \textbf{Ora:} 18:00 - 19:30
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Tutti i membri del gruppo hanno partecipato
+    \item  \textbf{Redatto da: } Davide Biasuzzi
+    \item  \textbf{Verificato da:} Francesco Zanella
+    \item \textbf{Versione: } 1.0
+\end{itemize}
+
+
+% -------------------------------------------------------------------
+%  SEZIONE: odg.tex (Ordine del Giorno)
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Discussione generale su tutti i capitolati
+    \item[2.] Approfondimento su capitolato C6
+    \item[3.] Approfondimento su capitolato C8
+    \item[4.] Approfondimento su capitolato C9
+    \item[5.] Contatti email da effettuare
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: diario.tex (Diario della riunione)
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Discussione generale su tutti i capitolati:}
+
+Si è proceduto all'analisi condivisa del file Google contenente le preferenze e le votazioni sui capitolati, preparato il giorno precedente. Dopo una discussione generale su tutte le proposte, il gruppo ha identificato tre capitolati di maggiore interesse sui quali concentrare l'approfondimento:
+\begin{itemize}
+    \item C6 (Second Brain)
+    \item C8 (Smart Order)
+    \item C9 (View4Life)
+\end{itemize}
+
+
+\subsection{Approfondimento su capitolato C6:}
+È stato analizzato in dettaglio il capitolato C6. Sono emersi diversi dubbi e punti chiave da chiarire con il proponente (Dott. Piccoli) al fine di definire correttamente l'ambito del Proof of Concept (PoC) e dell'MVP (Minimum Viable Product). 
+La discussione si è focalizzata su:
+\begin{itemize}
+    \item Architettura Server: Si è discusso sul carattere "opzionale" della parte server. Si è convenuto che per le funzionalità LLM avanzate (come il collegamento tra note) sia fondamentale. È necessario chiedere se il PoC debba già includere la predisposizione per un database server-side.
+    \item Tecnologie Web App: È stata notata la richiesta di un editor MarkDown in pagina HTML. Si è deciso di chiedere a Zucchetti se esistano preferenze tecnologiche (es. specifici framework UI) oltre a quelle indicate.
+    \item Versionamento delle Note: Il capitolato menziona il salvataggio in file di testo. Si è discusso se sia sufficiente un semplice salvataggio (sovrascrittura) o se sia atteso un meccanismo di versioning dei contenuti.
+\end{itemize}
+
+\subsection{Approfondimento su capitolato C8 (Smart Order):}
+Analogamente, si è approfondito il capitolato C8. L'analisi dell'architettura proposta ha sollevato diversi quesiti tecnici fondamentali da porre al proponente (Dott. Carlesso) per definire i confini del progetto. 
+I punti di discussione principali sono stati:
+\begin{itemize}
+    \item Modalità di Input: Chiarire quale sia il numero minimo di modalità (audio, testo, immagine, ecc.) richieste per il prodotto finale, oltre alle 1-2 suggerite per il PoC.
+    \item Confini del Sistema (Layer 1): Definire se la progettazione dei connettori per i dati eterogenei rientri nei compiti del gruppo, o se si debba assumere che l'infrastruttura dati sia già fornita.
+    \item Livello di Automazione (Layer 6): Comprendere se il layer di validazione e arricchimento dati debba tendere a un'automazione completa o se prevedere un intervento di supervisione umana (human-in-the-loop).
+    \item Gestione Retraining (Layer 8): Approfondire se il "retraining periodico" menzionato debba essere implementato come un ciclo automatico basato sul feedback o come un'operazione supervisionata.
+    \item Stack Tecnologico: Verificare se Ergon abbia uno stack tecnologico di riferimento interno o preferenze specifiche (es. .NET Blazor, React) per l'interfaccia.
+\end{itemize}
+\subsection{Approfondimento su capitolato C9 (View4Life):}
+Per il capitolato C9, la discussione si è concentrata principalmente su aspetti organizzativi e gestionali, ritenuti critici per la fattibilità del progetto.
+\begin{itemize}
+    \item Gestione Comunicazioni: È emersa una preoccupazione basata su feedback (riportati da studenti degli anni precedenti) circa possibili lunghi tempi di risposta da parte dei proponenti. Si è deciso di chiedere preventivamente e con trasparenza se per l'anno corrente siano state previste modalità o tempistiche specifiche per la gestione delle domande dei gruppi.
+\end{itemize}
+\subsection{Contatti email da effettuare:}
+Al termine della discussione, si è deciso di contattare via email tutti e tre i proponenti per sottoporre i dubbi emersi e ottenere i chiarimenti necessari prima di una scelta definitiva.
+Sono stati assegnati i seguenti incarichi per la stesura e l'invio delle comunicazioni:
+
+\begin{itemize}
+    \item C6 (Second Brain): Davide Biasuzzi
+    \item C8 (Smart Order): Giovanni Ponso
+    \item C9 (View4Life): Leonardo Bilato
+\end{itemize}
+% -------------------------------------------------------------------
+%  SEZIONE: decisioni.tex (Decisioni prese)
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese}
+
+\begin{enumerate}
+    \item Scrivere mail ai capitolati d'interesse con lo scopo di approfondire e se necessario fissare un colloquio con l'azienda
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: todo.tex (Attività da svolgere)
+% -------------------------------------------------------------------
+\newpage
+\section{Attività da Svolgere (To-Do)}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} & \textbf{Scadenza} \\
+\midrule
+Inviare mail per capitolato C6 & Davide Biasuzzi & 16/10/25 \\
+Inviare mail per capitolato C8 & Giovanni Ponso & 16/10/25 \\
+Inviare mail per capitolato C9 & Francesco Zanella & 16/10/25 \\
+\bottomrule
+\end{tabular}
+\caption{Riepilogo task assegnati.}
+\end{table}
+
+\end{document}
