@@ -1,0 +1,198 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana
+\usepackage{lmodern}            % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}           % Per includere immagini
+\usepackage{currfile}
+\graphicspath{{src/immagini/}{\currfiledir contenuti/}{\currfiledir contenuti/immagini/}}
+
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
+
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{hyperref}           % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Documento Progetto - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce tutti i campi
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro in basso
+\renewcommand{\headrulewidth}{0.4pt} % Linea sottile sotto l'header
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: intestazione_titolo.tex
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.jpg}
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+
+
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    % Inserisci qui il titolo specifico del documento
+    {\Large \itshape Verbale Interno del 14 ottobre 2025 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+    
+    % Inserisci qui la data di redazione del documento
+    {\large Data: 14 ottobre 2025 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: indice.tex
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy} % Riattiva lo stile di pagina da qui in poi
+
+% -------------------------------------------------------------------
+%  SEZIONE: informazioni.tex
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 14 ottobre 2025
+    \item \textbf{Ora:} 18:00 - 19:15
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Tutti i membri del gruppo hanno partecipato
+    \item  \textbf{Redatto da: } Davide Biasuzzi
+    \item  \textbf{Verificato da:} Francesco Zanella
+    \item \textbf{Versione: } 1.0
+\end{itemize}
+
+
+% -------------------------------------------------------------------
+%  SEZIONE: odg.tex (Ordine del Giorno)
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Nome e logo del gruppo
+    \item[2.] Contatti
+    \item[3.] Tecnologie
+    \item[4.] Modalità scelta e discussione capitolati
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: diario.tex (Diario della riunione)
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Nome e logo del gruppo:}
+È stato scelto e approvato il nome ufficiale del gruppo: "Night Pro". La realizzazione della proposta di logo è stata affidata a Davide Biasuzzi.
+
+\subsection{Contatti:}
+È stato creato l'account email condiviso del gruppo, che verrà utilizzato per le comunicazioni ufficiali e la gestione degli account condivisi. L'indirizzo è: swe.nightpro@gmail.com
+\subsection{Tecnologie:}
+Si è deciso di utilizzare GitHub come piattaforma di code hosting e versioning. Michele Ogniben procederà alla creazione della repository (o organizzazione) su GitHub, utilizzando il nuovo account Google del gruppo. La repository verrà inizialmente utilizzata per effettuare test e definire la struttura ottimale per la gestione della documentazione e del codice sorgente del progetto.
+\subsection{Scelta e discussione capitolati:}
+È stato predisposto un file Google Docs per permettere a tutti i membri di votare i capitolati di interesse. La discussione plenaria sui risultati della votazione, l'analisi dei capitolati selezionati e la risoluzione di eventuali dubbi sono state calendarizzate per la prossima riunione, fissata per il 15 ottobre.
+% -------------------------------------------------------------------
+%  SEZIONE: decisioni.tex (Decisioni prese)
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese}
+
+\begin{enumerate}
+    \item Nome del gruppo e creazione logo
+    \item Account di contatto
+    \item Github come piattaforma di versioning
+    \item Modalità di "votazione" capitolati
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: todo.tex (Attività da svolgere)
+% -------------------------------------------------------------------
+\newpage
+\section{Attività da Svolgere (To-Do)}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} & \textbf{Scadenza} \\
+\midrule
+Creazione Logo & Davide Biasuzzi & 15/10/25 \\
+Creazione Github & Michele Ogniben & 15/10/25 \\
+\bottomrule
+\end{tabular}
+\caption{Riepilogo task assegnati.}
+\end{table}
+
+\end{document}
