@@ -1,0 +1,208 @@
+name: Build LaTeX documents
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**/*.tex'
+      - 'docs/**/*.pdf'
+
+concurrency:
+  group: latex-build
+  cancel-in-progress: true
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Step 1 - Detect Changed Files
+        run: |
+          # check del più recente commit di build automatico presente in repo, se non esiste considera il primo commit del repo per il diff
+          echo "--- Detecting modified LaTeX and PDF files ---"
+          LAST_COMPILED=$(git log --grep="^Automated LaTeX build" -n 1 --pretty=format:%H || echo "")
+          if [ -z "$LAST_COMPILED" ]; then
+            echo "No previous build found. Full rebuild will be performed."
+            LAST_COMPILED=$(git rev-list --max-parents=0 HEAD)
+            BASE_DESC="(first commit)"
+          else
+            BASE_DESC="(base: $(echo "$LAST_COMPILED" | cut -c1-7))"
+          fi
+          echo "LAST_COMPILED=$LAST_COMPILED" >> $GITHUB_ENV
+          echo "BASE_DESC=$BASE_DESC" >> $GITHUB_ENV
+          
+          # creazione liste raw di modifiche effettuate su docs e src dal commit considerato
+          echo "--- Comparing changes since $LAST_COMPILED ---"
+          changed_latex=$(git diff --name-only --diff-filter=AMR "$LAST_COMPILED" HEAD -- 'src/**/*.tex' || true)
+          changed_pdfs=$(git diff --name-only --diff-filter=AMR "$LAST_COMPILED" HEAD -- 'docs/**/*.pdf' || true)
+          > pdfs_to_remove.txt
+          
+          # creazione lista pulita di file latex modificati
+          if [ -n "$changed_latex" ]; then
+            echo "$changed_latex" | while IFS= read -r file; do
+              [ -z "$file" ] && continue
+              if [[ "$file" == *"/contenuti/"* ]]; then
+                parent_dir=$(echo "$file" | sed 's|/contenuti/.*||')
+                parent_tex=$(find "$parent_dir" -maxdepth 1 -type f -name "*.tex" | head -n 1)
+                [ -n "$parent_tex" ] && echo "$parent_tex" >> pdfs_to_remove.txt
+              else
+                echo "$file" >> pdfs_to_remove.txt
+              fi
+            done
+          fi
+          
+          # creazione lista pulita di file pdf modificati
+          if [ -n "$changed_pdfs" ]; then
+            echo "$changed_pdfs" | while IFS= read -r pdf; do
+              [ -z "$pdf" ] && continue
+              src_tex=$(echo "$pdf" | sed 's|^docs/|src/|; s|\.pdf$|\.tex|')
+              echo "$src_tex" >> pdfs_to_remove.txt
+            done
+          fi
+
+          sort -u pdfs_to_remove.txt -o pdfs_to_remove.txt
+          echo "--- Files to recompile or remove ---"
+          cat pdfs_to_remove.txt || echo "(none)"
+
+      - name: Step 2 - Cleanup
+        run: |
+          # eliminazione dei file pdf provenienti dalle due liste pulite create sopra (pdf obsoleti)(se esistono)
+          echo "--- Cleaning up obsolete or orphaned PDFs ---"
+          if [ -s pdfs_to_remove.txt ]; then
+            while IFS= read -r texfile; do
+              [ -z "$texfile" ] && continue
+              pdf_file=$(echo "$texfile" | sed 's|^src/|docs/|; s|\.tex$|\.pdf|')
+              if [ -f "$pdf_file" ]; then
+                echo "Deleting outdated PDF: $pdf_file"
+                rm -f "$pdf_file"
+              fi
+            done < pdfs_to_remove.txt
+          fi
+
+          # eliminazione dei file pdf orfani (esclusi quelli firmati)
+          if [ -d "docs" ]; then
+            find docs -type f -name "*.pdf" | while IFS= read -r pdf; do
+              if [[ "$pdf" == *"firmato.pdf" || "$pdf" == *"signed.pdf" ]]; then
+                continue
+              fi
+              src_file=$(echo "$pdf" | sed 's|^docs/|src/|; s|\.pdf$|\.tex|')
+              if [ ! -f "$src_file" ]; then
+                echo "Deleting orphan PDF: $pdf"
+                rm -f "$pdf"
+              fi
+            done
+          fi
+
+      - name: Step 3 - Build Compile List
+        id: prepare
+        run: |
+          # scannerizzazione completa di docs per trovare i pdf mancanti e creare la compile_list.txt
+          echo "--- Preparing compile list ---"
+          > compile_list.txt
+          find src -type f -name "*.tex" | grep -v '/contenuti/' | while IFS= read -r texfile; do
+            pdf_file=$(echo "$texfile" | sed 's|^src/|docs/|; s|\.tex$|\.pdf|')
+            if [ ! -f "$pdf_file" ]; then
+              echo "$texfile" >> compile_list.txt
+            fi
+          done
+
+          # se compile_list.txt é vuota salviamo in $GITHUB_OUTPUT il flag compile_needed=false cosí da poter saltare direttamente allo step 5
+          if [ -s compile_list.txt ]; then
+            echo "Files to compile:"
+            cat compile_list.txt
+            echo "compile_needed=true" >> $GITHUB_OUTPUT
+          else
+            echo "No files to compile."
+            echo "compile_needed=false" >> $GITHUB_OUTPUT
+            # sebbene il report dovrebbe essere generato nello step 4, per comoditá e immediatezza, nel caso non ci fosse nulla da compilare (questo caso), lo generiamo subito
+            echo "# Report di compilazione del $(date -u --iso-8601=seconds)" > report.md
+            echo "" >> report.md
+            echo "Compilazione basata sul commit ${LAST_COMPILED} ${BASE_DESC}" >> report.md
+            echo "" >> report.md
+            echo "💡 Nessun file modificato o mancante. Nessuna compilazione eseguita." >> report.md
+          fi
+
+      - name: Step 4 - Compile and Generate Report
+        if: steps.prepare.outputs.compile_needed == 'true'
+        run: |
+          # questa sezione del builder parte solo se ci sono file da compilare)
+
+          # setup ambiente di compilazione e file utili + compilazione file
+          > build_result.log
+          mkdir -p tmp_build
+          docker run --rm --volume "$(pwd)":"$(pwd)" --workdir "$(pwd)" \
+            ghcr.io/xu-cheng/texlive-full:latest /bin/bash -c '
+              while IFS= read -r texfile || [ -n "$texfile" ]; do
+                [ -z "$texfile" ] && continue
+                echo "Compiling: $texfile"
+                if latexmk -pdf -interaction=nonstopmode -file-line-error -output-directory="$(pwd)/tmp_build" "$texfile"; then
+                  filepath=$(dirname "$texfile")
+                  filename=$(basename "$texfile" .tex)
+                  out_sub=$(echo "$filepath" | sed "s|^src/||; s|^src\$||")
+                  out_dir="$(pwd)/docs/$out_sub"
+                  mkdir -p "$out_dir"
+                  mv "$(pwd)/tmp_build/$filename.pdf" "$out_dir/"
+                  echo "$texfile;Success" >> build_result.log
+                else
+                  echo "::error file=$texfile::LaTeX compilation failed"
+                  echo "$texfile;Fail" >> build_result.log
+                fi
+                rm -rf "$(pwd)/tmp_build"/*
+              done < compile_list.txt
+            '
+            
+          # creazione del report
+          echo "# Report di compilazione del $(date -u --iso-8601=seconds)" > report.md
+          echo "" >> report.md
+          build_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          echo "Compilazione basata sul commit ${LAST_COMPILED} ${BASE_DESC}" >> report.md
+          echo "" >> report.md
+          echo "## Falliti" >> report.md
+          if grep -q ";Fail" build_result.log; then
+            grep ";Fail" build_result.log | while IFS=";" read -r tex status; do
+              echo "❌ [$tex]($build_url)" >> report.md
+              echo "" >> report.md
+            done
+          else
+            echo "💡 Nessun errore di compilazione" >> report.md
+          fi
+          echo "" >> report.md
+          echo "## Compilati" >> report.md
+          if grep -q ";Success" build_result.log; then
+            grep ";Success" build_result.log | while IFS=";" read -r tex status; do
+              pdf_path=$(echo "$tex" | sed 's|^src/|docs/|; s|\.tex$|\.pdf|')
+              enc=$(python3 -c "import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))" "$pdf_path")
+              echo "✅ [$pdf_path]($enc)" >> report.md
+              echo "" >> report.md
+            done
+          else
+            echo "💡 Nessun PDF compilato" >> report.md
+          fi
+
+      - name: Step 5 - Commit Results
+        run: |
+          # commit del report.md e dei pdf generati (se non sono state effettuate modifiche, ossia l'area di staging é vuota, allora il commit non avviene)(non accadrá mai)
+          echo "--- Committing results ---"
+          git add -f report.md
+          if [ -d "docs" ]; then
+            git add docs
+          fi
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+            COMMIT_MSG="Automated LaTeX build ${BASE_DESC}"
+            echo "Creating commit: $COMMIT_MSG"
+            git commit -m "$COMMIT_MSG"
+            git push
+          fi
