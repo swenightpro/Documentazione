@@ -1,0 +1,234 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana 
+\usepackage{lmodern}            % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}           % Per includere immagini
+\usepackage{currfile}
+\graphicspath{{src/immagini/}{\currfiledir contenuti/}{\currfiledir contenuti/immagini/}}
+
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
+
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{hyperref}           % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Documento Progetto - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce tutti i campi
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro in basso
+\renewcommand{\headrulewidth}{0.4pt} % Linea sottile sotto l'header
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: intestazione_titolo.tex
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.jpg}
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+
+
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    {\Large \itshape Verbale Interno del 27 ottobre 2025 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+  
+    {\large Data: 27 ottobre 2025 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: indice.tex
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy} % Riattiva lo stile di pagina da qui in poi
+
+% -------------------------------------------------------------------
+%  SEZIONE: informazioni.tex
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 27 ottobre 2025
+    \item \textbf{Ora:} 16:30 - 18:15
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Tutti i membri del gruppo tranne Michele Ogniben
+    \item \textbf{Redatto da: } Davide Biasuzzi
+    \item \textbf{Verificato da:} Francesco Zanella
+    \item \textbf{Versione: } 1.0
+\end{itemize}
+
+
+% -------------------------------------------------------------------
+%  SEZIONE: odg.tex (Ordine del Giorno)
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Analisi strumenti di project management (JIRA vs GitHub Projects)
+    \item[2.] Definizione e setup repository e organizzazione GitHub
+    \item[3.] Aggiornamento scelta capitolato (Zucchetti vs VIMAR)
+    \item[4.] Pianificazione e assegnazione task per documenti di presentazione (Lettera, Preventivo, Valutazione)
+    \item[5.] Discussione struttura file LaTeX
+    \item[6.] Pianificazione prossimi incontri e scadenze
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: diario.tex (Diario della riunione)
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Analisi strumenti di project management (JIRA vs GitHub Projects)}
+Si è discusso sull'utilizzo di JIRA o GitHub Projects per la gestione delle attività. 
+Giovanni Ponso ha mostrato un esempio di un progetto passato (MTSS) gestito su GitHub, illustrando la gestione delle \textit{issue} (task), l'assegnazione ai membri del team, l'uso di tag multipli, la definizione di \textit{milestones} e la tracciabilità delle scadenze.
+Viste le funzionalità, si è deciso di procedere con GitHub Projects.
+
+\subsection{Definizione e setup repository e organizzazione GitHub}
+È stata creata l'organizzazione GitHub ufficiale del gruppo. 
+Samuele Perozzo ha sottolineato l'importanza di inserire una descrizione chiara e dettagliata per ogni commit.
+Francesco Zanella e Giovanni Ponso si occuperanno di creare la repository definitiva per la documentazione, migrando la struttura di prova già funzionante (incluso il convertitore LaTeX). 
+È stato specificato che i verbali firmati (PDF) dovranno essere inseriti manualmente nella posizione corretta nel repository, affiancando quelli compilati automaticamente.
+
+\subsection{Aggiornamento scelta capitolato (Zucchetti vs VIMAR)}
+Si è preso atto che un incontro con Zucchetti (proponente C6) è al momento fuori discussione, data l'elevata richiesta da parte di altri gruppi e la nostra propensione per il capitolato C8. 
+Si è quindi deciso di scartare questa opzione e di concentrarsi sul capitolato VIMAR. 
+Si è deciso di procedere fissando un colloquio con VIMAR per approfondire la proposta.
+
+\subsection{Pianificazione e assegnazione task per documenti di presentazione}
+Stabilita la scelta di VIMAR, si è deciso di procedere immediatamente con la stesura dei documenti necessari per la presentazione del gruppo all'azienda:
+\begin{itemize}
+    \item Lettera di Presentazione
+    \item Preventivo dei Costi ed Impegno Orario
+    \item Valutazione dei Capitolati
+\end{itemize}
+I compiti per la redazione della prima bozza sono stati così suddivisi:
+\begin{itemize}
+    \item \textbf{Lettera di Presentazione:} Samuele Perozzo, Francesco Zanella, Michele Ogniben.
+    \item \textbf{Valutazione dei Capitolati:} Davide Biasuzzi, Giovanni Ponso, Mariana Romascu.
+    \item \textbf{Preventivo dei Costi ed Impegno Orario:} Leonardo Bilato e Mariana Romascu.
+\end{itemize}
+
+\subsection{Discussione struttura file LaTeX}
+Giovanni Ponso ha illustrato la possibilità di suddividere i documenti LaTeX in file separati (per sezione) per una migliore organizzazione, o in alternativa di mantenerli in un unico file per semplicità operativa. Si è deciso di mantenere la struttura unica per evitare eccessiva complessità.
+
+\subsection{Pianificazione prossimi incontri e scadenze}
+È stata fissata una nuova riunione interna per il 29 ottobre 2025, con l'obiettivo di revisionare i documenti prodotti. 
+L'obiettivo è inviare la mail con la documentazione a VIMAR entro il 30 ottobre.
+Davide Biasuzzi è stato incaricato di scrivere l'email a VIMAR e di redigere il presente verbale.
+
+% -------------------------------------------------------------------
+%  SEZIONE: decisioni.tex (Decisioni prese)
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese}
+
+\begin{enumerate}
+    \item Adottare GitHub Projects come strumento di task management.
+    \item Creare la repository GitHub definitiva per la documentazione.
+    \item Richiedere una descrizione chiara e dettagliata per ogni commit.
+    \item Scartare il capitolato Zucchetti e procedere con il capitolato VIMAR.
+    \item Fissare un colloquio con VIMAR.
+    \item Suddividere la preparazione dei documenti di presentazione (Lettera, Valutazione, Preventivo) tra i membri.
+    \item Fissare la prossima riunione interna per il 29 ottobre 2025.
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: todo.tex (Attività da svolgere)
+% -------------------------------------------------------------------
+\newpage
+\section{Attività da Svolgere (To-Do)}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} & \textbf{Scadenza} \\
+\midrule
+Redazione Verbale Riunione 27/10 & Davide Biasuzzi & 28/10/25 \\
+Inviare mail a VIMAR per colloquio & Davide Biasuzzi & 28/10/25 \\
+Creazione Progetto GitHub (Kanban, issues) & Samuele Perozzo, Giovanni Ponso & 29/10/25 \\
+Creazione repository documentazione definitiva & Francesco Zanella, Giovanni Ponso & 29/10/25 \\
+Redazione "Lettera di Presentazione" (Bozza) & S. Perozzo, F. Zanella, M. Ogniben & 29/10/25 \\
+Redazione "Valutazione dei Capitolati" (Bozza) & D. Biasuzzi, G. Ponso, M. Romascu & 29/10/25 \\
+Redazione "Preventivo dei Costi" (Bozza) & Leonardo Bilato, M. Romascu & 29/10/25 \\
+\bottomrule
+\end{tabular}
+\caption{Riepilogo task assegnati.}
+\end{table}
+
+\end{document}
