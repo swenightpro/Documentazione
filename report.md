@@ -1,10 +1,10 @@
-# Report di compilazione del 2025-10-27T18:06:36+00:00
+# Report di compilazione del 2025-10-27T18:10:12+00:00
 
-Compilazione basata sul commit 0e43d9c8cc61551c97f6f65b24f4fbac4b0a121b (base: 0e43d9c)
+Compilazione basata sul commit db3dc26fc807624d6637e1775e7179c99f8bce1a (base: db3dc26)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/Candidatura/Verbali/Verbali interni/verbale_interno_20-10-25.pdf](docs/Candidatura/Verbali/Verbali%20interni/verbale_interno_20-10-25.pdf)
+✅ [docs/Candidatura/Verbali/Verbali Esterni/verbale_esterno_22-10-25.pdf](docs/Candidatura/Verbali/Verbali%20Esterni/verbale_esterno_22-10-25.pdf)
 
