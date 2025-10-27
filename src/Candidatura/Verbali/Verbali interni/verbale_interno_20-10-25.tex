@@ -1,0 +1,228 @@
+% ===================================================================
+%  TEMPLATE DOCUMENTO PROGETTO (File Unico)
+%  Gruppo: NightPRO
+%  Progetto: Ingegneria del Software 2025/2026
+%
+%  Basato sulla struttura:
+%  - configurazione.tex
+%  - intestazione_titolo.tex
+%  - indice.tex
+%  - informazioni.tex
+%  - odg.tex
+%  - diario.tex
+%  - decisioni.tex
+%  - todo.tex
+% ===================================================================
+
+% -------------------------------------------------------------------
+%  SEZIONE: configurazione.tex
+% -------------------------------------------------------------------
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana
+\usepackage{lmodern}            % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}           % Per includere immagini
+\usepackage{currfile}
+\graphicspath{{src/immagini/}{\currfiledir contenuti/}{\currfiledir contenuti/immagini/}}
+
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
+
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{hyperref}           % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Documento Progetto - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce tutti i campi
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro in basso
+\renewcommand{\headrulewidth}{0.4pt} % Linea sottile sotto l'header
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: intestazione_titolo.tex
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.jpg}
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+
+
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    % Inserisci qui il titolo specifico del documento
+    {\Large \itshape Verbale Interno del 20 ottobre 2025 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+    
+    % Inserisci qui la data di redazione del documento
+    {\large Data: 20 ottobre 2025 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: indice.tex
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy} % Riattiva lo stile di pagina da qui in poi
+
+% -------------------------------------------------------------------
+%  SEZIONE: informazioni.tex
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 20 ottobre 2025
+    \item \textbf{Ora:} 17:30 - 19:30
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Biasuzzi Davide, Zanella Francesco, Ponso Giovanni, Bilato Leonardo
+    \item  \textbf{Redatto da: } Francesco Zanella
+    \item  \textbf{Verificato da:} Davide Biasuzzi
+    \item \textbf{Versione: } 1.0
+\end{itemize}
+
+
+% -------------------------------------------------------------------
+%  SEZIONE: odg.tex (Ordine del Giorno)
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Funzionamento Github
+    \item[2.] Compilazione documenti Github
+    \item[3.] Decisione documenti da iniziare a produrre
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: diario.tex (Diario della riunione)
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Funzionamento Github:}
+Il gruppo ha avviato la riunione con una breve panoramica su GitHub, volta a chiarire il suo funzionamento di base.
+È emerso che uno dei membri aveva recentemente approfondito l’uso della piattaforma e ha condiviso le nozioni principali con il resto del gruppo, illustrando i concetti di repository, commit, branch e pull request.
+Un secondo membro aveva già utilizzato GitHub in passato, sebbene in modo limitato, e ha contribuito con esempi pratici su come gestire file e versioni.
+La discussione si è concentrata anche su come orientarsi nell’interfaccia e come creare e caricare vari tipi di file.
+L’obiettivo della sezione era garantire che tutti i membri acquisissero un livello minimo comune di competenza per poter collaborare in modo efficace sulla piattaforma.
+
+\subsection{Compilazione documenti Github:}
+Successivamente, il gruppo ha analizzato come procedere alla redazione e compilazione dei documenti direttamente su GitHub.
+È stato chiarito il funzionamento della modifica dei file in formato Markdown e la possibilità di lavorare in modo collaborativo, evitando sovrapposizioni grazie all’uso dei branch e delle commit message chiare e coerenti.
+Si è inoltre discusso della struttura da mantenere all’interno del repository per rendere ordinata la documentazione (cartelle dedicate ai verbali, ai template, ecc.).
+Il gruppo ha concordato di utilizzare una nomenclatura coerente per i file e di mantenere una cronologia trasparente delle modifiche, in modo da facilitare eventuali revisioni future.
+\subsection{Decisione documenti da iniziare a produrre:}
+Nella parte finale della riunione si è deciso di iniziare la produzione dei seguenti documenti:
+\begin{itemize}
+    \item Diario di bordo, per tenere traccia delle attività svolte e delle decisioni prese durante le varie fasi del progetto.
+    \item Verbali delle riunioni, per documentare gli incontri in modo formale e consultabile da tutti i membri.
+    \item  Documento di candidatura, necessario per presentare ufficialmente il progetto e il gruppo di lavoro.
+\end{itemize}
+
+Il gruppo ha concordato di partire da modelli condivisi su GitHub, in modo da mantenere uniformità nella struttura dei documenti (template).
+
+% -------------------------------------------------------------------
+%  SEZIONE: decisioni.tex (Decisioni prese)
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese}
+
+\begin{enumerate}
+    \item Gestione file all'interno di Github
+    \item Priorità nella stesura della documentazione necessaria
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: todo.tex (Attività da svolgere)
+% -------------------------------------------------------------------
+\newpage
+\section{Attività da Svolgere (To-Do)}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} & \textbf{Scadenza} \\
+\midrule
+Ottimizzazione e divisione su Github & Leonardo Bilato & 21/10/25 \\
+Stesura template& Davide Biasuzzi & 21/10/25 \\
+stesura prime relazioni& Francesco Zanella & 21/10/25 \\
+\bottomrule
+\end{tabular}
+\caption{Riepilogo task assegnati.}
+\end{table}
+
+\end{document}
