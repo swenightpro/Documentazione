@@ -1,0 +1,245 @@
+% ===================================================================
+%  TEMPLATE DOCUMENTO PROGETTO (File Unico)
+%  Gruppo: NightPRO
+%  Progetto: Ingegneria del Software 2025/2026
+%
+%  Basato sulla struttura:
+%  - configurazione.tex
+%  - intestazione_titolo.tex
+%  - indice.tex
+%  - informazioni.tex
+%  - odg.tex
+%  - diario.tex
+%  - decisioni.tex
+%  - todo.tex
+% ===================================================================
+
+% -------------------------------------------------------------------
+%  SEZIONE: configurazione.tex
+% -------------------------------------------------------------------
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana
+\usepackage{lmodern}            % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}           % Per includere immagini
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
+
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{hyperref}           % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Documento Progetto - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% --- Path per le Immagini ---
+% (Assicurati che ci sia una cartella 'immagini' accanto a questo file)
+\graphicspath{ {immagini/} }
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce tutti i campi
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro in basso
+\renewcommand{\headrulewidth}{0.4pt} % Linea sottile sotto l'header
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: intestazione_titolo.tex
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{src/immagini/logo.jpg}
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+
+
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    % Inserisci qui il titolo specifico del documento
+    {\Large \itshape Verbale Esterno del 22 ottobre 2025 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+    
+    % Inserisci qui la data di redazione del documento
+    {\large Data: 20 ottobre 2025 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: indice.tex
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy} % Riattiva lo stile di pagina da qui in poi
+
+% -------------------------------------------------------------------
+%  SEZIONE: informazioni.tex
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 22 ottobre 2025
+    \item \textbf{Ora:} 14:30 - 15:00
+    \item \textbf{Luogo:} Meeting Zoom
+    \item \textbf{Partecipanti:} Zanella Francesco, Perozzo Samuele, Ponso Giovanni, Bilone Leonardo, Gianluca Carlesso (Ergon)
+    \item  \textbf{Redatto da: } Francesco Zanella
+    \item  \textbf{Verificato da:} Davide Biasuzzi
+    \item \textbf{Versione: } 1.0
+\end{itemize}
+
+
+% -------------------------------------------------------------------
+%  SEZIONE: odg.tex (Ordine del Giorno)
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item Richiedere al proponente di Ergon di fornire risposta alle nostre domande e registrare le risposte ottenute per permetterne una successiva valutazione.
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: diario.tex (Diario della riunione)
+% -------------------------------------------------------------------
+
+\newpage
+\section{Diario della Riunione}
+\begin{itemize}
+    \item Discussione con il referente di Ergon sul prodotto richiesto, guidato dalle nostre domande
+\end{itemize}
+
+\footnotesize  % Font più piccolo
+\setlength{\tabcolsep}{8pt}  % Riduce lo spazio tra le colonne
+\begin{tabular}{p{0.45\textwidth}p{0.45\textwidth}}
+\textbf{Domande} & \textbf{Risposte} \\
+\\
+\textbf{1. Requisiti Minimi sulle Modalità di Input}
+
+Il capitolo 3 ("Tecnologie, suggerimenti e risorse utili") consiglia di avviare lo sviluppo con una o due modalità di input per il PoC. In ottica di prodotto finale, vorremmo chiarire se esista un vincolo sul numero minimo di modalità che il sistema completo dovrà obbligatoriamente gestire. 
+& 
+Per il Proof of Concept è sufficiente concentrarsi su una o due modalità di input. Per quanto riguarda il prodotto finale, non esiste un numero minimo obbligatorio di modalità da implementare. La parte testuale è da considerarsi fondamentale, mentre l'integrazione audio rappresenta un'aggiunta auspicabile ma non vincolante. La gestione delle immagini è consigliato farla per ultima data la difficoltà e l'approccio diverso. \\
+\\
+
+\textbf{2. Architettura proposta del sistema - Gestione Input da Canali Eterogenei}
+
+In riferimento al paragrafo "Architettura proposta del sistema", il primo layer del sistema gestisce dati da canali eterogenei. Per definire correttamente i confini del nostro sviluppo, ci sarebbe utile capire se dobbiamo ipotizzare l'esistenza di un'infrastruttura a monte che ci fornisca i dati, o se la progettazione di connettori specifici per i vari canali rientri nell'ambito del progetto.
+&
+Il recupero dei dati per la generazione degli ordini può essere considerato una funzionalità opzionale ma non obbligatoria per il progetto. È consigliato l'utilizzo di una webapp per fare in modo che il cliente verifichi la correttezza dell'ordine \\
+\\
+
+\textbf{3. Validazione e Arricchimento Dati}
+
+Sempre nel paragrafo "Architettura proposta del sistema" vorremmo approfondire il livello di automazione atteso per quanto riguarda il layer 6 - "Validazione e Arricchimento Dati". È da prevedere un intervento umano supervisionato (human-in-the-loop) o l'obiettivo è tendere a una validazione completamente automatica?
+&
+Il sistema dovrebbe "parcheggiare" gli ordini quando si presentano ambiguità nei prodotti o quando si presentano richieste poco chiare da parte dell'utente. In questi casi, il sistema deve fornire il modo di poter contattare direttamente un operatore. \\
+\\
+
+\textbf{4. Monitoraggio e Feedback}
+
+Il progetto menziona un retraining periodico. Vorremmo comprendere se tale processo sia da implementare come un ciclo automatizzato basato su feedback o come un'operazione da supervisionare manualmente.
+&
+Il miglioramento delle prestazioni dovrebbe avvenire in modo automatico, basandosi sui feedback degli utenti o sulla percentuale di correttezza degli ordini generati dal sistema. \\
+\\
+
+\textbf{5. Preferenze Tecnologiche}
+
+Il capitolo 3 elenca diversi framework per l'interfaccia utente (es. .NET Blazor, React). Considerando che Ergon sviluppa soluzioni ERP proprietarie, esiste uno stack tecnologico di riferimento interno o una preferenza con cui sarebbe opportuno allineare lo sviluppo?
+&
+Per la gestione dell'intelligenza artificiale è consigliato l'utilizzo di Python. Per il resto dello stack tecnologico non ci sono vincoli particolari, le tecnologie consigliate sono comunque indicate nel documento di riferimento. \\
+\end{tabular}
+\normalsize
+
+
+% -------------------------------------------------------------------
+%  SEZIONE: todo.tex (Attività da svolgere)
+% -------------------------------------------------------------------
+\newpage
+\section{Attività da Svolgere (To-Do)}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} \\
+\midrule
+Analizzare le risposte fornite dal referente per capire se \\il progetto \textit{Smart Order} è adatto a noi & \textit{Tutto il gruppo singolarmente}\\\\
+Stesura verbale riunione 22/10/25 & Zanella Francesco \\
+\bottomrule
+\end{tabular}
+\caption{Riepilogo task assegnati.}
+\end{table}
+
+\vspace{2cm}
+\begin{flushright}
+\makebox[6cm]{\hrulefill}\\
+{\small Firma}
+\end{flushright}
+\end{document}
