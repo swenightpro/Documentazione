@@ -1,10 +1,10 @@
-# Report di compilazione del 2025-10-28T15:30:47+00:00
+# Report di compilazione del 2025-10-28T15:33:28+00:00
 
-Compilazione basata sul commit e804d597f6ccfc989525e85dbfa69d186858aab0 (base: e804d59)
+Compilazione basata sul commit 853574b704b2aed6ffaf8229fc4f3064ba09b2b7 (base: 853574b)
 
 ## Falliti
-❌ [src/Candidatura/Lettera_di_Presentazione.tex](https://github.com/swenightpro/Documentazione/actions/runs/18880141752)
-
+💡 Nessun errore di compilazione
 
 ## Compilati
-💡 Nessun PDF compilato
+✅ [docs/Candidatura/Lettera_di_Presentazione.pdf](docs/Candidatura/Lettera_di_Presentazione.pdf)
+
