@@ -1,0 +1,211 @@
+\documentclass[a4paper,11pt,oneside]{scrartcl}
+
+% ===================================================================
+%  PACCHETTI BASE
+% ===================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{microtype}       % Migliora la giustificazione
+\usepackage{graphicx}        % Per le immagini
+\usepackage{booktabs}        % Tabelle eleganti
+\usepackage{hyperref}        % Link cliccabili nel PDF
+\usepackage{xcolor}          % Colori personalizzati
+\usepackage{geometry}        % Gestione margini
+\usepackage{fancyhdr}        % Header e footer personalizzati
+\usepackage{parskip}         % Spaziatura tra paragrafi, no indent
+
+% ===================================================================
+%  IMPOSTAZIONE GENERALE DOCUMENTO
+% ===================================================================
+\geometry{
+    top=2.5cm,
+    bottom=2.5cm,
+    left=2.5cm,
+    right=2.5cm
+}
+
+\definecolor{DarkBlue}{HTML}{003366}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Lettera di Presentazione - NightPRO},
+    pdfauthor={Gruppo NightPRO}
+}
+
+% ===================================================================
+%  HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce i campi
+\fancyhead[L]{\textbf{NightPRO – Progetto Ingegneria del Software}}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  FRONTESPIZIO
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \includegraphics[width=0.35\textwidth]{logo.jpg}\\[1cm]
+
+    {\Large \textbf{Università degli Studi di Padova}}\\[0.3cm]
+    {\small Corso di Laurea in Informatica (L-31)}\\[0.1cm]
+    {\small Corso di Ingegneria del Software}\\[0.5cm]
+    {\small \textit{Anno Accademico 2025/2026}}\\[2cm]
+
+    {\Huge \bfseries Lettera di Presentazione}\\[1cm]
+    {\Large \bfseries Gruppo: NightPRO}\\[0.4cm]
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
+
+    {\large \textbf{Data:} 28 ottobre 2025}\\[0.5cm]
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  INFORMAZIONI GENERALI
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.2} % più spazio tra le righe
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del gruppo NightPRO.}
+\end{table}
+
+\subsection{Dettagli del Documento}
+\begin{itemize}
+    \item \textbf{Data:} 28 ottobre 2025
+    \item \textbf{Redatto da:} Francesco Zanella, Samuele Perozzo
+    \item \textbf{Verificato da:} Tutti i membri del gruppo
+    \item \textbf{Versione:} 1.0.0
+\end{itemize}
+
+% -------------------------------------------------------------------
+% INTRODUZIONE
+% -------------------------------------------------------------------
+
+
+\newpage
+\section{Introduzione}
+
+\noindent
+\textbf{Egregio Prof.~Tullio Vardanega,}\\
+\textbf{Egregio Prof.~Riccardo Cardin,}\\[0.6em]
+
+\noindent
+Il gruppo \textbf{NightPRO} desidera comunicare la propria candidatura per la realizzazione del \textbf{Capitolato C8 – SmartOrder: Analisi multimodale per la creazione automatica di ordini}, proposto dall’azienda \textbf{Ergon Informatica Srl}.\\[0.6em]
+\noindent
+L’obiettivo del progetto è la creazione di una piattaforma intelligente in grado di interpretare automaticamente dati provenienti da canali differenti (\textit{testo, immagini, audio}) e convertirli in ordini strutturati per sistemi ERP aziendali. \\[0.6em]
+L’approccio sfrutta tecniche avanzate di \textbf{Intelligenza Artificiale}, \textbf{Machine Learning} e \textbf{Natural Language Processing} per ottimizzare i processi aziendali e ridurre l’intervento umano nelle fasi ripetitive.\\[0.6em]
+
+La documentazione prodotta dal gruppo è disponibile al seguente indirizzo GitHub:
+
+\begin{center}
+\fbox{\href{https://github.com/NightPRO/Documentazione}{\texttt{https://github.com/NightPRO/Documentazione}}}
+
+\end{center}
+
+All’interno della repository sono presenti:
+\begin{itemize}
+    \item Valutazioni dei capitolati;
+    \item Lettera di presentazione;
+    \item Preventivo dei costi e impegno orario;
+    \item Verbali interni ed esterni del gruppo.
+\end{itemize}
+
+
+% -------------------------------------------------------------------
+% RESOCONTO DELL'INCONTRO
+% -------------------------------------------------------------------
+\newpage
+\section{Resoconto dell'Incontro}
+
+In data \textbf{22 ottobre 2025} il gruppo \textbf{NightPRO} ha preso parte a un incontro online con il rappresentante di \textbf{Ergon Informatica} Gianluca Carlesso, al fine di chiarire alcuni aspetti tecnici e organizzativi del capitolato \textbf{C8 – SmartOrder}.  
+L’incontro, della durata di circa trenta minuti, è stato particolarmente utile per comprendere meglio l’ambito del progetto, le priorità di sviluppo e le aspettative dell’azienda proponente.
+
+Durante la riunione, sono stati affrontati diversi punti di interesse legati alla definizione dei requisiti e all’architettura del sistema.
+
+È stato innanzitutto chiarito che, per la fase di \textit{Proof of Concept}, è sufficiente concentrare lo sviluppo su una o due modalità di input, dando priorità all’elaborazione testuale.  
+L’integrazione audio è stata indicata come un’estensione consigliata ma non obbligatoria, mentre la gestione delle immagini può essere considerata una fase successiva, data la sua maggiore complessità.
+
+Si è poi discusso della gestione degli input provenienti da canali eterogenei.  
+Ergon ha confermato che non è necessario implementare un’infrastruttura completa per la raccolta dei dati, ma è consigliabile prevedere una \textbf{web application} che consenta al cliente di verificare la correttezza degli ordini generati dal sistema.  
+Il recupero dei dati da sorgenti esterne, come e-mail o messaggistica, può quindi essere considerato un’estensione opzionale.
+
+Riguardo al layer dedicato alla \textbf{validazione e all’arricchimento dei dati}, l’azienda ha suggerito di implementare una logica di gestione delle ambiguità: gli ordini che presentano dati incompleti o poco chiari dovranno essere “parcheggiati” in attesa dell’intervento di un operatore umano.  
+Il sistema dovrà dunque offrire un meccanismo per contattare direttamente un operatore nei casi in cui l’AI non sia in grado di risolvere autonomamente l’ambiguità.
+
+Per quanto concerne il \textbf{monitoraggio e il miglioramento del modello}, Ergon ha indicato che il retraining può essere gestito in modo automatico, sfruttando i feedback degli utenti o la percentuale di correttezza degli ordini generati.  
+L’obiettivo è favorire un’evoluzione continua del sistema sulla base dei dati raccolti durante l’utilizzo reale.
+
+Infine, si è discusso delle \textbf{preferenze tecnologiche}.  
+L’azienda ha raccomandato l’utilizzo di \textbf{Python} per la parte relativa all’intelligenza artificiale, lasciando invece piena libertà di scelta per lo stack applicativo, sia lato frontend che backend.  
+Sono stati menzionati framework come React e .NET Blazor tra le opzioni consigliate, ma senza vincoli imposti.
+
+Nel complesso, l’incontro si è rivelato estremamente chiaro e collaborativo: il dott. Gianluca Carlessa (rappresentante Ergon informatica) ha mostrato grande disponibilità, rispondendo con precisione a ogni quesito e fornendo indicazioni utili per orientare la progettazione.  
+I chiarimenti ricevuti hanno permesso al gruppo di definire con maggiore consapevolezza gli obiettivi e la fattibilità del capitolato, contribuendo in modo decisivo alla scelta finale di \textbf{SmartOrder} come progetto di riferimento.
+% -------------------------------------------------------------------
+% MOTIVAZIONE DELLA SCELTA
+% -------------------------------------------------------------------
+\newpage
+\section{Motivazione della Scelta}
+
+La decisione di selezionare il capitolato \textbf{SmartOrder} è stata presa dopo un’attenta valutazione dei progetti proposti, tenendo conto degli aspetti tecnici, formativi e organizzativi più rilevanti.
+
+\subsection*{Innovazione Tecnologica}
+Il progetto consente di sperimentare l’integrazione di \textbf{modelli AI multimodali} e \textbf{Large Language Models (LLM)}, combinando tecniche di NLP, computer vision e speech-to-text. È quindi un’ottima occasione per approfondire metodologie di frontiera nel campo dell’intelligenza artificiale.
+
+\subsection*{Applicazione Reale e Impatto Aziendale}
+SmartOrder affronta un problema concreto di automazione aziendale: la gestione di ordini da input non strutturati. La soluzione proposta ha un valore reale e immediato per il settore gestionale, rendendo il progetto professionalmente significativo.
+
+\subsection*{Struttura Modulare e Scalabilità}
+L’architettura a layer indipendenti descritta nel capitolato favorisce la suddivisione dei compiti, la manutenibilità del codice e la scalabilità futura del sistema, caratteristiche fondamentali per un progetto di gruppo ben organizzato.
+
+\subsection*{Libertà Tecnologica}
+Il capitolato offre libertà nella scelta degli strumenti, consentendo al gruppo di valorizzare competenze già acquisite (React, .NET, Python) e al contempo sperimentare nuove tecnologie legate all’AI.
+
+\subsection*{Supporto Aziendale}
+Ergon Informatica ha garantito disponibilità e assistenza costante, con un referente dedicato e accesso a dati di test reali. Questo permette un contesto formativo e professionale ideale per lo sviluppo del progetto.
+
+\section{Conclusione}
+Visti i motivi sopra esposti e non riscontrando in nessun altro capitolato una combinazione equivalente di innovazione tecnologica, valore formativo e supporto aziendale, il gruppo \textbf{NightPRO} ha deciso di candidarsi alla realizzazione del progetto \textbf{SmartOrder} proposto da \textbf{Ergon Informatica}.  
+
+Come indicato nel documento \textit{Preventivo dei costi e degli impegni orari}, il costo stimato per la realizzazione del prodotto è pari a \textbf{12.600\,€}, con una previsione di consegna fissata al \textbf{21 marzo 2025}.
+
+\vspace{0.5cm}
+
+Cordiali saluti,
+\begin{flushright}
+    Il gruppo \emph{NightPRO}
+\end{flushright}
+\end{document}
