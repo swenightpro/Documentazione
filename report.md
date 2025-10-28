@@ -1,16 +1,10 @@
-# Report di compilazione del 2025-10-27T19:02:42+00:00
+# Report di compilazione del 2025-10-28T09:29:21+00:00
 
-Compilazione basata sul commit 685e41b881ae654e769f5efa63311031f2674bde (base: 685e41b)
+Compilazione basata sul commit 2ce815c4bda3f88ad9a212ecbe1a56eca9fb2b0f (base: 2ce815c)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/Candidatura/Verbali/Verbali Interni/verbale_interno_27-10-25.pdf](docs/Candidatura/Verbali/Verbali%20Interni/verbale_interno_27-10-25.pdf)
-
-✅ [docs/Candidatura/Verbali/Verbali Interni/verbale_interno_14-10-25.pdf](docs/Candidatura/Verbali/Verbali%20Interni/verbale_interno_14-10-25.pdf)
-
-✅ [docs/Candidatura/Verbali/Verbali Interni/verbale_interno_20-10-25.pdf](docs/Candidatura/Verbali/Verbali%20Interni/verbale_interno_20-10-25.pdf)
-
-✅ [docs/Candidatura/Verbali/Verbali Interni/verbale_interno_15-10-25.pdf](docs/Candidatura/Verbali/Verbali%20Interni/verbale_interno_15-10-25.pdf)
+✅ [docs/Candidatura/Preventivo_Costi.pdf](docs/Candidatura/Preventivo_Costi.pdf)
 
