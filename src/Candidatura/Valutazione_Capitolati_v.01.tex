@@ -70,13 +70,13 @@
     
     \vfill
     
-    {\Huge \bfseries Preventivo Costi e Assunzione Impegni \par}
+    {\Huge \bfseries Valutazione Capitolati \par}
     
     \vspace{1cm}
     
     % Inserisci qui il titolo specifico del documento
-    {\Large \itshape Redattori: Romascu Mihaela Mariana; Ponso Giovanni; Biasuzzi Davide  \par} 
- 
+    {\Large Redattori: Romascu Mihaela Mariana; Ponso Giovanni; Biasuzzi Davide  \par} 
+    {\Large Verificato da: \textit{Da Verificare}  \par} 
     
     \vfill
     
@@ -88,7 +88,7 @@
     
     % Inserisci qui la data di redazione del documento
     {\large Data: 28 ottobre 2025 \par}
-    {\Large \itshape Versione: 0.1 \par} 
+    {\Large Versione: 0.2 \par} 
 
 \end{titlepage}
 
@@ -104,7 +104,7 @@
 % -------------------------------------------------------------------
 \newpage
 \section{C1. Automated EN18031 Compliance Verification}
-\subsection*{Valutazione Critica del Capitolato}
+\subsection*{Valutazione del Capitolato}
 Il progetto di \textbf{Bluewind} mira a realizzare un’applicazione software (desktop o web) per automatizzare la verifica di conformità alla norma EN18031, relativa alla sicurezza informatica dei dispositivi radio secondo la Direttiva RED.\\
 L’idea risponde a un’esigenza reale: ridurre la complessità e gli errori del processo manuale di verifica normativa.
 
@@ -131,10 +131,12 @@ Il capitolato offre flessibilità tecnologica (Python consigliato, ma non vincol
     \item Scarsa chiarezza sui criteri di valutazione automatica.
     \item UI/UX poco approfondita nel documento.
 \end{itemize}
+\subsubsection*{Analisi}
+Il Rischio non è l'UI, ma la modellazione dei dati. Il successo dipende dalla creazione di uno schema (e.g.: JSON) che possa rappresentare qualsiasi albero decisionale della norma EN18031. La prima milestone dovrebbe essere un parser di questo schema, non la GUI.
 
 % ======================================================================
 \section{C2. Code Guardian}
-\subsection*{Valutazione Critica del Capitolato}
+\subsection*{Valutazione del Capitolato}
 Il progetto propone una piattaforma intelligente per analizzare repository GitHub, valutando qualità del codice, sicurezza e manutenzione, e fornendo report e suggerimenti di miglioramento.\\
 L’architettura prevede un orchestratore centrale che coordina agenti specializzati (per test, sicurezza, documentazione, report), con una dashboard web in React.
 
@@ -154,10 +156,11 @@ L’architettura prevede un orchestratore centrale che coordina agenti specializ
     \item Definizione non chiara delle metriche di valutazione.
     \item Tempi lunghi per ottenere una demo completa.
 \end{itemize}
-
+\subsubsection*{Analisi}
+Riteniamo sia presente un alto rischio di dispersione. L'architettura multi-agente è complessa. Una mitigazione efficace sarebbe un MVP iper-limitato: costruire l'orchestratore e un solo agente (e.g.: "Test Analysis") ignorando tutti gli altri per la prima consegna.
 % ======================================================================
 \section{C3. DIPReader}
-\subsection*{Valutazione Critica del Capitolato}
+\subsection*{Valutazione del Capitolato}
 Il progetto punta a realizzare un software multipiattaforma per la consultazione e ricerca di archivi digitali provenienti da sistemi di conservazione documentale.\\
 L’uso di SQLite e FAISS rende il sistema leggero ma moderno, con possibilità di integrare ricerca semantica.
 
@@ -177,10 +180,11 @@ L’uso di SQLite e FAISS rende il sistema leggero ma moderno, con possibilità 
     \item Comprensione minima del contesto normativo richiesta.
     \item UI/UX da progettare con cura per evitare eccessiva tecnicità.
 \end{itemize}
-
+\subsubsection*{Analisi}
+Il punto critico è la Data Pipeline di Ingestion. Passare dal file .zip a un db SQLite interrogabile in modo performante. Il focus progettuale deve essere sul parsing degli XML e sulla normalizzazione dei dati ancora prima di iniziare a disegnare l'UI.
 % ======================================================================
 \section{C4. L’app che Protegge e Trasforma}
-\subsection*{Valutazione Critica del Capitolato}
+\subsection*{Valutazione del Capitolato}
 Il progetto propone un’app mobile per prevenire e gestire situazioni di violenza di genere, con funzionalità di analisi AI, alert silenziosi e geolocalizzazione sicura.
 
 \subsubsection*{Pro}
@@ -198,10 +202,12 @@ Il progetto propone un’app mobile per prevenire e gestire situazioni di violen
     \item Implementazione delicata della privacy.
     \item Richiede sensibilità etica oltre che tecnica.
 \end{itemize}
+\subsubsection*{Analisi}
+Progetto ad altissimo rischio per quanto riguarda la responsabilità sui dati. Richiede un approccio complesso "Security by Design" fin dall'inizio. La sfida tecnica principale è la gestione delle chiavi di crittografia per il "diario criptato": la chiave deve essere gestita solo sul dispositivo dell'utente, altrimenti la privacy è compromessa.
 
 % ======================================================================
 \section{C5. NEXUM}
-\subsection*{Valutazione Critica del Capitolato}
+\subsection*{Valutazione del Capitolato}
 Il progetto NEXUM punta a digitalizzare la gestione HR nelle PMI, migliorando la comunicazione tra aziende, consulenti e dipendenti, con moduli basati su AI generativa e OCR.
 
 \subsubsection*{Pro}
@@ -218,10 +224,12 @@ Il progetto NEXUM punta a digitalizzare la gestione HR nelle PMI, migliorando la
     \item Requisiti di precisione elevati.
     \item Dipendenza da servizi esterni (OCR, LLM).
 \end{itemize}
+\subsubsection*{Analisi}
+Il successo non dipende dalla precisione del 100\% dell'AI, ma dall'efficenza dell'UI di correzione, Il progetto si vince progettando un interfaccia che permetta all'operatore di validare i documenti in poco tempo.
 
 % ======================================================================
 \section{C6. Second Brain}
-\subsection*{Valutazione Critica del Capitolato}
+\subsection*{Valutazione del Capitolato}
 Il progetto Zucchetti propone un editor di testo intelligente che utilizza LLM per assistere nella scrittura, revisione e generazione di testi, basato su Markdown.
 
 \subsubsection*{Pro}
@@ -235,13 +243,14 @@ Il progetto Zucchetti propone un editor di testo intelligente che utilizza LLM p
 \subsubsection*{Contro}
 \begin{itemize}
     \item Limitato impatto industriale immediato.
-    \item Prompt engineering complesso.
+    \item Prompt Engineering complesso.
     \item Possibili problemi di privacy con API esterne.
 \end{itemize}
-
+\subsubsection*{Analisi}
+La sfida non è l'architettura (un editor Markdown che chiama API), ma il Prompt Engineering. Il successo dipende dalla qualità dei prompt per i "sei capelli". E un progetto affascinante ma con meno complessità architetturale.
 % ======================================================================
 \section{C7. Sistema di acquisizione dati da sensori}
-\subsection*{Valutazione Critica}
+\subsection*{Valutazione del Capitolato}
 Il progetto prevede la creazione di un’infrastruttura cloud per la gestione di dati da sensori BLE, simulando un ecosistema IoT.
 
 \subsubsection*{Pro}
@@ -258,10 +267,11 @@ Il progetto prevede la creazione di un’infrastruttura cloud per la gestione di
     \item Limitata componente frontend.
     \item Rischio di tempi lunghi di sviluppo.
 \end{itemize}
-
+\subsubsection*{Analisi}
+Questo capitolato è una pura sfida di Backend Asincrono e Multi-Tenant. Richiede la simulazione di gateway multipli che inviano dati in parallelo. Il cuore del progetto è l'architettura a code e la corretta segnalazione dei dati per tenant, molto prima di pensare alla dashboard.
 % ======================================================================
 \section{C8. Smart Order}
-\subsection*{Valutazione Critica Generale}
+\subsection*{Valutazione del Capitolato}
 Il progetto propone una piattaforma multimodale intelligente capace di interpretare ordini d’acquisto provenienti da testo, audio e immagini, trasformandoli in ordini strutturati per ERP.
 
 \subsubsection*{Pro}
@@ -278,10 +288,19 @@ Il progetto propone una piattaforma multimodale intelligente capace di interpret
     \item Necessità di dati di qualità per training.
     \item Integrazione ERP complessa.
 \end{itemize}
-
+\subsubsection*{Analisi}
+Smart Order è una Sfida di Pipeline Architetturale Completa. A differenza di altri richiede di progettare un flusso end-to-end:
+\begin{enumerate}
+    \item Ingestion (API/Web)
+    \item Pre-processing (NLP/OCR)
+    \item AI Core (Matching)
+    \item Validazione (UI per l'operatore)
+    \item Output (JSON/DB)
+\end{enumerate}
+Riteniamo ideale la natura modulare del progetto per un team numeroso come il nostro.
 % ======================================================================
 \section{C9. View4Life}
-\subsection*{Valutazione Critica}
+\subsection*{Valutazione del Capitolato}
 Il progetto Vimar prevede una piattaforma cloud e web per la gestione di impianti domotici nelle residenze per anziani, basata su KNX IoT API.
 
 \subsubsection*{Pro}
@@ -298,14 +317,44 @@ Il progetto Vimar prevede una piattaforma cloud e web per la gestione di impiant
     \item Rischio logistico legato ai dispositivi fisici.
     \item Necessario coordinamento costante del team.
 \end{itemize}
+\subsubsection*{Analisi}
+Questo progetto offre un vantaggio unico: validazione su un kit HW reale fornito dall'azienda. Tuttavia lo sviluppo dell'applicativo WEB dipende da un'API esterna (KNX IoT) e dall'accesso a questo HW, che potrebbe diventare un bottleneck per un team numeroso. Sarebbe necessario sviluppare un "Mock Server" che faccia da simulatore replicando le risposte attese dall'API KNX IoT, in modo da poter testare la piattaforma senza dipendere dall'HW fisico, che verrà poi utilizzato nella fase finale di integrazione e validazione.
 
+% ======================================================================
 
-\section{Conclusione}
+% -------------------------------------------------------------------
+% CONCLUSIONE E SCELTA FINALE
+% -------------------------------------------------------------------
+\section{Conclusione e Scelta Finale del Gruppo NightPRO}
 
-L’analisi complessiva dei capitolati mostra un’elevata qualità e varietà delle proposte, che spaziano da progetti tecnici e industriali a soluzioni con forte impatto sociale.\\[0.5em]
-In generale, i capitolati più formativi e bilanciati risultano quelli che combinano \textbf{chiarezza degli obiettivi}, \textbf{supporto aziendale solido} e \textbf{complessità gestibile}, come \textit{DIPReader} e \textit{Second Brain}.\\[0.5em]
-Progetti come \textit{Code Guardian} o \textit{Smart Order} offrono invece sfide più avanzate, ideali per team esperti e ben organizzati.\\[0.5em]
-In sintesi, ogni proposta rappresenta un’opportunità concreta per sviluppare \textbf{competenze tecniche}, \textbf{collaborative} e \textbf{progettuali} di alto livello.
+L'analisi complessiva dei nove capitolati ha rivelato un livello qualitativo elevato, con numerose opportunità di approfondimento in ambiti di frontiera come l'Intelligenza Artificiale, le architetture cloud e la sicurezza.
+\\[0.6em]
+La valutazione interna del gruppo \textbf{NightPRO}, basata su criteri di innovazione tecnologica, fattibilità, chiarezza dei requisiti e valore formativo, ha portato all'identificazione di due finalisti: \textbf{C6 – Second Brain} e \textbf{C8 – SmartOrder}.
+\\[0.6em]
+Entrambi i progetti sono di grande interesse, focalizzati sull'applicazione di modelli AI (LLM e NLP) a problemi concreti. Tuttavia, un'analisi ingegneristica più approfondita ha evidenziato differenze sostanziali che hanno guidato la nostra decisione finale.
+
+\subsection*{Analisi del "Runner-up": C6 – Second Brain}
+
+Il progetto \textbf{C6} di Zucchetti è affascinante e presenta requisiti d'MVP (Minimum Viable Product) estremamente chiari. La sfida principale risiede quasi esclusivamente nel \textbf{Prompt Engineering}, ovvero nello sviluppare la logica per far sì che un LLM generi critiche efficaci secondo il modello dei "sei cappelli per pensare".
+\\[0.6em]
+Tuttavia, l'architettura software di base (un editor Markdown locale che effettua chiamate API) è relativamente semplice. Il progetto ha uno spiccato "carattere esplorativo", più simile a un prototipo di Ricerca e Sviluppo che a un sistema software ingegneristicamente complesso.
+
+\subsection*{Motivazione della Scelta: C8 – SmartOrder}
+
+Il gruppo \textbf{NightPRO}, ha scelto all'unanimità il capitolato \textbf{C8 – SmartOrder} di \textbf{Ergon Informatica Srl}.
+\\[0.6em]
+Riteniamo che questo progetto rappresenti una \textbf{sfida di Ingegneria del Software più completa e robusta}. A differenza di C6, il successo di SmartOrder non dipende solo dalla qualità del modello AI, ma dalla progettazione di un'\textbf{intera pipeline architetturale modulare}, che include:
+\begin{itemize}
+    \item \textbf{Ingestion:} Un'interfaccia per ricevere input non strutturati (testo, audio, immagini).
+    \item \textbf{Processing:} Moduli di pre-elaborazione e AI per estrarre entità (articoli, quantità).
+    \item \textbf{Validazione:} Una logica di "parcheggio" per gli ordini ambigui, che richiede un'interfaccia \textit{Human-in-the-Loop} (HITL) per la validazione manuale.
+    \item \textbf{Output:} La generazione di un ordine strutturato (es. JSON) per i sistemi ERP.
+\end{itemize}
+Questa architettura \textit{end-to-end} si presta magnificamente alla parallelizzazione del lavoro per un team numeroso come il nostro, permettendo la creazione di un sistema complesso e integrato.
+\\[0.6em]
+Inoltre, l'incontro chiarificatore con il Dott. Carlesso di Ergon (come riportato nella nostra Lettera di Presentazione) ha efficacemente \textbf{mitigato il rischio tecnico principale} (la complessità multimodale), confermando che l'MVP può focalizzarsi sulla sola modalità testuale.
+\\[0.6em]
+Per questi motivi, \textbf{SmartOrder} offre il miglior equilibrio tra innovazione (AI, NLP), complessità architetturale e gestione realistica del progetto.
 
 % ======================================================================
 \end{document}
