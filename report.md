@@ -1,10 +1,10 @@
-# Report di compilazione del 2025-10-28T17:11:50+00:00
+# Report di compilazione del 2025-10-28T17:27:28+00:00
 
-Compilazione basata sul commit 2966172050ac54f45c812b1a169730ac5bc473fb (base: 2966172)
+Compilazione basata sul commit a6a043dc11f61c9b4952546c7d09980b3f02cb20 (base: a6a043d)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/Candidatura/Valutazione_Capitolati_v.02.pdf](docs/Candidatura/Valutazione_Capitolati_v.02.pdf)
+✅ [docs/Candidatura/Lettera_di_Presentazione_v0.2.pdf](docs/Candidatura/Lettera_di_Presentazione_v0.2.pdf)
 
