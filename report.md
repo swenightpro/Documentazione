@@ -1,10 +1,10 @@
-# Report di compilazione del 2025-10-28T09:29:21+00:00
+# Report di compilazione del 2025-10-28T09:42:22+00:00
 
-Compilazione basata sul commit 2ce815c4bda3f88ad9a212ecbe1a56eca9fb2b0f (base: 2ce815c)
+Compilazione basata sul commit b144c4ade3f2d88ad790a7c5d0470090367cf87f (base: b144c4a)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/Candidatura/Preventivo_Costi.pdf](docs/Candidatura/Preventivo_Costi.pdf)
+✅ [docs/Candidatura/Valutazione_Capitolati.pdf](docs/Candidatura/Valutazione_Capitolati.pdf)
 
