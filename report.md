@@ -1,10 +1,10 @@
-# Report di compilazione del 2025-10-28T13:55:33+00:00
+# Report di compilazione del 2025-10-28T15:30:47+00:00
 
-Compilazione basata sul commit e0d85f9a304b9d4b0f8200a00debb2b754d4a33a (base: e0d85f9)
+Compilazione basata sul commit e804d597f6ccfc989525e85dbfa69d186858aab0 (base: e804d59)
 
 ## Falliti
-💡 Nessun errore di compilazione
+❌ [src/Candidatura/Lettera_di_Presentazione.tex](https://github.com/swenightpro/Documentazione/actions/runs/18880141752)
+
 
 ## Compilati
-✅ [docs/Candidatura/Verbali/Verbali Interni/verbale_interno_20-10-25.pdf](docs/Candidatura/Verbali/Verbali%20Interni/verbale_interno_20-10-25.pdf)
-
+💡 Nessun PDF compilato
