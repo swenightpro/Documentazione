@@ -1,0 +1,311 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana
+\usepackage{lmodern}            % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}           % Per includere immagini
+\usepackage{currfile}
+\graphicspath{{src/immagini/}{\currfiledir contenuti/}{\currfiledir contenuti/immagini/}}
+
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
+
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{hyperref}           % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Documento Progetto - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce tutti i campi
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro in basso
+\renewcommand{\headrulewidth}{0.4pt} % Linea sottile sotto l'header
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: intestazione_titolo.tex
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.jpg}
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+
+
+    
+    \vfill
+    
+    {\Huge \bfseries Preventivo Costi e Assunzione Impegni \par}
+    
+    \vspace{1cm}
+    
+    % Inserisci qui il titolo specifico del documento
+    {\Large \itshape Redattori: Romascu Mihaela Mariana; Ponso Giovanni; Biasuzzi Davide  \par} 
+ 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+    
+    % Inserisci qui la data di redazione del documento
+    {\large Data: 28 ottobre 2025 \par}
+    {\Large \itshape Versione: 0.1 \par} 
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: indice.tex
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy} % Riattiva lo stile di pagina da qui in poi
+
+% -------------------------------------------------------------------
+%  SEZIONE: informazioni.tex
+% -------------------------------------------------------------------
+\newpage
+\section{C1. Automated EN18031 Compliance Verification}
+\subsection*{Valutazione Critica del Capitolato}
+Il progetto di \textbf{Bluewind} mira a realizzare un’applicazione software (desktop o web) per automatizzare la verifica di conformità alla norma EN18031, relativa alla sicurezza informatica dei dispositivi radio secondo la Direttiva RED.\\
+L’idea risponde a un’esigenza reale: ridurre la complessità e gli errori del processo manuale di verifica normativa.
+
+La soluzione digitalizza i \emph{Decision Tree} della norma, consentendo all’utente di navigarli, ottenere risultati automatici (“Pass”, “Fail”, “Not applicable”) e visualizzarli in una dashboard interattiva.\\
+Il caso di studio scelto — una macchina del caffè connessa via Wi-Fi — è realistico e utile per testare autenticazione, scambio sicuro di dati e logiche di verifica.
+
+Il capitolato offre flessibilità tecnologica (Python consigliato, ma non vincolante) e un approccio Agile, favorendo autonomia e adattabilità. Tuttavia, la complessità normativa e la scarsa specificità tecnica del documento possono rendere impegnativa la realizzazione per studenti senza conoscenze in ambito cybersecurity o standard europei.
+
+\subsubsection*{Pro}
+\begin{itemize}
+    \item Tema reale e utile nel contesto della sicurezza IoT.
+    \item Automazione di un processo complesso e ripetitivo.
+    \item Libertà di scelta tecnologica.
+    \item Supporto aziendale costante.
+    \item Caso di test concreto e chiaro.
+    \item Approccio Agile e flessibile.
+\end{itemize}
+
+\subsubsection*{Contro}
+\begin{itemize}
+    \item Comprensione complessa della norma EN18031.
+    \item Mancanza di dettagli su architettura e parsing dei Decision Tree.
+    \item Carico cognitivo elevato nella modellazione dei flussi decisionali.
+    \item Scarsa chiarezza sui criteri di valutazione automatica.
+    \item UI/UX poco approfondita nel documento.
+\end{itemize}
+
+% ======================================================================
+\section{C2. Code Guardian}
+\subsection*{Valutazione Critica del Capitolato}
+Il progetto propone una piattaforma intelligente per analizzare repository GitHub, valutando qualità del codice, sicurezza e manutenzione, e fornendo report e suggerimenti di miglioramento.\\
+L’architettura prevede un orchestratore centrale che coordina agenti specializzati (per test, sicurezza, documentazione, report), con una dashboard web in React.
+
+\subsubsection*{Pro}
+\begin{itemize}
+    \item Tema innovativo e rilevante per il mondo DevOps.
+    \item Architettura moderna e modulare con AI e multi-agenti.
+    \item Stack tecnologico attuale (Node.js, Python, React, AWS).
+    \item Supporto aziendale professionale e continuo.
+    \item Forte componente formativa in sicurezza e qualità del software.
+\end{itemize}
+
+\subsubsection*{Contro}
+\begin{itemize}
+    \item Elevata complessità tecnica e di integrazione.
+    \item Ambito vasto, rischio di dispersione.
+    \item Definizione non chiara delle metriche di valutazione.
+    \item Tempi lunghi per ottenere una demo completa.
+\end{itemize}
+
+% ======================================================================
+\section{C3. DIPReader}
+\subsection*{Valutazione Critica del Capitolato}
+Il progetto punta a realizzare un software multipiattaforma per la consultazione e ricerca di archivi digitali provenienti da sistemi di conservazione documentale.\\
+L’uso di SQLite e FAISS rende il sistema leggero ma moderno, con possibilità di integrare ricerca semantica.
+
+\subsubsection*{Pro}
+\begin{itemize}
+    \item Tema concreto e utile per aziende e PA.
+    \item MVP chiaro e realistico.
+    \item Tecnologie leggere e diffuse.
+    \item Funzionamento offline e multipiattaforma.
+    \item Supporto aziendale solido e materiale reale.
+\end{itemize}
+
+\subsubsection*{Contro}
+\begin{itemize}
+    \item Necessità di ottimizzare prestazioni su grandi volumi.
+    \item Ricerca semantica complessa da implementare.
+    \item Comprensione minima del contesto normativo richiesta.
+    \item UI/UX da progettare con cura per evitare eccessiva tecnicità.
+\end{itemize}
+
+% ======================================================================
+\section{C4. L’app che Protegge e Trasforma}
+\subsection*{Valutazione Critica del Capitolato}
+Il progetto propone un’app mobile per prevenire e gestire situazioni di violenza di genere, con funzionalità di analisi AI, alert silenziosi e geolocalizzazione sicura.
+
+\subsubsection*{Pro}
+\begin{itemize}
+    \item Forte valore sociale e impatto reale.
+    \item Tecnologie moderne (AI, AWS, Flutter).
+    \item Supporto tecnico e formativo continuo.
+    \item Focus su sicurezza, privacy e inclusività.
+\end{itemize}
+
+\subsubsection*{Contro}
+\begin{itemize}
+    \item Alta complessità tecnica e gestionale.
+    \item Rischio di dispersione se non si limita l’MVP.
+    \item Implementazione delicata della privacy.
+    \item Richiede sensibilità etica oltre che tecnica.
+\end{itemize}
+
+% ======================================================================
+\section{C5. NEXUM}
+\subsection*{Valutazione Critica del Capitolato}
+Il progetto NEXUM punta a digitalizzare la gestione HR nelle PMI, migliorando la comunicazione tra aziende, consulenti e dipendenti, con moduli basati su AI generativa e OCR.
+
+\subsubsection*{Pro}
+\begin{itemize}
+    \item Progetto concreto e destinato al mercato reale.
+    \item Innovazione con AI generativa e OCR.
+    \item Stack moderno e formazione Agile.
+    \item Supporto costante e ambiente professionale.
+\end{itemize}
+
+\subsubsection*{Contro}
+\begin{itemize}
+    \item Alta complessità tecnica e integrazione AI.
+    \item Requisiti di precisione elevati.
+    \item Dipendenza da servizi esterni (OCR, LLM).
+\end{itemize}
+
+% ======================================================================
+\section{C6. Second Brain}
+\subsection*{Valutazione Critica del Capitolato}
+Il progetto Zucchetti propone un editor di testo intelligente che utilizza LLM per assistere nella scrittura, revisione e generazione di testi, basato su Markdown.
+
+\subsubsection*{Pro}
+\begin{itemize}
+    \item Tema innovativo e attuale.
+    \item Progetto scalabile e sperimentale.
+    \item Requisiti chiari e raggiungibili.
+    \item Supporto tecnico disponibile.
+\end{itemize}
+
+\subsubsection*{Contro}
+\begin{itemize}
+    \item Limitato impatto industriale immediato.
+    \item Prompt engineering complesso.
+    \item Possibili problemi di privacy con API esterne.
+\end{itemize}
+
+% ======================================================================
+\section{C7. Sistema di acquisizione dati da sensori}
+\subsection*{Valutazione Critica}
+Il progetto prevede la creazione di un’infrastruttura cloud per la gestione di dati da sensori BLE, simulando un ecosistema IoT.
+
+\subsubsection*{Pro}
+\begin{itemize}
+    \item Architettura coerente e professionale.
+    \item Focus su sicurezza e scalabilità.
+    \item Tecnologie moderne e richieste dal mercato.
+    \item Ottima esperienza formativa.
+\end{itemize}
+
+\subsubsection*{Contro}
+\begin{itemize}
+    \item Elevata complessità tecnica e di setup.
+    \item Limitata componente frontend.
+    \item Rischio di tempi lunghi di sviluppo.
+\end{itemize}
+
+% ======================================================================
+\section{C8. Smart Order}
+\subsection*{Valutazione Critica Generale}
+Il progetto propone una piattaforma multimodale intelligente capace di interpretare ordini d’acquisto provenienti da testo, audio e immagini, trasformandoli in ordini strutturati per ERP.
+
+\subsubsection*{Pro}
+\begin{itemize}
+    \item Innovativo e concreto.
+    \item Architettura modulare e scalabile.
+    \item Libertà tecnologica.
+    \item Supporto aziendale solido.
+\end{itemize}
+
+\subsubsection*{Contro}
+\begin{itemize}
+    \item Alta complessità tecnica.
+    \item Necessità di dati di qualità per training.
+    \item Integrazione ERP complessa.
+\end{itemize}
+
+% ======================================================================
+\section{C9. View4Life}
+\subsection*{Valutazione Critica}
+Il progetto Vimar prevede una piattaforma cloud e web per la gestione di impianti domotici nelle residenze per anziani, basata su KNX IoT API.
+
+\subsubsection*{Pro}
+\begin{itemize}
+    \item Progetto reale con finalità sociali.
+    \item Tecnologie moderne (IoT, Cloud, API).
+    \item Esperienza con dispositivi fisici.
+    \item Supporto aziendale concreto.
+\end{itemize}
+
+\subsubsection*{Contro}
+\begin{itemize}
+    \item Alta complessità tecnica e di integrazione.
+    \item Rischio logistico legato ai dispositivi fisici.
+    \item Necessario coordinamento costante del team.
+\end{itemize}
+
+
+\section{Conclusione}
+
+L’analisi complessiva dei capitolati mostra un’elevata qualità e varietà delle proposte, che spaziano da progetti tecnici e industriali a soluzioni con forte impatto sociale.\\[0.5em]
+In generale, i capitolati più formativi e bilanciati risultano quelli che combinano \textbf{chiarezza degli obiettivi}, \textbf{supporto aziendale solido} e \textbf{complessità gestibile}, come \textit{DIPReader} e \textit{Second Brain}.\\[0.5em]
+Progetti come \textit{Code Guardian} o \textit{Smart Order} offrono invece sfide più avanzate, ideali per team esperti e ben organizzati.\\[0.5em]
+In sintesi, ogni proposta rappresenta un’opportunità concreta per sviluppare \textbf{competenze tecniche}, \textbf{collaborative} e \textbf{progettuali} di alto livello.
+
+% ======================================================================
+\end{document}
