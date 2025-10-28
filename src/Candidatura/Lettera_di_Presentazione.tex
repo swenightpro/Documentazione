@@ -1,41 +1,35 @@
-\documentclass[a4paper,11pt,oneside]{scrartcl}
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
 
-% ===================================================================
-%  PACCHETTI BASE
-% ===================================================================
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[italian]{babel}
-\usepackage{microtype}       % Migliora la giustificazione
-\usepackage{graphicx}        % Per le immagini
-\usepackage{booktabs}        % Tabelle eleganti
-\usepackage{hyperref}        % Link cliccabili nel PDF
-\usepackage{xcolor}          % Colori personalizzati
-\usepackage{geometry}        % Gestione margini
-\usepackage{fancyhdr}        % Header e footer personalizzati
-\usepackage{parskip}         % Spaziatura tra paragrafi, no indent
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana
+\usepackage{lmodern}            % Font "Latin Modern"
 
-% ===================================================================
-%  IMPOSTAZIONE GENERALE DOCUMENTO
-% ===================================================================
-\geometry{
-    top=2.5cm,
-    bottom=2.5cm,
-    left=2.5cm,
-    right=2.5cm
-}
+% --- Grafica e Layout ---
+\usepackage{graphicx}           % Per includere immagini
+\usepackage{currfile}
+\graphicspath{{src/immagini/}{\currfiledir contenuti/}{\currfiledir contenuti/immagini/}}
 
-\definecolor{DarkBlue}{HTML}{003366}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
 
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{hyperref}           % Rende i link cliccabili
 \hypersetup{
     colorlinks=true,
     linkcolor=DarkBlue,
-    filecolor=DarkBlue,
+    filecolor=DarkBlue,      
     urlcolor=DarkBlue,
     citecolor=DarkBlue,
-    pdftitle={Lettera di Presentazione - NightPRO},
-    pdfauthor={Gruppo NightPRO}
+    pdftitle={Documento Progetto - NightPRO},
+    pdfauthor={Gruppo NightPRO},
 }
+
 
 % ===================================================================
 %  HEADER E FOOTER
