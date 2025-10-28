@@ -1,0 +1,214 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana
+\usepackage{lmodern}            % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}           % Per includere immagini
+\usepackage{currfile}
+\graphicspath{{src/immagini/}{\currfiledir contenuti/}{\currfiledir contenuti/immagini/}}
+
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
+
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{hyperref}           % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Documento Progetto - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce tutti i campi
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro in basso
+\renewcommand{\headrulewidth}{0.4pt} % Linea sottile sotto l'header
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: intestazione_titolo.tex
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.jpg}
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+
+
+    
+    \vfill
+    
+    {\Huge \bfseries Preventivo Costi e Assunzione Impegni \par}
+    
+    \vspace{1cm}
+    
+    % Inserisci qui il titolo specifico del documento
+    {\Large \itshape Redattori: Romascu Mihaela Mariana; Bilato Leonardo  \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+    
+    % Inserisci qui la data di redazione del documento
+    {\large Data: 27 ottobre 2025 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: indice.tex
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy} % Riattiva lo stile di pagina da qui in poi
+
+% -------------------------------------------------------------------
+%  SEZIONE: informazioni.tex
+% -------------------------------------------------------------------
+\newpage
+\section{Introduzione}
+
+Il presente documento contiene la stima dei costi, la suddivisione dei ruoli e la spiegazione dettagliata delle attività e delle ore di lavoro necessarie per la realizzazione del progetto.  
+L’obiettivo è definire in modo chiaro l’impegno richiesto a ciascun membro del gruppo, garantendo una distribuzione equilibrata delle responsabilità e una pianificazione realistica delle risorse.
+
+Questo preventivo è redatto in conformità con il regolamento del progetto didattico del corso di Ingegneria del Software dell’Università di Padova.  
+Esso costituisce un punto di riferimento iniziale per la gestione del progetto, utile sia al gruppo di lavoro per organizzare le proprie attività, sia al proponente per valutare la sostenibilità economica e temporale del progetto.
+
+In particolare, il documento descrive:
+\begin{itemize}
+    \item la composizione del gruppo e il numero totale di ore di lavoro previste;
+    \item la ripartizione delle ore tra i diversi ruoli e il relativo costo;
+    \item le responsabilità principali associate a ciascun ruolo;
+    \item il costo complessivo del progetto e la sua conformità ai vincoli stabiliti dal regolamento.
+\end{itemize}
+
+\section{Dati generali del gruppo}
+
+\begin{center}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Voce} & \textbf{Valore} \\
+\hline
+Numero componenti del gruppo & 7 \\
+Ore previste per componente & 90 \\
+Totale ore complessive & 630 \\
+Scadenza ultima prevista & 28 marzo 2026 \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Ripartizione delle ore per ruolo}
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Ruolo} & \textbf{Percentuale} & \textbf{Ore totali} & \textbf{Costo orario (€)} & \textbf{Costo totale (€)} \\
+\hline
+Responsabile & 10\% & 63 & 30 & 1.890 \\
+Amministratore di Sistema & 10\% & 63 & 20 & 1.260 \\
+Analista & 10\% & 63 & 25 & 1.575 \\
+Progettista & 20\% & 126 & 25 & 3.150 \\
+Programmatore & 35\% & 220 & 15 & 3.300 \\
+Verificatore & 15\% & 95 & 15 & 1.425 \\
+\hline
+\textbf{Totale complessivo} & 100\% & \textbf{630} & - & \textbf{12.600} \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Distribuzione dei ruoli}
+
+I ruoli indicati nella tabella saranno distribuiti in modo equilibrato tra tutti i membri del gruppo.  
+È prevista una rotazione periodica dei ruoli, così da consentire a ciascun componente di acquisire esperienza e competenze in tutte le principali attività del progetto.
+
+\subsection{Analisti}
+
+Gli analisti si occupano di comprendere a fondo il problema da risolvere e di definire con precisione i requisiti del sistema.  
+Hanno una buona conoscenza del dominio applicativo e una notevole esperienza, elementi che rendono il loro contributo decisivo per l’avvio e il successo del progetto.  
+Il loro coinvolgimento è concentrato nella fase iniziale: una volta definiti i requisiti, tendono a non seguire il progetto fino alla consegna finale.
+
+\subsection{Progettisti}
+
+I progettisti trasformano le specifiche fornite dagli analisti in soluzioni tecniche concrete.  
+Possiedono competenze aggiornate sulle tecnologie e sulle metodologie di sviluppo e sono responsabili delle principali scelte di progettazione.  
+Partecipano principalmente alle fasi di progettazione e sviluppo, ma non alla manutenzione del prodotto.
+
+\subsection{Programmatori}
+
+I programmatori implementano il software, traducendo i progetti in codice funzionante.  
+Rappresentano la parte più numerosa del gruppo e contribuiscono anche alla manutenzione e all’evoluzione del prodotto.  
+Pur avendo buone competenze tecniche, seguono le linee guida stabilite dai progettisti e dai responsabili.
+
+\subsection{Verificatori}
+
+I verificatori controllano che ogni parte del progetto rispetti gli standard di qualità previsti.  
+Sono presenti per tutta la durata del progetto e garantiscono che ogni attività venga eseguita correttamente.  
+Devono avere buone competenze tecniche, conoscenza del processo di sviluppo e capacità relazionali per collaborare efficacemente con il resto del team.
+
+\subsection{Responsabile (Project Manager)}
+
+Il responsabile coordina il gruppo di lavoro e rappresenta il progetto verso l’esterno, in particolare nei confronti del committente o del proponente.  
+Approva le varie fasi del progetto e assicura che tutto proceda secondo i piani.  
+Segue il progetto dall’inizio alla fine, gestendo risorse, scadenze, comunicazioni e rischi.  
+Per svolgere questo ruolo in modo efficace deve possedere competenze sia organizzative che tecniche.
+
+\subsection{Amministratore di Sistema}
+
+L’amministratore di sistema si occupa di creare e mantenere l’ambiente tecnico in cui lavora il team di progetto.  
+Si assicura che le infrastrutture, gli strumenti e le tecnologie siano sempre funzionanti e aggiornate.  
+Interviene in modo proattivo per prevenire problemi e reattivamente per risolvere eventuali malfunzionamenti.  
+Nelle grandi organizzazioni questa figura è spesso separata, mentre nei progetti più piccoli viene svolta come ruolo interno al team.
+
+\section{Dichiarazione degli impegni}
+
+Il gruppo si impegna a:
+\begin{itemize}
+    \item rispettare le scadenze previste dal piano di lavoro approvato;
+    \item mantenere la suddivisione dei ruoli come da preventivo;
+    \item rendicontare accuratamente le ore effettivamente svolte in ciascun ruolo;
+    \item garantire la qualità e la completezza dei prodotti software e documentali.
+\end{itemize}
+
+\section{Conclusione}
+
+Il presente preventivo rappresenta la base economica e organizzativa per l’avvio del progetto.  
+Ogni componente del gruppo contribuirà con 90 ore di lavoro, per un totale di 630 ore complessive, distribuite secondo le responsabilità e i ruoli specificati.  
+Il costo complessivo previsto è pari a \textbf{€ 12.600}.  
+La scadenza ultima per la consegna è fissata al \textbf{28 marzo 2026}.
+
+\end{document}
