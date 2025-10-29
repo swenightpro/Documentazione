@@ -1,0 +1,245 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana 
+\usepackage{lmodern}            % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}           % Per includere immagini
+\usepackage{currfile}
+\graphicspath{{src/immagini/}{\currfiledir contenuti/}{\currfiledir contenuti/immagini/}}
+
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
+
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{hyperref}           % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Documento Progetto - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce tutti i campi
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro in basso
+\renewcommand{\headrulewidth}{0.4pt} % Linea sottile sotto l'header
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: intestazione_titolo.tex
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.jpg}
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    {\Large \itshape Verbale Interno del 29 ottobre 2025 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+  
+    {\large Data: 29 ottobre 2025 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: indice.tex
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy} % Riattiva lo stile di pagina da qui in poi
+
+% -------------------------------------------------------------------
+%  SEZIONE: informazioni.tex
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 29 ottobre 2025
+    \item \textbf{Ora:} 16:30 - 18:30
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Tutti i membri del gruppo tranne Michele Ogniben
+    \item \textbf{Redatto da: } Davide Biasuzzi
+    \item \textbf{Verificato da:} Francesco Zanella
+    \item \textbf{Versione: } 1.0
+\end{itemize}
+
+
+% -------------------------------------------------------------------
+%  SEZIONE: odg.tex (Ordine del Giorno)
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Presentazione e discussione sito GitHub Pages
+    \item[2.] Analisi tempistiche ruoli Analista/Verificatore e definizione criteri di rotazione
+    \item[3.] Gestione documenti di presentazione (Registro Modifiche, allineamento layout, logo)
+    \item[4.] Definizione procedure di verifica e approvazione documenti
+    \item[5.] Aggiornamento e chiarimenti capitolato VIMAR (visione FAQ)
+    \item[6.] Aggiornamento task su GitHub
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: diario.tex (Diario della riunione)
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Presentazione e discussione sito GitHub Pages}
+Giovanni Ponso e Leonardo Bilato presentano lo stato di avanzamento del sito GitHub Pages del gruppo, attualmente su repository privata.
+È stato mostrato lo script Python per l'ordinamento e la gestione dei documenti, che include il riconoscimento di formati di data diversi (es. \texttt{YYYY-MM-DD} o \texttt{YYYY/MM/DD}).
+
+Sono state discusse le seguenti modifiche e migliorie da implementare prima del rilascio ufficiale:
+\begin{itemize}
+    \item Aggiunta informazioni sul gruppo e sul progetto.
+    \item Predisposizione menu di navigazione per le fasi future (PB, RTB).
+    \item Centratura del logo.
+    \item Implementazione funzione dark mode.
+    \item Aggiunta sfondo di fallback.
+    \item Miglioramento della logica di orientamento utente nel sito.
+\end{itemize}
+Durante la riunione sono state effettuate modifiche live alla grafica. Il gruppo approva il lavoro svolto e si decide di pubblicare il sito entro il 30 ottobre 2025.
+
+\subsection{Gestione documenti di presentazione}
+\subsubsection{Allineamento layout e Logo}
+Davide Biasuzzi segnala di aver allineato (prima della riunione) i layout dei file LaTeX dei tre documenti di presentazione (Lettera, Preventivo, Valutazione) per renderli coerenti.
+Giovanni Ponso segnala che attualmente si sta utilizzando una versione obsoleta del logo. Si occuperà di aggiornare il file del logo e ricompilare tutti i documenti che lo utilizzano.
+
+\subsubsection{Registro delle Modifiche}
+Si decide di implementare un "Registro delle Modifiche" per i tre documenti di presentazione. Tale registro dovrà essere posizionato all'inizio di ogni documento, prima dell'indice.
+L'incarico per la creazione del registro è così suddiviso:
+\begin{itemize}
+    \item \textbf{Valutazione dei Capitolati:} Davide Biasuzzi.
+    \item \textbf{Preventivo dei Costi:} Mihaela-Mariana Romascu.
+    \item \textbf{Lettera di Presentazione:} Francesco Zanella.
+\end{itemize}
+
+\subsubsection{Verifica e Approvazione}
+Si stabilisce che la verifica e l'approvazione finale dei tre documenti (Lettera, Preventivo, Valutazione) deve avvenire entro il 30 ottobre 2025.
+Per garantire oggettività, si decide che i ruoli di redattore, verificatore e approvatore non possono essere ricoperti dalle stesse persone per lo stesso documento.
+
+\subsection{Analisi tempistiche ruoli (Analista/Verificatore)}
+Davide Biasuzzi solleva la questione delle tempistiche assegnate ai ruoli di Analista e Verificatore nel documento "Preventivo", ritenute leggermente sottostimate rispetto al ruolo di Programmatore.
+Si discute la necessità di definire meglio i criteri per la rotazione dei ruoli. Si concorda su una rotazione periodica e flessibile, da organizzare tramite incontri dedicati.
+Leonardo Bilato si occuperà di rivedere le stime e aggiungere i criteri di rotazione nel documento.
+Di conseguenza, sarà necessario aggiornare anche il costo totale nel "Preventivo dei Costi".
+
+\subsection{Aggiornamento capitolato VIMAR}
+Si prende atto della risposta ricevuta da VIMAR, la quale, data l'impossibilità di fissare un incontro a breve, ha inviato un documento FAQ contenente le domande poste dagli altri gruppi.
+Il gruppo ha preso visione del documento. La preferenza del gruppo rimane confermata sul capitolato C8 (Ergon).
+
+\subsection{Aggiornamento Task Management}
+Si conferma che le decisioni prese e i task assegnati durante la riunione sono stati inseriti nel backlog (Agile task workflow) dell'organizzazione GitHub e assegnati ai rispettivi responsabili.
+
+% -------------------------------------------------------------------
+%  SEZIONE: decisioni.tex (Decisioni prese)
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese}
+
+\begin{enumerate}
+    \item Approvare la versione attuale del sito GitHub Pages e procedere con la pubblicazione entro il 30/10/25.
+    \item Aggiornare il file del logo (versione corretta) e ricompilare tutti i documenti.
+    \item Rivedere le stime orarie per i ruoli di Analista e Verificatore nel "Preventivo dei Costi".
+    \item Definire e inserire nel "Preventivo" i criteri per la rotazione flessibile dei ruoli.
+    \item Aggiornare il costo totale nel "Preventivo" in base alle nuove stime orarie.
+    \item Introdurre un "Registro delle Modifiche" all'inizio dei tre documenti di presentazione (Lettera, Preventivo, Valutazione).
+    \item Stabilire che le verifiche e approvazioni (entro 30/10) siano fatte da membri che non hanno redatto il documento specifico.
+    \item Confermata la preferenza per il capitolato C8, anche dopo aver visionato le FAQ fornite dall'azienda VIMAR.
+    \item Assegnare la redazione del presente verbale a Davide Biasuzzi.
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: todo.tex (Attività da svolgere)
+% -------------------------------------------------------------------
+\newpage
+\section{Attività da Svolgere (To-Do)}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} & \textbf{Scadenza} \\
+\midrule
+Redazione Verbale Riunione 29/10 & Davide Biasuzzi & 29/10/25 \\
+Revisione tempistiche ruoli e criteri rotazione & Leonardo Bilato & 29/10/25 \\
+Pubblicazione finale sito GitHub Pages & G. Ponso, L. Bilato & 30/10/25 \\
+Aggiornamento file Logo e ricompilazione docs & Giovanni Ponso & 30/10/25 \\
+Redazione "Registro Modifiche" (Valutazione) & Davide Biasuzzi & 30/10/25 \\
+Redazione "Registro Modifiche" (Preventivo) & Mihaela M. Romascu & 30/10/25 \\
+Redazione "Registro Modifiche" (Lettera) & Francesco Zanella & 30/10/25 \\
+Aggiornamento costi in "Preventivo Costi" & L. Bilato, M. M. Romascu & 30/10/25 \\
+Verifica e Approvazione Documenti (Lettera, & Membri non redattori & 30/10/25 \\
+Preventivo, Valutazione) & & \\
+\bottomrule
+\end{tabular}
+\caption{Riepilogo task assegnati.}
+\end{table}
+
+\end{document}

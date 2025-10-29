@@ -67,7 +67,7 @@
     
     {\Huge \bfseries Lettera di Presentazione \par}
         \vspace{1cm}
-         {\Large Redattori: Samuele Perozzo, Francesco Zanella, Michele Ogniben   \par} 
+         {\Large Redattori: Samuele Perozzo, Francesco Zanella, Michele Ogniben\par} 
     {\Large Verificato da: Tutto il gruppo\par} 
     \vfill
 
@@ -80,6 +80,30 @@
      {\Large Versione: 0.3 \par} 
 
 \end{titlepage}
+
+%  SEZIONE: Tabella delle Versioni
+% -------------------------------------------------------------------
+\newpage
+\pagestyle{fancy}
+\phantomsection
+\addcontentsline{toc}{section}{Tabella delle Versioni}
+\section*{Tabella delle Versioni}
+\vspace{0.2cm} 
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}llp{0.25\textwidth}p{0.55\textwidth}@{}} 
+\toprule
+\textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} \\
+\midrule
+0.1 & 28/10/2025 & F. Zanella; S. Perozzo; M. Ogniben & Creazione bozza iniziale e struttura del documento. \\
+0.2 & 28/10/2025 & F. Zanella; S. Perozzo & Stesura della parte di Introduzione, Resoconto dell'Incontro, Motivazione della Scelta e Conclusione \\
+0.3 & 29/10/2025 & Francesco Zanella & Modifica dell'indentazione nella parte di Resoconto dell'Incontro e aggiornamento prezzo del preventivo nella Conclusione \\
+
+\bottomrule
+\end{tabular}
+\end{center}
+
+
 \newpage
 \tableofcontents % Genera l'indice
 \pagestyle{fancy}
@@ -153,26 +177,26 @@ All’interno della repository sono presenti:
 
 In data \textbf{22 ottobre 2025} il gruppo \textbf{NightPRO} ha preso parte a un incontro online con il rappresentante di \textbf{Ergon Informatica} Gianluca Carlesso, al fine di chiarire alcuni aspetti tecnici e organizzativi del capitolato \textbf{C8 – SmartOrder}.  
 L’incontro, della durata di circa trenta minuti, è stato particolarmente utile per comprendere meglio l’ambito del progetto, le priorità di sviluppo e le aspettative dell’azienda proponente.
-
+\noindent \\
 Durante la riunione, sono stati affrontati diversi punti di interesse legati alla definizione dei requisiti e all’architettura del sistema.
-
+\noindent \\
 È stato innanzitutto chiarito che, per la fase di \textit{Proof of Concept}, è sufficiente concentrare lo sviluppo su una o due modalità di input, dando priorità all’elaborazione testuale.  
 L’integrazione audio è stata indicata come un’estensione consigliata ma non obbligatoria, mentre la gestione delle immagini può essere considerata una fase successiva, data la sua maggiore complessità.
-
+\noindent \\
 Si è poi discusso della gestione degli input provenienti da canali eterogenei.  
 Ergon ha confermato che non è necessario implementare un’infrastruttura completa per la raccolta dei dati, ma è consigliabile prevedere una \textbf{web application} che consenta al cliente di verificare la correttezza degli ordini generati dal sistema.  
 Il recupero dei dati da sorgenti esterne, come e-mail o messaggistica, può quindi essere considerato un’estensione opzionale.
-
+\noindent \\
 Riguardo al layer dedicato alla \textbf{validazione e all’arricchimento dei dati}, l’azienda ha suggerito di implementare una logica di gestione delle ambiguità: gli ordini che presentano dati incompleti o poco chiari dovranno essere “parcheggiati” in attesa dell’intervento di un operatore umano.  
 Il sistema dovrà dunque offrire un meccanismo per contattare direttamente un operatore nei casi in cui l’AI non sia in grado di risolvere autonomamente l’ambiguità.
-
+\noindent \\
 Per quanto concerne il \textbf{monitoraggio e il miglioramento del modello}, Ergon ha indicato che il retraining può essere gestito in modo automatico, sfruttando i feedback degli utenti o la percentuale di correttezza degli ordini generati.  
 L’obiettivo è favorire un’evoluzione continua del sistema sulla base dei dati raccolti durante l’utilizzo reale.
-
+\noindent \\
 Infine, si è discusso delle \textbf{preferenze tecnologiche}.  
 L’azienda ha raccomandato l’utilizzo di \textbf{Python} per la parte relativa all’intelligenza artificiale, lasciando invece piena libertà di scelta per lo stack applicativo, sia lato frontend che backend.  
 Sono stati menzionati framework come React e .NET Blazor tra le opzioni consigliate, ma senza vincoli imposti.
-
+\noindent \\
 Nel complesso, l’incontro si è rivelato estremamente chiaro e collaborativo: il dott. Gianluca Carlesso (rappresentante Ergon informatica) ha mostrato grande disponibilità, rispondendo con precisione a ogni quesito e fornendo indicazioni utili per orientare la progettazione.  
 I chiarimenti ricevuti hanno permesso al gruppo di definire con maggiore consapevolezza gli obiettivi e la fattibilità del capitolato, contribuendo in modo decisivo alla scelta finale di \textbf{SmartOrder} come progetto di riferimento.
 % -------------------------------------------------------------------
@@ -201,7 +225,7 @@ Ergon Informatica ha garantito disponibilità e assistenza costante, con un refe
 \section{Conclusione}
 Visti i motivi sopra esposti e non riscontrando in nessun altro capitolato una combinazione equivalente di innovazione tecnologica, valore formativo e supporto aziendale, il gruppo \textbf{NightPRO} ha deciso di candidarsi alla realizzazione del progetto \textbf{SmartOrder} proposto da \textbf{Ergon Informatica}.  
 
-Come indicato nel documento \textit{Preventivo dei costi e degli impegni orari}, il costo stimato per la realizzazione del prodotto è pari a \textbf{12.600\,€}, con una previsione di consegna fissata al \textbf{21 marzo 2026}.
+Come indicato nel documento \textit{Preventivo dei costi e degli impegni orari}, il costo stimato per la realizzazione del prodotto è pari a \textbf{13.230\,€}, con una previsione di consegna fissata al \textbf{21 marzo 2026}.
 
 \vspace{0.5cm}
 
