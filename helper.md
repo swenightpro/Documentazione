@@ -1,4 +1,4 @@
-# Guida all'uso
+# Guida all'uso dei workflow del repository
 1) Per compilare i vostri file latex, caricateli tutti nella cartella `src/`. La build si attiverà in automatico e salverà tutti i rispettivi `.pdf` compilati nella cartella `docs/`, con una struttura di cartelle uguale a quella che abbiamo usato in `src/`.
 2) Potete caricare progetti latex mono-file oppure multi-file. Per i progetti multi-file è importante che esista un file `.tex` principale e una cartella obbligatoriamente chiamata `contenuti/` in cui disporre tutti i file secondari del progetto (questo nome è un vincolo tecnico per far funzionare la build).
 3) Questione immagini: la compilazione dei progetti latex parte dalla root, dunque per la compilazione delle immagini basta procedere nel seguente modo:
@@ -14,9 +14,11 @@
 6) Potete caricare i file pdf firmati, caricandoli a mano in `docs/` dopo averli rinominati con un nome che termina con `*firmato.pdf` oppure `*signed.pdf` (esempio: `verbale_firmato.pdf`). Questi file infatti pur essendo "orfani" verranno ignorati (e quindi non eliminati) durante il controllo di integritá tra `src/` e `docs/` grazie al loro nome specifico.
 7) Dettaglio da evidenziare: la build si attiverà anche se elimini, modifichi o aggiungi un file .pdf da docs/. Questo accade perché il sistema deve garantire che i PDF in docs/ siano sempre e solo quelli generati dalla build stessa e non modificati a mano (quindi li rigenera o li elimina se necessario).
 8) Report sui risultati di compilazione della build: potete controllare quali file sono stati effettivamente compilati correttamente, e quali hanno fallito la compilazione, nel file `report.md` (si aggiorna ad ogni build chiaramente).
-9) Evitiamo di utilizzare rebase in favore del merge per creare meno problemi.
+9) Da evitare l'utilizzo di rebase in favore del merge per creare meno problemi.
+10) Processo di creazione e pubblicazione della pagina web dedicata ai documenti del repository: i file `.pdf` che si trovano direttamente in `docs/` (senza passare per cartelle intermedie) vengono completamente ignorati dallo script che crea la struttura dei documenti per il sito web, di conseguenza non saranno visualizzati (per il nostro progetto questo sará un non problema dato che non é previsto accada).
+11) Nomenclatura file pdf: strutturare il nome del file latex mettendo la versione alla fine (es: nome_v0.1.5.tex). Quando si inserisce un file `.pdf` firmato a mano, si deve aggiungere la parola `firmato` o `signed` alla fine nel nome del file pdf (es: nome_v0.1.5_firmato.pdf). L'ordine è importante per garantire allo script python del sito web di riconoscere correttamente versione del file e presenza della firma. Per fare gli spazi si può tranquillamente usare `_` o fare il classico spazio (verrà gestito correttamente anche il `-` ma é da preferirsi per le date).
 
-# Obiettivi della Build
+# Obiettivi della build di compilazione automatica dei file LaTeX
 
 L’obiettivo della build implementata con github action è di compilare automaticamente i progetti latex caricati nel repository, mantenendo **coerenza e consistenza** tra i file sorgenti latex e i rispettivi pdf.
 Nello specifico la build garantisce che:
@@ -33,7 +35,7 @@ Attenzione: tutto ció non vale per i file firmati, dovranno essere gestiti manu
 - Viene individuato l’ultimo commit creato dalla build automatica (`LAST_COMPILED`) e confrontato con `HEAD`.
 - Dal diff si ottiene una lista unica di PDF da rigenerare, composta da:
   - tutti i `.tex` modificati/aggiunti/rinominati (se un file è in una cartella `contenuti/`, si considera il relativo file padre nella stessa directory);
-  - tutti i `.pdf` in `docs/` modificati/aggiunti/rinominati manualmente.
+  - tutti i `.pdf` in `docs/` modificati/aggiunti/rinominati manualmente (non orfani).
 
 ### Step 2 – Pulizia
 - Si eliminano i PDF corrispondenti agli elementi identificati nello Step 1 (se esistono).
