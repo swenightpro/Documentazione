@@ -1,10 +1,10 @@
-# Report di compilazione del 2025-10-29T17:23:49+00:00
+# Report di compilazione del 2025-10-29T17:56:41+00:00
 
-Compilazione basata sul commit 1ff80c6f6c6bb7651ac1223a21f92f98ca6d43c7 (base: 1ff80c6)
+Compilazione basata sul commit ce832bda1c8b2335305ac181f6ecec236a1896fe (base: ce832bd)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/Candidatura/Valutazione_Capitolati_v.03.pdf](docs/Candidatura/Valutazione_Capitolati_v.03.pdf)
+✅ [docs/Candidatura/Verbali/Verbali Interni/verbale_interno_29-10-25.pdf](docs/Candidatura/Verbali/Verbali%20Interni/verbale_interno_29-10-25.pdf)
 
