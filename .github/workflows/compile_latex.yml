@@ -60,22 +60,26 @@ jobs:
             done
           fi
           
-          # creazione lista pulita di file pdf modificati
+          # creazione lista pulita di file pdf modificati 
           if [ -n "$changed_pdfs" ]; then
             echo "$changed_pdfs" | while IFS= read -r pdf; do
               [ -z "$pdf" ] && continue
               src_tex=$(echo "$pdf" | sed 's|^docs/|src/|; s|\.pdf$|\.tex|')
-              echo "$src_tex" >> pdfs_to_remove.txt
+              if [ -f "$src_tex" ]; then
+                echo "$src_tex" >> pdfs_to_remove.txt
+              else
+                echo "Ignoring orphan PDF (no matching .tex): $pdf"
+              fi
             done
           fi
-
+          
           sort -u pdfs_to_remove.txt -o pdfs_to_remove.txt
           echo "--- Files to recompile or remove ---"
           cat pdfs_to_remove.txt || echo "(none)"
 
       - name: Step 2 - Cleanup
         run: |
-          # eliminazione dei file pdf provenienti dalle due liste pulite create sopra (pdf obsoleti)(se esistono)
+          # eliminazione dei file pdf provenienti dalle due liste pulite create sopra (pdf obsoleti)(se esistono) 
           echo "--- Cleaning up obsolete or orphaned PDFs ---"
           if [ -s pdfs_to_remove.txt ]; then
             while IFS= read -r texfile; do
