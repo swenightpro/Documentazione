@@ -1,0 +1,440 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana
+\usepackage{lmodern}            % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}           % Per le immagini
+\graphicspath{{../assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
+
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{hyperref}           % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Documento Progetto - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce tutti i campi
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro in basso
+\renewcommand{\headrulewidth}{0.4pt} % Linea sottile sotto l'header
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: intestazione_titolo.tex
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+
+
+    
+    \vfill
+    
+    {\Huge \bfseries Valutazione Capitolati \par}
+    
+    \vspace{1cm}
+    
+    % Inserisci qui il titolo specifico del documento
+    {\Large Redattori: Mihaela Mariana Romascu; Giovanni Ponso; Davide Biasuzzi \par} 
+    {\Large Verificato da: Tutto il gruppo  \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+    
+    % Inserisci qui la data di redazione del documento
+    {\large Data: 28 ottobre 2025 \par}
+    {\Large Versione: 0.4 \par} 
+
+\end{titlepage}
+
+
+
+%  SEZIONE: Tabella delle Versioni
+% -------------------------------------------------------------------
+\newpage
+\pagestyle{fancy}
+\phantomsection % Necessario per far puntare correttamente il link dall'indice
+\addcontentsline{toc}{section}{Tabella delle Versioni}
+\section*{Tabella delle Versioni}
+\vspace{0.2cm} 
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}llp{0.25\textwidth}p{0.55\textwidth}@{}} 
+\toprule
+\textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} \\
+\midrule
+0.1 & 28/10/2025 &Mihaela Mariana Romascu; Giovanni Ponso; Davide Biasuzzi & Creazione bozza iniziale e struttura del documento. \\
+0.2 & 28/10/2025 & Davide Biasuzzi & Aggiunta Analisi per ogni capitolato, completata la conclusione \\
+0.3 & 29/10/2025 & Davide Biasuzzi & Corretto refuso sulla data \\
+0.4 & 30/10/2025 & Giovanni Ponso  &  Aggiunta contenuti e revisione finale \\
+% Aggiungere qui le nuove versioni
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+
+
+%  SEZIONE: indice.tex
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy} % Riattiva lo stile di pagina da qui in poi
+
+
+% -------------------------------------------------------------------
+%  INFORMAZIONI GENERALI
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.2} % più spazio tra le righe
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del gruppo NightPRO.}
+\end{table}
+
+% -------------------------------------------------------------------
+% INTRODUZIONE
+% -------------------------------------------------------------------
+
+
+% -------------------------------------------------------------------
+%  SEZIONE: informazioni.tex
+% -------------------------------------------------------------------
+\newpage
+\section{C1. Automated EN18031 Compliance Verification}
+
+\subsection*{Valutazione del capitolato}
+Il progetto proposto da Bluewind prevede lo sviluppo di un'applicazione per assistere la verifica di conformità alla norma EN18031 (Direttiva RED), digitalizzando i \emph{decision tree} della normativa e guidando l’utente nel processo di valutazione. È previsto un caso d’uso concreto (macchina del caffè connessa), utile per testare sicurezza e autenticazione su dispositivi IoT.
+
+Il capitolato fornisce materiale reale, indica Python come tecnologia preferenziale e garantisce supporto diretto da parte dell’azienda.
+
+\subsubsection*{Pro}
+\begin{itemize}
+    \item Tema reale legato alla sicurezza IoT e alla conformità normativa.
+    \item Processo chiaro e strutturato grazie ai decision tree.
+    \item Caso studio concreto fornito dall’azienda.
+    \item Supporto tecnico costante e buona libertà tecnologica.
+\end{itemize}
+
+\subsubsection*{Contro}
+\begin{itemize}
+    \item Curva iniziale di apprendimento sulla normativa EN18031.
+    \item Modellazione dei decision tree complessa e centrale per il progetto.
+    \item Alto focus su struttura dati e parsing, meno su UI/UX.
+\end{itemize}
+
+\subsubsection*{Analisi}
+La difficoltà principale riguarda la rappresentazione dei \emph{decision tree} e la costruzione di una struttura dati flessibile per interpretarli. Conviene partire dalla definizione del modello e dal parser, rimandando la GUI a una fase successiva. Un progetto interessante e ben guidato, ma con un carico iniziale legato alla comprensione della normativa.
+
+% ======================================================================
+\newpage
+\section{C2. Code Guardian}
+\subsection*{Valutazione del capitolato}
+Il progetto prevede la realizzazione di una piattaforma in grado di analizzare repository GitHub e fornire valutazioni sulla qualità del codice, sicurezza e manutenzione. L'idea è supportare sviluppatori e team DevOps tramite agenti specializzati che producono report automatici e suggerimenti di miglioramento. L’architettura è basata su un orchestratore che coordina più agenti, con una dashboard web per visualizzare i risultati.
+
+La proposta è interessante e attuale, soprattutto per chi vuole approfondire strumenti e metodologie legate alla qualità del software e alla sicurezza. Il capitolato richiede l'uso di tecnologie moderne (Node.js, Python, React) e introduce anche aspetti di CI/CD e analisi di sicurezza secondo standard come OWASP. Inoltre, è previsto supporto costante da parte dell’azienda.
+
+\subsubsection*{Pro}
+\begin{itemize}
+    \item Tema moderno e rilevante per l'ambito DevOps e software engineering.
+    \item Architettura modulare basata su agenti, che permette un lavoro strutturato e incrementale.
+    \item Utilizzo di tecnologie attuali.
+    \item Buone opportunità di apprendimento su sicurezza, testing e analisi del codice.
+    \item Supporto e mentoring tecnico da parte dell'azienda.
+\end{itemize}
+
+\subsubsection*{Contro}
+\begin{itemize}
+    \item Progetto complesso, soprattutto nella gestione degli agenti e della loro comunicazione.
+    \item Ampiezza dell’ambito, rischio di voler coprire troppo in poco tempo.
+    \item Necessità di definire metriche chiare per valutare codice e sicurezza.
+    \item Richiede familiarità con più tecnologie e concetti (backend, frontend, DevOps, OWASP).
+\end{itemize}
+
+\subsubsection*{Analisi}
+La principale difficoltà è l'ampiezza del progetto e la complessità dell’architettura multi-agente. Per ridurre il rischio, avrebbe senso iniziare con un MVP limitato, implementando l’orchestratore e un singolo agente (ad esempio per l’analisi dei test o della sicurezza) e poi espandere in modo graduale. Nel complesso si tratta di un capitolato formativo, ma impegnativo dal punto di vista tecnico e organizzativo.
+
+% ======================================================================
+\newpage
+\section{C3. DIPReader}
+\subsection*{Valutazione del capitolato}
+Il progetto punta a realizzare un software multipiattaforma per la consultazione e ricerca di archivi digitali provenienti da sistemi di conservazione documentale.
+
+L’uso di SQLite e FAISS rende il sistema leggero ma moderno, con possibilità di integrare ricerca semantica. Il capitolato fornisce un MVP ben definito e richiede che l’app funzioni senza installazioni esterne, elementi che guidano in modo chiaro sia l’architettura che le priorità iniziali.
+
+\subsubsection*{Pro}
+\begin{itemize}
+    \item Tema concreto e utile per aziende e PA.
+    \item MVP chiaro e realistico.
+    \item Tecnologie leggere e diffuse.
+    \item Funzionamento offline e multipiattaforma.
+    \item Supporto aziendale solido e materiale reale.
+\end{itemize}
+
+\subsubsection*{Contro}
+\begin{itemize}
+    \item Necessità di ottimizzare prestazioni su grandi volumi.
+    \item Ricerca semantica complessa da implementare.
+    \item Comprensione minima del contesto normativo richiesta.
+    \item UI/UX da progettare con cura per evitare eccessiva tecnicità.
+\end{itemize}
+\subsubsection*{Analisi}
+Il punto critico è la Data Pipeline di Ingestion. Passare dal pacchetto .zip a un database SQLite interrogabile in modo efficiente. Il focus progettuale deve essere sul parsing degli XML e sulla normalizzazione dei dati ancora prima di iniziare a disegnare l'UI.
+
+%======================================================================
+\newpage
+\section{C4. L’app che Protegge e Trasforma}
+\subsection*{Valutazione del capitolato}
+Il progetto prevede lo sviluppo di un’app mobile dedicata al supporto e alla prevenzione di situazioni di violenza di genere. L’obiettivo è offrire uno strumento sicuro e discreto che permetta alle persone a rischio di chiedere aiuto in modo rapido e non tracciabile, raccogliere prove digitali criptate e contribuire a percorsi di supporto. 
+
+La soluzione integra funzionalità di riconoscimento del linguaggio tramite AI, alert silenziosi, geolocalizzazione sicura e gestione di un diario cifrato.
+
+\subsubsection*{Pro}
+\begin{itemize}
+    \item Forte valore sociale e impatto reale.
+    \item Tecnologie moderne (AI, AWS, Flutter).
+    \item Supporto tecnico e formativo continuo.
+    \item Focus su sicurezza, privacy e inclusività.
+\end{itemize}
+
+\subsubsection*{Contro}
+\begin{itemize}
+    \item Alta complessità tecnica e gestionale.
+    \item Rischio di dispersione se non si limita l’MVP.
+    \item Implementazione delicata della privacy.
+    \item Richiede sensibilità etica oltre che tecnica.
+\end{itemize}
+\subsubsection*{Analisi}
+Il progetto richiede una sensibilità particolare sul tema sociale trattato, inoltre è ad altissimo rischio per quanto riguarda la responsabilità sui dati. Richiede un approccio complesso "Security by Design" fin dall'inizio. La sfida tecnica principale è la gestione delle chiavi di crittografia per il "diario criptato".
+
+% ======================================================================
+\newpage
+\section{C5. NEXUM}
+\subsection*{Valutazione del capitolato}
+Il progetto NEXUM riguarda lo sviluppo di funzionalità avanzate per una piattaforma HR già esistente, con l’obiettivo di digitalizzare e semplificare attività come gestione documentale, distribuzione dei cedolini e comunicazioni aziendali. Il capitolato prevede l’integrazione di moduli basati su AI generativa e OCR per automatizzare parte del lavoro amministrativo, mantenendo comunque un controllo umano sulle correzioni.
+
+Il contesto d’uso è concreto e legato a processi reali di aziende e studi di consulenza del lavoro, con la possibilità di lavorare su casi pratici e flussi che andranno effettivamente in produzione.
+
+\subsubsection*{Pro}
+\begin{itemize}
+    \item Progetto concreto e destinato al mercato reale.
+    \item Innovazione con AI generativa e OCR.
+    \item Stack moderno e formazione Agile.
+    \item Supporto costante e ambiente professionale.
+\end{itemize}
+
+\subsubsection*{Contro}
+\begin{itemize}
+    \item Alta complessità tecnica e integrazione AI.
+    \item Requisiti di precisione elevati.
+    \item Dipendenza da servizi esterni (OCR, LLM).
+\end{itemize}
+\subsubsection*{Analisi}
+Il successo non dipende dalla precisione del 100\% dell'AI, ma dall’efficienza dell'interfaccia di correzione: serve rendere rapida la validazione dei documenti tramite flusso "human-in-the-loop". La sfida principale è progettare un’interfaccia che minimizzi i tempi di revisione. 
+Inoltre data la grande quantità di funzionalità previste è necessario definire un MVP limitato e concentrarsi su un solo processo (es. upload → OCR → validazione).
+
+
+% ======================================================================
+\newpage
+\section{C6. Second Brain}
+\subsection*{Valutazione del capitolato}
+Il progetto Second Brain prevede lo sviluppo di un editor Markdown capace di integrare funzionalità LLM per supportare la scrittura, la rielaborazione dei contenuti e attività di brainstorming. L’obiettivo è sperimentare come l’AI possa potenziare la produttività personale e creativa, permettendo all’utente di migliorare testi, generarne di nuovi o analizzarli da diverse prospettive.
+
+
+\subsubsection*{Pro}
+\begin{itemize}
+    \item Tema innovativo e attuale.
+    \item Progetto scalabile e sperimentale.
+    \item Requisiti chiari e raggiungibili.
+    \item Supporto tecnico disponibile.
+\end{itemize}
+
+\subsubsection*{Contro}
+\begin{itemize}
+    \item Limitato impatto industriale immediato.
+    \item Prompt Engineering complesso.
+    \item Possibili problemi di privacy con API esterne.
+\end{itemize}
+\subsubsection*{Analisi}
+La sfida non è l'architettura (un editor Markdown che chiama API), ma il Prompt Engineering. Il successo dipende dalla qualità dei prompt per i "sei capelli". E un progetto affascinante ma con meno complessità architetturale.
+% ======================================================================
+\newpage
+\section{C7. Sistema di acquisizione dati da sensori}
+\subsection*{Valutazione del capitolato}
+Il progetto propone la realizzazione della componente cloud di un sistema IoT per raccogliere e gestire dati provenienti da sensori BLE tramite gateway simulati. L’obiettivo è costruire un'infrastruttura scalabile e sicura che gestisca autenticazione dei nodi, segregazione multi-tenant e flussi di dati in tempo reale, fornendo anche API e una UI base per la consultazione.
+
+L’attenzione è rivolta alla progettazione di un backend distribuito e orientato a microservizi, con focus su sistemi di messaggistica asincrona (message queues) e gestione dei flussi di eventi..
+\subsubsection*{Pro}
+\begin{itemize}
+    \item Architettura cloud-IoT ben strutturata, simile a quella usata in contesti reali.
+    \item Focus su sicurezza e scalabilità.
+    \item Tecnologie moderne e richieste dal mercato.
+    \item Ottima esperienza formativa.
+\end{itemize}
+
+\subsubsection*{Contro}
+\begin{itemize}
+    \item Elevata complessità tecnica e di setup.
+    \item Limitata componente frontend.
+    \item Rischio di tempi lunghi di sviluppo.
+\end{itemize}
+\subsubsection*{Analisi}
+Questo capitolato è una pura sfida di Backend Asincrono e Multi-Tenant. Richiede la simulazione di gateway multipli che inviano dati in parallelo. Il cuore del progetto è l'architettura a code e la corretta segnalazione dei dati per tenant, molto prima di pensare alla dashboard.
+% ======================================================================
+\newpage
+\section{C8. Smart Order}
+\subsection*{Valutazione del capitolato}
+Il progetto Smart Order prevede la realizzazione di una piattaforma in grado di ricevere ordini provenienti da canali diversi (testo, audio e immagini) e convertirli automaticamente in ordini strutturati pronti per l’integrazione con sistemi ERP aziendali. L’obiettivo è automatizzare la fase di interpretazione e normalizzazione degli ordini cliente, riducendo errori e tempi di inserimento manuale.
+
+Il sistema si basa su una pipeline completa che combina NLP, riconoscimento vocale e OCR, integrati tramite modelli AI multimodali e validazione da parte dell’operatore. Il progetto bilancia sperimentazione su tecnologie avanzate e applicazione a un caso industriale reale, con la possibilità di lavorare su dati forniti dall’azienda.
+
+
+\subsubsection*{Pro}
+\begin{itemize}
+    \item Innovativo e concreto.
+    \item Architettura modulare e scalabile.
+    \item Possibilità di scegliere componenti e modelli AI tra open-source e servizi cloud
+    \item Supporto aziendale solido.
+\end{itemize}
+
+\subsubsection*{Contro}
+\begin{itemize}
+    \item Rischio di dispersione data la natura multimodale
+    \item La gestione delle ambiguità negli ordini e dei casi non standard richiede logiche solide di triage e supervisione.
+    \item Miglioramento automatico del modello basato sui feedback: concetto potente ma non banale da implementare in modo affidabile.
+    \item Necessita coordinamento tra pipeline AI, backend e interfaccia per la validazione umana.
+\end{itemize}
+\subsubsection*{Analisi}
+Il progetto richiede di costruire un flusso completo: acquisizione degli ordini (in varie forme), estrazione delle informazioni, interpretazione tramite modelli AI e validazione da parte dell’operatore prima dell’invio al sistema gestionale. La complessità è quindi distribuita su più livelli, ma la struttura modulare consente di suddividere il lavoro tra i membri del team e procedere per fasi.
+
+Per gestire il rischio di dispersione può essere utile concentrarsi inizialmente su una sola modalità (ad esempio testo), estendendo poi ad audio e immagini solo dopo aver consolidato il flusso principale.
+
+Riteniamo ideale la natura modulare del progetto per un team numeroso come il nostro.
+% ======================================================================
+\newpage
+\section{C9. View4Life}
+\subsection*{Valutazione del capitolato}
+Il progetto proposto da Vimar, prevede lo sviluppo di una piattaforma cloud e web per la gestione di impianti domotici installati in residenze protette per anziani. L’obiettivo è fornire uno strumento unico per il personale sanitario, in grado di monitorare ambienti, sensori e dispositivi, gestire allarmi e visualizzare dati dell’impianto in tempo reale tramite l’API KNX IoT.
+
+L’azienda fornisce un kit hardware reale per la sperimentazione e l’integrazione, rendendo il progetto concreto e collegato a scenari domotici reali.
+
+
+\subsubsection*{Pro}
+\begin{itemize}
+    \item Progetto reale con finalità sociali.
+    \item Tecnologie moderne (IoT, Cloud, API).
+    \item Esperienza con dispositivi fisici.
+    \item Supporto aziendale concreto.
+\end{itemize}
+
+\subsubsection*{Contro}
+\begin{itemize}
+    \item Gestione di logiche sensibili: distinguere eventi critici (es. cadute) da comportamenti normali richiede attenzione.
+    \item Integrazione IoT non banale, con comunicazione real–time tramite KNX IoT API.
+    \item Necessità di evitare falsi allarmi o mancate segnalazioni, dato il contesto delicato.
+    \item Richiede coordinamento costante tra backend, API e interfaccia di controllo.
+\end{itemize}
+
+\subsubsection*{Analisi}
+Il progetto combina domotica reale, cloud e integrazione con dispositivi KNX. La presenza di hardware fisico è un valore aggiunto, ma implica una gestione attenta dell’integrazione: per accelerare lo sviluppo può essere utile predisporre un piccolo mock dell’API, così da lavorare anche senza il kit sempre disponibile.
+
+La parte più delicata riguarda la gestione delle logiche di allarme in un contesto sensibile come quello delle residenze per anziani. È necessario definire in modo accurato quando notificare eventi critici e ridurre al minimo falsi positivi e falsi negativi. Questo rende il progetto stimolante, ma anche impegnativo in termini di responsabilità e validazione.
+
+
+% ======================================================================
+
+% -------------------------------------------------------------------
+% CONCLUSIONE E SCELTA FINALE
+% -------------------------------------------------------------------
+
+\newpage
+\section{Conclusione e Scelta Finale del Gruppo NightPRO}
+
+L’analisi dei nove capitolati ha evidenziato un livello qualitativo complessivamente alto, con proposte che spaziano tra Intelligenza Artificiale, architetture cloud e sicurezza informatica. 
+\\[0.6em]
+La valutazione interna del gruppo \textbf{NightPRO}, basata su criteri di innovazione, fattibilità, chiarezza dei requisiti e valore formativo, ha portato a individuare due progetti finalisti: \textbf{C6 – Second Brain} e \textbf{C8 – SmartOrder}. Entrambi applicano modelli di AI a contesti reali, ma con livelli di complessità architetturale differenti.
+
+\subsection*{Analisi del "Runner-up": C6 – Second Brain}
+Il progetto \textbf{C6} di Zucchetti è risultato interessante per la chiarezza dell’MVP e per il focus sul \textbf{Prompt Engineering}. Tuttavia, la componente software di base è relativamente semplice: un editor Markdown che interagisce con modelli linguistici tramite API. Il progetto ha quindi un carattere più esplorativo che ingegneristico, orientato alla sperimentazione sull’uso dei LLM.
+
+\subsection*{Decisione finale: C8 – SmartOrder}
+Il gruppo \textbf{NightPRO} ha raggiunto un accordo comune sulla scelta del capitolato \textbf{C8 – SmartOrder}, proposto da \textbf{Ergon Informatica S.r.l.}
+
+SmartOrder rappresenta una sfida più completa dal punto di vista dell’ingegneria del software. Oltre all’impiego di modelli AI, richiede la progettazione di una pipeline end-to-end composta da:
+
+\begin{itemize}
+    \item \textbf{Ingestion}: ricezione di input non strutturati (testo inizialmente, in futuro audio e immagini)
+    \item \textbf{Pre-processing}: normalizzazione dei dati tramite tecniche NLP e OCR
+    \item \textbf{AI Core}: estrazione di entità (prodotti, quantità, riferimenti) e classificazione degli ordini
+    \item \textbf{Validation} (Human-in-the-Loop): gestione delle ambiguità e conferma manuale degli ordini
+    \item \textbf{Output Generation}: produzione di un ordine strutturato (JSON) per l’integrazione ERP
+\end{itemize}
+
+Questa architettura modulare favorisce una chiara suddivisione delle responsabilità tra i membri del gruppo e supporta un approccio incrementale allo sviluppo.
+
+L’incontro con il Dott. Carlesso di Ergon ha inoltre ridotto il principale rischio tecnico, confermando la possibilità di limitare l’MVP iniziale alla sola modalità testuale. Questo permette di gestire la complessità multimodale in modo progressivo.
+
+Per questi motivi, \textbf{SmartOrder} è stato scelto come progetto finale del gruppo: un capitolato innovativo, tecnicamente stimolante e con un percorso di crescita concreto e bilanciato per tutti i membri.
+
+% ======================================================================
+\end{document}
