@@ -30,7 +30,7 @@ La struttura logica di questo repository è finalizzata a garantire una chiara o
     -   `Candidatura`: File sorgente relativi alla documentazione di candidatura.
     -   `template`: Contiene il template LaTeX di base utilizzato per la stesura di tutti i documenti, al fine di garantirne l'uniformità stilistica.
 
--   **`output`**:
+-   **`docs`**:
     Questa directory contiene le versioni finali e compilate (`.pdf`) di tutti i documenti prodotti.
     -   `Candidatura`: Documenti PDF relativi alla fase di candidatura.
 
