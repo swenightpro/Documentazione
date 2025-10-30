@@ -1,4 +1,4 @@
-name: Build LaTeX documents
+name: Compile LaTeX documents
 permissions:
   contents: write
 

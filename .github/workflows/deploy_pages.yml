@@ -1,7 +1,7 @@
 name: Build and Deploy Website
 run-name: >
   Deploy website –
-  ${{ github.event_name == 'workflow_run' && 'from LaTeX build' }}
+  ${{ github.event_name == 'workflow_run' && 'from LaTeX Workfl' || 'Manual Run' }}
 
 on:
   workflow_run:
@@ -18,7 +18,12 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    if: ${{github.event.workflow_run.conclusion == 'success' }}
+    if: >-
+      ${{
+        (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
+        || github.event_name == 'workflow_dispatch'
+      }}
+
 
     steps:
       - name: Checkout repository
@@ -28,6 +33,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
+
+      - name: Install Python dependencies
+        run: pip install unidecode
 
       - name: Run build_site.py
         run: python build_site.py
