@@ -26,7 +26,8 @@
 \usepackage{lmodern}            % Font "Latin Modern"
 
 % --- Grafica e Layout ---
-\usepackage{graphicx}           % Per includere immagini
+\usepackage{graphicx}           % Per le immagini
+\graphicspath{{../../../assets/}}
 \usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
 \usepackage{fancyhdr}           % Per header e footer personalizzati
 \usepackage{microtype}          % Migliora la tipografia
@@ -46,9 +47,6 @@
     pdfauthor={Gruppo NightPRO},
 }
 
-% --- Path per le Immagini ---
-% (Assicurati che ci sia una cartella 'immagini' accanto a questo file)
-\graphicspath{ {immagini/} }
 
 % ===================================================================
 %  IMPOSTAZIONE HEADER E FOOTER
@@ -75,7 +73,7 @@
     
 \begin{figure}
     \centering
-    \includegraphics[width=0.4\textwidth]{src/immagini/logo.jpg}
+    \includegraphics[width=0.4\textwidth]{logo.png}
 \end{figure}
 
     \vfill

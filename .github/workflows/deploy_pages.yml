@@ -8,6 +8,7 @@ on:
     workflows: ["Build LaTeX documents"]
     types:
       - completed
+  workflow_dispatch:
 
 permissions:
   contents: read
