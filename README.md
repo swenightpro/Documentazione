@@ -3,6 +3,7 @@
 
 ---
 
+
 ## 1. Informazioni Generali
 
 - **Corso:** Ingegneria del Software
@@ -10,29 +11,32 @@
 - **Università:** Università degli Studi di Padova
 - **Anno Accademico:** 2025/2026
 - **Gruppo di Lavoro:** NightPRO
+- **Email:** [swe.nightpro@gmail.com](mailto:swe.nightpro@gmail.com)
+- **Website:** [https://swenightpro.github.io/Documentazione/](https://swenightpro.github.io/Documentazione/)
 
-## 2. Architettura dei Repository
+
+## 2. Architettura dell'Organizzazione
 
 Il progetto è articolato su due repository distinti, ospitati all'interno dell'organizzazione del gruppo, al fine di mantenere una netta separazione tra la documentazione di progetto e l'implementazione del prodotto software.
 
--   📄 **Repository Documentazione:** `[https://github.com/swenightpro/Documentazione]`
--   💻 **Repository del Prodotto Software:** `[https://github.com/swenightpro/nightpro]`
+-   📄 **Repository Documentazione:** [https://github.com/swenightpro/Documentazione](https://github.com/swenightpro/Documentazione)
+-   💻 **Repository del Prodotto Software:** *`in assegnazione...`*
 
-## 3. Struttura delle Directory
 
-La struttura logica di questo repository è finalizzata a garantire una chiara organizzazione dei documenti.
+## 3. Contenuti del repository
 
--   **`.github/workflows`**:
-    Contiene le definizioni per le GitHub Actions, impiegate per l'automazione dei processi di compilazione dei documenti sorgente in formato LaTeX.
+- **`.github/workflows/`**: Contiene i workflow GitHub Actions utilizzati per automatizzare la compilazione dei file LaTeX in PDF (build_latex.yml) e la pubblicazione dei documenti tramite GitHub Pages (deploy_pages.yml).
 
--   **`src`**:
-    Questa directory contiene i file sorgente (`.tex`) di tutta la documentazione.
-    -   `Candidatura`: File sorgente relativi alla documentazione di candidatura.
-    -   `template`: Contiene il template LaTeX di base utilizzato per la stesura di tutti i documenti, al fine di garantirne l'uniformità stilistica.
+- **`src/`**: Contiene i file sorgente LaTeX (.tex) e i relativi asset utilizzati per la compilazione dell'intera documentazione.
 
--   **`docs`**:
-    Questa directory contiene le versioni finali e compilate (`.pdf`) di tutti i documenti prodotti.
-    -   `Candidatura`: Documenti PDF relativi alla fase di candidatura.
+- **`docs/`**: Contiene le versioni finali e compilate (.pdf) di tutti i documenti prodotti.
+
+- **`site/`**: Contiene il codice sorgente del sito web pubblicato tramite GitHub Pages (HTML/CSS/JS) e uno script Python che, durante il workflow di build e deploy, scansiona la directory docs/ e genera un file JSON con la struttura aggiornata dei documenti, utilizzato per popolare il sito con i contenuti aggiornati.
+
+- **`template/`**: Contiene i file modello messi a disposizione del team per la stesura dei documenti.
+
+- **`report.md`**: File generato automaticamente dal workflow di build dei file LaTeX: fornisce una panoramica dei risultati di compilazione e include link diretti ai PDF prodotti per una rapida verifica.
+
 
 ## 4. Componenti del Gruppo
 
@@ -48,8 +52,3 @@ Il gruppo di lavoro NightPro è composto dai seguenti membri:
 | Perozzo         | Samuele         | 2110989   |
 | Ponso           | Giovanni        | 2000558   |
 
-## 5. Contatti
-
-Per comunicazioni relative al progetto, è possibile contattare il gruppo all'indirizzo email:
-
-**[swe.nightpro@gmail.com](mailto:swe.nightpro@gmail.com)**
