@@ -1,10 +1,5 @@
-# Report di compilazione del 2025-10-31T08:45:50+00:00
+# Report di compilazione del 2025-10-31T10:04:31+00:00
 
-Compilazione basata sul commit fb8a5d4c63df7e8ba6263cff3376c12de1284ad1 (base: fb8a5d4)
+Compilazione basata sul commit e5481cdd6d4154626bf7371e211cc3af41f7f2b6 (base: e5481cd)
 
-## Falliti
-💡 Nessun errore di compilazione
-
-## Compilati
-✅ [docs/Candidatura/Valutazione_Capitolati_v1.0.pdf](docs/Candidatura/Valutazione_Capitolati_v1.0.pdf)
-
+💡 Nessun file modificato o mancante. Nessuna compilazione eseguita.
