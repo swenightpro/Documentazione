@@ -12,7 +12,7 @@
 - **Anno Accademico:** 2025/2026
 - **Gruppo di Lavoro:** NightPRO
 - **Email:** [swe.nightpro@gmail.com](mailto:swe.nightpro@gmail.com)
-- **Website:** [https://swenightpro.github.io/Documentazione/](https://swenightpro.github.io/Documentazione/)
+- **Sito Web:** [https://swenightpro.github.io/Documentazione/](https://swenightpro.github.io/Documentazione/)
 
 
 ## 2. Architettura dell'Organizzazione
