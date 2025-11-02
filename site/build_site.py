@@ -3,8 +3,32 @@ import re
 import json
 from datetime import datetime
 
+class Item:
+    def __init__(self, val):
+        self.val = val
+        
+    def __gt__(self, other):
+        if self.val["type"] == 'folder':
+            if other.val["type"] == 'folder':
+                return self.val["name"].lower() > other.val["name"].lower()
+            return True
+        if other.val["type"] == 'folder': return False
+        if self.val["date"]:
+            if other.val["date"]:
+                return datetime.strptime(self.val["date"], "%Y-%m-%d") > datetime.strptime(other.val["date"], "%Y-%m-%d")
+            return True
+        if other.val["date"]: return False
+        return self.val["name"].lower() > other.val["name"].lower()
+    
+    def __repr__(self):
+        return self.val["name"]
+
 def normalize_text(s):
     return s.encode('ascii', 'ignore').decode()
+
+def sorting(children):
+    ch = [Item(i) for i in children]
+    return list(map(lambda i: i.val, sorted(ch, reverse=True)))
 
 def estrai_info(filename):
     name_no_ext = os.path.splitext(filename)[0]
@@ -101,8 +125,10 @@ def build_file_tree(directory):
                 'path': web_path,
                 'search_name': search_name
             })
+            
+        current['children'] = sorting(current['children'])
 
-    return {k: v['children'] for k, v in tree_root.items()}
+    return {k: sorting(v['children']) for k, v in tree_root.items()}
 
 if __name__ == "__main__":
     directory_docs = '../docs'

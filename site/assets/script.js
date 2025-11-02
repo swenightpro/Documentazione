@@ -1,280 +1,245 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const nav = document.getElementById('nav-navigation');
-    const container = document.getElementById('sections-container');
-    const searchInput = document.getElementById('document-search');
-    const searchContainer = document.getElementById('search-container');
-    const sectionsWrapper = document.getElementById('sections-wrapper');
+  const docsBtn = document.getElementById("docs-btn");
+  const aboutBtn = document.getElementById("about-btn");
+  const docsSection = document.getElementById("docs-section");
+  const aboutSection = document.getElementById("about-section");
+  const searchInput = document.getElementById('document-search');
+  const filtersContainer = document.getElementById("section-filters");
+  const container = document.getElementById('sections-container');
+  const teamBody = document.getElementById("team-table-body");
+  const siteLogo = document.getElementById("site-logo");
 
-    let docsTree = {};
-    let currentSection = null;
+  const themeBtn = document.getElementById("theme-button");
+  const themeMenu = document.getElementById("theme-menu");
 
-    async function loadDocsTree() {
-        try {
-            const res = await fetch('./docs_tree.json');
-            docsTree = await res.json();
-            buildNavigation();
-            showSection('Archivio');
-        } catch (err) {
-            container.innerHTML = `<p style="color:#888;">Errore nel caricamento dei documenti.</p>`;
-        }
+  function setLogo() {
+    const dark = document.documentElement.classList.contains("dark-mode");
+    siteLogo.src = dark ? "./assets/images/logo_bianco.png" : "./assets/images/logo.png";
+  }
+
+  function applyTheme() {
+    const sysDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const t = localStorage.theme;
+
+    if (t === "dark" || (!t && sysDark)) {
+      document.documentElement.classList.add("dark-mode");
+      document.documentElement.classList.remove("light-mode");
+      themeBtn.textContent = "🌙";
+    } else {
+      document.documentElement.classList.add("light-mode");
+      document.documentElement.classList.remove("dark-mode");
+      themeBtn.textContent = "🌞";
     }
 
-    function buildNavigation() {
-        nav.innerHTML = '';
+    if (!t) themeBtn.textContent = "🖥️";
+    setLogo();
+  }
 
-        const ArchivioLi = document.createElement('li');
-        const ArchivioA = document.createElement('a');
-        ArchivioA.href = '#';
-        ArchivioA.dataset.section = 'Archivio';
-        ArchivioA.textContent = 'Archivio';
-        ArchivioA.classList.add('active', 'show-arrow');
-        ArchivioLi.appendChild(ArchivioA);
-        nav.appendChild(ArchivioLi);
+  applyTheme();
 
-        Object.keys(docsTree).forEach(section => {
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = '#';
-            a.dataset.section = section;
-            a.textContent = section;
-            li.appendChild(a);
-            nav.appendChild(li);
-        });
+  themeBtn.onclick = () => themeMenu.classList.toggle("hidden");
 
-        if (nav.children.length <= 2) {
-            nav.classList.add('hidden_button');
-            document.querySelector('header').classList.add('center-logo');
-        }
-    }
+  themeMenu.onclick = e => {
+    const mode = e.target.dataset.theme;
+    if (!mode) return;
 
-    function buildTree(items, currentPath = '') {
-        const ul = document.createElement('ul');
+    if (mode === "system") localStorage.removeItem("theme");
+    else localStorage.theme = mode;
 
-        items.forEach(item => {
-            const li = document.createElement('li');
-            const fullPath = currentPath ? `${currentPath}/${item.name}` : item.name;
+    themeMenu.classList.add("hidden");
+    applyTheme();
+  };
 
-            if (item.type === 'folder') {
-                const folderToggle = document.createElement('div');
-                folderToggle.className = 'folder-toggle';
-                const label = document.createElement('span');
-                label.className = 'toggle-data';
-                label.textContent = item.name;
-                folderToggle.appendChild(label);
+  document.addEventListener("click", e => {
+    if (!e.target.closest(".theme-wrapper")) themeMenu.classList.add("hidden");
+  });
 
-                const content = document.createElement('div');
-                content.className = 'folder-content';
-
-                if (item.children?.length > 0) {
-                    content.appendChild(buildTree(item.children, fullPath));
-                }
-
-                li.append(folderToggle, content);
-            } else {
-                const p = document.createElement('p');
-                p.className = 'pdf_row';
-                const fileInfo = document.createElement('div');
-                fileInfo.className = 'file-info';
-
-                const link = document.createElement('a');
-                link.className = 'file-name';
-                link.href = item.path;
-                link.target = '_blank';
-
-                const readableName = item.name;
-                const versionLabel = item.version ? ` ${item.version}` : '';
-                const dateLabel = item.date ? ` ${item.date}` : '';
-                const signedLabel = item.signed ? ' <span class="signed-badge">Firmato</span>' : '';
-
-                link.innerHTML = `${readableName}${dateLabel}${versionLabel}${signedLabel}`;
-                link.dataset.fullPath = fullPath;
-
-                fileInfo.appendChild(link);
-
-                const download = document.createElement('a');
-                download.className = 'download-button';
-                download.href = item.path;
-                download.download = '';
-                download.title = 'Scarica file';
-
-                p.append(fileInfo, download);
-                li.appendChild(p);
-            }
-
-            ul.appendChild(li);
-        });
-
-        const wrapper = document.createElement('div');
-        wrapper.className = 'dynamic-content-container';
-        wrapper.appendChild(ul);
-        return wrapper;
-    }
-
-    function showSection(name, filtered = null) {
-        currentSection = name;
-        container.innerHTML = '';
-        document.querySelectorAll('.file-path').forEach(p => p.remove());
-
-        document.querySelectorAll('#nav-navigation a').forEach(a => {
-            const active = a.dataset.section === name;
-            a.classList.toggle('active', active);
-            a.classList.toggle('show-arrow', active);
-        });
-
-        searchInput.placeholder = name === 'Archivio' ? 'Cerca…' : `Cerca in ${name}…`;
-
-        if (!sectionsWrapper.contains(searchContainer)) {
-            sectionsWrapper.insertBefore(searchContainer, container);
-        }
-
-        if (name === 'Archivio') {
-            let title = sectionsWrapper.querySelector('.repo-title');
-            if (!title) {
-                title = document.createElement('h1');
-                title.className = 'repo-title';
-                title.textContent = 'Documentazione di Progetto';
-                sectionsWrapper.insertBefore(title, searchContainer);
-            }
-
-            const source = filtered || docsTree;
-            Object.keys(source).forEach(section => {
-                const sectionContainer = document.createElement('div');
-                const toggle = document.createElement('div');
-                toggle.className = 'folder-toggle';
-                const label = document.createElement('span');
-                label.className = 'toggle-data';
-                label.textContent = section;
-                toggle.appendChild(label);
-
-                const content = document.createElement('div');
-                content.className = 'folder-content';
-                content.appendChild(buildTree(source[section], section));
-
-                sectionContainer.append(toggle, content);
-                container.appendChild(sectionContainer);
-            });
-        } else {
-            const oldTitle = sectionsWrapper.querySelector('.repo-title');
-            if (oldTitle) oldTitle.remove();
-
-            const rootToggle = document.createElement('div');
-            rootToggle.className = 'folder-toggle';
-            const label = document.createElement('span');
-            label.className = 'toggle-data';
-            label.textContent = name;
-            rootToggle.appendChild(label);
-
-            const content = document.createElement('div');
-            content.className = 'folder-content';
-            const treeData = filtered ? filtered[name] : docsTree[name];
-            content.appendChild(buildTree(treeData, name));
-
-            container.append(rootToggle, content);
-        }
-    }
-
-    function filterTree(items, query) {
-        const results = [];
-        for (const item of items) {
-            if (item.type === 'file') {
-                const text = (item.search_name || item.name).toLowerCase();
-                
-                const words = query.split(/\s+/).filter(Boolean);
-                            
-                let remainingText = text;
-                let match = true;
-                            
-                for (const w of words) {
-                    const idx = remainingText.indexOf(w);
-                    if (idx === -1) {
-                        match = false;
-                        break;
-                    }
-                    remainingText =
-                        remainingText.slice(0, idx) + remainingText.slice(idx + w.length);
-                }
-                
-                if (match) results.push(item);
-
-
-
-            } else if (item.type === 'folder' && item.children?.length) {
-                const filteredChildren = filterTree(item.children, query);
-                if (filteredChildren.length > 0) {
-                    results.push({ ...item, children: filteredChildren });
-                }
-            }
-        }
-        return results;
-    }
-
-    document.body.addEventListener('click', e => {
-        const toggle = e.target.closest('.folder-toggle');
-        if (!toggle) return;
-        toggle.classList.toggle('collapsed');
-        const next = toggle.nextElementSibling;
-        if (next?.classList.contains('folder-content')) {
-            next.classList.toggle('collapsed');
-        }
+  window.matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", () => {
+      if (!localStorage.theme) applyTheme();
     });
 
-    nav.addEventListener('click', e => {
-        const link = e.target.closest('a[data-section]');
-        if (!link) return;
-        e.preventDefault();
-        searchInput.value = '';
-        showSection(link.dataset.section);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+  const teamMembers = [
+    {name:"Biasuzzi Davide", git:"biasuzzi-davide"},
+    {name:"Bilato Leonardo", git:"towsatt"},
+    {name:"Ponso Giovanni", git:"sass0lino"},
+    {name:"Zanella Francesco", git:"frazane04"},
+    {name:"Romascu Mihaela-Mariana", git:"Mihaela-Mariana"},
+    {name:"Perozzo Samuele", git:"samuele-perozzo"},
+    {name:"Ogniben Michele", git:"Micheleogniben"}
+  ];
+
+  teamMembers.forEach(m => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td><img src="https://github.com/${m.git}.png" alt="${m.name}"></td>
+      <td>${m.name}</td>
+      <td><a href="https://github.com/${m.git}" target="_blank">@${m.git}</a></td>
+    `;
+    teamBody.appendChild(row);
+  });
+
+  docsBtn.onclick = () => {
+    docsBtn.classList.add("active");
+    aboutBtn.classList.remove("active");
+    docsSection.classList.remove("hidden");
+    aboutSection.classList.add("hidden");
+  };
+  aboutBtn.onclick = () => {
+    aboutBtn.classList.add("active");
+    docsBtn.classList.remove("active");
+    aboutSection.classList.remove("hidden");
+    docsSection.classList.add("hidden");
+  };
+
+  let docsTree = {};
+  let currentSection = "Tutto";
+
+  async function loadDocsTree() {
+    const r = await fetch('./docs_tree.json');
+    docsTree = await r.json();
+    populateFilters();
+    showSection("Tutto");
+  }
+
+  function populateFilters() {
+    const keys = Object.keys(docsTree);
+    filtersContainer.innerHTML = "";
+    if (keys.length <= 1) {
+      filtersContainer.style.display = "none";
+      return;
+    }
+    filtersContainer.style.display = "flex";
+    const allChip = createChip("Tutto");
+    allChip.classList.add("active");
+    filtersContainer.appendChild(allChip);
+    keys.forEach(sec => filtersContainer.appendChild(createChip(sec)));
+  }
+
+  function createChip(name) {
+    const chip = document.createElement("div");
+    chip.textContent = name;
+    chip.className = "filter-chip";
+    chip.onclick = () => {
+      document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      currentSection = name;
+      searchInput.value = "";
+      showSection(name);
+    };
+    return chip;
+  }
+
+  function buildTree(items) {
+    const ul = document.createElement("ul");
+    items.forEach(item => {
+      const li = document.createElement("li");
+      if (item.type === "folder") {
+        const t = document.createElement("div");
+        t.className = "folder-toggle";
+        t.textContent = item.name;
+        const cont = document.createElement("div");
+        cont.className = "folder-content";
+        if (item.children?.length) cont.appendChild(buildTree(item.children));
+        li.append(t, cont);
+      } else {
+        const row = document.createElement("div");
+        row.className = "pdf_row";
+        const version = item.version ? ` v${item.version.replace(/^v+/, "")}` : "";
+        const date = item.date ? ` ${item.date}` : "";
+        const signed = item.signed ? `<span class="signed-badge">Firmato</span>` : "";
+        const link = document.createElement("a");
+        link.className = "file-name";
+        link.href = item.path;
+        link.target = "_blank";
+        link.innerHTML = `<img src="./assets/images/pdf.svg" class="icon-pdf"> ${item.name}${date}${version} ${signed}`;
+        const dl = document.createElement("a");
+        dl.href = item.path;
+        dl.download = "";
+        dl.className = "download-button";
+        row.append(link, dl);
+        li.appendChild(row);
+      }
+      ul.appendChild(li);
     });
+    return ul;
+  }
 
-    searchInput.addEventListener('input', () => {
-        const query = searchInput.value.trim().toLowerCase();
-        const msgOld = container.querySelector('.no-results-message');
-        if (msgOld) msgOld.remove();
+function showSection(name, filtered=null) {
+  container.innerHTML = "";
 
-        if (query === '') {
-            showSection(currentSection);
-            searchInput.focus();
-            return;
+  const source = filtered || docsTree;
+  const sections = name === "Tutto" ? Object.keys(source) : [name];
+
+  sections.forEach(section => {
+    const wrapper = document.createElement("div");
+
+    const toggle = document.createElement("div");
+    toggle.className = "folder-toggle";
+    toggle.textContent = section;
+
+    const content = document.createElement("div");
+    content.className = "folder-content";
+
+    const treeData = filtered ? source[section] : docsTree[section];
+    content.appendChild(buildTree(treeData));
+
+    wrapper.append(toggle, content);
+    container.appendChild(wrapper);
+  });
+
+  document.querySelectorAll(".folder-content").forEach(c => c.classList.remove("collapsed"));
+  document.querySelectorAll(".folder-toggle").forEach(t => t.classList.remove("collapsed"));
+
+  searchInput.placeholder = name === "Tutto" ? "Cerca in Documentazione..." : `Cerca in ${name}...`;
+}
+
+
+  document.body.addEventListener("click", e => {
+    const t = e.target.closest(".folder-toggle");
+    if (!t) return;
+    t.classList.toggle("collapsed");
+    t.nextElementSibling.classList.toggle("collapsed");
+  });
+
+  function normalizeQuery(q) { return q.replace(/[-/.]/g, " ").trim(); }
+  function filterTree(items, qRaw) {
+    const words = normalizeQuery(qRaw.toLowerCase()).split(/\s+/).filter(Boolean);
+    const out = [];
+    for (const it of items) {
+      if (it.type === "file") {
+        let text = (it.search_name || it.name || "").toLowerCase();
+        if (it.date) text += " " + it.date.replace(/-/g, " ");
+        let ok = true, tmp = text;
+        for (const w of words) {
+          const i = tmp.indexOf(w);
+          if (i === -1) { ok = false; break; }
+          tmp = tmp.slice(0,i)+tmp.slice(i+w.length);
         }
+        if (ok) out.push(it);
+      } else {
+        const kids = filterTree(it.children || [], qRaw);
+        if (kids.length) out.push({...it, children:kids});
+      }
+    }
+    return out;
+  }
 
-        let filteredData = {};
-        let matchCount = 0;
-
-        if (currentSection === 'Archivio') {
-            Object.keys(docsTree).forEach(section => {
-                const filtered = filterTree(docsTree[section], query);
-                if (filtered.length > 0) {
-                    filteredData[section] = filtered;
-                    matchCount += filtered.length;
-                }
-            });
-        } else {
-            const filtered = filterTree(docsTree[currentSection], query);
-            if (filtered.length > 0) {
-                filteredData[currentSection] = filtered;
-                matchCount = filtered.length;
-            }
-        }
-
-        container.innerHTML = '';
-
-        if (matchCount === 0) {
-            const msg = document.createElement('p');
-            msg.className = 'no-results-message';
-            msg.textContent = 'Nessun risultato trovato.';
-            msg.style.textAlign = 'center';
-            msg.style.color = '#777';
-            msg.style.fontStyle = 'italic';
-            msg.style.marginTop = '2rem';
-            container.appendChild(msg);
-            searchInput.focus();
-            return;
-        }
-
-        showSection(currentSection, filteredData);
-        searchInput.focus();
+  searchInput.oninput = () => {
+    const q = searchInput.value.trim();
+    if (!q) return showSection(currentSection);
+    const sections = currentSection === "Tutto" ? Object.keys(docsTree) : [currentSection];
+    let results = {}, count=0;
+    sections.forEach(sec=>{
+      const f = filterTree(docsTree[sec], q);
+      if (f.length) results[sec]=f, count+=f.length;
     });
+    if (!count) {
+      container.innerHTML = `<p style="text-align:center;margin-top:2rem;color:#888;font-style:italic;">Nessun risultato trovato.</p>`;
+      return;
+    }
+    showSection(currentSection, results);
+  };
 
-    loadDocsTree();
+  loadDocsTree();
 });
