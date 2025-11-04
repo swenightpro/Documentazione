@@ -1,10 +1,10 @@
-# Report di compilazione del 2025-11-04T18:01:54+00:00
+# Report di compilazione del 2025-11-04T18:59:40+00:00
 
-Compilazione basata sul commit 4dc816dd4520c2f76854c0a895895704f119f6f9 (base: 4dc816d)
+Compilazione basata sul commit 45641bfbd78b53d23d1ab2b23159e911489ada07 (base: 45641bf)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/Candidatura/Verbali/Verbali Interni/verbale_interno_2025-11-04.pdf](docs/Candidatura/Verbali/Verbali%20Interni/verbale_interno_2025-11-04.pdf)
+✅ [docs/Candidatura/Lettera_di_Presentazione_v1.1.pdf](docs/Candidatura/Lettera_di_Presentazione_v1.1.pdf)
 
