@@ -1,9 +1,9 @@
-# Report di compilazione del 2025-11-04T17:51:41+00:00
+# Report di compilazione del 2025-11-04T17:56:13+00:00
 
-Compilazione basata sul commit 2ba066565fab6726ab36c51babe4c6c3ae886577 (base: 2ba0665)
+Compilazione basata sul commit 5afcf1c4943f08b318dc15d15f7e921eee61a66f (base: 5afcf1c)
 
 ## Falliti
-❌ [src/Candidatura/Verbali/Verbali Interni/verbale_interno_2025-11-04.tex](https://github.com/swenightpro/Documentazione/actions/runs/19077947059)
+❌ [src/Candidatura/Verbali/Verbali Interni/verbale_interno_2025-11-04.tex](https://github.com/swenightpro/Documentazione/actions/runs/19078064623)
 
 
 ## Compilati
