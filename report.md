@@ -1,14 +1,20 @@
-# Report di compilazione del 2025-11-04T10:08:04+00:00
+# Report di compilazione del 2025-11-04T10:19:09+00:00
 
-Compilazione basata sul commit 80e6c34b2a7028cecb2b09f9c27bec290f08786f (base: 80e6c34)
+Compilazione basata sul commit a70f40f1fd5440ca3b89e98740760df5800a2d25 (base: a70f40f)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/Candidatura/Lettera_di_Presentazione_v1.0.pdf](docs/Candidatura/Lettera_di_Presentazione_v1.0.pdf)
+✅ [docs/Candidatura/Verbali/Verbali Interni/verbale_interno_2025-10-27.pdf](docs/Candidatura/Verbali/Verbali%20Interni/verbale_interno_2025-10-27.pdf)
 
-✅ [docs/Candidatura/Valutazione_Capitolati_v1.0.pdf](docs/Candidatura/Valutazione_Capitolati_v1.0.pdf)
+✅ [docs/Candidatura/Verbali/Verbali Interni/verbale_interno_2025-10-20.pdf](docs/Candidatura/Verbali/Verbali%20Interni/verbale_interno_2025-10-20.pdf)
 
-✅ [docs/Candidatura/Preventivo_Costi_v1.0.pdf](docs/Candidatura/Preventivo_Costi_v1.0.pdf)
+✅ [docs/Candidatura/Verbali/Verbali Interni/verbale_interno_2025-10-15.pdf](docs/Candidatura/Verbali/Verbali%20Interni/verbale_interno_2025-10-15.pdf)
+
+✅ [docs/Candidatura/Verbali/Verbali Interni/verbale_interno_2025-10-14.pdf](docs/Candidatura/Verbali/Verbali%20Interni/verbale_interno_2025-10-14.pdf)
+
+✅ [docs/Candidatura/Verbali/Verbali Interni/verbale_interno_2025-10-29.pdf](docs/Candidatura/Verbali/Verbali%20Interni/verbale_interno_2025-10-29.pdf)
+
+✅ [docs/Candidatura/Verbali/Verbali Esterni/verbale_esterno_2025-10-22.pdf](docs/Candidatura/Verbali/Verbali%20Esterni/verbale_esterno_2025-10-22.pdf)
 
