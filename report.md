@@ -1,10 +1,10 @@
-# Report di compilazione del 2025-11-04T18:59:40+00:00
+# Report di compilazione del 2025-11-04T19:05:55+00:00
 
-Compilazione basata sul commit 45641bfbd78b53d23d1ab2b23159e911489ada07 (base: 45641bf)
+Compilazione basata sul commit d1690f42a854beaa74f7989e30a7b841c636d54b (base: d1690f4)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/Candidatura/Lettera_di_Presentazione_v1.1.pdf](docs/Candidatura/Lettera_di_Presentazione_v1.1.pdf)
+✅ [docs/Candidatura/Preventivo_Costi_v1.1.pdf](docs/Candidatura/Preventivo_Costi_v1.1.pdf)
 
