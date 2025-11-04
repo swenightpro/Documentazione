@@ -1,0 +1,301 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}      % Codifica UTF-8
+\usepackage[T1]{fontenc}         % Font encoding moderno
+\usepackage[italian]{babel}      % Lingua italiana 
+\usepackage{lmodern}             % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}            % Per includere immagini
+\usepackage{currfile}
+\graphicspath{{src/immagini/}{\currfiledir contenuti/}{\currfiledir contenuti/immagini/}}
+
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}            % Per header e footer personalizzati
+\usepackage{microtype}           % Migliora la tipografia
+\usepackage[svgnames]{xcolor}    % Colori
+
+% --- Utility ---
+\usepackage{booktabs}            % Tabelle più professionali
+\usepackage{enumitem}            % Per personalizzare liste
+\usepackage{hyperref}            % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,     
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Documento Progetto - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce tutti i campi
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro in basso
+\renewcommand{\headrulewidth}{0.4pt} % Linea sottile sotto l'header
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: intestazione_titolo.tex
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.jpg}
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    {\Large \itshape Verbale Interno del 4 Novembre 2025 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+ 
+    {\large Data: 2025-11-04 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: indice.tex
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy} % Riattiva lo stile di pagina da qui in poi
+
+% -------------------------------------------------------------------
+%  SEZIONE: informazioni.tex
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2025-11-04
+    \item \textbf{Ora:} 16:00 - 18:00
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Tutti i membri del gruppo tranne Michele Ogniben
+    \item \textbf{Redatto da: } Davide Biasuzzi
+    \item \textbf{Verificato da:} Francesco Zanella 
+    \item \textbf{Versione: } 1.0
+\end{itemize}
+
+
+% -------------------------------------------------------------------
+%  SEZIONE: odg.tex (Ordine del Giorno)
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Analisi Valutazione del Docente
+    \item[2.] Aggiornamento Standard di Documentazione 
+    \item[3.] Decisione finale mantenimento capitolato C8 (Ergon)
+    \item[4.] Analisi dettagliata Criteri di Valutazione (Normativa)
+        \begin{itemize}
+            \item Criterio E (Consegna prevista)
+            \item Criterio F (Costo)
+            \item Criterio G (Distribuzione tempo / ruoli)
+            \item Criterio H (Organizzazione repo)
+            \item Criterio I (Versionamento)
+            \item Criterio J (Verbali)
+        \end{itemize}
+    \item[5.] Definizione Way of Working (WoW) e file da creare
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: diario.tex (Diario della riunione)
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Analisi Valutazione Docente (Feedback P1)}
+In apertura di riunione, si è presa visione della valutazione ricevuta dal docente relativa alla prima consegna (Presentazione Progetto).
+
+Di seguito i punti principali emersi dalla valutazione in tabella:
+
+\begin{itemize}
+    \item \textbf{Consegna Prevista:} 2026-03-21, ragionevole
+    \item \textbf{Costo:} 13.230, conforme ma elevato
+    \item \textbf{Distribuzione Tempo / Ruoli:} Ragionevole, pur se troppo "accomodante" nel delineare le regole di rotazione dei ruoli
+    \item \textbf{Organizzazione Repo:} Convenga esporre una "vista web" (più pulita, elegante, gradevole), piuttosto che dare accesso diretto al "repo risorse interno" (per maggiore fruibilità). Convenga aprire risorse su schede dedicate. La "Lettera di Presentazione", che introduce la consegna (il rilascio di baseline) è (illustrandone i contenuti). Per produrre ordinamento alfanumerico sensato usando date nel nome di risorse, tali date vanno riportate come AAAA-MM-GG
+    \item \textbf{Versionamento:} Da migliorare: a ogni singola revisione dovrebbe corrispondere una verifica
+    \item \textbf{Verbali:} Buoni. Per essere "tracciabili", le azioni riportate devono corrispondere esplicitamente a compiti individuali fissati nel sistema di gestione di progetto
+\end{itemize}
+
+\subsection{Aggiornamento Standard di Documentazione}
+
+
+Si verbalizza quanto deciso in un incontro informale in presenza, avvenuto la mattina stessa (4 novembre) tra i componenti del gruppo disponibili. 
+Sono state definite e attuate le seguenti modifiche agli standard di documentazione:
+
+\begin{itemize}
+    \item \textbf{Convenzione Nomi File:} I file dei verbali (e documenti futuri) 
+    adotteranno lo standard ISO per le date, per consentire anche un miglior ordinamento. \\La convenzione passa 
+    da \texttt{verbale\_[tipo]\_GG-MM-AA} 
+    a \texttt{verbale\_[tipo]\_AAAA-MM-GG}.
+    
+    \item \textbf{Date Interne:} Tutte le date all'interno dei documenti 
+    seguono la stessa convenzione \texttt{AAAA-MM-GG} per coerenza.
+    
+    \item \textbf{Tabelle Versioni:} Le tabelle di cronologia delle versioni 
+    sono state modificate per adottare un \textbf{ordine cronologico inverso} 
+    (dalla versione più recente alla più vecchia), in quanto 
+    ritenuto di più facile e immediata consultazione.
+\end{itemize}
+
+% --- FINE BLOCCO AGGIUNTO ---
+
+\subsection{Decisione finale capitolato C8}
+A seguito di una discussione abbiamo deciso di tenere valida la nostra scelta del capitolato C8 e di proseguire per questa strada.
+
+\subsection{Analisi Criteri di Valutazione}
+
+\subsubsection{Criterio E (Consegna prevista)}
+Si prende atto, non sono emersi punti di discussione.
+
+\subsubsection{Criterio F (Costo)}
+A seguito di una revisione dei costi di progetto, giudicati leggermente eccessivi, si è deciso di ribilanciare l'allocazione dello sforzo (effort). Le stime per i ruoli di Analista e Progettista sono state ridotte al 17\% ciascuna.
+
+Riconoscendo la maggiore quantità di tempo richiesta dalle attività di testing e validazione, lo sforzo per il ruolo del Verificatore è stato aumentato al 21\%.
+
+L'obiettivo di questa modifica è raggiungere un costo totale di progetto stimato in circa € 12.850.
+
+\subsubsection{Criterio G (Distribuzione tempo / ruoli)}
+Si è preso atto del feedback ricevuto dal docente ("troppo accomodanti nel delineare le regole di rotazione dei ruoli"). È emersa la necessità di definire una politica di rotazione più strutturata e rigorosa, volta a garantire che tutti i membri del team acquisiscano esperienza in ogni ruolo previsto.
+Per rispondere a tale osservazione, si delibera di implementare il seguente schema di rotazione:
+\begin{itemize}
+    \item \textbf{Fase Iniziale (Settimane 1-7):} Nelle prime sette settimane di progetto, si adotterà una rotazione dei ruoli a cadenza settimanale. L'obiettivo di questa fase è assicurare che ogni membro del team abbia ricoperto la totalità dei ruoli disponibili.
+    \item \textbf{Fase a Regime (Post-Settimana 7):} Una volta che tutti i membri avranno completato il ciclo di rotazione iniziale, la cadenza passerà a bisettimanale (ogni due settimane).
+    \item \textbf{Clausola di Flessibilità:} Il team si riserva la facoltà di adottare cadenze di rotazione differenti esclusivamente per gestire occasioni eccezionali o specifiche necessità progettuali urgenti.
+\end{itemize}
+
+\subsubsection{Criterio H (Organizzazione repo)}
+\begin{itemize}
+    \item \textbf{Sito Web:} La vista web è online. Le funzionalità, inclusa l'apertura delle risorse in schede dedicate, sono attive. Si procederà ad inserire il link nella lettera di presentazione.
+    \item \textbf{Lettera di Presentazione:} è necessario cambiare il link e mettere quello del sito al posto di quello della repository, il link della repository (della documentazione) si troverà nella sezione "About Us" del sito.
+    \item \textbf{Ordinamento Alfanumerico:} La problematica è stata risolta in data odierna. L'intervento è documentato nella Sez. 3.2 ("Aggiornamento Standard di Documentazione").
+\end{itemize}
+
+\subsubsection{Criterio I (Versionamento)}
+Si delibera che, d'ora in poi, ogni commit relativo alla documentazione sarà effettuato solo previa verifica e dovrà obbligatoriamente includere sia l'autore della modifica sia un co-autore che attesti l'avvenuta revisione. Nella tabella delle versioni viene aggiunta una colonna "Verificatore" con il nome di chi ha verificato il documento.
+E necessario in oltre aggiungere una tabella delle versioni con la colonna "verificato" nella lettera di presentazione.
+
+\subsubsection{Criterio J (Verbali)}
+Per garantire il rispetto del criterio di tracciabilità delle azioni, utilizziamo attualmente un "Agile Task Workflow" implementato tramite la piattaforma GitHub Projects.
+
+\subsection{Definizione Way of Working (WoW)}
+
+Si approva l'istituzione di due nuovi documenti fondamentali per la standardizzazione e la chiarezza del progetto:
+
+\begin{enumerate}
+    \item \textbf{"Norme di Progetto":}
+    \begin{itemize}
+        \item \textbf{Scopo:} Formalizzare e centralizzare gli standard operativi.
+        \item \textbf{Contenuto:} Questo documento includerà:
+        \begin{itemize}
+            \item Il "Ways of Working" (WoW) completo sviluppato fino ad ora.
+            \item Una sezione dedicata alla descrizione delle tecnologie e degli strumenti utilizzati.
+        \end{itemize}
+    \end{itemize}
+    \vspace{0.5em} % Aggiunge un piccolo spazio verticale
+
+    \item \textbf{"Glossario":}
+    \begin{itemize}
+        \item \textbf{Scopo:} Garantire l'univocità della terminologia.
+        \item \textbf{Contenuto:} Questo documento conterrà la raccolta sistematica e ordinata di tutte le definizioni dei vocaboli tecnici e specifici utilizzati nel contesto del progetto.
+    \end{itemize}
+\end{enumerate}
+Questi documenti saranno aggiornati nel tempo in maniera just in time.
+
+% -------------------------------------------------------------------
+%  SEZIONE: decisioni.tex (Decisioni prese)
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese}
+
+\begin{enumerate}
+    \item Il gruppo mantiene la scelta iniziale del capitolato C8.
+    \item Aggiornato lo standard di documentazione seguendo ISO per le date.
+    \item Ribilanciare allocazione per i ruoli di Analista, Progettista e Verificatore.
+    \item Specificare meglio le regole di rotazione dei ruoli.
+    \item Modificare lettera di presentazione (con aggiunta della tabella delle versioni) e il sito (link al repo).
+    \item Aggiungere "Verificatore" su tabella delle versioni nei documenti "Lettera di Presentazione" e "Preventivo Costi".
+    \item D'ora in poi ogni commit relativo alla documentazione sarà effettuato solo previa verifica.
+    \item Utilizzo dell'Agile Task Workflow tramite GitHub Projects.
+    \item Creazione documenti "Norme di Progetto" e "Glossario" che verranno aggiornati nel tempo in maniera just in time.
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: todo.tex (Attività da svolgere)
+% -------------------------------------------------------------------
+\newpage
+\section{Attività da Svolgere (To-Do)}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} & \textbf{Scadenza} \\
+\midrule
+Modificare costi e criteri di distribuzione dei ruoli & Mihaela Mariana Romascu & 2025-11-04 \\
+Aggiornamento lettera di presentazione & Francesco Zanella & 2025-11-04 \\
+Aggiungere link alla repo della documentazione sul sito & Giovanni Ponso & 2025-11-04 \\
+Modificare date su verbali e rinominare i file & Davide Biasuzzi & 2025-11-04 \\
+Stendere verbale riunione & Davide Biasuzzi & 2025-11-04 \\
+Creare documenti "Norme di Progetto" e "Glossario" & Ponso, Perozzo, Biasuzzi, Ogniben & 2025-11-05 \\
+Allineare M. Ogniben su decisioni e su quanto discusso & Giovanni Ponso & 2025-11-04\\
+\bottomrule
+\end{tabular}
+\caption{Riepilogo task assegnati.}
+\end{table}
+\end{document}
