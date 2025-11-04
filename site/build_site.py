@@ -11,8 +11,8 @@ class Item:
         if self.val["type"] == 'folder':
             if other.val["type"] == 'folder':
                 return self.val["name"].lower() > other.val["name"].lower()
-            return True
-        if other.val["type"] == 'folder': return False
+            return False
+        if other.val["type"] == 'folder': return True
         if self.val["date"]:
             if other.val["date"]:
                 return datetime.strptime(self.val["date"], "%Y-%m-%d") > datetime.strptime(other.val["date"], "%Y-%m-%d")
@@ -46,11 +46,11 @@ def estrai_info(filename):
         normalized = re.sub(r'v\s?\d+(?:\.\d+){0,2}', ' ', normalized, flags=re.IGNORECASE)
         normalized = re.sub(r'\s+', ' ', normalized).strip()
 
-    date_match = re.search(r'\b(\d{2})[-_/](\d{2})[-_/](\d{2,4})\b', normalized)
+    date_match = re.search(r'\b(\d{2,4})[-_/](\d{2})[-_/](\d{2})\b', normalized)
     if date_match:
         raw_date = date_match.group(0)
         normalized = normalized.replace(raw_date, ' ')
-        day, month, year = date_match.groups()
+        year, month, day = date_match.groups()
         if len(year) == 2:
             year = ("20" + year) if int(year) < 50 else ("19" + year)
         try:
@@ -137,3 +137,4 @@ if __name__ == "__main__":
     tree = build_file_tree(directory_docs)
     with open(output, 'w', encoding='utf-8') as f:
         json.dump(tree, f, indent=2, ensure_ascii=False)
+
