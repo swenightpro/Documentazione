@@ -1,5 +1,14 @@
-# Report di compilazione del 2025-10-31T10:04:31+00:00
+# Report di compilazione del 2025-11-04T10:08:04+00:00
 
-Compilazione basata sul commit e5481cdd6d4154626bf7371e211cc3af41f7f2b6 (base: e5481cd)
+Compilazione basata sul commit 80e6c34b2a7028cecb2b09f9c27bec290f08786f (base: 80e6c34)
 
-💡 Nessun file modificato o mancante. Nessuna compilazione eseguita.
+## Falliti
+💡 Nessun errore di compilazione
+
+## Compilati
+✅ [docs/Candidatura/Lettera_di_Presentazione_v1.0.pdf](docs/Candidatura/Lettera_di_Presentazione_v1.0.pdf)
+
+✅ [docs/Candidatura/Valutazione_Capitolati_v1.0.pdf](docs/Candidatura/Valutazione_Capitolati_v1.0.pdf)
+
+✅ [docs/Candidatura/Preventivo_Costi_v1.0.pdf](docs/Candidatura/Preventivo_Costi_v1.0.pdf)
+
