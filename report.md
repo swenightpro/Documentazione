@@ -1,6 +1,6 @@
-# Report di compilazione del 2025-11-05T08:45:36+00:00
+# Report di compilazione del 2025-11-05T11:16:18+00:00
 
-Compilazione basata sul commit 9db41416465c93d71e1ebb128fccfaf895efe4f2 (base: 9db4141)
+Compilazione basata sul commit 05d73d4b610fc680f0f87d15f5512d43658b36fa (base: 05d73d4)
 
 ## Falliti
 💡 Nessun errore di compilazione
