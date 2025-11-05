@@ -1,0 +1,398 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana
+\usepackage{lmodern}            % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}           % Per le immagini
+\graphicspath{{../../assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
+
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{hyperref}           % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Documento Progetto - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+
+% ===================================================================
+%  HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce i campi
+\fancyhead[L]{\textbf{NightPRO – Progetto Ingegneria del Software}}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt} % Modificato per coerenza, sebbene l'originale fosse 0pt
+
+% ===================================================================
+%  INIZIO DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  FRONTESPIZIO
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \includegraphics[width=0.35\textwidth]{logo.png}\\[1cm]
+
+     \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    \vfill
+    
+    {\Huge \bfseries Glossario \par}
+        \vspace{1cm}
+         {\Large Redattori: Giovanni Ponso, Davide Biasuzzi \par} 
+    {\Large Approvato da: \par}
+    \vfill
+
+    {\Large \bfseries Gruppo: NightPRO}    \vspace{0.5cm}
+
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
+
+        {\large Data: 2025-11-05 \par}
+
+     {\Large Versione: 1.0 \par} 
+
+\end{titlepage}
+
+%  SEZIONE: Tabella delle Versioni
+% -------------------------------------------------------------------
+\newpage
+\pagestyle{fancy}
+\phantomsection
+\addcontentsline{toc}{section}{Tabella delle Versioni}
+\section*{Tabella delle Versioni}
+\vspace{0.2cm} 
+\begin{center}
+\resizebox{\textwidth}{!}{
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}llp{0.25\textwidth}p{0.45\textwidth}c@{}} 
+\toprule
+\textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
+\midrule
+1.0 & 2025-11-05 & Davide Biasuzzi & Inserimento definizioni iniziali mancanti & Francesco Zanella \\
+0.1 & 2025-11-05 & Giovanni Ponso & Creazione bozza glossario e inserimento definizioni &  Francesco Zanella \\
+\bottomrule
+\end{tabular}
+}
+\end{center}
+
+
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy}
+
+% -------------------------------------------------------------------
+%  INFORMAZIONI GENERALI
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.2} % più spazio tra le righe
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del gruppo NightPRO.}
+\end{table}
+
+% -------------------------------------------------------------------
+% INTRODUZIONE
+% -------------------------------------------------------------------
+
+
+\section{Introduzione}
+
+\subsection{Obiettivo del documento}
+Il presente glossario raccoglie i termini tecnici, specialistici o potenzialmente ambigui utilizzati nella documentazione del progetto.
+Il suo scopo è garantire una comprensione uniforme del linguaggio adottato dal gruppo, fornendo definizioni chiare e non equivoche.
+\subsection{Struttura del documento}
+I termini sono organizzati in ordine alfabetico.  
+Alla loro prima apparizione nei documenti ufficiali, essi vengono contrassegnati dal pedice \textsubscript{\textsc{g}}, che ne indica la presenza nel glossario.
+Le occorrenze successive non riportano tale marcatura.
+
+\appendix 
+
+% A
+\section*{A}
+\addcontentsline{toc}{section}{A}
+
+\subsection{Approvazione}
+Fase formale del ciclo di vita di un documento, successiva alla verifica, in cui si certifica che il documento è completo, corretto e pronto per il rilascio ufficiale.
+\vspace{0.5cm}
+
+% B
+\section*{B}
+\addcontentsline{toc}{section}{B}
+
+\subsection{Build}
+Il processo automatico di compilazione del codice sorgente (es. file \texttt{.tex}) per generare un artefatto distribuibile (es. un file \texttt{.pdf}).
+\vspace{0.5cm}
+
+% C
+\section*{C}
+\addcontentsline{toc}{section}{C}
+
+\subsection{Capitolato}
+Documento fornito dal committente che specifica i requisiti, gli obiettivi e i vincoli del progetto da realizzare.
+\vspace{0.5cm}
+
+\subsection{CI (Continuous Integration)}
+Acronimo di \textit{Continuous Integration} (Integrazione Continua). Pratica di sviluppo che consiste nell'automatizzare l'integrazione e la verifica (build e test) del codice o dei documenti ad ogni modifica, al fine di rilevare tempestivamente errori.
+\vspace{0.5cm}
+
+\subsection{Commit}
+Una singola operazione di salvataggio registrata nel sistema di versionamento (come Git). Rappresenta un insieme di modifiche apportate ai file del repository.
+\vspace{0.5cm}
+
+% D
+\section*{D}
+\addcontentsline{toc}{section}{D}
+
+\subsection{Diario della Riunione}
+Sezione di un verbale che contiene il resoconto dettagliato della discussione, tipicamente suddiviso rispecchiando i punti dell'Ordine del Giorno.
+\vspace{0.5cm}
+
+\subsection{Docker}
+Piattaforma software che permette di creare, distribuire ed eseguire applicazioni in ambienti isolati chiamati "container". Utilizzata nel progetto per garantire un ambiente di compilazione \LaTeX{} coerente e riproducibile.
+\vspace{0.5cm}
+
+% E
+\section*{E}
+\addcontentsline{toc}{section}{E}
+% (Nessun termine)
+
+% F
+\section*{F}
+\addcontentsline{toc}{section}{F}
+
+\subsection{Frontespizio}
+La prima pagina di un documento ufficiale che contiene i metadati identificativi: titolo, autori, gruppo, versione, data, e contesto (es. università, corso).
+\vspace{0.5cm}
+
+% G
+\section*{G}
+\addcontentsline{toc}{section}{G}
+
+\subsection{Git}
+Sistema di controllo versione distribuito (DVCS) creato da Linus Torvalds. 
+È lo strumento software che traccia la cronologia delle modifiche ai file di progetto (sorgenti, documenti) e permette la collaborazione.
+\vspace{0.5cm}
+
+\subsection{GitHub}
+Piattaforma web basata su Git per l'hosting di repository, la gestione del versionamento del codice e la collaborazione allo sviluppo software.
+\vspace{0.5cm}
+
+\subsection{GitHub Actions}
+Servizio di automazione e CI/CD integrato in GitHub. Permette di definire \textit{workflow} automatici (es. per la compilazione e pubblicazione dei documenti) che si attivano in risposta a eventi nel repository.
+\vspace{0.5cm}
+
+\subsection{GitHub Pages}
+Servizio di hosting per siti web statici fornito da GitHub. Utilizzato dal gruppo per pubblicare e rendere consultabile la documentazione di progetto.
+\vspace{0.5cm}
+
+\subsection{GitHub Projects}
+Strumento di gestione progettuale (project management) integrato in GitHub, utilizzato per pianificare, organizzare e tracciare lo stato di avanzamento delle attività (task).
+\vspace{0.5cm}
+
+\subsection{Glossario}
+Documento che raccoglie e definisce i termini tecnici, specialistici o potenzialmente ambigui utilizzati nel progetto, al fine di garantirne una comprensione uniforme.
+\vspace{0.5cm}
+
+\subsection{Google Meet}
+Piattaforma di videoconferenza utilizzata dal gruppo per le riunioni sincrone e le attività collaborative che richiedono condivisione dello schermo.
+\vspace{0.5cm}
+
+% H
+\section*{H}
+\addcontentsline{toc}{section}{H}
+% (Nessun termine)
+
+% I
+\section*{I}
+\addcontentsline{toc}{section}{I}
+% (Nessun termine)
+
+% J
+\section*{J}
+\addcontentsline{toc}{section}{J}
+% (Nessun termine)
+
+% K
+\section*{K}
+\addcontentsline{toc}{section}{K}
+% (Nessun termine)
+
+% L
+\section*{L}
+\addcontentsline{toc}{section}{L}
+
+\subsection{LaTeX}
+Linguaggio di markup e sistema di preparazione di documenti ampiamente usato in ambito accademico per la sua elevata qualità tipografica e la gestione di formule complesse. È il formato sorgente per la documentazione ufficiale del progetto.
+\vspace{0.5cm}
+
+% M
+\section*{M}
+\addcontentsline{toc}{section}{M}
+% (Nessun termine)
+
+% N
+\section*{N}
+\addcontentsline{toc}{section}{N}
+
+\subsection{Norme di Progetto}
+Il documento (questo) che definisce il metodo di lavoro, le regole redazionali, gli strumenti e i processi di gestione adottati dal gruppo per garantire coerenza, tracciabilità e qualità.
+\vspace{0.5cm}
+
+% O
+\section*{O}
+\addcontentsline{toc}{section}{O}
+
+\subsection{Ordine del Giorno}
+Elenco degli argomenti (chiamato anche "Agenda") pianificati per la discussione durante una riunione. È una sezione obbligatoria dei verbali.
+\vspace{0.5cm}
+
+% P
+\section*{P}
+\addcontentsline{toc}{section}{P}
+
+\subsection{PDF}
+Acronimo di \textit{Portable Document Format}. Formato file utilizzato per la distribuzione e la consultazione dei documenti ufficiali, in quanto garantisce la non modificabilità e la coerenza di layout su diversi dispositivi.
+\vspace{0.5cm}
+
+\subsection{Pipeline}
+Nel contesto della CI/CD, è la sequenza di passi (job) automatizzati eseguiti da un sistema di automazione (come GitHub Actions) per compiere un processo, ad esempio la \textit{pipeline di pubblicazione}. Sinonimo di Workflow.
+\vspace{0.5cm}
+
+\subsection{Pubblicazione}
+Fase finale del ciclo di vita di un documento che consiste nel renderlo accessibile agli stakeholder, ad esempio caricandolo nell'archivio PDF sul sito web del gruppo.
+\vspace{0.5cm}
+
+% Q
+\section*{Q}
+\addcontentsline{toc}{section}{Q}
+% (Nessun termine)
+
+% R
+\section*{R}
+\addcontentsline{toc}{section}{R}
+
+\subsection{Redazione}
+Fase iniziale del ciclo di vita di un documento, durante la quale uno o più autori (redattori) creano e aggiornano i contenuti.
+\vspace{0.5cm}
+
+\subsection{Repository}
+Archivio centrale gestito da un sistema di versionamento (come Git) che contiene tutti i file del progetto (codice sorgente, documenti) e la cronologia completa delle loro modifiche.
+\vspace{0.5cm}
+
+% S
+\section*{S}
+\addcontentsline{toc}{section}{S}
+
+\subsection{Snake case}
+Convenzione di nomenclatura dei file (es. \texttt{nome\_file.tex}) che prevede l'uso di sole lettere minuscole e la separazione delle parole tramite un trattino basso (underscore).
+\vspace{0.5cm}
+
+\subsection{Stakeholder}
+Qualsiasi individuo o gruppo che ha un interesse nel progetto o è influenzato dal suo risultato (es. membri del team, committenti, docenti).
+\vspace{0.5cm}
+
+% T
+\section*{T}
+\addcontentsline{toc}{section}{T}
+
+\subsection{Task}
+Un'attività o un compito specifico e tracciabile che deve essere svolto. La gestione dei task avviene tramite GitHub Projects.
+\vspace{0.5cm}
+
+\subsection{Telegram}
+Applicazione di messaggistica istantanea usata come canale di comunicazione principale dal gruppo.
+\vspace{0.5cm}
+
+\subsection{Template}
+Un modello di documento (es. un file \texttt{.tex} preimpostato) utilizzato come base per la creazione di nuovi documenti, al fine di garantire l'omogeneità della struttura e del formato.
+\vspace{0.5cm}
+
+\subsection{Topic (Telegram)}
+Funzionalità dei gruppi Telegram che permette di suddividere le conversazioni in argomenti specifici, garantendo maggiore ordine e tracciabilità delle discussioni.
+\vspace{0.5cm}
+
+% U
+\section*{U}
+\addcontentsline{toc}{section}{U}
+% (Nessun termine)
+
+% V
+\section*{V}
+\addcontentsline{toc}{section}{V}
+
+\subsection{Verbali}
+Documenti ufficiali che riportano le discussioni, le decisioni prese e le attività assegnate durante gli incontri del gruppo, al fine di tracciare l'evoluzione del progetto.
+\vspace{0.5cm}
+
+\subsection{Verifica}
+Fase del ciclo di vita di un documento in cui un membro del gruppo, diverso dal redattore, controlla la correttezza formale, la qualità e la coerenza dei contenuti prima dell'approvazione o pubblicazione.
+\vspace{0.5cm}
+
+% W
+\section*{W}
+\addcontentsline{toc}{section}{W}
+
+\subsection{Workflow}
+Una sequenza configurabile di operazioni automatizzate. Nel contesto di GitHub Actions, definisce i passi per processi come la compilazione o la pubblicazione. Sinonimo di Pipeline.
+\vspace{0.5cm}
+
+% X
+\section*{X}
+\addcontentsline{toc}{section}{X}
+% (Nessun termine)
+
+% Y
+\section*{Y}
+\addcontentsline{toc}{section}{Y}
+% (Nessun termine)
+
+% Z
+\section*{Z}
+\addcontentsline{toc}{section}{Z}
+% (Nessun termine)
+
+
+\end{document}
