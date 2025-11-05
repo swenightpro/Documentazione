@@ -1,12 +1,10 @@
-# Report di compilazione del 2025-11-05T06:54:55+00:00
+# Report di compilazione del 2025-11-05T07:44:06+00:00
 
-Compilazione basata sul commit a8c98eafb7f0eebaed293bd9ecdfc996ecd5ee2b (base: a8c98ea)
+Compilazione basata sul commit 6b6645486bf792a151144b1268cebdd613111f9f (base: 6b66454)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/Candidatura/Documentazione Interna/Norme_di_Progetto_v1.0.pdf](docs/Candidatura/Documentazione%20Interna/Norme_di_Progetto_v1.0.pdf)
-
-✅ [docs/Candidatura/Documentazione Interna/Glossario_v1.0.pdf](docs/Candidatura/Documentazione%20Interna/Glossario_v1.0.pdf)
+✅ [docs/Candidatura/Lettera_di_Presentazione_v1.2.pdf](docs/Candidatura/Lettera_di_Presentazione_v1.2.pdf)
 
