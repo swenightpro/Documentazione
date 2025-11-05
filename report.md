@@ -1,10 +1,10 @@
-# Report di compilazione del 2025-11-05T08:13:39+00:00
+# Report di compilazione del 2025-11-05T08:45:36+00:00
 
-Compilazione basata sul commit 5bb6bc8b116443eefeb4ab8f4507beae28f3f900 (base: 5bb6bc8)
+Compilazione basata sul commit 9db41416465c93d71e1ebb128fccfaf895efe4f2 (base: 9db4141)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/Candidatura/Valutazione_Capitolati_v1.0.pdf](docs/Candidatura/Valutazione_Capitolati_v1.0.pdf)
+✅ [docs/Candidatura/Documentazione Interna/Glossario_v1.0.pdf](docs/Candidatura/Documentazione%20Interna/Glossario_v1.0.pdf)
 
