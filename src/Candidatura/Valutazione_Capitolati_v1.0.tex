@@ -5,6 +5,8 @@
 \usepackage[T1]{fontenc}        % Font encoding moderno
 \usepackage[italian]{babel}     % Lingua italiana
 \usepackage{lmodern}            % Font "Latin Modern"
+\usepackage{tabularx}
+
 
 % --- Grafica e Layout ---
 \usepackage{graphicx}           % Per le immagini
@@ -104,19 +106,18 @@
 \vspace{0.2cm} 
 \begin{center}
 \renewcommand{\arraystretch}{1.2}
-\begin{tabular}{@{}llp{0.25\textwidth}p{0.55\textwidth}@{}} 
+\begin{tabularx}{\textwidth}{@{} p{0.08\textwidth} p{0.12\textwidth} p{0.20\textwidth} X >{\centering\arraybackslash}p{0.15\textwidth} @{}}
 \toprule
-\textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} \\
+\textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
 \midrule
-1.0 & 2025-10-31 & Francesco Zanella  &  Approvato documento \\
-0.5 & 2025-10-30 & Michele Ogniben  &  Verificato documento \\
-0.4 & 2025-10-30 & Giovanni Ponso  &  Aggiunta contenuti e revisione finale \\
-0.3 & 2025-10-29 & Davide Biasuzzi & Corretto refuso sulla data \\
-0.2 & 2025-10-28 & Davide Biasuzzi & Aggiunta Analisi per ogni capitolato, completata la conclusione \\
-0.1 & 2025-10-28 &Mihaela Mariana Romascu; Giovanni Ponso; Davide Biasuzzi & Creazione bozza iniziale e struttura del documento. \\
+1.0 & 2025-10-31 & Francesco Zanella & Approvato documento & - \\
+0.4 & 2025-10-30 & Giovanni Ponso & Aggiunta contenuti e revisione finale & Michele Ogniben \\
+0.3 & 2025-10-29 & Davide Biasuzzi & Corretto refuso sulla data & - \\
+0.2 & 2025-10-28 & Davide Biasuzzi & Aggiunta Analisi per ogni capitolato, completata la conclusione & - \\
+0.1 & 2025-10-28 & Mihaela Mariana Romascu; Giovanni Ponso; Davide Biasuzzi & Creazione bozza iniziale e struttura del documento. & - \\
 % Aggiungere qui le nuove versioni
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{center}
 
 
