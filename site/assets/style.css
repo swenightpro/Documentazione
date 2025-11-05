@@ -422,5 +422,16 @@ footer {
   color: var(--text);
 }
 
+.github-icon-link svg {
+  transition: .2s ease;
+  vertical-align: middle;
+}
+
+
+.github-icon-link:hover svg {
+  color: var(--link-hover);
+  transform: scale(1.1);
+}
+
 
 .hidden {display:none!important}
