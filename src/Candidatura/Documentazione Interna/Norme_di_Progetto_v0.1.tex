@@ -1,0 +1,433 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana
+\usepackage{lmodern}            % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}           % Per le immagini
+\graphicspath{{../../assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
+
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{hyperref}           % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Documento Progetto - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+
+% ===================================================================
+%  HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce i campi
+\fancyhead[L]{\textbf{NightPRO – Progetto Ingegneria del Software}}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  FRONTESPIZIO
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \includegraphics[width=0.35\textwidth]{logo.png}\\[1cm]
+
+     \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    \vfill
+    
+    {\Huge \bfseries Norme di Progetto \par}
+        \vspace{1cm}
+         {\Large Redattori: Giovanni Ponso, Davide Biasuzzi \par} 
+    {\Large Verificato da:  \par} 
+    {\Large Approvato da: \par}
+    \vfill
+
+    {\Large \bfseries Gruppo: NightPRO}    \vspace{0.5cm}
+
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
+
+        {\large Data: 2025-11-05 \par}
+
+     {\Large Versione: 0.1 \par} 
+
+\end{titlepage}
+
+%  SEZIONE: Tabella delle Versioni
+% -------------------------------------------------------------------
+\newpage
+\pagestyle{fancy}
+\phantomsection
+\addcontentsline{toc}{section}{Tabella delle Versioni}
+\section*{Tabella delle Versioni}
+\vspace{0.2cm} 
+\begin{center}
+\resizebox{\textwidth}{!}{
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}llp{0.25\textwidth}p{0.45\textwidth}c@{}} 
+\toprule
+\textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
+\midrule
+0.1 & 2025-11-05 & G. Ponso; D. Biasuzzi & Creazione documento + redazione processi di supporto &  - \\
+\bottomrule
+\end{tabular}
+}
+\end{center}
+
+
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy}
+
+% -------------------------------------------------------------------
+%  INFORMAZIONI GENERALI
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.2} % più spazio tra le righe
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del gruppo NightPRO.}
+\end{table}
+
+% -------------------------------------------------------------------
+% INTRODUZIONE
+% -------------------------------------------------------------------
+
+\newpage
+\section{Introduzione}
+\label{sec:introduzione}
+
+\subsection{Scopo del documento}
+Questo documento definisce le Norme di Progetto del gruppo NightPRO per il corso di Ingegneria del Software (A.A.~2025/2026). Stabilisce in forma univoca: metodo di lavoro, regole redazionali e criteri di gestione dei documenti, così da garantire coerenza, tracciabilità e chiarezza operativa. La presente versione costituisce la base metodologica iniziale e sarà aggiornata con l’avanzare delle attività.
+
+\subsection{Stato del progetto}
+Al momento il capitolato non è assegnato. Il documento disciplina quindi l’assetto organizzativo e documentale preliminare: modalità di collaborazione, convenzioni redazionali e pubblicazione dei deliverable. Le sezioni relative a prodotto, pianificazione dettagliata e processi di qualità, verifica e validazione saranno integrate nelle versioni successive, in coerenza con il capitolato che verrà attribuito.
+
+\subsection{Glossario}
+
+Per garantire chiarezza terminologica e uniformità nella comprensione dei concetti utilizzati, viene redatto un Glossario contenente i termini tecnici e potenzialmente ambigui.
+
+Alla \textbf{prima occorrenza} nel documento, ogni termine seguito dal simbolo {\scriptsize\raisebox{-0.5ex}{G}} viene definito formalmente nel glossario. Le occorrenze successive non riportano tale marcatura.
+
+% -------------------------------------------------------------------
+% PROCESSI DI SUPPORTO
+% -------------------------------------------------------------------
+\newpage
+\section{Processi di Supporto}
+
+% -------------------------------------------------------------------
+%      STRUTTURA AMBIENTE DI SVILUPPO PROGETTO (FASE PRELIMINARE)
+% -------------------------------------------------------------------
+ 
+\subsection{Ambiente collaborativo e infrastruttura del progetto}
+
+\subsubsection{Obiettivo}
+L'obiettivo di questa sezione è definire l'insieme di strumenti e configurazioni adottate dal gruppo per supportare la collaborazione, la comunicazione, l’organizzazione e l’integrazione tecnica del progetto.  
+Pur trovandosi in fase preliminare, il team ha ritenuto fondamentale predisporre fin da subito un ambiente robusto e strutturato che garantisca tracciabilità, trasparenza, automazione e continuità operativa per l’intera durata del progetto.
+
+\subsubsection{Comunicazione sincrona e asincrona}
+
+\paragraph{Telegram}
+Il gruppo utilizza Telegram come canale di comunicazione principale.  
+La scelta è motivata dalla disponibilità della funzionalità topic, che permette di suddividere le conversazioni per argomento (es. documentazione, riunioni, diario di bordo), garantendo ordine e tracciabilità.
+
+\paragraph{Google Meet}
+Per le riunioni sincrone viene adottato Google Meet, in quanto:
+\begin{itemize}
+    \item consente la partecipazione rapida e trasversale ai membri del gruppo;
+    \item offre funzionalità di condivisione schermo utili durante attività collaborative;
+    \item supporta riunioni sia programmate che estemporanee.
+\end{itemize}
+
+\subsubsection{Gestione del repository e versionamento}
+Il gruppo ha istituito un’organizzazione \textbf{GitHub} denominata \textbf{NightPRO}, all’interno della quale sono presenti due repository distinti:
+
+\begin{itemize}
+    \item \textbf{Documentazione}: dedicato alla gestione della documentazione di progetto, configurazione del sito pubblico e automazione CI;
+    \item \textbf{Prodotto software}: inizialmente vuoto, verrà popolato quando il capitolato verrà assegnato.
+\end{itemize}
+
+La separazione è stata decisa per garantire indipendenza tra le attività documentali e quelle di sviluppo software, favorendo chiarezza, modularità e controllo delle versioni.
+
+\paragraph{Struttura del repository documentazione}
+La struttura adottata è la seguente:
+
+\begin{verbatim}
+.github/workflows/   # Workflow CI (build PDF, deploy sito)
+src/                 # File .tex sorgenti dei documenti
+docs/                # PDF generati automaticamente
+site/                # Codice sorgente sito GitHub Pages
+template/            # Template e documenti base
+report.md            # Report compilazione automatica
+\end{verbatim}
+
+\subsubsection{Gestione delle attività}
+Per la pianificazione, il monitoraggio delle attività e la tracciabilità dello stato di avanzamento, il gruppo utilizza \textbf{GitHub Projects}.
+
+Questa piattaforma permette di:
+
+\begin{itemize}
+    \item assegnare responsabilità chiare ai membri del gruppo;
+    \item monitorare l'avanzamento delle attività;
+    \item mantenere una visione condivisa delle priorità;
+    \item aggiornare in tempo reale lo stato dei task.
+\end{itemize}
+
+In questa fase iniziale il flusso operativo è in definizione e verrà progressivamente raffinato in base alle esigenze progettuali e all’evoluzione delle attività.  
+L'obiettivo è arrivare a un sistema di lavoro che garantisca trasparenza, coordinamento ed efficienza, riducendo il rischio di sovrapposizioni o attività non monitorate.
+
+\subsubsection{Sistema di pubblicazione e consultazione della documentazione}
+Per garantire un accesso semplice, centralizzato e sempre aggiornato alla documentazione di progetto, è stato sviluppato un sito web statico pubblicato tramite \textbf{GitHub Pages}.
+
+\paragraph{Obiettivo}
+Rendere la documentazione facilmente consultabile da tutti gli stakeholder (membri del team, committenti e corpo docente), mantenendo coerenza, ordine e tracciabilità delle versioni.
+
+\paragraph{Funzionalità principali}
+Il sito offre:
+
+\begin{itemize}
+    \item navigazione dei documenti tramite struttura a cartelle collassabili;
+    \item motore di ricerca interno per nome, data o versione del documento;
+    \item possibilità di apertura o download diretto dei PDF;
+    \item pagina informativa con i membri del gruppo e relativi riferimenti;
+    \item selezione del tema grafico chiaro, scuro o sistema.
+\end{itemize}
+
+\paragraph{Aggiornamento automatico}
+La struttura del sito e l’elenco dei documenti vengono aggiornati automaticamente ad ogni esecuzione della pipeline di pubblicazione.  
+Durante la build, un processo analizza la cartella \texttt{docs/} e genera la mappa della documentazione pubblicata, garantendo che il sito rifletta sempre lo stato più recente e valido dei file.
+
+Grazie a questa configurazione, la consultazione della documentazione è:
+\begin{itemize}
+    \item automatizzata,
+    \item coerente con il repository principale,
+    \item priva di interventi manuali,
+    \item sempre aggiornata all’ultima versione approvata.
+\end{itemize}
+
+\subsubsection{Automazione tramite GitHub Actions}
+
+Al fine di garantire coerenza, tracciabilità e aggiornamento continuo della documentazione, il gruppo ha configurato due workflow automatizzati tramite \textbf{GitHub Actions}: uno dedicato alla compilazione dei documenti \LaTeX{} e uno alla pubblicazione del sito web.
+
+L’obiettivo è ridurre al minimo gli interventi manuali, eliminare errori operativi e mantenere un processo documentale affidabile, verificabile e riproducibile.
+
+\paragraph{Compilazione automatica della documentazione}
+
+Il workflow di build è attivato al verificarsi di modifiche ai file sorgenti \LaTeX{} presenti nella directory \texttt{src/}.  
+Il sistema esegue una serie di controlli e operazioni automatiche per garantire la coerenza tra sorgenti e PDF generati:
+
+\begin{itemize}
+    \item rileva le modifiche rispetto all’ultima build valida e identifica i file da ricompilare;
+    \item elimina PDF obsoleti o non più associati a sorgenti esistenti, escludendo i PDF firmati che vengono gestiti manualmente;
+    \item compila i progetti \LaTeX{} tramite \texttt{latexmk} in ambiente Docker;
+    \item genera un file \texttt{report.md} contenente l'esito della compilazione per ciascun documento (con rispettivo link diretto ai pdf generati dalla build);
+    \item effettua automaticamente un commit dei soli file effettivamente aggiornati.
+\end{itemize}
+
+Questa procedura assicura che:
+
+\begin{itemize}
+    \item nella cartella \texttt{docs/} siano presenti solamente PDF aggiornati e validi;
+    \item nessun documento obsoleto rimanga nel repository;
+    \item eventuali errori di compilazione impediscano la pubblicazione di versioni incoerenti.
+\end{itemize}
+
+\paragraph{Pubblicazione automatica della documentazione online}
+
+Al termine di una compilazione \LaTeX{} completata con esito positivo, un secondo workflow provvede automaticamente alla pubblicazione della documentazione tramite GitHub Pages.
+
+Il processo si occupa di:
+
+\begin{itemize}
+    \item sincronizzare la struttura del sito con la cartella \texttt{docs/};
+    \item includere automaticamente nuove versioni o nuovi documenti;
+    \item rendere il contenuto immediatamente accessibile online.
+\end{itemize}
+
+La pubblicazione avviene senza intervento manuale e garantisce che solo materiale correttamente compilato e validato venga reso disponibile.  
+Questo meccanismo assicura un punto di accesso unico e costantemente aggiornato alla documentazione ufficiale del progetto.
+
+% -------------------------------------------------------------------
+%   REGOLE, CONVENZIONI E CICLO DI VITA DELLA DOCUMENTAZIONE
+% -------------------------------------------------------------------
+
+\subsection{Documentazione}
+
+\subsubsection{Obiettivo}
+La documentazione rappresenta un elemento fondamentale del progetto:  
+definisce i processi, registra le decisioni, formalizza gli avanzamenti e costituisce un riferimento verificabile e condiviso.
+
+Questa sezione definisce regole, convenzioni e ciclo di vita adottati dal gruppo per la produzione dei documenti ufficiali.  
+Poiché il progetto si trova nella fase di candidatura, tali norme costituiscono una baseline che sarà estesa con l’avanzare delle attività progettuali.
+
+\subsubsection{Formati di riferimento}
+L'intera documentazione ufficiale viene redatta in formato \LaTeX{} (\texttt{.tex}) e distribuita in formato PDF (\texttt{.pdf}).
+
+\begin{itemize}
+    \item Il formato \textbf{\LaTeX{}} garantisce qualità tipografica, modularità, controllabilità delle modifiche e standardizzazione.
+    \item Il formato \textbf{PDF} costituisce la versione ufficiale, consultabile e non modificabile.
+\end{itemize}
+
+Le due forme convivono con ruoli distinti:
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{File .tex} & Codice sorgente, modificabile, tracciabile \\ \hline
+\textbf{File .pdf} & Documento ufficiale distribuito e verificabile \\ \hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Struttura dei Documenti}
+Ogni documento prodotto segue una struttura coerente per garantire leggibilità e uniformità:
+
+\begin{itemize}
+    \item Frontespizio con dati e metadati ufficiali
+    \item Tabella delle versioni e delle modifiche
+    \item Indice dei contenuti
+    \item Corpo del documento, articolato in sezioni e sottosezioni
+    \item (Se necessario) Appendici, glossari, tabelle e riferimenti
+\end{itemize}
+
+Template condivisi sono forniti nel repository del progetto per garantire omogeneità.
+
+\subsubsection{Convenzioni di Scrittura e Nomenclatura}
+Per assicurare tracciabilità e organizzazione dei file, si adottano le seguenti convenzioni.
+
+\paragraph{Nomi dei file}
+La convenzione utilizzata è snake\_case. Quando rilevante, si includono versione e/o data:
+
+\begin{itemize}
+    \item La versione è indicata come \texttt{vX.Y}
+    \item La data è riportata nel formato ISO \texttt{AAAA-MM-GG}
+\end{itemize}
+
+\noindent
+\textbf{Esempi:}
+\begin{itemize}
+    \item \texttt{norme\_di\_progetto\_v0.1.tex}
+    \item \texttt{verbale\_interno\_2025-10-29.tex}
+\end{itemize}
+
+\paragraph{Documenti firmati}
+In caso di documenti soggetti a firma, la copia firmata mantiene lo stesso nome del documento ufficiale aggiungendo il suffisso \texttt{\_firmato} (o \texttt{\_signed}):
+
+\begin{itemize}
+    \item \texttt{norme\_di\_progetto\_v0.1\_firmato.pdf}
+\end{itemize}
+
+Questo consente distinzione chiara tra versione certificata e versioni operative.
+
+\subsubsection{Ciclo di Vita dei Documenti}
+
+Tutti i documenti prodotti dal gruppo seguono un processo di revisione volto a garantire qualità, coerenza e tracciabilità.  
+Il ciclo di vita adottato è iterativo e prevede controlli continui ad ogni modifica significativa.
+
+Le fasi previste sono:
+
+\begin{itemize}
+    \item \textbf{Redazione}  
+    Il documento viene creato o aggiornato da uno o più redattori.  
+    La stesura avviene in modo incrementale e versionato: ogni aggiornamento rilevante è committato e tracciato nel sistema di versionamento.
+
+    \item \textbf{Verifica}  
+    Ogni commit contenente contenuto documentale richiede una verifica da parte di almeno un membro diverso dal redattore.  
+    La verifica assicura:
+    \begin{itemize}
+        \item coerenza con gli standard adottati;
+        \item correttezza dei contenuti;
+        \item qualità formale e lessicale;
+        \item aderenza alle norme di progetto.
+    \end{itemize}
+    Un documento è considerato verificato quando tutte le modifiche proposte sono state esaminate e validate.
+
+    \item \textbf{Approvazione} *(solo per i documenti ufficiali)*  
+    Per i documenti formali del progetto (es. Lettera di Presentazione, Valutazione Capitolati, Preventivo dei Costi) è prevista una fase di approvazione finale, successiva alla verifica.  
+    L'approvazione certifica che il documento è completo, corretto e pronto per essere rilasciato nella sua versione ufficiale.
+
+    \item \textbf{Pubblicazione}  
+    Dopo la verifica (per verbali) o dopo l'approvazione (per documenti ufficiali), il documento viene inserito nell'archivio PDF (con il sistema automatico descritto in precedenza), indicizzato e pubblicato sul portale del gruppo.
+\end{itemize}
+
+\subsubsection{Verbali}
+I verbali sono i documenti che riportano le discussioni e le decisioni prese durante gli incontri ufficiali del gruppo. Hanno lo scopo di tracciare l'evoluzione del progetto e formalizzare gli impegni presi.
+
+Ogni verbale prodotto dal gruppo NightPRO deve essere strutturato nelle seguenti sezioni principali:
+
+\begin{itemize}
+    \item \textbf{Sezione 1: Informazioni Generali}
+    Contiene i metadati della riunione. È suddivisa in:
+    \begin{itemize}
+        \item Componenti del Gruppo: La tabella standard con l'elenco dei membri.
+        \item Dettagli Riunione: Elenco puntato con Data, Ora, Luogo, Partecipanti (con eventuali assenti), Redatto da, Verificato da e Versione del verbale.
+    \end{itemize}
+
+    \item \textbf{Sezione 2: Ordine del Giorno (Agenda)}
+    Un elenco puntato (\texttt{\textbackslash itemize}) che elenca tutti gli argomenti pianificati per la discussione.
+
+    \item \textbf{Sezione 3: Diario della Riunione}
+    Il resocon
+    to dettagliato della discussione. Questa sezione è suddivisa in sottosezioni (\texttt{\textbackslash subsection}) che rispecchiano i punti dell'Ordine del Giorno, riportando le analisi e i fatti emersi.
+
+    \item \textbf{Sezione 4: Decisioni Prese}
+    Un elenco numerato (\texttt{\textbackslash enumerate}) che riassume in modo chiaro e sintetico tutte le decisioni ufficiali deliberate dal gruppo durante l'incontro.
+
+    \item \textbf{Sezione 5: Attività da Svolgere (To-Do)}
+    Una tabella riepilogativa (\texttt{\textbackslash table}) che assegna compiti specifici ai membri del gruppo. Deve includere le colonne: Attività, Assegnatario/i e Scadenza.
+\end{itemize}
+
+% -------------------------------------------------------------------
+% PROCESSI ORGANIZZATIVI
+% -------------------------------------------------------------------
+
+
+%\newpage
+%\section{Processi organizzativi}
+%(da fare)
+
+
+\end{document}
