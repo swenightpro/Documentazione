@@ -1,0 +1,254 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}      % Codifica UTF-8
+\usepackage[T1]{fontenc}         % Font encoding moderno
+\usepackage[italian]{babel}      % Lingua italiana 
+\usepackage{lmodern}             % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}            % Per includere immagini
+\usepackage{currfile}
+\graphicspath{{../../../assets/}}
+
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}            % Per header e footer personalizzati
+\usepackage{microtype}           % Migliora la tipografia
+\usepackage[svgnames]{xcolor}    % Colori
+
+% --- Utility ---
+\usepackage{booktabs}            % Tabelle più professionali
+\usepackage{enumitem}            % Per personalizzare liste
+\usepackage{hyperref}            % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,     
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Documento Progetto - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce tutti i campi
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro in basso
+\renewcommand{\headrulewidth}{0.4pt} % Linea sottile sotto l'header
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: intestazione_titolo.tex
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    {\Large \itshape Verbale Interno del 10 Novembre 2025 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+ 
+    {\large Data: 2025-11-10 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: indice.tex
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy} % Riattiva lo stile di pagina da qui in poi
+
+% -------------------------------------------------------------------
+%  SEZIONE: informazioni.tex
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2025-11-10
+    \item \textbf{Ora:} 16:30 - 18:15
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Tutti i membri del gruppo tranne Michele Ogniben e Samuele Perozzo
+    \item \textbf{Redatto da: } Davide Biasuzzi
+    \item \textbf{Verificato da:} Francesco Zanella 
+    \item \textbf{Versione: } 1.0
+\end{itemize}
+
+
+% -------------------------------------------------------------------
+%  SEZIONE: odg.tex (Ordine del Giorno)
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Discussione sul Versionamento
+    \item[2.] Definizione prossimi passi verso la RTB
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: diario.tex (Diario della riunione)
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Versionamento}
+La discussione si apre analizzando le problematiche relative alla gestione del versionamento dei documenti.
+Leonardo Bilato e Giovanni Ponso hanno presentato tre possibili approcci:
+
+\begin{enumerate}
+    \item \textbf{Overleaf Condiviso:} Utilizzare un unico documento Overleaf condiviso, accettando un tracciamento delle versioni meno granulare.
+    
+    \item \textbf{Branch "In Lavorazione" (WIP):} Creare un branch apposito per i documenti in lavorazione. 
+    In questa modalità, la versione del documento (es. 1.0.0) si aggiorna solo quando si inizia a lavorare su quel documento. 
+    Ogni push successivo \textbf{non} aggiorna la versione. La versione rappresenta un documento "finito" (sebbene temporaneamente). 
+    I documenti in lavorazione non verrebbero pubblicati sul sito web.
+    
+    \item \textbf{Branch Separato con Versioning Semantico Dettagliato:} 
+    Creare un branch separato dal \texttt{main} per le modifiche.
+        \begin{itemize}
+            \item Alla prima modifica della versione 1.0.0, si genera la 1.1.0.
+            \item Finché si modifica la stessa \textit{subsection} (oggetto della 1.1.0), si incrementa l'ultima cifra (1.1.1, 1.1.2, etc.).
+            \item Quando si passa a una nuova \textit{subsection} (e la precedente è verificata), si passa alla 1.2.0.
+            \item Finite tutte le \textit{subsection}, si arriva alla 2.0.0, che viene "pushata" sul \texttt{main} e usata per generare il PDF.
+            \item La tabella delle versioni verrebbe aggiornata solo con le versioni del tipo \texttt{x.y.0} (major/minor), ignorando le \texttt{x.y.z} (patch).
+            \item Verrebbe implementata una GitHub Action per automatizzare l'aggiornamento:
+                \begin{itemize}
+                    \item Il file viene rinominato dallo script.
+                    \item La tabella delle versioni viene aggiornata automaticamente usando:
+                        \item \textbf{Versione:} Quella indicata nel file.
+                        \item \textbf{Redattore:} Il committer (o i committer).
+                        \item \textbf{Verificatore:} Identificato se scrive "verifica" nel messaggio di commit.
+                        \item \textbf{Modifiche:} Il messaggio di commit.
+                \end{itemize}
+        \end{itemize}
+\end{enumerate}
+
+\subsubsection*{Feedback di Giovanni Ponso}
+Giovanni Ponso ha espresso perplessità sull'attuale gestione delle versioni:
+\begin{itemize}
+    \item Non trova molto senso nel modo attuale di gestire le versioni.
+    \item Propone di partire dalla 1.0 (invece che 0.1), ma il gruppo nota che creare più righe per la stessa versione (1.0) nella tabella non è fattibile/sensato.
+\end{itemize}
+
+\subsubsection*{Conclusione}
+Non riuscendo a definire una scelta corretta e univoca, il gruppo delibera di \textbf{chiedere al docente} quale sia la \textit{best practice} consigliata.
+Se ne occuperanno Leonardo Bilato e Giovanni Ponso.
+
+\subsection{Prossimi passi verso la RTB}
+Si discute la pianificazione delle attività per il prossimo futuro, in vista della RTB.
+
+\begin{itemize}
+    \item \textbf{Incontro con l'Azienda:} È stata inviata un'email per richiedere un incontro. È necessario accordarsi al più presto per discutere e definire le modalità di comunicazione:
+        \begin{itemize}
+            \item \textbf{Asincrona:} (e.g., email, Slack, etc.)
+            \item \textbf{Sincrona:} (e.g., Google Meet, Teams, etc.)
+        \end{itemize}
+    
+    \item \textbf{Avvio Attività:} Bisogna iniziare la stesura dei seguenti documenti:
+        \begin{itemize}
+            \item Analisi dei Requisiti
+            \item Piano di Progetto
+        \end{itemize}
+        
+    \item \textbf{Documenti in corso:} Proseguire con l'aggiornamento e la stesura dei documenti:
+        \begin{itemize}
+            \item Norme di Progetto
+            \item Glossario
+        \end{itemize}
+\end{itemize}
+
+
+% -------------------------------------------------------------------
+%  SEZIONE: decisioni.tex (Decisioni prese)
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese}
+
+\begin{enumerate}
+    \item Non è stata presa una decisione definitiva sulla strategia di versionamento.
+    \item Si delibera di consultare il docente per avere indicazioni sulla \textit{best practice} da adottare per il versionamento.
+    \item Si procederà a fissare un incontro con l'azienda per definire le modalità di comunicazione e avviare l'analisi dei requisiti.
+    \item Iniziare la stesura dei documenti "Analisi dei Requisiti" e "Piano di Progetto".
+    \item Continuare l'aggiornamento dei documenti "Norme di Progetto" e "Glossario".
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: todo.tex (Attività da svolgere)
+% -------------------------------------------------------------------
+\newpage
+\section{Attività da Svolgere (To-Do)}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} & \textbf{Scadenza} \\
+\midrule
+Chiedere al docente best practice versionamento & Leonardo Bilato, Giovanni Ponso & Appena possibile \\
+Fissare incontro con l'azienda & Tutto il gruppo & Appena possibile \\
+Iniziare Analisi dei Requisiti & Leonardo Bilato, Mihaela Romascu & 2025-11-16 \\
+Iniziare Piano di Progetto & G. Ponso, F. Zanella, S. Perozzo & 2025-11-16 \\
+Continuare Norme di Progetto & Davide Biasuzzi & 2025-11-16 \\
+Continuare Glossario & Davide Biasuzzi & 2025-11-16 \\
+Stendere verbale riunione & Davide Biasuzzi & 2025-11-11 \\
+\bottomrule
+\end{tabular}
+\caption{Riepilogo task assegnati.}
+\end{table}
+\end{document}
