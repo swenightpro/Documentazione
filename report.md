@@ -1,10 +1,10 @@
-# Report di compilazione del 2025-11-10T17:54:24+00:00
+# Report di compilazione del 2025-11-12T10:13:23+00:00
 
-Compilazione basata sul commit 8db99f4e4cc21a60b71f8e9e9929dbbb6678ef69 (base: 8db99f4)
+Compilazione basata sul commit b5721fc3a7de9292f60ff99ea851e69059d102ed (base: b5721fc)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/RTB/Documentazione Interna/Verbali Interni/verbale_interno_2025-11-10.pdf](docs/RTB/Documentazione%20Interna/Verbali%20Interni/verbale_interno_2025-11-10.pdf)
+✅ [docs/Candidatura/Documentazione Interna/Norme_di_Progetto_v1.0.pdf](docs/Candidatura/Documentazione%20Interna/Norme_di_Progetto_v1.0.pdf)
 
