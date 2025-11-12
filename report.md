@@ -1,10 +1,10 @@
-# Report di compilazione del 2025-11-12T10:24:43+00:00
+# Report di compilazione del 2025-11-12T16:45:42+00:00
 
-Compilazione basata sul commit 35c80b6bd3c5b4b16ad73dca464a1930b8eff3a5 (base: 35c80b6)
+Compilazione basata sul commit 1fc12adf5289460ac7d3c12184a7983c4742d664 (base: 1fc12ad)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/Candidatura/Documentazione Interna/Norme_di_Progetto_v1.0.pdf](docs/Candidatura/Documentazione%20Interna/Norme_di_Progetto_v1.0.pdf)
+✅ [docs/RTB/Documentazione Esterna/Verbali Esterni/verbale_esterno_2025-11-12.pdf](docs/RTB/Documentazione%20Esterna/Verbali%20Esterni/verbale_esterno_2025-11-12.pdf)
 
