@@ -1,0 +1,276 @@
+
+% -------------------------------------------------------------------
+%  SEZIONE: configurazione.tex
+% -------------------------------------------------------------------
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana
+\usepackage{lmodern}            % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}           % Per le immagini
+\graphicspath{{../../../assets/}} 
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
+
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{hyperref}           % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Esterno - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce tutti i campi
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro in basso
+\renewcommand{\headrulewidth}{0.4pt} % Linea sottile sotto l'header
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: intestazione_titolo.tex
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png} 
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    % Titolo specifico del documento
+    {\Large \itshape Verbale Esterno del 12 Novembre 2025 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+ 
+    % Data di redazione
+    {\large Data: 2025-11-12 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: indice.tex
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy} % Riattiva lo stile di pagina da qui in poi
+
+% -------------------------------------------------------------------
+%  SEZIONE: informazioni.tex
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2025-11-12
+    \item \textbf{Ora:} 16:30 - 17:00
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti (NightPRO):} Biasuzzi Davide, Bilato Leonardo, Zanella Francesco, Romascu Mihaela-Mariana, Perozzo Samuele, Ponso Giovanni
+    \item \textbf{Partecipanti (Esterni):} Gianluca Carlesso (Ergon Informatica)
+    \item \textbf{Redatto da: } Davide Biasuzzi
+    \item \textbf{Verificato da:} Giovanni Ponso
+    \item \textbf{Versione: } 1.0
+\end{itemize}
+
+
+% -------------------------------------------------------------------
+%  SEZIONE: odg.tex (Ordine del Giorno)
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Definizione delle modalità di comunicazione e collaborazione.
+    \item[2.] Chiarimenti sui requisiti tecnici e funzionali del Proof of Concept (PoC).
+    \item[3.] Discussione sullo stack tecnologico (LLM, Webapp, DB).
+    \item[4.] Approfondimenti su input (audio, WhatsApp) e output (JSON).
+    \item[5.] Gestione della sicurezza e della privacy dei dati.
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: diario.tex (Diario della riunione)
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+Discussione con il referente di Ergon Informatica, Gianluca Carlesso, per definire i requisiti e le modalità di lavoro del progetto. La discussione è stata strutturata come segue:
+
+\footnotesize  % Font più piccolo
+\setlength{\tabcolsep}{8pt}  % Spazio tra le colonne
+\begin{tabular}{p{0.45\textwidth}p{0.45\textwidth}}
+\toprule
+\textbf{Argomento/Domanda} & \textbf{Risposta/Discussione} \\
+\midrule
+\textbf{Modalità di Comunicazione} \par
+Come gestiamo le comunicazioni sincrone e asincrone? Ogni quanto possiamo fissare riunioni?
+&
+Per le comunicazioni asincrone si possono usare la mail o Telegram di Gianluca Carlesso. Per le riunioni sincrone si usa Google Meet. È possibile fissare riunioni in base alle esigenze del gruppo, senza una cadenza fissa.
+\\ \addlinespace
+\textbf{Notifica Operatore} \par
+Come è possibile avvisare un operatore umano quando il sistema non riesce a processare un ordine?
+&
+È possibile inviare una mail (configurabile nelle impostazioni) che segnali l'errore. Sarebbe utile allegare alla mail il messaggio originale (testo, audio o immagine) e identificare il cliente.
+\\ \addlinespace
+\textbf{Gestione Utenti e Login} \par
+L'identificativo utente è gestito da noi? L'utente avrà un account? Serve una registrazione?
+&
+Ci si può appoggiare a un sistema di autenticazione già esistente, ma il login va gestito. L'azienda può includere degli utenti di esempio nel dataset. La registrazione nell'app è un requisito opzionale, da integrare in futuro su un sistema che ha già la registrazione.
+\\ \addlinespace
+\textbf{Dati e Caso Studio} \par
+È possibile ricevere dati di un caso studio per farci un'idea?
+&
+Sì, l'azienda (G. Carlesso) può fornire un caso studio nei primi giorni della prossima settimana.
+\\ \addlinespace
+\textbf{Struttura Output (JSON)} \par
+Qual è la struttura esatta (schema) dell'ordine che il PoC dovrà generare?
+&
+Il sistema deve creare un file JSON. L'azienda fornirà lo schema esatto da utilizzare per la strutturazione del JSON.
+\\ \addlinespace
+\textbf{Database Interno e Logging} \par
+Possiamo avere un nostro DB interno?
+&
+Sì. Si può usare per il logging: tenere traccia dell'input dell'utente e dell'output generato (per debug e tracciabilità). L'ordine finale creato va depositato in un path esterno condiviso.
+\\ \addlinespace
+\textbf{Priorità Input (PoC)} \par
+Le modalità prioritarie per il PoC sono audio e testo?
+&
+Sì, il testo è la base. La scelta migliore è sviluppare la funzionalità di estrazione dati dal testo e poi implementare la conversione Audio-Testo, per riutilizzare la stessa logica.
+\\ \addlinespace
+\textbf{Metriche di Successo (PoC)} \par
+Quali metriche ci consiglia di usare per dimostrare il successo del PoC?
+&
+Si può partire da ordini reali, estrarre il testo originale e misurare quanti articoli (identificati da codice articolo e quantità) il sistema riesce a individuare correttamente.
+\\ \addlinespace
+\textbf{Consigli Generali} \par
+Errori comuni? Approccio?
+&
+Gianluca consiglia di non strafare e di procedere a step, perché il tempo è poco. Partire con i requisiti obbligatori e integrare quelli desiderabili e opzionali solo quando il sistema è stabile.
+\\ \addlinespace
+\textbf{Tecnologie: WebApp} \par
+Framework per la webapp?
+&
+Sì, usare React. È un framework che piace all'azienda.
+\\ \addlinespace
+\textbf{Tecnologie: LLM} \par
+GPT o OLLAMA?
+&
+GPT ha una maggiore facilità di integrazione. L'azienda fornirà una chiave di licenza. OLLAMA è un'alternativa, ma richiederebbe di farlo girare in locale.
+\\ \addlinespace
+\textbf{Input Audio: Limiti} \par
+Ci sono limiti o formati richiesti per i messaggi vocali?
+&
+Le librerie (es. Google) accettano quasi ogni formato. L'unica difficoltà reale è data da audio con molto rumore di fondo, anche se le librerie moderne effettuano già una buona pulizia.
+\\ \addlinespace
+\textbf{Input: Integrazione WhatsApp} \par
+Come possiamo interfacciarci con WhatsApp?
+&
+Se il gruppo vuole implementare l'integrazione WhatsApp, l'azienda può fornire aiuto. Non è difficile, ma richiede "un giro un po' complesso".
+\\ \addlinespace
+\textbf{Sicurezza e Privacy} \par
+Ci sono norme da seguire per i dati? Serve una privacy policy? I dati vanno cancellati?
+&
+Gli utenti devono autenticarsi. La comunicazione web deve avvenire tramite HTTPS.
+Non serve implementare una privacy policy (l'azienda gestisce già la cybersecurity e i dati).
+I dati NON devono essere cancellati dopo un "tot" tempo, ma devono essere memorizzati in archiviazione sostitutiva (se ne occupa l'azienda).
+\\
+\bottomrule
+\end{tabular}
+\normalsize
+
+% -------------------------------------------------------------------
+%  SEZIONE: decisioni.tex (Decisioni prese)
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese}
+
+\begin{enumerate}
+    \item \textbf{Comunicazioni:} Asincrone via Telegram/Email; Sincrone via Google Meet su richiesta.
+    \item \textbf{Autenticazione:} Si gestirà il login appoggiandosi a sistemi esistenti. La registrazione è requisito opzionale.
+    \item \textbf{Dati:} L'azienda fornirà un caso studio d'esempio e lo schema JSON per l'output.
+    \item \textbf{Architettura PoC:} Si utilizzerà un DB interno per il logging. L'output (ordine JSON) sarà salvato su un path condiviso.
+    \item \textbf{Priorità Input PoC:} Si implementeranno Testo e Audio (convertito in testo).
+    \item \textbf{Privacy:} Non è richiesta la gestione della privacy policy o dell'archiviazione sostitutiva (gestite da Ergon). È obbligatorio l'uso di HTTPS.
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: todo.tex (Attività da svolgere)
+% -------------------------------------------------------------------
+\newpage
+\section{Attività da Svolgere (To-Do)}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} & \textbf{Scadenza} \\
+\midrule
+Stesura verbale riunione 12/11 & Davide Biasuzzi & 2025-11-12 \\
+Attendere schema JSON e caso studio & \textit{Ergon Informatica} & N/A \\
+Valutare quale LLM usare & Gruppo NightPRO & N/A \\
+\bottomrule
+\end{tabular}
+\caption{Riepilogo task assegnati.}
+\end{table}
+\end{document}
