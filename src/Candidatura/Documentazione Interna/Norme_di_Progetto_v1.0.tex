@@ -43,6 +43,7 @@
 % ===================================================================
 %  INIZIO DOCUMENTO
 % ===================================================================
+\setcounter{secnumdepth}{4}
 \begin{document}
 
 % -------------------------------------------------------------------
@@ -73,9 +74,9 @@
 
     {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
 
-        {\large Data: 2025-11-11 \par}
+        {\large Data: 2025-11-13 \par}
 
-     {\Large Versione: 1.1 \par} 
+     {\Large Versione: 1.2 \par} 
 
 \end{titlepage}
 
@@ -94,6 +95,7 @@
 \toprule
 \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
 \midrule
+1.2 & 2025-11-13 & D. Biasuzzi & Aggiunta struttura iniziale paragrafo relativo alla fornitura (sezioni "Analisi Req". e "Codifica" da completare) & Michele Ogniben \\
 1.1 & 2025-11-11 & M. Ogniben & Aggiunto paragrafo relativo ai Processi Organizzativi & Davide Biasuzzi\\
 1.0 & 2025-11-05 & D. Biasuzzi & Modifica struttura del file e verifica & Francesco Zanella\\
 0.1 & 2025-11-05 & G. Ponso; D. Biasuzzi & Creazione documento + redazione processi di supporto &  Francesco Zanella\\
@@ -146,14 +148,95 @@ Ponso & Giovanni & 2000558 \\
 Questo documento definisce le Norme di Progetto{\scriptsize\raisebox{-0.5ex}{G}} del gruppo NightPRO per il corso di Ingegneria del Software (A.A.~2025/2026).
 Stabilisce in forma univoca: metodo di lavoro, regole redazionali e criteri di gestione dei documenti, così da garantire coerenza, tracciabilità e chiarezza operativa.
 La presente versione costituisce la base metodologica iniziale e sarà aggiornata con l’avanzare delle attività.
-\subsection{Stato del progetto}
-Al momento il capitolato{\scriptsize\raisebox{-0.5ex}{G}} non è assegnato. Il documento disciplina quindi l’assetto organizzativo e documentale preliminare: modalità di collaborazione, convenzioni redazionali e pubblicazione dei deliverable.
-Le sezioni relative a prodotto, pianificazione dettagliata e processi di qualità, verifica e validazione saranno integrate nelle versioni successive, in coerenza con il capitolato che verrà attribuito.
+
+
 \subsection{Glossario}
 
 Per garantire chiarezza terminologica e uniformità nella comprensione dei concetti utilizzati, viene redatto un Glossario{\scriptsize\raisebox{-0.5ex}{G}} contenente i termini tecnici e potenzialmente ambigui.
 Alla \textbf{prima occorrenza} nel documento, ogni termine seguito dal simbolo {\scriptsize\raisebox{-0.5ex}{G}} viene definito formalmente nel glossario.
 Le occorrenze successive non riportano tale marcatura.
+
+
+\newpage
+\section{Processi primari}
+\subsection{Fornitura}
+\subsubsection{Descrizione} Questa sezione definisce le norme, gli strumenti e le metodologie che ogni membro del gruppo \textit{NightPRO} si impegna a rispettare. L'obiettivo è garantire una collaborazione efficace e trasparente con l'azienda proponente, \textit{Ergon Informatica}.
+
+\subsubsection{Gestione della Comunicazione} Il gruppo \textit{NightPRO} si impegna a garantire una comunicazione costante e trasparente con \textit{Ergon Informatica} per tutta la durata del progetto, interfacciandosi primariamente con il referente Gianluca Carlesso. Gli incontri periodici con il referente sono finalizzati a: \begin{itemize} 
+    \item Discutere i requisiti (necessari, desiderabili, facoltativi) da includere nel prodotto. 
+    \item Ricevere feedback sullo stato di avanzamento dei lavori. 
+    \item Ottenere chiarimenti e risolvere eventuali ambiguità. 
+    \item Definire vincoli e requisiti dei processi intermedi. 
+\end{itemize}
+
+\subsubsection{Strumenti}
+Di seguito sono elencati i principali strumenti software adottati dal gruppo:
+
+\begin{itemize}
+    \item \textbf{Git}: software per il \textit{controllo di versione} (VCS) distribuito, utilizzato per tracciare le modifiche al codice sorgente durante lo sviluppo.
+    
+    \item \textbf{GitHub}: piattaforma di \textit{hosting} basata su Git, impiegata per la gestione dei repository, la revisione del codice e la collaborazione.
+    
+    \item \textbf{Google Meet}: piattaforma per videoconferenze online. È lo strumento scelto per l'organizzazione di incontri, presentazioni e revisioni periodiche con il proponente.
+    
+    \item \textbf{Telegram}: applicazione di messaggistica istantanea, utilizzata per le comunicazioni operative rapide e gli aggiornamenti tempestivi con i referenti aziendali.
+    
+    \item \textbf{\LaTeX}: linguaggio di \textit{markup} e sistema di preparazione documentale, scelto dal gruppo per la produzione e la stesura di tutta la documentazione ufficiale del progetto.
+\end{itemize}
+
+\subsection{Sviluppo}
+
+\subsubsection{Scopo}
+L'obiettivo primario della fase di sviluppo è tradurre i requisiti di progetto, definiti con il proponente, in un prodotto software funzionante, verificato e conforme alle specifiche. Questa fase rappresenta il nucleo costruttivo dell'intero progetto.
+
+\subsubsection{Descrizione}
+Il processo di sviluppo consiste nell'esecuzione di un insieme strutturato di attività tecniche volte alla realizzazione del software. 
+Il gruppo \textit{NightPRO} adotta un approccio metodico per assicurare che il prodotto finale non solo soddisfi le \textit{aspettative} del proponente, ma rispetti anche elevati standard di qualità in termini di robustezza e manutenibilità.
+
+Il flusso di sviluppo si articola nelle seguenti macro-attività:
+\begin{itemize}
+    \item \textbf{Progettazione Dettagliata (Design)}: Definizione dell'architettura software, delle interfacce dei moduli e dei pattern da implementare, partendo dai requisiti analizzati.
+    \item \textbf{Implementazione (Coding)}: Scrittura del codice sorgente in linea con la progettazione e gli standard di codifica definiti.
+    \item \textbf{Verifica e Test}: Esecuzione di test unitari e di integrazione per assicurare che ogni componente funzioni correttamente e che il sistema nel suo complesso sia privo di difetti.
+\end{itemize}
+
+\subsubsection{Risultato Atteso}
+Il gruppo \textit{NightPRO} si impegna a utilizzare il processo di sviluppo per fornire un prodotto software che sia pienamente validato e rispondente ai requisiti concordati con il proponente \textit{Ergon Informatica}. Il risultato finale sarà un software testato, funzionante e pronto per le fasi successive di rilascio o collaudo.
+
+\subsubsection{Analisi dei Requisiti}
+    \textbf{\textit{Placeholder (Da definire)}}
+\subsubsection{Progettazione}
+
+\paragraph{Scopo} L'attività di progettazione mira a definire l'architettura 
+tecnica del prodotto in modo che sia robusta, scalabile e in grado di 
+soddisfare pienamente le esigenze di tutti gli \textit{stakeholder}, 
+come identificate in fase di analisi dei requisiti. 
+Attraverso la documentazione di soluzioni tecniche dettagliate e la 
+definizione delle interfacce tra i componenti, questa fase assicura una 
+chiara ripartizione delle responsabilità di sviluppo e semplifica le 
+future operazioni di manutenzione. 
+Il risultato è una base documentale esaustiva che include l'intera 
+struttura del sistema, le specifiche funzionali e non funzionali, 
+e le scelte tecnologiche fondamentali.
+
+\paragraph{Descrizione} La progettazione è strutturata su più livelli per coprire in modo esaustivo sia gli aspetti funzionali che quelli strutturali del prodotto:
+
+\begin{itemize}
+    \item \textbf{Progettazione logica}: Questa fase si concentra sulla selezione dello stack tecnologico (tecnologie, \textit{framework}, librerie). L'obiettivo è motivare l'adeguatezza di tali scelte e confermarne la fattibilità tecnica, tipicamente attraverso la realizzazione di un \textit{Proof of Concept} (PoC).
+    
+    \item \textbf{Progettazione di dettaglio}: Basandosi sulle fondamenta stabilite dalla progettazione logica, questa fase definisce l'architettura software specifica. Vengono sviluppate e documentate le rappresentazioni complete di tutte le componenti del sistema e delle loro interazioni.
+\end{itemize}
+
+\subsubsection{Codifica}
+\textbf{\textit{   Placeholder (Da definire)
+}}
+
+
+
+
+
+
+
 
 % -------------------------------------------------------------------
 % PROCESSI DI SUPPORTO
@@ -169,7 +252,6 @@ Le occorrenze successive non riportano tale marcatura.
 
 \subsubsection{Obiettivo}
 L'obiettivo di questa sezione è definire l'insieme di strumenti e configurazioni adottate dal gruppo per supportare la collaborazione, la comunicazione, l’organizzazione e l’integrazione tecnica del progetto.
-Pur trovandosi in fase preliminare, il team ha ritenuto fondamentale predisporre fin da subito un ambiente robusto e strutturato che garantisca tracciabilità, trasparenza, automazione e continuità operativa per l’intera durata del progetto.
 \subsubsection{Comunicazione sincrona e asincrona}
 
 \paragraph{Telegram}
@@ -188,7 +270,7 @@ Il gruppo ha istituito un’organizzazione \textbf{GitHub}{\scriptsize\raisebox{
 
 \begin{itemize}
     \item \textbf{Documentazione}: dedicato alla gestione della documentazione di progetto, configurazione del sito pubblico e automazione CI{\scriptsize\raisebox{-0.5ex}{G}};
-\item \textbf{Prodotto software}: inizialmente vuoto, verrà popolato quando il capitolato verrà assegnato.
+\item \textbf{Prodotto software}: attualmente vuoto, verrà popolato quando inizierà la fase di codifica software.
 \end{itemize}
 
 La separazione è stata decisa per garantire indipendenza tra le attività documentali e quelle di sviluppo software, favorendo chiarezza, modularità e controllo delle versioni.
@@ -366,7 +448,7 @@ Le fasi previste sono:
         \item aderenza alle norme di progetto.
 \end{itemize}
     Un documento è considerato verificato quando tutte le modifiche proposte sono state esaminate e validate.
-\item \textbf{Approvazione}{\scriptsize\raisebox{-0.5ex}{G}} *(solo per i documenti ufficiali)* Per i documenti formali del progetto (es. Lettera di Presentazione, Valutazione Capitolati, Preventivo dei Costi) è prevista una fase di approvazione finale, successiva alla verifica.
+\item \textbf{Approvazione}{\scriptsize\raisebox{-0.5ex}{G}} \textbf{(solo per i documenti ufficiali) }Per i documenti formali del progetto (es. Lettera di Presentazione, Valutazione Capitolati, Preventivo dei Costi) è prevista una fase di approvazione finale, successiva alla verifica.
     L'approvazione certifica che il documento è completo, corretto e pronto per essere rilasciato nella sua versione ufficiale.
 \item \textbf{Pubblicazione}{\scriptsize\raisebox{-0.5ex}{G}}  
     Dopo la verifica (per verbali) o dopo l'approvazione (per documenti ufficiali), il documento viene inserito nell'archivio PDF (con il sistema automatico descritto in precedenza), indicizzato e pubblicato sul portale del gruppo.
@@ -430,7 +512,7 @@ La copertura simultanea di tutti i ruoli non è sempre necessaria, in quanto dip
 \paragraph{Politica di rotazione dei ruoli}
 Per garantire che tutti i membri del team acquisiscano esperienza in ogni ruolo previsto, il gruppo ha definito una politica di rotazione strutturata.
 Durante le prime sette settimane di progetto (Fase Iniziale), si adotta una rotazione a cadenza settimanale, con l'obiettivo di assicurare che ogni membro abbia ricoperto tutti i ruoli disponibili.
-Una volta completato il ciclo di rotazione iniziale (Fase a Regime, post-settimana 7), la cadenza passa a bisettimanale.
+Una volta completato il ciclo di rotazione iniziale (Fase a Regime, post-settimana 7), la rotazione avverrà ogni 2 settimane.
 Il team si riserva la facoltà di adottare cadenze differenti esclusivamente per gestire occasioni eccezionali o specifiche necessità progettuali urgenti.
 
 Di seguito vengono descritti i sei ruoli previsti e le relative responsabilità.
@@ -533,12 +615,12 @@ Al termine di ogni riunione esterna viene redatto un verbale per documentare gli
 \paragraph{Email}
 L'email viene utilizzata per comunicazioni formali e dettagliate con le parti esterne.
 L'indirizzo email del gruppo (\texttt{swe.nightpro@gmail.com}) è condiviso tra tutti i membri del team per garantire trasparenza e accessibilità alle comunicazioni ufficiali.
-
+\paragraph{Telegram} Per le comunicazioni operative e le richieste che necessitano di una risposta rapida da e verso l'azienda, si utilizza l'applicazione di messaggistica istantanea Telegram. Questo canale è dedicato alla gestione agile delle questioni quotidiane e agli aggiornamenti tempestivi che non richiedono la struttura formale di un'email.
 \subsubsection{Organizzazione degli incontri}
 Gli incontri del gruppo si distinguono in interni ed esterni, ciascuno con modalità e finalità specifiche.
 
 \paragraph{Riunioni interne}
-Le riunioni interne coinvolgono esclusivamente i membri del gruppo e si svolgono con cadenza regolare, tipicamente almeno una volta a settimana.
+Le riunioni interne coinvolgono esclusivamente i membri del gruppo e si svolgono con cadenza regolare, tipicamente una volta a settimana.
 Qualsiasi membro del gruppo può richiedere un incontro aggiuntivo al Responsabile di Progetto, che provvederà a organizzarlo in base alla disponibilità di tutti i partecipanti.
 Le riunioni si svolgono prevalentemente in modalità virtuale tramite Google Meet.
 
@@ -606,7 +688,7 @@ Gli obiettivi formativi includono:
 \begin{itemize}
     \item l'acquisizione di una conoscenza solida del linguaggio \LaTeX{};
     \item lo sviluppo di dimestichezza con i linguaggi di programmazione, le librerie e gli strumenti necessari per il prodotto software assegnato dal proponente;
-    \item la familiarizzazione con l'ambiente di lavoro relativo al capitolato di interesse.
+    \item la familiarizzazione con l'ambiente di lavoro relativo al capitolato C8.
 \end{itemize}
 
 \subsubsection{Modalità di apprendimento}
