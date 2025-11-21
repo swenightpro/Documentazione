@@ -1,0 +1,233 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}      % Codifica UTF-8
+\usepackage[T1]{fontenc}         % Font encoding moderno
+\usepackage[italian]{babel}      % Lingua italiana 
+\usepackage{lmodern}             % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}            % Per includere immagini
+\usepackage{currfile}
+\graphicspath{{../../../assets/}}
+
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}            % Per header e footer personalizzati
+\usepackage{microtype}           % Migliora la tipografia
+\usepackage[svgnames]{xcolor}    % Colori
+
+% --- Utility ---
+\usepackage{booktabs}            % Tabelle più professionali
+\usepackage{enumitem}            % Per personalizzare liste
+\usepackage{hyperref}            % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,     
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Interno 2025-11-21 - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce tutti i campi
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro in basso
+\renewcommand{\headrulewidth}{0.4pt} % Linea sottile sotto l'header
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: intestazione_titolo.tex
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    {\Large \itshape Verbale Interno del 21 Novembre 2025 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+ 
+    {\large Data: 2025-11-21 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: indice.tex
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy} % Riattiva lo stile di pagina da qui in poi
+
+% -------------------------------------------------------------------
+%  SEZIONE: informazioni.tex
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2025-11-21
+    \item \textbf{Ora:} 09:00 - 11:10
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Tutti i membri del gruppo
+    \item \textbf{Redatto da:} Davide Biasuzzi
+    \item \textbf{Verificato da:} ...
+    \item \textbf{Versione:} 1.0
+\end{itemize}
+
+
+% -------------------------------------------------------------------
+%  SEZIONE: odg.tex (Ordine del Giorno)
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Gestione della Documentazione (Pianificazione, Preventivo, Consuntivo)
+    \item[2.] Suddivisione del lavoro e definizione dei periodi
+    \item[3.] Dubbi sul versionamento per RTB
+    \item[4.] Definizione Ruoli
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: diario.tex (Diario della riunione)
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Gestione della Documentazione}
+La discussione si è concentrata sulla stesura e organizzazione della documentazione relativa alla pianificazione economica e temporale.
+
+\subsubsection*{Pianificazione, Preventivo e Consuntivo}
+Il gruppo ha definito le linee guida per l'inserimento di questi elementi nei documenti:
+\begin{itemize}
+    \item \textbf{Pianificazione:} Serve a indicare gli obiettivi e le attività stabilite all'inizio di ogni periodo. Deve essere redatta a inizio periodo.
+    \item \textbf{Preventivo:} Rappresenta la stima delle ore e dei costi previsti per ciascun ruolo prima di iniziare il lavoro. Anch'esso va redatto a inizio periodo.
+    \item \textbf{Consuntivo:} È il resoconto finale di quanto effettivamente svolto, includendo le ore reali impiegate, i costi effettivi ed eventuali rischi o problemi emersi.
+\end{itemize}
+È stato deciso di raggruppare tutto ciò che riguarda uno specifico periodo all'interno della stessa sezione del documento, per mantenere coerenza e leggibilità. Inoltre, si ritiene utile giustificare testualmente eventuali scostamenti (in eccesso o difetto) tra le ore preventivate e quelle effettive.
+
+\subsection{Suddivisione del Lavoro e Periodi}
+Sono stati definiti i periodi di lavoro e assegnati i relativi task di stesura:
+\begin{itemize}
+    \item \textbf{Studio preliminare capitolati e introduzione pianificazione:} Assegnato a Giovanni Ponso.
+    \item \textbf{Periodo 1 (03/11 - 09/11):} Assegnato a Mihaela-Mariana Romascu.
+    \item \textbf{Periodo 2 (10/11 - 16/11):} Assegnato a Michele Ogniben.
+    \item \textbf{Periodo 3 (17/11 - 23/11):} Assegnato a Samuele Perozzo.
+    \item \textbf{Periodo 4 (24/11 - 30/11) - Pianificazione e Preventivo:} Assegnato a Francesco Zanella.
+\end{itemize}
+
+\subsection{Dubbi sul Versionamento RTB}
+È emersa una problematica relativa al versionamento dei documenti "Norme di Progetto" e "Glossario" in vista della Revisione dei Requisiti (RTB). Poiché la versione 1.0 è già stata presentata in fase di Candidatura, il gruppo si interroga su come gestire la numerazione per la consegna RTB.
+\textbf{Decisione:} Sarà necessario chiedere chiarimenti al docente in merito.
+
+\subsection{Definizione Ruoli}
+Sono stati stabiliti i ruoli da assumere a partire dalla prossima settimana:
+\begin{itemize}
+    \item \textbf{Amministratore di Sistema:} Michele Ogniben
+    \item \textbf{Programmatore:} N/A (Nessuno assegnato per questa fase)
+    \item \textbf{Progettista:} Francesco Zanella, Mihaela-Mariana Romascu
+    \item \textbf{Analista:} Davide Biasuzzi, Samuele Perozzo
+    \item \textbf{Verificatore:} Leonardo Bilato
+    \item \textbf{Responsabile:} Giovanni Ponso
+\end{itemize}
+
+\subsection{Varie ed Eventuali}
+\begin{itemize}
+    \item Il gruppo procederà dalla prossima settimana con la continuazione dell'Analisi dei Requisiti.
+    \item La stesura del "Diario di bordo" è affidata a Giovanni Ponso.
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: decisioni.tex (Decisioni prese)
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese}
+
+\begin{enumerate}
+    \item Si giustificheranno testualmente gli scostamenti orari nel consuntivo.
+    \item Assegnata la stesura dei vari periodi ai membri del gruppo (vedi sezione To-Do).
+    \item Definiti i ruoli a rotazione per la prossima settimana.
+    \item Si procederà a chiedere al docente chiarimenti sul versionamento dei documenti già presentati in candidatura.
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: todo.tex (Attività da svolgere)
+% -------------------------------------------------------------------
+\newpage
+\section{Attività da Svolgere (To-Do)}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} & \textbf{Scadenza} \\
+\midrule
+Stesura Verbale Riunione & Davide Biasuzzi & 2025-11-21 \\
+Studio prelim. capitolati e intro pianificazione & Giovanni Ponso & 2025-11-23 \\
+Stesura Periodo 1 (03/11 - 09/11) & Mihaela-Mariana Romascu & 2025-11-23 \\
+Stesura Periodo 2 (10/11 - 16/11) & Michele Ogniben & 2025-11-23 \\
+Stesura Periodo 3 (17/11 - 23/11) & Samuele Perozzo & 2025-11-23 \\
+Diario di bordo & Giovanni Ponso & 2025-11-24 \\
+Stesura Periodo 4 (Pianificazione/Preventivo) & Francesco Zanella & 2025-11-25 \\
+Continuazione Analisi dei Requisiti & Biasuzzi, Perozzo & 2025-11-28 \\
+Chiedere al docente gestione versionamento RTB & Tutto il gruppo & Appena possibile \\
+\bottomrule
+\end{tabular}
+\caption{Riepilogo task assegnati.}
+\end{table}
+\end{document}
