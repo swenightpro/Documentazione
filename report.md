@@ -1,12 +1,10 @@
-# Report di compilazione del 2025-11-16T14:30:41+00:00
+# Report di compilazione del 2025-11-21T19:19:38+00:00
 
-Compilazione basata sul commit 9feb45ffa434cd6c7cc3c85e9169dfad66b6d2e9 (base: 9feb45f)
+Compilazione basata sul commit 15fd79a5df5142b9c4ea1a5daee84b886ca7791a (base: 15fd79a)
 
 ## Falliti
-💡 Nessun errore di compilazione
+❌ [src/RTB/Documentazione Interna/verbale_interno_2025-11-21.tex](https://github.com/swenightpro/Documentazione/actions/runs/19581028104)
+
 
 ## Compilati
-✅ [docs/Candidatura/Documentazione Interna/Norme_di_Progetto_v1.0.pdf](docs/Candidatura/Documentazione%20Interna/Norme_di_Progetto_v1.0.pdf)
-
-✅ [docs/Candidatura/Documentazione Interna/Glossario_v1.0.pdf](docs/Candidatura/Documentazione%20Interna/Glossario_v1.0.pdf)
-
+💡 Nessun PDF compilato
