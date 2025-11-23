@@ -1,10 +1,10 @@
-# Report di compilazione del 2025-11-21T19:19:38+00:00
+# Report di compilazione del 2025-11-23T17:35:46+00:00
 
-Compilazione basata sul commit 15fd79a5df5142b9c4ea1a5daee84b886ca7791a (base: 15fd79a)
+Compilazione basata sul commit 8c9401c81af94e100f9825e6721c9d0c0ce69dd3 (base: 8c9401c)
 
 ## Falliti
-❌ [src/RTB/Documentazione Interna/verbale_interno_2025-11-21.tex](https://github.com/swenightpro/Documentazione/actions/runs/19581028104)
-
+💡 Nessun errore di compilazione
 
 ## Compilati
-💡 Nessun PDF compilato
+✅ [docs/RTB/Documentazione Interna/Verbali Interni/verbale_interno_2025-11-21.pdf](docs/RTB/Documentazione%20Interna/Verbali%20Interni/verbale_interno_2025-11-21.pdf)
+
