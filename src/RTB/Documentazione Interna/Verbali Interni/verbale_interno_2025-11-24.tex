@@ -1,0 +1,214 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}      % Codifica UTF-8
+\usepackage[T1]{fontenc}         % Font encoding moderno
+\usepackage[italian]{babel}      % Lingua italiana 
+\usepackage{lmodern}             % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}            % Per includere immagini
+\usepackage{currfile}
+\graphicspath{{assets/},{../../../assets/}}
+
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}            % Per header e footer personalizzati
+\usepackage{microtype}           % Migliora la tipografia
+\usepackage[svgnames]{xcolor}    % Colori
+
+% --- Utility ---
+\usepackage{booktabs}            % Tabelle più professionali
+\usepackage{enumitem}            % Per personalizzare liste
+\usepackage{hyperref}            % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,     
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Interno 2025-11-24 - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce tutti i campi
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro in basso
+\renewcommand{\headrulewidth}{0.4pt} % Linea sottile sotto l'header
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: intestazione_titolo.tex
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    {\Large \itshape Verbale Interno del 24 Novembre 2025 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+ 
+    {\large Data: 2025-11-24 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: indice.tex
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy} % Riattiva lo stile di pagina da qui in poi
+
+% -------------------------------------------------------------------
+%  SEZIONE: informazioni.tex
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2025-11-24
+    \item \textbf{Ora:} 16:30 - 18:00
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Tutti i membri del gruppo
+    \item \textbf{Redatto da:} Giovanni Ponso
+    \item \textbf{Verificato da:} Leonardo Bilato
+    \item \textbf{Versione:} 1.0
+\end{itemize}
+
+
+% -------------------------------------------------------------------
+%  SEZIONE: odg.tex (Ordine del Giorno)
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Comunicazioni al Responsabile: Richieste pendenti a Ergon Informatica
+    \item[2.] Analisi della prima bozza di "Analisi dei Requisiti"
+    \item[3.] Identificazione dubbi da discutere con il Proponente
+    \item[4.] Dimostrazione strumento di lavoro: Overleaf
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: diario.tex (Diario della riunione)
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Comunicazioni al Responsabile}
+La riunione si è aperta con un aggiornamento diretto al Responsabile di periodo, Giovanni Ponso. Facendo riferimento a quanto concordato nel \textbf{Verbale Esterno del 12 Novembre 2025}, è emersa la necessità di sollecitare l'azienda proponente su due punti fondamentali rimasti in sospeso:
+\begin{itemize}
+    \item \textbf{Contatto Telegram:} Durante l'incontro del 12/11 era stata definita la possibilità di utilizzare Telegram per le comunicazioni asincrone, ma il contatto specifico non è ancora stato fornito.
+    \item \textbf{Schema JSON e Caso Studio:} L'azienda si era impegnata a fornire un caso di studio e lo schema JSON dell'output nei primi giorni della settimana successiva alla riunione esterna. Tali risorse non sono ancora pervenute e sono bloccanti per la corretta stesura dei requisiti.
+\end{itemize}
+
+\subsection{Analisi della prima bozza "Analisi dei Requisiti"}
+L'oggetto principale della riunione è stata l'analisi di gruppo della prima bozza del documento "Analisi dei Requisiti".
+La discussione è avvenuta punto per punto, verificando la coerenza con quanto richiesto dal capitolato SmartOrder. Questa analisi ha permesso di evidenziare alcune lacune interpretative.
+
+\subsection{Dubbi e pianificazione incontro con il Proponente}
+Durante l'analisi sono emersi tre dubbi principali relativi alle funzionalità e all'architettura del sistema, da chiarire con il referente:
+\begin{enumerate}
+    \item \textbf{Conferma Ordini:} È necessario capire se gli ordini generati debbano essere esplicitamente confermati dall'utente prima dell'invio definitivo.
+    \item \textbf{Perimetro sviluppo WebApp:} Si intende verificare che il requisito obbligatorio riguardi esclusivamente l'interfaccia per l'operatore, rendendo di fatto opzionale il lato client. Di conseguenza, è necessario definire puntualmente quali canali (es. email, messaggistica) l'utente finale utilizzerà per l'inoltro degli ordini.
+    \item \textbf{Regole Aziendali:} È necessario un approfondimento sul significato di "regole aziendali e controlli preliminari" citati al punto 5 dell'architettura proposta nel capitolato.
+\end{enumerate}
+\textbf{Decisione:} Il gruppo ha deciso di richiedere un incontro (call su Zoom) al referente Gianluca Carlesso, proponendo come disponibilità Venerdì mattina. In caso di indisponibilità si propone un confronto asincrono.
+
+\subsection{Adozione di Overleaf}
+In chiusura, si è tenuta una breve dimostrazione pratica sull'utilizzo di Overleaf per la stesura della documentazione, evidenziando l'ottima gestione della scrittura concorrente e la facilità di centralizzazione dei documenti, con l'obiettivo di superare le difficoltà iniziali dovute alla scarsa familiarità con lo strumento.
+
+\subsection{Varie ed Eventuali}
+\textbf{Piano di Progetto:} Si segnala lo slittamento della scadenza per la stesura dei periodi (1, 2, 3 e 4) del Piano di Progetto, originariamente assegnata nella riunione precedente. Il termine è stato riprogrammato per \textbf{Venerdí 28 Novembre 2025} per permettere un allineamento più preciso tra le varie sezioni.
+
+% -------------------------------------------------------------------
+%  SEZIONE: decisioni.tex (Decisioni prese)
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese}
+
+\begin{enumerate}
+    \item Si procederà a contattare Ergon Informatica per richiedere il contatto Telegram e il JSON del caso studio (come da accordi del 12/11).
+    \item Verrà inviata una richiesta di appuntamento al referente Gianluca Carlesso per Venerdì mattina (via Zoom) per chiarire i nuovi dubbi emersi.
+    \item Overleaf è stato ufficialmente adottato come strumento unico per la redazione collaborativa dei documenti.
+    \item Si prosegue attivamente con la stesura e la discussione interna dell'Analisi dei Requisiti, documento attualmente in piena fase di elaborazione e definizione dei contenuti.
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: todo.tex (Attività da svolgere)
+% -------------------------------------------------------------------
+\newpage
+\section{Attività da Svolgere (To-Do)}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} & \textbf{Scadenza} \\
+\midrule
+Richiesta contatto Telegram e JSON & Giovanni Ponso & 2025-11-25 \\
+Richiesta incontro Zoom & Giovanni Ponso & 2025-11-25 \\
+Stesura Verbale Riunione & Giovanni Ponso & 2025-11-25 \\
+Verifica Verbale Riunione & Leonardo Bilato & 2025-11-26 \\
+Continuazione Analisi dei Requisiti & Davide Biasuzzi, Samuele Perozzo & 2025-11-28 \\
+Stesura Periodi PdP (1, 2, 3, 4) & Romascu, Ogniben, Perozzo, Zanella & 2025-11-28 \\
+Configurazione e migrazione su Overleaf & Tutto il gruppo & Immediata \\
+\bottomrule
+\end{tabular}
+\caption{Riepilogo task assegnati.}
+\end{table}
+\end{document}
