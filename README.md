@@ -20,7 +20,7 @@
 Il progetto è articolato su due repository distinti, ospitati all'interno dell'organizzazione del gruppo, al fine di mantenere una netta separazione tra la documentazione di progetto e l'implementazione del prodotto software.
 
 -   📄 **Repository Documentazione:** [https://github.com/swenightpro/Documentazione](https://github.com/swenightpro/Documentazione)
--   💻 **Repository del Prodotto Software:** *`in assegnazione...`*
+-   💻 **Repository del Prodotto Software:** [https://github.com/swenightpro/SmartOrder](https://github.com/swenightpro/SmartOrder)
 
 
 ## 3. Contenuti del repository
