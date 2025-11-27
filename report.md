@@ -1,10 +1,10 @@
-# Report di compilazione del 2025-11-23T17:39:18+00:00
+# Report di compilazione del 2025-11-27T00:00:36+00:00
 
-Compilazione basata sul commit 8f6d1f40a6a0d8d11725839108a6be6cf26258a8 (base: 8f6d1f4)
+Compilazione basata sul commit 480abbe5c6aa701e56f18307986cc844da06e14e (base: 480abbe)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/RTB/Documentazione Interna/Verbali Interni/verbale_interno_2025-11-21.pdf](docs/RTB/Documentazione%20Interna/Verbali%20Interni/verbale_interno_2025-11-21.pdf)
+✅ [docs/RTB/Documentazione Interna/Verbali Interni/verbale_interno_2025-11-24.pdf](docs/RTB/Documentazione%20Interna/Verbali%20Interni/verbale_interno_2025-11-24.pdf)
 
