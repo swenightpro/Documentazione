@@ -1,10 +1,14 @@
-# Report di compilazione del 2025-11-27T00:00:36+00:00
+# Report di compilazione del 2025-11-30T00:59:00+00:00
 
-Compilazione basata sul commit 480abbe5c6aa701e56f18307986cc844da06e14e (base: 480abbe)
+Compilazione basata sul commit a6beb6f4b32f40adf6ae2341da183105b1b397a4 (base: a6beb6f)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/RTB/Documentazione Interna/Verbali Interni/verbale_interno_2025-11-24.pdf](docs/RTB/Documentazione%20Interna/Verbali%20Interni/verbale_interno_2025-11-24.pdf)
+✅ [docs/Candidatura/Documentazione Esterna/Valutazione_Capitolati_v1.0.pdf](docs/Candidatura/Documentazione%20Esterna/Valutazione_Capitolati_v1.0.pdf)
+
+✅ [docs/Candidatura/Documentazione Esterna/Preventivo_Costi_v2.0.pdf](docs/Candidatura/Documentazione%20Esterna/Preventivo_Costi_v2.0.pdf)
+
+✅ [docs/Candidatura/Documentazione Esterna/Glossario_v1.0.pdf](docs/Candidatura/Documentazione%20Esterna/Glossario_v1.0.pdf)
 
