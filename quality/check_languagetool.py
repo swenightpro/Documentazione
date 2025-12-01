@@ -35,9 +35,12 @@ def main():
         num_errors = len(matches)
         print(f"{path}: {num_errors} potenziali errori")
 
-        for m in matches[:20]:  # limitiamo l'output
-            msg = f"{m.ruleId}: {m.message} (offset {m.offset})"
+        for m in matches[:20]:
+            rule = getattr(m, "rule_id", getattr(m, "ruleId", "UNKNOWN_RULE"))
+            offset = getattr(m, "offset", -1)
+            msg = f"{rule}: {m.message} (offset {offset})"
             print(f"::warning file={path}::{msg}")
+
 
         if num_errors > MAX_ERRORS_PER_FILE:
             failed = True
