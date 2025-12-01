@@ -5,9 +5,10 @@
 \usepackage[T1]{fontenc}         % Font encoding moderno
 \usepackage[italian]{babel}      % Lingua italiana
 \usepackage{lmodern}             % Font "Latin Modern"
+\usepackage{scrhack}
+\usepackage{placeins}
 \usepackage{array}
 \usepackage{tabularx}
-\usepackage{float}
 \usepackage{pgf-pie}             % Pacchetto per grafici a torta
 
 % --- Grafica e Layout ---
@@ -16,15 +17,12 @@
 \usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
 \usepackage{fancyhdr}            % Per header e footer personalizzati
 \usepackage{microtype}           % Migliora la tipografia
-\usepackage[svgnames]{xcolor}    % Colori
-\usepackage[table]{xcolor}       % Per i colori nelle tabelle
+\usepackage[svgnames, table]{xcolor}
 \usepackage{booktabs}            % Per le linee professionali
 \usepackage{caption}
-\usepackage[table]{xcolor}
 \usepackage{hhline}
 
 % --- Utility ---
-\usepackage{booktabs}            % Tabelle più professionali
 \usepackage{enumitem}            % Per personalizzare liste
 \usepackage{hyperref}            % Rende i link cliccabili
 
@@ -250,7 +248,7 @@ Questa classificazione facilita la consultazione rapida del documento e permette
 
 Il capitolato C8 (SmartOrder) richiede l'utilizzo di tecnologie avanzate per l'elaborazione del linguaggio naturale, l'estrazione di entità e la classificazione tramite modelli di intelligenza artificiale. Una parte del gruppo potrebbe non possedere esperienza pregressa sufficiente con queste tecnologie, rendendo necessario un periodo di apprendimento che potrebbe impattare sui tempi di sviluppo.
 
-\begin{table}[H]
+\begin{table}[!ht]
 \centering
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\textwidth}{@{}>{\bfseries}lL@{}}
@@ -274,7 +272,7 @@ Il capitolato C8 (SmartOrder) richiede l'utilizzo di tecnologie avanzate per l'e
 
 Alcune tecnologie emergenti potrebbero presentare documentazione incompleta o risorse di apprendimento limitate, rendendo più complesso il processo di comprensione e implementazione.
 
-\begin{table}[H]
+\begin{table}[!ht]
 \centering
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\textwidth}{@{}>{\bfseries}lL@{}}
@@ -298,7 +296,7 @@ Alcune tecnologie emergenti potrebbero presentare documentazione incompleta o ri
 
 Il progetto si avvale di strumenti software di terze parti, librerie e servizi esterni. Malfunzionamenti, bug{\scriptsize\raisebox{-0.5ex}{G}} o cambiamenti nelle API{\scriptsize\raisebox{-0.5ex}{G}} di questi strumenti potrebbero generare ritardi o compromettere la funzionalità del sistema.
 
-\begin{table}[H]
+\begin{table}[!ht]
 \centering
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\textwidth}{@{}>{\bfseries}lL@{}}
@@ -322,7 +320,7 @@ Il progetto si avvale di strumenti software di terze parti, librerie e servizi e
 
 Esiste il rischio che file importanti vengano persi o danneggiati a causa di malfunzionamenti hardware, errori umani o problemi con il sistema di versionamento{\scriptsize\raisebox{-0.5ex}{G}}.
 
-\begin{table}[H]
+\begin{table}[!ht]
 \centering
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\textwidth}{@{}>{\bfseries}lL@{}}
@@ -348,7 +346,7 @@ Esiste il rischio che file importanti vengano persi o danneggiati a causa di mal
 
 La comunicazione tra i membri del gruppo potrebbe non essere sufficientemente chiara, tempestiva o completa, generando disallineamenti e malintesi che compromettono la qualità del lavoro.
 
-\begin{table}[H]
+\begin{table}[!ht]
 \centering
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\textwidth}{@{}>{\bfseries}lL@{}}
@@ -372,7 +370,7 @@ La comunicazione tra i membri del gruppo potrebbe non essere sufficientemente ch
 
 La mancanza di chiarezza sui compiti assegnati e sui ruoli di ciascun membro potrebbe generare sovrapposizioni, lacune o mancanza di coordinamento.
 
-\begin{table}[H]
+\begin{table}[!ht]
 \centering
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\textwidth}{@{}>{\bfseries}lL@{}}
@@ -396,7 +394,7 @@ La mancanza di chiarezza sui compiti assegnati e sui ruoli di ciascun membro pot
 
 Una pianificazione imprecisa o irrealistica potrebbe portare a sottovalutare il tempo necessario per completare determinate attività, causando slittamenti nelle scadenze.
 
-\begin{table}[H]
+\begin{table}[!ht]
 \centering
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\textwidth}{@{}>{\bfseries}lL@{}}
@@ -420,7 +418,7 @@ Una pianificazione imprecisa o irrealistica potrebbe portare a sottovalutare il 
 
 La gestione delle versioni dei documenti e del codice potrebbe risultare complessa o generare confusione, specialmente durante le fasi di sviluppo parallelo.
 
-\begin{table}[H]
+\begin{table}[!ht]
 \centering
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\textwidth}{@{}>{\bfseries}lL@{}}
@@ -444,7 +442,7 @@ La gestione delle versioni dei documenti e del codice potrebbe risultare comples
 
 La comunicazione con l'azienda proponente potrebbe non essere sempre efficace o tempestiva, generando dubbi e ritardi nella risoluzione di questioni tecniche o organizzative.
 
-\begin{table}[H]
+\begin{table}[!ht]
 \centering
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\textwidth}{@{}>{\bfseries}lL@{}}
@@ -470,7 +468,7 @@ La comunicazione con l'azienda proponente potrebbe non essere sempre efficace o 
 
 Interruzioni nel flusso di lavoro causate da assenze impreviste, malattie, impegni accademici o personali dei membri del gruppo potrebbero compromettere la continuità e la produttività del progetto.
 
-\begin{table}[H]
+\begin{table}[!ht]
 \centering
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\textwidth}{@{}>{\bfseries}lL@{}}
@@ -494,7 +492,7 @@ Interruzioni nel flusso di lavoro causate da assenze impreviste, malattie, impeg
 
 Il team potrebbe trovarsi ad affrontare compiti o attività che richiedono competenze specifiche o esperienza pregressa di cui potrebbe non essere in possesso, rallentando il completamento delle attività.
 
-\begin{table}[H]
+\begin{table}[!ht]
 \centering
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\textwidth}{@{}>{\bfseries}lL@{}}
@@ -518,7 +516,7 @@ Il team potrebbe trovarsi ad affrontare compiti o attività che richiedono compe
 
 Se i membri del team non adempiono agli impegni presi o non rispettano le scadenze concordate, il progetto potrebbe subire ritardi o compromettere la qualità finale.
 
-\begin{table}[H]
+\begin{table}[!ht]
 \centering
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\textwidth}{@{}>{\bfseries}lL@{}}
@@ -554,7 +552,7 @@ Il calendario illustra le date previste per le revisioni di avanzamento, definit
 
 \subsection{Calendario Revisioni Avanzamento Progetto - Prima stesura 30/10/2025}
 
-\begin{table}[H]
+\begin{table}[!ht]
 \centering
 \renewcommand{\arraystretch}{1.5}
 \begin{tabularx}{0.8\textwidth}{L c}
@@ -577,7 +575,7 @@ La stima dei costi di realizzazione definisce il budget preventivato per il comp
 Poiché il preventivo{\scriptsize\raisebox{-0.5ex}{G}} potrà subire aggiornamenti nelle stesure successive (esclusivamente al ribasso o a parità di saldo), questo valore rappresenta un vincolo economico rigido: qualora le proiezioni future indicassero un potenziale superamento di tale soglia, il gruppo interverrà tempestivamente concordando con il proponente una rimodulazione del perimetro dei requisiti per garantire il rispetto dei vincoli di budget.
 
 \subsection{Preventivo Costi - Prima stesura 30/10/2025}
-\begin{table}[H]
+\begin{table}[!ht]
 \centering
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\textwidth}{L c c c}
@@ -597,7 +595,7 @@ Verificatore & 15 & 95 & 1.425,00 \\
 \caption{Distribuzione dei costi e delle ore per ruolo - Prima stesura}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[!ht]
 \centering
 \begin{tikzpicture}
 \pie[
@@ -622,7 +620,7 @@ Verificatore & 15 & 95 & 1.425,00 \\
 \label{sec:preventivo_v2}
 A seguito di una revisione delle necessità operative, il gruppo ha ritenuto opportuno effettuare una rimodulazione delle risorse assegnate ai diversi ruoli.
 L'intervento mira a garantire un bilanciamento più efficace tra le attività di analisi, sviluppo e verifica, allineando l'impegno previsto alle specifiche esigenze tecniche emerse in fase di studio preliminare, mantenendo inalterato il monte ore complessivo.
-\begin{table}[H]
+\begin{table}[!ht]
 \centering
 \renewcommand{\arraystretch}{1.4}
 \begin{tabularx}{\textwidth}{L c c c}
@@ -642,7 +640,7 @@ Verificatore & 15 & 133 & 1.995,00 \\
 \caption{Distribuzione dei costi e delle ore per ruolo - Seconda stesura}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[!ht]
 \centering
 \begin{tikzpicture}
 \pie[
@@ -722,8 +720,9 @@ Per ogni periodo rendicontato in questo documento, verranno presentate sistemati
         \item \textbf{Esito Sprint Retrospective:} Analisi critica del metodo di lavoro, gestione dei rischi emersi e definizione di azioni correttive per il periodo successivo.
     \end{itemize}
 \end{description}
-
 \newpage
+
+
 \section{Periodi di Avanzamento}
 
 % ===================================================================
@@ -739,10 +738,11 @@ sull’acquisizione delle conoscenze necessarie per affrontare efficacemente la 
 In particolare ci siamo dedicati allo studio dei requisiti di progetto (organizzando anche una riunione con l'azienda proponente) oltre che alla stesura dei documenti Norme di progetto e del Glossario.
 
 %%%%%%%%%%%%%%%%%%%%% TABELLA Attività pianificate %%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[H]
-\caption*{\textbf{Attività pianificate} (Sprint Backlog)}
+\begin{table}[!ht]
 \vspace{0.2cm}
 \centering
+{\large \textbf{Attività pianificate} (Sprint Backlog)} \\
+\vspace{0.3cm}
 \renewcommand{\arraystretch}{1.4}
 \rowcolors{2}{white}{green!50!black!20!white}
 \begin{tabularx}{\textwidth}{|X|c|} 
@@ -760,13 +760,13 @@ Redarre verbale riunione interna periodica e diario di bordo & Responsabile \\
 \hline
 \end{tabularx}
 \end{table}
+\FloatBarrier
 
 %%%%%%%%%%%%%%%%%%%%% TABELLA Preventivo %%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[H]
-\vspace{-0.2cm}
-\caption*{\textbf{Preventivo}}
-\vspace{0.2cm}
+\begin{table}[!ht]
 \centering
+{\large \textbf{Preventivo}} \\
+\vspace{0.3cm}
 \renewcommand{\arraystretch}{1.4}
 \rowcolors{2}{gray!10}{white}
 \begin{tabular}{|l|c|c|c|c|c|c|>{\cellcolor{green!50!black!20!white}}c|}
@@ -787,16 +787,18 @@ Totale           &   2   &  3   &   9   &    0    &   6   &   3  &   23    \\
 \hline
 \end{tabular}
 \end{table}
+\FloatBarrier
+\newpage
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection*{Rendicontazione delle Risorse}
 
 %%%%%%%%%%%%%%%%%%%%% TABELLA Consuntivo %%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[H]
-\vspace{-0.5cm}
-\caption*{\textbf{Consuntivo}}
-\vspace{0.2cm}
+\begin{table}[!ht]
 \centering
+{\large \textbf{Consuntivo}} \\
+\vspace{0.3cm}
 \renewcommand{\arraystretch}{1.4}
 \rowcolors{2}{gray!10}{white}
 \begin{tabular}{|l|c|c|c|c|c|c|>{\cellcolor{blue!10}}c|}
@@ -817,13 +819,13 @@ Totale           &   3   &  9   &   9   &    0    &   6   &   6  &   33    \\
 \hline
 \end{tabular}
 \end{table}
+\FloatBarrier
 
 %%%%%%%%%%%%%%%%%%%%% TABELLA Riepilogo ore individuali %%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[H]
-\vspace{-0.2cm}
-\caption*{\textbf{Riepilogo ore individuali}}
-\vspace{0.2cm}
+\begin{table}[!ht]
 \centering
+{\large \textbf{Riepilogo ore individuali}} \\
+\vspace{0.3cm}
 \renewcommand{\arraystretch}{1.4}
 \rowcolors{2}{gray!10}{white}
 \begin{tabular}{|l|c|c|>{\cellcolor{blue!10}}c|}
@@ -840,14 +842,15 @@ Ponso Giovanni          & 0             & 6           & 6          \\
 \hline
 \end{tabular}
 \end{table}
+\FloatBarrier
 
 
 %%%%%%%%%%%%%%%%%%%%% TABELLA Bilancio economico %%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[H]
-\caption*{\textbf{Bilancio economico} (basato su \hyperref[sec:preventivo_v2]{Preventivo Costi - Seconda stesura})}
-\vspace{0.3cm}
-\label{tab:bilancio_p1} 
+\begin{table}[!ht]
 \centering
+{\large \textbf{Bilancio economico} (basato su \hyperref[sec:preventivo_v2]{Preventivo Costi - Seconda stesura})} \\
+\vspace{0.3cm}
+\label{tab:bilancio_p1}
 \renewcommand{\arraystretch}{1.4} 
 \definecolor{light-gray}{gray}{0.95}
 \newcolumntype{Y}{>{\centering\arraybackslash}p{1.3cm}}
@@ -870,6 +873,8 @@ Totale                &                 630 &   12850 &            33 &   720  &
 \hline
 \end{tabular}
 \end{table}
+\FloatBarrier
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%% Valutazione e miglioramento  %%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{Considerazioni finali (Sprint Review e Retrospective)}
@@ -891,10 +896,11 @@ Le attività documentali e organizzative sono state completate secondo quanto pi
 Nel corso di questa settimana il gruppo si é dedicato alla stesura del documento Piano di Progetto e alla scrittura di una prima bozza dell’Analisi dei Requisiti. Il lavoro si è concentrato sulla definizione accurata delle funzionalità richieste e sulla pianificazione delle successive fasi operative, così da garantire una preparazione adeguata per il raggiungimento della milestone RTB.
 
 %%%%%%%%%%%%%%%%%%%%% TABELLA Attività pianificate %%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[H]
-\caption*{\textbf{Attività pianificate} (Sprint Backlog)}
+\begin{table}[!ht]
 \vspace{0.2cm}
 \centering
+{\large \textbf{Attività pianificate} (Sprint Backlog)} \\
+\vspace{0.3cm}
 \renewcommand{\arraystretch}{1.4}
 \rowcolors{2}{white}{green!50!black!20!white}
 \begin{tabularx}{\textwidth}{|X|c|} 
@@ -909,13 +915,13 @@ Redarre verbale riunione interna periodica e diario di bordo & Responsabile \\
 \hline
 \end{tabularx}
 \end{table}
+\FloatBarrier
 
 %%%%%%%%%%%%%%%%%%%%% TABELLA Preventivo %%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[H]
-\vspace{-0.2cm}
-\caption*{\textbf{Preventivo}}
-\vspace{0.2cm}
+\begin{table}[!ht]
 \centering
+{\large \textbf{Preventivo}} \\
+\vspace{0.3cm}
 \renewcommand{\arraystretch}{1.4}
 \rowcolors{2}{gray!10}{white}
 \begin{tabular}{|l|c|c|c|c|c|c|>{\cellcolor{green!50!black!20!white}}c|}
@@ -936,17 +942,18 @@ Totale           &   3   &  1   &   6   &    6    &   0   &   2  &   18   \\
 \hline
 \end{tabular}
 \end{table}
+\FloatBarrier
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection*{Rendicontazione delle Risorse}
 
 %%%%%%%%%%%%%%%%%%%%% TABELLA Consuntivo %%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[H]
-\vspace{-0.5cm}
-\caption*{\textbf{Consuntivo}}
-\vspace{0.2cm}
+\begin{table}[!ht]
 \centering
+{\large \textbf{Consuntivo}} \\
+\vspace{0.3cm}
 \renewcommand{\arraystretch}{1.4}
 \rowcolors{2}{gray!10}{white}
 \begin{tabular}{|l|c|c|c|c|c|c|>{\cellcolor{blue!10}}c|}
@@ -967,12 +974,13 @@ Totale           &   3   &  1   &   6   &    8    &   0   &   3  &   21   \\
 \hline
 \end{tabular}
 \end{table}
+\FloatBarrier
+
 %%%%%%%%%%%%%%%%%%%%% TABELLA Riepilogo ore individuali %%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[H]
-\vspace{-0.2cm}
-\caption*{\textbf{Riepilogo ore individuali}}
-\vspace{0.2cm}
+\begin{table}[!ht]
 \centering
+{\large \textbf{Riepilogo ore individuali}} \\
+\vspace{0.3cm}
 \renewcommand{\arraystretch}{1.4}
 \rowcolors{2}{gray!10}{white}
 \begin{tabular}{|l|c|c|>{\cellcolor{blue!10}}c|}
@@ -989,12 +997,15 @@ Ponso Giovanni          & 6             & 3           & 9          \\
 \hline
 \end{tabular}
 \end{table}
+\FloatBarrier
+
+
 %%%%%%%%%%%%%%%%%%%%% TABELLA Bilancio economico %%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[H]
-\caption*{\textbf{Bilancio economico} (basato su \hyperref[sec:preventivo_v2]{Preventivo Costi - Seconda stesura})}
-\vspace{0.3cm}
-\label{tab:bilancio_p2} 
+\begin{table}[!ht]
 \centering
+{\large \textbf{Bilancio economico} (basato su \hyperref[sec:preventivo_v2]{Preventivo Costi - Seconda stesura})} \\
+\vspace{0.3cm}
+\label{tab:bilancio_p2}
 \renewcommand{\arraystretch}{1.4} 
 \definecolor{light-gray}{gray}{0.95}
 \newcolumntype{Y}{>{\centering\arraybackslash}p{1.3cm}}
@@ -1017,11 +1028,12 @@ Totale                &                 597 & 12130   &            21 &   505 & 
 \hline
 \end{tabular}
 \end{table}
+\FloatBarrier
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%% Valutazione e miglioramento  %%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{Considerazioni finali (Sprint Review e Retrospective)}
 Il gruppo ha portato avanti in modo efficace le attività previste per questo secondo periodo, consolidando la documentazione necessaria in vista della milestone RTB. L’allineamento interno e la chiarezza raggiunta nei documenti confermano la solidità dell’organizzazione del lavoro. In questo periodo le ore impiegate risultano coerenti con quanto pianificato.
-
 \newpage
 % ==================================================================
 %  FINE PERIODO 2
@@ -1039,10 +1051,11 @@ Il gruppo ha portato avanti in modo efficace le attività previste per questo se
 Durante questo terzo periodo, l'attività del gruppo si è concentrata prevalentemente sulla prima stesura del documento \textit{Analisi dei Requisiti}, approfondendo la specifica dei casi d'uso e dei requisiti funzionali emersi. \\Parallelamente i membri del gruppo si sono suddivisi i compiti per aggiornare il \textit{Piano di Progetto}, ricostruendo il consuntivo delle attività svolte nei periodi precedenti e raffinando la pianificazione temporale ed economica fino alla data corrente. L'obiettivo è stato allineare la documentazione di gestione con l'effettivo avanzamento dei lavori in vista della milestone \textit{RTB}.
 
 %%%%%%%%%%%%%%%%%%%%% TABELLA Attività pianificate %%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[H]
-\caption*{\textbf{Attività pianificate} (Sprint Backlog)}
+\begin{table}[!ht]
 \vspace{0.2cm}
 \centering
+{\large \textbf{Attività pianificate} (Sprint Backlog)} \\
+\vspace{0.3cm}
 \renewcommand{\arraystretch}{1.4}
 \rowcolors{2}{white}{green!50!black!20!white}
 \begin{tabularx}{\textwidth}{|X|c|} 
@@ -1058,13 +1071,13 @@ Redarre verbale riunione interna periodica, diario di bordo e rendicontazione pe
 \hline
 \end{tabularx}
 \end{table}
+\FloatBarrier
 
 %%%%%%%%%%%%%%%%%%%%% TABELLA Preventivo %%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[H]
-\vspace{-0.2cm}
-\caption*{\textbf{Preventivo}}
-\vspace{0.2cm}
+\begin{table}[!ht]
 \centering
+{\large \textbf{Preventivo}} \\
+\vspace{0.3cm}
 \renewcommand{\arraystretch}{1.4}
 \rowcolors{2}{gray!10}{white}
 \begin{tabular}{|l|c|c|c|c|c|c|>{\cellcolor{green!50!black!20!white}}c|}
@@ -1085,17 +1098,19 @@ Totale           &   2   &  -   &   6   &    9   &   -   &   2  &  19    \\
 \hline
 \end{tabular}
 \end{table}
+\FloatBarrier
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection*{Rendicontazione delle Risorse}
 
 %%%%%%%%%%%%%%%%%%%%% TABELLA Consuntivo %%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[H]
-\vspace{-0.5cm}
-\caption*{\textbf{Consuntivo}}
-\vspace{0.2cm}
+\begin{table}[!ht]
 \centering
+{\large \textbf{Consuntivo}} \\
+\vspace{0.3cm}
+
 \renewcommand{\arraystretch}{1.4}
 \rowcolors{2}{gray!10}{white}
 \begin{tabular}{|l|c|c|c|c|c|c|>{\cellcolor{blue!10}}c|}
@@ -1116,14 +1131,13 @@ Totale           &   3   &  -   &   6   &    10    &   -   &   4  &  23    \\
 \hline
 \end{tabular}
 \end{table}
-
+\FloatBarrier
 %%%%%%%%%%%%%%%%%%%%% TABELLA Riepilogo ore individuali %%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{table}[H]
-\vspace{-0.2cm}
-\caption*{\textbf{Riepilogo ore individuali}}
-\vspace{0.2cm}
+\begin{table}[!ht]
 \centering
+{\large \textbf{Riepilogo ore individuali}} \\
+\vspace{0.3cm}
 \renewcommand{\arraystretch}{1.4}
 \rowcolors{2}{gray!10}{white}
 \begin{tabular}{|l|c|c|>{\cellcolor{blue!10}}c|}
@@ -1140,15 +1154,15 @@ Ponso Giovanni          & 9             & 4           & 13         \\
 \hline
 \end{tabular}
 \end{table}
-
+\FloatBarrier
 
 %%%%%%%%%%%%%%%%%%%%% TABELLA Bilancio economico %%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{table}[H]
-\caption*{\textbf{Bilancio economico} (basato su \hyperref[sec:preventivo_v2]{Preventivo Costi - Seconda stesura})}
+\begin{table}[!ht]
+\centering
+{\large \textbf{Bilancio economico} (basato su \hyperref[sec:preventivo_v2]{Preventivo Costi - Seconda stesura})} \\
 \vspace{0.3cm}
 \label{tab:bilancio_p1} 
-\centering
 \renewcommand{\arraystretch}{1.4} 
 \definecolor{light-gray}{gray}{0.95}
 \newcolumntype{Y}{>{\centering\arraybackslash}p{1.3cm}}
@@ -1171,7 +1185,8 @@ Totale                &                 576 & 11625    &              23 & 550  
 \hline
 \end{tabular}
 \end{table}
-
+\FloatBarrier
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%% Valutazione e miglioramento  %%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{Considerazioni finali (Sprint Review e Retrospective)}
@@ -1182,3 +1197,7 @@ Il gruppo ha ottemperato positivamente agli obiettivi del terzo periodo. Sebbene
 % ==================================================================
 
 \end{document}
+
+
+unisci i titoli alle tabelle
+aumenta spazio sopra la tabella delle attivitá
