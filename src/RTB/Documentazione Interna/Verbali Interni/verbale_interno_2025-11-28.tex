@@ -1,0 +1,255 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}      % Codifica UTF-8
+\usepackage[T1]{fontenc}         % Font encoding moderno
+\usepackage[italian]{babel}      % Lingua italiana 
+\usepackage{lmodern}             % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}            % Per includere immagini
+\usepackage{currfile}
+\graphicspath{{assets/},{../../../assets/}}
+
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}            % Per header e footer personalizzati
+\usepackage{microtype}           % Migliora la tipografia
+\usepackage[svgnames]{xcolor}    % Colori
+
+% --- Utility ---
+\usepackage{booktabs}            % Tabelle più professionali
+\usepackage{enumitem}            % Per personalizzare liste
+\usepackage{hyperref}            % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,     
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Interno 2025-11-28 - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce tutti i campi
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro in basso
+\renewcommand{\headrulewidth}{0.4pt} % Linea sottile sotto l'header
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: intestazione_titolo.tex
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    {\Large \itshape Verbale Interno del 28 Novembre 2025 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+ 
+    {\large Data: 2025-11-28 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: indice
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy} % Riattiva lo stile di pagina da qui in poi
+
+% -------------------------------------------------------------------
+%  SEZIONE: informazioni
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2025-11-28
+    \item \textbf{Ora:} 09:00 - 11:00
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Tutti i membri del gruppo
+    \item \textbf{Redatto da:} Leonardo Bilato
+    \item \textbf{Verificato da:} Giovanni Ponso
+    \item \textbf{Versione:} 1.0
+\end{itemize}
+
+
+% -------------------------------------------------------------------
+%  SEZIONE: ordine del giorno
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Gestione della mancata risposta di Ergon Informatica
+    \item[2.] Discussione sulla rendicontazione dei periodi nel Piano di Progetto
+    \item[3.] Definizione tempistiche rotazione dei ruoli
+    \item[4.] Chiarimento compiti del Responsabile
+    \item[5.] Introduzione al Piano di Qualifica
+    \item[6.] Avvio attività Proof of Concept (PoC)
+    \item[7.] Integrazione strumenti di qualità (Indice Gulpease)
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: diario (Diario della riunione)
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Gestione della mancata risposta di Ergon}
+Si constata che l'azienda proponente, Ergon Informatica, non ha ancora fornito riscontro alla richiesta di contatto inviata a seguito del verbale precedente. La mancanza del contatto Telegram e del materiale relativo al caso studio sta rallentando le attività di analisi.
+Il gruppo ha pertanto deciso unanimemente di inviare un sollecito via email per sbloccare la situazione.
+
+\subsection{Discussione sul primo periodo di Piano di progetto}
+In fase di rendicontazione retroattiva degli sprint per il documento "Piano di Progetto", è emersa una criticità riguardante il Primo Periodo. Tale periodo, a causa dell'avvio del progetto e della sovrapposizione con la milestone precedente, ha avuto una durata effettiva di soli 3 giorni, risultando anomalo rispetto allo standard settimanale.
+Per garantire una rendicontazione più coerente e significativa, si è deciso di accorpare il Periodo 1 con il Periodo 2, presentandoli come un unico intervallo temporale esteso.
+
+\subsection{Quando avviene la rotazione dei ruoli}
+È stato discusso il momento esatto in cui rendere effettivo il cambio dei ruoli tra uno sprint e l'altro. L'incertezza riguardava la scelta tra la fine della riunione, il lunedì successivo o il sabato.
+Per permettere ai membri di completare le attività amministrative derivanti dalla riunione del venerdì mantenendo il ruolo corrente, si è stabilito che la rotazione avverrà ufficialmente il \textbf{Sabato} (alla mezzanotte tra Venerdì e Sabato).
+
+\subsection{Chiarificare i compiti del responsabile}
+Al fine di evitare ambiguità operative, sono stati formalizzati i compiti specifici in capo al Responsabile di periodo. Tali responsabilità verranno integrate nelle Norme di Progetto. 
+
+Oltre al coordinamento generale, il Responsabile dovrà:
+\begin{itemize}
+    \item Redigere il Verbale di riunione.
+    \item Gestire e aggiornare i task su GitHub Projects.
+    \item Curare le comunicazioni esterne con proponente e committente.
+    \item Redigere ed esporre il Diario di Bordo.
+    \item Gestire la riunione interna periodica
+    \item Compilare la sezione relativa al periodo corrente nel documento Piano di Progetto. 
+\end{itemize}
+
+Si specifica che, ai fini della coerenza organizzativa, il Responsabile redige il verbale della riunione in cui assume l'incarico (inizio mandato), e non di quella successiva che andrà a gestire.
+
+
+\subsection{Piano di qualifica}
+In vista della milestone RTB, il gruppo ha analizzato la necessità di redigere il documento "Piano di Qualifica". Dopo una discussione sui contenuti e sugli obiettivi di tale documento, è stato deciso di avviarne lo studio e la stesura di una prima bozza a partire dal prossimo sprint.
+
+\subsection{Introduzione al PoC}
+Nonostante i blocchi sull'analisi dei requisiti, il gruppo ha valutato la necessità di avviare lo studio preliminare per il Proof of Concept (PoC). Questa attività anticipata è ritenuta utile per comprendere meglio i requisiti tecnici e chiarire dubbi architetturali. Progettisti e Programmatori inizieranno a studiare le tecnologie necessarie per impostare il lavoro.
+
+\subsection{Indice Gulpease e LanguageTool}
+A causa del blocco forzato sulla stesura dell'Analisi dei Requisiti (dovuto all'attesa di risposte da Ergon), il gruppo ha deciso di sfruttare il tempo disponibile per implementare miglioramenti infrastrutturali rimasti in sospeso.
+Nello specifico, verrà integrato il calcolo automatico dell'Indice Gulpease e il controllo ortografico tramite LanguageTool nella pipeline di compilazione dei documenti LaTeX nel repository GitHub.
+
+% -------------------------------------------------------------------
+%  SEZIONE: decisioni prese
+% -------------------------------------------------------------------
+
+\section{Decisioni Prese}
+
+\begin{enumerate}
+    \item Si procederà a sollecitare Ergon Informatica via email.
+    \item Nel Piano di Progetto, il primo e il secondo periodo verranno unificati in un'unica rendicontazione.
+    \item Lo switch formale dei ruoli avverrà il Sabato (mezzanotte tra Venerdì e Sabato).
+    \item Sono stati definiti formalmente i compiti del Responsabile (Diario di bordo, Verbali, PdP, GitHub Projects, Comunicazioni esterne).
+    \item Si avvia la stesura del Piano di Qualifica e lo studio preliminare per il PoC.
+    \item Si procede all'integrazione di Gulpease e LanguageTool nella CI/CD.
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: todo (Attività da svolgere)
+% -------------------------------------------------------------------
+\newpage
+
+
+\section{Periodo 4}
+
+
+
+\subsection{Attività da Svolgere}
+Ogni attività ha come scadenza la fine dello sprint corrente, fissata per venerdì prossimo.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} \\
+\midrule
+Inserire nuovi termini in Glossario & Analista\\
+Attività del Responsabile (Diario, Verbale, PdP) & Responsabile \\
+Scrivere README del repository SmartOrder & Amministratore \\
+Studio preliminare del PoC & Progr./Progettista \\
+Studio e bozza Piano di Qualifica & Amministratore \\
+Implementare Gulpease e LanguageTool & Progr./Amministratore \\
+Aggiornare Norme di Progetto (Compiti Resp.) & Amministratore \\
+\bottomrule
+\end{tabular}
+\caption{Riepilogo task assegnati.}
+\end{table}
+
+% -------------------------------------------------------------------
+%  SEZIONE: rotazione ruoli
+% -------------------------------------------------------------------
+
+\subsection{Definizione dei ruoli - Preventivo}
+Sono stati definiti i ruoli e le relative assegnazioni orarie per il prossimo periodo operativo (Periodo 4), che coprirà l'arco temporale dal 29 Novembre al 05 Dicembre 2025.
+La ripartizione è stata stabilita come segue:
+
+\begin{itemize}
+    \item \textbf{Responsabile:} Leonardo Bilato (3h)
+    \item \textbf{Analista:} Michele Ogniben (3h), Francesco Zanella (1.5h)
+    \item \textbf{Progettista:} Samuele Perozzo (3h)
+    \item \textbf{Verificatore:} Francesco Zanella (2h), Giovanni Ponso (2h)
+    \item \textbf{Programmatore:} Davide Biasuzzi (3h)
+    \item \textbf{Amministratore:} Davide Biasuzzi (1h), Mihaela-Mariana Romascu (2h)
+\end{itemize}
+\end{document}
