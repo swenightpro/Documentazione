@@ -5,6 +5,9 @@ permissions:
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - feature/quality-checks
 
 jobs:
   quality-checks:
