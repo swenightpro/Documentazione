@@ -1,5 +1,10 @@
-# Report di compilazione del 2025-12-04T20:19:01+00:00
+# Report di compilazione del 2025-12-05T10:19:14+00:00
 
-Compilazione basata sul commit 32036878c7274a32a2b0f5e9ab13db6f8386f575 (base: 3203687)
+Compilazione basata sul commit 35ac088c8a5224ae93512f7f7d49aa8db80c76f3 (base: 35ac088)
 
-💡 Nessun file modificato o mancante. Nessuna compilazione eseguita.
+## Falliti
+💡 Nessun errore di compilazione
+
+## Compilati
+✅ [docs/RTB/Documentazione Esterna/Glossario_v1.2.pdf](docs/RTB/Documentazione%20Esterna/Glossario_v1.2.pdf)
+
