@@ -8,7 +8,7 @@
 
 % --- Grafica e Layout ---
 \usepackage{graphicx}           % Per le immagini
-\graphicspath{{../../assets/}}
+\graphicspath{{assets/}{../assets/}{../../assets/}{../../../assets/}}
 \usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
 \usepackage{fancyhdr}           % Per header e footer personalizzati
 \usepackage{microtype}          % Migliora la tipografia
@@ -75,7 +75,7 @@
 
         {\large Data: 2025-11-05 \par}
 
-     {\Large Versione: 1.1 \par} 
+     {\Large Versione: 1.0 \par} 
 
 \end{titlepage}
 
@@ -94,7 +94,6 @@
 \toprule
 \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
 \midrule
-1.1 & 2025-11-16 & Davide Biasuzzi & Inseriti termini Agile, Ciclo di Vita, Best practices, Issue, Milestone, Piano di Progetto, Piano di Qualifica, Branch, Pull Request, Architettura, Accoppiamento, Pattern Architetturali, Schema UML, Anlisi dei Requisiti, Requisiti, Specifiche Funzionali/Tecniche, Contesto applicativo, Azienda Proponente, Committente, Feedback, Proof of Concept (PoC)  & Francesco Zanella \\
 1.0 & 2025-11-05 & Davide Biasuzzi & Inserimento definizioni iniziali mancanti & Francesco Zanella \\
 0.1 & 2025-11-05 & Giovanni Ponso & Creazione bozza glossario e inserimento definizioni &  Francesco Zanella \\
 \bottomrule
@@ -149,477 +148,283 @@ I termini sono organizzati in ordine alfabetico.
 Alla loro prima apparizione nei documenti ufficiali, essi vengono contrassegnati dal pedice \textsubscript{\textsc{g}}, che ne indica la presenza nel glossario.
 Le occorrenze successive non riportano tale marcatura.
 
-\appendix
+\appendix 
 
 % A
-
 \section*{A}
-
 \addcontentsline{toc}{section}{A}
 
-\subsection*{Accoppiamento}
-
-\addcontentsline{toc}{subsection}{Accoppiamento}
-
-Il grado di interdipendenza tra i componenti di un sistema software. Un basso accoppiamento è desiderabile in quanto facilita la manutenibilità e la modifica indipendente dei componenti.
-
-\vspace{0.5cm}
-
-\subsection*{Agile}
-
-\addcontentsline{toc}{subsection}{Agile}
-
-Metodologia di sviluppo software che favorisce la collaborazione continua, la flessibilità e l'iterazione rapida. Permette di adattare il progetto ai cambiamenti dei requisiti attraverso cicli di sviluppo brevi e incrementali.
-
-\vspace{0.5cm}
-
-\subsection*{Analisi dei Requisiti}
-
-\addcontentsline{toc}{subsection}{Analisi dei Requisiti}
-
-Documento che descrive in dettaglio i servizi che il sistema deve fornire, specificando i requisiti funzionali e non funzionali raccolti durante la fase di analisi.
-
-\vspace{0.5cm}
-
 \subsection*{Approvazione}
-
 \addcontentsline{toc}{subsection}{Approvazione}
-
 Fase formale del ciclo di vita di un documento, successiva alla verifica, in cui si certifica che il documento è completo, corretto e pronto per il rilascio ufficiale.
-
-\vspace{0.5cm}
-
-\subsection*{Architettura}
-
-\addcontentsline{toc}{subsection}{Architettura}
-
-La struttura organizzativa di un sistema software che definisce i componenti principali, le loro relazioni e i principi di design che guidano la sua evoluzione.
-
-\vspace{0.5cm}
-
-\subsection*{Azienda Proponente}
-
-\addcontentsline{toc}{subsection}{Azienda Proponente}
-
-L'organizzazione o società che propone il capitolato d'appalto e con cui il gruppo collabora per la realizzazione del progetto. Nel contesto del progetto NightPRO, l'azienda proponente è Ergon Informatica.
-
 \vspace{0.5cm}
 
 % B
-
 \section*{B}
-
 \addcontentsline{toc}{section}{B}
 
-\subsection*{Best practices}
-
-\addcontentsline{toc}{subsection}{Best practices}
-
-Insieme di metodologie, tecniche e approcci consolidati e riconosciuti come i più efficaci per raggiungere un determinato obiettivo con qualità ed efficienza.
-
-\vspace{0.5cm}
-
-\subsection*{Branch}
-
-\addcontentsline{toc}{subsection}{Branch}
-
-Una linea di sviluppo indipendente nel sistema di versionamento Git. Permette di lavorare su modifiche isolate dal codice principale (main) fino al momento dell'integrazione.
-
+\subsection*{Build}
+\addcontentsline{toc}{subsection}{Build}
+Il processo automatico di compilazione del codice sorgente (es. file \texttt{.tex}) per generare un artefatto distribuibile (es. un file \texttt{.pdf}).
 \vspace{0.5cm}
 
 % C
-
 \section*{C}
-
 \addcontentsline{toc}{section}{C}
 
 \subsection*{Capitolato}
-
 \addcontentsline{toc}{subsection}{Capitolato}
-
 Documento fornito dal committente che specifica i requisiti, gli obiettivi e i vincoli del progetto da realizzare.
-
 \vspace{0.5cm}
 
-\subsection*{Ciclo di vita}
-
-\addcontentsline{toc}{subsection}{Ciclo di vita}
-
-L'insieme delle fasi attraverso cui passa un prodotto o un documento, dalla concezione alla dismissione, includendo sviluppo, verifica, approvazione e pubblicazione.
-
+\subsection*{CI (Continuous Integration)}
+\addcontentsline{toc}{subsection}{CI (Continuous Integration)}
+Acronimo di \textit{Continuous Integration} (Integrazione Continua). Pratica di sviluppo che consiste nell'automatizzare l'integrazione e la verifica (build e test) del codice o dei documenti ad ogni modifica, al fine di rilevare tempestivamente errori.
 \vspace{0.5cm}
 
 \subsection*{Commit}
-
 \addcontentsline{toc}{subsection}{Commit}
-
 Una singola operazione di salvataggio registrata nel sistema di versionamento (come Git). Rappresenta un insieme di modifiche apportate ai file del repository.
-
-\vspace{0.5cm}
-
-\subsection*{Committente}
-
-\addcontentsline{toc}{subsection}{Committente}
-
-Il soggetto (il docente responsabile del corso) che richiede formalmente il progetto e a cui viene presentata l'offerta e la documentazione ufficiale.
-
-\vspace{0.5cm}
-
-\subsection*{Contesto applicativo}
-
-\addcontentsline{toc}{subsection}{Contesto applicativo}
-
-L'ambiente operativo e il dominio di utilizzo del prodotto software, comprendente gli utenti target, i casi d'uso e le condizioni operative.
-
 \vspace{0.5cm}
 
 % D
-
 \section*{D}
-
 \addcontentsline{toc}{section}{D}
 
 \subsection*{Diario della riunione}
-
 \addcontentsline{toc}{subsection}{Diario della riunione}
-
 Sezione di un verbale che contiene il resoconto dettagliato della discussione, tipicamente suddiviso rispecchiando i punti dell'Ordine del Giorno.
-
 \vspace{0.5cm}
+
+\subsection*{Docker}
+\addcontentsline{toc}{subsection}{Docker}
+Piattaforma software che permette di creare, distribuire ed eseguire applicazioni in ambienti isolati chiamati "container". Utilizzata nel progetto per garantire un ambiente di compilazione \LaTeX{} coerente e riproducibile.
+\vspace{0.5cm}
+
+% E
+\section*{E}
+\addcontentsline{toc}{section}{E}
+% (Nessun termine)
 
 % F
-
 \section*{F}
-
 \addcontentsline{toc}{section}{F}
 
-\subsection*{Feedback}
-
-\addcontentsline{toc}{subsection}{Feedback}
-
-Informazioni di ritorno fornite durante la revisione del lavoro svolto, finalizzate a segnalare errori, suggerire miglioramenti e garantire la qualità del prodotto.
-
-\vspace{0.5cm}
-
 \subsection*{Frontespizio}
-
 \addcontentsline{toc}{subsection}{Frontespizio}
-
 La prima pagina di un documento ufficiale che contiene i metadati identificativi: titolo, autori, gruppo, versione, data, e contesto (es. università, corso).
-
 \vspace{0.5cm}
 
 % G
-
 \section*{G}
-
 \addcontentsline{toc}{section}{G}
 
 \subsection*{Git}
-
 \addcontentsline{toc}{subsection}{Git}
-
 Sistema di controllo versione distribuito (DVCS) creato da Linus Torvalds. 
 È lo strumento software che traccia la cronologia delle modifiche ai file di progetto (sorgenti, documenti) e permette la collaborazione.
-
 \vspace{0.5cm}
 
 \subsection*{Github}
-
 \addcontentsline{toc}{subsection}{Github}
-
 Piattaforma web basata su Git per l'hosting di repository, la gestione del versionamento del codice e la collaborazione allo sviluppo software.
+\vspace{0.5cm}
 
+\subsection*{Github Action}
+\addcontentsline{toc}{subsection}{Github Action}
+Servizio di automazione e CI/CD integrato in GitHub. Permette di definire \textit{workflow} automatici (es. per la compilazione e pubblicazione dei documenti) che si attivano in risposta a eventi nel repository.
 \vspace{0.5cm}
 
 \subsection*{Github Pages}
-
 \addcontentsline{toc}{subsection}{Github Pages}
-
 Servizio di hosting per siti web statici fornito da GitHub. Utilizzato dal gruppo per pubblicare e rendere consultabile la documentazione di progetto.
-
 \vspace{0.5cm}
 
 \subsection*{Github Projects}
-
 \addcontentsline{toc}{subsection}{Github Projects}
-
 Strumento di gestione progettuale (project management) integrato in GitHub, utilizzato per pianificare, organizzare e tracciare lo stato di avanzamento delle attività (task).
-
 \vspace{0.5cm}
 
 \subsection*{Glossario}
-
 \addcontentsline{toc}{subsection}{Glossario}
-
 Documento che raccoglie e definisce i termini tecnici, specialistici o potenzialmente ambigui utilizzati nel progetto, al fine di garantirne una comprensione uniforme.
-
 \vspace{0.5cm}
 
 \subsection*{Google Meet}
-
 \addcontentsline{toc}{subsection}{Google Meet}
-
 Piattaforma di videoconferenza utilizzata dal gruppo per le riunioni sincrone e le attività collaborative che richiedono condivisione dello schermo.
-
 \vspace{0.5cm}
+
+% H
+\section*{H}
+\addcontentsline{toc}{section}{H}
+% (Nessun termine)
 
 % I
-
 \section*{I}
-
 \addcontentsline{toc}{section}{I}
+% (Nessun termine)
 
-\subsection*{Issue}
+% J
+\section*{J}
+\addcontentsline{toc}{section}{J}
+% (Nessun termine)
 
-\addcontentsline{toc}{subsection}{Issue}
-
-Un'attività, un problema o una richiesta tracciata nel sistema di gestione del progetto (GitHub Projects). Ogni issue rappresenta un elemento di lavoro assegnabile e monitorabile.
-
-\vspace{0.5cm}
+% K
+\section*{K}
+\addcontentsline{toc}{section}{K}
+% (Nessun termine)
 
 % L
-
 \section*{L}
-
 \addcontentsline{toc}{section}{L}
 
 \subsection*{LaTeX}
-
 \addcontentsline{toc}{subsection}{LaTeX}
-
 Linguaggio di markup e sistema di preparazione di documenti ampiamente usato in ambito accademico per la sua elevata qualità tipografica e la gestione di formule complesse. È il formato sorgente per la documentazione ufficiale del progetto.
-
 \vspace{0.5cm}
 
 % M
-
 \section*{M}
-
 \addcontentsline{toc}{section}{M}
-
-\subsection*{Milestone}
-
-\addcontentsline{toc}{subsection}{Milestone}
-
-Un punto di controllo significativo nel progetto che rappresenta il completamento di un insieme di attività o il raggiungimento di un obiettivo intermedio. Utilizzata per monitorare i progressi verso gli obiettivi principali.
-
-\vspace{0.5cm}
+% (Nessun termine)
 
 % N
-
 \section*{N}
-
 \addcontentsline{toc}{section}{N}
 
 \subsection*{Norme di Progetto}
-
 \addcontentsline{toc}{subsection}{Norme di Progetto}
-
 Il documento che definisce il metodo di lavoro, le regole redazionali, gli strumenti e i processi di gestione adottati dal gruppo per garantire coerenza, tracciabilità e qualità.
-
 \vspace{0.5cm}
 
 % O
-
 \section*{O}
-
 \addcontentsline{toc}{section}{O}
 
 \subsection*{Ordine del giorno}
-
 \addcontentsline{toc}{subsection}{Ordine del giorno}
-
 Elenco degli argomenti (chiamato anche "Agenda") pianificati per la discussione durante una riunione. È una sezione obbligatoria dei verbali.
-
 \vspace{0.5cm}
 
 % P
-
 \section*{P}
-
 \addcontentsline{toc}{section}{P}
 
-\subsection*{Pattern architetturali}
-
-\addcontentsline{toc}{subsection}{Pattern architetturali}
-
-Soluzioni progettuali riutilizzabili che descrivono l'organizzazione strutturale di sistemi software, fornendo template collaudati per risolvere problemi ricorrenti di design.
-
+\subsection*{PDF}
+\addcontentsline{toc}{subsection}{PDF}
+Acronimo di \textit{Portable Document Format}. Formato file utilizzato per la distribuzione e la consultazione dei documenti ufficiali, in quanto garantisce la non modificabilità e la coerenza di layout su diversi dispositivi.
 \vspace{0.5cm}
 
-\subsection*{Piano di Progetto}
-
-\addcontentsline{toc}{subsection}{Piano di Progetto}
-
-Documento che descrive la pianificazione temporale del progetto, l'allocazione delle risorse, la suddivisione del lavoro e la gestione dei rischi.
-
-\vspace{0.5cm}
-
-\subsection*{Piano di Qualifica}
-
-\addcontentsline{toc}{subsection}{Piano di Qualifica}
-
-Documento che definisce le strategie di verifica e validazione adottate dal gruppo, descrivendo le tecniche, le metriche e i test utilizzati per garantire la qualità del prodotto.
-
-\vspace{0.5cm}
-
-\subsection*{Proof of Concept (PoC)}
-
-\addcontentsline{toc}{subsection}{Proof of Concept (PoC)}
-
-Dimostrazione realizzata per verificare la fattibilità tecnica di una soluzione proposta, utilizzata per validare le scelte tecnologiche prima dell'implementazione completa.
-
+\subsection*{Pipeline}
+\addcontentsline{toc}{subsection}{Pipeline}
+Nel contesto della CI/CD, è la sequenza di passi (job) automatizzati eseguiti da un sistema di automazione (come GitHub Actions) per compiere un processo, ad esempio la \textit{pipeline di pubblicazione}. Sinonimo di Workflow.
 \vspace{0.5cm}
 
 \subsection*{Pubblicazione}
-
 \addcontentsline{toc}{subsection}{Pubblicazione}
-
 Fase finale del ciclo di vita di un documento che consiste nel renderlo accessibile agli stakeholder, ad esempio caricandolo nell'archivio PDF sul sito web del gruppo.
-
 \vspace{0.5cm}
 
-\subsection*{Pull Request}
-
-\addcontentsline{toc}{subsection}{Pull Request}
-
-Richiesta di integrazione delle modifiche da un branch al branch principale del repository. Permette la revisione del codice o della documentazione prima del merge definitivo.
-
-\vspace{0.5cm}
+% Q
+\section*{Q}
+\addcontentsline{toc}{section}{Q}
+% (Nessun termine)
 
 % R
-
 \section*{R}
-
 \addcontentsline{toc}{section}{R}
 
 \subsection*{Redazione}
-
 \addcontentsline{toc}{subsection}{Redazione}
-
 Fase iniziale del ciclo di vita di un documento, durante la quale uno o più autori (redattori) creano e aggiornano i contenuti.
-
 \vspace{0.5cm}
 
 \subsection*{Repository}
-
 \addcontentsline{toc}{subsection}{Repository}
-
 Archivio centrale gestito da un sistema di versionamento (come Git) che contiene tutti i file del progetto (codice sorgente, documenti) e la cronologia completa delle loro modifiche.
-
-\vspace{0.5cm}
-
-\subsection*{Requisiti}
-
-\addcontentsline{toc}{subsection}{Requisiti}
-
-Le necessità e le aspettative che il prodotto software deve soddisfare, classificati in funzionali (cosa il sistema deve fare) e non funzionali (come il sistema deve comportarsi).
-
 \vspace{0.5cm}
 
 % S
-
 \section*{S}
-
 \addcontentsline{toc}{section}{S}
 
-\subsection*{Schema UML}
-
-\addcontentsline{toc}{subsection}{Schema UML}
-
-Diagramma creato utilizzando il linguaggio di modellazione unificato (Unified Modeling Language) per rappresentare visivamente la struttura, il comportamento e le interazioni di un sistema software.
-
-\vspace{0.5cm}
-
-\subsection*{Specifiche funzionali}
-
-\addcontentsline{toc}{subsection}{Specifiche funzionali}
-
-Descrizioni dettagliate delle funzionalità che il sistema deve fornire, definendo il comportamento atteso in risposta a determinati input o condizioni.
-
-\vspace{0.5cm}
-
-\subsection*{Specifiche tecniche}
-
-\addcontentsline{toc}{subsection}{Specifiche tecniche}
-
-Descrizioni dettagliate degli aspetti tecnici del sistema, incluse le tecnologie, le architetture, i protocolli e le interfacce da utilizzare.
-
+\subsection*{Snake case}
+\addcontentsline{toc}{subsection}{Snake case}
+Convenzione di nomenclatura dei file (es. \texttt{nome\_file.tex}) che prevede l'uso di sole lettere minuscole e la separazione delle parole tramite un trattino basso (underscore).
 \vspace{0.5cm}
 
 \subsection*{Stakeholder}
-
 \addcontentsline{toc}{subsection}{Stakeholder}
-
 Qualsiasi individuo o gruppo che ha un interesse nel progetto o è influenzato dal suo risultato (es. membri del team, committenti, docenti).
-
 \vspace{0.5cm}
 
 % T
-
 \section*{T}
-
 \addcontentsline{toc}{section}{T}
 
 \subsection*{Task}
-
 \addcontentsline{toc}{subsection}{Task}
-
 Un'attività o un compito specifico e tracciabile che deve essere svolto. La gestione dei task avviene tramite GitHub Projects.
-
 \vspace{0.5cm}
 
 \subsection*{Telegram}
-
 \addcontentsline{toc}{subsection}{Telegram}
-
 Applicazione di messaggistica istantanea usata come canale di comunicazione principale dal gruppo.
+\vspace{0.5cm}
 
+\subsection*{Template}
+\addcontentsline{toc}{subsection}{Template}
+Un modello di documento (es. un file \texttt{.tex} preimpostato) utilizzato come base per la creazione di nuovi documenti, al fine di garantire l'omogeneità della struttura e del formato.
 \vspace{0.5cm}
 
 \subsection*{Topic (Telegram)}
-
 \addcontentsline{toc}{subsection}{Topic (Telegram)}
-
 Funzionalità dei gruppi Telegram che permette di suddividere le conversazioni in argomenti specifici, garantendo maggiore ordine e tracciabilità delle discussioni.
-
 \vspace{0.5cm}
 
+% U
+\section*{U}
+\addcontentsline{toc}{section}{U}
+% (Nessun termine)
+
 % V
-
 \section*{V}
-
 \addcontentsline{toc}{section}{V}
 
 \subsection*{Verbali}
-
 \addcontentsline{toc}{subsection}{Verbali}
-
 Documenti ufficiali che riportano le discussioni, le decisioni prese e le attività assegnate durante gli incontri del gruppo, al fine di tracciare l'evoluzione del progetto.
-
 \vspace{0.5cm}
 
 \subsection*{Verifica}
-
 \addcontentsline{toc}{subsection}{Verifica}
-
 Fase del ciclo di vita di un documento in cui un membro del gruppo, diverso dal redattore, controlla la correttezza formale, la qualità e la coerenza dei contenuti prima dell'approvazione o pubblicazione.
-
 \vspace{0.5cm}
 
 % W
-
 \section*{W}
-
 \addcontentsline{toc}{section}{W}
 
 \subsection*{Workflow}
-
 \addcontentsline{toc}{subsection}{Workflow}
-
 Una sequenza configurabile di operazioni automatizzate. Nel contesto di GitHub Actions, definisce i passi per processi come la compilazione o la pubblicazione. Sinonimo di Pipeline.
-
 \vspace{0.5cm}
+
+% X
+\section*{X}
+\addcontentsline{toc}{section}{X}
+% (Nessun termine)
+
+% Y
+\section*{Y}
+\addcontentsline{toc}{section}{Y}
+% (Nessun termine)
+
+% Z
+\section*{Z}
+\addcontentsline{toc}{section}{Z}
+% (Nessun termine)
+
 
 \end{document}

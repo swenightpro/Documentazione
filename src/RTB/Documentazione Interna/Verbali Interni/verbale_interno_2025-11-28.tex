@@ -5,11 +5,11 @@
 \usepackage[T1]{fontenc}         % Font encoding moderno
 \usepackage[italian]{babel}      % Lingua italiana 
 \usepackage{lmodern}             % Font "Latin Modern"
-
+\usepackage{array}
 % --- Grafica e Layout ---
-\usepackage{graphicx}            % Per includere immagini
+\usepackage{graphicx}            % Per includere immagini 
 \usepackage{currfile}
-\graphicspath{{assets/},{../../../assets/}}
+\graphicspath{{assets/}{../../../assets/}}
 
 \usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
 \usepackage{fancyhdr}            % Per header e footer personalizzati
@@ -205,19 +205,12 @@ Nello specifico, verrà integrato il calcolo automatico dell'Indice Gulpease e i
     \item Si procede all'integrazione di Gulpease e LanguageTool nella CI/CD.
 \end{enumerate}
 
-% -------------------------------------------------------------------
-%  SEZIONE: todo (Attività da svolgere)
-% -------------------------------------------------------------------
+
 \newpage
 
-
-\section{Periodo 4}
-
-
-
-\subsection{Attività da Svolgere}
-Ogni attività ha come scadenza la fine dello sprint corrente, fissata per venerdì prossimo.
-
+% attivitá da svolgere nel prossimo sprint
+\section{Attività da Svolgere (To-Do)}
+Ogni attività ha come scadenza la fine dello sprint.
 \begin{table}[h!]
 \centering
 \begin{tabular}{@{}lll@{}}
@@ -227,29 +220,35 @@ Ogni attività ha come scadenza la fine dello sprint corrente, fissata per vener
 Inserire nuovi termini in Glossario & Analista\\
 Attività del Responsabile (Diario, Verbale, PdP) & Responsabile \\
 Scrivere README del repository SmartOrder & Amministratore \\
-Studio preliminare del PoC & Progr./Progettista \\
+Studio preliminare del PoC & Progettista \\
 Studio e bozza Piano di Qualifica & Amministratore \\
-Implementare Gulpease e LanguageTool & Progr./Amministratore \\
+Implementare Gulpease e LanguageTool & Programmatore \\
 Aggiornare Norme di Progetto (Compiti Resp.) & Amministratore \\
+Sistemare github project & Amministratore \\
 \bottomrule
 \end{tabular}
-\caption{Riepilogo task assegnati.}
 \end{table}
 
-% -------------------------------------------------------------------
-%  SEZIONE: rotazione ruoli
-% -------------------------------------------------------------------
-
-\subsection{Definizione dei ruoli - Preventivo}
-Sono stati definiti i ruoli e le relative assegnazioni orarie per il prossimo periodo operativo (Periodo 4), che coprirà l'arco temporale dal 29 Novembre al 05 Dicembre 2025.
+% tabella di rotazione dei ruoli
+\section{Definizione dei ruoli (Preventivo)}
+Sono stati definiti i ruoli e le relative assegnazioni orarie per il prossimo periodo operativo.
 La ripartizione è stata stabilita come segue:
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}l p{9cm}@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} \\
+\midrule
 
-\begin{itemize}
-    \item \textbf{Responsabile:} Leonardo Bilato (3h)
-    \item \textbf{Analista:} Michele Ogniben (3h), Francesco Zanella (1.5h)
-    \item \textbf{Progettista:} Samuele Perozzo (3h)
-    \item \textbf{Verificatore:} Francesco Zanella (2h), Giovanni Ponso (2h)
-    \item \textbf{Programmatore:} Davide Biasuzzi (3h)
-    \item \textbf{Amministratore:} Davide Biasuzzi (1h), Mihaela-Mariana Romascu (2h)
-\end{itemize}
+Responsabile    & Leonardo Bilato (3h) \\
+Analista        & Francesco Zanella (1.5h) \\
+Progettista     & Samuele Perozzo (3h) \\
+Verificatore    & Francesco Zanella (2h), Giovanni Ponso (2h) \\
+Programmatore   & Davide Biasuzzi (3h) \\
+Amministratore  & Davide Biasuzzi (1h), Mihaela-Mariana Romascu (2h), Michele Ogniben (2h), Giovanni Ponso (1h) \\
+
+\bottomrule
+\end{tabular}
+\end{table}
+
 \end{document}

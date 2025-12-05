@@ -17,11 +17,10 @@
 
 ## 2. Architettura dell'Organizzazione
 
-Il progetto è articolato su due repository distinti, ospitati all'interno dell'organizzazione del gruppo, al fine di mantenere una netta separazione tra la documentazione di progetto e l'implementazione del prodotto software.
-
--   📄 **Repository Documentazione:** [https://github.com/swenightpro/Documentazione](https://github.com/swenightpro/Documentazione)
--   💻 **Repository del Prodotto Software:** [https://github.com/swenightpro/SmartOrder](https://github.com/swenightpro/SmartOrder)
-
+Il progetto è articolato su tre repository distinti, ospitati all'interno dell'organizzazione del gruppo:
+- [Documentazione](https://github.com/swenightpro/Documentazione)
+- [SmartOrder-Poc](https://github.com/swenightpro/SmartOrder-PoC)
+- [SmartOrder-MVP](https://github.com/swenightpro/SmartOrder-PoC)
 
 ## 3. Contenuti del repository
 
