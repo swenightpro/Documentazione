@@ -1,0 +1,794 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana
+\usepackage{lmodern}            % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}           % Per le immagini
+\graphicspath{{../../assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
+
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{hyperref}           % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Documento Progetto - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+
+% ===================================================================
+%  HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce i campi
+\fancyhead[L]{\textbf{NightPRO – Progetto Ingegneria del Software}}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt} % Modificato per coerenza, sebbene l'originale fosse 0pt
+
+% ===================================================================
+%  INIZIO DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  FRONTESPIZIO
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \includegraphics[width=0.35\textwidth]{logo.png}\\[1cm]
+
+     \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    \vfill
+    
+    {\Huge \bfseries Glossario \par}
+        \vspace{1cm}
+         {\Large Redattori: Giovanni Ponso, Davide Biasuzzi, Francesco Zanella \par} 
+    \vfill
+
+    {\Large \bfseries Gruppo: NightPRO}    \vspace{0.5cm}
+
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
+
+        {\large Data: 2025-12-04 \par}
+
+     {\Large Versione: 1.2 \par} 
+
+\end{titlepage}
+
+%  SEZIONE: Tabella delle Versioni
+% -------------------------------------------------------------------
+\newpage
+\pagestyle{fancy}
+\phantomsection
+\addcontentsline{toc}{section}{Tabella delle Versioni}
+\section*{Tabella delle Versioni}
+\vspace{0.2cm} 
+\begin{center}
+\resizebox{\textwidth}{!}{
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}llp{0.25\textwidth}p{0.45\textwidth}c@{}} 
+\toprule
+\textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
+\midrule
+1.2 & 2025-12-04 & Francesco Zanella & Aggiunti i termini API, Baseline, Build, Bug, Bug tracking system, CI (Continuous Integration), Consuntivo, Docker, ERP, Framework, Github Actions, Intelligenza Artificiale, Machine Learning, Merge, Mitigazione, Modello di sviluppo, MVP, NLP, Overleaf, Patch, PDF, Pipeline, Preventivo, Product Backlog, Scrum, Snake case, Sprint, Sprint Backlog, Sprint Planning, Sprint Retrospective, Sprint Review, Template, Versionamento  & Giovanni Ponso \\
+1.1 & 2025-11-16 & Davide Biasuzzi & Inseriti termini Agile, Ciclo di Vita, Best practices, Issue, Milestone, Piano di Progetto, Piano di Qualifica, Branch, Pull Request, Architettura, Accoppiamento, Pattern Architetturali, Schema UML, Anlisi dei Requisiti, Requisiti, Specifiche Funzionali/Tecniche, Contesto applicativo, Azienda Proponente, Committente, Feedback, Proof of Concept (PoC)  & Francesco Zanella \\
+1.0 & 2025-11-05 & Davide Biasuzzi & Inserimento definizioni iniziali mancanti & Francesco Zanella \\
+0.1 & 2025-11-05 & Giovanni Ponso & Creazione bozza glossario e inserimento definizioni &  Francesco Zanella \\
+\bottomrule
+\end{tabular}
+}
+\end{center}
+
+
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy}
+
+% -------------------------------------------------------------------
+%  INFORMAZIONI GENERALI
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.2} % più spazio tra le righe
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del gruppo NightPRO.}
+\end{table}
+
+% -------------------------------------------------------------------
+% INTRODUZIONE
+% -------------------------------------------------------------------
+
+
+\section{Introduzione}
+
+\subsection{Obiettivo del documento}
+Il presente glossario raccoglie i termini tecnici, specialistici o potenzialmente ambigui utilizzati nella documentazione del progetto.
+Il suo scopo è garantire una comprensione uniforme del linguaggio adottato dal gruppo, fornendo definizioni chiare e non equivoche.
+\subsection{Struttura del documento}
+I termini sono organizzati in ordine alfabetico.  
+Alla loro prima apparizione nei documenti ufficiali, essi vengono contrassegnati dal pedice \textsubscript{\textsc{g}}, che ne indica la presenza nel glossario.
+Le occorrenze successive non riportano tale marcatura.
+
+\newpage
+\appendix
+
+% A
+
+\section*{A}
+
+\addcontentsline{toc}{section}{A}
+
+\subsection*{Accoppiamento}
+
+\addcontentsline{toc}{subsection}{Accoppiamento}
+
+Il grado di interdipendenza tra i componenti di un sistema software. Un basso accoppiamento è desiderabile in quanto facilita la manutenibilità e la modifica indipendente dei componenti.
+
+\vspace{0.5cm}
+
+\subsection*{Agile}
+
+\addcontentsline{toc}{subsection}{Agile}
+
+Metodologia di sviluppo software che favorisce la collaborazione continua, la flessibilità e l'iterazione rapida. Permette di adattare il progetto ai cambiamenti dei requisiti attraverso cicli di sviluppo brevi e incrementali.
+
+\vspace{0.5cm}
+
+\subsection*{Analisi dei Requisiti}
+
+\addcontentsline{toc}{subsection}{Analisi dei Requisiti}
+
+Documento che descrive in dettaglio i servizi che il sistema deve fornire, specificando i requisiti funzionali e non funzionali raccolti durante la fase di analisi.
+
+\vspace{0.5cm}
+
+\subsection*{API}
+\addcontentsline{toc}{subsection}{API}
+Acronimo di \textit{Application Programming Interface}. Insieme di definizioni, protocolli e strumenti che permettono a software diversi di comunicare tra loro, astraendo la complessità dell'implementazione sottostante.
+\vspace{0.5cm}
+
+\subsection*{Approvazione}
+
+\addcontentsline{toc}{subsection}{Approvazione}
+
+Fase formale del ciclo di vita di un documento, successiva alla verifica, in cui si certifica che il documento è completo, corretto e pronto per il rilascio ufficiale.
+
+\vspace{0.5cm}
+
+\subsection*{Architettura}
+
+\addcontentsline{toc}{subsection}{Architettura}
+
+La struttura organizzativa di un sistema software che definisce i componenti principali, le loro relazioni e i principi di design che guidano la sua evoluzione.
+
+\vspace{0.5cm}
+
+\subsection*{Azienda Proponente}
+
+\addcontentsline{toc}{subsection}{Azienda Proponente}
+
+L'organizzazione o società che propone il capitolato d'appalto e con cui il gruppo collabora per la realizzazione del progetto. Nel contesto del progetto NightPRO, l'azienda proponente è Ergon Informatica.
+
+\vspace{0.5cm}
+
+% B
+
+\section*{B}
+
+\addcontentsline{toc}{section}{B}
+
+\subsection*{Baseline}
+\addcontentsline{toc}{subsection}{Baseline}
+Una versione specifica e stabile di un elemento di configurazione (documento o codice) che è stata formalmente approvata e che funge da base per le attività successive. Può essere modificata solo attraverso procedure formali di controllo delle modifiche.
+\vspace{0.5cm}
+
+\subsection*{Best practices}
+
+\addcontentsline{toc}{subsection}{Best practices}
+
+Insieme di metodologie, tecniche e approcci consolidati e riconosciuti come i più efficaci per raggiungere un determinato obiettivo con qualità ed efficienza.
+
+\vspace{0.5cm}
+
+\subsection*{Branch}
+
+\addcontentsline{toc}{subsection}{Branch}
+
+Una linea di sviluppo indipendente nel sistema di versionamento Git. Permette di lavorare su modifiche isolate dal codice principale (main) fino al momento dell'integrazione.
+
+\vspace{0.5cm}
+
+\subsection*{Bug}
+\addcontentsline{toc}{subsection}{Bug}
+Un difetto o imperfezione nel software che causa un comportamento imprevisto, errato o diverso dalle specifiche funzionali definite.
+\vspace{0.5cm}
+
+\subsection*{Bug tracking system}
+\addcontentsline{toc}{subsection}{Bug tracking system}
+Applicazione software progettata per tracciare e gestire i bug segnalati nei progetti di sviluppo software, monitorandone lo stato dalla segnalazione alla risoluzione.
+\vspace{0.5cm}
+
+\subsection*{Build}
+\addcontentsline{toc}{subsection}{Build}
+Il processo di conversione del codice sorgente in un artefatto software eseguibile o in un pacchetto distribuibile. Può includere compilazione, linking e packaging.
+\vspace{0.5cm}
+
+% C
+
+\section*{C}
+
+\addcontentsline{toc}{section}{C}
+
+\subsection*{Capitolato}
+
+\addcontentsline{toc}{subsection}{Capitolato}
+
+Documento fornito dal committente che specifica i requisiti, gli obiettivi e i vincoli del progetto da realizzare.
+
+\vspace{0.5cm}
+
+\subsection*{CI (Continuous Integration)}
+\addcontentsline{toc}{subsection}{CI (Continuous Integration)}
+Pratica di sviluppo software che consiste nell'integrare frequentemente le modifiche al codice in un repository condiviso. Tale processo innesca automaticamente build e suite di test per validare immediatamente la qualità del nuovo codice integrato.
+\vspace{0.5cm}
+
+\subsection*{Ciclo di vita}
+
+\addcontentsline{toc}{subsection}{Ciclo di vita}
+
+L'insieme delle fasi attraverso cui passa un prodotto o un documento, dalla concezione alla dismissione, includendo sviluppo, verifica, approvazione e pubblicazione.
+
+\vspace{0.5cm}
+
+\subsection*{Commit}
+
+\addcontentsline{toc}{subsection}{Commit}
+
+Una singola operazione di salvataggio registrata nel sistema di versionamento (come Git). Rappresenta un insieme di modifiche apportate ai file del repository.
+
+\vspace{0.5cm}
+
+\subsection*{Committente}
+
+\addcontentsline{toc}{subsection}{Committente}
+
+Il soggetto (il docente responsabile del corso) che richiede formalmente il progetto e a cui viene presentata l'offerta e la documentazione ufficiale.
+
+\vspace{0.5cm}
+
+\subsection*{Consuntivo}
+\addcontentsline{toc}{subsection}{Consuntivo}
+Documento o sezione del Piano di Progetto che riporta il resoconto delle ore e dei costi effettivamente sostenuti in un determinato periodo, confrontandoli con il preventivo per valutare l'andamento economico del progetto.
+\vspace{0.5cm}
+
+\subsection*{Contesto applicativo}
+
+\addcontentsline{toc}{subsection}{Contesto applicativo}
+
+L'ambiente operativo e il dominio di utilizzo del prodotto software, comprendente gli utenti target, i casi d'uso e le condizioni operative.
+
+\vspace{0.5cm}
+
+% D
+
+\section*{D}
+
+\addcontentsline{toc}{section}{D}
+
+\subsection*{Diario della riunione}
+
+\addcontentsline{toc}{subsection}{Diario della riunione}
+
+Sezione di un verbale che contiene il resoconto dettagliato della discussione, tipicamente suddiviso rispecchiando i punti dell'Ordine del Giorno.
+
+\vspace{0.5cm}
+
+\subsection*{Docker}
+\addcontentsline{toc}{subsection}{Docker}
+Piattaforma open source che permette di sviluppare, distribuire ed eseguire applicazioni all'interno di container, garantendo che il software funzioni uniformemente indipendentemente dall'ambiente in cui viene eseguito.
+\vspace{0.5cm}
+
+%E
+
+\section*{E}
+
+\addcontentsline{toc}{section}{E}
+
+\subsection*{ERP}
+\addcontentsline{toc}{subsection}{ERP}
+Acronimo di \textit{Enterprise Resource Planning}. Un software di gestione che integra tutti i processi di business rilevanti di un'azienda (vendite, acquisti, gestione magazzino, contabilità, ecc.) in un unico sistema.
+\vspace{0.5cm}
+
+% F
+
+\section*{F}
+
+\addcontentsline{toc}{section}{F}
+
+\subsection*{Feedback}
+
+\addcontentsline{toc}{subsection}{Feedback}
+
+Informazioni di ritorno fornite durante la revisione del lavoro svolto, finalizzate a segnalare errori, suggerire miglioramenti e garantire la qualità del prodotto.
+
+\vspace{0.5cm}
+
+\subsection*{Framework}
+\addcontentsline{toc}{subsection}{Framework}
+Un ambiente software che fornisce funzionalità generiche e una struttura di supporto standardizzata per lo sviluppo di applicazioni, facilitando il lavoro dei programmatori attraverso il riutilizzo del codice.
+\vspace{0.5cm}
+
+\subsection*{Frontespizio}
+
+\addcontentsline{toc}{subsection}{Frontespizio}
+
+La prima pagina di un documento ufficiale che contiene i metadati identificativi: titolo, autori, gruppo, versione, data, e contesto (es. università, corso).
+
+\vspace{0.5cm}
+
+% G
+
+\section*{G}
+
+\addcontentsline{toc}{section}{G}
+
+\subsection*{Git}
+
+\addcontentsline{toc}{subsection}{Git}
+
+Sistema di controllo versione distribuito (DVCS) creato da Linus Torvalds. 
+È lo strumento software che traccia la cronologia delle modifiche ai file di progetto (sorgenti, documenti) e permette la collaborazione.
+
+\vspace{0.5cm}
+
+\subsection*{Github}
+
+\addcontentsline{toc}{subsection}{Github}
+
+Piattaforma web basata su Git per l'hosting di repository, la gestione del versionamento del codice e la collaborazione allo sviluppo software.
+
+\vspace{0.5cm}
+
+\subsection*{Github Actions}
+\addcontentsline{toc}{subsection}{Github Actions}
+Piattaforma di integrazione continua e distribuzione continua (CI/CD) integrata in GitHub, che permette di automatizzare la compilazione, il test e la distribuzione del software attraverso workflow definiti.
+\vspace{0.5cm}
+
+\subsection*{Github Pages}
+
+\addcontentsline{toc}{subsection}{Github Pages}
+
+Servizio di hosting per siti web statici fornito da GitHub. Utilizzato dal gruppo per pubblicare e rendere consultabile la documentazione di progetto.
+
+\vspace{0.5cm}
+
+\subsection*{Github Projects}
+
+\addcontentsline{toc}{subsection}{Github Projects}
+
+Strumento di gestione progettuale (project management) integrato in GitHub, utilizzato per pianificare, organizzare e tracciare lo stato di avanzamento delle attività (task).
+
+\vspace{0.5cm}
+
+\subsection*{Glossario}
+
+\addcontentsline{toc}{subsection}{Glossario}
+
+Documento che raccoglie e definisce i termini tecnici, specialistici o potenzialmente ambigui utilizzati nel progetto, al fine di garantirne una comprensione uniforme.
+
+\vspace{0.5cm}
+
+\subsection*{Google Meet}
+
+\addcontentsline{toc}{subsection}{Google Meet}
+
+Piattaforma di videoconferenza utilizzata dal gruppo per le riunioni sincrone e le attività collaborative che richiedono condivisione dello schermo.
+
+\vspace{0.5cm}
+
+% I
+
+\section*{I}
+
+\addcontentsline{toc}{section}{I}
+
+\subsection*{Intelligenza Artificiale (IA)}
+\addcontentsline{toc}{subsection}{Intelligenza Artificiale (IA)}
+L'IA è il ramo dell'informatica che progetta sistemi capaci di eseguire compiti che richiederebbero intelligenza se svolti da esseri umani, inclusi la percezione, il ragionamento, l'apprendimento e la risoluzione di problemi complessi.
+\vspace{0.5cm}
+
+\subsection*{Issue}
+
+\addcontentsline{toc}{subsection}{Issue}
+
+Un'attività, un problema o una richiesta tracciata nel sistema di gestione del progetto (GitHub Projects). Ogni issue rappresenta un elemento di lavoro assegnabile e monitorabile.
+
+\vspace{0.5cm}
+
+% L
+
+\section*{L}
+
+\addcontentsline{toc}{section}{L}
+
+\subsection*{LaTeX}
+
+\addcontentsline{toc}{subsection}{LaTeX}
+
+Linguaggio di markup e sistema di preparazione di documenti ampiamente usato in ambito accademico per la sua elevata qualità tipografica e la gestione di formule complesse. È il formato sorgente per la documentazione ufficiale del progetto.
+
+\vspace{0.5cm}
+
+% M
+
+\section*{M}
+
+\addcontentsline{toc}{section}{M}
+
+\subsection*{Machine Learning}
+\addcontentsline{toc}{subsection}{Machine Learning}
+Sottocampo dell'Intelligenza Artificiale che si occupa di creare sistemi in grado di apprendere dai dati, identificando modelli e prendendo decisioni con il minimo intervento umano.
+\vspace{0.5cm}
+
+\subsection*{Merge}
+\addcontentsline{toc}{subsection}{Merge}
+Operazione di unione del contenuto di due branch distinti in un unico branch. In Git, è il processo fondamentale per integrare il lavoro svolto parallelamente.
+\vspace{0.5cm}
+
+\subsection*{Milestone}
+\addcontentsline{toc}{subsection}{Milestone}
+Un punto di controllo significativo nel progetto che rappresenta il completamento di un insieme di attività o il raggiungimento di un obiettivo intermedio. Utilizzata per monitorare i progressi verso gli obiettivi principali.
+\vspace{0.5cm}
+
+\subsection*{Mitigazione}
+\addcontentsline{toc}{subsection}{Mitigazione}
+Nell'ambito della gestione dei rischi, indica l'insieme delle azioni pianificate per ridurre la probabilità che un rischio si verifichi o per limitarne l'impatto negativo sul progetto qualora accadesse.
+\vspace{0.5cm}
+
+\subsection*{Modello di sviluppo}
+\addcontentsline{toc}{subsection}{Modello di sviluppo}
+La struttura metodologica utilizzata per organizzare i processi di sviluppo del software (es. Modello a cascata, Modello Agile, Modello a V), definendo l'ordine e la natura delle fasi del ciclo di vita.
+\vspace{0.5cm}
+
+\subsection*{MVP}
+\addcontentsline{toc}{subsection}{MVP}
+Acronimo di \textit{Minimum Viable Product} (Prodotto Minimo Funzionante). La versione di un nuovo prodotto che include solo le caratteristiche fondamentali necessarie per essere rilasciata ai primi utenti e raccogliere feedback per gli sviluppi futuri.
+\vspace{0.5cm}
+
+% N
+
+\section*{N}
+
+\addcontentsline{toc}{section}{N}
+
+\subsection*{NLP}
+\addcontentsline{toc}{subsection}{NLP}
+Acronimo di \textit{Natural Language Processing} (Elaborazione del Linguaggio Naturale). Campo dell'intelligenza artificiale che si occupa dell'interazione tra computer e linguaggio umano, permettendo alle macchine di leggere, decifrare e comprendere le lingue umane.
+\vspace{0.5cm}
+
+\subsection*{Norme di Progetto}
+
+\addcontentsline{toc}{subsection}{Norme di Progetto}
+
+Il documento che definisce il metodo di lavoro, le regole redazionali, gli strumenti e i processi di gestione adottati dal gruppo per garantire coerenza, tracciabilità e qualità.
+
+\vspace{0.5cm}
+
+% O
+
+\section*{O}
+
+\addcontentsline{toc}{section}{O}
+
+\subsection*{Ordine del giorno}
+
+\addcontentsline{toc}{subsection}{Ordine del giorno}
+
+Elenco degli argomenti (chiamato anche "Agenda") pianificati per la discussione durante una riunione. È una sezione obbligatoria dei verbali.
+
+\subsection*{Overleaf}
+\addcontentsline{toc}{subsection}{Overleaf}
+Editor LaTeX collaborativo in cloud, utilizzato dal gruppo per la redazione simultanea, la compilazione e la gestione della documentazione di progetto in tempo reale.
+\vspace{0.5cm}
+
+\vspace{0.5cm}
+
+% P
+
+\section*{P}
+
+\addcontentsline{toc}{section}{P}
+
+\subsection*{Patch}
+\addcontentsline{toc}{subsection}{Patch}
+Un aggiornamento software rilasciato per correggere bug, vulnerabilità di sicurezza o per migliorare l'usabilità e le prestazioni di un programma esistente.
+\vspace{0.5cm}
+
+\subsection*{Pattern architetturali}
+
+\addcontentsline{toc}{subsection}{Pattern architetturali}
+
+Soluzioni progettuali riutilizzabili che descrivono l'organizzazione strutturale di sistemi software, fornendo template collaudati per risolvere problemi ricorrenti di design.
+
+\vspace{0.5cm}
+
+\subsection*{PDF}
+\addcontentsline{toc}{subsection}{PDF}
+Acronimo di \textit{Portable Document Format}. Formato di file utilizzato per presentare e scambiare documenti in modo affidabile, indipendentemente dal software, dall'hardware o dal sistema operativo. È il formato finale di pubblicazione dei documenti del gruppo.
+\vspace{0.5cm}
+
+\subsection*{Piano di Progetto}
+
+\addcontentsline{toc}{subsection}{Piano di Progetto}
+
+Documento che descrive la pianificazione temporale del progetto, l'allocazione delle risorse, la suddivisione del lavoro e la gestione dei rischi.
+
+\vspace{0.5cm}
+
+\subsection*{Piano di Qualifica}
+
+\addcontentsline{toc}{subsection}{Piano di Qualifica}
+
+Documento che definisce le strategie di verifica e validazione adottate dal gruppo, descrivendo le tecniche, le metriche e i test utilizzati per garantire la qualità del prodotto.
+
+\vspace{0.5cm}
+
+\subsection*{Pipeline}
+\addcontentsline{toc}{subsection}{Pipeline}
+In ambito CI/CD, una serie di passaggi automatizzati (workflow) che il software attraversa, dalla scrittura del codice alla compilazione, ai test e infine al deployment.
+\vspace{0.5cm}
+
+\subsection*{Preventivo}
+\addcontentsline{toc}{subsection}{Preventivo}
+Documento o sezione del Piano di Progetto che stima le risorse economiche e temporali necessarie per completare il progetto, calcolate in base alle ore produttive pianificate per ciascun ruolo.
+\vspace{0.5cm}
+
+\subsection*{Product Backlog}
+\addcontentsline{toc}{subsection}{Product Backlog}
+In Scrum, è la lista di tutto ciò che si sa essere necessario nel prodotto. È l'unica fonte dei requisiti per ogni modifica da apportare al prodotto.
+\vspace{0.5cm}
+
+\subsection*{Proof of Concept (PoC)}
+
+\addcontentsline{toc}{subsection}{Proof of Concept (PoC)}
+
+Dimostrazione realizzata per verificare la fattibilità tecnica di una soluzione proposta, utilizzata per validare le scelte tecnologiche prima dell'implementazione completa.
+
+\vspace{0.5cm}
+
+\subsection*{Pubblicazione}
+
+\addcontentsline{toc}{subsection}{Pubblicazione}
+
+Fase finale del ciclo di vita di un documento che consiste nel renderlo accessibile agli stakeholder, ad esempio caricandolo nell'archivio PDF sul sito web del gruppo.
+
+\vspace{0.5cm}
+
+\subsection*{Pull Request}
+
+\addcontentsline{toc}{subsection}{Pull Request}
+
+Richiesta di integrazione delle modifiche da un branch al branch principale del repository. Permette la revisione del codice o della documentazione prima del merge definitivo.
+
+\vspace{0.5cm}
+
+% R
+
+\section*{R}
+
+\addcontentsline{toc}{section}{R}
+
+\subsection*{Redazione}
+
+\addcontentsline{toc}{subsection}{Redazione}
+
+Fase iniziale del ciclo di vita di un documento, durante la quale uno o più autori (redattori) creano e aggiornano i contenuti.
+
+\vspace{0.5cm}
+
+\subsection*{Repository}
+
+\addcontentsline{toc}{subsection}{Repository}
+
+Archivio centrale gestito da un sistema di versionamento (come Git) che contiene tutti i file del progetto (codice sorgente, documenti) e la cronologia completa delle loro modifiche.
+
+\vspace{0.5cm}
+
+\subsection*{Requisiti}
+
+\addcontentsline{toc}{subsection}{Requisiti}
+
+Le necessità e le aspettative che il prodotto software deve soddisfare, classificati in funzionali (cosa il sistema deve fare) e non funzionali (come il sistema deve comportarsi).
+
+\vspace{0.5cm}
+
+% S
+
+\section*{S}
+
+\addcontentsline{toc}{section}{S}
+
+\subsection*{Schema UML}
+
+\addcontentsline{toc}{subsection}{Schema UML}
+
+Diagramma creato utilizzando il linguaggio di modellazione unificato (Unified Modeling Language) per rappresentare visivamente la struttura, il comportamento e le interazioni di un sistema software.
+
+\vspace{0.5cm}
+
+\subsection*{Scrum}
+\addcontentsline{toc}{subsection}{Scrum}
+Un framework Agile per la gestione di progetti complessi. Si basa su iterazioni brevi (Sprint), ruoli definiti e cerimonie regolari per favorire la trasparenza, l'ispezione e l'adattamento.
+\vspace{0.5cm}
+
+\subsection*{Snake case}
+\addcontentsline{toc}{subsection}{Snake case}
+Convenzione di scrittura per identificatori in cui le parole sono separate da un trattino basso (\_) e scritte in minuscolo (es. \texttt{nome\_variabile}).
+\vspace{0.5cm}
+
+\subsection*{Specifiche funzionali}
+
+\addcontentsline{toc}{subsection}{Specifiche funzionali}
+
+Descrizioni dettagliate delle funzionalità che il sistema deve fornire, definendo il comportamento atteso in risposta a determinati input o condizioni.
+
+\vspace{0.5cm}
+
+\subsection*{Specifiche tecniche}
+
+\addcontentsline{toc}{subsection}{Specifiche tecniche}
+
+Descrizioni dettagliate degli aspetti tecnici del sistema, incluse le tecnologie, le architetture, i protocolli e le interfacce da utilizzare.
+
+\vspace{0.5cm}
+
+\subsection*{Sprint}
+\addcontentsline{toc}{subsection}{Sprint}
+In Scrum, un periodo di tempo prefissato (time-box), solitamente da una a quattro settimane, durante il quale viene creato un incremento di prodotto "Done", utilizzabile e potenzialmente rilasciabile.
+\vspace{0.5cm}
+
+\subsection*{Sprint Backlog}
+\addcontentsline{toc}{subsection}{Sprint Backlog}
+Insieme degli elementi selezionati dal Product Backlog per essere sviluppati durante lo Sprint corrente, corredato da un piano attuativo per la loro realizzazione. È uno strumento di pianificazione dinamico, gestito dagli Sviluppatori, che visualizza in tempo reale tutto il lavoro necessario per conseguire lo Sprint Goal.
+\vspace{0.5cm}
+
+\subsection*{Sprint Planning}
+\addcontentsline{toc}{subsection}{Sprint Planning}
+Evento collaborativo che inaugura lo Sprint, durante il quale l'intero Scrum Team definisce l'obiettivo da raggiungere (Sprint Goal) e pianifica le attività necessarie. In questa fase, il team seleziona gli elementi dal Product Backlog in base alla propria capacità produttiva e stabilisce il piano operativo per trasformarli in un Incremento di valore entro la fine dello Sprint.
+\vspace{0.5cm}
+
+\subsection*{Sprint Retrospective}
+\addcontentsline{toc}{subsection}{Sprint Retrospective}
+Riunione conclusiva dello Sprint focalizzata sul processo. Il team ispeziona sé stesso per identificare miglioramenti da applicare nello Sprint successivo.
+\vspace{0.5cm}
+
+\subsection*{Sprint Review}
+\addcontentsline{toc}{subsection}{Sprint Review}
+Evento che si tiene al termine dello Sprint per ispezionare l'Incremento di prodotto realizzato e valutare i progressi rispetto all'Obiettivo di Prodotto. Coinvolge lo Scrum Team e gli stakeholder in una sessione di lavoro volta a raccogliere feedback e, se necessario, ad aggiornare il Product Backlog per ottimizzare il valore delle versioni future.
+\vspace{0.5cm}
+
+\subsection*{Stakeholder}
+
+\addcontentsline{toc}{subsection}{Stakeholder}
+
+Qualsiasi individuo o gruppo che ha un interesse nel progetto o è influenzato dal suo risultato (es. membri del team, committenti, docenti).
+
+\vspace{0.5cm}
+
+% T
+
+\section*{T}
+
+\addcontentsline{toc}{section}{T}
+
+\subsection*{Task}
+
+\addcontentsline{toc}{subsection}{Task}
+
+Un'attività o un compito specifico e tracciabile che deve essere svolto. La gestione dei task avviene tramite GitHub Projects.
+
+\vspace{0.5cm}
+
+\subsection*{Telegram}
+
+\addcontentsline{toc}{subsection}{Telegram}
+
+Applicazione di messaggistica istantanea usata come canale di comunicazione principale dal gruppo.
+
+\vspace{0.5cm}
+
+\subsection*{Template}
+\addcontentsline{toc}{subsection}{Template}
+Modello predefinito di documento che contiene la struttura, lo stile e le impostazioni grafiche standard (come loghi e intestazioni), utilizzato per garantire uniformità in tutta la documentazione di progetto.
+\vspace{0.5cm}s
+
+\subsection*{Topic (Telegram)}
+
+\addcontentsline{toc}{subsection}{Topic (Telegram)}
+
+Funzionalità dei gruppi Telegram che permette di suddividere le conversazioni in argomenti specifici, garantendo maggiore ordine e tracciabilità delle discussioni.
+
+\vspace{0.5cm}
+
+% V
+
+\section*{V}
+
+\addcontentsline{toc}{section}{V}
+
+\subsection*{Verbali}
+
+\addcontentsline{toc}{subsection}{Verbali}
+
+Documenti ufficiali che riportano le discussioni, le decisioni prese e le attività assegnate durante gli incontri del gruppo, al fine di tracciare l'evoluzione del progetto.
+
+\vspace{0.5cm}
+
+\subsection*{Verifica}
+
+\addcontentsline{toc}{subsection}{Verifica}
+
+Fase del ciclo di vita di un documento in cui un membro del gruppo, diverso dal redattore, controlla la correttezza formale, la qualità e la coerenza dei contenuti prima dell'approvazione o pubblicazione.
+
+\vspace{0.5cm}
+
+\subsection*{Versionamento}
+\addcontentsline{toc}{subsection}{Versionamento}
+La gestione delle diverse versioni di un documento o di un software. Permette di tracciare la storia delle modifiche, ripristinare stati precedenti e gestire lo sviluppo concorrente (vedi anche Git).
+\vspace{0.5cm}
+
+% W
+
+\section*{W}
+
+\addcontentsline{toc}{section}{W}
+
+\subsection*{Workflow}
+
+\addcontentsline{toc}{subsection}{Workflow}
+
+Una sequenza configurabile di operazioni automatizzate. Nel contesto di GitHub Actions, definisce i passi per processi come la compilazione o la pubblicazione. Sinonimo di Pipeline.
+
+\vspace{0.5cm}
+
+\end{document}
