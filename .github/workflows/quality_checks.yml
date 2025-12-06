@@ -3,14 +3,14 @@ name: Quality Checks (Gulpease & LanguageTool & ChkTeX)
 on:
   # Trigger automatico su push e PR
   push:
-    branches: [main, develop]
+    branches: [main, develop, feature/quality-checks]
     paths:
       - 'src/**/*.tex'
       - 'quality/**/*.py'
       - '.github/workflows/quality_checks.yml'
   
   pull_request:
-    branches: [main, develop]
+    branches: [main, develop, feature/quality-checks]
     paths:
       - 'src/**/*.tex'
       - 'quality/**/*.py'
