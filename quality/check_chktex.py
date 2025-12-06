@@ -17,7 +17,7 @@ MAX_CHKTEX_ERRORS = 5
 # - 12: Spazio mancante dopo comando (spesso falsi positivi in macro)
 # - 16: Riferimento a comando non riconosciuto (ignore custom command)
 # - 17: Numero non seguito da unità (comune nei numeri di versione)
-# - 25: Uso della d eufonica senza necessità (troppo sensibile) 
+# - 25: Uso della d eufonica senza necessità (troppo sensibile)
 IGNORED_WARNINGS = {8, 12, 16, 17, 25}
 
 REPORT_PATH = Path("quality/chktex_results.json")
