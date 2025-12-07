@@ -81,10 +81,10 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-            name: quality-report-${{ github.run_number }}
-            path: quality/QUALITY_SUMMARY.md
-            retention-days: 90
-            if-no-files-found: error
+          name: quality-report-${{ github.run_number }}
+          path: quality/quality_report.md
+          retention-days: 90
+          if-no-files-found: error
 
 
       - name: Comment PR with results
