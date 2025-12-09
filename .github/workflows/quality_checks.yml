@@ -1,22 +1,12 @@
 name: Quality Checks (Gulpease & LanguageTool & ChkTeX)
 
 on:
-  # Trigger automatico su push e PR
-  push:
-    branches: [main, develop, feature/quality-checks]
-    paths:
-      - 'src/**/*.tex'
-      - 'quality/**/*.py'
-      - '.github/workflows/quality_checks.yml'
-  
-  pull_request:
-    branches: [main, develop, feature/quality-checks]
-    paths:
-      - 'src/**/*.tex'
-      - 'quality/**/*.py'
-      - '.github/workflows/quality_checks.yml'
-  
-  # Trigger manuale per rieseguire a richiesta
+  # Parte automaticamente quando il workflow "Build LaTeX documents" è completato
+  workflow_run:
+    workflows: ["Build LaTeX documents"]
+    types: [completed]
+
+  # Trigger manuale per rieseguire a richiesta (sempre disponibile)
   workflow_dispatch:
     inputs:
       verbose:
@@ -30,6 +20,15 @@ permissions:
 
 jobs:
   quality-checks:
+    # Caso 1: workflow_run → esegui solo se il build è andato a buon fine
+    # Caso 2: workflow_dispatch → esegui sempre (manuale)
+    if: >
+      ${{
+        (github.event_name == 'workflow_run' &&
+         github.event.workflow_run.conclusion == 'success')
+        ||
+        (github.event_name == 'workflow_dispatch')
+      }}
     runs-on: ubuntu-latest
     name: Quality Report Generation
 
@@ -81,7 +80,6 @@ jobs:
           path: quality/quality_report.md
           retention-days: 90
           if-no-files-found: error
-
 
       - name: Comment PR with results
         if: "github.event_name == 'pull_request'"
