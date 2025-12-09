@@ -8,7 +8,7 @@
 
 % --- Grafica e Layout ---
 \usepackage{graphicx}           % Per le immagini
-\graphicspath{{../../assets/}}
+\graphicspath{{assets/}{../assets/}{../../assets/}{../../../assets/}}
 \usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
 \usepackage{fancyhdr}           % Per header e footer personalizzati
 \usepackage{microtype}          % Migliora la tipografia
@@ -43,7 +43,6 @@
 % ===================================================================
 %  INIZIO DOCUMENTO
 % ===================================================================
-\setcounter{secnumdepth}{4}
 \begin{document}
 
 % -------------------------------------------------------------------
@@ -66,7 +65,7 @@
     
     {\Huge \bfseries Norme di Progetto \par}
         \vspace{1cm}
-         {\Large Redattori: Giovanni Ponso, Davide Biasuzzi, Michele Ogniben \par} 
+         {\Large Redattori: Giovanni Ponso, Davide Biasuzzi \par} 
     {\Large Approvato da: Mihaela Mariana Romascu \par}
     \vfill
 
@@ -74,9 +73,9 @@
 
     {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
 
-        {\large Data: 2025-11-13 \par}
+        {\large Data: 2025-11-05 \par}
 
-     {\Large Versione: 1.2 \par} 
+     {\Large Versione: 1.0 \par} 
 
 \end{titlepage}
 
@@ -95,8 +94,6 @@
 \toprule
 \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
 \midrule
-1.2 & 2025-11-13 & D. Biasuzzi & Aggiunta struttura iniziale paragrafo relativo alla fornitura (sezioni "Analisi Req". e "Codifica" da completare) & Michele Ogniben \\
-1.1 & 2025-11-11 & M. Ogniben & Aggiunto paragrafo relativo ai Processi Organizzativi & Davide Biasuzzi\\
 1.0 & 2025-11-05 & D. Biasuzzi & Modifica struttura del file e verifica & Francesco Zanella\\
 0.1 & 2025-11-05 & G. Ponso; D. Biasuzzi & Creazione documento + redazione processi di supporto &  Francesco Zanella\\
 \bottomrule
@@ -148,95 +145,14 @@ Ponso & Giovanni & 2000558 \\
 Questo documento definisce le Norme di Progetto{\scriptsize\raisebox{-0.5ex}{G}} del gruppo NightPRO per il corso di Ingegneria del Software (A.A.~2025/2026).
 Stabilisce in forma univoca: metodo di lavoro, regole redazionali e criteri di gestione dei documenti, così da garantire coerenza, tracciabilità e chiarezza operativa.
 La presente versione costituisce la base metodologica iniziale e sarà aggiornata con l’avanzare delle attività.
-
-
+\subsection{Stato del progetto}
+Al momento il capitolato{\scriptsize\raisebox{-0.5ex}{G}} non è assegnato. Il documento disciplina quindi l’assetto organizzativo e documentale preliminare: modalità di collaborazione, convenzioni redazionali e pubblicazione dei deliverable.
+Le sezioni relative a prodotto, pianificazione dettagliata e processi di qualità, verifica e validazione saranno integrate nelle versioni successive, in coerenza con il capitolato che verrà attribuito.
 \subsection{Glossario}
 
 Per garantire chiarezza terminologica e uniformità nella comprensione dei concetti utilizzati, viene redatto un Glossario{\scriptsize\raisebox{-0.5ex}{G}} contenente i termini tecnici e potenzialmente ambigui.
 Alla \textbf{prima occorrenza} nel documento, ogni termine seguito dal simbolo {\scriptsize\raisebox{-0.5ex}{G}} viene definito formalmente nel glossario.
 Le occorrenze successive non riportano tale marcatura.
-
-
-\newpage
-\section{Processi primari}
-\subsection{Fornitura}
-\subsubsection{Descrizione} Questa sezione definisce le norme, gli strumenti e le metodologie che ogni membro del gruppo \textit{NightPRO} si impegna a rispettare. L'obiettivo è garantire una collaborazione efficace e trasparente con l'azienda proponente{\scriptsize\raisebox{-0.5ex}{G}}, \textit{Ergon Informatica}.
-
-\subsubsection{Gestione della Comunicazione} Il gruppo \textit{NightPRO} si impegna a garantire una comunicazione costante e trasparente con \textit{Ergon Informatica} per tutta la durata del progetto, interfacciandosi primariamente con il referente Gianluca Carlesso. Gli incontri periodici con il referente sono finalizzati a: \begin{itemize} 
-    \item Discutere i requisiti{\scriptsize\raisebox{-0.5ex}{G}} (necessari, desiderabili, facoltativi) da includere nel prodotto. 
-    \item Ricevere feedback{\scriptsize\raisebox{-0.5ex}{G}} sullo stato di avanzamento dei lavori. 
-    \item Ottenere chiarimenti e risolvere eventuali ambiguità. 
-    \item Definire vincoli e requisiti dei processi intermedi. 
-\end{itemize}
-
-\subsubsection{Strumenti}
-Di seguito sono elencati i principali strumenti software adottati dal gruppo:
-
-\begin{itemize}
-    \item \textbf{Git}: software per il \textit{controllo di versione} (VCS) distribuito, utilizzato per tracciare le modifiche al codice sorgente durante lo sviluppo.
-    
-    \item \textbf{GitHub}: piattaforma di \textit{hosting} basata su Git, impiegata per la gestione dei repository, la revisione del codice e la collaborazione.
-    
-    \item \textbf{Google Meet}: piattaforma per videoconferenze online. È lo strumento scelto per l'organizzazione di incontri, presentazioni e revisioni periodiche con il proponente.
-    
-    \item \textbf{Telegram}: applicazione di messaggistica istantanea, utilizzata per le comunicazioni operative rapide e gli aggiornamenti tempestivi con i referenti aziendali.
-    
-    \item \textbf{\LaTeX}: linguaggio di \textit{markup} e sistema di preparazione documentale, scelto dal gruppo per la produzione e la stesura di tutta la documentazione ufficiale del progetto.
-\end{itemize}
-
-\subsection{Sviluppo}
-
-\subsubsection{Scopo}
-L'obiettivo primario della fase di sviluppo è tradurre i requisiti di progetto, definiti con il proponente, in un prodotto software funzionante, verificato e conforme alle specifiche. Questa fase rappresenta il nucleo costruttivo dell'intero progetto.
-
-\subsubsection{Descrizione}
-Il processo di sviluppo consiste nell'esecuzione di un insieme strutturato di attività tecniche volte alla realizzazione del software. 
-Il gruppo \textit{NightPRO} adotta un approccio metodico per assicurare che il prodotto finale non solo soddisfi le \textit{aspettative} del proponente, ma rispetti anche elevati standard di qualità in termini di robustezza e manutenibilità.
-
-Il flusso di sviluppo si articola nelle seguenti macro-attività:
-\begin{itemize}
-    \item \textbf{Progettazione Dettagliata (Design)}: Definizione dell'architettura{\scriptsize\raisebox{-0.5ex}{G}} software, delle interfacce dei moduli e dei pattern da implementare, partendo dai requisiti analizzati.
-    \item \textbf{Implementazione (Coding)}: Scrittura del codice sorgente in linea con la progettazione e gli standard di codifica definiti.
-    \item \textbf{Verifica e Test}: Esecuzione di test unitari e di integrazione per assicurare che ogni componente funzioni correttamente e che il sistema nel suo complesso sia privo di difetti.
-\end{itemize}
-
-\subsubsection{Risultato Atteso}
-Il gruppo \textit{NightPRO} si impegna a utilizzare il processo di sviluppo per fornire un prodotto software che sia pienamente validato e rispondente ai requisiti concordati con il proponente \textit{Ergon Informatica}. Il risultato finale sarà un software testato, funzionante e pronto per le fasi successive di rilascio o collaudo.
-
-\subsubsection{Analisi dei Requisiti{\scriptsize\raisebox{-0.5ex}{G}}}
-    \textbf{\textit{Placeholder (Da definire)}}
-\subsubsection{Progettazione}
-
-\paragraph{Scopo} L'attività di progettazione mira a definire l'architettura 
-tecnica del prodotto in modo che sia robusta, scalabile e in grado di 
-soddisfare pienamente le esigenze di tutti gli \textit{stakeholder}, 
-come identificate in fase di analisi dei requisiti. 
-Attraverso la documentazione di soluzioni tecniche dettagliate e la 
-definizione delle interfacce tra i componenti, questa fase assicura una 
-chiara ripartizione delle responsabilità di sviluppo e semplifica le 
-future operazioni di manutenzione. 
-Il risultato è una base documentale esaustiva che include l'intera 
-struttura del sistema, le specifiche funzionali{\scriptsize\raisebox{-0.5ex}{G}} e non funzionali, 
-e le scelte tecnologiche fondamentali.
-
-\paragraph{Descrizione} La progettazione è strutturata su più livelli per coprire in modo esaustivo sia gli aspetti funzionali che quelli strutturali del prodotto:
-
-\begin{itemize}
-    \item \textbf{Progettazione logica}: Questa fase si concentra sulla selezione dello stack tecnologico (tecnologie, \textit{framework}, librerie). L'obiettivo è motivare l'adeguatezza di tali scelte e confermarne la fattibilità tecnica, tipicamente attraverso la realizzazione di un \textit{Proof of Concept{\scriptsize\raisebox{-0.5ex}{G}}} (PoC).
-    
-    \item \textbf{Progettazione di dettaglio}: Basandosi sulle fondamenta stabilite dalla progettazione logica, questa fase definisce l'architettura software specifica. Vengono sviluppate e documentate le rappresentazioni complete di tutte le componenti del sistema e delle loro interazioni.
-\end{itemize}
-
-\subsubsection{Codifica}
-\textbf{\textit{   Placeholder (Da definire)
-}}
-
-
-
-
-
-
-
 
 % -------------------------------------------------------------------
 % PROCESSI DI SUPPORTO
@@ -252,6 +168,7 @@ e le scelte tecnologiche fondamentali.
 
 \subsubsection{Obiettivo}
 L'obiettivo di questa sezione è definire l'insieme di strumenti e configurazioni adottate dal gruppo per supportare la collaborazione, la comunicazione, l’organizzazione e l’integrazione tecnica del progetto.
+Pur trovandosi in fase preliminare, il team ha ritenuto fondamentale predisporre fin da subito un ambiente robusto e strutturato che garantisca tracciabilità, trasparenza, automazione e continuità operativa per l’intera durata del progetto.
 \subsubsection{Comunicazione sincrona e asincrona}
 
 \paragraph{Telegram}
@@ -270,7 +187,7 @@ Il gruppo ha istituito un’organizzazione \textbf{GitHub}{\scriptsize\raisebox{
 
 \begin{itemize}
     \item \textbf{Documentazione}: dedicato alla gestione della documentazione di progetto, configurazione del sito pubblico e automazione CI{\scriptsize\raisebox{-0.5ex}{G}};
-\item \textbf{Prodotto software}: attualmente vuoto, verrà popolato quando inizierà la fase di codifica software.
+\item \textbf{Prodotto software}: inizialmente vuoto, verrà popolato quando il capitolato verrà assegnato.
 \end{itemize}
 
 La separazione è stata decisa per garantire indipendenza tra le attività documentali e quelle di sviluppo software, favorendo chiarezza, modularità e controllo delle versioni.
@@ -372,7 +289,7 @@ Questo meccanismo assicura un punto di accesso unico e costantemente aggiornato 
 \subsubsection{Obiettivo}
 La documentazione rappresenta un elemento fondamentale del progetto:  
 definisce i processi, registra le decisioni, formalizza gli avanzamenti e costituisce un riferimento verificabile e condiviso.
-Questa sezione definisce regole, convenzioni e ciclo di vita{\scriptsize\raisebox{-0.5ex}{G}} adottati dal gruppo per la produzione dei documenti ufficiali.
+Questa sezione definisce regole, convenzioni e ciclo di vita adottati dal gruppo per la produzione dei documenti ufficiali.
 Poiché il progetto si trova nella fase di candidatura, tali norme costituiscono una baseline che sarà estesa con l’avanzare delle attività progettuali.
 \subsubsection{Formati di riferimento}
 L'intera documentazione ufficiale viene redatta in formato \LaTeX{}{\scriptsize\raisebox{-0.5ex}{G}} (\texttt{.tex}) e distribuita in formato PDF{\scriptsize\raisebox{-0.5ex}{G}} (\texttt{.pdf}).
@@ -448,7 +365,7 @@ Le fasi previste sono:
         \item aderenza alle norme di progetto.
 \end{itemize}
     Un documento è considerato verificato quando tutte le modifiche proposte sono state esaminate e validate.
-\item \textbf{Approvazione}{\scriptsize\raisebox{-0.5ex}{G}} \textbf{(solo per i documenti ufficiali) }Per i documenti formali del progetto (es. Lettera di Presentazione, Valutazione Capitolati, Preventivo dei Costi) è prevista una fase di approvazione finale, successiva alla verifica.
+\item \textbf{Approvazione}{\scriptsize\raisebox{-0.5ex}{G}} *(solo per i documenti ufficiali)* Per i documenti formali del progetto (es. Lettera di Presentazione, Valutazione Capitolati, Preventivo dei Costi) è prevista una fase di approvazione finale, successiva alla verifica.
     L'approvazione certifica che il documento è completo, corretto e pronto per essere rilasciato nella sua versione ufficiale.
 \item \textbf{Pubblicazione}{\scriptsize\raisebox{-0.5ex}{G}}  
     Dopo la verifica (per verbali) o dopo l'approvazione (per documenti ufficiali), il documento viene inserito nell'archivio PDF (con il sistema automatico descritto in precedenza), indicizzato e pubblicato sul portale del gruppo.
@@ -484,239 +401,10 @@ Ogni verbale prodotto dal gruppo NightPRO deve essere strutturato nelle seguenti
 % PROCESSI ORGANIZZATIVI
 % -------------------------------------------------------------------
 
-\newpage
-\section{Processi organizzativi}
-\label{sec:processi_organizzativi}
 
-\subsection{Finalità}
-Questa sezione stabilisce le norme e le procedure che regolano l'organizzazione interna del gruppo.
-Definisce i meccanismi di coordinamento, comunicazione e gestione delle risorse umane necessari per condurre efficacemente il progetto lungo tutto il suo sviluppo.
-Le regole qui definite riguardano l'assegnazione dei ruoli, la pianificazione e il monitoraggio delle attività, la gestione degli incontri, i canali di comunicazione, nonché i processi di apprendimento e di ottimizzazione dei metodi di lavoro.
+%\newpage
+%\section{Processi organizzativi}
+%(da fare)
 
-\subsection{Ambito di applicazione}
-I dettagli operativi e le tempistiche specifiche relative ai processi organizzativi sono riportati nel documento \emph{Piano di Progetto{\scriptsize\raisebox{-0.5ex}{G}}}.
-Le norme qui presentate coprono i seguenti ambiti:
-\begin{itemize}
-    \item Ruoli e responsabilità dei membri del team;
-    \item Comunicazione interna ed esterna;
-    \item Pianificazione e tracciamento delle attività;
-    \item Sviluppo delle competenze;
-    \item Ottimizzazione dei processi.
-\end{itemize}
-
-\subsection{Ruoli e responsabilità}
-La distribuzione dei ruoli tra i membri del gruppo è di competenza del \emph{Responsabile di Progetto}, che deve assicurare una rotazione equa delle responsabilità.
-Nel corso del progetto, ogni componente del team dovrà ricoprire almeno una volta ciascuno dei ruoli previsti.
-La copertura simultanea di tutti i ruoli non è sempre necessaria, in quanto dipende dalla fase di sviluppo in cui si trova il progetto.
-
-\paragraph{Politica di rotazione dei ruoli}
-Per garantire che tutti i membri del team acquisiscano esperienza in ogni ruolo previsto, il gruppo ha definito una politica di rotazione strutturata.
-Durante le prime sette settimane di progetto (Fase Iniziale), si adotta una rotazione a cadenza settimanale, con l'obiettivo di assicurare che ogni membro abbia ricoperto tutti i ruoli disponibili.
-Una volta completato il ciclo di rotazione iniziale (Fase a Regime, post-settimana 7), la rotazione avverrà ogni 2 settimane.
-Il team si riserva la facoltà di adottare cadenze differenti esclusivamente per gestire occasioni eccezionali o specifiche necessità progettuali urgenti.
-
-Di seguito vengono descritti i sei ruoli previsti e le relative responsabilità.
-
-\subsubsection{Responsabile di Progetto}
-Il Responsabile di Progetto funge da interfaccia principale tra il gruppo e le parti esterne, in particolare con il \emph{committente{\scriptsize\raisebox{-0.5ex}{G}}} e l'\emph{azienda proponente}{\scriptsize\raisebox{-0.5ex}{G}}.
-È responsabile dell'approvazione delle decisioni strategiche e del coordinamento generale delle attività del team.
-
-\paragraph{Compiti principali}
-Il Responsabile di Progetto si occupa della definizione degli obiettivi, della pianificazione delle scadenze e dell'allocazione delle risorse disponibili.
-Coordina il lavoro del team, gestisce le risorse umane e assegna i compiti, assicurando che ogni membro abbia chiarezza sulle proprie responsabilità.
-Monitora costantemente l'avanzamento del progetto, verificando che le attività vengano completate nei tempi stabiliti.
-Si occupa inoltre dell'identificazione, analisi e gestione dei rischi potenziali.
-Gestisce tutte le comunicazioni con il team, gli stakeholder, il committente e l'azienda proponente, organizzando e presiedendo gli incontri interni ed esterni.
-Ha il compito di approvare la documentazione ufficiale prodotta dal gruppo, l'offerta economica presentata al committente e i task completati e verificati.
-Suddivide le attività complessive in singole issue{\scriptsize\raisebox{-0.5ex}{G}} o task e ne gestisce l'assegnazione ai membri del gruppo.
-
-\subsubsection{Amministratore}
-L'Amministratore ha la responsabilità di controllare e amministrare l'ambiente di lavoro del gruppo, garantendo che strumenti e infrastrutture siano sempre funzionanti e accessibili.
-
-\paragraph{Compiti principali}
-L'Amministratore si occupa della salvaguardia e della gestione della documentazione di progetto, curando il sistema di archiviazione e versionamento sia per la documentazione che per il codice sorgente.
-Amministra l'infrastruttura tecnologica e gli strumenti utilizzati dal team, mantenendo l'ambiente di sviluppo efficiente.
-Fornisce supporto tecnico ai membri del gruppo, risolvendo errori e gestendo le segnalazioni di malfunzionamenti.
-Si dedica all'automazione dei processi ricorrenti, identifica opportunità di miglioramento e implementa soluzioni per ottimizzare l'ambiente di lavoro.
-Esegue il controllo delle versioni e delle configurazioni del prodotto software, gestendo il sistema di versionamento e configurazione.
-Redige e attua i piani e le procedure per la gestione della qualità, assicurando l'efficacia e l'efficienza dei processi.
-Fornisce inoltre supporto per la gestione delle risorse e delle comunicazioni del progetto.
-
-\subsubsection{Analista}
-L'Analista si occupa dell'analisi dei requisiti{\scriptsize\raisebox{-0.5ex}{G}} e della definizione delle specifiche del progetto, traducendo le esigenze del cliente in requisiti formali e verificabili.
-
-\paragraph{Compiti principali}
-L'Analista raccoglie e analizza i requisiti del cliente, interpretando i bisogni del proponente e trasformandoli in aspettative chiare che il gruppo deve soddisfare per realizzare un prodotto di qualità professionale.
-Definisce le \emph{specifiche funzionali}{\scriptsize\raisebox{-0.5ex}{G}} e \emph{tecniche}{\scriptsize\raisebox{-0.5ex}{G}} del prodotto, sviluppa una modellazione concettuale del sistema e organizza i requisiti in categorie logiche.
-Collabora strettamente con il progettista per individuare soluzioni che soddisfino i requisiti individuati.
-Redige il documento \emph{Analisi dei Requisiti}{\scriptsize\raisebox{-0.5ex}{G}}, descrivendo in dettaglio i servizi che il sistema deve fornire e garantendo che tutti i requisiti siano espressi in modo chiaro, completo e non ambiguo.
-Studia approfonditamente il problema e il \emph{contesto applicativo{\scriptsize\raisebox{-0.5ex}{G}}}, valutando la complessità del dominio e identificando sia i requisiti espliciti che quelli impliciti.
-Assicura che i requisiti siano definiti con sufficiente precisione per evitare ambiguità nelle fasi successive di progettazione e sviluppo.
-
-\subsubsection{Progettista}
-Il Progettista ha il compito di trasformare i requisiti emersi dalla fase di analisi in un'\emph{architettura}{\scriptsize\raisebox{-0.5ex}{G}} software coerente e realizzabile.
-
-\paragraph{Compiti principali}
-Il Progettista progetta l'architettura del sistema in modo che soddisfi tutti i requisiti identificati, privilegiando soluzioni con elevata manutenibilità e ridotto \emph{accoppiamento{\scriptsize\raisebox{-0.5ex}{G}}} tra i componenti.
-Prende decisioni riguardanti gli aspetti tecnici e tecnologici del progetto, selezionando le tecnologie più appropriate per garantire efficacia ed efficienza.
-Valuta e seleziona eventuali \emph{pattern architetturali{\scriptsize\raisebox{-0.5ex}{G}}} da adottare e sviluppa lo \emph{schema UML{\scriptsize\raisebox{-0.5ex}{G}}} delle classi che modella la struttura del sistema.
-Garantisce che la soluzione proposta sia economicamente sostenibile e mantenibile, rispettando i vincoli di budget definiti nel preventivo.
-Collabora con gli analisti per comprendere appieno i requisiti e con i programmatori per guidare l'implementazione delle soluzioni tecniche.
-Coordina le attività di progettazione per assicurare che il prodotto finale soddisfi tutti i requisiti.
-Si dedica inoltre alla ricerca e all'approfondimento delle conoscenze tecniche, esplorando strumenti e tecnologie innovative che possano migliorare l'architettura del sistema.
-
-\subsubsection{Programmatore}
-Il Programmatore realizza l'implementazione concreta delle soluzioni tecniche definite dal progettista, trasformando le specifiche di progettazione in codice funzionante.
-
-\paragraph{Compiti principali}
-Il Programmatore scrive codice che aderisce rigorosamente alle specifiche di progettazione, applicando le "\emph{best practices{\scriptsize\raisebox{-0.5ex}{G}}}" consolidate nel settore per garantire qualità e leggibilità.
-Risolve i problemi tecnici che emergono durante lo sviluppo, trovando soluzioni efficaci e compatibili con l'architettura definita.
-Esegue test sul proprio codice per verificare che funzioni correttamente e soddisfi i requisiti specificati.
-Scrive codice ben documentato, mantenibile e correttamente versionato, facilitando così le attività di verifica e manutenzione.
-Redige la documentazione necessaria per la comprensione e l'utilizzo del codice prodotto.
-Collabora attivamente con il progettista e gli altri membri del team per implementare correttamente l'architettura definita nella fase di progettazione.
-
-\subsubsection{Verificatore}
-Il Verificatore controlla il lavoro prodotto dagli altri membri del gruppo, assicurando che rispetti gli standard di qualità e le norme di progetto stabilite.
-
-\paragraph{Compiti principali}
-Il Verificatore esamina ogni file caricato in un \emph{branch{\scriptsize\raisebox{-0.5ex}{G}}} protetto della repository per verificarne la conformità alle Norme di Progetto.
-Durante la revisione di una \emph{pull request{\scriptsize\raisebox{-0.5ex}{G}}}, controlla i file modificati o aggiunti per individuare errori ortografici, sintattici, logici e problemi di build.
-Esamina i prodotti in fase di revisione utilizzando le tecniche e gli strumenti definiti nelle Norme di Progetto, verificando che siano conformi ai requisiti funzionali e di qualità.
-Segnala eventuali errori o non conformità riscontrati durante la verifica, fornendo \emph{feedback}{\scriptsize\raisebox{-0.5ex}{G}} dettagliati e costruttivi a chi ha prodotto il lavoro.
-Assicura che la qualità di quanto prodotto sia conforme agli standard imposti, verificando la conformità in ogni fase del ciclo di vita del prodotto.
-Redige la parte retrospettiva del \emph{Piano di Qualifica{\scriptsize\raisebox{-0.5ex}{G}}}, documentando le verifiche e le prove effettuate.
-Mantiene una sorveglianza continua durante l'intera durata del progetto, garantendo che tutte le attività rispettino il livello di qualità atteso.
-
-\subsection{Comunicazione e incontri}
-La gestione efficace della comunicazione e degli incontri è fondamentale per garantire il coordinamento tra i membri del team e con le parti esterne.
-Questa sezione definisce i canali e le modalità di comunicazione adottate dal gruppo, distinguendo tra comunicazioni interne ed esterne.
-
-\subsubsection{Canali di comunicazione interna}
-Le comunicazioni tra i membri del gruppo avvengono principalmente attraverso due strumenti, scelti in base alle esigenze specifiche.
-
-\paragraph{Telegram}
-Telegram è il canale principale per le comunicazioni asincrone interne.
-Viene utilizzato per scambi rapidi di messaggi testuali e vocali, nonché per la pianificazione e l'organizzazione degli incontri interni.
-La scelta di questo strumento è stata motivata dalla disponibilità della funzionalità topic, che consente di organizzare le conversazioni per argomento, migliorando l'ordine e la tracciabilità delle discussioni.
-
-\paragraph{Google Meet}
-Google Meet viene utilizzato per le riunioni sincrone interne quando è necessario un confronto diretto tra i membri del gruppo.
-Questo strumento permette la partecipazione simultanea di tutti i membri e offre funzionalità di condivisione schermo particolarmente utili durante attività collaborative.
-
-\subsubsection{Canali di comunicazione esterna}
-Le comunicazioni con il proponente e i committenti sono gestite dal Responsabile di Progetto e avvengono attraverso canali dedicati.
-
-\paragraph{Google Meet}
-Google Meet è utilizzato per le riunioni esterne con il proponente e i committenti.
-Queste riunioni possono essere richieste da entrambe le parti in base alle necessità del progetto.
-Al termine di ogni riunione esterna viene redatto un verbale per documentare gli argomenti trattati e le decisioni prese.
-
-\paragraph{Email}
-L'email viene utilizzata per comunicazioni formali e dettagliate con le parti esterne.
-L'indirizzo email del gruppo (\texttt{swe.nightpro@gmail.com}) è condiviso tra tutti i membri del team per garantire trasparenza e accessibilità alle comunicazioni ufficiali.
-\paragraph{Telegram} Per le comunicazioni operative e le richieste che necessitano di una risposta rapida da e verso l'azienda, si utilizza l'applicazione di messaggistica istantanea Telegram. Questo canale è dedicato alla gestione agile{\scriptsize\raisebox{-0.5ex}{G}} delle questioni quotidiane e agli aggiornamenti tempestivi che non richiedono la struttura formale di un'email.
-\subsubsection{Organizzazione degli incontri}
-Gli incontri del gruppo si distinguono in interni ed esterni, ciascuno con modalità e finalità specifiche.
-
-\paragraph{Riunioni interne}
-Le riunioni interne coinvolgono esclusivamente i membri del gruppo e si svolgono con cadenza regolare, tipicamente una volta a settimana.
-Qualsiasi membro del gruppo può richiedere un incontro aggiuntivo al Responsabile di Progetto, che provvederà a organizzarlo in base alla disponibilità di tutti i partecipanti.
-Le riunioni si svolgono prevalentemente in modalità virtuale tramite Google Meet.
-
-Per garantire efficienza e produttività, ogni riunione interna segue una struttura ben definita.
-Prima dell'incontro viene preparata una scaletta con i principali punti da discutere.
-Durante la riunione si discute del lavoro svolto da ogni membro dall'ultimo incontro e si affrontano i punti previsti nella scaletta, con spazio per il confronto su eventuali dubbi o problematiche emerse.
-Infine, si pianificano le attività da svolgere per ogni membro fino al prossimo incontro.
-
-Al termine di ogni riunione interna, viene designato un membro del gruppo incaricato di redigere il verbale, contenente una descrizione dei punti principali discussi durante l'incontro.
-
-\paragraph{Riunioni esterne}
-Le riunioni esterne coinvolgono i membri del gruppo insieme ai referenti aziendali o ai committenti.
-La frequenza e le modalità di svolgimento di questi incontri verranno stabilite in accordo con il proponente.
-Entrambe le parti possono richiedere incontri aggiuntivi quando necessario.
-Le riunioni esterne si svolgono principalmente in modalità virtuale tramite Google Meet.
-Al termine di ogni riunione esterna viene redatto un verbale che documenta i momenti salienti e le decisioni prese; quando necessario, il verbale viene sottoposto ai referenti per approvazione.
-
-\subsubsection{Responsabilità durante gli incontri}
-Durante gli incontri, sia il Responsabile di Progetto che i partecipanti hanno responsabilità specifiche da rispettare.
-
-\paragraph{Responsabilità del Responsabile di Progetto}
-Il Responsabile di Progetto ha il compito di pianificare l'ordine del giorno delle riunioni, comunicare tempestivamente eventuali variazioni orarie e verificare la presenza dei membri.
-Durante la riunione, guida le discussioni in modo ordinato ed efficace, assicurando che tutti i punti previsti vengano affrontati.
-Al termine dell'incontro, nomina un segretario incaricato di redigere il verbale e, una volta completato, lo approva formalmente.
-
-\paragraph{Responsabilità dei partecipanti}
-I partecipanti alle riunioni si impegnano a partecipare puntualmente, comunicando tempestivamente eventuali ritardi o assenze.
-Durante gli incontri devono partecipare attivamente alle discussioni e mantenere un comportamento professionale e rispettoso.
-
-\subsection{Pianificazione e tracciamento delle attività}
-Una gestione efficace dei compiti e dei task è essenziale per mantenere l'organizzazione del progetto, garantendo tracciabilità, qualità e rispetto delle tempistiche.
-Questa sezione illustra l'approccio metodologico adottato dal team e descrive il processo che regola lo svolgimento di ciascun task.
-
-\subsubsection{Approccio metodologico}
-Il team adotta il metodo di sviluppo \emph{Agile}{\scriptsize\raisebox{-0.5ex}{G}} per organizzare e pianificare le attività progettuali.
-Questo approccio favorisce una gestione flessibile e iterativa, incoraggiando la collaborazione continua tra i membri del team e una comunicazione trasparente con il committente.
-
-I task vengono definiti, pianificati e assegnati utilizzando \textbf{GitHub Projects}{\scriptsize\raisebox{-0.5ex}{G}}, uno strumento che agevola la condivisione delle responsabilità e il lavoro collaborativo.
-Il sistema permette di visualizzare lo stato delle attività e di tracciare l'avanzamento, individuando rapidamente eventuali blocchi o ritardi.
-Il team valuta periodicamente i risultati ottenuti e pianifica i miglioramenti per i cicli successivi, garantendo un adattamento flessibile ai cambiamenti nei requisiti e promuovendo il coinvolgimento attivo di tutti i partecipanti.
-
-\subsubsection{Processo di gestione dei task}
-Il \emph{ciclo di vita}{\scriptsize\raisebox{-0.5ex}{G}} di ciascun task segue un processo strutturato, gestito attraverso GitHub Projects per assicurare coerenza e tracciabilità.
-
-Il processo inizia con la \textbf{creazione} del task da parte del Responsabile, che definisce su GitHub Projects tutti i campi essenziali: titolo, descrizione, priorità, assegnatari e stima temporale, associandolo eventualmente a una milestone{\scriptsize\raisebox{-0.5ex}{G}}.
-
-Nella fase di \textbf{assegnazione}, i task vengono distribuiti ai membri del team in base alle loro competenze e al carico di lavoro corrente.
-Se un task rimane non assegnato, i membri possono prendersene carico autonomamente.
-
-Durante l'\textbf{esecuzione}, l'assegnatario aggiorna lo stato del task (ad esempio da "To Do" a "In Progress") e lavora su un branch dedicato, garantendo una gestione separata e tracciabile delle modifiche.
-
-Una volta completato, il task entra in fase di \textbf{revisione}.
-Il Verificatore esamina il lavoro prodotto, segnala eventuali modifiche necessarie tramite commenti o review e valida il task se conforme agli standard stabiliti.
-
-Infine, nella fase di \textbf{accettazione}, il Responsabile approva il task completato, esegue il merge del branch quando pertinente e aggiorna lo stato del task a "Completato".
-
-Questo processo strutturato consente al team di gestire le attività con precisione, tracciando ogni modifica e mantenendo una visione chiara e condivisa dell'avanzamento.
-
-\subsection{Sviluppo delle competenze}
-Il processo di formazione e aggiornamento dei membri del team è fondamentale per garantire che tutti possiedano le competenze necessarie per svolgere efficacemente le proprie attività.
-
-\subsubsection{Obiettivi formativi}
-Il processo di formazione mira a sviluppare le competenze necessarie per la produzione della documentazione e per la realizzazione del prodotto software richiesto.
-Gli obiettivi formativi includono:
-\begin{itemize}
-    \item l'acquisizione di una conoscenza solida del linguaggio \LaTeX{};
-    \item lo sviluppo di dimestichezza con i linguaggi di programmazione, le librerie e gli strumenti necessari per il prodotto software assegnato dal proponente;
-    \item la familiarizzazione con l'ambiente di lavoro relativo al capitolato C8.
-\end{itemize}
-
-\subsubsection{Modalità di apprendimento}
-Il gruppo adotta un approccio flessibile alla formazione, permettendo a ciascun membro di scegliere il metodo di apprendimento più adatto alle proprie esigenze.
-Questa libertà consente di ampliare la visione del gruppo sulle tecnologie utilizzate e migliorare le scelte implementative attraverso l'esperienza diretta.
-La rotazione periodica dei ruoli, come definita nella sezione "Ruoli e responsabilità", garantisce che ogni membro del team acquisisca esperienza pratica in tutti i ruoli previsti.
-
-\subsection{Ottimizzazione dei processi}
-Il gruppo adotta un approccio di miglioramento continuo per ottimizzare costantemente i processi di lavoro e la qualità dei prodotti.
-
-\subsubsection{Principio del miglioramento continuo}
-Durante lo svolgimento delle attività e l'elaborazione della documentazione, il team si impegna a seguire costantemente il principio di miglioramento continuo.
-L'obiettivo è identificare proattivamente opportunità di ottimizzazione nei processi, nei ruoli e nelle attività, sviluppando soluzioni innovative per affrontare le sfide che emergono durante il progetto.
-
-Il miglioramento continuo si configura come un ciclo iterativo che permette al team di adattarsi dinamicamente alle esigenze mutevoli del progetto.
-Questo approccio garantisce una crescita costante e un incremento dell'efficienza nelle attività svolte, caratterizzando ogni fase del processo dalla pianificazione all'esecuzione, inclusa la documentazione.
-
-\subsubsection{Meccanismi di implementazione}
-L'implementazione del miglioramento continuo avviene attraverso meccanismi strutturati che coinvolgono tutto il team.
-
-Le problematiche riscontrate durante lo sviluppo e le soluzioni adottate vengono sistematicamente documentate e analizzate.
-Questo permette una gestione consapevole e mirata delle sfide incontrate, evitando la ripetizione di errori già commessi e fornendo un repertorio di soluzioni efficaci per situazioni simili.
-
-Durante le riunioni periodiche, il team discute le attività svolte nell'ultimo periodo, coinvolgendo tutti i membri nell'identificazione delle aree di successo e delle opportunità di miglioramento.
-L'obiettivo è formulare azioni correttive concrete da implementare, promuovendo un feedback costante e un adattamento continuo che migliora progressivamente le prestazioni del team.
-
-Le azioni correttive stabilite durante le riunioni vengono implementate e successivamente valutate per la loro efficacia.
-I risultati di questa valutazione vengono esaminati durante le riunioni successive, creando un ciclo virtuoso di apprendimento e miglioramento.
-Le decisioni prese e le azioni correttive vengono tracciate attraverso il sistema di gestione dei task (GitHub Projects) e documentate nei verbali delle riunioni, garantendo tracciabilità e continuità nel processo di ottimizzazione.
 
 \end{document}

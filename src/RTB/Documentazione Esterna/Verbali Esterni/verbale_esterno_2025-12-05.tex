@@ -1,0 +1,304 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana
+\usepackage{lmodern}            % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}           % Per le immagini
+\graphicspath{{assets/}{../assets/}{../../assets/}{../../../assets}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
+
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{hyperref}           % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Esterno - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce tutti i campi
+\fancyhead[L]{\textbf{NightPRO – Progetto Ingegneria del Software}}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro in basso
+\renewcommand{\headrulewidth}{0.4pt} % Linea sottile sotto l'header
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: intestazione_titolo.tex
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png} 
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    % Titolo specifico del documento
+    {\Large \itshape Verbale Esterno del 5 Dicembre 2025 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+ 
+    % Data di redazione
+    {\large Data: 2025-12-05 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: indice.tex
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy} % Riattiva lo stile di pagina da qui in poi
+
+% -------------------------------------------------------------------
+%  SEZIONE: informazioni.tex
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2025-12-05
+    \item \textbf{Ora:} 09:00 - 09:30
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti (NightPRO):} Biasuzzi Davide, Bilato Leonardo, Ogniben Michele, Perozzo Samuele, Ponso Giovanni
+    \item \textbf{Partecipanti (Esterni):} Gianluca Carlesso (Ergon Informatica)
+    \item \textbf{Redatto da: } Bilato Leonardo
+    \item \textbf{Verificato da:} Giovanni Ponso
+    \item \textbf{Versione: } 1.0
+\end{itemize}
+
+
+% -------------------------------------------------------------------
+%  SEZIONE: odg.tex (Ordine del Giorno)
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Chiarimenti sulla necessità della parte client nella WebApp.
+    \item[2.] Chiarimenti sui canali usati dagli utenti per l'invio degli ordini.
+    \item[3.] Approfondimento sulle regole aziendali mezionate nel capitolato.
+    \item[4.] Chiarimenti su chi sarà il cliente finale del software.
+    \item[5.] Chiarimenti su funzionalità necessarie nel PoC
+    \item[6.] Richiesta una riunione di design thinking.
+    \item[7.] Discussione su quale llm utilizzare.
+    \item[8.] Richiesta ad Ergon di esempi d'ordine.
+\end{itemize}
+
+% -------------------------------------------------------------------
+% SEZIONE: diario.tex (Diario della riunione)
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+Discussione con il referente di Ergon Informatica, Gianluca Carlesso, per chiarire dubbi sorti durante l'analisi dei requisiti. La discussione è stata strutturata come segue:
+
+\vspace{1cm}
+\footnotesize
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{p{0.45\textwidth}p{0.45\textwidth}}
+\toprule
+\textbf{Argomento/Domanda} & \textbf{Risposta/Discussione} \\
+\midrule
+
+\textbf{1) Interfaccia Utente e Operatore} \par
+È necessaria una parte client dedicata? Qual è il flusso previsto per utente e operatore?
+&
+L’utente finale interagisce tramite una chat con LLM (testo, audio, immagini facoltative).
+L’ordine generato viene mostrato all’utente, che può confermare, risolvere ambiguità o chiedere assistenza.
+L’operatore ha un'interfaccia separata per la gestione e correzione degli ordini, e interviene in caso di errori o incompletezze.
+\\ \addlinespace
+
+\textbf{2) Canali di comunicazione} \par
+Quali canali sono previsti per la comunicazione con l'utente?
+&
+È previsto l'uso di un'interfaccia lato client in stile chatbot.
+Canali alternativi (Telegram bot, email, ecc.) sono facoltativi.
+\\ \addlinespace
+
+\textbf{3) Regole Aziendali} \par
+Quali vincoli aziendali deve rispettare il sistema di generazione ordini?
+&
+Basarsi sull’anagrafica articoli (codice, descrizione, categorie, U.M.).
+L’unità di misura va convertita in colli.
+Non tutti i clienti possono acquistare l’intero catalogo: alcuni articoli devono essere filtrati in base al cliente.
+\\ \addlinespace
+
+\textbf{4) Cliente Finale} \par
+Chi utilizzerà il sistema?
+&
+Locali come bar, ristoranti e chioschi.
+\\ \addlinespace
+
+\textbf{5) PoC: Funzionalità Richieste} \par
+Cosa deve dimostrare il Proof of Concept?
+&
+Dimostrare che da testo (e opzionalmente audio) è possibile generare correttamente un ordine strutturato.
+\\ \addlinespace
+
+\textbf{6) Richiesta di riunione di Design Thinking} \par
+Richiesta la possibilità di organizzare una sessione di Design Thinking per definire meglio i requisiti utente.
+&
+L'azienda accetta. Si organizzerà un incontro la settimana successiva per la sessione di Design Thinking.
+\\ \addlinespace
+
+\textbf{7) Tecnologie LLM} \par
+Quali modelli conviene usare? Ci potete fornire una chiave?
+&
+Consigliato usare direttamente le API OpenAI. Ergon fornirà le chiavi per accedere al servizio.
+\\ \addlinespace
+
+\textbf{8) Template Struttura Ordini} \par
+È possibile avere un template JSON della struttura degli ordini?
+&
+Ergon fornirà esempi di file/strutture per definire il formato dell’ordine.
+\\ \addlinespace
+
+\bottomrule
+\end{tabular}
+\normalsize
+
+% -------------------------------------------------------------------
+% SEZIONE: decisioni.tex (Decisioni prese)
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese}
+
+\begin{enumerate}
+\item \textbf{Interfaccia e Flusso Utente:}
+\begin{itemize}
+\item L’utente finale interagisce con la WebApp tramite un'interfaccia chatbot (testo, audio, immagini facoltative) per la creazione, conferma o risoluzione di ambiguità degli ordini.
+
+\item L’operatore utilizzerà un'interfaccia separata per la gestione e correzione degli ordini.
+
+\item L'implementazione di canali alternativi (es. Telegram, email) è facoltativa.
+
+\end{itemize}
+
+
+
+
+\item \textbf{Validazione e Regole Aziendali (Categoria: Requisiti Funzionali):}
+\begin{itemize}
+\item Il sistema deve garantire che l'ordine generato sia coerente e valido, basandosi sui dati aziendali (anagrafica, U.M., ecc.).
+\item Deve essere gestita la disponibilità del catalogo prodotti, filtrando gli articoli anche in base alle restrizioni del singolo cliente.
+\item Devono essere rispettate le unità di misura previste per l'articolo specifico.
+\end{itemize}
+
+
+
+
+
+
+
+\item \textbf{PoC (Proof of Concept)} si concentrerà sulla dimostrazione della fattibilità del progetto:
+
+\begin{itemize}
+\item Generazione di un ordine strutturato partendo da input testuale.
+
+\item Grezza implementazione dell'interfaccia utente.
+
+\item L'interfaccia operatore deve permettere la gestione degli ordini (conferma e modifica).
+\end{itemize}
+
+\item \textbf{Forniture da Ergon:}
+
+\begin{itemize}
+\item Ergon fornirà le chiavi API per l'utilizzo del modello OpenAI LLM.
+
+\item Ergon fornirà esempi di input e il template/struttura (es. JSON) da utilizzare per l'ordine generato.
+
+\end{itemize}
+
+\item \textbf{Prossimi Passi:}
+\begin{itemize}
+\item Organizzazione di una sessione di Design Thinking (Metodologia) per la corretta strutturazione della raccolta requisiti.
+
+\end{itemize}
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: todo.tex (Attività da svolgere)
+% -------------------------------------------------------------------
+\newpage
+\section{Attività da Svolgere (To-Do)}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} & \textbf{Scadenza} \\
+\midrule
+Stesura verbale riunione 05/12 & Bilato Leonardo & 2025-12-05 \\
+Ricezione esempi input e struttura ordine & Ergon Informatica & N/A \\
+Ricezione chiave llm OpenAi & Ergon Informatica & N/A \\
+Organizzazione sessione di design thinking & Ergon + Gruppo NightPRO & Settimana successiva \\
+\bottomrule
+\end{tabular}
+\caption{Riepilogo task assegnati.}
+\end{table}
+
+\end{document}
