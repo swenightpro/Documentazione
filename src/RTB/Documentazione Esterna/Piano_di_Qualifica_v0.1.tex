@@ -1,0 +1,355 @@
+\documentclass[a4paper,11pt,oneside]{scrartcl}
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{scrhack}
+\usepackage{placeins}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{pgf-pie}
+\usepackage{amsmath, amssymb, mathtools}
+\usepackage{float}
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}
+\graphicspath{{../../assets/}{../assets/}{assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[svgnames,table]{xcolor}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{hhline}
+
+% --- Utility ---
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+% --- Comandi Personalizzati ---
+\newcommand{\riskheader}[1]{%
+    \multicolumn{2}{@{}l@{}}{\textbf{#1}} \\ \midrule
+}
+
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Piano di Qualifica - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  TITOLO
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+
+\begin{titlepage}
+\centering
+
+\includegraphics[width=0.4\textwidth]{logo.png} 
+
+\vfill
+
+{\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+{\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+{\large Corso di Ingegneria del Software \par}
+{\small Anno Accademico 2025/2026 \par}
+
+\vfill
+{\Huge \bfseries Piano di Qualifica \par}
+\vspace{1cm}
+
+{\Large Redattori: Mihaela-Mariana Romascu \par}
+
+\vfill
+{\Large \bfseries Gruppo: NightPRO \par}
+{\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+
+\vfill
+
+{\large Data: 2025-12-05 \par}
+{\Large Versione: 0.1 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+% TABELLA VERSIONI
+% -------------------------------------------------------------------
+\newpage
+\section*{Tabella delle Versioni}
+\addcontentsline{toc}{section}{Tabella delle Versioni}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{@{}p{0.1\textwidth}p{0.15\textwidth}p{0.25\textwidth}X>{\centering\arraybackslash}p{0.15\textwidth}@{}}
+\toprule
+\textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione} & \textbf{Verificatore} \\
+\midrule
+0.1 & 2025-12-05 & Mihaela-Mariana Romascu & Stesura iniziale del documento, definizione metriche di processo e prodotto. & Giovanni Ponso\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% -------------------------------------------------------------------
+% INDICE
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents
+\newpage
+
+% -------------------------------------------------------------------
+% INFORMAZIONI GENERALI
+% -------------------------------------------------------------------
+\section*{Informazioni Generali}
+\addcontentsline{toc}{section}{Informazioni Generali}
+
+\subsection*{Componenti del Gruppo}
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del gruppo NightPRO.}
+\end{table}
+
+% -------------------------------------------------------------------
+% INTRODUZIONE
+% -------------------------------------------------------------------
+\newpage
+\section{Introduzione}
+
+Il \textit{Piano di Qualifica} rappresenta il documento strategico per la gestione della qualità all'interno del progetto \textbf{SmartOrder}. Esso stabilisce gli standard, le metodologie di verifica e le metriche quantitative necessarie per valutare sia la qualità del processo di sviluppo che la qualità del prodotto software finale.
+
+\subsection{Scopo del documento}
+Questo documento ha lo scopo di definire:
+\begin{itemize}
+    \item Gli \textbf{obiettivi di qualità} che il gruppo NightPRO si impegna a raggiungere.
+    \item Le \textbf{metriche} utilizzate per monitorare l'andamento del progetto (costi, tempi) e la qualità del codice.
+    \item Le \textbf{procedure di verifica e validazione} da applicare ai documenti e al software.
+    \item I criteri di accettazione per le fasi di avanzamento.
+\end{itemize}
+
+L'adozione di questo piano garantisce che il prodotto finale sia conforme ai requisiti espressi nel Capitolato C8 e rispetti gli standard accademici richiesti.
+
+\subsection{Glossario}
+Al fine di evitare ambiguità, i termini tecnici o specifici del dominio sono raccolti nel documento \textit{Glossario}.
+Nel presente testo, tali termini sono contrassegnati con una "G" in pedice alla loro prima occorrenza (es. Agile{\scriptsize\raisebox{-0.5ex}{G}}).
+
+% --- Riferimenti ---
+\section{Riferimenti}
+
+\subsection{Riferimenti normativi}
+\begin{itemize}
+    \item \href{https://github.com/swenightpro/Documentazione/blob/main/docs/Candidatura/Documentazione%20Interna}{Norme di Progetto V1.0}
+    \item \href{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C8.pdf}{Capitolato d’appalto C8 - Smart Order}
+\end{itemize}
+
+\subsection{Riferimenti informativi}
+\begin{itemize}
+    \item \href{https://github.com/swenightpro/Documentazione/blob/main/docs/RTB/Documentazione%20Esterna}{Glossario}
+    \item Analisi dei requisiti [da inserire link]
+    \item \href{https://github.com/swenightpro/Documentazione/tree/main/docs/RTB/Documentazione%20Esterna/Verbali%20Esterni}{Verbali esterni}
+    \item \href{https://github.com/swenightpro/Documentazione/tree/main/docs/RTB/Documentazione%20Interna/Verbali%20Interni}{Verbali interni}
+    \item \href{https://github.com/swenightpro/Documentazione/tree/main/docs/RTB/Documentazione%20Esterna}{Piano di progetto}
+\end{itemize}
+
+% -------------------------------------------------------------------
+% QUALITÀ DI PROCESSO
+% -------------------------------------------------------------------
+\newpage
+\section{Qualità di Processo}
+
+\subsection{Scopo e Obiettivi}
+La qualità di processo riguarda la capacità del gruppo di gestire le attività pianificate rispettando vincoli di budget e tempistiche. Il gruppo NightPRO adotta il ciclo di Deming, noto come PDCA:
+
+\begin{itemize}
+    \item \textbf{Plan (Pianificare)}: stabilire gli obiettivi e i processi necessari per fornire risultati in accordo con i risultati attesi.
+    \item \textbf{Do (Fare)}: attuare il piano, eseguire i processi, realizzare il prodotto.
+    \item \textbf{Check (Verificare)}: monitorare e misurare i processi e il prodotto a fronte delle politiche, degli obiettivi e dei requisiti.
+    \item \textbf{Act (Agire)}: adottare azioni per migliorare continuamente le prestazioni dei processi.
+\end{itemize}
+
+\subsection{Parametri del Progetto}
+I seguenti valori costituiscono la baseline per il calcolo delle metriche:
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{lXc}
+\toprule
+\textbf{Parametro} & \textbf{Descrizione} & \textbf{Valore} \\
+\midrule
+\textbf{BAC} (Budget At Completion) & Costo totale preventivato del progetto (v0.4) & € 12.850,00 \\
+\textbf{Ore Totali} & Monte ore complessivo disponibile & 630 ore \\
+\textbf{Componenti} & Numero di membri del gruppo & 7 \\
+\textbf{Ore medie per componente} & Media ore di lavoro pro capite ($630/7$) & 90 ore \\
+\textbf{Scadenza Progetto} & Data prevista per la consegna finale (PB) & 21/03/2026 \\
+\bottomrule
+\end{tabularx}
+\caption{Parametri fondamentali del progetto}
+\end{table}
+
+
+\subsection{Metriche di Gestione del Progetto}
+Per il monitoraggio dell'avanzamento, il gruppo utilizza la metodologia Earned Value Management.
+
+\subsubsection{Definizione Metriche}
+\begin{align*}
+\text{AC (Actual Cost)} &: \text{Costo realmente sostenuto fino alla data corrente.} \\[4pt]
+\text{EV (Earned Value)} &: EV = BAC \cdot (\%\text{ completamento attività}) \\[4pt]
+\text{PV (Planned Value)} &: PV = BAC \cdot (\%\text{ lavoro pianificato alla data corrente}) \\[4pt]
+\text{CV (Cost Variance)} &: CV = EV - AC \quad (\text{Differenza di costo}) \\[4pt]
+\text{SV (Schedule Variance)} &: SV = EV - PV \quad (\text{Differenza di tempi}) \\[4pt]
+\text{CPI (Cost Performance Index)} &: CPI = \frac{EV}{AC} \quad (\text{Efficienza economica}) \\[4pt]
+\text{SPI (Schedule Performance Index)} &: SPI = \frac{EV}{PV} \quad (\text{Efficienza temporale}) \\[4pt]
+\text{EAC (Estimate At Completion)} &: EAC = AC + \frac{BAC - EV}{CPI} \quad (\text{Stima costo a finire})
+\end{align*}
+
+\subsubsection{Valori di Accettazione}
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{lXcc}
+\toprule
+\textbf{Metrica} & \textbf{Descrizione} & \textbf{Range Ottimale} & \textbf{Accettabile} \\
+\midrule
+\textbf{CV} & Cost Variance & $\ge 0$ & $\ge -5\%$ BAC \\
+\textbf{SV} & Schedule Variance & $\ge 0$ & $\ge -5\%$ PV \\
+\textbf{CPI} & Cost Performance Index & $\ge 1.00$ & $0.95 \le CPI \le 1.05$ \\
+\textbf{SPI} & Schedule Performance Index & $\ge 1.00$ & $0.95 \le SPI \le 1.05$ \\
+\bottomrule
+\end{tabularx}
+\caption{Soglie di accettazione per le metriche EVM}
+\end{table}
+
+\newpage
+
+
+% -------------------------------------------------------------------
+%  QUALITÀ DI PRODOTTO
+% -------------------------------------------------------------------
+\section{Qualità di Prodotto}
+
+Il gruppo NightPRO fa riferimento allo standard \textbf{ISO/IEC 25010} per definire le caratteristiche di qualità del prodotto software (es. Manutenibilità, Usabilità, Efficienza, Sicurezza).
+
+\subsection{Metriche di Qualità del Software (Statica)}
+Queste metriche mirano a garantire la manutenibilità e la qualità del codice sorgente prodotto.
+
+\begin{align*}
+\text{CX (Cyclomatic Complexity)} &: CX = E - N + 2P \quad (\text{Complessità del flusso di controllo}) \\[4pt]
+\text{DI (Depth of Inheritance)} &: \text{Profondità massima dell'albero di ereditarietà} \\[4pt]
+\text{CD (Code Duplication)} &: \text{Percentuale di codice duplicato sul totale} \\[4pt]
+\text{CCh (Code Churn)} &: \text{Frequenza e volume delle modifiche al codice nel tempo} \\[4pt]
+\text{TD (Technical Debt)} &: \text{Tempo stimato per il refactoring del codice problematico}
+\end{align*}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{lXcc}
+\toprule
+\textbf{Metrica} & \textbf{Descrizione} & \textbf{Ottimale} & \textbf{Accettabile} \\
+\midrule
+\textbf{CX} & Complessità Ciclomatica (per metodo) & $\le 10$ & $\le 15$ \\
+\textbf{DI} & Profondità Ereditarietà & $\le 4$ & $\le 6$ \\
+\textbf{CD} & Duplicazione Codice & $0\%$ & $\le 5\%$ \\
+\textbf{CCh} & Code Churn (linee modificate/settimana) & Basso & Medio \\
+\textbf{TD} & Debito Tecnico & $\le 2$ gg & $\le 5$ gg \\
+\bottomrule
+\end{tabularx}
+\caption{Metriche di Qualità del Codice}
+\end{table}
+
+
+\subsection{Metriche di Qualità del Software (Dinamica)}
+Per garantire la correttezza del software, vengono misurati i livelli di copertura dei test (\textit{Code Coverage}).
+
+\begin{align*}
+\text{CC (Code Coverage)} &: \frac{\text{Linee di codice eseguite dai test}}{\text{Linee totali di codice}} \cdot 100\% \\[6pt]
+\text{BC (Branch Coverage)} &: \frac{\text{Rami decisionali eseguiti}}{\text{Rami totali}} \cdot 100\%
+\end{align*}
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{lXc}
+\toprule
+\textbf{Indicatore} & \textbf{Descrizione} & \textbf{Target (PB)} \\
+\midrule
+CC & Copertura del codice (Linee) & $\geq 80\%$ \\
+BC & Copertura dei rami (Branch) & $\geq 70\%$ \\
+\bottomrule
+\end{tabularx}
+\caption{Metriche di Verifica dinamica}
+\end{table}
+
+% -------------------------------------------------------------------
+%  QUALITÀ DELLA DOCUMENTAZIONE
+% -------------------------------------------------------------------
+\newpage
+\section{Qualità della Documentazione}
+
+La documentazione accompagna il prodotto software e deve garantire accessibilità e comprensione a tutti gli stakeholder.
+
+
+\subsection{Metriche di Leggibilità e Correttezza}
+
+Per valutare la qualità linguistica dei documenti, il gruppo utilizza i seguenti indici automatizzati.
+
+\subsubsection*{Indice Gulpease}
+L'indice Gulpease è calibrato specificamente per la lingua italiana e valuta la leggibilità di un testo basandosi sulla lunghezza delle parole e delle frasi.
+\[
+G = 89 + \frac{300 \cdot (\text{numero frasi}) - 10 \cdot (\text{numero lettere})}{\text{numero parole}}
+\]
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{lXcc}
+\toprule
+\textbf{Metrica} & \textbf{Descrizione} & \textbf{Ottimale} & \textbf{Accettabile} \\
+\midrule
+\textbf{Gulpease} & Indice di leggibilità per testi in italiano & $\ge 60$ & $\ge 40$ \\
+\bottomrule
+\end{tabularx}
+\caption{Metriche per la qualità documentale}
+\end{table}
+\end{document}
