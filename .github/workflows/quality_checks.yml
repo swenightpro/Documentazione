@@ -1,0 +1,114 @@
+name: Quality Checks (Gulpease & LanguageTool & ChkTeX)
+
+on:
+  # Parte automaticamente quando il workflow "Build LaTeX documents" è completato
+  workflow_run:
+    workflows: ["Build LaTeX documents"]
+    types: [completed]
+
+  # Trigger manuale per rieseguire a richiesta (sempre disponibile)
+  workflow_dispatch:
+    inputs:
+      verbose:
+        description: 'Output verbose'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  quality-checks:
+    # Caso 1: workflow_run → esegui solo se il build è andato a buon fine
+    # Caso 2: workflow_dispatch → esegui sempre (manuale)
+    if: >
+      ${{
+        (github.event_name == 'workflow_run' &&
+         github.event.workflow_run.conclusion == 'success')
+        ||
+        (github.event_name == 'workflow_dispatch')
+      }}
+    runs-on: ubuntu-latest
+    name: Quality Report Generation
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Necessario per storico completo
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install language-tool-python
+
+      - name: Install ChkTeX
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq chktex
+          chktex --version
+
+      - name: Create quality directory
+        run: mkdir -p quality
+
+      - name: Run Gulpease check
+        id: gulpease
+        run: python quality/check_gulpease.py
+        continue-on-error: true
+
+      - name: Run LanguageTool check
+        id: languagetool
+        run: python quality/check_languagetool.py
+        continue-on-error: true
+
+      - name: Run ChkTeX check
+        id: chktex
+        run: python quality/check_chktex.py
+        continue-on-error: true
+
+      - name: Upload quality report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: quality-report-${{ github.run_number }}
+          path: quality/quality_report.md
+          retention-days: 90
+          if-no-files-found: error
+
+      - name: Comment PR with results
+        if: "github.event_name == 'pull_request'"
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const reportPath = 'quality/quality_report.md';
+            
+            if (!fs.existsSync(reportPath)) {
+              console.log('No report file found');
+              return;
+            }
+            
+            const report = fs.readFileSync(reportPath, 'utf8');
+            const maxChars = 30000;
+            const truncatedReport = report.length > maxChars 
+              ? report.substring(0, maxChars) + '\n\n... (report truncated)'
+              : report;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: truncatedReport
+            });
+
+      - name: Set workflow status
+        if: always()
+        run: |
+          echo "✓ Quality checks completed"
+          echo "📊 Artifacts available in: quality-report-${{ github.run_number }}"
