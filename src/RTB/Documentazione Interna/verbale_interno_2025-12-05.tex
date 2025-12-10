@@ -1,0 +1,205 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{currfile}
+\usepackage{array}
+\graphicspath{{assets/}{../assets/}{../../assets/}{../../../assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[svgnames]{xcolor}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Interno 2025-12-05 - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ------ FRONTESPIZIO -----------------------------------------
+\begin{document}
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+    \vfill
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    \vfill
+    {\Huge \bfseries Verbale di Riunione \par}
+    \vspace{1cm}
+
+    {\Large \itshape Verbale Interno del 5 Dicembre 2025 \par}
+    \vfill
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    \vfill
+
+    {\large Data: 2025-12-05 \par}
+
+\end{titlepage}
+
+% ------ INDICE -----------------------------------------
+\newpage
+\tableofcontents
+\pagestyle{fancy}
+
+% ------ INFORMAZIONI GENERALI -----------------------------------------
+\newpage
+\section{Informazioni Generali}
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+% ------ DETTAGLI RIUNIONE -----------------------------------------
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2025-12-05
+    \item \textbf{Ora:} 10:00 - 11:30
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Biasuzzi Davide, Bilato Leonardo, Ogniben Michele, Perozzo Samuele, Ponso Giovanni
+    \item \textbf{Redatto da:} Perozzo Samuele
+    \item \textbf{Verificato da:} Romascu Mihaela-Mariana
+    \item \textbf{Versione:} 1.0
+\end{itemize}
+
+
+% ------ ORDINI DEL GIORNO -----------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Visione e verifica avanzamento lavori (Workflow documentale e Github Project).
+    \item[2.] Pianificazione data Milestone RTB.
+    \item[3.] Definizione attività per lo Sprint 5 (PoC e Analisi dei Requisiti).
+    \item[4.] Assegnazione ruoli per il prossimo periodo.
+\end{itemize}
+
+% ------ DIARIO DELLA RIUNIONE -----------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Visione lavori: Workflow documentale e GitHub Project}
+\subsubsection*{Workflow Documentale}
+È stato presentato e analizzato il workflow automatizzato sviluppato in \textbf{Python}, finalizzato al controllo qualità della documentazione.
+Il sistema implementato svolge due funzioni principali:
+\begin{itemize}
+    \item Calcolo dell'\textbf{indice Gulpese} per verificare la leggibilità del testo e assicurare che rispetti gli standard prefissati.
+    \item Integrazione di \textbf{LanguageTool} per la verifica della correttezza grammaticale e sintattica delle frasi.
+\end{itemize}
+
+\subsubsection*{GitHub Project}
+Successivamente, è stata mostrata la nuova configurazione della board di progetto su \textbf{GitHub}. È stata adottata una visualizzazione tabellare (Table View) che migliora significativamente il monitoraggio dello stato di avanzamento. Questa vista permette di filtrare e organizzare le issue visualizzando chiaramente:
+\begin{itemize}
+    \item Le attività da svolgere;
+    \item I ruoli di competenza per ciascun task;
+    \item Le persone assegnate.
+\end{itemize}
+Il gruppo ha validato entrambi gli strumenti per l'utilizzo corrente.
+
+\subsection{Decisione della Milestone}
+Si è discusso delle tempistiche per il raggiungimento della Requirements and Technology Baseline (RTB). Il Responsabile, in accordo con il gruppo, ha stabilito di fissare una data ufficiale da inserire nel Piano di Progetto, al fine di avere una scadenza chiara per il completamento del Proof of Concept (PoC) e dell'Analisi dei Requisiti.
+
+\subsection{Decisione delle prossime attività (Sprint 5)}
+Sono state delineate le attività principali per il quinto Sprint (dal 6 al 12 Dicembre). Il focus principale sarà diviso tra:
+\begin{itemize}
+    \item \textbf{Analisi:} Continuazione della stesura e raffinamento dei casi d'uso.
+    \item \textbf{Tecnologia (PoC):} Avvio concreto dello studio per il Proof of Concept, sia lato WebApp utente che lato LLM (Large Language Model).
+    \item \textbf{Gestione:} Il Responsabile si occuperà della creazione di un \textbf{repository GitHub dedicato} esclusivamente al Proof of Concept. Questa separazione è necessaria per mantenere l'ambiente di sviluppo sperimentale distinto dalla repository della documentazione ufficiale.
+\end{itemize}
+
+\subsection{Definizione dei ruoli}
+In vista del nuovo sprint, è stata effettuata la rotazione dei ruoli per garantire una distribuzione equa del carico di lavoro e delle responsabilità. I dettagli delle ore assegnate sono riportati nella sezione apposita del presente verbale.
+
+
+% ------ DECISIONI PRESE -----------------------------------------
+\newpage
+\section{Decisioni Prese}
+\begin{enumerate}
+    \item Approvazione del workflow Python per il calcolo dell'indice Gulpese e controllo grammaticale.
+    \item Definizione della data target per la milestone RTB e conseguente aggiornamento del Piano di Progetto.
+    \item Avvio ufficiale dello sviluppo esplorativo per il Proof of Concept (PoC) durante lo Sprint 5.
+\end{enumerate}
+
+
+
+% ------ PIANIFICAZIONE DI PERIODO -----------------------------------------
+\section{Attività da Svolgere (Sprint 5)}
+Le seguenti attività sono pianificate per lo Sprint 5 (Dec 06 - Dec 12).
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}p{10cm}l@{}}
+\toprule
+\textbf{Attività (Issue ID)} & \textbf{Assegnatario/i} \\
+\midrule
+Creare repository dedicato al PoC & Responsabile \\
+Attività del Responsabile (Verbale, riunione...) & Responsabile \\
+Aggiungere data milestone RTB in Piano di Progetto & Responsabile \\
+Continuare con Analisi dei Requisiti & Analista \\
+Studio webapp lato utente per PoC  & Progettista \\
+Studio llm per PoC  & Progettista \\
+Sistemare LanguageTool e workflow di riferimento  & Programmatore \\
+\bottomrule
+\end{tabular}
+\caption{Task assegnati per lo Sprint 5.}
+\end{table}
+
+% tabella di rotazione dei ruoli
+\section{Definizione dei ruoli (Preventivo Sprint 5)}
+Sono stati definiti i ruoli e le relative assegnazioni orarie per il prossimo periodo operativo.
+La ripartizione è stata stabilita come segue:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}l l@{}}
+\toprule
+\textbf{Ruolo} & \textbf{Membro (Ore)} \\
+\midrule
+Responsabile   & Samuele (4h) \\
+Analista       & Giovanni (2h), Francesco (2h) \\
+Progettista    & Michele (2h), Leonardo (2h) \\
+Verificatore   & Mariana (2h) \\
+Programmatore  & Davide (2h) \\
+\bottomrule
+\end{tabular}
+\caption{Distribuzione ruoli e ore per lo Sprint 5.}
+\end{table}
+
+\end{document}
