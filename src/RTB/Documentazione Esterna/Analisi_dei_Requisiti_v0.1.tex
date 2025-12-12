@@ -1,0 +1,630 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana
+\usepackage{lmodern}   
+\usepackage{longtable}         % Font "Latin Modern"
+\usepackage{float}              % Per l'opzione [H] nelle tabelle e figure
+
+% --- Grafica e Layout --
+\usepackage{graphicx}           % Per le immagini
+\graphicspath{{assets/}{../assets/}{../../assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
+
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{hyperref}           % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Documento Progetto - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+
+% ===================================================================
+%  HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce i campi
+\fancyhead[L]{\textbf{NightPRO – Progetto Ingegneria del Software}}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt} % Modificato per coerenza, sebbene l'originale fosse 0pt
+
+% ===================================================================
+%  INIZIO DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  FRONTESPIZIO
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \includegraphics[width=0.35\textwidth]{logo.png}\\[1cm]
+
+     \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    \vfill
+    
+    {\Huge \bfseries Analisi dei Requisiti \par}
+        \vspace{1cm}
+        {\Large Redattori: Francesco Zanella, Davide Biasuzzi, Samuele Perozzo\par}
+    \vfill
+
+    {\Large \bfseries Gruppo: NightPRO}    \vspace{0.5cm}
+
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
+
+        {\large Data: 2025-12-12 \par}
+
+     {\Large Versione: 0.1 \par} 
+
+\end{titlepage}
+
+%  SEZIONE: Tabella delle Versioni
+% -------------------------------------------------------------------
+\newpage
+\pagestyle{fancy}
+\phantomsection
+\addcontentsline{toc}{section}{Tabella delle Versioni}
+\section*{Tabella delle Versioni}
+\vspace{0.2cm} 
+\begin{center}
+\resizebox{\textwidth}{!}{
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}llp{0.25\textwidth}p{0.45\textwidth}c@{}} 
+\toprule
+\textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
+\midrule
+
+0.1 & 2025-12-12 & Francesco Zanella, Davide Biasuzzi, Samuele Perozzo & Creazione bozza documento con integrazione analisi dettagliata: stakeholder e requisiti funzionali completi (RF1-RF7). Stesura dei casi d'uso (UC1-UC7) strutturati granularmente per garantire l'atomicità delle operazioni e separare le logiche di frontend e backend. & Mihaela-Mariana Romascu \\
+\bottomrule
+\end{tabular}
+}
+\end{center}
+
+
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy}
+
+% -------------------------------------------------------------------
+%  INFORMAZIONI GENERALI
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.2} % più spazio tra le righe
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del gruppo NightPRO.}
+\end{table}
+
+
+
+
+% -------------------------------------------------------------------
+%  SEZIONE: informazioni.tex
+% -------------------------------------------------------------------
+\newpage
+
+\section{Introduzione}
+
+\subsection{Scopo del documento}
+Il presente documento descrive in modo chiaro e strutturato i requisiti funzionali e non funzionali del progetto \textbf{SmartOrder}.  
+Ha lo scopo di fornire una base di riferimento per tutte le successive fasi del ciclo di vita del software — progettazione, sviluppo, test e validazione — assicurando una visione comune tra tutti i soggetti coinvolti: il team di sviluppo, i docenti, l’azienda proponente e gli utenti finali.
+
+L’obiettivo è definire in modo preciso cosa il sistema dovrà fare, i vincoli tecnici da rispettare e le caratteristiche qualitative che il prodotto dovrà possedere.
+
+\subsection{Scopo del prodotto}
+\textbf{SmartOrder} è una piattaforma intelligente progettata per automatizzare la gestione degli ordini dei clienti provenienti da diverse tipologie di input: testo e audio.  
+Il sistema utilizza tecniche di \textbf{Intelligenza Artificiale (AI)} e \textbf{Machine Learning (ML)} per interpretare i dati in modo accurato e trasformarli in ordini strutturati, pronti per essere inseriti automaticamente nel sistema gestionale aziendale (ERP).
+
+\textbf{SmartOrder} è in grado di:
+\begin{itemize}
+    \item Ricevere ordini tramite email, chat, messaggi vocali;
+    \item Estrarre le informazioni essenziali come articoli, quantità e codici prodotto;
+    \item Validare e normalizzare i dati ottenuti;
+    \item Generare un file JSON pronto per l'importazione nel DB aziendale.
+\end{itemize}
+
+Grazie all’automazione, il sistema riduce l’intervento umano nelle operazioni ripetitive, diminuisce gli errori di interpretazione e aumenta la velocità e l’efficienza dei processi aziendali.
+
+\subsection{Glossario}
+Per evitare ambiguità relative alle terminologie utilizzate è stato creato un documento denominato \textbf{Glossario}.  
+Questo documento comprende tutti i termini tecnici scelti dai membri del gruppo e utilizzati nei vari documenti con le relative definizioni.  
+Tutti i termini inclusi in questo glossario vengono segnalati all’interno del documento con l’apice \textbf{G} accanto alla parola.
+
+
+
+\subsection{Stakeholder}
+
+Il progetto \textbf{SmartOrder} coinvolge diversi soggetti chiave, ciascuno con ruoli e interessi specifici:
+
+\begin{itemize}
+\item \textbf{Committente}: Ergon Informatica Srl — azienda proponente del capitolato d'appalto
+\item \textbf{Utenti finali}: Operatori di gestione ordini
+\item \textbf{Team di sviluppo}: Studenti del Corso di Ingegneria del Software, Università di Padova
+\end{itemize}
+
+% ============================================================
+\section{Dominio d'Uso}
+
+\subsection{Contesto Attuale (AS-IS)}
+
+Nel panorama odierno, le aziende ricevono richieste di ordini da clienti in forme diverse:
+
+\begin{itemize}
+\item Testi non strutturati (email, chat, moduli web)
+\item Messaggi vocali (registrazioni, telefonate trascritte, audio WhatsApp)
+\end{itemize}
+
+La gestione manuale di questi input comporta diverse problematiche:
+
+\begin{itemize}
+\item Consumo significativo di tempo e risorse umane
+\item Alto rischio di errori di trascrizione e interpretazione
+\item Ambiguità nelle descrizioni dei prodotti
+\item Informazioni incomplete o non standardizzate
+\end{itemize}
+
+\subsection{Situazione Desiderata (TO-BE)}
+
+Il sistema \textbf{SmartOrder} mira a creare un ambiente automatizzato capace di:
+
+\begin{itemize}
+\item Acquisire ordini da molteplici canali e modalità di input
+\item Interpretare correttamente le intenzioni del cliente nonostante ambiguità e incompletezza
+\item Validare e normalizzare i dati estratti
+\item Mappare descrizioni non standardizzate ai codici prodotto aziendali
+\item Generare ordini strutturati pronti per il database ERP
+\item Ridurre significativamente l'intervento umano nelle fasi ripetitive
+\end{itemize}
+% ============================================================
+\section{Descrizione}
+
+\subsection{Obiettivi del prodotto}
+Gli obiettivi principali di \textbf{SmartOrder} sono:
+\begin{itemize}
+    \item Automatizzare la ricezione e la gestione degli ordini provenienti da diversi canali;
+    \item Interpretare in modo accurato i contenuti testuali e vocali grazie a modelli di AI;
+    \item Estrarre e strutturare le informazioni necessarie per creare ordini coerenti con il catalogo aziendale;
+    \item Ridurre gli errori legati all’inserimento manuale e alle incomprensioni dei dati;
+    \item Aumentare l’efficienza operativa e migliorare l’esperienza utente.
+\end{itemize}
+
+\subsection{Funzionalità del prodotto}
+Il sistema \textbf{SmartOrder} è organizzato come una pipeline modulare composta da diverse fasi:
+\begin{enumerate}
+    \item \textbf{Raccolta degli Input Multimodali:} acquisizione di ordini testuali e vocali con LLM e tecnologie Speech-to-Text.
+    \item \textbf{Pre-Processing dei Dati:} pulizia e normalizzazione degli input con riconoscimento automatico delle entità (NER).
+    \item \textbf{Estrazione delle Caratteristiche:} conversione dei dati multimodali in embedding numerici condivisi.
+    \item \textbf{Interpretazione Semantica e Mappatura:} associazione dei dati ai codici prodotto aziendali.
+    \item \textbf{Validazione e Arricchimento dei Dati:} verifica della completezza e aggiunta di metadati.
+    \item \textbf{Monitoraggio e Feedback:} registrazione dei risultati e miglioramento continuo tramite retraining dei modelli AI.
+\end{enumerate}
+
+\subsection{Utenti e caratteristiche}
+\textbf{Utenti principali:}
+
+\begin{longtable}{|p{3.5cm}|p{6cm}|p{5cm}|}
+\hline
+\textbf{Tipo di utente} & \textbf{Descrizione} & \textbf{Obiettivi principali} \\
+\hline
+Operatore aziendale & Supervisiona la creazione e validazione degli ordini generati automaticamente. & Verificare la correttezza degli ordini e risolvere incongruenze. \\
+\hline
+Amministratore di sistema & Gestisce la base dati e la manutenzione generale del sistema. & Assicurare corretto funzionamento e sicurezza della piattaforma. \\
+\hline
+\end{longtable}
+
+\textbf{Caratteristiche:}
+\begin{itemize}
+    \item Livello di competenza variabile;
+    \item Interfaccia intuitiva e chiara;
+    \item Accesso tramite web app.
+\end{itemize}
+
+% ============================================================
+\section{Casi d'Uso}
+
+\subsection{Introduzione}
+Questa sezione descrive i casi d'uso del sistema \textbf{SmartOrder}. I casi d'uso sono stati ristrutturati per isolare le funzionalità di accesso, le interazioni sulla Web App di gestione e i flussi di acquisizione ordini dai canali esterni.
+
+\subsection{Attori del Sistema}
+Il sistema interagisce con i seguenti attori:
+\begin{itemize}
+    \item \textbf{Cliente}: Utente che invia un ordine tramite uno dei canali supportati (testo, audio).
+    \item \textbf{Operatore di gestione}: Utente interno che supervisiona gli ordini processati dal sistema e interviene in caso di ambiguità.
+    \item \textbf{Sistema ERP}: Sistema esterno che riceve gli ordini strutturati tramite cartella condivisa.
+    \item \textbf{Moduli AI/ML}: Componenti intelligenti del sistema (LLM, speech-to-text).
+\end{itemize}
+
+\subsection{Elenco dei Casi d'Uso}
+
+% ----------------------------------------------------------------------
+% GRUPPO 1: AUTENTICAZIONE
+% Struttura basata su ByteOps UC34 (pag 14-15 del PDF)
+% ----------------------------------------------------------------------
+\subsubsection{UC1 - Autenticazione}
+\textbf{Attore principale}: Operatore di gestione. \\
+\textbf{Precondizioni}: Il sistema è raggiungibile e l'operatore è in possesso delle credenziali. \\
+\textbf{Postcondizioni}: L'operatore accede alla dashboard della Web App. \\
+\textbf{Scenario principale}:
+\begin{enumerate}
+    \item L'operatore visualizza la schermata di login;
+    \item L'operatore inserisce l'email (vedi UC1.1);
+    \item L'operatore inserisce la password (vedi UC1.2);
+    \item Il sistema verifica la validità delle credenziali.
+\end{enumerate}
+\textbf{Estensioni}:
+\begin{itemize}
+    \item \textbf{Visualizzazione errore (UC1.3)}: Se le credenziali sono errate, viene mostrato un messaggio di errore.
+\end{itemize}
+\textbf{User Story}: Come Operatore, voglio autenticarmi per accedere agli strumenti di gestione ordini.
+
+\subsubsection{UC1.1 - Inserimento Email}
+\textbf{Attore principale}: Operatore di gestione. \\
+\textbf{Precondizioni}: L'operatore sta effettuando l'autenticazione (UC1). \\
+\textbf{Postcondizioni}: L'email è inserita nel campo di testo. \\
+\textbf{Scenario principale}:
+\begin{enumerate}
+    \item L'operatore digita la propria email nel campo dedicato.
+\end{enumerate}
+
+\subsubsection{UC1.2 - Inserimento Password}
+\textbf{Attore principale}: Operatore di gestione. \\
+\textbf{Precondizioni}: L'operatore sta effettuando l'autenticazione (UC1). \\
+\textbf{Postcondizioni}: La password è inserita nel campo di testo. \\
+\textbf{Scenario principale}:
+\begin{enumerate}
+    \item L'operatore digita la propria password nel campo dedicato.
+\end{enumerate}
+
+\subsubsection{UC1.3 - Visualizzazione Errore Autenticazione}
+\textbf{Attore principale}: Operatore di gestione. \\
+\textbf{Precondizioni}: L'autenticazione (UC1) è fallita a causa di credenziali errate. \\
+\textbf{Postcondizioni}: Viene visualizzato un messaggio d'errore. \\
+\textbf{Scenario principale}:
+\begin{enumerate}
+    \item Il sistema rileva che le credenziali non sono corrette;
+    \item Il sistema mostra il messaggio "Login fallito. Email o password non validi".
+\end{enumerate}
+
+% ----------------------------------------------------------------------
+% GRUPPO 2: GESTIONE ORDINI (WEB APP)
+% Scompone il vecchio UC3 in Visualizzazione (UC2, UC3), Modifica (UC4) e Conferma (UC5)
+% Ispirato a ByteOps UC1 (Dashboard) e UC20 (Lista Rilevanti)
+% ----------------------------------------------------------------------
+\subsubsection{UC2 - Visualizzazione Dashboard Ordini}
+\textbf{Attore principale}: Operatore di gestione. \\
+\textbf{Precondizioni}: L'operatore ha effettuato l'accesso (UC1). \\
+\textbf{Postcondizioni}: L'operatore visualizza la lista degli ordini in attesa di validazione. \\
+\textbf{Scenario principale}:
+\begin{enumerate}
+    \item L'operatore accede alla sezione principale;
+    \item Il sistema recupera la lista degli ordini processati dai Moduli AI;
+    \item Il sistema mostra una tabella riepilogativa (ID, Data, Canale, Stato, Score di confidenza).
+\end{enumerate}
+\textbf{User Story}: Come Operatore, voglio vedere una lista sintetica degli ordini per identificare quali richiedono attenzione.
+
+\subsubsection{UC3 - Visualizzazione Dettaglio Ordine}
+\textbf{Attore principale}: Operatore di gestione. \\
+\textbf{Precondizioni}: L'operatore ha selezionato un ordine dalla dashboard (UC2). \\
+\textbf{Postcondizioni}: Vengono mostrati i dati completi dell'ordine e l'interpretazione AI. \\
+\textbf{Scenario principale}:
+\begin{enumerate}
+    \item L'operatore seleziona un ordine specifico;
+    \item Il sistema mostra il contenuto originale (testo o player audio);
+    \item Il sistema mostra le entità estratte (Prodotti, Quantità) mappate sul catalogo.
+\end{enumerate}
+\textbf{User Story}: Come Operatore, voglio analizzare il dettaglio di un singolo ordine per verificare come l'AI ha interpretato la richiesta.
+
+\subsubsection{UC4 - Modifica Riga Ordine}
+\textbf{Attore principale}: Operatore di gestione. \\
+\textbf{Precondizioni}: L'operatore si trova nel dettaglio di un ordine (UC3). \\
+\textbf{Postcondizioni}: I dati dell'ordine sono aggiornati. \\
+\textbf{Scenario principale}:
+\begin{enumerate}
+    \item L'operatore identifica un errore di mapping (es. quantità errata o prodotto sbagliato);
+    \item L'operatore seleziona il campo da modificare;
+    \item L'operatore inserisce il valore corretto;
+    \item Il sistema valida e aggiorna temporaneamente l'ordine.
+\end{enumerate}
+\textbf{User Story}: Come Operatore, voglio correggere eventuali errori dell'AI prima di inviare l'ordine al sistema gestionale.
+
+\subsubsection{UC5 - Approvazione e Invio ERP}
+\textbf{Attore principale}: Operatore di gestione. \\
+\textbf{Precondizioni}: L'ordine è stato verificato ed è pronto. \\
+\textbf{Postcondizioni}: L'ordine è trasferito al Sistema ERP e il feedback è salvato. \\
+\textbf{Scenario principale}:
+\begin{enumerate}
+    \item L'operatore clicca sul comando di approvazione;
+    \item Il sistema genera il file strutturato (JSON/XML);
+    \item Il sistema trasferisce il file al \textbf{Sistema ERP};
+    \item Il sistema salva le correzioni effettuate per il retraining dei \textbf{Moduli AI/ML}.
+\end{enumerate}
+\textbf{User Story}: Come Operatore, voglio confermare definitivamente l'ordine affinché venga processato dal magazzino.
+
+% ----------------------------------------------------------------------
+% GRUPPO 3: ACQUISIZIONE (CLIENTE)
+% Scompone i vecchi UC1 e UC2 separando l'azione utente dall'elaborazione sistema
+% ----------------------------------------------------------------------
+\subsubsection{UC6 - Inserimento Ordine Testuale}
+\textbf{Attore principale}: Cliente. \\
+\textbf{Precondizioni}: Il cliente ha accesso a un canale testuale (es. email, chat). \\
+\textbf{Postcondizioni}: Il messaggio è acquisito dal sistema. \\
+\textbf{Scenario principale}:
+\begin{enumerate}
+    \item Il Cliente compone un messaggio con la lista della spesa;
+    \item Il Cliente invia il messaggio;
+    \item Il sistema riceve il testo e avvia l'elaborazione (UC6.1).
+\end{enumerate}
+\textbf{User Story}: Come Cliente, voglio inviare un ordine scrivendo un messaggio naturale senza usare codici complessi.
+
+\subsubsection{UC6.1 - Elaborazione Semantica Testo}
+\textbf{Attore principale}: Moduli AI/ML. \\
+\textbf{Precondizioni}: Un testo è stato ricevuto (UC6) o trascritto (UC7.1). \\
+\textbf{Postcondizioni}: Viene generata una bozza strutturata dell'ordine. \\
+\textbf{Scenario principale}:
+\begin{enumerate}
+    \item Il modulo AI applica algoritmi di NLP/NER sul testo;
+    \item Vengono estratte le entità (Quantità, Unità, Descrizione);
+    \item Viene effettuato il mapping con il catalogo prodotti;
+    \item Il sistema salva la bozza per la visualizzazione operatore (UC2).
+\end{enumerate}
+
+\subsubsection{UC7 - Inserimento Ordine Vocale}
+\textbf{Attore principale}: Cliente. \\
+\textbf{Precondizioni}: Il cliente ha accesso a un canale vocale. \\
+\textbf{Postcondizioni}: Il file audio è acquisito dal sistema. \\
+\textbf{Scenario principale}:
+\begin{enumerate}
+    \item Il Cliente registra un messaggio vocale con l'ordine;
+    \item Il Cliente invia il file audio;
+    \item Il sistema riceve il file e avvia la trascrizione (UC7.1).
+\end{enumerate}
+\textbf{User Story}: Come Cliente, voglio dettare il mio ordine vocalmente per risparmiare tempo.
+
+\subsubsection{UC7.1 - Trascrizione Audio (Speech-to-Text)}
+\textbf{Attore principale}: Moduli AI/ML. \\
+\textbf{Precondizioni}: Un file audio è stato ricevuto (UC7). \\
+\textbf{Postcondizioni}: Viene prodotto un testo trascritto. \\
+\textbf{Scenario principale}:
+\begin{enumerate}
+    \item Il modulo AI processa il flusso audio;
+    \item Il modulo genera una trascrizione testuale;
+    \item Il sistema passa il testo all'elaborazione semantica (UC6.1).
+\end{enumerate}
+
+% ============================================================
+\section{Requisiti}
+
+\subsection{Requisiti Funzionali}
+
+\subsubsection{Gestione Input Multimodale}
+
+\begin{longtable}{|p{2cm}|p{3.5cm}|p{7cm}|p{2.5cm}|}
+\hline
+\textbf{ID} & \textbf{Requisito} & \textbf{Descrizione} & \textbf{Attori} \\
+\hline
+\endfirsthead
+\hline
+\textbf{ID} & \textbf{Requisito} & \textbf{Descrizione} & \textbf{Attori} \\
+\hline
+\endhead
+RF1.1 & Acquisizione testo & Il sistema deve acquisire testo da email, chat, moduli web & Sistema, Cliente \\
+\hline
+RF1.2 & Acquisizione audio & Il sistema deve acquisire file audio (messaggi vocali, registrazioni telefoniche, audio WhatsApp) & Sistema, Cliente \\
+\hline
+RF1.3 & Validazione format input & Il sistema deve validare formato e dimensione degli input & Sistema \\
+\hline
+RF1.4 & Normalizzazione dati grezzi & Il sistema deve normalizzare e ripulire dati grezzi riducendo rumore e ambiguità & Sistema \\
+\hline
+\end{longtable}
+
+\subsubsection{Estrazione e Riconoscimento Entità}
+
+\begin{longtable}{|p{2cm}|p{3.5cm}|p{7cm}|p{2.5cm}|}
+\hline
+\textbf{ID} & \textbf{Requisito} & \textbf{Descrizione} & \textbf{Attori} \\
+\hline
+\endfirsthead
+\hline
+\textbf{ID} & \textbf{Requisito} & \textbf{Descrizione} & \textbf{Attori} \\
+\hline
+\endhead
+RF2.1 & NER (Named Entity Recognition) & Il sistema deve identificare automaticamente entità (quantità, unità di misura, descrizioni prodotto, date di consegna, indirizzi) & Sistema \\
+\hline
+RF2.2 & Speech-to-text & Il sistema deve trascrivere audio in testo con accuracy $\geq$ 90\% (anche per accenti regionali italiani) & Sistema \\
+\hline
+RF2.3 & Tokenizzazione e normalizzazione testuale & Il sistema deve applicare tokenizzazione, lowercasing, rimozione simboli non necessari & Sistema \\
+\hline
+\end{longtable}
+
+\subsubsection{Elaborazione Semantica e Mapping}
+
+\begin{longtable}{|p{2cm}|p{3.5cm}|p{7cm}|p{2.5cm}|}
+\hline
+\textbf{ID} & \textbf{Requisito} & \textbf{Descrizione} & \textbf{Attori} \\
+\hline
+\endfirsthead
+\hline
+\textbf{ID} & \textbf{Requisito} & \textbf{Descrizione} & \textbf{Attori} \\
+\hline
+\endhead
+RF3.1 & Generazione embedding semantici & Il sistema deve generare embedding per testo tramite modelli LLM& Sistema \\
+\hline
+RF3.2 & Generazione embedding audio & Il sistema deve generare embedding dai dati audio trascritti & Sistema \\
+\hline
+RF3.3 & Mapping catalogo prodotti & Il sistema deve mappare descrizioni estratte ai codici prodotto del database aziendale con confidence score & Sistema \\
+\hline
+RF3.4 & Completamento informazioni & Il sistema deve completare o correggere descrizioni incomplete o ambigue basandosi su regole aziendali & Sistema \\
+\hline
+\end{longtable}
+
+\subsubsection{Validazione e Arricchimento Dati}
+
+\begin{longtable}{|p{2cm}|p{3.5cm}|p{7cm}|p{2.5cm}|}
+\hline
+\textbf{ID} & \textbf{Requisito} & \textbf{Descrizione} & \textbf{Attori} \\
+\hline
+\endfirsthead
+\hline
+\textbf{ID} & \textbf{Requisito} & \textbf{Descrizione} & \textbf{Attori} \\
+\hline
+\endhead
+RF4.1 & Verifica integrità ordine & Il sistema deve verificare che ordine contenga informazioni obbligatorie (codice prodotto, quantità, indirizzo) & Sistema \\
+\hline
+RF4.2 & Applicazione regole aziendali & Il sistema deve applicare controlli preliminari e regole aziendali (es. quantità minima, disponibilità magazzino) & Sistema \\
+\hline
+RF4.3 & Validazione coerenza & Il sistema deve validare coerenza tra quantità e unità di misura, codice prodotto e categoria & Sistema \\
+\hline
+RF4.4 & Arricchimento metadati & Il sistema deve arricchire ordine con metadati (canale input, timestamp, tipo input, confidence score) & Sistema \\
+\hline
+RF4.5 & Handling ambiguità & Il sistema deve gestire situazioni ambigue segnalando confidence score basso per validazione manuale & Sistema \\
+\hline
+\end{longtable}
+
+\subsubsection{Strutturazione Output e Integrazione Database}
+
+\begin{longtable}{|p{2cm}|p{3.5cm}|p{7cm}|p{2.5cm}|}
+\hline
+\textbf{ID} & \textbf{Requisito} & \textbf{Descrizione} & \textbf{Attori} \\
+\hline
+\endfirsthead
+\hline
+\textbf{ID} & \textbf{Requisito} & \textbf{Descrizione} & \textbf{Attori} \\
+\hline
+\endhead
+RF5.1 & Strutturazione JSON & Il sistema deve trasformare ordini elaborati in formato JSON strutturato & Sistema \\
+\hline
+RF5.2 & Strutturazione XML & Il sistema deve supportare anche formato XML per compatibilità con sistemi ERP diversi & Sistema \\
+\hline
+RF5.3 & Tracciamento metadati & Il sistema deve tracciare completamente metadati di ogni ordine processato (canale, livello confidenza, timestamp) & Sistema \\
+\hline
+\end{longtable}
+
+\subsubsection{Supervisione e Gestione Manuale}
+
+\begin{longtable}{|p{2cm}|p{3.5cm}|p{7cm}|p{2.5cm}|}
+\hline
+\textbf{ID} & \textbf{Requisito} & \textbf{Descrizione} & \textbf{Attori} \\
+\hline
+\endfirsthead
+\hline
+\textbf{ID} & \textbf{Requisito} & \textbf{Descrizione} & \textbf{Attori} \\
+\hline
+\endhead
+RF6.1 & Interfaccia supervisione & Il sistema deve fornire interfaccia web per operatore di gestione per supervisionare ordini & Operatore, Sistema \\
+\hline
+RF6.2 & Visualizzazione dettagli ordine & L'interfaccia deve mostrare dettagli completi dell'ordine (dati estratti, confidence score, sorgente input) & Operatore \\
+\hline
+RF6.3 & Correzione manuale & L'interfaccia deve permettere operatore di correggere dati ordine prima dell'inserimento in caso di ambiguità & Operatore, Sistema \\
+\hline
+RF6.4 & Approvazione/Rifiuto & L'interfaccia deve permettere operatore di approvare o rifiutare ordine ambiguo & Operatore, Sistema \\
+\hline
+RF6.5 & Feedback per retraining & Il sistema deve registrare correzioni manuali per retraining del modello & Sistema \\
+\hline
+RF6.6 & Visualizzazione storico & L'interfaccia deve permettere accesso a storico degli ordini processati con filtri (data, canale, cliente) & Operatore \\
+\hline
+\end{longtable}
+
+\subsubsection{Monitoraggio e Feedback Continuo}
+
+\begin{longtable}{|p{2cm}|p{3.5cm}|p{7cm}|p{2.5cm}|}
+\hline
+\textbf{ID} & \textbf{Requisito} & \textbf{Descrizione} & \textbf{Attori} \\
+\hline
+\endfirsthead
+\hline
+\textbf{ID} & \textbf{Requisito} & \textbf{Descrizione} & \textbf{Attori} \\
+\hline
+\endhead
+RF7.1 & Logging dettagliato & Il sistema deve loggare tutte le operazioni con timestamp, input, output, errori & Sistema \\
+\hline
+RF7.2 & Monitoraggio prestazioni & Il sistema deve tracciare metriche di performance (tempo processing, accuracy, error rate) & Sistema \\
+\hline
+RF7.3 & Meccanismo feedback & Il sistema deve implementare meccanismo di feedback continuo per correzione dei dati & Sistema, Operatore \\
+\hline
+RF7.4 & Retraining periodico & Il sistema deve supportare retraining periodico dei modelli AI basato su dati corretti & Sistema \\
+\hline
+RF7.5 & Aggiornamento regole & Il sistema deve permettere aggiornamento delle regole aziendali in base a pattern osservati & Sistema \\
+\hline
+\end{longtable}
+
+\subsection{Requisiti di Qualità}
+
+\begin{longtable}{|p{2cm}|p{3cm}|p{8cm}|p{3cm}|}
+\hline
+\textbf{Codice} & \textbf{Classificazione} & \textbf{Descrizione} & \textbf{Fonte} \\
+\hline
+RQ01 & Desiderabile & Il sistema deve fornire messaggi di errore chiari e comprensibili in caso di input non valido. & Team di sviluppo \\
+\hline
+RQ02 & Desiderabile & Il sistema deve poter essere esteso per supportare nuovi canali di input (es. video, moduli web). & Capitolato \\
+\hline
+\end{longtable}
+
+\subsection{Requisiti di Vincolo}
+
+\begin{longtable}{|p{2cm}|p{3cm}|p{8cm}|p{3cm}|}
+\hline
+\textbf{Codice} & \textbf{Classificazione} & \textbf{Descrizione} & \textbf{Fonte} \\
+\hline
+RV01 & Obbligatorio & Il database deve essere relazionale (MySQL, MariaDB o SQL Server Express). & Capitolato \\
+\hline
+RV02 & Obbligatorio & Le API devono rispettare lo standard REST per garantire interoperabilità. & Capitolato \\
+\hline
+RV03 & Desiderabile & L’interfaccia deve essere sviluppata come webapp responsive. & Capitolato \\
+\hline
+RV04 & Obbligatorio & Il sistema deve essere compatibile con i principali browser web moderni. & Team di sviluppo \\
+\hline
+RV05 & Desiderabile & L’addestramento dei modelli deve poter essere eseguito in ambiente locale o cloud. & Capitolato \\
+\hline
+\end{longtable}
+
+\subsection{Requisiti Prestazionali}
+
+\begin{longtable}{|p{2cm}|p{3cm}|p{8cm}|p{3cm}|}
+\hline
+\textbf{Codice} & \textbf{Classificazione} & \textbf{Descrizione} & \textbf{Fonte} \\
+\hline
+RP01 & Desiderabile & Il tempo di risposta medio dell’interfaccia utente non deve superare i 2 secondi. & Team di sviluppo \\
+\hline
+\end{longtable}
+
+
+\end{document}
