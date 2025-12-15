@@ -97,8 +97,8 @@
     
     \vfill
     
-    {\large Data: 2025-12-05 \par}
-    {\Large Versione: 0.4 \par} 
+    {\large Data: 2025-12-12 \par}
+    {\Large Versione: 0.5 \par} 
 
 \end{titlepage}
 
@@ -117,6 +117,7 @@
 \toprule
 \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
 \midrule
+0.5 & 2025-12-12 & Samuele Perozzo & Redazione Periodo 5 & Mihaela-Mariana Romascu \\
 0.4 & 2025-12-05 & Leonardo Bilato & Redazione Periodo 4 & Giovanni Ponso \\
 0.3 & 2025-11-29 & Giovanni Ponso & Redazione Periodo 3 & Leonardo Bilato \\
 0.2 & 2025-11-28 & Mihaela-Mariana Romascu, Samuele Perozzo, Michele Ogniben, Francesco Zanella & Redazione Periodo 1 e Periodo 2 & Leonardo Bilato \\
@@ -1343,6 +1344,153 @@ Il gruppo ha rispettato gli obiettivi previsti per questo periodo. Le ore impieg
 
 % ==================================================================
 %  FINE PERIODO 4
+% ==================================================================
+
+% ==================================================================
+%   INIZIO PERIODO 5
+% ==================================================================
+
+\subsection{Quinto periodo: 06/12/2025 - 12/12/2025}
+
+\subsubsection*{Pianificazione (Sprint Planning)}
+
+%%%%%%%%%%%%%%%%%%%%% breve introduzione del periodo %%%%%%%%%%%%%%%%%%%%%%%
+Durante questo periodo il gruppo si è concentrato sulle attività preparatorie per la realizzazione del Proof of Concept (PoC). L'attività principale ha riguardato lo studio delle tecnologie individuate: React per la parte di applicazione web lato utente e l'approfondimento sui Large Language Models (LLM). Parallelamente, gli analisti hanno proseguito con la stesura definitiva degli Use Case nell'Analisi dei Requisiti. Il Responsabile ha curato l'aggiornamento del Piano di Progetto fissando la milestone per la RTB, mentre lato programmazione è stata finalizzata la configurazione degli strumenti di supporto alla documentazione (LanguageTool e workflow).
+
+%%%%%%%%%%%%%%%%%%%%% TABELLA Attività pianificate %%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}[!ht]
+    \vspace{0.2cm}
+    \centering
+    {\large \textbf{Attività pianificate} (Sprint Backlog)} \\
+    \vspace{0.2cm}
+    \centering
+    \includegraphics[width=0.7\linewidth]{activity_sprint_5.png}
+\end{figure}
+\FloatBarrier
+
+%%%%%%%%%%%%%%%%%%%%% TABELLA Preventivo %%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[!ht]
+\centering
+{\large \textbf{Preventivo}} \\
+\vspace{0.3cm}
+\renewcommand{\arraystretch}{1.4}
+\rowcolors{2}{gray!10}{white}
+\begin{tabular}{|l|c|c|c|c|c|c|>{\cellcolor{green!50!black!20!white}}c|}
+\hline
+Membro           & Resp. & Amm. & Anal. & Proget. & Prog. & Ver. & Totale \\
+\hline
+Davide           &   -   &  -   &   -   &    -    &   2   &   -  &   2    \\
+Leonardo         &   -   &  -   &   -   &    2    &   -   &   -  &   2    \\
+Francesco        &   -   &  -   &   2   &    -    &   -   &   -  &   2    \\
+Mihaela-Mariana  &   -   &  -   &   -   &    -    &   -   &   2  &   2    \\
+Michele          &   -   &  -   &   -   &    2    &   -   &   -  &   2    \\
+Samuele          &   4   &  -   &   -   &    -    &   -   &   -  &   4    \\
+Giovanni         &   -   &  -   &   2   &    -    &   -   &   -  &   2    \\
+\hline  
+\hiderowcolors  
+\rowcolor{green!50!black!20!white}  
+Totale           &   4   &  -   &   4   &    4    &   2   &   2  &   16    \\
+\hline
+\end{tabular}
+\end{table}
+\FloatBarrier
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection*{Rendicontazione delle Risorse}
+
+%%%%%%%%%%%%%%%%%%%%% TABELLA Consuntivo %%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[!ht]
+\centering
+{\large \textbf{Consuntivo}} \\
+\vspace{0.3cm}
+
+\renewcommand{\arraystretch}{1.4}
+\rowcolors{2}{gray!10}{white}
+\begin{tabular}{|l|c|c|c|c|c|c|>{\cellcolor{blue!10}}c|}
+\hline
+Membro           & Resp. & Amm. & Anal. & Proget. & Prog. & Ver. & Totale \\
+\hline
+Davide           &   -   &   -  &   -   &    -    &   2   &   -  &   2    \\
+Leonardo         &   -   &   -  &   -   &    3    &   -   &   -  &   3    \\
+Francesco        &   -   &   -  &   2   &    -    &   -   &   -  &   2    \\
+Mihaela-Mariana  &   -   &   -  &   -   &    -    &   -   &   2  &   2    \\
+Michele          &   -   &   -  &   -   &    4    &   -   &   -  &   4    \\
+Samuele          &   4   &   -  &   -   &    -    &   -   &   -  &   4    \\
+Giovanni         &   -   &   -  &   2   &    -    &   -   &   -  &   2    \\
+\hline
+\hiderowcolors
+\rowcolor{blue!10}
+Totale           &   4   &   -  &   4   &    7    &   2   &   2  &   19    \\
+\hline
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+%%%%%%%%%%%%%%%%%%%%% TABELLA Riepilogo ore individuali %%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[!ht]
+\centering
+{\large \textbf{Riepilogo ore individuali}} \\
+\vspace{0.3cm}
+\renewcommand{\arraystretch}{1.4}
+\rowcolors{2}{gray!10}{white}
+\begin{tabular}{|l|c|c|>{\cellcolor{blue!10}}c|}
+\hline
+    Membro              & Ore Pregresse & Ore Periodo & Ore Totali \\
+\hline
+Biasuzzi Davide         & 19             & 2           & 21          \\
+Bilato Leonardo         & 13             & 3           & 16          \\
+Zanella Francesco       & 14             & 2           & 16          \\
+Romascu Mihaela-Mariana & 12             & 2           & 14          \\
+Ogniben Michele         & 11             & 4           & 15          \\
+Perozzo Samuele         & 12             & 4           & 16          \\
+Ponso Giovanni          & 17             & 2           & 19          \\
+\hline
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+%%%%%%%%%%%%%%%%%%%%% TABELLA Bilancio economico %%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[!ht]
+\centering
+{\large \textbf{Bilancio economico} (basato su \hyperref[sec:preventivo_v2]{Preventivo Costi - Seconda stesura})} \\
+\vspace{0.3cm}
+\label{tab:bilancio_p5} 
+\renewcommand{\arraystretch}{1.4} 
+\definecolor{light-gray}{gray}{0.95}
+\newcolumntype{Y}{>{\centering\arraybackslash}p{1.3cm}}
+\rowcolors{3}{gray!10}{white}
+\begin{tabular}{|l|Y|Y|Y|Y|>{\cellcolor{blue!10}}Y|>{\cellcolor{blue!10}}Y|} 
+\hline
+\multicolumn{1}{|c|}{Ruolo} & \multicolumn{2}{c|}{Residuo Inizio} & \multicolumn{2}{c|}{Consuntivo} & \multicolumn{2}{c|}{\cellcolor{blue!10}Residuo Fine}\\
+& h & € & h & € & \cellcolor{blue!10}h & \cellcolor{blue!10}€ \\
+\hline
+%        Ruolo        & residuo inizio [ h  |   €    ]  & consuntivo [ h  | € ]  & residuo fine [   h  |   €   ] \\
+Responsabile (30€/h)  &                 51  & 1530    &             4 & 120   &                 47  & 1410  \\
+Amministratore (20€/h)&                 46  & 920     &             0 & 0     &                 46  & 920   \\
+Analista (25€/h)      &                 83 & 2075     &             4 & 100   &                 79 & 1975  \\
+Progettista (25€/h)   &                 87 & 2175     &             7 & 175   &                 80 & 2000  \\
+Programmatore (15€/h) &                 147 & 2205    &             2 & 30    &                 145 & 2175  \\
+Verificatore (15€/h)  &                 118 & 1770    &             2 & 30    &                 116 & 1740  \\
+\hline
+\rowcolor{blue!10} 
+Totale                &                 532 &   10675 &            19 &   455 &                513 & 10220 \\
+\hline
+\end{tabular}
+\end{table}
+\FloatBarrier
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%% Valutazione e miglioramento  %%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Considerazioni finali (Sprint Review e Retrospective)}
+Il gruppo ha raggiunto gli obiettivi prefissati. Le ore del Responsabile coincidono perfettamente con quanto preventivato. Si nota invece un leggero scostamento in positivo delle ore dei Progettisti (7 ore consuntivate contro le 4 preventivate): tale aumento è giustificato dalla necessità di approfondire lo studio del framework React e l'integrazione degli LLM, competenze ritenute fondamentali per ridurre i rischi tecnici durante la fase di codifica del PoC. Le altre attività sono rimaste in linea con le stime.
+\newpage
+
+% ==================================================================
+%   FINE PERIODO 5
 % ==================================================================
 
 \end{document}
