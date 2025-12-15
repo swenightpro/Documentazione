@@ -1,0 +1,254 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana
+\usepackage{lmodern}            % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}           % Per le immagini
+\graphicspath{{assets/}{../assets/}{../../assets/}{../../../assets}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
+
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{hyperref}           % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Esterno - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce tutti i campi
+\fancyhead[L]{\textbf{NightPRO – Progetto Ingegneria del Software}}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro in basso
+\renewcommand{\headrulewidth}{0.4pt} % Linea sottile sotto l'header
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: intestazione_titolo.tex
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png} 
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    {\Large \itshape Verbale Esterno dell'11 Dicembre 2025 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+ 
+    {\large Data: 2025-12-11 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: indice.tex
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy} % Riattiva lo stile di pagina da qui in poi
+
+% -------------------------------------------------------------------
+%  SEZIONE: informazioni.tex
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2025-12-11
+    \item \textbf{Ora:} 15:15 - 16:00
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti (NightPRO):} Bilato Leonardo, Perozzo Samuele, Romascu Mihaela-Mariana, Zanella Francesco
+    \item \textbf{Partecipanti (Esterni):} Gianluca Carlesso (Ergon Informatica)
+    \item \textbf{Redatto da: } Perozzo Samuele
+    \item \textbf{Verificato da:} Romascu Mihaela-Mariana
+    \item \textbf{Versione: } 1.0
+\end{itemize}
+
+
+% -------------------------------------------------------------------
+%  SEZIONE: odg.tex (Ordine del Giorno)
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Revisione dell'Analisi dei Requisiti (Attori e Use Cases).
+    \item[2.] Definizione delle metriche di affidabilità per PoC e Prodotto Finale.
+    \item[3.] Gestione delle ambiguità e intervento dell'operatore.
+    \item[4.] Definizione degli attributi obbligatori per l'ordine.
+    \item[5.] Discussione sullo stack tecnologico e coordinamento con altri team.
+\end{itemize}
+
+% -------------------------------------------------------------------
+% SEZIONE: diario.tex (Diario della riunione)
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+Durante l'incontro con il referente di Ergon Informatica, Gianluca Carlesso, sono stati discussi i dettagli relativi all'Analisi dei Requisiti e alla strutturazione tecnica del progetto.
+
+\vspace{1cm}
+\footnotesize
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{p{0.45\textwidth}p{0.45\textwidth}}
+\toprule
+\textbf{Argomento/Domanda} & \textbf{Risposta/Discussione} \\
+\midrule
+
+\textbf{1) Correttezza Attori e Use Case} \par
+Abbiamo presentato la nostra struttura attuale degli attori e dei casi d'uso chiedendo conferma sulla loro validità.
+&
+L'azienda consiglia di \textbf{suddividere ulteriormente gli Use Case}. Attualmente risultano troppo onnicomprensivi e racchiudono troppe funzionalità in un singolo caso. Una maggiore granularità favorirà chiarezza e manutenzione.
+\\ \addlinespace
+
+\textbf{2) Affidabilità del Sistema} \par
+Quali sono le metriche di affidabilità attese per la generazione degli ordini?
+&
+Il prodotto finale dovrà garantire un'affidabilità (correttezza dell'ordine generato rispetto all'input) pari al \textbf{70\%}.
+Per il Proof of Concept (PoC) è accettabile una soglia indicativa del \textbf{50\%}.
+\\ \addlinespace
+
+\textbf{3) Gestione delle Ambiguità} \par
+Quali sono i casi comuni di ambiguità e come dobbiamo gestirli se l'IA non riesce a risolvere il problema con l'utente?
+&
+Nel caso in cui si verifichi uno stallo o un'ambiguità non risolvibile tra IA e Utente, è consigliato implementare nella WebApp un \textbf{bottone "Chiama Operatore"} (o simile) per richiedere l'intervento umano diretto.
+\\ \addlinespace
+
+\textbf{4) Attributi dell'Ordine} \par
+Quali sono i dati minimi indispensabili per considerare valido un ordine?
+&
+Gli attributi obbligatori sono il \textbf{Codice Prodotto} e una \textbf{Breve Descrizione} dell'articolo.
+\\ \addlinespace
+
+\textbf{5) Tecnologie e Collaborazione} \par
+Discussione sulle difficoltà riscontrate con React e proposta di allineamento tecnologico.
+&
+Ergon ha proposto un incontro di conoscenza e apprendimento con l'altro team che lavora al medesimo progetto.
+L'obiettivo è valutare l'uniformità dello stack tecnologico: \textbf{Docker, FastAPI e React}.
+È stato proposto un meeting congiunto per il \textbf{12 gennaio alle ore 14:00}.
+\\ \addlinespace
+
+\bottomrule
+\end{tabular}
+\normalsize
+
+% -------------------------------------------------------------------
+% SEZIONE: decisioni.tex (Decisioni prese)
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese}
+
+\begin{enumerate}
+\item \textbf{Rifattorizzazione Use Case:}
+\begin{itemize}
+\item Si procederà alla decomposizione degli attuali Use Case in unità più piccole e specifiche per migliorare la qualità dell'analisi dei requisiti.
+\end{itemize}
+
+\item \textbf{Obiettivi di Qualità (Affidabilità):}
+\begin{itemize}
+\item Target PoC: $\approx 50\%$ di accuratezza.
+\item Target Prodotto Finale: $70\%$ di accuratezza.
+\end{itemize}
+
+\item \textbf{Gestione Eccezioni (UX):}
+\begin{itemize}
+\item Verrà introdotto un meccanismo (es. pulsante dedicato) nell'interfaccia utente per permettere all'utente di segnalare la necessità di intervento da parte dell'operatore umano in caso di loop o incomprensioni con l'IA.
+\end{itemize}
+
+\item \textbf{Struttura Dati Ordine:}
+\begin{itemize}
+\item Il modello dati dell'ordine dovrà prevedere obbligatoriamente i campi \emph{Codice Prodotto} e \emph{Descrizione}.
+\end{itemize}
+
+\item \textbf{Stack Tecnologico e Collaborazione:}
+\begin{itemize}
+\item Il gruppo NightPRO valuterà internamente l'adozione dello stack completo (Docker + FastAPI) per uniformarsi a React (già scelto).
+\end{itemize}
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: todo.tex (Attività da svolgere)
+% -------------------------------------------------------------------
+\newpage
+\section{Attività da Svolgere (To-Do)}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} & \textbf{Scadenza} \\
+\midrule
+Suddivisione e refactoring Use Cases & Analisti & Sprint 5 \\
+Valutazione interna adozione FastAPI/Docker & Tutto il gruppo & Sprint 6 \\
+Conferma presenza riunione 12 Gennaio & Responsabile & Breve termine \\
+Implementazione bozza UI con bottone operatore & Sviluppatori & Fase PoC \\
+\bottomrule
+\end{tabular}
+\caption{Riepilogo task assegnati.}
+\end{table}
+
+\end{document}
