@@ -1,11 +1,10 @@
-# Report di compilazione del 2025-12-16T13:13:25+00:00
+# Report di compilazione del 2025-12-16T16:59:05+00:00
 
-Compilazione basata sul commit 06986cad3ab60bff14de3933481484f169527f7a (base: 06986ca)
+Compilazione basata sul commit 15bfa931560c490cb02a9242d8cec56ef899489b (base: 15bfa93)
 
 ## Falliti
-❌ [src/RTB/Documentazione Esterna/Piano_di_Progetto_v0.5.tex](https://github.com/swenightpro/Documentazione/actions/runs/20269108293)
-
+💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/RTB/Documentazione Interna/Verbali Interni/verbale_interno_2025-12-12.pdf](docs/RTB/Documentazione%20Interna/Verbali%20Interni/verbale_interno_2025-12-12.pdf)
+✅ [docs/RTB/Documentazione Esterna/Piano_di_Progetto_v0.5.pdf](docs/RTB/Documentazione%20Esterna/Piano_di_Progetto_v0.5.pdf)
 
