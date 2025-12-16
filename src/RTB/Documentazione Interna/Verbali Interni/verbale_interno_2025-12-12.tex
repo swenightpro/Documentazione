@@ -1,0 +1,200 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{currfile}
+\usepackage{array}
+\graphicspath{{assets/}{../assets/}{../../assets/}{../../../assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[svgnames]{xcolor}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Interno 2025-12-13 - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ------ FRONTESPIZIO -----------------------------------------
+\begin{document}
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+\begin{figure}
+    \centering
+    % Assicurati che il logo sia presente nella cartella assets
+    \includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+    \vfill
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    \vfill
+    {\Huge \bfseries Verbale di Riunione \par}
+    \vspace{1cm}
+
+    {\Large \itshape Verbale Interno del 13 Dicembre 2025 \par}
+    \vfill
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    \vfill
+
+    {\large Data: 2025-12-13 \par}
+
+\end{titlepage}
+
+% ------ INDICE -----------------------------------------
+\newpage
+\tableofcontents
+\pagestyle{fancy}
+
+% ------ INFORMAZIONI GENERALI -----------------------------------------
+\newpage
+\section{Informazioni Generali}
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+% ------ DETTAGLI RIUNIONE -----------------------------------------
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2025-12-13
+    \item \textbf{Ora:} 09:00 - 10:30
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Samuele Perozzo, Francesco Zanella, Mihaela-Mariana Romascu, Giovanni Ponso.
+    \item \textbf{Redatto da:} Francesco Zanella
+    \item \textbf{Verificato da:} Samuele Perozzo
+    \item \textbf{Versione:} 1.0
+\end{itemize}
+
+
+% ------ ORDINI DEL GIORNO -----------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Debriefing riunione con l'azienda (del 12 Dicembre).
+    \item[2.] Discussione e revisione degli strumenti di analisi qualitativa   
+    \item[3.] Pianificazione e definizione priorità per lo Sprint 6.
+    \item[4.] Assegnazione task e organizzazione lavoro su PoC e Documentazione.
+\end{itemize}
+
+% ------ DIARIO DELLA RIUNIONE -----------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Debriefing riunione aziendale}
+I membri presenti hanno discusso gli esiti dell'incontro avvenuto il giorno precedente (12 Dicembre) con il proponente esterno. Sono stati analizzati i feedback ricevuti e le indicazioni fornite dall'azienda, fondamentali per orientare correttamente lo sviluppo tecnologico nelle prossime settimane. Le informazioni raccolte sono state condivise per allineare tutto il team (inclusi gli assenti, che verranno aggiornati tramite i canali interni) sugli obiettivi a breve termine.
+
+\subsection{Discussione e revisione degli strumenti di analisi qualitativa}
+Durante la sessione, il gruppo ha preso in esame l'avanzamento relativo all'automazione del controllo qualità sulla documentazione, sviluppato asincronamente da Davide. L'obiettivo dell'attività è garantire il rispetto delle metriche prefissate nel Piano di Qualifica.
+Nello specifico, i presenti hanno discusso e revisionato l'implementazione tecnica di:
+\begin{itemize}
+    \item \textbf{Script per l'indice Gulpease:} strumento necessario per verificare automaticamente che il livello di leggibilità dei documenti si mantenga sopra la soglia accettabile (45/100), facilitando la comprensione per gli stakeholder.
+    \item \textbf{Integrazione di LanguageTool:} configurazione per l'analisi statica dei testi, mirata a individuare errori ortografici, grammaticali e refusi in modo automatico prima di ogni rilascio.
+    \item \textbf{Verifica con ChkTeX:} utilizzo del tool per rilevare errori tipografici, sintattici e stilistici specifici dell'ambiente LaTeX, assicurando la pulizia e la correttezza formale del sorgente.
+\end{itemize}
+Il gruppo ha analizzato i risultati prodotti da questi strumenti, approvandone l'integrazione nel flusso di lavoro.
+
+\subsection{Pianificazione Sprint 6 e Priorità PoC}
+Sulla base di quanto emerso dall'incontro con l'azienda, il gruppo ha stabilito che la priorità assoluta per lo Sprint 6 è l'\textbf{inizio concreto dello sviluppo del Proof of Concept (PoC)}.
+È stato deciso di allocare le risorse tecniche (Programmatori) in modo massiccio su questo fronte per produrre un primo prototipo funzionante. Parallelamente, verrà mantenuta attiva la linea di produzione documentale (Piano di Qualifica e Glossario) e di gestione (Attività del Responsabile).
+
+\subsection{Assegnazione Attività}
+Si è proceduto alla divisione dei compiti.
+\begin{itemize}
+    \item \textbf{Sviluppo:} Samuele, Giovanni e Leonardo si occuperanno della scrittura del codice per il PoC.
+    \item \textbf{Coordinamento Tecnico:} Michele avrà il compito di coordinare le scelte progettuali relative al PoC.
+    \item \textbf{Qualità e Documentazione:} Mariana supervisionerà il PoC e lavorerà sul Glossario; Davide proseguirà con il Piano di Qualifica.
+    \item \textbf{Gestione:} Francesco si occuperà della documentazione gestionale (Verbali, Diario di Bordo).
+\end{itemize}
+
+
+% ------ DECISIONI PRESE -----------------------------------------
+\section{Decisioni Prese}
+\begin{enumerate}
+    \item Conferma delle specifiche emerse nell'incontro con l'azienda del 12/12.
+    \item Adozione degli strumenti di analisi statica (Gulpease, LanguageTool, ChkTeX) per la verifica della qualità documentale.
+    \item Avvio dello Sprint 6 con focus primario sullo sviluppo del PoC.
+    \item Approvazione della ripartizione ruoli e monte ore preventivato.
+\end{enumerate}
+
+
+\newpage
+% ------ PIANIFICAZIONE DI PERIODO -----------------------------------------
+\section{Attività da Svolgere (Sprint 6)}
+Le seguenti attività sono pianificate per lo Sprint 6.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}p{10cm}l@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} \\
+\midrule
+Inizio Concreto PoC & Programmatore \\
+Coordinamento per PoC & Progettista \\
+Supervisione PoC & Analista \\
+Continuazione Piano di Qualifica & Amministratore \\
+Continuazione Glossario (se serve) & Analista\\
+Attività del Responsabile (Verbale, Diario di Bordo) & Responsabile \\
+\bottomrule
+\end{tabular}
+\caption{Task assegnati per lo Sprint 6.}
+\end{table}
+
+% tabella di rotazione dei ruoli
+\section{Definizione dei ruoli (Preventivo Sprint 6)}
+Sono stati definiti i ruoli e le relative assegnazioni orarie per il prossimo periodo operativo.
+La ripartizione è stata stabilita come segue:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}l l@{}}
+\toprule
+\textbf{Ruolo} & \textbf{Membro (Ore)} \\
+\midrule
+Responsabile   & Francesco (3h) \\
+Amministratore & Davide (2h) \\
+Analista       & Mariana (2h) \\
+Progettista    & Michele (2h) \\
+Programmatore  & Giovanni (2h), Leonardo (2h), Samuele (1h) \\
+Verificatore   & Samuele (2h) \\
+\bottomrule
+\end{tabular}
+\caption{Distribuzione ruoli e ore per lo Sprint 6.}
+\end{table}
+
+\end{document}
