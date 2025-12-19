@@ -1,10 +1,10 @@
-# Report di compilazione del 2025-12-16T16:59:05+00:00
+# Report di compilazione del 2025-12-19T08:09:05+00:00
 
-Compilazione basata sul commit 15bfa931560c490cb02a9242d8cec56ef899489b (base: 15bfa93)
+Compilazione basata sul commit f01cd749a033c96cb355533b20f140b743865329 (base: f01cd74)
 
 ## Falliti
-💡 Nessun errore di compilazione
+❌ [src/RTB/Documentazione Esterna/Piano_di_Qualifica_v0.1.tex](https://github.com/swenightpro/Documentazione/actions/runs/20363851034)
+
 
 ## Compilati
-✅ [docs/RTB/Documentazione Esterna/Piano_di_Progetto_v0.5.pdf](docs/RTB/Documentazione%20Esterna/Piano_di_Progetto_v0.5.pdf)
-
+💡 Nessun PDF compilato
