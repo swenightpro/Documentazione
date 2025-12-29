@@ -1,10 +1,10 @@
-# Report di compilazione del 2025-12-29T10:09:02+00:00
+# Report di compilazione del 2025-12-29T20:28:33+00:00
 
-Compilazione basata sul commit 366631392ac2efdf1f7a49a8228a74d68089e5cb (base: 3666313)
+Compilazione basata sul commit b86e700651bbbf93caf2519bc425bfd58e8e5275 (base: b86e700)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/RTB/Documentazione Esterna/Piano_di_Progetto_v0.6.pdf](docs/RTB/Documentazione%20Esterna/Piano_di_Progetto_v0.6.pdf)
+✅ [docs/RTB/Documentazione Interna/Verbali Interni/verbale_interno_2025-12-19.pdf](docs/RTB/Documentazione%20Interna/Verbali%20Interni/verbale_interno_2025-12-19.pdf)
 
