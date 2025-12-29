@@ -1,0 +1,204 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{currfile}
+\usepackage{array}
+\graphicspath{{assets/}{../assets/}{../../assets/}{../../../assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[svgnames]{xcolor}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Interno 2025-12-23 - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ------ FRONTESPIZIO -----------------------------------------
+\begin{document}
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+\begin{figure}
+    \centering
+    % Assicurati che il logo sia presente nella cartella assets
+    \includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+    \vfill
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    \vfill
+    {\Huge \bfseries Verbale di Riunione \par}
+    \vspace{1cm}
+
+    {\Large \itshape Verbale Interno del 19 Dicembre 2025 \par}
+    \vfill
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    \vfill
+
+    {\large Data: 2025-12-19 \par}
+
+\end{titlepage}
+
+% ------ INDICE -----------------------------------------
+\newpage
+\tableofcontents
+\pagestyle{fancy}
+
+% ------ INFORMAZIONI GENERALI -----------------------------------------
+\newpage
+\section{Informazioni Generali}
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+% ------ DETTAGLI RIUNIONE -----------------------------------------
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2025-12-19
+    \item \textbf{Ora:} 10:00 - 11:30
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Samuele Perozzo, Davide Biasuzzi, Mihaela-Mariana Romascu, Giovanni Ponso, Michele Ogniben, Francesco Zanella, Leonardo Bilato.
+    \item \textbf{Redatto da:} Mihaela-Mariana Romascu
+    \item \textbf{Verificato da:} Leonardo Bilato
+    \item \textbf{Versione:} 1.0
+\end{itemize}
+
+
+% ------ ORDINI DEL GIORNO -----------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Presentazione della bozza del Proof of Concept (PoC).
+    \item[2.] Criticità e componenti mancanti (database, template JSON, chiavi LLM) e sollecitazione al proponente.
+    \item[3.] Aspettative, timing e pianificazione del proseguimento.
+    \item[4.] Riunione di formazione tecnica.
+    \item[5.] Miglioramenti tecnici sul PoC e pianificazione dello Sprint 7.
+\end{itemize}
+
+% ------ DIARIO DELLA RIUNIONE -----------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Presentazione Proof of Concept}
+Michele ha presentato al gruppo una bozza del futuro sito e una prototipo della funzionalità di chat, realizzati utilizzando le tecnologie React e JavaScript. La presentazione ha illustrato l'idea fondamentale del sistema, fornendo ai presenti una visione concreta dell'interfaccia utente e dell'architettura di base prevista per il progetto. Il prototipo ha ricevuto riscontri positivi dal team, confermando la fattibilità tecnica della soluzione proposta.
+
+\subsection{Criticità: Mancanza Componenti dal Proponente}
+Durante la discussione, il gruppo ha identificato un problema critico che ostacola l'avanzamento dei lavori: l'azienda proponente non ha fornito componenti essenziali per lo sviluppo del Proof of Concept. In particolare, sono stati richiesti:
+\begin{itemize}
+    \item Le specifiche e l'accesso al database;
+    \item Il template JSON;
+    \item Le chiavi e le credenziali necessarie per il fine-tuning del modello LLM.
+\end{itemize}
+
+La mancanza di una risposta da parte del proponente rappresenta un ostacolo significativo. È stato quindi assegnato a \textbf{Davide Biasuzzi} il compito di sollecitare ulteriormente il proponente attraverso i canali di messaggistica istantanea (Telegram e WhatsApp), enfatizzando l'urgenza della situazione.
+
+Nel caso in cui il proponente non fornisca i componenti richiesti entro i tempi previsti, il gruppo sarà costretto a discutere lo spostamento della milestone RTB attualmente prevista per il 16 Gennaio 2026.
+
+\subsection{Aspettative e Timing}
+In attesa del reperimento delle risorse richieste, il gruppo ha stabilito che:
+\begin{itemize}
+    \item L'implementazione del Proof of Concept dovrà proseguire parallelamente, affrontando gli aspetti completabili anche in assenza dei componenti critici;
+    \item La data prevista per il completamento della fase di RTB rimane il 16 Gennaio 2026, a condizione che le risorse vengano fornite entro i tempi previsti;
+    \item Nel caso in cui il proponente non fornisca i componenti richiesti, sarà necessario inviare un messaggio di chiarimento sulla revisione della scadenza.
+\end{itemize}
+
+\subsection{Riunione di Formazione Tecnica}
+È stata già programmata una riunione di formazione per il 12 Gennaio 2026. In merito a questa, il gruppo deciderà nei prossimi incontri sulla base dello stato di avanzamento dei lavori e della disponibilità del team.
+
+
+% ------ DECISIONI PRESE -----------------------------------------
+\section{Decisioni Prese}
+\begin{enumerate}
+    \item Approvazione della presentazione del Proof of Concept realizzato da Michele Ogniben.
+    \item Incarico a Davide Biasuzzi di sollecitare il proponente per il reperimento delle componenti mancanti.
+\end{enumerate}
+
+
+\newpage
+% ------ PIANIFICAZIONE DI PERIODO -----------------------------------------
+\section{Attività da Svolgere (Sprint 7)}
+Le seguenti attività sono pianificate per lo Sprint 7.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}p{10cm}l@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} \\
+\midrule
+Pianificazione dell'architettura del database & Progettista \\
+Implementazione del database & Programmatore \\
+Implementazione nel PoC del modello LLM & Programmatore \\
+Fine-tuning del modello & Programmatore \\
+Valutazione della migrazione a Next.js & Programmatore \\
+Aggiunta dei diagrammi nell'Analisi dei Requisiti & Analista \\
+Attività di coordinamento e stesura verbali & Responsabile \\
+Verifica delle prestazioni del sistema & Verificatore \\
+\bottomrule
+\end{tabular}
+\caption{Task assegnati per lo Sprint 7.}
+\end{table}
+
+% tabella di rotazione dei ruoli
+\section{Definizione dei ruoli (Preventivo Sprint 7)}
+Sono stati definiti i ruoli e le relative assegnazioni orarie per il prossimo periodo operativo (Sprint 7).
+La ripartizione è stata stabilita come segue:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}l l@{}}
+\toprule
+\textbf{Ruolo} & \textbf{Membro (Ore)} \\
+\midrule
+Responsabile   & Mihaela-Mariana Romascu (5h) \\
+Amministratore & - \\
+Analista       & Davide Biasuzzi (5h) \\
+Progettista    & Giovanni Ponso (2h) \\
+Programmatore  & Giovanni Ponso (2h), Michele Ogniben (5h), Samuele Perozzo (5h),\\
+ & Francesco Zanella (5h) \\
+Verificatore   & Leonardo Bilato (4h) \\
+\bottomrule
+\end{tabular}
+\caption{Distribuzione ruoli e ore per lo Sprint 7.}
+\end{table}
+\newpage
+% ------ PIANIFICAZIONE DI PERIODO -----------------------------------------
+
+\end{document}
