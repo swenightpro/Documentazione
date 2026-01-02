@@ -10,7 +10,7 @@
 
 % --- Grafica e Layout --
 \usepackage{graphicx}           % Per le immagini
-\graphicspath{{assets/}{../assets/}{../../assets/}}
+\graphicspath{{../../assets/}{../assets/}{assets/}}
 \usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
 \usepackage{fancyhdr}           % Per header e footer personalizzati
 \usepackage{microtype}          % Migliora la tipografia
@@ -67,7 +67,7 @@
     
     {\Huge \bfseries Analisi dei Requisiti \par}
         \vspace{1cm}
-        {\Large Redattori: Francesco Zanella, Davide Biasuzzi, Samuele Perozzo\par}
+    % NASCOSTO REDATTORI    {\Large Redattori: Francesco Zanella, Davide Biasuzzi, Samuele Perozzo\par}
     \vfill
 
     {\Large \bfseries Gruppo: NightPRO}    \vspace{0.5cm}
@@ -76,7 +76,7 @@
 
         {\large Data: 2025-12-12 \par}
 
-     {\Large Versione: 0.1 \par} 
+     {\Large Versione: 0.2 \par} 
 
 \end{titlepage}
 
@@ -95,7 +95,7 @@
 \toprule
 \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
 \midrule
-
+0,2 & 2026-01-02 & Davide Biasuzzi & Modificato Frontespizio, Inseriti Diagrammi UML degli Use Case, Aggiunto paragrafo sui Requsiti Prestazionali, Aggiornati RF7.4, RF1.1 e RF1.2, Aggiunto paragrafo sui Requsiti di Sicurezza, Completata sezione Stakeholders, Aggiunto UC7.2, Aggiunto Cliente Aziendale sugli utenti principali & Leonardo Bilato \\
 0.1 & 2025-12-12 & Francesco Zanella, Davide Biasuzzi, Samuele Perozzo & Creazione bozza documento con integrazione analisi dettagliata: stakeholder e requisiti funzionali completi (RF1-RF7). Stesura dei casi d'uso (UC1-UC7) strutturati granularmente per garantire l'atomicità delle operazioni e separare le logiche di frontend e backend. & Mihaela-Mariana Romascu \\
 \bottomrule
 \end{tabular}
@@ -176,9 +176,11 @@ Tutti i termini inclusi in questo glossario vengono segnalati all’interno del 
 Il progetto \textbf{SmartOrder} coinvolge diversi soggetti chiave, ciascuno con ruoli e interessi specifici:
 
 \begin{itemize}
-\item \textbf{Committente}: Ergon Informatica Srl — azienda proponente del capitolato d'appalto
-\item \textbf{Utenti finali}: Operatori di gestione ordini
-\item \textbf{Team di sviluppo}: Studenti del Corso di Ingegneria del Software, Università di Padova
+\item \textbf{Committente}: Docenti Tullio Vardanega e Riccardo Cardin (UNIPD)
+\item \textbf{Product Owner}: Ergon Informatica S.R.L.
+\item \textbf{Consulente aziendale}: Gianluca Carlesso (Ergon Informatica)
+\item \textbf{Utenti finali}: Operatori di gestione ordini e clienti
+\item \textbf{Team di sviluppo}: Membri del gruppo NightPRO, corso di SWE (UNIPD)
 \end{itemize}
 
 % ============================================================
@@ -237,7 +239,12 @@ Il sistema \textbf{SmartOrder} è organizzato come una pipeline modulare compost
     \item \textbf{Validazione e Arricchimento dei Dati:} verifica della completezza e aggiunta di metadati.
     \item \textbf{Monitoraggio e Feedback:} registrazione dei risultati e miglioramento continuo tramite retraining dei modelli AI.
 \end{enumerate}
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{assets/Pipeline_Diagram.png}
+    \caption{Workflow completo di elaborazione e validazione di un ordine tramite pipeline SmartOrder.}
+    \label{fig:pipeline-diagram}
+\end{figure}
 \subsection{Utenti e caratteristiche}
 \textbf{Utenti principali:}
 
@@ -246,6 +253,9 @@ Il sistema \textbf{SmartOrder} è organizzato come una pipeline modulare compost
 \textbf{Tipo di utente} & \textbf{Descrizione} & \textbf{Obiettivi principali} \\
 \hline
 Operatore aziendale & Supervisiona la creazione e validazione degli ordini generati automaticamente. & Verificare la correttezza degli ordini e risolvere incongruenze. \\
+\hline
+Cliente Aziendale & Utilizza la webapp per inserire degli ordini tramite input vocale o testuale & Effettuare e revisionare gli ordini.
+\\
 \hline
 Amministratore di sistema & Gestisce la base dati e la manutenzione generale del sistema. & Assicurare corretto funzionamento e sicurezza della piattaforma. \\
 \hline
@@ -274,12 +284,26 @@ Il sistema interagisce con i seguenti attori:
 \end{itemize}
 
 \subsection{Elenco dei Casi d'Uso}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{assets/UC_Diagram.png}
+    \caption{Diagramma Generale dei Casi d'uso}
+    \label{fig:uc_generale}
+\end{figure}
+
 
 % ----------------------------------------------------------------------
 % GRUPPO 1: AUTENTICAZIONE
-% Struttura basata su ByteOps UC34 (pag 14-15 del PDF)
 % ----------------------------------------------------------------------
 \subsubsection{UC1 - Autenticazione}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{assets/UC1.png}
+    \caption{Diagramma UC1}
+    \label{fig:uc1}
+\end{figure}
+
 \textbf{Attore principale}: Operatore di gestione. \\
 \textbf{Precondizioni}: Il sistema è raggiungibile e l'operatore è in possesso delle credenziali. \\
 \textbf{Postcondizioni}: L'operatore accede alla dashboard della Web App. \\
@@ -326,10 +350,16 @@ Il sistema interagisce con i seguenti attori:
 
 % ----------------------------------------------------------------------
 % GRUPPO 2: GESTIONE ORDINI (WEB APP)
-% Scompone il vecchio UC3 in Visualizzazione (UC2, UC3), Modifica (UC4) e Conferma (UC5)
-% Ispirato a ByteOps UC1 (Dashboard) e UC20 (Lista Rilevanti)
 % ----------------------------------------------------------------------
 \subsubsection{UC2 - Visualizzazione Dashboard Ordini}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{assets/UC2.png}
+    \caption{Diagramma UC2}
+    \label{fig:uc2}
+\end{figure}
+
 \textbf{Attore principale}: Operatore di gestione. \\
 \textbf{Precondizioni}: L'operatore ha effettuato l'accesso (UC1). \\
 \textbf{Postcondizioni}: L'operatore visualizza la lista degli ordini in attesa di validazione. \\
@@ -342,6 +372,14 @@ Il sistema interagisce con i seguenti attori:
 \textbf{User Story}: Come Operatore, voglio vedere una lista sintetica degli ordini per identificare quali richiedono attenzione.
 
 \subsubsection{UC3 - Visualizzazione Dettaglio Ordine}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{assets/UC3.png}
+    \caption{Diagramma UC3}
+    \label{fig:uc3}
+\end{figure}
+
 \textbf{Attore principale}: Operatore di gestione. \\
 \textbf{Precondizioni}: L'operatore ha selezionato un ordine dalla dashboard (UC2). \\
 \textbf{Postcondizioni}: Vengono mostrati i dati completi dell'ordine e l'interpretazione AI. \\
@@ -354,6 +392,14 @@ Il sistema interagisce con i seguenti attori:
 \textbf{User Story}: Come Operatore, voglio analizzare il dettaglio di un singolo ordine per verificare come l'AI ha interpretato la richiesta.
 
 \subsubsection{UC4 - Modifica Riga Ordine}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{assets/UC4.png}
+    \caption{Diagramma UC4}
+    \label{fig:uc4}
+\end{figure}
+
 \textbf{Attore principale}: Operatore di gestione. \\
 \textbf{Precondizioni}: L'operatore si trova nel dettaglio di un ordine (UC3). \\
 \textbf{Postcondizioni}: I dati dell'ordine sono aggiornati. \\
@@ -367,6 +413,15 @@ Il sistema interagisce con i seguenti attori:
 \textbf{User Story}: Come Operatore, voglio correggere eventuali errori dell'AI prima di inviare l'ordine al sistema gestionale.
 
 \subsubsection{UC5 - Approvazione e Invio ERP}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{assets/UC5.png}
+    \caption{Diagramma UC5}
+    \label{fig:uc5}
+\end{figure}
+
+
 \textbf{Attore principale}: Operatore di gestione. \\
 \textbf{Precondizioni}: L'ordine è stato verificato ed è pronto. \\
 \textbf{Postcondizioni}: L'ordine è trasferito al Sistema ERP e il feedback è salvato. \\
@@ -381,9 +436,16 @@ Il sistema interagisce con i seguenti attori:
 
 % ----------------------------------------------------------------------
 % GRUPPO 3: ACQUISIZIONE (CLIENTE)
-% Scompone i vecchi UC1 e UC2 separando l'azione utente dall'elaborazione sistema
 % ----------------------------------------------------------------------
 \subsubsection{UC6 - Inserimento Ordine Testuale}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{assets/UC6.png}
+    \caption{Diagramma UC6}
+    \label{fig:uc6}
+\end{figure}
+
+
 \textbf{Attore principale}: Cliente. \\
 \textbf{Precondizioni}: Il cliente ha accesso a un canale testuale (es. email, chat). \\
 \textbf{Postcondizioni}: Il messaggio è acquisito dal sistema. \\
@@ -408,6 +470,14 @@ Il sistema interagisce con i seguenti attori:
 \end{enumerate}
 
 \subsubsection{UC7 - Inserimento Ordine Vocale}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{assets/UC7.png}
+    \caption{Diagramma UC7}
+    \label{fig:uc7}
+\end{figure}
+
+
 \textbf{Attore principale}: Cliente. \\
 \textbf{Precondizioni}: Il cliente ha accesso a un canale vocale. \\
 \textbf{Postcondizioni}: Il file audio è acquisito dal sistema. \\
@@ -430,6 +500,22 @@ Il sistema interagisce con i seguenti attori:
     \item Il sistema passa il testo all'elaborazione semantica (UC6.1).
 \end{enumerate}
 
+\subsubsection{UC7.2 - Visualizzazione Errore Trascrizione Audio}
+
+\textbf{Attore principale}: Moduli AI/ML. \\
+\textbf{Precondizioni}: Un file audio è stato ricevuto (UC7) e la trascrizione è stata tentata (UC7.1). \\
+\textbf{Postcondizioni}: Viene segnalato un errore di bassa accuratezza della trascrizione. \\
+\textbf{Scenario principale}:
+\begin{enumerate}
+    \item Il modulo AI processa il file audio con Speech-to-Text;
+    \item L'algoritmo determina un confidence score inferiore alla soglia di 90\%;
+    \item Il sistema genera un avviso di errore: ``Trascrizione audio non affidabile. Accuratezza: [X]\%. Richiesta revisione manuale'';
+    \item L'ordine viene marcato con stato ``In revisione - Bassa qualità audio'' e segnalato all'operatore in dashboard;
+    \item L'operatore può visualizzare il file audio originale per effettuare una trascrizione manuale corretta.
+\end{enumerate}
+\textbf{User Story}: Come Sistema, voglio segnalare quando la qualità della trascrizione audio è insufficiente per evitare errori di interpretazione degli ordini.
+
+
 % ============================================================
 \section{Requisiti}
 
@@ -446,9 +532,9 @@ Il sistema interagisce con i seguenti attori:
 \textbf{ID} & \textbf{Requisito} & \textbf{Descrizione} & \textbf{Attori} \\
 \hline
 \endhead
-RF1.1 & Acquisizione testo & Il sistema deve acquisire testo da email, chat, moduli web & Sistema, Cliente \\
+RF1.1 & Acquisizione testo & Il sistema deve acquisire testo dalla chat & Sistema, Cliente \\
 \hline
-RF1.2 & Acquisizione audio & Il sistema deve acquisire file audio (messaggi vocali, registrazioni telefoniche, audio WhatsApp) & Sistema, Cliente \\
+RF1.2 & Acquisizione audio & Il sistema deve acquisire file audio (messaggi vocali, registrazioni telefoniche, audio WhatsApp) in MP3 e WAW & Sistema, Cliente \\
 \hline
 RF1.3 & Validazione format input & Il sistema deve validare formato e dimensione degli input & Sistema \\
 \hline
@@ -580,7 +666,7 @@ RF7.2 & Monitoraggio prestazioni & Il sistema deve tracciare metriche di perform
 \hline
 RF7.3 & Meccanismo feedback & Il sistema deve implementare meccanismo di feedback continuo per correzione dei dati & Sistema, Operatore \\
 \hline
-RF7.4 & Retraining periodico & Il sistema deve supportare retraining periodico dei modelli AI basato su dati corretti & Sistema \\
+RF7.4 & Retraining periodico & Il sistema deve supportare retraining periodico (periodicità a scelta) e manuale dei modelli AI basato su dati corretti & Sistema \\
 \hline
 RF7.5 & Aggiornamento regole & Il sistema deve permettere aggiornamento delle regole aziendali in base a pattern osservati & Sistema \\
 \hline
@@ -618,13 +704,10 @@ RV05 & Desiderabile & L’addestramento dei modelli deve poter essere eseguito i
 
 \subsection{Requisiti Prestazionali}
 
-\begin{longtable}{|p{2cm}|p{3cm}|p{8cm}|p{3cm}|}
-\hline
-\textbf{Codice} & \textbf{Classificazione} & \textbf{Descrizione} & \textbf{Fonte} \\
-\hline
-RP01 & Desiderabile & Il tempo di risposta medio dell’interfaccia utente non deve superare i 2 secondi. & Team di sviluppo \\
-\hline
-\end{longtable}
+In quanto soluzione Web-based, i requisiti prestazionali sono strettamente correlati alla latenza e alla larghezza di banda della connessione Internet, nonché alle capacità computazionali del terminale utente. L'ottimizzazione del frontend è stata declinata specificamente per motori di rendering Chromium, garantendo piena compatibilità con browser quali Google Chrome e Microsoft Edge.
 
+\subsection{Requisiti di Sicurezza}
+
+Il progetto definisce i meccanismi di sicurezza a livello applicativo, quali l'autenticazione degli utenti e la gestione dei permessi basata sui ruoli (RBAC). Tuttavia, la messa in sicurezza dell'infrastruttura di produzione (hardening dei server, configurazione di firewall, gestione dei certificati SSL/TLS e conformità GDPR) esula dagli obiettivi di questo elaborato. Tali aspetti saranno presi in carico dall'ente responsabile dell'implementazione finale e del deployment nell'ambiente operativo aziendale.
 
 \end{document}
