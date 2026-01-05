@@ -1,12 +1,10 @@
-# Report di compilazione del 2026-01-05T06:58:19+00:00
+# Report di compilazione del 2026-01-05T18:12:44+00:00
 
-Compilazione basata sul commit d50e89b4088dc06a92b323e58086d6acd6abb445 (base: d50e89b)
+Compilazione basata sul commit dc479e6389cb9273f1094f4f55e01b48ac3750da (base: dc479e6)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/RTB/Documentazione Esterna/Analisi_dei_Requisiti_v0.3.pdf](docs/RTB/Documentazione%20Esterna/Analisi_dei_Requisiti_v0.3.pdf)
-
-✅ [docs/RTB/Documentazione Esterna/Glossario_v1.3.pdf](docs/RTB/Documentazione%20Esterna/Glossario_v1.3.pdf)
+✅ [docs/RTB/Documentazione Interna/Verbali Interni/verbale_interno_2026-01-02.pdf](docs/RTB/Documentazione%20Interna/Verbali%20Interni/verbale_interno_2026-01-02.pdf)
 
