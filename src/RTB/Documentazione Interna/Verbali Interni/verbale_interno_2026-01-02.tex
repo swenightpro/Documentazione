@@ -1,0 +1,231 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{currfile}
+\usepackage{array}
+\graphicspath{{assets/}{../assets/}{../../assets/}{../../../assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[svgnames]{xcolor}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Interno 2026-01-02 - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ------ FRONTESPIZIO -----------------------------------------
+\begin{document}
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+\begin{figure}
+    \centering
+    % Assicurati che il logo sia presente nella cartella assets
+    \includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+    \vfill
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    \vfill
+    {\Huge \bfseries Verbale di Riunione \par}
+    \vspace{1cm}
+
+    {\Large \itshape Verbale Interno del 02 Gennaio 2026 \par}
+    \vfill
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    \vfill
+
+    {\large Data: 2026-01-02 \par}
+
+\end{titlepage}
+
+% ------ INDICE -----------------------------------------
+\newpage
+\tableofcontents
+\pagestyle{fancy}
+
+% ------ INFORMAZIONI GENERALI -----------------------------------------
+\newpage
+\section{Informazioni Generali}
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+% ------ DETTAGLI RIUNIONE -----------------------------------------
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2026-01-02
+    \item \textbf{Ora:} 10:00 - 11:45
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Samuele Perozzo, Davide Biasuzzi, Mihaela-Mariana Romascu, Giovanni Ponso, Francesco Zanella, Leonardo Bilato.
+    \item \textbf{Assenti:} Michele Ogniben
+    \item \textbf{Redatto da:} Davide Biasuzzi
+    \item \textbf{Verificato da:} Giovanni Ponso
+    \item \textbf{Versione:} 1.0
+\end{itemize}
+
+
+% ------ ORDINI DEL GIORNO -----------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Resoconto dello Sprint 7 e ricezione del dataset dall'azienda proponente.
+    \item[2.] Aggiornamento sull'implementazione del database per il PoC.
+    \item[3.] Analisi del dataset fornito dall'azienda proponente.
+    \item[4.] Discussione sulle problematiche di avanzamento dei task dello Sprint 7.
+    \item[5.] Progettazione delle funzionalità di autenticazione e visualizzazione dell'ordine nella web app PoC.
+    \item[6.] Presentazione delle modifiche all'Analisi dei Requisiti e al Glossario.
+    \item[7.] Pianificazione delle attività per lo Sprint 8 e definizione dei ruoli.
+\end{itemize}
+
+% ------ DIARIO DELLA RIUNIONE -----------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Resoconto dello Sprint 7 e Ricezione del Dataset}
+Il gruppo ha analizzato l'andamento dello Sprint 7, evidenziando che l'azienda proponente ha finalmente fornito il dataset necessario per lo sviluppo della base di dati del Proof of Concept. Questa consegna ha permesso al team di compiere progressi significativi nella progettazione e nell'implementazione del database, rimuovendo uno dei principali blocchi tecnici che avevano caratterizzato le settimane precedenti.
+
+\subsection{Aggiornamento sull'Implementazione del Database}
+Giovanni Ponso ha esposto al gruppo lo stato di avanzamento dei lavori relativi al database del PoC. Ha comunicato di aver completato lo schema del database, partendo dal dataset fornito dall'azienda. L'implementazione dello schema rappresenta un passo fondamentale per l'architettura del sistema.
+
+Tuttavia, Giovanni ha segnalato problematiche relative all'integrazione del database sulla piattaforma Railway.com, il servizio cloud scelto per l'hosting della base di dati. Le criticità riscontrate richiedono ulteriori indagini tecniche e verranno affrontate nel corso dello Sprint 8.
+
+\subsection{Analisi del Dataset dell'Azienda Proponente}
+Durante la presentazione dello schema del database, Giovanni ha sollevato alcune osservazioni critiche sul dataset fornito dall'azienda. In particolare, ha identificato:
+\begin{itemize}
+    \item \textbf{Mancanza dei dati di login lato utente};
+    \item \textbf{Campi fittizi:} la presenza di attributi che non sembrano avere un utilizzo pratico per il sistema e che potrebbero essere rimossi per semplificare il modello.
+\end{itemize}
+
+Il gruppo ha discusso la possibilità di richiedere all'azienda proponente una revisione del dataset, chiarendo se sia ammissibile procedere con modifiche o se il dataset debba essere utilizzato nella sua forma originale.
+
+\subsection{Problematiche di Avanzamento dei Task dello Sprint 7}
+Durante la riunione è emerso che alcuni membri del team, nello specifico Samuele Perozzo e Francesco Zanella, non hanno potuto completare le attività previste nello Sprint 7. Il motivo principale è stata l'impossibilità di ottenere la base del Proof of Concept sviluppata da Michele Ogniben, assente alla riunione. Questo ha impedito loro di lavorare sui task assegnati relativi allo sviluppo dell'applicazione.
+
+Per risolvere questa criticità, il gruppo ha deciso di \textbf{riassegnare le attività incomplete dello Sprint 7 allo Sprint 8}, garantendo che vengano distribuite in modo più efficace tra i membri disponibili e assicurando la corretta condivisione del codice base tramite il repository condiviso.
+
+\subsection{Progettazione delle Funzionalità della Web App}
+Il gruppo ha discusso l'implementazione di funzionalità per migliorare il sistema, distinguendo tra quelle da integrare nel Proof of Concept e quelle da riservare all'MVP finale. In particolare, si è ragionato su:
+\begin{itemize}
+    \item \textbf{Visualizzazione dell'ordine tramite canvas (PoC):} integrazione di un componente grafico nella web app del Proof of Concept che permetta di visualizzare in modo chiaro ed intuitivo gli ordini che si stanno effettuando. Si è discusso anche della possibilità che un singolo ordine possa contenere più prodotti, rendendo necessaria una gestione appropriata della struttura dati e dell'interfaccia utente. Questa funzionalità sarà implementata già nel PoC;
+    \item \textbf{Sistema di autenticazione per i clienti (MVP):} implementazione di una funzionalità di login per identificare univocamente i clienti al momento dell'inserimento di un ordine. Questo permetterà di associare correttamente ciascun ordine al cliente che lo ha effettuato, garantendo tracciabilità e migliorando la gestione delle operazioni. Questa funzionalità è prevista per l'MVP finale e non per il PoC.
+\end{itemize}
+
+\subsection{Modifiche all'Analisi dei Requisiti e al Glossario}
+Davide Biasuzzi ha illustrato al gruppo le modifiche apportate al documento Analisi dei Requisiti, che è stato aggiornato dalla versione 0.1 alla versione 0.3, includendo due incrementi di versione. Le modifiche hanno riguardato:
+\begin{itemize}
+    \item Revisione e ampliamento dei requisiti funzionali e non funzionali;
+    \item Aggiunta di dettagli tecnici per migliorare la comprensione del sistema;
+    \item Integrazione di riferimenti al Glossario per garantire coerenza terminologica.
+\end{itemize}
+
+Parallelamente, è stato aggiornato anche il Glossario, introducendo una notazione specifica per segnalare i termini tecnici all'interno dell'Analisi dei Requisiti. Ogni prima occorrenza di una parola rilevante nel documento riporta ora la lettera \textbf{G} in pedice, indicando che il termine è definito nel Glossario. Questa scelta mira a migliorare la leggibilità e la fruibilità della documentazione.
+
+Il gruppo ha approvato le modifiche, ritenendole necessarie per garantire la qualità della documentazione in vista della revisione RTB.
+
+\subsection{Necessità di Colloquio con il Professor Cardin}
+Durante la discussione sulla documentazione, è emersa la necessità di organizzare un colloquio con il professor Cardin per discutere l'Analisi dei Requisiti. L'incontro sarà finalizzato a ottenere un feedback tecnico e metodologico sul documento, assicurandosi che rispetti le linee guida del corso e le aspettative per la milestone RTB.
+
+È stato assegnato a Davide Biasuzzi il compito di contattare il docente per concordare un appuntamento, preferibilmente entro la settimana successiva.
+
+
+% ------ DECISIONI PRESE -----------------------------------------
+\newpage
+\section{Decisioni Prese}
+\begin{enumerate}
+    \item Approvazione dell'avanzamento del database e dello schema progettato da Giovanni Ponso.
+    \item Riassegnazione delle attività incomplete dello Sprint 7 allo Sprint 8.
+    \item Inclusione della funzionalità di visualizzazione dell'ordine tramite canvas nello sviluppo del PoC.
+    \item Approvazione delle modifiche apportate all'Analisi dei Requisiti (v0.3) e al Glossario.
+    \item Incarico a Davide Biasuzzi di richiedere un ricevimento con il professor Cardin.
+    \item Discutere con l'azienda proponente di eventuali modifiche del database nella prossima riunione.
+\end{enumerate}
+
+
+\newpage
+% ------ PIANIFICAZIONE DI PERIODO -----------------------------------------
+\section{Attività da Svolgere (Sprint 8)}
+Le seguenti attività sono pianificate per lo Sprint 8.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}p{10cm}l@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} \\
+\midrule
+Attività del responsabile (stesura verbali, DdB, PdP, gestione github project)  & Responsabile \\
+Contattare il professor Cardin per richiedere un ricevimento & Responsabile \\
+Implementazione nel PoC del modello LLM & Programmatore \\
+Fine-tuning del modello & Programmatore \\
+Valutazione dell'utilizzo di Next.js & Programmatore \\
+Integrazione visualizzazione ordini tramite canvas nel PoC & Programmatore \\
+Revisione dei requisiti nell'Analisi dei Requisiti & Analista \\
+\bottomrule
+\end{tabular}
+\caption{Task assegnati per lo Sprint 8.}
+\end{table}
+
+% tabella di rotazione dei ruoli
+\section{Definizione dei ruoli (Preventivo Sprint 8)}
+Sono stati definiti i ruoli e le relative assegnazioni orarie per il prossimo periodo operativo (Sprint 8).
+La ripartizione è stata stabilita come segue:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}l l@{}}
+\toprule
+\textbf{Ruolo} & \textbf{Membro (Ore)} \\
+\midrule
+Responsabile   & Davide Biasuzzi (5h) \\
+Amministratore & - \\
+Analista       & Leonardo Bilato (3h), Mihaela-Mariana Romascu (3h) \\
+Progettista    & - \\
+Programmatore  & Samuele Perozzo (4h), Francesco Zanella (4h), \\ 
+               & Michele Ogniben (5h), Giovanni Ponso (3h) \\
+Verificatore   & Giovanni Ponso (3h) \\
+\bottomrule
+\end{tabular}
+\caption{Distribuzione ruoli e ore per lo Sprint 8.}
+\end{table}
+\newpage
+% ------ PIANIFICAZIONE DI PERIODO -----------------------------------------
+
+\end{document}
