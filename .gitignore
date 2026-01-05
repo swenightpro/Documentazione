@@ -1,1 +1,12 @@
 .DS_Store
+src/RTB/Documentazione Esterna/Analisi_dei_Requisiti_v0.1.pdf
+*.aux
+*.fls
+*.log
+*.out
+*.gz
+*.fdb_latexmk
+src/RTB/Documentazione Esterna/Glossario_v1.2.pdf
+*.toc
+src/RTB/Documentazione Esterna/Glossario_v1.3.pdf
+src/RTB/Documentazione Esterna/Analisi_dei_Requisiti_v0.3.pdf

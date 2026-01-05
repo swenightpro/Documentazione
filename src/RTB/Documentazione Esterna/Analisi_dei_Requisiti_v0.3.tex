@@ -70,13 +70,15 @@
     % NASCOSTO REDATTORI    {\Large Redattori: Francesco Zanella, Davide Biasuzzi, Samuele Perozzo\par}
     \vfill
 
-    {\Large \bfseries Gruppo: NightPRO}    \vspace{0.5cm}
+    {\Large \bfseries Gruppo: NightPRO}    \vspace{0.5cm}\\
+    {\Large \bfseries Sistema: SmartOrder}    \vspace{0.5cm}
+
 
     {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
 
-        {\large Data: 2025-12-12 \par}
+        {\large Data: 2026-01-04 \par}
 
-     {\Large Versione: 0.2 \par} 
+     {\Large Versione: 0.3 \par} 
 
 \end{titlepage}
 
@@ -95,7 +97,8 @@
 \toprule
 \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
 \midrule
-0.2 & 2026-01-02 & Davide Biasuzzi & Modificato Frontespizio, Inseriti Diagrammi UML degli Use Case, Aggiunto paragrafo sui Requsiti Prestazionali, Aggiornati RF7.4, RF1.1 e RF1.2, Aggiunto paragrafo sui Requsiti di Sicurezza, Completata sezione Stakeholders, Aggiunto UC7.2, Aggiunto Cliente Aziendale sugli utenti principali & Leonardo Bilato \\
+0.3 & 2026-01-04 & Davide Biasuzzi & Aggiunto UC6.2 (Visualizzazione Errore Elaborazione Semantica) per simmetria con UC7.2, Aggiunti Requisiti di Sicurezza e Requisiti Prestazionali, Aggiunta nota esplicativa sulle soglie di confidenza differenziate (90\% audio vs 80\% testo), Aggiunta nota che tutti i RF sono obbligatori, Aggiunte le matrici di tracciabilità UC<->RF, Sincronizzazione terminologia con Glossario. & Leonardo Bilato \\
+0.2 & 2026-01-02 & Davide Biasuzzi & Modificato Frontespizio, Inseriti Diagrammi UML degli Use Case, Aggiunto paragrafo sui Requisiti Prestazionali, Aggiornati RF7.4, RF1.1 e RF1.2, Aggiunto paragrafo sui Requisiti di Sicurezza, Completata sezione Stakeholders, Aggiunto UC7.2, Aggiunto Cliente Aziendale sugli utenti principali. & Leonardo Bilato \\
 0.1 & 2025-12-12 & Francesco Zanella, Davide Biasuzzi, Samuele Perozzo & Creazione bozza documento con integrazione analisi dettagliata: stakeholder e requisiti funzionali completi (RF1-RF7). Stesura dei casi d'uso (UC1-UC7) strutturati granularmente per garantire l'atomicità delle operazioni e separare le logiche di frontend e backend. & Mihaela-Mariana Romascu \\
 \bottomrule
 \end{tabular}
@@ -152,7 +155,7 @@ L’obiettivo è definire in modo preciso cosa il sistema dovrà fare, i vincoli
 
 \subsection{Scopo del prodotto}
 \textbf{SmartOrder} è una piattaforma intelligente progettata per automatizzare la gestione degli ordini dei clienti provenienti da diverse tipologie di input: testo e audio.  
-Il sistema utilizza tecniche di \textbf{Intelligenza Artificiale (AI)} e \textbf{Machine Learning (ML)} per interpretare i dati in modo accurato e trasformarli in ordini strutturati, pronti per essere inseriti automaticamente nel sistema gestionale aziendale (ERP).
+Il sistema utilizza tecniche di \textbf{Intelligenza Artificiale (AI)\textsubscript{\textsc{g}}} e \textbf{Machine Learning (ML)\textsubscript{\textsc{g}}} per interpretare i dati in modo accurato e trasformarli in ordini strutturati, pronti per essere inseriti automaticamente nel sistema gestionale aziendale (ERP\textsubscript{\textsc{g}}).
 
 \textbf{SmartOrder} è in grado di:
 \begin{itemize}
@@ -173,7 +176,7 @@ Tutti i termini inclusi in questo glossario vengono segnalati all’interno del 
 
 \subsection{Stakeholder}
 
-Il progetto \textbf{SmartOrder} coinvolge diversi soggetti chiave, ciascuno con ruoli e interessi specifici:
+Il progetto \textbf{SmartOrder} coinvolge diversi soggetti chiave\textsubscript{\textsc{g}}, ciascuno con ruoli e interessi specifici:
 
 \begin{itemize}
 \item \textbf{Committente}: Docenti Tullio Vardanega e Riccardo Cardin (UNIPD)
@@ -230,21 +233,16 @@ Gli obiettivi principali di \textbf{SmartOrder} sono:
 \end{itemize}
 
 \subsection{Funzionalità del prodotto}
-Il sistema \textbf{SmartOrder} è organizzato come una pipeline modulare composta da diverse fasi:
+Il sistema \textbf{SmartOrder} è organizzato come una pipeline\textsubscript{\textsc{g}} modulare composta da diverse fasi:
 \begin{enumerate}
-    \item \textbf{Raccolta degli Input Multimodali:} acquisizione di ordini testuali e vocali con LLM e tecnologie Speech-to-Text.
-    \item \textbf{Pre-Processing dei Dati:} pulizia e normalizzazione degli input con riconoscimento automatico delle entità (NER).
-    \item \textbf{Estrazione delle Caratteristiche:} conversione dei dati multimodali in embedding numerici condivisi.
+    \item \textbf{Raccolta degli Input Multimodali:} acquisizione di ordini testuali e vocali con LLM\textsubscript{\textsc{g}} e tecnologie Speech-to-Text\textsubscript{\textsc{g}}.
+    \item \textbf{Pre-Processing dei Dati:} pulizia e normalizzazione degli input con riconoscimento automatico delle entità (NER\textsubscript{\textsc{g}}).
+    \item \textbf{Estrazione delle Caratteristiche:} conversione dei dati multimodali in embedding\textsubscript{\textsc{g}} numerici condivisi.
     \item \textbf{Interpretazione Semantica e Mappatura:} associazione dei dati ai codici prodotto aziendali.
     \item \textbf{Validazione e Arricchimento dei Dati:} verifica della completezza e aggiunta di metadati.
-    \item \textbf{Monitoraggio e Feedback:} registrazione dei risultati e miglioramento continuo tramite retraining dei modelli AI.
+    \item \textbf{Monitoraggio e Feedback\textsubscript{\textsc{g}}:} registrazione dei risultati e miglioramento continuo tramite retraining dei modelli AI.
 \end{enumerate}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{Pipeline_Diagram.png}
-    \caption{Workflow completo di elaborazione e validazione di un ordine tramite pipeline SmartOrder.}
-    \label{fig:pipeline-diagram}
-\end{figure}
+
 \subsection{Utenti e caratteristiche}
 \textbf{Utenti principali:}
 
@@ -270,7 +268,12 @@ Amministratore di sistema & Gestisce la base dati e la manutenzione generale del
 
 % ============================================================
 \section{Casi d'Uso}
-
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Pipeline_Diagram.png}
+    \caption{Workflow completo di elaborazione e validazione di un ordine tramite pipeline SmartOrder.}
+    \label{fig:pipeline-diagram}
+\end{figure}
 \subsection{Introduzione}
 Questa sezione descrive i casi d'uso del sistema \textbf{SmartOrder}. I casi d'uso sono stati ristrutturati per isolare le funzionalità di accesso, le interazioni sulla Web App di gestione e i flussi di acquisizione ordini dai canali esterni.
 
@@ -469,6 +472,21 @@ Il sistema interagisce con i seguenti attori:
     \item Il sistema salva la bozza per la visualizzazione operatore (UC2).
 \end{enumerate}
 
+\subsubsection{UC6.2 - Visualizzazione Errore Elaborazione Semantica}
+
+\textbf{Attore principale}: Moduli AI/ML. \\
+\textbf{Precondizioni}: Un testo è stato elaborato (UC6.1) e l'interpretazione semantica presenta criticità. \\
+\textbf{Postcondizioni}: Viene segnalato un errore di bassa confidenza nell'elaborazione semantica. \\
+\textbf{Scenario principale}:
+\begin{enumerate}
+    \item Il modulo AI elabora il testo con algoritmi NLP/NER;
+    \item Il sistema determina un confidence score inferiore alla soglia di 80\% per l'estrazione delle entità o per il mapping dei prodotti al catalogo;
+    \item Il sistema genera un avviso di errore: ``Elaborazione semantica ambigua. Confidenza: [X]\%. Impossibile mappare con certezza i prodotti richiesti'';
+    \item L'ordine viene marcato con stato ``In revisione - Dati ambigui'' e segnalato all'operatore in dashboard;
+    \item L'operatore può visualizzare il testo originale e correggere manualmente l'interpretazione tramite UC4.
+\end{enumerate}
+\textbf{User Story}: Come Sistema, voglio segnalare quando la qualità dell'interpretazione testuale è insufficiente per evitare errori di mappatura dei prodotti.
+
 \subsubsection{UC7 - Inserimento Ordine Vocale}
 \begin{figure}[H]
     \centering
@@ -515,11 +533,23 @@ Il sistema interagisce con i seguenti attori:
 \end{enumerate}
 \textbf{User Story}: Come Sistema, voglio segnalare quando la qualità della trascrizione audio è insufficiente per evitare errori di interpretazione degli ordini.
 
+\vspace{0.3cm}
+
+\noindent\textbf{Nota sulle soglie di confidenza}: Le soglie di confidence score per la gestione degli errori sono state calibrate in base alla natura dei processi:
+\begin{itemize}
+    \item \textbf{Trascrizione audio (UC7.2): 90\%} — La trascrizione Speech-to-Text è un processo critico a fase singola dove errori precoci si propagano inevitabilmente. L'audio presenta inoltre maggiori variabili incontrollabili (rumore, accenti, qualità di registrazione) che richiedono una soglia più restrittiva.
+    \item \textbf{Elaborazione semantica testuale (UC6.2): 80\%} — L'interpretazione semantica è multi-fase (NER, mapping, validazione) e consente errori parziali correggibili. Una soglia leggermente inferiore bilancia la riduzione dei falsi positivi con la necessità di supervisione umana su casi ambigui.
+\end{itemize}
+
 
 % ============================================================
-\section{Requisiti}
+\section{Requisiti\textsubscript{\textsc{g}}}
 
 \subsection{Requisiti Funzionali}
+
+\noindent\textbf{Nota}: Tutti i requisiti funzionali elencati in questa sezione sono classificati come \textbf{obbligatori}, in quanto descrivono le funzionalità essenziali che il sistema deve implementare per soddisfare gli obiettivi del progetto.
+
+\vspace{0.3cm}
 
 \subsubsection{Gestione Input Multimodale}
 
@@ -532,9 +562,10 @@ Il sistema interagisce con i seguenti attori:
 \textbf{ID} & \textbf{Requisito} & \textbf{Descrizione} & \textbf{Attori} \\
 \hline
 \endhead
-RF1.1 & Acquisizione testo & Il sistema deve acquisire testo dalla chat & Sistema, Cliente \\
+RF1.1 & Acquisizione testo & Il sistema deve acquisire testo da canale chat interno (web app) & Sistema, Cliente \\
 \hline
-RF1.2 & Acquisizione audio & Il sistema deve acquisire file audio (messaggi vocali, registrazioni telefoniche, audio WhatsApp) in MP3 e WAW & Sistema, Cliente \\
+RF1.2 & Acquisizione audio & Il sistema deve acquisire file audio (MP3, WAV, OGG) con sample rate 
+       8kHz-48kHz per trascrizione & Sistema, Cliente \\
 \hline
 RF1.3 & Validazione format input & Il sistema deve validare formato e dimensione degli input & Sistema \\
 \hline
@@ -553,7 +584,7 @@ RF1.4 & Normalizzazione dati grezzi & Il sistema deve normalizzare e ripulire da
 \textbf{ID} & \textbf{Requisito} & \textbf{Descrizione} & \textbf{Attori} \\
 \hline
 \endhead
-RF2.1 & NER (Named Entity Recognition) & Il sistema deve identificare automaticamente entità (quantità, unità di misura, descrizioni prodotto, date di consegna, indirizzi) & Sistema \\
+RF2.1 & NER\textsubscript{\textsc{g}} (Named Entity Recognition) & Il sistema deve identificare automaticamente le entità (quantità, unità di misura, descrizioni prodotto, date di consegna, indirizzi) & Sistema \\
 \hline
 RF2.2 & Speech-to-text & Il sistema deve trascrivere audio in testo con accuracy $\geq$ 90\% (anche per accenti regionali italiani) & Sistema \\
 \hline
@@ -572,7 +603,7 @@ RF2.3 & Tokenizzazione e normalizzazione testuale & Il sistema deve applicare to
 \textbf{ID} & \textbf{Requisito} & \textbf{Descrizione} & \textbf{Attori} \\
 \hline
 \endhead
-RF3.1 & Generazione embedding semantici & Il sistema deve generare embedding per testo tramite modelli LLM& Sistema \\
+RF3.1 & Generazione embedding semantici & Il sistema deve generare embedding per testo tramite modelli LLM & Sistema \\
 \hline
 RF3.2 & Generazione embedding audio & Il sistema deve generare embedding dai dati audio trascritti & Sistema \\
 \hline
@@ -593,13 +624,13 @@ RF3.4 & Completamento informazioni & Il sistema deve completare o correggere des
 \textbf{ID} & \textbf{Requisito} & \textbf{Descrizione} & \textbf{Attori} \\
 \hline
 \endhead
-RF4.1 & Verifica integrità ordine & Il sistema deve verificare che ordine contenga informazioni obbligatorie (codice prodotto, quantità, indirizzo) & Sistema \\
+RF4.1 & Verifica integrità ordine & Il sistema deve verificare che l'ordine contenga informazioni obbligatorie (codice prodotto, quantità, indirizzo) & Sistema \\
 \hline
 RF4.2 & Applicazione regole aziendali & Il sistema deve applicare controlli preliminari e regole aziendali (es. quantità minima, disponibilità magazzino) & Sistema \\
 \hline
-RF4.3 & Validazione coerenza & Il sistema deve validare coerenza tra quantità e unità di misura, codice prodotto e categoria & Sistema \\
+RF4.3 & Validazione coerenza & Il sistema deve validare la coerenza tra quantità e unità di misura, codice prodotto e categoria & Sistema \\
 \hline
-RF4.4 & Arricchimento metadati & Il sistema deve arricchire ordine con metadati (canale input, timestamp, tipo input, confidence score) & Sistema \\
+RF4.4 & Arricchimento metadati & Il sistema deve arricchire l'ordine con metadati (canale input, timestamp, tipo input, confidence score) & Sistema \\
 \hline
 RF4.5 & Handling ambiguità & Il sistema deve gestire situazioni ambigue segnalando confidence score basso per validazione manuale & Sistema \\
 \hline
@@ -620,7 +651,7 @@ RF5.1 & Strutturazione JSON & Il sistema deve trasformare ordini elaborati in fo
 \hline
 RF5.2 & Strutturazione XML & Il sistema deve supportare anche formato XML per compatibilità con sistemi ERP diversi & Sistema \\
 \hline
-RF5.3 & Tracciamento metadati & Il sistema deve tracciare completamente metadati di ogni ordine processato (canale, livello confidenza, timestamp) & Sistema \\
+RF5.3 & Tracciamento metadati & Il sistema deve tracciare completamente i metadati di ogni ordine processato (canale, livello confidenza, timestamp) & Sistema \\
 \hline
 \end{longtable}
 
@@ -635,17 +666,17 @@ RF5.3 & Tracciamento metadati & Il sistema deve tracciare completamente metadati
 \textbf{ID} & \textbf{Requisito} & \textbf{Descrizione} & \textbf{Attori} \\
 \hline
 \endhead
-RF6.1 & Interfaccia supervisione & Il sistema deve fornire interfaccia web per operatore di gestione per supervisionare ordini & Operatore, Sistema \\
+RF6.1 & Interfaccia supervisione & Il sistema deve fornire un'interfaccia web per l'operatore di gestione per supervisionare ordini & Operatore, Sistema \\
 \hline
-RF6.2 & Visualizzazione dettagli ordine & L'interfaccia deve mostrare dettagli completi dell'ordine (dati estratti, confidence score, sorgente input) & Operatore \\
+RF6.2 & Visualizzazione dettagli ordine & L'interfaccia deve mostrare i dettagli completi dell'ordine (dati estratti, confidence score, sorgente input) & Operatore \\
 \hline
-RF6.3 & Correzione manuale & L'interfaccia deve permettere operatore di correggere dati ordine prima dell'inserimento in caso di ambiguità & Operatore, Sistema \\
+RF6.3 & Correzione manuale & L'interfaccia deve permettere all'operatore di correggere dati ordine prima dell'inserimento in caso di ambiguità & Operatore, Sistema \\
 \hline
-RF6.4 & Approvazione/Rifiuto & L'interfaccia deve permettere operatore di approvare o rifiutare ordine ambiguo & Operatore, Sistema \\
+RF6.4 & Approvazione/Rifiuto & L'interfaccia deve permettere all'operatore di approvare o rifiutare ordine ambiguo & Operatore, Sistema \\
 \hline
-RF6.5 & Feedback per retraining & Il sistema deve registrare correzioni manuali per retraining del modello & Sistema \\
+RF6.5 & Feedback per retraining & Il sistema deve registrare eventuali correzioni manuali per il retraining del modello & Sistema \\
 \hline
-RF6.6 & Visualizzazione storico & L'interfaccia deve permettere accesso a storico degli ordini processati con filtri (data, canale, cliente) & Operatore \\
+RF6.6 & Visualizzazione storico & L'interfaccia deve permettere l'accesso allo storico degli ordini processati, con  la possibilità di usare filtri (data, canale, cliente) & Operatore \\
 \hline
 \end{longtable}
 
@@ -664,11 +695,11 @@ RF7.1 & Logging dettagliato & Il sistema deve loggare tutte le operazioni con ti
 \hline
 RF7.2 & Monitoraggio prestazioni & Il sistema deve tracciare metriche di performance (tempo processing, accuracy, error rate) & Sistema \\
 \hline
-RF7.3 & Meccanismo feedback & Il sistema deve implementare meccanismo di feedback continuo per correzione dei dati & Sistema, Operatore \\
+RF7.3 & Meccanismo feedback & Il sistema deve implementare un meccanismo di feedback continuo per correzione dei dati & Sistema, Operatore \\
 \hline
 RF7.4 & Retraining periodico & Il sistema deve supportare retraining periodico (periodicità a scelta) e manuale dei modelli AI basato su dati corretti & Sistema \\
 \hline
-RF7.5 & Aggiornamento regole & Il sistema deve permettere aggiornamento delle regole aziendali in base a pattern osservati & Sistema \\
+RF7.5 & Aggiornamento regole & Il sistema deve permettere l'aggiornamento delle regole aziendali in base a pattern osservati & Sistema \\
 \hline
 \end{longtable}
 
@@ -684,6 +715,8 @@ RQ02 & Desiderabile & Il sistema deve poter essere esteso per supportare nuovi c
 \hline
 \end{longtable}
 
+\newpage
+
 \subsection{Requisiti di Vincolo}
 
 \begin{longtable}{|p{2cm}|p{3cm}|p{8cm}|p{3cm}|}
@@ -692,7 +725,7 @@ RQ02 & Desiderabile & Il sistema deve poter essere esteso per supportare nuovi c
 \hline
 RV01 & Obbligatorio & Il database deve essere relazionale (MySQL, MariaDB o SQL Server Express). & Capitolato \\
 \hline
-RV02 & Obbligatorio & Le API devono rispettare lo standard REST per garantire interoperabilità. & Capitolato \\
+RV02 & Obbligatorio & Le API\textsubscript{\textsc{g}} devono rispettare lo standard REST per garantire interoperabilità. & Capitolato \\
 \hline
 RV03 & Desiderabile & L’interfaccia deve essere sviluppata come webapp responsive. & Capitolato \\
 \hline
@@ -706,8 +739,258 @@ RV05 & Desiderabile & L’addestramento dei modelli deve poter essere eseguito i
 
 In quanto soluzione Web-based, i requisiti prestazionali sono strettamente correlati alla latenza e alla larghezza di banda della connessione Internet, nonché alle capacità computazionali del terminale utente. L'ottimizzazione del frontend è stata declinata specificamente per motori di rendering Chromium, garantendo piena compatibilità con browser quali Google Chrome e Microsoft Edge.
 
+\begin{longtable}{|p{2cm}|p{3cm}|p{8cm}|p{3cm}|}
+\hline
+\textbf{Codice} & \textbf{Classificazione} & \textbf{Descrizione} & \textbf{Fonte} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Codice} & \textbf{Classificazione} & \textbf{Descrizione} & \textbf{Fonte} \\
+\hline
+\endhead
+
+RP01 & Obbligatorio &
+Il tempo medio di caricamento della dashboard ordini, in condizioni di rete normali,
+non deve superare i 2 secondi. &
+Team di sviluppo \\
+\hline
+
+RP02 & Obbligatorio &
+Il tempo medio di elaborazione di un ordine testuale (dalla ricezione alla generazione
+della bozza strutturata) non deve superare i 10 secondi. &
+Team di sviluppo \\
+\hline
+
+RP03 & Desiderabile &
+Il tempo medio di trascrizione di un file audio di 1 minuto non deve superare i
+20 secondi. &
+Team di sviluppo \\
+\hline
+
+RP04 & Desiderabile &
+Il sistema deve poter processare almeno 50 ordini all'ora senza degrado significativo
+delle prestazioni percepite dall'utente. &
+Team di sviluppo \\
+\hline
+
+\caption{Requisiti prestazionali del sistema \textbf{SmartOrder}.}
+\end{longtable}
+
+
+
+
 \subsection{Requisiti di Sicurezza}
 
-Il progetto definisce i meccanismi di sicurezza a livello applicativo, quali l'autenticazione degli utenti e la gestione dei permessi basata sui ruoli (RBAC). Tuttavia, la messa in sicurezza dell'infrastruttura di produzione (hardening dei server, configurazione di firewall, gestione dei certificati SSL/TLS e conformità GDPR) esula dagli obiettivi di questo elaborato. Tali aspetti saranno presi in carico dall'ente responsabile dell'implementazione finale e del deployment nell'ambiente operativo aziendale.
+Il progetto definisce i meccanismi di sicurezza a livello applicativo, quali l'autenticazione degli utenti e la gestione dei permessi basata sui ruoli (RBAC). La messa in sicurezza dell'infrastruttura di produzione (hardening dei server, configurazione di firewall, gestione dei certificati SSL/TLS e piena conformità GDPR) è considerata fuori dallo scope di questo elaborato e sarà presa in carico dall'ente responsabile del deployment nell'ambiente operativo aziendale.
+
+\begin{longtable}{|p{2cm}|p{3cm}|p{8cm}|p{3cm}|}
+\hline
+\textbf{Codice} & \textbf{Classificazione} & \textbf{Descrizione} & \textbf{Fonte} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Codice} & \textbf{Classificazione} & \textbf{Descrizione} & \textbf{Fonte} \\
+\hline
+\endhead
+
+RS01 & Obbligatorio &
+Il sistema deve prevedere un meccanismo di autenticazione basato su credenziali
+univoche (email e password) per tutti gli utenti che accedono alla web app. &
+Team di sviluppo \\
+\hline
+
+RS02 & Obbligatorio &
+Il sistema deve implementare un controllo di accesso basato sui ruoli (RBAC\textsubscript{\textsc{g}})
+per distinguere i permessi di Operatore, Cliente aziendale e Amministratore
+di sistema. &
+Team di sviluppo \\
+\hline
+
+RS03 & Obbligatorio &
+Tutte le comunicazioni tra client e server devono essere protette tramite
+protocollo HTTPS. &
+Team di sviluppo \\
+\hline
+
+RS04 & Desiderabile &
+Il sistema deve garantire la tracciabilità delle operazioni critiche
+(accessi, approvazioni, modifiche d'ordine) mediante audit log non modificabili. &
+Team di sviluppo \\
+\hline
+
+RS05 & Obbligatorio &
+Le password degli utenti devono rispettare i seguenti requisiti di complessità:
+lunghezza minima di 8 caratteri, almeno una lettera maiuscola, una minuscola,
+un numero e un carattere speciale. Le password devono essere memorizzate
+utilizzando algoritmi di hashing sicuri (es. bcrypt, Argon2). &
+Team di sviluppo \\
+\hline
+
+\caption{Requisiti di sicurezza del sistema \textbf{SmartOrder}.}
+\end{longtable}
+
+
+% ============================================================
+\section{Matrice di Tracciabilità}
+
+La seguente matrice mette in relazione i casi d'uso principali con i requisiti funzionali ad essi associati, così da garantire copertura e coerenza tra specifica dei requisiti e scenari operativi.
+
+\begin{longtable}{|p{2cm}|p{7cm}|p{5cm}|}
+\hline
+\textbf{ID UC} & \textbf{Descrizione sintetica} & \textbf{Requisiti Funzionali correlati} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{ID UC} & \textbf{Descrizione sintetica} & \textbf{Requisiti Funzionali correlati} \\
+\hline
+\endhead
+
+UC1 & Autenticazione operatore alla web app di gestione ordini & RF6.1, RF6.6 \\
+\hline
+
+UC1.3 & Visualizzazione errore di autenticazione in caso di credenziali non valide & RF6.1, RQ01 \\
+\hline
+
+UC2 & Visualizzazione dashboard ordini con elenco sintetico degli ordini processati dai moduli AI/ML & RF6.1, RF6.2, RF6.6, RF7.1 \\
+\hline
+
+UC3 & Visualizzazione dettaglio di un singolo ordine, compreso contenuto originale e mapping AI & RF2.1, RF3.3, RF4.1, RF4.4, RF6.2 \\
+\hline
+
+UC4 & Modifica riga ordine da parte dell'operatore per correggere errori di mapping o quantità & RF4.3, RF6.3, RF6.5 \\
+\hline
+
+UC5 & Approvazione e invio ordine verso il sistema ERP, con salvataggio feedback per retraining & RF4.1, RF4.2, RF5.1, RF5.2, RF5.3, RF6.4, RF6.5, RF7.3, RF7.4 \\
+\hline
+
+UC6 & Inserimento ordine testuale da parte del cliente tramite canale chat & RF1.1, RF1.3, RF1.4 \\
+\hline
+
+UC6.1 & Elaborazione semantica del testo ricevuto (NLP/NER e mapping al catalogo prodotti) & RF2.1, RF2.3, RF3.1, RF3.3, RF3.4, RF4.1, RF4.4 \\
+\hline
+
+UC6.2 & Visualizzazione errore elaborazione semantica in caso di confidence score inferiore alla soglia & RF2.1, RF2.3, RF3.3, RF4.5, RF6.1, RQ01 \\
+\hline
+
+UC7 & Inserimento ordine vocale da parte del cliente tramite file audio & RF1.2, RF1.3, RF1.4 \\
+\hline
+
+UC7.1 & Trascrizione audio (Speech-to-Text) e passaggio del testo all'elaborazione semantica & RF2.2, RF2.3, RF3.2, RF7.2 \\
+\hline
+
+UC7.2 & Visualizzazione errore trascrizione audio in caso di confidence score inferiore alla soglia & RF2.2, RF4.5, RF6.1, RQ01 \\
+\hline
+
+\caption{Matrice di tracciabilità tra Casi d'Uso e Requisiti Funzionali del sistema \textbf{SmartOrder}.}
+\end{longtable}
+
+
+
+\begin{longtable}{|p{2cm}|p{7cm}|p{5cm}|}
+\hline
+\textbf{ID RF} & \textbf{Descrizione sintetica} & \textbf{Casi d'Uso correlati} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{ID RF} & \textbf{Descrizione sintetica} & \textbf{Casi d'Uso correlati} \\
+\hline
+\endhead
+
+RF1.1 & Acquisizione testo da canale chat & UC6 \\
+\hline
+
+RF1.2 & Acquisizione file audio (messaggi vocali, registrazioni, audio WhatsApp) & UC7 \\
+\hline
+
+RF1.3 & Validazione formato e dimensione degli input & UC6, UC7 \\
+\hline
+
+RF1.4 & Normalizzazione e pulizia dei dati grezzi & UC6, UC7 \\
+\hline
+
+RF2.1 & Identificazione automatica delle entità (NER) & UC3, UC6.1, UC6.2 \\
+\hline
+
+RF2.2 & Trascrizione audio in testo con accuracy adeguata & UC7.1, UC7.2 \\
+\hline
+
+RF2.3 & Tokenizzazione e normalizzazione testuale & UC6.1, UC6.2, UC7.1 \\
+\hline
+
+RF3.1 & Generazione di embedding semantici per il testo & UC6.1 \\
+\hline
+
+RF3.2 & Generazione di embedding dai dati audio trascritti & UC7.1 \\
+\hline
+
+RF3.3 & Mapping delle descrizioni estratte ai codici prodotto del catalogo & UC3, UC6.1, UC6.2 \\
+\hline
+
+RF3.4 & Completamento/correzione descrizioni incomplete o ambigue & UC3, UC6.1 \\
+\hline
+
+RF4.1 & Verifica che l’ordine contenga tutte le informazioni obbligatorie & UC3, UC5, UC6.1 \\
+\hline
+
+RF4.2 & Applicazione delle regole aziendali sugli ordini & UC5 \\
+\hline
+
+RF4.3 & Validazione di coerenza tra quantità, unità di misura e prodotto & UC4 \\
+\hline
+
+RF4.4 & Arricchimento dell’ordine con metadati (canale, timestamp, confidence, ecc.) & UC3, UC5, UC6.1 \\
+\hline
+
+RF4.5 & Gestione delle situazioni ambigue con segnalazione per validazione manuale & UC3, UC4, UC6.2, UC7.2 \\
+\hline
+
+RF5.1 & Trasformazione degli ordini in formato JSON strutturato & UC5 \\
+\hline
+
+RF5.2 & Supporto del formato XML per compatibilità ERP & UC5 \\
+\hline
+
+RF5.3 & Tracciamento completo dei metadati di ogni ordine processato & UC2, UC5 \\
+\hline
+
+RF6.1 & Interfaccia web per la supervisione degli ordini & UC1, UC1.3, UC2, UC6.2, UC7.2 \\
+\hline
+
+RF6.2 & Visualizzazione dei dettagli completi dell'ordine & UC2, UC3 \\
+\hline
+
+RF6.3 & Possibilità di correzione manuale dei dati d’ordine & UC4 \\
+\hline
+
+RF6.4 & Possibilità di approvare o rifiutare un ordine ambiguo & UC5 \\
+\hline
+
+RF6.5 & Registrazione delle correzioni manuali per il retraining dei modelli & UC4, UC5 \\
+\hline
+
+RF6.6 & Visualizzazione dello storico ordini con filtri & UC1, UC2 \\
+\hline
+
+RF7.1 & Logging dettagliato di operazioni, input, output ed errori & UC2, UC5 \\
+\hline
+
+RF7.2 & Monitoraggio delle metriche di performance & UC7.1 \\
+\hline
+
+RF7.3 & Meccanismo di feedback continuo per la correzione dei dati & UC5 \\
+\hline
+
+RF7.4 & Supporto al retraining periodico e manuale dei modelli AI & UC5 \\
+\hline
+
+RF7.5 & Aggiornamento delle regole aziendali in base ai pattern osservati & UC3, UC5 \\
+\hline
+
+\caption{Matrice di tracciabilità tra Requisiti Funzionali (RF) e Casi d'Uso del sistema \textbf{SmartOrder}.}
+\end{longtable}
 
 \end{document}
