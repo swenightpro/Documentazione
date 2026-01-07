@@ -97,8 +97,8 @@
     
     \vfill
     
-    {\large Data: 2025-12-19 \par}
-    {\Large Versione: 0.6 \par} 
+    {\large Data: 2026-01-02 \par}
+    {\Large Versione: 0.7 \par} 
 
 \end{titlepage}
 
@@ -117,6 +117,7 @@
 \toprule
 \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
 \midrule
+0.7 & 2026-01-02 & Mihaela-Mariana Romascu & Redazione Periodo 7 & Giovanni Ponso \\
 0.6 & 2025-12-19 & Francesco Zanella & Redazione Periodo 6 & Leonardo Bilato \\
 0.5 & 2025-12-12 & Samuele Perozzo & Redazione Periodo 5 & Mihaela-Mariana Romascu \\
 0.4 & 2025-12-05 & Leonardo Bilato & Redazione Periodo 4 & Giovanni Ponso \\
@@ -1636,13 +1637,169 @@ Totale                &                 513 & 10220  &            18 &   380 &  
 
 %%%%%%%%%%%%%%%%%%%%% Valutazione e miglioramento  %%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{Considerazioni finali (Sprint Review e Retrospective)}
-Nel periodo considerato il gruppo ha svolto esclusivamente attività operative effettive, escludendo dal conteggio le ore di studio e approfondimento individuale. Il consuntivo mostra 18 ore rendicontate, a fronte delle 16 ore preventivate, con uno scostamento contenuto e fisiologico.
+Nel periodo considerato il gruppo ha svolto esclusivamente attività operative effettive, escludendo dal conteggio le ore di studio e 
+approfondimento individuale. Il consuntivo mostra 18 ore rendicontate, a fronte delle 16 ore preventivate, con uno scostamento contenuto e fisiologico.
 L’aumento delle ore del Responsabile è dovuto alle attività di coordinamento e aggiornamento della documentazione necessarie all’avvio del Proof of Concept, mentre il lieve incremento delle ore di Programmazione è legato alla configurazione degli strumenti di supporto al progetto. Le restanti attività risultano in linea con le stime previste.
 Nel complesso, l’andamento delle ore conferma una pianificazione adeguata e una corretta gestione delle risorse per la fase iniziale del PoC.
 \newpage
 
 % ==================================================================
 %   FINE PERIODO 6
+% ==================================================================
+
+% ==================================================================
+%   PERIODO 7
+% ==================================================================
+
+\subsection{Settimo periodo: 20/12/2025 - 02/01/2026}
+
+\subsubsection*{Pianificazione (Sprint Planning)}
+
+%%%%%%%%%%%%%%%%%%%%% breve introduzione del periodo %%%%%%%%%%%%%%%%%%%%%%%
+Lo sprint 7 ha visto lo sviluppo del Proof of Concept entrare nel vivo. A seguito del riscontro 
+fornito dall'azienda riguardo ai componenti mancanti (database, template JSON, chiavi LLM), il team ha potuto procedere 
+operativamente superando la fase di stallo iniziale. Le attività si sono quindi concentrate sull'implementazione del modello LLM, 
+sulla struttura del database e sull'integrazione dei diagrammi UML nell'Analisi dei Requisiti.
+%%%%%%%%%%%%%%%%%%%%% TABELLA Attività pianificate %%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}[!ht]
+    \vspace{0.2cm}
+    \centering
+    {\large \textbf{Attività pianificate} (Sprint Backlog)} \\
+    \vspace{0.2cm}
+    \centering
+    \includegraphics[width=0.7\linewidth]{activity_sprint_7.png}
+\end{figure}
+\FloatBarrier
+
+%%%%%%%%%%%%%%%%%%%%% TABELLA Preventivo %%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[!ht]
+\centering
+{\large \textbf{Preventivo}} \\
+\vspace{0.3cm}
+\renewcommand{\arraystretch}{1.4}
+\rowcolors{2}{gray!10}{white}
+\begin{tabular}{|l|c|c|c|c|c|c|>{\cellcolor{green!50!black!20!white}}c|}
+\hline
+Membro           & Resp. & Amm. & Anal. & Proget. & Prog. & Ver. & Totale \\
+\hline
+Davide           &   -   &  -   &   5   &    -    &   -   &   -  &   5    \\
+Leonardo         &   -   &  -   &   -   &    -    &   -   &   4   &   4    \\
+Francesco        &   -   &  -   &   -   &    -    &   5   &   -  &   5    \\
+Mihaela-Mariana  &   5   &  -   &   -   &    -    &   -   &   -  &   5    \\
+Michele          &   -   &  -   &   -   &    -    &   5   &   -  &   5    \\
+Samuele          &   -   &  -   &   -   &    -    &   5   &   -  &   5    \\
+Giovanni         &   -   &  -   &   -   &    2    &   2   &   -  &   4    \\
+\hline  
+\hiderowcolors  
+\rowcolor{green!50!black!20!white}  
+Totale           &   5   &  -   &   5   &    2    &  17   &   4  &   33    \\
+\hline
+\end{tabular}
+\end{table}
+\FloatBarrier
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection*{Rendicontazione delle Risorse}
+
+%%%%%%%%%%%%%%%%%%%%% TABELLA Consuntivo %%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[!ht]
+\centering
+{\large \textbf{Consuntivo}} \\
+\vspace{0.3cm}
+
+\renewcommand{\arraystretch}{1.4}
+\rowcolors{2}{gray!10}{white}
+\begin{tabular}{|l|c|c|c|c|c|c|>{\cellcolor{blue!10}}c|}
+\hline
+Membro           & Resp. & Amm. & Anal. & Proget. & Prog. & Ver. & Totale \\
+\hline
+Davide           &   -   &  -   &  10   &    -    &   -   &   -  &  10    \\
+Leonardo         &   -   &  -   &   -   &    -    &   -   &   3   &   3    \\
+Francesco        &   -   &  -   &   -   &    -    &   3   &   -  &   3    \\
+Mihaela-Mariana  &   5   &  -   &   -   &    -    &   -   &   -  &   5    \\
+Michele          &   -   &  -   &   -   &    -    &   0   &   -  &   0    \\
+Samuele          &   -   &  -   &   -   &    -    &   3   &   -  &   3    \\
+Giovanni         &   -   &  -   &   -   &    2    &   3   &   -  &   5    \\
+\hline  
+\hiderowcolors
+\rowcolor{blue!10}
+Totale           &   5   &  -   &  10   &    2    &   9   &   3  &  29    \\
+\hline
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+%%%%%%%%%%%%%%%%%%%%% TABELLA Riepilogo ore individuali %%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[!ht]
+\centering
+{\large \textbf{Riepilogo ore individuali}} \\
+\vspace{0.3cm}
+\renewcommand{\arraystretch}{1.4}
+\rowcolors{2}{gray!10}{white}
+\begin{tabular}{|l|c|c|>{\cellcolor{blue!10}}c|}
+\hline
+    Membro              & Ore Pregresse & Ore Periodo & Ore Totali \\
+\hline
+Biasuzzi Davide         & 23             & 10          & 33          \\
+Bilato Leonardo         & 18             & 3           & 21          \\
+Zanella Francesco       & 20             & 3           & 23          \\
+Romascu Mihaela-Mariana & 15             & 5           & 20          \\
+Ogniben Michele         & 18             & 0           & 18          \\
+Perozzo Samuele         & 18             & 3           & 21          \\
+Ponso Giovanni          & 23             & 5           & 28          \\
+\hline
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+%%%%%%%%%%%%%%%%%%%%% TABELLA Bilancio economico %%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[!ht]
+\centering
+{\large \textbf{Bilancio economico} (basato su \hyperref[sec:preventivo_v2]{Preventivo Costi - Seconda stesura})} \\
+\vspace{0.3cm}
+\label{tab:bilancio_p7} 
+\renewcommand{\arraystretch}{1.4} 
+\definecolor{light-gray}{gray}{0.95}
+\newcolumntype{Y}{>{\centering\arraybackslash}p{1.3cm}}
+\rowcolors{3}{gray!10}{white}
+\begin{tabular}{|l|Y|Y|Y|Y|>{\cellcolor{blue!10}}Y|>{\cellcolor{blue!10}}Y|} 
+\hline
+\multicolumn{1}{|c|}{Ruolo} & \multicolumn{2}{c|}{Residuo Inizio} & \multicolumn{2}{c|}{Consuntivo} & \multicolumn{2}{c|}{\cellcolor{blue!10}Residuo Fine}\\
+& h & € & h & € & \cellcolor{blue!10}h & \cellcolor{blue!10}€ \\
+\hline
+%        Ruolo        & residuo inizio [ h  |   €    ]  & consuntivo [ h  | € ]  & residuo fine [   h  |   €   ] \\
+Responsabile (30€/h)  &                 43  & 1290    &             5 & 150   &                 38  & 1140  \\
+Amministratore (20€/h)&                 44  & 880     &             0 & 0     &                 44  & 880   \\
+Analista (25€/h)      &                 78 & 1950     &            10 & 250   &                 68 & 1700  \\
+Progettista (25€/h)   &                 77 & 1925     &             2 & 50   &                 75 & 1875  \\
+Programmatore (15€/h) &                 139 & 2085    &             9 & 135    &                 130 & 1950  \\
+Verificatore (15€/h)  &                 114 & 1710    &             3 & 45    &                 111 & 1665  \\
+\hline
+\rowcolor{blue!10} 
+Totale                &                 495 & 9840  &            29 &   630 &                466 & 9210 \\
+\hline
+\end{tabular}
+\end{table}
+\FloatBarrier
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%% Valutazione e miglioramento  %%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Considerazioni finali (Sprint Review e Retrospective)}
+Il gruppo di lavoro ha cercato di rispettare il preventivo inizialmente stabilito; tuttavia, nel periodo di riferimento si sono riscontrate significative deviazioni rispetto a quanto pianificato.
+
+In particolare, non tutte le attività previste sono state completate entro il periodo considerato. Le seguenti attività risultano parzialmente o totalmente non concluse: 
+l’implementazione del modello LLM nel Proof of Concept (PoC), il fine-tuning del modello e la valutazione della migrazione a Next.js. Tali attività verranno pertanto posticipate e portate a termine nel successivo periodo operativo (Periodo 8).
+
+Si è inoltre evidenziato uno sbilanciamento nelle ore dedicate al ruolo di analista. A fronte di una pianificazione iniziale di 5 ore, ne sono state effettivamente impiegate 10. 
+Tale scostamento è attribuibile alla maggiore complessità dell’analisi dei requisiti rispetto alle previsioni iniziali, che ha reso necessario un impegno aggiuntivo al fine di garantire un adeguato livello di qualità e completezza della documentazione prodotta.
+\newpage
+
+% ==================================================================
+%   FINE PERIODO 7
 % ==================================================================
 
 \end{document}
