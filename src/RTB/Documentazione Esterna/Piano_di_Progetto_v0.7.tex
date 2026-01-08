@@ -117,6 +117,7 @@
 \toprule
 \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
 \midrule
+0.8 & 2026-01-16 & Davide Biasuzzi & Redazione Preventivo Periodo 8 & Giovanni Ponso \\
 0.7 & 2026-01-02 & Mihaela-Mariana Romascu & Redazione Periodo 7 & Giovanni Ponso \\
 0.6 & 2025-12-19 & Francesco Zanella & Redazione Periodo 6 & Leonardo Bilato \\
 0.5 & 2025-12-12 & Samuele Perozzo & Redazione Periodo 5 & Mihaela-Mariana Romascu \\
@@ -1800,6 +1801,152 @@ Tale scostamento è attribuibile alla maggiore complessità dell’analisi dei r
 
 % ==================================================================
 %   FINE PERIODO 7
+% ==================================================================
+
+% ==================================================================
+%   PERIODO 8
+% ==================================================================
+
+\subsection{Ottavo periodo: 03/01/2026 - 06/01/2026}
+
+\subsubsection*{Pianificazione (Sprint Planning)}
+
+%%%%%%%%%%%%%%%%%%%%% breve introduzione del periodo %%%%%%%%%%%%%%%%%%%%%%%
+Lo Sprint 8 ha segnato un punto di svolta nell'avanzamento del Proof of Concept, con particolare attenzione all'integrazione del modello LLM e al recupero delle attività non completate nello Sprint 7. A seguito delle problematiche emerse nel periodo precedente, il team ha riorganizzato le attività e ottimizzato la distribuzione dei task per garantire una maggiore efficienza operativa. Il periodo si è inoltre caratterizzato per l'approfondimento dell'Analisi dei Requisiti e per la necessaria interlocuzione con il professor Cardin finalizzata alla validazione della documentazione prodotta.
+%%%%%%%%%%%%%%%%%%%%% TABELLA Attività pianificate %%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}[!ht]
+    \vspace{0.2cm}
+    \centering
+    {\large \textbf{Attività pianificate} (Sprint Backlog)} \\
+    \vspace{0.2cm}
+    \centering
+    \includegraphics[width=0.7\linewidth]{activity_sprint_8.png}
+\end{figure}
+\FloatBarrier
+
+%%%%%%%%%%%%%%%%%%%%% TABELLA Preventivo %%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[!ht]
+\centering
+{\large \textbf{Preventivo}} \\
+\vspace{0.3cm}
+\renewcommand{\arraystretch}{1.4}
+\rowcolors{2}{gray!10}{white}
+\begin{tabular}{|l|c|c|c|c|c|c|>{\cellcolor{green!50!black!20!white}}c|}
+\hline
+Membro           & Resp. & Amm. & Anal. & Proget. & Prog. & Ver. & Totale \\
+\hline
+Davide           &   5   &  -   &   -   &    -    &   -   &   -  &   5    \\
+Leonardo         &   -   &  -   &   3   &    -    &   -   &   -  &   3    \\
+Francesco        &   -   &  -   &   -   &    -    &   4   &   -  &   4    \\
+Mihaela-Mariana  &   -   &  -   &   3   &    -    &   -   &   -  &   3    \\
+Michele          &   -   &  -   &   -   &    -    &   5   &   -  &   5    \\
+Samuele          &   -   &  -   &   -   &    -    &   4   &   -  &   4    \\
+Giovanni         &   -   &  -   &   -   &    -    &   3   &   3  &   6    \\
+\hline  
+\hiderowcolors  
+\rowcolor{green!50!black!20!white}  
+Totale           &   5   &  -   &   6   &    -    &  16   &   3  &   30    \\
+\hline
+\end{tabular}
+\end{table}
+\FloatBarrier
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection*{Rendicontazione delle Risorse}
+
+%%%%%%%%%%%%%%%%%%%%% TABELLA Consuntivo %%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[!ht]
+\centering
+{\large \textbf{Consuntivo}} \\
+\vspace{0.3cm}
+
+\renewcommand{\arraystretch}{1.4}
+\rowcolors{2}{gray!10}{white}
+\begin{tabular}{|l|c|c|c|c|c|c|>{\cellcolor{blue!10}}c|}
+\hline
+Membro           & Resp. & Amm. & Anal. & Proget. & Prog. & Ver. & Totale \\
+\hline
+Davide           &   -   &  -   &   -   &    -    &   -   &   -  &   -    \\
+Leonardo         &   -   &  -   &   -   &    -    &   -   &   -  &   -    \\
+Francesco        &   -   &  -   &   -   &    -    &   -   &   -  &   -    \\
+Mihaela-Mariana  &   -   &  -   &   -   &    -    &   -   &   -  &   -    \\
+Michele          &   -   &  -   &   -   &    -    &   -   &   -  &   -    \\
+Samuele          &   -   &  -   &   -   &    -    &   -   &   -  &   -    \\
+Giovanni         &   -   &  -   &   -   &    -    &   -   &   -  &   -    \\
+\hline  
+\hiderowcolors
+\rowcolor{blue!10}
+Totale           &   -   &  -   &   -   &    -    &   -   &   -  &   -    \\
+\hline
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+%%%%%%%%%%%%%%%%%%%%% TABELLA Riepilogo ore individuali %%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[!ht]
+\centering
+{\large \textbf{Riepilogo ore individuali}} \\
+\vspace{0.3cm}
+\renewcommand{\arraystretch}{1.4}
+\rowcolors{2}{gray!10}{white}
+\begin{tabular}{|l|c|c|>{\cellcolor{blue!10}}c|}
+\hline
+    Membro              & Ore Pregresse & Ore Periodo & Ore Totali \\
+\hline
+Biasuzzi Davide         & 33             & -           & -          \\
+Bilato Leonardo         & 21             & -           & -          \\
+Zanella Francesco       & 23             & -           & -          \\
+Romascu Mihaela-Mariana & 20             & -           & -          \\
+Ogniben Michele         & 18             & -           & -          \\
+Perozzo Samuele         & 21             & -           & -          \\
+Ponso Giovanni          & 28             & -           & -          \\
+\hline
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+%%%%%%%%%%%%%%%%%%%%% TABELLA Bilancio economico %%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[!ht]
+\centering
+{\large \textbf{Bilancio economico} (basato su \hyperref[sec:preventivo_v2]{Preventivo Costi - Seconda stesura})} \\
+\vspace{0.3cm}
+\label{tab:bilancio_p8}
+\renewcommand{\arraystretch}{1.4} 
+\definecolor{light-gray}{gray}{0.95}
+\newcolumntype{Y}{>{\centering\arraybackslash}p{1.3cm}}
+\rowcolors{3}{gray!10}{white}
+\begin{tabular}{|l|Y|Y|Y|Y|>{\cellcolor{blue!10}}Y|>{\cellcolor{blue!10}}Y|} 
+\hline
+\multicolumn{1}{|c|}{Ruolo} & \multicolumn{2}{c|}{Residuo Inizio} & \multicolumn{2}{c|}{Consuntivo} & \multicolumn{2}{c|}{\cellcolor{blue!10}Residuo Fine}\\
+& h & € & h & € & \cellcolor{blue!10}h & \cellcolor{blue!10}€ \\
+\hline
+%        Ruolo        & residuo inizio [ h  |   €    ]  & consuntivo [ h  | € ]  & residuo fine [   h  |   €   ] \\
+Responsabile (30€/h)  &                 38  & 1140    &             - & -   &                 -  & -   \\
+Amministratore (20€/h)&                 44  & 880     &             - & -     &                 -  & -   \\
+Analista (25€/h)      &                 68 & 1700     &             - & -   &                 - & -  \\
+Progettista (25€/h)   &                 75 & 1875     &             - & -     &                 - & -  \\
+Programmatore (15€/h) &                 130 & 1950    &            - & -    &                 - & -  \\
+Verificatore (15€/h)  &                 111 & 1665    &             - & -    &                 - & -  \\
+\hline
+\rowcolor{blue!10} 
+Totale                &                 466 & 9210  &            - &   - &                - & - \\
+\hline
+\end{tabular}
+\end{table}
+\FloatBarrier
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%% Valutazione e miglioramento  %%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Considerazioni finali (Sprint Review e Retrospective)}
+DA INSERIRE
+\newpage
+
+% ==================================================================
+%   FINE PERIODO 8
 % ==================================================================
 
 \end{document}
