@@ -1,0 +1,212 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{currfile}
+\usepackage{array}
+\graphicspath{{assets/}{../assets/}{../../assets/}{../../../assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[svgnames]{xcolor}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Interno 2026-01-13 - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ------ FRONTESPIZIO -----------------------------------------
+\begin{document}
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+\begin{figure}
+    \centering
+    % Assicurati che il logo sia presente nella cartella assets
+    \includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+    \vfill
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    \vfill
+    {\Huge \bfseries Verbale di Riunione \par}
+    \vspace{1cm}
+
+    {\Large \itshape Verbale Interno del 13 Gennaio 2026 \par}
+    \vfill
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    \vfill
+
+    {\large Data: 2026-01-13 \par}
+
+\end{titlepage}
+
+% ------ INDICE -----------------------------------------
+\newpage
+\tableofcontents
+\pagestyle{fancy}
+
+% ------ INFORMAZIONI GENERALI -----------------------------------------
+\newpage
+\section{Informazioni Generali}
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+% ------ DETTAGLI RIUNIONE -----------------------------------------
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2026-01-13
+    \item \textbf{Ora:} 18:30 - 21:00
+    \item \textbf{Luogo:} Online Meet
+    \item \textbf{Partecipanti:} Francesco Zanella, Samuele Perozzo, Michele Ogniben, Giovanni Ponso, Davide Biasuzzi, Leonardo Bilato, Mihaela-Mariana Romascu.
+    \item \textbf{Assenti:} Nessuno
+    \item \textbf{Redatto da:} Davide Biasuzzi
+    \item \textbf{Verificato da:} Giovanni Ponso
+    \item \textbf{Versione:} 1.0
+\end{itemize}
+
+
+% ------ ORDINI DEL GIORNO -----------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Stato di avanzamento collegamento backend e frontend.
+    \item[2.] Gestione infrastruttura e chiavi API OpenAI.
+    \item[3.] Scelta tecnica tra Fine-tuning e RAG (Retrieval-Augmented Generation).
+    \item[4.] Analisi dei requisiti e design dell'interfaccia (Analisi finale).
+    \item[5.] Preparazione domande per l'incontro con Ergon/Carlesso.
+\end{itemize}
+
+% ------ DIARIO DELLA RIUNIONE -----------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Stato Tecnico e Architettura del Sistema}
+Il gruppo ha verificato lo stato di avanzamento del collegamento tra backend (FastAPI) e frontend (React). Michele Ogniben si è occupato della parte iniziale di backend con integrazione LLM, mentre Samuele Perozzo e Francesco Zanella si sono occupati della connessione backend-frontend-database.
+
+In particolare, è stata discussa l'implementazione della logica di recupero dati fondamentale per il sistema RAG (Retrieval-Augmented Generation). Durante questa fase è emersa la necessità di implementare un meccanismo di ricerca "fuzzy" per gestire eventuali errori di battitura da parte degli utenti. Il gruppo ha approfondito l'utilizzo dell'algoritmo \textbf{Soundex}, che permette di identificare parole foneticamente simili, migliorando così l'esperienza utente e la robustezza del sistema.
+
+L'infrastruttura di backend è stata realizzata utilizzando \textbf{Docker} e \textbf{FastAPI}, garantendo modularità e facilità di deployment. Tuttavia, durante la fase di test è emersa una criticità relativa alla chiave API OpenAI fornita dall'azienda proponente: il credito associato alla chiave risulta esaurito, impedendo il completamento dei test. Temporaneamente, un membro del gruppo ha messo a disposizione la propria chiave personale con credito residuo per consentire lo sviluppo e i test necessari. Questa problematica sarà discussa nella prossima riunione esterna con l'azienda per richiedere una nuova chiave funzionante.
+
+\subsection{Scelta Architetturale: RAG vs Fine-tuning}
+Una parte significativa della riunione è stata dedicata alla discussione della scelta tecnica tra \textbf{Fine-tuning} e \textbf{RAG} (Retrieval-Augmented Generation) per l'implementazione del sistema di intelligenza artificiale.
+
+Il gruppo ha analizzato le specifiche del capitolato e ha rilevato che non vi è alcuna menzione esplicita riguardo all'obbligo di utilizzare il fine-tuning del modello linguistico. Dopo un'attenta valutazione, il team ha concluso che il fine-tuning non sia la soluzione più adatta al caso d'uso specifico del progetto, per le seguenti motivazioni:
+\begin{itemize}
+    \item \textbf{Dati insufficienti:} il fine-tuning richiede un dataset molto ampio e ben strutturato, di cui il gruppo non dispone attualmente;
+    \item \textbf{Costi elevati:} il processo di fine-tuning comporta costi computazionali e temporali significativi, non giustificati dalle necessità del progetto;
+    \item \textbf{Inadeguatezza al dominio:} per cataloghi aziendali specifici e in continua evoluzione, il RAG risulta più flessibile e manutenibile, permettendo di aggiornare le informazioni senza dover riaddestrare il modello.
+\end{itemize}
+
+È stata quindi presa la \textbf{decisione unanime} di utilizzare esclusivamente l'approccio RAG, che permette al sistema di recuperare informazioni contestuali dal database aziendale e fornirle al modello linguistico per generare risposte accurate e aggiornate.
+
+Durante la discussione sono stati approfonditi anche i concetti di \textbf{token} ed \textbf{embedding vettoriale}, fondamentali per ottimizzare le performance di sistema.
+
+È stato deciso di inserire questa scelta tecnica tra le domande da porre all'azienda proponente Ergon durante la prossima riunione esterna, per ottenere conferma e validazione dell'approccio scelto.
+
+\subsection{Infrastruttura e Hosting: Gestione Railway e Repository}
+Il gruppo ha discusso sul confermare \textbf{Railway} come piattaforma di hosting della webapp, e che avremmo chiesto conferma all'azienda proponente durante la prossima riunione esterna.
+
+Un'altra criticità emersa riguarda la pulizia del database: sono stati identificati ordini e articoli con chiavi esterne mancanti o inconsistenti, che devono essere rimossi per garantire l'integrità referenziale e il corretto funzionamento del sistema. Giovanni Ponso e Samuele Perozzo sono stati incaricati di procedere con la pulizia del database e la configurazione corretta di Railway.
+
+Inoltre, è stata sottolineata l'importanza di implementare un sistema di \textbf{logging delle chiamate API} per facilitare il debugging, specialmente per gestire eventuali errori 429 (rate limit) che potrebbero verificarsi durante l'utilizzo intensivo delle API di OpenAI.
+
+\subsection{Analisi dei Requisiti e Design dell'Interfaccia Utente}
+Mihaela-Mariana Romascu e Leonardo Bilato hanno presentato i mockup dell'interfaccia utente realizzati con \textbf{Penpot}, illustrando sia l'interfaccia destinata al cliente finale sia quella per l'operatore aziendale.
+
+Durante la presentazione sono emerse diverse proposte di miglioramento e funzionalità da integrare:
+
+\paragraph{Gestione degli ordini ambigui}
+È stato discusso come gestire l'ambiguità negli ordini ricevuti dal sistema. Il gruppo ha deciso di implementare una \textbf{percentuale di confidenza} (affidabilità) per ogni ordine, visualizzata nell'interfaccia dell'operatore. Questo permetterà di identificare rapidamente gli ordini che necessitano di revisione manuale.
+
+\paragraph{Interfaccia operatore}
+Per migliorare l'usabilità dell'interfaccia dell'operatore, sono state decise le seguenti modifiche:
+\begin{itemize}
+    \item \textbf{Colonna ID univoca} per ogni ordine nella tabella principale, facilitando l'identificazione e la tracciabilità degli ordini;
+    \item \textbf{Sistema di filtri per data} con ordinamento crescente/decrescente, implementato tramite icone dedicate invece di una barra di ricerca complessa;
+    \item \textbf{Barra di ricerca dinamica} per cercare ordini specifici per cliente o prodotto;
+    \item \textbf{Pulsante di richiesta assistenza umana} per permettere al cliente di segnalare esplicitamente situazioni in cui il sistema automatico non è sufficiente.
+\end{itemize}
+
+Mihaela-Mariana Romascu è stata incaricata di aggiornare i mockup includendo le modifiche discusse, in particolare l'aggiunta della colonna ID e dei filtri per data.
+
+\subsection{Preparazione della Riunione Esterna con Ergon}
+Il gruppo ha raccolto e discusso i dubbi e le domande da porre durante la riunione esterna prevista con i rappresentanti dell'azienda Ergon e il professor Carlesso.
+
+Le principali questioni da chiarire riguardano:
+\begin{itemize}
+    \item \textbf{Dati mancanti nel dataset:} verificare se sia possibile ottenere informazioni aggiuntive quali prezzi, quantità disponibili e disponibilità dei prodotti, attualmente non presenti nel dataset fornito;
+    \item \textbf{Validazione dell'approccio RAG:} confermare la scelta tecnica di utilizzare RAG invece del fine-tuning, spiegando le motivazioni tecniche e ottenendo l'approvazione dell'azienda;
+    \item \textbf{Processo di assistenza dell'operatore:} discutere del processo di assistenza dell'operatore all'utente;
+    \item \textbf{Infrastruttura di deploy:} richiedere informazioni sui server aziendali per pianificare il deployment finale del sistema in produzione.
+\end{itemize}
+
+Per facilitare la raccolta e la sincronizzazione delle domande tra tutti i membri del team, è stato deciso di creare un \textbf{file Google Doc condiviso} dove ciascun membro potrà inserire le proprie domande prima della riunione. Questo permetterà di avere una visione completa e organizzata di tutti i punti da discutere.
+
+% ------ DECISIONI PRESE -----------------------------------------
+\newpage
+\section{Decisioni Prese}
+\begin{enumerate}
+    \item Adozione dell'approccio \textbf{RAG} (Retrieval-Augmented Generation) come soluzione tecnica principale, escludendo il fine-tuning.
+    \item Pulizia del database da ordini e articoli con chiavi esterne inconsistenti.
+    \item Futura implementazione di un sistema di logging per le chiamate API.
+    \item Aggiunta nell'interfaccia operatore di:
+    \begin{itemize}
+        \item Percentuale di confidenza per identificare ordini ambigui;
+        \item Filtri per data con ordinamento cronologico tramite icone dedicate;
+        \item Barra di ricerca dinamica per cliente/prodotto;
+        \item Pulsante per richiesta assistenza umana.
+    \end{itemize}
+    \item Creazione di un file Google Doc condiviso per sincronizzare le domande prima della riunione esterna.
+    \item Discussione con Ergon nella prossima riunione esterna riguardo a:
+    \begin{itemize}
+        \item Chiave API OpenAI non funzionante;
+        \item Validazione dell'approccio RAG;
+        \item Dati mancanti nel dataset;
+        \item Conferma piattaforma Railway come hosting della webapp;
+        \item Informazioni sui server aziendali per il deploy.
+    \end{itemize}
+\end{enumerate}
+
+% ------ ATTIVITÀ DA SVOLGERE -----------------------------------------
+\section{Attività da Svolgere}
+Le attività discusse si intendono implicitamente assegnate ai membri che già se ne occupavano, mantenendo la continuità con il lavoro corrente. La presente riunione ha avuto funzione di disambiguazione e allineamento interno in vista dell'incontro con l'azienda previsto per il\textbf{14 Gennaio 2026}. La pianificazione formale delle attività per il prossimo sprint avverrà durante la riunione di fine sprint del \textbf{16 Gennaio 2026}.
+\end{document}
