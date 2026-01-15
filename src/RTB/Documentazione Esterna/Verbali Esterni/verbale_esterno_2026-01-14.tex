@@ -1,0 +1,339 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana
+\usepackage{lmodern}            % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}           % Per le immagini
+\graphicspath{{assets/}{../assets/}{../../assets/}{../../../assets}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
+
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{hyperref}           % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Esterno - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce tutti i campi
+\fancyhead[L]{\textbf{NightPRO – Progetto Ingegneria del Software}}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro in basso
+\renewcommand{\headrulewidth}{0.4pt} % Linea sottile sotto l'header
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: intestazione_titolo
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png} 
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    {\Large \itshape Verbale Esterno del 14 Gennaio 2026 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+ 
+    {\large Data: 2026-01-14 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: indice
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy} % Riattiva lo stile di pagina da qui in poi
+
+% -------------------------------------------------------------------
+%  SEZIONE: informazioni
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2026-01-14
+    \item \textbf{Ora:} 14:00 - 15:00
+    \item \textbf{Luogo:} Microsoft Teams
+    \item \textbf{Partecipanti (NightPRO):} Biasuzzi Davide, Ponso Giovanni, Perozzo Samuele, Romascu Mihaela-Mariana, Leonardo Bilato, Francesco Zanella
+    \item \textbf{Assenti:} Ogniben Michele
+    \item \textbf{Partecipanti (Esterni):} Gianluca Carlesso (Ergon Informatica)
+    \item \textbf{Redatto da: } Biasuzzi Davide
+    \item \textbf{Verificato da:} Ponso Giovanni
+    \item \textbf{Versione: } 1.0
+\end{itemize}
+
+
+% -------------------------------------------------------------------
+%  SEZIONE: odg
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Gestione campo "Stato" nell'anagrafica articoli
+    \item[2.] Assenza dei prezzi nel database
+    \item[3.] Differenza tra ordclidet e preordclidet
+    \item[4.] Scelta tra RAG e Fine-Tuning
+    \item[5.] Tempi di risposta e Vector Search
+    \item[6.] Dispositivi e UI
+    \item[7.] Gestione dell'Assistenza
+    \item[8.] Infrastruttura e Hosting (Railway)
+    \item[9.] Logiche di priorità RAG
+    \item[10.] Sicurezza e Password
+    \item[11.] Logica di conversione (da litri a colli)
+    \item[12.] Libertà di implementazione
+\end{itemize}
+
+% -------------------------------------------------------------------
+% SEZIONE: diario
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+Durante l'incontro con il referente di Ergon Informatica, Gianluca Carlesso, sono stati discussi aspetti tecnici critici relativi all'architettura del sistema, alla gestione del database e alle scelte implementative per il Proof of Concept e il prodotto finale.
+
+\vspace{0.5cm}
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{p{0.35\textwidth}p{0.57\textwidth}}
+\toprule
+\textbf{Argomento/Domanda} & \textbf{Risposta/Discussione} \\
+\midrule
+
+\textbf{1) Gestione campo "Stato" nell'anagrafica articoli} \par
+Come interpretare e modificare il campo "Stato" nel database degli articoli?
+&
+Il campo può essere vuoto o popolato. Lo stato \textbf{"in eliminazione"} indica prodotti ancora disponibili. È stato concordato di modificare la dicitura \textbf{"disponibile dal"} in \textbf{"non disponibile"} nella tabella \textbf{anaart} per semplificare la gestione algoritmica e rendere più chiara la disponibilità dei prodotti.
+\\ \addlinespace
+
+\textbf{2) Assenza dei prezzi nel database} \par
+Perché i prezzi non sono presenti nel database fornito?
+&
+I prezzi non sono inclusi perché dipendono da \textbf{scontistiche specifiche} applicate dagli agenti e da logiche commerciali complesse, specialmente nel settore beverage (sconti incrociati). La valorizzazione finale avviene nel gestionale Ergon dopo l'invio dell'ordine.
+\\ \addlinespace
+
+\textbf{3) Differenza tra ordclidet e preordclidet} \par
+Qual è la differenza tra le due tabelle e come utilizzarle?
+&
+\textbf{Ordclidet} rappresenta lo storico degli acquisti del cliente, utile per risolvere ambiguità (es: quale tipo di Coca-Cola preferisce il cliente). \textbf{preordclidet} è lo schema tecnico dell'ordine che il sistema deve generare per il gestionale.
+\\ \addlinespace
+
+\textbf{4) Scelta tra RAG e Fine-Tuning} \par
+Quale approccio AI adottare per il progetto?
+&
+Il \textbf{Fine-Tuning è stato scartato} perché inadatto a dati dinamici e cataloghi variabili. Gianluca Carlesso ha confermato che l'uso del \textbf{RAG è consentito} e non vi sono vincoli mandatori verso il Fine-Tuning.
+\\ \addlinespace
+
+\textbf{5) Tempi di risposta e Vector Search} \par
+Quali sono le aspettative sui tempi di risposta del sistema?
+&
+La \textbf{Vector Search è stata valutata } a causa di tempi di risposta eccessivi (fino a minuti). Necessario fare delle prove anche con il modello GPT 5 per capire se puntare su \textbf{Agentic Search (SQL)} per garantire tempi contenuti tra i \textbf{10 e i 20 secondi}.
+\\ \addlinespace
+
+\textbf{6) Dispositivi e UI} \par
+Su quali dispositivi deve funzionare l'applicazione?
+&
+L'applicazione utente deve essere prioritariamente \textbf{Mobile-first} (smartphone), mentre la parte amministrativa sarà prevalentemente su Desktop. Il tutto deve essere \textbf{responsive}.
+\\ \addlinespace
+
+\textbf{7) Gestione dell'Assistenza} \par
+Come implementare il supporto dell'operatore?
+&
+Si utilizzerà un \textbf{pulsante fisico per richiedere assistenza}. L'operatore riceverà la segnalazione (anche offline via mail) e potrà intervenire manualmente sull'ordine tramite dashboard.
+\\ \addlinespace
+
+\textbf{8) Infrastruttura e Hosting (Railway)} \par
+Quali sono le specifiche per l'hosting del sistema?
+&
+Il gruppo utilizza \textbf{Railway} per il deploy tramite GitHub e Docker, con stack \textbf{FastAPI, React e LangChain}. Ergon ha approvato l'uso di Railway senza obbligo di server interni.
+\\ \addlinespace
+
+\textbf{9) Logiche di priorità RAG} \par
+Come gestire le ambiguità nella scelta dei prodotti?
+&
+In caso di ambiguità (es: scelta acqua), l'AI deve \textbf{prioritizzare lo storico del cliente} e, solo in seconda battuta, la \textbf{popolarità basata sulle vendite generali}.
+\\ \addlinespace
+
+\textbf{10) Sicurezza e Password} \par
+Come gestire le password degli utenti?
+&
+Nella versione finale, le password degli utenti nella tabella \textbf{utentiweb} devono essere gestite tramite \textbf{hashing} e non salvate in chiaro.
+\\ \addlinespace
+
+\textbf{11) Logica di conversione (da litri a colli)} \par
+Come tradurre richieste da linguaggio naturale in quantità precise?
+&
+Il sistema deve saper tradurre richieste "umane" (es: 20 litri d'acqua) nel \textbf{numero corrispondente di casse o colli} basandosi sui campi peso/grammatura del database.
+\\ \addlinespace
+\textbf{12) Libertà di implementazione} \par
+Quali sono i vincoli sulle scelte tecniche e implementative?
+&
+Gianluca Carlesso ha confermato che il gruppo ha \textbf{libertà di implementazione} (previa discussione con la Proponente) per quanto riguarda l'architettura AI, le modifiche al database e il design dell'interfaccia utente. L'importante è che il sistema funzioni correttamente e rispetti i requisiti funzionali concordati.
+\\\addlinespace
+\bottomrule
+\end{tabular}
+\normalsize
+
+% -------------------------------------------------------------------
+% SEZIONE: decisioni
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese}
+
+\begin{enumerate}
+\item \textbf{Architettura AI:}
+\begin{itemize}
+\item Viene adottato ufficialmente il modello \textbf{RAG} per mantenere prestazione ed evitare allucinazioni, il gruppo valuterà inoltre l'utilizo di embeddings.
+\end{itemize}
+
+\item \textbf{Validazione Ordini:}
+\begin{itemize}
+\item Gli ordini con alta confidence dell'AI verranno aggiunti direttamente al carrello. E sarà l'utente a dare conferma finale tramite il pulsante.
+\item L'intervento dell'operatore è previsto solo se l'utente richiede assistenza.
+\end{itemize}
+
+\item \textbf{Stato dell'Ordine:}
+\begin{itemize}
+\item Verrà aggiunta una colonna a \texttt{ordclidet} con un'enumerazione per simulare l'avanzamento: "in lavorazione" o "concluso".
+\end{itemize}
+
+\item \textbf{Modifica Database Articoli:}
+\begin{itemize}
+\item Nella tabella \texttt{anaart} verrà modificata la dicitura "disponibile dal" in "non disponibile" per semplificare la logica di disponibilità prodotti.
+\end{itemize}
+
+\item \textbf{Dashboard Operatore:}
+\begin{itemize}
+\item La tabella ordini includerà filtri specifici per cliente e prodotto, con sorting sulla data.
+\end{itemize}
+
+\item \textbf{Utilizzo Dati:}
+\begin{itemize}
+\item È stata approvata la rimozione degli ordini storici che non hanno corrispondenze attive nell'anagrafica articoli per pulire il database.
+\end{itemize}
+
+\item \textbf{Piattaforma:}
+\begin{itemize}
+\item \textbf{Railway} è confermato come host ufficiale per il PoC (da valutare per MVP), gestendo automaticamente certificati HTTPS e chiavi API.
+\end{itemize}
+
+\item \textbf{Modello AI per PoC:}
+\begin{itemize}
+\item Si valuterà l'utilizzo \textbf{GPT-5} per la fase di Proof of Concept.
+\end{itemize}
+
+\item \textbf{Dataset Immagini Prodotti:}
+\begin{itemize}
+\item Gianluca Carlesso (Ergon) fornirà un dataset di immagini dei prodotti da poter integrare nella WebApp (Requisito Desiderabile) per migliorare l'esperienza utente.
+\end{itemize}
+
+\item \textbf{Feature Aggiunta Manuale Prodotti:}
+\begin{itemize}
+\item Verrà mantenuta la funzionalità di aggiunta manuale dei prodotti tramite barra di ricerca per consentire agli utenti di integrare l'ordine indipendentemente dall'AI.
+\end{itemize}
+
+\item \textbf{Storico Chat:}
+\begin{itemize}
+\item Verrà valutata l'implementazione di salvataggio della cronologia chat cliente (Requisito Desiderabile).
+\end{itemize}
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: todo
+% -------------------------------------------------------------------
+\newpage
+\section{Attività da Svolgere (To-Do)}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}p{0.62\textwidth}lp{0.13\textwidth}@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} & \textbf{Scadenza} \\
+\midrule
+Sistemare database (rimozione ordini orfani, aggiunta colonna stato ordine, modifica campi "Disponibile dal" in anaart). & Programmatori & Sprint 8 \\
+Aggiornare Mockup UI per riflettere le decisioni prese. & Analisti & Sprint 8 \\
+Aggiornare l'analisi dei requisiti con le decisioni prese durante la riunione. & Analisti & Sprint 9 \\
+Proseguire con l'implementazione del sistema RAG testando le diverse implementazioni discusse. & Programmatori & Sprint 9 \\
+\bottomrule
+\end{tabular}
+\caption{Riepilogo task assegnati.}
+\end{table}
+% ------ FIRMA AZIENDA PROPONENTE --------------------------------
+\vspace{2cm} % Spazio verticale per separare dal testo precedente
+\begin{flushright}
+    \textbf{Firma Ergon Informatica S.r.l.} \\[0.5cm]
+
+    
+    \vspace{3cm}
+    \rule{6cm}{0.4pt} \\
+    \small{Gianluca Carlesso}
+\end{flushright}
+
+\end{document}
