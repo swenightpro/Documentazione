@@ -64,18 +64,16 @@
     \vfill
     
     {\Huge \bfseries Norme di Progetto \par}
-        \vspace{1cm}
-         {\Large Redattori: Giovanni Ponso, Davide Biasuzzi, Michele Ogniben \par} 
-    {\Large Approvato da: Mihaela Mariana Romascu \par}
+
     \vfill
 
     {\Large \bfseries Gruppo: NightPRO}    \vspace{0.5cm}
 
     {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
 
-        {\large Data: 2025-12-03 \par}
+        {\large Data: 2026-01-28 \par}
 
-     {\Large Versione: 1.3 \par} 
+     {\Large Versione: 1.4 \par} 
 
 \end{titlepage}
 
@@ -94,6 +92,7 @@
 \toprule
 \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
 \midrule
+1.4 & 2026-01-28 & D. Biasuzzi & Completate sezioni Analisi dei Requisiti e Codifica; integrato Ciclo di Deming (PDCA) e metriche EVM nella sezione Ottimizzazione dei processi, Gesione dei Rischi, DdB e spiegazione progettazione UI per MVP & Francesco Zanella \\
 1.3 & 2025-12-03 & M. Ogniben & Chiariti compiti Responsabile, aggiunta descrizione nuova sezione verbali interni, sistemata descrizione organizzazione repository & Giovanni Ponso \\
 1.2 & 2025-11-13 & D. Biasuzzi & Aggiunta struttura iniziale paragrafo relativo alla fornitura (sezioni "Analisi Req". e "Codifica" da completare) & Michele Ogniben \\
 1.1 & 2025-11-11 & M. Ogniben & Aggiunto paragrafo relativo ai Processi Organizzativi & Davide Biasuzzi\\
@@ -206,7 +205,105 @@ Il flusso di sviluppo si articola nelle seguenti macro-attività:
 Il gruppo \textit{NightPRO} si impegna a utilizzare il processo di sviluppo per fornire un prodotto software che sia pienamente validato e rispondente ai requisiti concordati con il proponente \textit{Ergon Informatica}. Il risultato finale sarà un software testato, funzionante e pronto per le fasi successive di rilascio o collaudo.
 
 \subsubsection{Analisi dei Requisiti{\scriptsize\raisebox{-0.5ex}{G}}}
-    \textbf{\textit{Placeholder (Da definire)}}
+
+\paragraph{Scopo}
+L'attività di Analisi dei Requisiti ha lo scopo di raccogliere, documentare e organizzare in modo sistematico tutti i requisiti{\scriptsize\raisebox{-0.5ex}{G}} del prodotto software.
+Questa fase costituisce il fondamento su cui si basano le successive attività di progettazione, sviluppo e verifica, garantendo che il sistema finale risponda pienamente alle esigenze del proponente e degli stakeholder{\scriptsize\raisebox{-0.5ex}{G}}.
+
+\paragraph{Descrizione}
+L'analisi dei requisiti viene condotta attraverso un processo iterativo che prevede:
+\begin{itemize}
+    \item \textbf{Studio del dominio applicativo}: approfondimento del contesto aziendale e delle problematiche che il sistema deve risolvere.
+    \item \textbf{Raccolta dei requisiti}: acquisizione delle esigenze tramite incontri con il proponente, analisi del capitolato{\scriptsize\raisebox{-0.5ex}{G}} e studio della documentazione fornita.
+    \item \textbf{Modellazione dei casi d'uso}: definizione degli scenari operativi mediante diagrammi UML{\scriptsize\raisebox{-0.5ex}{G}} dei casi d'uso.
+    \item \textbf{Specifica dei requisiti}: formalizzazione dei requisiti funzionali e non funzionali in forma chiara, completa e verificabile.
+    \item \textbf{Tracciabilità}: correlazione bidirezionale tra requisiti e casi d'uso per garantire copertura completa.
+\end{itemize}
+
+\paragraph{Classificazione dei Requisiti}
+Ogni requisito viene identificato univocamente mediante un codice strutturato secondo la seguente convenzione:
+
+\begin{center}
+\texttt{R[Tipo][Numero].[Sottorequisito]}
+\end{center}
+
+\noindent
+Dove:
+\begin{itemize}
+    \item \textbf{R}: prefisso che identifica un requisito.
+    \item \textbf{Tipo}: indica la natura del requisito:
+    \begin{itemize}
+        \item \texttt{F} – Requisito Funzionale: descrive una funzionalità che il sistema deve offrire.
+        \item \texttt{Q} – Requisito di Qualità: specifica attributi qualitativi del prodotto.
+        \item \texttt{V} – Requisito di Vincolo: definisce vincoli tecnologici o progettuali.
+        \item \texttt{P} – Requisito Prestazionale: stabilisce parametri di performance.
+        \item \texttt{S} – Requisito di Sicurezza: riguarda aspetti di protezione e sicurezza.
+    \end{itemize}
+    \item \textbf{Numero}: identificativo numerico progressivo all'interno della categoria.
+    \item \textbf{Sottorequisito}: numerazione opzionale per requisiti derivati o di dettaglio.
+\end{itemize}
+
+\noindent
+\textbf{Esempi:}
+\begin{itemize}
+    \item \texttt{RF1.1} – Requisito Funzionale 1, sottorequisito 1
+    \item \texttt{RV02} – Requisito di Vincolo numero 2
+    \item \texttt{RP03} – Requisito Prestazionale numero 3
+\end{itemize}
+
+\paragraph{Priorità dei Requisiti}
+Ogni requisito viene classificato in base alla sua priorità:
+\begin{itemize}
+    \item \textbf{Obbligatorio}: requisito essenziale per il funzionamento del sistema; la sua assenza compromette l'accettazione del prodotto.
+    \item \textbf{Desiderabile}: requisito che apporta valore aggiunto al prodotto; la sua implementazione è raccomandata ma non vincolante.
+    \item \textbf{Opzionale}: requisito che può essere implementato se le risorse lo consentono, senza impatto sulla validazione del prodotto.
+\end{itemize}
+
+\paragraph{Casi d'Uso}
+I casi d'uso (Use Case, UC) descrivono le interazioni tra gli attori e il sistema, rappresentando scenari operativi concreti.
+Ogni caso d'uso viene identificato mediante la seguente convenzione:
+
+\begin{center}
+\texttt{UC[Numero].[Sottocaso]}
+\end{center}
+
+\noindent
+Dove:
+\begin{itemize}
+    \item \textbf{UC}: prefisso che identifica un caso d'uso.
+    \item \textbf{Numero}: identificativo numerico progressivo del caso d'uso principale.
+    \item \textbf{Sottocaso}: numerazione opzionale per scenari derivati o alternativi.
+\end{itemize}
+
+\noindent
+\textbf{Esempi:}
+\begin{itemize}
+    \item \texttt{UC1} – Caso d'uso principale numero 1
+    \item \texttt{UC1.1} – Primo sottocaso del caso d'uso 1
+    \item \texttt{UC7.2} – Secondo sottocaso del caso d'uso 7
+\end{itemize}
+
+\paragraph{Struttura dei Casi d'Uso}
+Ogni caso d'uso viene documentato con i seguenti elementi:
+\begin{itemize}
+    \item \textbf{Identificativo e titolo}: codice univoco e nome descrittivo.
+    \item \textbf{Attore principale}: soggetto che avvia o partecipa all'interazione.
+    \item \textbf{Precondizioni}: stato del sistema prima dell'esecuzione del caso d'uso.
+    \item \textbf{Postcondizioni}: stato del sistema al termine dell'esecuzione.
+    \item \textbf{Scenario principale}: sequenza ordinata delle azioni che costituiscono il flusso normale.
+    \item \textbf{Estensioni}: scenari alternativi o di errore che possono verificarsi.
+    \item \textbf{User Story}: descrizione sintetica dell'obiettivo dal punto di vista dell'utente.
+\end{itemize}
+
+\paragraph{Documentazione di Riferimento}
+I risultati dell'attività di analisi vengono formalizzati nel documento \emph{Analisi dei Requisiti}{\scriptsize\raisebox{-0.5ex}{G}}, che costituisce il riferimento ufficiale per le fasi successive del progetto.
+Questo documento include:
+\begin{itemize}
+    \item la descrizione del dominio applicativo;
+    \item l'elenco completo dei casi d'uso con relativi diagrammi UML;
+    \item la specifica dettagliata di tutti i requisiti;
+    \item le matrici di tracciabilità tra casi d'uso e requisiti.
+\end{itemize}
 \subsubsection{Progettazione}
 
 \paragraph{Scopo} L'attività di progettazione mira a definire l'architettura 
@@ -229,9 +326,127 @@ e le scelte tecnologiche fondamentali.
     \item \textbf{Progettazione di dettaglio}: Basandosi sulle fondamenta stabilite dalla progettazione logica, questa fase definisce l'architettura software specifica. Vengono sviluppate e documentate le rappresentazioni complete di tutte le componenti del sistema e delle loro interazioni.
 \end{itemize}
 
-\subsubsection{Codifica}
-\textbf{\textit{   Placeholder (Da definire)
-}}
+\subsubsection{Codifica (MVP)}
+
+\paragraph{Scopo}
+L'attività di codifica ha lo scopo di tradurre le specifiche di progettazione in codice sorgente eseguibile, producendo un software funzionante, manutenibile e conforme agli standard di qualità definiti dal gruppo.
+Le norme qui stabilite garantiscono uniformità, leggibilità e tracciabilità del codice prodotto.
+
+\paragraph{Descrizione}
+La codifica rappresenta la fase implementativa del processo di sviluppo e si articola nelle seguenti attività:
+\begin{itemize}
+    \item \textbf{Implementazione delle funzionalità}: traduzione delle specifiche tecniche in codice sorgente.
+    \item \textbf{Documentazione del codice}: inserimento di commenti esplicativi e documentazione inline.
+    \item \textbf{Versionamento}: gestione delle modifiche attraverso il sistema di controllo versione Git{\scriptsize\raisebox{-0.5ex}{G}}.
+    \item \textbf{Test unitari}: verifica del corretto funzionamento delle singole unità di codice.
+\end{itemize}
+
+\paragraph{Convenzioni di Stile}
+Per garantire uniformità e leggibilità, il gruppo adotta le seguenti convenzioni di stile:
+
+\subparagraph{Indentazione}
+\begin{itemize}
+    \item L'indentazione deve essere di \textbf{4 spazi}.
+    \item È vietato l'utilizzo di caratteri di tabulazione (\texttt{tab}).
+    \item L'indentazione deve essere coerente in tutto il file sorgente.
+\end{itemize}
+
+\subparagraph{Lunghezza delle Righe}
+\begin{itemize}
+    \item La lunghezza massima consigliata per una riga di codice è di \textbf{120 caratteri}.
+    \item Le righe che superano tale limite devono essere suddivise in modo logico e leggibile.
+\end{itemize}
+
+\subparagraph{Spaziatura e Formattazione}
+\begin{itemize}
+    \item Utilizzare una riga vuota per separare blocchi logici di codice.
+    \item Inserire spazi attorno agli operatori binari (es. \texttt{a = b + c}).
+    \item Non inserire spazi prima delle parentesi nelle chiamate a funzione.
+    \item Utilizzare parentesi graffe anche per blocchi di una sola istruzione.
+\end{itemize}
+
+\paragraph{Convenzioni di Nomenclatura}
+La nomenclatura degli identificatori segue convenzioni specifiche in base al contesto:
+
+\subparagraph{Classi e Interfacce}
+\begin{itemize}
+    \item Utilizzare la notazione \textbf{PascalCase}{\scriptsize\raisebox{-0.5ex}{G}}: ogni parola inizia con lettera maiuscola.
+    \item I nomi devono essere sostantivi che descrivono l'entità rappresentata.
+    \item Esempio: \texttt{OrderProcessor}, \texttt{AudioTranscriber}.
+\end{itemize}
+
+\subparagraph{Metodi e Funzioni}
+\begin{itemize}
+    \item Utilizzare la notazione \textbf{camelCase}{\scriptsize\raisebox{-0.5ex}{G}}: prima parola minuscola, successive con iniziale maiuscola.
+    \item I nomi devono essere verbi che descrivono l'azione eseguita.
+    \item Esempio: \texttt{processOrder()}, \texttt{validateInput()}.
+\end{itemize}
+
+\subparagraph{Variabili e Parametri}
+\begin{itemize}
+    \item Utilizzare la notazione \textbf{camelCase}.
+    \item I nomi devono essere descrittivi e significativi.
+    \item Evitare abbreviazioni non standard o nomi di singole lettere (eccetto indici di ciclo).
+    \item Esempio: \texttt{orderList}, \texttt{confidenceScore}.
+\end{itemize}
+
+\subparagraph{Costanti}
+\begin{itemize}
+    \item Utilizzare la notazione \textbf{UPPER\_SNAKE\_CASE}: tutte maiuscole con underscore come separatore.
+    \item Esempio: \texttt{MAX\_RETRY\_COUNT}, \texttt{DEFAULT\_TIMEOUT}.
+\end{itemize}
+
+\subparagraph{File Sorgente}
+\begin{itemize}
+    \item I nomi dei file devono riflettere il contenuto principale (classe, modulo).
+    \item Utilizzare convenzioni coerenti con il linguaggio adottato.
+\end{itemize}
+
+\paragraph{Documentazione del Codice}
+Ogni componente del codice deve essere adeguatamente documentato:
+\begin{itemize}
+    \item \textbf{Intestazione del file}: ogni file sorgente deve contenere un'intestazione con descrizione del contenuto, autore e data di creazione.
+    \item \textbf{Documentazione delle funzioni}: ogni funzione pubblica deve essere documentata con descrizione, parametri e valore di ritorno.
+    \item \textbf{Commenti inline}: utilizzare commenti per spiegare logiche complesse o non immediatamente intuibili.
+    \item \textbf{TODO e FIXME}: utilizzare marcatori standardizzati per segnalare lavori in sospeso o problemi noti.
+\end{itemize}
+
+\paragraph{Gestione del Versionamento}
+Il codice sorgente viene gestito attraverso Git{\scriptsize\raisebox{-0.5ex}{G}} e GitHub{\scriptsize\raisebox{-0.5ex}{G}}, seguendo le seguenti convenzioni:
+
+\subparagraph{Branch}
+\begin{itemize}
+    \item \textbf{main}: branch principale contenente il codice stabile e rilasciabile.
+    \item \textbf{feature/[nome]}: branch per lo sviluppo di nuove funzionalità.
+    \item \textbf{fix/[nome]}: branch per la correzione di bug.
+    \item \textbf{hotfix/[nome]}: branch per correzioni urgenti su codice in produzione.
+\end{itemize}
+
+\subparagraph{Commit}
+\begin{itemize}
+    \item I messaggi di commit{\scriptsize\raisebox{-0.5ex}{G}} devono essere chiari e descrittivi.
+    \item Utilizzare il tempo presente imperativo (es. ``Aggiungi validazione input'').
+    \item Ogni commit deve rappresentare un'unità logica di modifica.
+    \item Evitare commit con modifiche non correlate tra loro.
+\end{itemize}
+
+\subparagraph{Pull Request}
+\begin{itemize}
+    \item Ogni pull request{\scriptsize\raisebox{-0.5ex}{G}} deve essere associata a un task su GitHub Projects{\scriptsize\raisebox{-0.5ex}{G}}.
+    \item La pull request deve contenere una descrizione delle modifiche apportate.
+    \item Prima del merge, è richiesta la revisione da parte di almeno un verificatore.
+    \item I conflitti devono essere risolti prima del merge sul branch principale.
+\end{itemize}
+
+\paragraph{Standard di Qualità del Codice}
+Il codice prodotto deve rispettare i seguenti criteri di qualità:
+\begin{itemize}
+    \item \textbf{Leggibilità}: il codice deve essere facilmente comprensibile da altri sviluppatori.
+    \item \textbf{Manutenibilità}: le modifiche future devono poter essere applicate con minimo impatto.
+    \item \textbf{Modularità}: il codice deve essere organizzato in componenti indipendenti e riutilizzabili.
+    \item \textbf{Testabilità}: ogni componente deve poter essere verificato tramite test automatizzati.
+    \item \textbf{Efficienza}: il codice deve essere ottimizzato per le prestazioni, evitando operazioni ridondanti.
+\end{itemize}
 
 
 
@@ -723,24 +938,142 @@ La rotazione periodica dei ruoli, come definita nella sezione "Ruoli e responsab
 \subsection{Ottimizzazione dei processi}
 Il gruppo adotta un approccio di miglioramento continuo per ottimizzare costantemente i processi di lavoro e la qualità dei prodotti.
 
-\subsubsection{Principio del miglioramento continuo}
-Durante lo svolgimento delle attività e l'elaborazione della documentazione, il team si impegna a seguire costantemente il principio di miglioramento continuo.
-L'obiettivo è identificare proattivamente opportunità di ottimizzazione nei processi, nei ruoli e nelle attività, sviluppando soluzioni innovative per affrontare le sfide che emergono durante il progetto.
+\subsubsection{Ciclo di Deming (PDCA)}
+Per garantire un miglioramento continuo e sistematico, il gruppo NightPRO adotta il \textbf{Ciclo di Deming}{\scriptsize\raisebox{-0.5ex}{G}}, noto anche come PDCA{\scriptsize\raisebox{-0.5ex}{G}} (\textit{Plan-Do-Check-Act}).
+Questo modello iterativo guida tutte le attività di ottimizzazione dei processi attraverso quattro fasi interconnesse:
 
-Il miglioramento continuo si configura come un ciclo iterativo che permette al team di adattarsi dinamicamente alle esigenze mutevoli del progetto.
-Questo approccio garantisce una crescita costante e un incremento dell'efficienza nelle attività svolte, caratterizzando ogni fase del processo dalla pianificazione all'esecuzione, inclusa la documentazione.
+\begin{itemize}
+    \item \textbf{Plan (Pianificare)}: definire gli obiettivi da raggiungere e i processi necessari per ottenere risultati conformi alle aspettative. In questa fase si identificano le attività da svolgere, si stabiliscono le metriche di riferimento e si pianificano le risorse necessarie.
+    
+    \item \textbf{Do (Fare)}: attuare il piano stabilito, eseguire i processi definiti e realizzare le attività previste. Durante questa fase si raccolgono dati e informazioni utili per la successiva valutazione.
+    
+    \item \textbf{Check (Verificare)}: monitorare e misurare i processi e i risultati ottenuti confrontandoli con gli obiettivi pianificati, le politiche stabilite e i requisiti definiti. Si analizzano gli scostamenti e si identificano le cause di eventuali difformità.
+    
+    \item \textbf{Act (Agire)}: adottare azioni correttive per eliminare le cause degli scostamenti rilevati e implementare miglioramenti nei processi. Le modifiche validate vengono consolidate e diventano la nuova baseline per il ciclo successivo.
+\end{itemize}
+
+\noindent
+Questo ciclo viene applicato in modo ricorrente durante tutto il progetto, garantendo un adattamento continuo alle esigenze emergenti e un progressivo incremento dell'efficacia dei processi.
+
+\subsubsection{Metriche di Processo e di Prodotto}
+Per supportare la fase di \textit{Check} del ciclo PDCA e garantire decisioni basate su dati oggettivi, il gruppo utilizza un sistema strutturato di metriche quantitative.
+Le metriche adottate sono definite e documentate nel \emph{Piano di Qualifica}{\scriptsize\raisebox{-0.5ex}{G}} e si suddividono in due categorie principali:
+
+\paragraph{Metriche di Processo}
+Le metriche di processo misurano l'efficacia e l'efficienza delle attività svolte dal team.
+Il gruppo adotta la metodologia \textbf{Earned Value Management}{\scriptsize\raisebox{-0.5ex}{G}} (EVM) per monitorare l'avanzamento del progetto in termini di costi e tempi.
+Le principali aree di misurazione includono:
+\begin{itemize}
+    \item \textbf{Gestione del budget}: scostamenti tra costi preventivati e consuntivati, indici di efficienza economica.
+    \item \textbf{Gestione dei tempi}: varianze orarie, rispetto delle scadenze pianificate, indici di performance temporale.
+    \item \textbf{Avanzamento del progetto}: valore del lavoro completato, proiezioni di completamento, stime a finire.
+\end{itemize}
+
+\paragraph{Metriche di Prodotto}
+Le metriche di prodotto valutano la qualità degli artefatti prodotti, sia documentali che software.
+Comprendono:
+\begin{itemize}
+    \item \textbf{Metriche di documentazione}: indice Gulpease{\scriptsize\raisebox{-0.5ex}{G}} per la leggibilità, correttezza ortografica e conformità agli standard redazionali.
+    \item \textbf{Metriche di codice}: copertura dei test, complessità ciclomatica, densità di commenti, rispetto delle convenzioni di stile.
+\end{itemize}
+
+\paragraph{Soglie di Accettazione}
+Per ciascuna metrica sono definite soglie di accettazione che distinguono tra:
+\begin{itemize}
+    \item \textbf{Valore preferibile}: obiettivo ottimale da perseguire.
+    \item \textbf{Valore accettabile}: soglia minima al di sotto della quale è richiesto un intervento correttivo.
+\end{itemize}
+
+\noindent
+I valori specifici delle soglie e le formule di calcolo sono riportati nel documento \emph{Piano di Qualifica}.
+Il monitoraggio delle metriche avviene con cadenza regolare (tipicamente al termine di ogni sprint) e i risultati vengono discussi durante le riunioni periodiche per identificare eventuali azioni correttive.
 
 \subsubsection{Meccanismi di implementazione}
-L'implementazione del miglioramento continuo avviene attraverso meccanismi strutturati che coinvolgono tutto il team.
+L'implementazione del miglioramento continuo avviene attraverso meccanismi strutturati che coinvolgono tutto il team e si integrano con il ciclo PDCA.
 
 Le problematiche riscontrate durante lo sviluppo e le soluzioni adottate vengono sistematicamente documentate e analizzate.
 Questo permette una gestione consapevole e mirata delle sfide incontrate, evitando la ripetizione di errori già commessi e fornendo un repertorio di soluzioni efficaci per situazioni simili.
 
-Durante le riunioni periodiche, il team discute le attività svolte nell'ultimo periodo, coinvolgendo tutti i membri nell'identificazione delle aree di successo e delle opportunità di miglioramento.
-L'obiettivo è formulare azioni correttive concrete da implementare, promuovendo un feedback costante e un adattamento continuo che migliora progressivamente le prestazioni del team.
+Durante le riunioni periodiche, il team:
+\begin{itemize}
+    \item analizza i valori delle metriche raccolte durante lo sprint concluso;
+    \item confronta i risultati ottenuti con le soglie di accettazione definite;
+    \item identifica le aree di successo e le opportunità di miglioramento;
+    \item formula azioni correttive concrete da implementare nel ciclo successivo.
+\end{itemize}
 
-Le azioni correttive stabilite durante le riunioni vengono implementate e successivamente valutate per la loro efficacia.
-I risultati di questa valutazione vengono esaminati durante le riunioni successive, creando un ciclo virtuoso di apprendimento e miglioramento.
-Le decisioni prese e le azioni correttive vengono tracciate attraverso il sistema di gestione dei task (GitHub Projects) e documentate nei verbali delle riunioni, garantendo tracciabilità e continuità nel processo di ottimizzazione.
+Le azioni correttive stabilite vengono tracciate attraverso GitHub Projects{\scriptsize\raisebox{-0.5ex}{G}} e documentate nei verbali delle riunioni.
+Al termine del ciclo successivo, l'efficacia delle azioni intraprese viene valutata attraverso il confronto delle metriche, chiudendo così il ciclo PDCA e avviando una nuova iterazione di miglioramento.
+
+\subsection{Gestione dei rischi}
+La gestione dei rischi consente di anticipare e mitigare potenziali problematiche che potrebbero compromettere il successo del progetto.
+Il gruppo adotta un approccio strutturato, documentato nel \emph{Piano di Progetto}{\scriptsize\raisebox{-0.5ex}{G}}, articolato in cinque fasi:
+
+\begin{itemize}
+    \item \textbf{Identificazione}: individuazione sistematica delle fonti di rischio attraverso l'analisi delle attività, degli strumenti e delle dinamiche organizzative.
+    \item \textbf{Analisi}: valutazione della probabilità di occorrenza e del grado di pericolosità di ciascun rischio.
+    \item \textbf{Valutazione}: determinazione delle priorità e definizione dell'ordine di attuazione delle misure di mitigazione.
+    \item \textbf{Gestione}: implementazione di misure preventive e azioni di mitigazione mirate.
+    \item \textbf{Monitoraggio}: controllo periodico dell'efficacia delle soluzioni adottate e identificazione di nuovi rischi emergenti.
+\end{itemize}
+
+\subsubsection{Classificazione dei rischi}
+I rischi sono identificati mediante la convenzione \texttt{R[Tipo][Indice]}, dove:
+\begin{itemize}
+    \item \textbf{RT}: rischi tecnologici (strumenti, tecnologie, infrastrutture);
+    \item \textbf{RO}: rischi organizzativi (gestione, comunicazione, coordinamento);
+    \item \textbf{RP}: rischi personali (disponibilità, competenze, impegni individuali).
+\end{itemize}
+
+\noindent
+L'elenco dettagliato dei rischi identificati, con relative strategie di mitigazione, è riportato nel \emph{Piano di Progetto}.
+
+\subsection{Diario di Bordo}
+Il Diario di Bordo è un'attività settimanale con funzione formativa, finalizzata a esporre e discutere lo stato di avanzamento del progetto.
+
+\subsubsection{Finalità}
+L'attività ha lo scopo di:
+\begin{itemize}
+    \item comunicare le difficoltà incontrate durante lo sprint;
+    \item esporre dubbi e incertezze su come procedere;
+    \item favorire la discussione collettiva e il confronto con il docente.
+\end{itemize}
+
+\noindent
+La cadenza settimanale garantisce che la quantità di argomenti da trattare rimanga gestibile e permetta un intervento tempestivo sulle problematiche emerse.
+
+\subsubsection{Modalità di svolgimento}
+Il Diario di Bordo si svolge secondo le seguenti modalità:
+\begin{itemize}
+    \item il gruppo prepara 2-3 diapositive di contenuto per un'esposizione di massimo 4 minuti;
+    \item l'esposizione è tenuta dal Responsabile di Progetto in carica nel periodo corrente;
+    \item la presentazione avviene condividendo lo schermo nella stanza Zoom designata;
+    \item al termine delle esposizioni di tutti i gruppi, segue una discussione collettiva sui punti più rilevanti.
+\end{itemize}
+
+\subsubsection{Contenuti della presentazione}
+Le diapositive devono includere:
+\begin{itemize}
+    \item sintesi delle attività svolte nel periodo;
+    \item difficoltà tecniche o organizzative incontrate;
+    \item dubbi aperti e richieste di chiarimento;
+    \item stato di avanzamento rispetto alla pianificazione.
+\end{itemize}
+
+\subsection{Progettazione dell'interfaccia utente}
+Per la progettazione dell'interfaccia utente il gruppo utilizza strumenti di prototipazione che consentono di definire l'aspetto e il comportamento del prodotto prima dell'implementazione.
+
+\subsubsection{Strumenti adottati}
+Il gruppo utilizza \textbf{Penpot}{\scriptsize\raisebox{-0.5ex}{G}}, una piattaforma open source per la creazione di mockup e prototipi interattivi.
+La scelta è motivata dalla natura collaborativa dello strumento e dalla sua disponibilità gratuita.
+
+\subsubsection{Processo di design}
+Il processo di progettazione dell'interfaccia si articola nelle seguenti fasi:
+\begin{itemize}
+    \item \textbf{Creazione dei mockup}: definizione delle schermate principali e dei flussi di navigazione.
+    \item \textbf{Revisione interna}: discussione dei mockup durante le riunioni di sprint per raccogliere feedback.
+    \item \textbf{Validazione con il proponente}: presentazione dei prototipi al proponente per conferma o richieste di modifica.
+    \item \textbf{Passaggio all'implementazione}: i mockup approvati diventano riferimento per lo sviluppo del frontend.
+\end{itemize}
 
 \end{document}
