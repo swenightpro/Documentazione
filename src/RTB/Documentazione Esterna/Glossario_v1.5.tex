@@ -72,9 +72,9 @@
 
     {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
 
-        {\large Data: 2026-01-04 \par}
+        {\large Data: 2026-01-30 \par}
 
-     {\Large Versione: 1.4 \par} 
+     {\Large Versione: 1.5 \par} 
 
 \end{titlepage}
 
@@ -93,6 +93,7 @@
 \toprule
 \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
 \midrule
+1.5 & 2026-01-30 & Davide Biasuzzi & Aggiunti i termini Code Smell, ISO/IEC 25010, Linter, Microservizi, PB (Product Baseline), RAG (Retrieval-Augmented Generation), Refactoring, RTB (Requirements and Technology Baseline), Unit Test per supporto Piano di Qualifica v0.3 & Francesco Zanella \\
 1.4 & 2026-01-28 & Davide Biasuzzi & Aggiunti i termini camelCase, Ciclo di Deming, Earned Value Management (EVM), Gulpease, PascalCase, PDCA e Penpot per supporto Norme di Progetto v1.3 & Francesco Zanella \\
 1.3 & 2026-01-04 & Davide Biasuzzi & Aggiunti i termini Embedding, LLM, NER, RBAC, Speech-to-Text per supporto Analisi dei Requisiti v0.3 & Leonardo Bilato \\
 1.2 & 2025-12-04 & Francesco Zanella & Aggiunti i termini API, Baseline, Build, Bug, Bug tracking system, CI (Continuous Integration), Consuntivo, Docker, ERP, Framework, Github Actions, Intelligenza Artificiale, Machine Learning, Merge, Mitigazione, Modello di sviluppo, MVP, NLP, Overleaf, Patch, PDF, Pipeline, Preventivo, Product Backlog, Scrum, Snake case, Sprint, Sprint Backlog, Sprint Planning, Sprint Retrospective, Sprint Review, Template, Versionamento  & Giovanni Ponso \\
@@ -292,6 +293,11 @@ L'insieme delle fasi attraverso cui passa un prodotto o un documento, dalla conc
 Modello iterativo di gestione della qualità, noto anche come PDCA (Plan-Do-Check-Act), che prevede quattro fasi cicliche: pianificazione degli obiettivi, esecuzione delle attività, verifica dei risultati e implementazione delle azioni correttive. Ideato da W. Edwards Deming, è uno strumento fondamentale per il miglioramento continuo dei processi.
 \vspace{0.5cm}
 
+\subsection*{Code Smell}
+\addcontentsline{toc}{subsection}{Code Smell}
+Indicatore di potenziali problemi nel codice sorgente che, pur non costituendo un bug, suggerisce debolezze nel design che possono ostacolare lo sviluppo futuro o aumentare il rischio di introdurre difetti. Esempi comuni includono metodi troppo lunghi, classi con troppe responsabilità e codice duplicato.
+\vspace{0.5cm}
+
 \subsection*{Commit}
 
 \addcontentsline{toc}{subsection}{Commit}
@@ -472,6 +478,11 @@ Un'attività, un problema o una richiesta tracciata nel sistema di gestione del 
 
 \vspace{0.5cm}
 
+\subsection*{ISO/IEC 25010}
+\addcontentsline{toc}{subsection}{ISO/IEC 25010}
+Standard internazionale che definisce un modello di qualità del prodotto software, identificando otto caratteristiche principali: funzionalità, efficienza prestazionale, compatibilità, usabilità, affidabilità, sicurezza, manutenibilità e portabilità. Fornisce un framework di riferimento per valutare e misurare la qualità del software.
+\vspace{0.5cm}
+
 % L
 
 \section*{L}
@@ -489,6 +500,11 @@ Linguaggio di markup e sistema di preparazione di documenti ampiamente usato in 
 \subsection*{LLM}
 \addcontentsline{toc}{subsection}{LLM}
 Acronimo di \textit{Large Language Model} (Modello Linguistico di Grandi Dimensioni). Modello di intelligenza artificiale addestrato su enormi quantità di testo per comprendere e generare linguaggio naturale, utilizzato per attività come elaborazione semantica, traduzione e generazione di contenuti.
+\vspace{0.5cm}
+
+\subsection*{Linter}
+\addcontentsline{toc}{subsection}{Linter}
+Strumento di analisi statica del codice che identifica errori sintattici, problemi stilistici e potenziali bug senza eseguire il programma. Aiuta a mantenere uno stile di codifica consistente e a prevenire errori comuni prima della compilazione o dell'esecuzione.
 \vspace{0.5cm}
 
 % M
@@ -515,6 +531,11 @@ Un punto di controllo significativo nel progetto che rappresenta il completament
 \subsection*{Mitigazione}
 \addcontentsline{toc}{subsection}{Mitigazione}
 Nell'ambito della gestione dei rischi, indica l'insieme delle azioni pianificate per ridurre la probabilità che un rischio si verifichi o per limitarne l'impatto negativo sul progetto qualora accadesse.
+\vspace{0.5cm}
+
+\subsection*{Microservizi}
+\addcontentsline{toc}{subsection}{Microservizi}
+Stile architetturale che struttura un'applicazione come una collezione di servizi piccoli, indipendenti e debolmente accoppiati. Ogni microservizio implementa una funzionalità specifica, può essere sviluppato e distribuito in modo autonomo, e comunica con gli altri tramite API ben definite.
 \vspace{0.5cm}
 
 \subsection*{Modello di sviluppo}
@@ -609,6 +630,11 @@ Acronimo di \textit{Portable Document Format}. Formato di file utilizzato per pr
 Acronimo di \textit{Plan-Do-Check-Act}. Modello iterativo a quattro fasi per il miglioramento continuo dei processi: Plan (pianificare obiettivi e processi), Do (eseguire il piano), Check (verificare i risultati rispetto agli obiettivi), Act (agire per migliorare). Noto anche come Ciclo di Deming.
 \vspace{0.5cm}
 
+\subsection*{PB (Product Baseline)}
+\addcontentsline{toc}{subsection}{PB (Product Baseline)}
+Seconda revisione di avanzamento del progetto didattico, successiva all'RTB. Rappresenta il punto in cui il team dimostra di aver sviluppato un prodotto software funzionante (MVP) che soddisfa i requisiti minimi concordati, corredato dalla documentazione di progettazione e test.
+\vspace{0.5cm}
+
 \subsection*{Piano di Progetto}
 
 \addcontentsline{toc}{subsection}{Piano di Progetto}
@@ -670,12 +696,22 @@ Richiesta di integrazione delle modifiche da un branch al branch principale del 
 
 \addcontentsline{toc}{section}{R}
 
+\subsection*{RAG (Retrieval-Augmented Generation)}
+\addcontentsline{toc}{subsection}{RAG (Retrieval-Augmented Generation)}
+Architettura di intelligenza artificiale che combina la generazione di testo di un LLM con il recupero di informazioni da una base di conoscenza esterna. Permette al modello di accedere a dati aggiornati e specifici del dominio non presenti nel suo addestramento originale, migliorando l'accuratezza e la pertinenza delle risposte.
+\vspace{0.5cm}
+
 \subsection*{Redazione}
 
 \addcontentsline{toc}{subsection}{Redazione}
 
 Fase iniziale del ciclo di vita di un documento, durante la quale uno o più autori (redattori) creano e aggiornano i contenuti.
 
+\vspace{0.5cm}
+
+\subsection*{Refactoring}
+\addcontentsline{toc}{subsection}{Refactoring}
+Processo di ristrutturazione del codice esistente senza modificarne il comportamento esterno. L'obiettivo è migliorare la leggibilità, la manutenibilità e la struttura interna del codice, riducendo la complessità e il debito tecnico.
 \vspace{0.5cm}
 
 \subsection*{Repository}
@@ -700,6 +736,11 @@ Le necessità e le aspettative che il prodotto software deve soddisfare, classif
 
 Acronimo di \textit{Role-Based Access Control} (Controllo degli Accessi Basato sui Ruoli). Modello di gestione delle autorizzazioni che assegna permessi agli utenti in base al loro ruolo nel sistema, garantendo sicurezza e separazione dei privilegi.
 
+\vspace{0.5cm}
+
+\subsection*{RTB (Requirements and Technology Baseline)}
+\addcontentsline{toc}{subsection}{RTB (Requirements and Technology Baseline)}
+Prima revisione di avanzamento del progetto didattico. Rappresenta il punto in cui il team dimostra di aver compreso i requisiti del capitolato, definito l'analisi dei requisiti e validato le scelte tecnologiche attraverso un Proof of Concept (PoC).
 \vspace{0.5cm}
 
 % S
@@ -813,6 +854,17 @@ Modello predefinito di documento che contiene la struttura, lo stile e le impost
 
 Funzionalità dei gruppi Telegram che permette di suddividere le conversazioni in argomenti specifici, garantendo maggiore ordine e tracciabilità delle discussioni.
 
+\vspace{0.5cm}
+
+% U
+
+\section*{U}
+
+\addcontentsline{toc}{section}{U}
+
+\subsection*{Unit Test}
+\addcontentsline{toc}{subsection}{Unit Test}
+Test automatizzato che verifica il corretto funzionamento di una singola unità di codice (tipicamente un metodo o una funzione) in isolamento dalle altre componenti del sistema. Costituisce il primo livello della piramide dei test e permette di identificare rapidamente regressioni nel codice.
 \vspace{0.5cm}
 
 % V

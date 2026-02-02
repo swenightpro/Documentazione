@@ -1,0 +1,1993 @@
+\documentclass[a4paper,11pt,oneside]{scrartcl}
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{scrhack}
+\usepackage{placeins}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{pgf-pie}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{amsmath, amssymb, mathtools}
+\usepackage{eurosym}
+\usepackage{float}
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}
+\graphicspath{{../../assets/}{../assets/}{assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[svgnames,table]{xcolor}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{hhline}
+
+% --- Utility ---
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+% --- Comandi Personalizzati ---
+\newcommand{\riskheader}[1]{%
+    \multicolumn{2}{@{}l@{}}{\textbf{#1}} \\ \midrule
+}
+
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Piano di Qualifica - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  TITOLO
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+
+\begin{titlepage}
+\centering
+
+\includegraphics[width=0.4\textwidth]{logo.png} 
+
+\vfill
+
+{\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+{\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+{\large Corso di Ingegneria del Software \par}
+{\small Anno Accademico 2025/2026 \par}
+
+\vfill
+{\Huge \bfseries Piano di Qualifica \par}
+\vspace{1cm}
+
+\vfill
+{\Large \bfseries Gruppo: NightPRO \par}
+{\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+
+\vfill
+
+{\large Data: 2026-01-30 \par}
+{\Large Versione: 0.3 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+% TABELLA VERSIONI
+% -------------------------------------------------------------------
+\newpage
+\section*{Tabella delle Versioni}
+\addcontentsline{toc}{section}{Tabella delle Versioni}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{@{}p{0.1\textwidth}p{0.15\textwidth}p{0.25\textwidth}X>{\centering\arraybackslash}p{0.15\textwidth}@{}}
+\toprule
+\textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione} & \textbf{Verificatore} \\
+\midrule
+0.3 & 2026-01-30 & Davide Biasuzzi & Inserimento metriche di processo e di qualità sw dettagliate con codici, formule e soglie di accettazione, grafici, strategie di test & Francesco Zanella\\
+0.2 & 2025-12-18 & Davide Biasuzzi & Aggiunto paragrafo relativo alla qualità della documentazione & Samuele Perozzo\\
+0.1 & 2025-12-05 & Mihaela-Mariana Romascu & Stesura iniziale del documento, definizione metriche di processo e prodotto. & Giovanni Ponso\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+% -------------------------------------------------------------------
+% INDICE
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents
+\newpage
+
+% -------------------------------------------------------------------
+% INFORMAZIONI GENERALI
+% -------------------------------------------------------------------
+\section*{Informazioni Generali}
+\addcontentsline{toc}{section}{Informazioni Generali}
+
+\subsection*{Componenti del Gruppo}
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del gruppo NightPRO.}
+\end{table}
+
+% -------------------------------------------------------------------
+% INTRODUZIONE
+% -------------------------------------------------------------------
+\newpage
+\section{Introduzione}
+
+Il \textit{Piano di Qualifica} rappresenta il documento strategico per la gestione della qualità all'interno del progetto \textbf{SmartOrder}. Esso stabilisce gli standard, le metodologie di verifica e le metriche quantitative necessarie per valutare sia la qualità del processo di sviluppo che la qualità del prodotto software finale.
+
+\subsection{Scopo del documento}
+Questo documento ha lo scopo di definire:
+\begin{itemize}
+    \item Gli \textbf{obiettivi di qualità} che il gruppo NightPRO si impegna a raggiungere.
+    \item Le \textbf{metriche} utilizzate per monitorare l'andamento del progetto (costi, tempi) e la qualità del codice.
+    \item Le \textbf{procedure di verifica e validazione} da applicare ai documenti e al software.
+    \item I criteri di accettazione per le fasi di avanzamento.
+\end{itemize}
+
+L'adozione di questo piano garantisce che il prodotto finale sia conforme ai requisiti espressi nel Capitolato C8 e rispetti gli standard accademici richiesti.
+
+\subsection{Glossario}
+Al fine di evitare ambiguità, i termini tecnici o specifici del dominio sono raccolti nel documento \textit{Glossario}.
+Nel presente testo, tali termini sono contrassegnati con una "G" in pedice alla loro prima occorrenza (es. Agile{\scriptsize\raisebox{-0.5ex}{G}}).
+
+% --- Riferimenti ---
+\section{Riferimenti}
+
+\subsection{Riferimenti normativi}
+\begin{itemize}
+    \item \href{https://github.com/swenightpro/Documentazione/blob/main/docs/Candidatura/Documentazione%20Interna}{Norme di Progetto V1.0}
+    \item \href{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C8.pdf}{Capitolato d’appalto C8 - Smart Order}
+\end{itemize}
+
+\subsection{Riferimenti informativi}
+\begin{itemize}
+    \item \href{https://github.com/swenightpro/Documentazione/blob/main/docs/RTB/Documentazione%20Esterna}{Glossario}
+    \item \href{https://github.com/swenightpro/Documentazione/tree/main/docs/RTB/Documentazione%20Esterna}{Analisi dei Requisiti}
+    \item \href{https://github.com/swenightpro/Documentazione/tree/main/docs/RTB/Documentazione%20Esterna/Verbali%20Esterni}{Verbali esterni}
+    \item \href{https://github.com/swenightpro/Documentazione/tree/main/docs/RTB/Documentazione%20Interna/Verbali%20Interni}{Verbali interni}
+    \item \href{https://github.com/swenightpro/Documentazione/tree/main/docs/RTB/Documentazione%20Esterna}{Piano di progetto}
+\end{itemize}
+
+% -------------------------------------------------------------------
+% QUALITÀ DI PROCESSO
+% -------------------------------------------------------------------
+\newpage
+\section{Qualità di Processo}
+
+\subsection{Scopo e Obiettivi}
+La qualità di processo riguarda la capacità del gruppo di gestire le attività pianificate rispettando vincoli di budget e tempistiche. Il gruppo NightPRO adotta il ciclo di Deming{\scriptsize\raisebox{-0.5ex}{G}}, noto come PDCA{\scriptsize\raisebox{-0.5ex}{G}}:
+
+\begin{itemize}
+    \item \textbf{Plan (Pianificare)}: stabilire gli obiettivi e i processi necessari per fornire risultati in accordo con i risultati attesi.
+    \item \textbf{Do (Fare)}: attuare il piano, eseguire i processi, realizzare il prodotto.
+    \item \textbf{Check (Verificare)}: monitorare e misurare i processi e il prodotto a fronte delle politiche, degli obiettivi e dei requisiti.
+    \item \textbf{Act (Agire)}: adottare azioni per migliorare continuamente le prestazioni dei processi.
+\end{itemize}
+
+\subsection{Parametri del Progetto}
+I seguenti valori costituiscono la baseline{\scriptsize\raisebox{-0.5ex}{G}} per il calcolo delle metriche:
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{lXc}
+\toprule
+\textbf{Parametro} & \textbf{Descrizione} & \textbf{Valore} \\
+\midrule
+\textbf{BAC} (Budget At Completion) & Costo totale preventivato del progetto (v0.4) & € 12.850,00 \\
+\textbf{Ore Totali} & Monte ore complessivo disponibile & 630 ore \\
+\textbf{Componenti} & Numero di membri del gruppo & 7 \\
+\textbf{Ore medie per componente} & Media ore di lavoro pro capite ($630/7$) & 90 ore \\
+\textbf{Scadenza Progetto} & Data prevista per la consegna finale (PB{\scriptsize\raisebox{-0.5ex}{G}}) & 21/03/2026 \\
+\bottomrule
+\end{tabularx}
+\caption{Parametri fondamentali del progetto}
+\end{table}
+
+
+\subsection{Metriche di Processo}
+Per il monitoraggio dell'avanzamento, il gruppo utilizza la metodologia Earned Value Management{\scriptsize\raisebox{-0.5ex}{G}} integrata con metriche di gestione del rischio e della qualità.
+
+\subsubsection{PM-1 - Planned Value}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & PM-1 \\
+\textbf{Processo:} & Fornitura \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Formula:}
+
+\noindent\textit{Dove:}
+\begin{itemize}[leftmargin=1.5cm, topsep=0pt, itemsep=0pt]
+    \item $AC_{k-1}$ = Actual Cost cumulativo fino allo sprint{\scriptsize\raisebox{-0.5ex}{G}} precedente
+    \item $BP_k$ = Budget Preventivato per lo sprint corrente
+\end{itemize}
+
+\[
+\text{PV} = AC_{k-1} + BP_k
+\]
+
+\noindent\textbf{Descrizione:} Indica il valore cumulativo pianificato del lavoro che dovrebbe essere completato fino allo sprint corrente. Viene calcolato sommando i costi effettivi pregressi al budget pianificato dello sprint in corso.
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & - \\
+\textbf{Accettabile:} & - \\
+\end{tabular}
+
+\subsubsection{PM-2 - Actual Cost}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & PM-2 \\
+\textbf{Processo:} & Fornitura \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Formula:}
+
+\noindent\textit{Dove:}
+\begin{itemize}[leftmargin=1.5cm, topsep=0pt, itemsep=0pt]
+    \item $BC_i$ = Budget Consuntivato dello sprint $i$-esimo
+    \item $n$ = Numero totale di sprint completati fino alla data corrente
+\end{itemize}
+
+\[
+\text{AC} = \sum_{i=1}^{n} BC_i
+\]
+
+\noindent\textbf{Descrizione:} Rappresenta la somma cumulativa dei costi realmente sostenuti dall'inizio del progetto fino al momento della misurazione. Include tutti i costi effettivi degli sprint completati.
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & - \\
+\textbf{Accettabile:} & - \\
+\end{tabular}
+
+\subsubsection{PM-3 - Earned Value}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & PM-3 \\
+\textbf{Processo:} & Fornitura \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Formula:}
+
+\noindent\textit{Dove:}
+\begin{itemize}[leftmargin=1.5cm, topsep=0pt, itemsep=0pt]
+    \item $BP$ = Budget Preventivato per lo sprint
+    \item $\%Comp$ = Percentuale di completamento delle attività pianificate
+\end{itemize}
+
+\[
+\text{EV} = BP \cdot \frac{\%Comp}{100}
+\]
+
+\noindent\textbf{Descrizione:} Quantifica il valore monetario del lavoro effettivamente completato al termine dello sprint. Rappresenta quanto del budget pianificato è stato "guadagnato" attraverso il completamento delle attività. Viene confrontato con l'Actual Cost per valutare l'efficienza economica.
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & - \\
+\textbf{Accettabile:} & $\geq$ PM-2 \\
+\end{tabular}
+
+\subsubsection{PM-4 - Cost Variance}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & PM-4 \\
+\textbf{Processo:} & Fornitura \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Formula:}
+
+\noindent\textit{Dove:}
+\begin{itemize}[leftmargin=1.5cm, topsep=0pt, itemsep=0pt]
+    \item $EV$ = Earned Value (valore del lavoro completato)
+    \item $AC$ = Actual Cost (costo effettivamente sostenuto)
+\end{itemize}
+
+\[
+\text{CV} = EV - AC
+\]
+
+\noindent\textbf{Descrizione:} Misura la differenza tra il valore prodotto e il costo sostenuto. Un valore positivo segnala efficienza economica (si è speso meno del valore prodotto), mentre un valore negativo indica inefficienza (si è speso più del valore generato).
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & $0$ \\
+\textbf{Accettabile:} & $\pm 150$ \\
+\end{tabular}
+
+\subsubsection{PM-5 - Schedule Variance}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & PM-5 \\
+\textbf{Processo:} & Fornitura \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Formula:}
+
+\noindent\textit{Dove:}
+\begin{itemize}[leftmargin=1.5cm, topsep=0pt, itemsep=0pt]
+    \item $EV$ = Earned Value (valore del lavoro completato)
+    \item $PV$ = Planned Value (valore del lavoro pianificato)
+\end{itemize}
+
+\[
+\text{SV} = EV - PV
+\]
+
+\noindent\textbf{Descrizione:} Valuta lo scostamento temporale confrontando il lavoro effettivamente completato con quello pianificato. Valori positivi indicano anticipo sulla pianificazione, valori negativi segnalano ritardi rispetto alla schedulazione prevista.
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & $0$ \\
+\textbf{Accettabile:} & $\pm 150$ \\
+\end{tabular}
+
+\subsubsection{PM-6 - Varianza di Budget}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & PM-6 \\
+\textbf{Processo:} & Fornitura \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Formula:}
+
+\noindent\textit{Dove:}
+\begin{itemize}[leftmargin=1.5cm, topsep=0pt, itemsep=0pt]
+    \item $BC$ = Budget Consuntivato (costo effettivo dello sprint)
+    \item $BP$ = Budget Preventivato (costo pianificato dello sprint)
+\end{itemize}
+
+\[
+\text{Varianza Budget (\%)} = 100 \cdot \frac{BC - BP}{BP}
+\]
+
+\noindent\textbf{Descrizione:} Misura lo scostamento percentuale tra il costo effettivamente sostenuto e quello pianificato per uno sprint. Valori positivi indicano uno sforamento del budget, mentre valori negativi segnalano risparmi rispetto alla pianificazione iniziale.
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & $\pm 0\%$ \\
+\textbf{Accettabile:} & $\pm 5\%$ \\
+\end{tabular}
+
+\subsubsection{PM-7 - Varianza dell'Impegno Orario}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & PM-7 \\
+\textbf{Processo:} & Fornitura \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Formula:}
+
+\noindent\textit{Dove:}
+\begin{itemize}[leftmargin=1.5cm, topsep=0pt, itemsep=0pt]
+    \item $OC$ = Ore Consuntivate (ore effettivamente lavorate)
+    \item $OP$ = Ore Preventivate (ore pianificate per lo sprint)
+\end{itemize}
+
+\[
+\text{Varianza Oraria (\%)} = 100 \cdot \frac{OC - OP}{OP}
+\]
+
+\noindent\textbf{Descrizione:} Calcola la deviazione percentuale tra le ore di lavoro effettivamente impiegate e quelle stimate per uno sprint. Un valore positivo indica un impiego di tempo superiore al previsto, mentre un valore negativo indica maggiore efficienza.
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & $\pm 0\%$ \\
+\textbf{Accettabile:} & $\pm 10\%$ \\
+\end{tabular}
+
+\subsubsection{PM-8 - Cost Performance Index}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & PM-8 \\
+\textbf{Processo:} & Fornitura \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Formula:}
+
+\noindent\textit{Dove:}
+\begin{itemize}[leftmargin=1.5cm, topsep=0pt, itemsep=0pt]
+    \item $EV$ = Earned Value (valore del lavoro completato)
+    \item $AC$ = Actual Cost (costo effettivamente sostenuto)
+\end{itemize}
+
+\[
+\text{CPI} = \frac{EV}{AC}
+\]
+
+\noindent\textbf{Descrizione:} Indice di performance economica che esprime l'efficienza nell'utilizzo delle risorse finanziarie. Un valore pari a 1 indica perfetto allineamento, valori maggiori di 1 indicano efficienza superiore al previsto, valori inferiori a 1 segnalano inefficienza.
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & $1$ \\
+\textbf{Accettabile:} & $1 \pm 0.15$ \\
+\end{tabular}
+
+\subsubsection{PM-9 - Schedule Performance Index}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & PM-9 \\
+\textbf{Processo:} & Fornitura \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Formula:}
+
+\noindent\textit{Dove:}
+\begin{itemize}[leftmargin=1.5cm, topsep=0pt, itemsep=0pt]
+    \item $EV$ = Earned Value (valore del lavoro completato)
+    \item $PV$ = Planned Value (valore del lavoro pianificato)
+\end{itemize}
+
+\[
+\text{SPI} = \frac{EV}{PV}
+\]
+
+\noindent\textbf{Descrizione:} Indice di performance temporale che misura l'efficienza rispetto alla pianificazione. Valori pari a 1 indicano rispetto della pianificazione, valori maggiori di 1 segnalano avanzamento in anticipo, valori inferiori a 1 indicano ritardi.
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & $1$ \\
+\textbf{Accettabile:} & $1 \pm 0.15$ \\
+\end{tabular}
+
+\subsubsection{PM-10 - Estimate to Complete}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & PM-10 \\
+\textbf{Processo:} & Fornitura \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Formula:}
+
+\noindent\textit{Dove:}
+\begin{itemize}[leftmargin=1.5cm, topsep=0pt, itemsep=0pt]
+    \item $BAC$ = Budget at Completion (budget totale del progetto)
+    \item $EV$ = Earned Value (valore del lavoro già completato)
+    \item $CPI$ = Cost Performance Index (indice di efficienza economica)
+\end{itemize}
+
+\[
+\text{ETC} = \frac{BAC - EV}{CPI}
+\]
+
+\noindent\textbf{Descrizione:} Stima il costo necessario per completare le attività rimanenti del progetto, considerando l'efficienza economica dimostrata fino al momento corrente. Tiene conto delle performance passate per proiettare i costi futuri.
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & - \\
+\textbf{Accettabile:} & - \\
+\end{tabular}
+
+\subsubsection{PM-11 - Estimate at Completion}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & PM-11 \\
+\textbf{Processo:} & Fornitura \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Formula:}
+
+\noindent\textit{Dove:}
+\begin{itemize}[leftmargin=1.5cm, topsep=0pt, itemsep=0pt]
+    \item $AC$ = Actual Cost (costo già sostenuto)
+    \item $ETC$ = Estimate to Complete (stima del costo rimanente)
+\end{itemize}
+
+\[
+\text{EAC} = AC + ETC
+\]
+
+\noindent\textbf{Descrizione:} Proiezione del costo totale finale del progetto basata sull'andamento corrente. Combina i costi già sostenuti con la stima dei costi futuri per fornire una previsione realistica del budget complessivo necessario.
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & PM-12 \\
+\textbf{Accettabile:} & $\pm 5\%$ di PM-12 \\
+\end{tabular}
+
+\subsubsection{PM-12 - Budget at Completion}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & PM-12 \\
+\textbf{Processo:} & Fornitura \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Descrizione:} Rappresenta il budget complessivo originariamente allocato per l'intero progetto. Costituisce il valore di riferimento rispetto al quale vengono valutate tutte le metriche di costo e le proiezioni di spesa finale.
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & - \\
+\textbf{Accettabile:} & - \\
+\end{tabular}
+
+\subsubsection{PM-13 - Copertura Unit Test (CI/CD)}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & PM-13 \\
+\textbf{Processo:} & Sviluppo \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Descrizione:} Misura la copertura del codice raggiunta esclusivamente dagli unit test{\scriptsize\raisebox{-0.5ex}{G}} eseguiti automaticamente nella pipeline{\scriptsize\raisebox{-0.5ex}{G}} CI/CD{\scriptsize\raisebox{-0.5ex}{G}}. Questa metrica monitora la qualità del processo di sviluppo e garantisce che ogni modifica al codice sia adeguatamente coperta da test unitari prima del merge. Le soglie sono più stringenti rispetto alla copertura generale poiché gli unit test rappresentano la prima linea di difesa contro i difetti.
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & $\ge 90\%$ \\
+\textbf{Accettabile:} & $\ge 80\%$ \\
+\end{tabular}
+
+\subsubsection{PM-14 - Misure di Mitigazione Insufficienti}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & PM-14 \\
+\textbf{Processo:} & Risoluzione dei problemi \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Descrizione:} Conteggia le strategie di mitigazione{\scriptsize\raisebox{-0.5ex}{G}} dei rischi che, una volta implementate, non hanno prodotto l'effetto preventivo atteso. Monitora l'efficacia della gestione proattiva dei rischi identificati.
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & $0$ \\
+\textbf{Accettabile:} & $3$ \\
+\end{tabular}
+
+\subsubsection{PM-15 - Rischi Inattesi}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & PM-15 \\
+\textbf{Processo:} & Risoluzione dei problemi \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Descrizione:} Traccia il numero di eventi problematici non previsti durante la fase di analisi dei rischi. Un valore elevato segnala la necessità di migliorare il processo di identificazione e valutazione dei rischi.
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & $0$ \\
+\textbf{Accettabile:} & $3$ \\
+\end{tabular}
+
+\subsubsection{Tabella Riepilogativa delle Metriche di Processo}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{@{}p{0.12\textwidth}Xcc@{}}
+\toprule
+\textbf{Codice} & \textbf{Nome} & \textbf{Accettabile} & \textbf{Preferibile} \\
+\midrule
+PM-1 & Planned Value & - & - \\
+PM-2 & Actual Cost & - & - \\
+PM-3 & Earned Value & $\geq$ PM-2 & - \\
+PM-4 & Cost Variance & $\pm 150$ & $0$ \\
+PM-5 & Schedule Variance & $\pm 150$ & $0$ \\
+PM-6 & Varianza di Budget & $\pm 5\%$ & $\pm 0\%$ \\
+PM-7 & Varianza dell'impegno orario & $\pm 10\%$ & $\pm 0\%$ \\
+PM-8 & Cost Performance Index & $1 \pm 0.15$ & $1$ \\
+PM-9 & Schedule Performance Index & $1 \pm 0.15$ & $1$ \\
+PM-10 & Estimate to Complete & - & - \\
+PM-11 & Estimate at Completion & $\pm 5\%$ di PM-12 & PM-12 \\
+PM-12 & Budget at Completion & - & - \\
+PM-13 & Copertura Unit Test (CI/CD) & $\ge 80\%$ & $\ge 90\%$ \\
+PM-14 & Misure di mitigazione insufficienti & $3$ & $0$ \\
+PM-15 & Rischi inattesi & $3$ & $0$ \\
+\bottomrule
+\end{tabularx}
+\caption{Metriche di qualità di processo}
+\end{table}
+
+\newpage
+
+
+% -------------------------------------------------------------------
+%  QUALITÀ DI PRODOTTO
+% -------------------------------------------------------------------
+\section{Qualità di Prodotto}
+
+Il gruppo NightPRO fa riferimento allo standard \textbf{ISO/IEC 25010}{\scriptsize\raisebox{-0.5ex}{G}} per definire le caratteristiche di qualità del prodotto software (es. Manutenibilità, Usabilità, Efficienza, Sicurezza).
+
+\vspace{0.3cm}
+\noindent\textit{\textbf{Nota:} Le metriche di qualità di prodotto presentate in questa sezione fanno riferimento allo sviluppo del \textbf{Minimum Viable Product (MVP)}{\scriptsize\raisebox{-0.5ex}{G}} e non al Proof of Concept (PoC){\scriptsize\raisebox{-0.5ex}{G}}. Tali metriche sono state definite in previsione del futuro sviluppo dell'MVP, al fine di stabilire fin da subito criteri oggettivi e misurabili per garantire la qualità del software finale.}
+\vspace{0.3cm}
+
+\subsection{Metriche di Qualità del Software (Statica)}
+Queste metriche mirano a garantire la manutenibilità e la qualità del codice sorgente prodotto.
+
+\subsubsection{QM-1 - Complessità Ciclomatica}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & QM-1 \\
+\textbf{Processo:} & Sviluppo \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Formula:}
+
+\noindent\textit{Dove:}
+\begin{itemize}[leftmargin=1.5cm, topsep=0pt, itemsep=0pt]
+    \item $E$ = Numero di archi nel grafo di controllo di flusso
+    \item $N$ = Numero di nodi nel grafo di controllo di flusso
+    \item $P$ = Numero di componenti connesse (tipicamente 1)
+\end{itemize}
+
+\[
+CX = E - N + 2P
+\]
+
+\noindent\textbf{Descrizione:} La complessità ciclomatica misura il numero di cammini linearmente indipendenti attraverso il codice sorgente di un programma. Un valore elevato indica codice complesso e difficile da testare, mantenere e comprendere. Questa metrica è calcolata per ogni singolo metodo/funzione.
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & $\le 10$ \\
+\textbf{Accettabile:} & $\le 15$ \\
+\end{tabular}
+
+\subsubsection{QM-2 - Profondità di Ereditarietà}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & QM-2 \\
+\textbf{Processo:} & Sviluppo \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Formula:}
+
+\[
+DI = \text{max}(\text{livelli di ereditarietà dalla classe radice})
+\]
+
+\noindent\textbf{Descrizione:} Indica la profondità massima dell'albero di ereditarietà per una classe. Una gerarchia troppo profonda rende il codice difficile da comprendere e mantenere, poiché il comportamento di una classe dipende da molte classi antenate. Questa metrica aiuta a identificare gerarchie di classi eccessivamente complesse.
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & $\le 4$ \\
+\textbf{Accettabile:} & $\le 6$ \\
+\end{tabular}
+
+\subsubsection{QM-3 - Duplicazione del Codice}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & QM-3 \\
+\textbf{Processo:} & Sviluppo \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Formula:}
+
+\noindent\textit{Dove:}
+\begin{itemize}[leftmargin=1.5cm, topsep=0pt, itemsep=0pt]
+    \item $L_d$ = Linee di codice duplicate
+    \item $L_t$ = Linee totali di codice
+\end{itemize}
+
+\[
+CD = \frac{L_d}{L_t} \cdot 100\%
+\]
+
+\noindent\textbf{Descrizione:} Percentuale di codice duplicato rispetto al totale del codice sorgente. La presenza di codice duplicato aumenta i costi di manutenzione, poiché le modifiche devono essere replicate in più punti, e aumenta il rischio di inconsistenze. Indica la necessità di refactoring per estrarre funzionalità comuni.
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & $0\%$ \\
+\textbf{Accettabile:} & $\le 5\%$ \\
+\end{tabular}
+
+\subsubsection{QM-4 - Code Churn}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & QM-4 \\
+\textbf{Processo:} & Sviluppo \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Formula:}
+
+\noindent\textit{Dove:}
+\begin{itemize}[leftmargin=1.5cm, topsep=0pt, itemsep=0pt]
+    \item $L_a$ = Linee di codice aggiunte nel periodo
+    \item $L_m$ = Linee di codice modificate nel periodo
+    \item $L_c$ = Linee di codice cancellate nel periodo
+\end{itemize}
+
+\[
+CCh = L_a + L_m + L_c
+\]
+
+\noindent\textbf{Descrizione:} Misura la volatilità del codice, ovvero la frequenza e il volume delle modifiche apportate al codice sorgente in un determinato periodo (tipicamente una settimana o uno sprint). Un code churn elevato può indicare instabilità del codice, requisiti poco chiari o necessità di refactoring{\scriptsize\raisebox{-0.5ex}{G}}. Valori costantemente elevati possono segnalare problemi di progettazione.
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & Basso ($< 200$ linee/settimana) \\
+\textbf{Accettabile:} & Medio ($< 500$ linee/settimana) \\
+\end{tabular}
+
+\subsubsection{QM-5 - Debito Tecnico}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & QM-5 \\
+\textbf{Processo:} & Sviluppo \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Formula:}
+
+\[
+TD = \sum_{i=1}^{n} T_i
+\]
+
+\noindent\textit{Dove:}
+\begin{itemize}[leftmargin=1.5cm, topsep=0pt, itemsep=0pt]
+    \item $T_i$ = Tempo stimato per risolvere l'issue $i$-esimo di qualità del codice
+    \item $n$ = Numero totale di issue di qualità rilevate
+\end{itemize}
+
+\noindent\textbf{Descrizione:} Quantifica il tempo stimato necessario per correggere tutti i problemi di qualità del codice identificati da strumenti di analisi statica (es. code smell{\scriptsize\raisebox{-0.5ex}{G}}, bug potenziali, vulnerabilità di sicurezza). Un debito tecnico elevato indica che il codice richiede interventi di refactoring significativi e può compromettere la velocità di sviluppo futura.
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & $\le 2$ giorni \\
+\textbf{Accettabile:} & $\le 5$ giorni \\
+\end{tabular}
+
+
+\subsection{Metriche di Qualità del Software (Dinamica)}
+Queste metriche valutano l'efficacia dei test e la qualità del software durante l'esecuzione.
+
+\subsubsection{QM-6 - Copertura Complessiva (Integration/System Test)}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & QM-6 \\
+\textbf{Processo:} & Validazione \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Formula:}
+
+\noindent\textit{Dove:}
+\begin{itemize}[leftmargin=1.5cm, topsep=0pt, itemsep=0pt]
+    \item $L_e$ = Linee di codice eseguite durante i test di integrazione e sistema
+    \item $L_t$ = Linee totali di codice testabile
+\end{itemize}
+
+\[
+CC = \frac{L_e}{L_t} \cdot 100\%
+\]
+
+\noindent\textbf{Descrizione:} Percentuale di codice sorgente eseguita durante i test di integrazione e di sistema. Questa metrica valuta la copertura raggiunta dai test che verificano l'interazione tra componenti e il comportamento end-to-end dell'applicazione. Le soglie sono meno stringenti rispetto alla copertura degli unit test (PM-13) poiché i test di integrazione/sistema coprono scenari più complessi e alcuni percorsi di codice possono essere difficilmente raggiungibili.
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & $\ge 75\%$ \\
+\textbf{Accettabile:} & $\ge 60\%$ \\
+\end{tabular}
+
+\subsubsection{QM-7 - Copertura dei Branch}
+
+\noindent
+\begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
+\textbf{Codice:} & QM-7 \\
+\textbf{Processo:} & Validazione \\
+\end{tabular}
+
+\vspace{0.3cm}
+\noindent\textbf{Formula:}
+
+\noindent\textit{Dove:}
+\begin{itemize}[leftmargin=1.5cm, topsep=0pt, itemsep=0pt]
+    \item $B_e$ = Numero di branch eseguiti durante i test
+    \item $B_t$ = Numero totale di branch nel codice
+\end{itemize}
+
+\[
+BC = \frac{B_e}{B_t} \cdot 100\%
+\]
+
+\noindent\textbf{Descrizione:} Percentuale di branch decisionali (if, switch, loop) del codice che sono stati eseguiti almeno una volta durante i test. La copertura dei branch è più rigorosa della semplice copertura delle linee, poiché garantisce che tutte le possibili ramificazioni del flusso di controllo siano state testate, riducendo il rischio di bug in percorsi di codice raramente eseguiti.
+
+\vspace{0.2cm}
+\noindent\textbf{Valori di accettazione:}
+\vspace{0.1cm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+\textbf{Preferibile:} & $\ge 75\%$ \\
+\textbf{Accettabile:} & $\ge 60\%$ \\
+\end{tabular}
+
+\subsection{Strategie di Test per Requisito}
+
+Questa sezione definisce la strategia di verifica e validazione per ciascun requisito specificato nell'\textit{Analisi dei Requisiti}. Per ogni requisito viene indicato il tipo di test applicabile e la tecnica di verifica adottata, garantendo tracciabilità completa tra requisiti e attività di testing{\scriptsize\raisebox{-0.5ex}{G}}.
+
+\subsubsection{Legenda Tipologie di Test}
+
+\begin{itemize}[leftmargin=1.5cm]
+    \item \textbf{UT} - Unit Test: test su singole unità di codice (funzioni, metodi, classi).
+    \item \textbf{IT} - Integration Test: test di integrazione tra componenti/moduli.
+    \item \textbf{ST} - System Test: test dell'intero sistema end-to-end.
+    \item \textbf{UAT} - User Acceptance Test: test di accettazione con utenti reali.
+    \item \textbf{PT} - Performance Test: test di carico e prestazioni.
+    \item \textbf{SEC} - Security Test: test di sicurezza e vulnerabilità.
+    \item \textbf{REV} - Code Review: revisione del codice e della configurazione.
+\end{itemize}
+
+\subsubsection{Requisiti Funzionali}
+
+\begin{longtable}{|p{1.5cm}|p{4.5cm}|p{1.8cm}|p{6cm}|}
+\hline
+\textbf{ID Req.} & \textbf{Requisito} & \textbf{Tipo Test} & \textbf{Strategia di Verifica} \\
+\hline
+\endfirsthead
+\hline
+\textbf{ID Req.} & \textbf{Requisito} & \textbf{Tipo Test} & \textbf{Strategia di Verifica} \\
+\hline
+\endhead
+
+\multicolumn{4}{|l|}{\textbf{Gestione Input Multimodale}} \\
+\hline
+RF1.1 & Acquisizione testo & UT, IT, ST & Verifica ricezione messaggi da interfaccia chat. Test di integrazione con il backend. \\
+\hline
+RF1.2 & Acquisizione audio & UT, IT, ST & Test upload file con formati diversi (MP3, WAV, OGG) e sample rate variabili. Verifica gestione file corrotti. \\
+\hline
+RF1.3 & Validazione format input & UT & Test con input validi/invalidi, dimensioni fuori range, formati non supportati. Verifica messaggi di errore. \\
+\hline
+RF1.4 & Normalizzazione dati grezzi & UT & Test su testi con rumore, caratteri speciali, formattazioni diverse. Verifica output normalizzato. \\
+\hline
+
+\multicolumn{4}{|l|}{\textbf{Estrazione e Riconoscimento Entità}} \\
+\hline
+RF2.1 & NER (Named Entity Recognition) & UT, IT & Test con frasi contenenti entità note/sconosciute. Verifica accuratezza identificazione. \\
+\hline
+RF2.2 & Speech-to-text & UT, IT, PT & Test con audio di qualità variabile, accenti regionali. Verifica accuracy $\geq$ 90\%. Benchmark prestazioni. \\
+\hline
+RF2.3 & Tokenizzazione e normalizzazione testuale & UT & Test con testi diversi. Verifica tokenizzazione, lowercasing, rimozione simboli. \\
+\hline
+
+\multicolumn{4}{|l|}{\textbf{Elaborazione Semantica e Mapping}} \\
+\hline
+RF3.1 & Generazione embedding semantici & UT, IT & Test generazione embedding per testi campione. Verifica dimensionalità e consistenza. \\
+\hline
+RF3.2 & Generazione embedding audio & UT, IT & Test su audio trascritti. Verifica coerenza embedding audio/testo. \\
+\hline
+RF3.3 & Mapping catalogo prodotti & UT, IT, ST & Test con descrizioni esatte/parziali/ambigue. Verifica confidence score e correttezza mapping. \\
+\hline
+RF3.4 & Completamento informazioni & UT, IT & Test con ordini incompleti. Verifica completamento basato su regole aziendali. \\
+\hline
+
+\multicolumn{4}{|l|}{\textbf{Validazione e Arricchimento Dati}} \\
+\hline
+RF4.1 & Verifica integrità ordine & UT, IT & Test con ordini completi/incompleti. Verifica identificazione campi obbligatori mancanti. \\
+\hline
+RF4.2 & Applicazione regole aziendali & UT, IT & Test quantità minime, disponibilità magazzino. Verifica applicazione regole configurabili. \\
+\hline
+RF4.3 & Validazione coerenza & UT & Test coerenza quantità/unità misura, prodotto/categoria. Verifica rilevamento incoerenze. \\
+\hline
+RF4.4 & Arricchimento metadati & UT, IT & Verifica presenza di tutti i metadati richiesti (timestamp, canale, confidence score). \\
+\hline
+RF4.5 & Handling ambiguità & UT, IT, ST & Test con input ambigui. Verifica segnalazione confidence basso e routing a validazione manuale. \\
+\hline
+
+\multicolumn{4}{|l|}{\textbf{Strutturazione Output e Integrazione Database}} \\
+\hline
+RF5.1 & Strutturazione JSON & UT, IT & Verifica output JSON valido e conforme allo schema definito. Test parser JSON. \\
+\hline
+RF5.2 & Strutturazione XML & UT, IT & Verifica output XML valido e conforme allo schema XSD. Test compatibilità con sistemi ERP. \\
+\hline
+RF5.3 & Tracciamento metadati & UT, IT, ST & Verifica tracciabilità completa metadati per ogni ordine. Test query su metadati. \\
+\hline
+
+\multicolumn{4}{|l|}{\textbf{Supervisione e Gestione Manuale}} \\
+\hline
+RF6.1 & Interfaccia supervisione & ST, UAT & Test funzionalità dashboard. Verifica accessibilità e usabilità interfaccia. \\
+\hline
+RF6.2 & Visualizzazione dettagli ordine & ST, UAT & Verifica visualizzazione completa dei dati. Test con ordini diversi. \\
+\hline
+RF6.3 & Correzione manuale & IT, ST, UAT & Test modifica campi ordine. Verifica salvataggio e propagazione correzioni. \\
+\hline
+RF6.4 & Approvazione/Rifiuto & IT, ST, UAT & Test flusso approvazione/rifiuto. Verifica cambio stato ordine e notifiche. \\
+\hline
+RF6.5 & Feedback per retraining & IT, ST & Verifica registrazione correzioni. Test recupero dati per retraining. \\
+\hline
+RF6.6 & Visualizzazione storico & ST, UAT & Test filtri (data, canale, cliente). Verifica performance con grande volume dati. \\
+\hline
+
+\multicolumn{4}{|l|}{\textbf{Monitoraggio e Feedback Continuo}} \\
+\hline
+RF7.1 & Logging dettagliato & REV, IT & Verifica logging completo operazioni. Test formato log e persistenza. \\
+\hline
+RF7.2 & Monitoraggio prestazioni & IT, PT & Verifica tracciamento metriche. Test dashboard monitoraggio in tempo reale. \\
+\hline
+RF7.3 & Meccanismo feedback & IT, ST & Test ciclo feedback operatore-sistema. Verifica registrazione e processamento feedback. \\
+\hline
+RF7.4 & Retraining periodico & IT, ST & Test pipeline retraining. Verifica aggiornamento modelli con nuovi dati. \\
+\hline
+RF7.5 & Aggiornamento regole & IT, ST, REV & Test modifica regole runtime. Verifica applicazione nuove regole senza riavvio. \\
+\hline
+\caption{Strategie di test per i requisiti funzionali}
+\end{longtable}
+
+\subsubsection{Requisiti di Qualità}
+
+\begin{longtable}{|p{1.5cm}|p{5.5cm}|p{1.8cm}|p{5cm}|}
+\hline
+\textbf{ID Req.} & \textbf{Requisito} & \textbf{Tipo Test} & \textbf{Strategia di Verifica} \\
+\hline
+\endfirsthead
+\hline
+\textbf{ID Req.} & \textbf{Requisito} & \textbf{Tipo Test} & \textbf{Strategia di Verifica} \\
+\hline
+\endhead
+
+RQ01 & Messaggi di errore chiari & ST, UAT & Test con input invalidi diversi. Verifica chiarezza e completezza messaggi. \\
+\hline
+RQ02 & Estensibilità nuovi canali & REV, IT & Code review architettura. Test aggiunta mock di nuovo canale input. \\
+\hline
+\caption{Strategie di test per i requisiti di qualità}
+\end{longtable}
+
+\subsubsection{Requisiti di Vincolo}
+
+\begin{longtable}{|p{1.5cm}|p{5.5cm}|p{1.8cm}|p{5cm}|}
+\hline
+\textbf{ID Req.} & \textbf{Requisito} & \textbf{Tipo Test} & \textbf{Strategia di Verifica} \\
+\hline
+\endfirsthead
+\hline
+\textbf{ID Req.} & \textbf{Requisito} & \textbf{Tipo Test} & \textbf{Strategia di Verifica} \\
+\hline
+\endhead
+
+RV01 & Database relazionale & REV, IT & Verifica configurazione DB. Test connettività e operazioni CRUD. \\
+\hline
+RV02 & API REST standard & REV, IT, ST & Code review API. Test conformità standard REST. Verifica documentazione OpenAPI. \\
+\hline
+RV03 & Webapp responsive & ST, UAT & Test su dispositivi con risoluzioni diverse (desktop, tablet, mobile). \\
+\hline
+RV04 & Compatibilità browser & ST & Test funzionalità su Chrome, Firefox, Safari, Edge. Verifica compatibilità CSS/JS. \\
+\hline
+RV05 & Addestramento locale/cloud & IT, ST & Test pipeline addestramento in entrambi gli ambienti. Verifica portabilità. \\
+\hline
+\caption{Strategie di test per i requisiti di vincolo}
+\end{longtable}
+
+\subsubsection{Requisiti Prestazionali}
+
+\begin{longtable}{|p{1.5cm}|p{5.5cm}|p{1.8cm}|p{5cm}|}
+\hline
+\textbf{ID Req.} & \textbf{Requisito} & \textbf{Tipo Test} & \textbf{Strategia di Verifica} \\
+\hline
+\endfirsthead
+\hline
+\textbf{ID Req.} & \textbf{Requisito} & \textbf{Tipo Test} & \textbf{Strategia di Verifica} \\
+\hline
+\endhead
+
+RP01 & Tempo caricamento dashboard & PT, ST & Test caricamento con cronometraggio. Verifica tempo $\le$ 2 secondi. \\
+\hline
+RP02 & Elaborazione ordine testuale & PT, ST & Test processing ordini. Verifica tempo medio $\le$ 10 secondi. \\
+\hline
+RP03 & Trascrizione audio 1 min & PT, ST & Benchmark trascrizione audio. Verifica tempo $\le$ 20 secondi. \\
+\hline
+RP04 & Throughput 50 ordini/ora & PT & Test carico con 50+ ordini/ora. Verifica assenza degrado prestazioni. \\
+\hline
+\caption{Strategie di test per i requisiti prestazionali}
+\end{longtable}
+
+\subsubsection{Requisiti di Sicurezza}
+
+\begin{longtable}{|p{1.5cm}|p{5.5cm}|p{1.8cm}|p{5cm}|}
+\hline
+\textbf{ID Req.} & \textbf{Requisito} & \textbf{Tipo Test} & \textbf{Strategia di Verifica} \\
+\hline
+\endfirsthead
+\hline
+\textbf{ID Req.} & \textbf{Requisito} & \textbf{Tipo Test} & \textbf{Strategia di Verifica} \\
+\hline
+\endhead
+
+RS01 & Autenticazione credenziali & SEC, ST & Test login con credenziali valide/invalide. Verifica gestione sessioni. \\
+\hline
+RS02 & RBAC (controllo accessi) & SEC, ST & Test accesso risorse con ruoli diversi. Verifica enforcement permessi. \\
+\hline
+RS03 & Comunicazioni HTTPS & SEC, REV & Verifica certificato SSL/TLS. Test intercettazione traffico. \\
+\hline
+RS04 & Audit log operazioni critiche & IT, ST & Verifica tracciamento operazioni. Test immutabilità log. \\
+\hline
+RS05 & Complessità password e hashing & SEC, UT & Test policy password. Verifica algoritmo hashing (bcrypt/Argon2). Test dizionario password deboli. \\
+\hline
+\caption{Strategie di test per i requisiti di sicurezza}
+\end{longtable}
+
+% -------------------------------------------------------------------
+%  QUALITÀ DELLA DOCUMENTAZIONE
+% -------------------------------------------------------------------
+\newpage
+\section{Qualità della Documentazione}
+
+La documentazione accompagna il prodotto software e deve garantire accessibilità e comprensione a tutti gli stakeholder{\scriptsize\raisebox{-0.5ex}{G}}. La qualità della documentazione è verificata attraverso un insieme coordinato di strumenti automatizzati che controllano la leggibilità linguistica, la correttezza grammaticale e la sintassi \LaTeX.
+
+\subsection{Metriche di Leggibilità e Correttezza Linguistica}
+
+Per valutare la qualità dei documenti redatti in italiano, il gruppo utilizza un insieme di indici automatizzati, ognuno specifico per un aspetto della qualità documentale.
+
+\subsubsection{Indice Gulpease}
+
+L'indice Gulpease{\scriptsize\raisebox{-0.5ex}{G}} è calibrato specificamente per la lingua italiana e valuta la leggibilità di un testo basandosi sulla lunghezza delle parole e delle frasi. Un indice elevato indica un testo più facilmente comprensibile.
+
+\[
+G = 89 + \frac{300 \cdot (\text{numero frasi}) - 10 \cdot (\text{numero lettere})}{\text{numero parole}}
+\]
+
+L'indice viene calcolato automaticamente su tutti i file \texttt{.tex} presenti nel repository{\scriptsize\raisebox{-0.5ex}{G}}, escludendo da tale calcolo i comandi \LaTeX{}{\scriptsize\raisebox{-0.5ex}{G}}, le formule matematiche e i commenti. La verifica è eseguita mediante lo script \texttt{check\_gulpease.py}, che genera un report CSV contenente il valore Gulpease per ogni documento.
+
+\subsubsection{Controllo Grammaticale e Linguistico (LanguageTool)}
+
+LanguageTool è uno strumento di verifica grammaticale che identifica errori ortografici, grammaticali e stilistici nei testi in italiano. La verifica automatica:
+
+\begin{itemize}
+    \item Rileva errori di ortografia, concordanza verbale e nominale, punteggiatura;
+    \item Segnala problemi di stile e ridondanze lessicali;
+    \item Esclude dal controllo i nomi propri del gruppo, i termini tecnici presenti nel glossario e gli identificativi tecnici (branch, commit, tool name, ecc.).
+\end{itemize}
+
+Lo script \texttt{check\_languagetool.py} esegue questa verifica e genera un report Markdown dettagliato segnalando ogni errore rilevante con il numero della regola violata, il tipo di errore, il messaggio esplicativo e i suggerimenti di correzione.
+
+\subsubsection{Controllo Sintattico \LaTeX{} (ChkTeX)}
+
+ChkTeX è un linter{\scriptsize\raisebox{-0.5ex}{G}} specifico per file \LaTeX{} che verifica la correttezza sintattica e stilistica del codice sorgente. Controlla:
+
+\begin{itemize}
+    \item Correttezza dei comandi \LaTeX;
+    \item Bilanciamento delle parentesi e delle graffe;
+    \item Uso corretto degli spazi prima e dopo i comandi;
+    \item Altre convenzioni stilistiche di buona pratica \LaTeX.
+\end{itemize}
+
+Lo script \texttt{check\_chktex.py} esegue ChkTeX su tutti i file \texttt{.tex} e filtra alcuni warning innocui (ad esempio riferimenti a comandi personalizzati o numeri di versione non seguiti da unità). Il report viene salvato in formato JSON.
+
+\subsection{Soglie di Accettazione e Target}
+
+Le seguenti tabelle definiscono i target di qualità e le soglie di accettazione per le metriche documentali:
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{lXcc}
+\toprule
+\textbf{Metrica} & \textbf{Descrizione} & \textbf{Ottimale} & \textbf{Accettabile} \\
+\midrule
+\textbf{Gulpease} & Indice di leggibilità per testi in italiano & $\ge 60$ & $\ge 45$ \\
+\bottomrule
+\end{tabularx}
+\caption{Soglie per l'indice Gulpease}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{lXc}
+\toprule
+\textbf{Indicatore} & \textbf{Descrizione} & \textbf{Target (PB)} \\
+\midrule
+Errori LanguageTool & Numero massimo di segnalazioni rilevanti per file & $\le 10$ \\
+Errori ChkTeX & Numero massimo di warning significativi per file & $\le 5$ \\
+\bottomrule
+\end{tabularx}
+\caption{Soglie per gli errori linguistici e \LaTeX}
+\end{table}
+
+
+\subsection{Checklist di Qualità Interna}
+
+Oltre alle verifiche automatizzate, i Verificatori del gruppo NightPRO applicano checklist manuali per garantire la coerenza formale e la qualità complessiva dei documenti. Queste checklist coprono aspetti che richiedono valutazione umana e sensibilità al contesto.
+
+\subsubsection{Coerenza Strutturale}
+
+La seguente checklist verifica la corretta organizzazione e struttura dei documenti \LaTeX:
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{@{}p{0.28\textwidth}X@{}}
+\toprule
+\textbf{Elemento} & \textbf{Criterio di Verifica} \\
+\midrule
+Suddivisione in paragrafi & Le frasi devono essere organizzate in paragrafi coerenti, evitando blocchi di testo troppo lunghi che compromettono la leggibilità. \\
+\midrule
+Ordinamento alfabetico & Gli elementi negli elenchi devono seguire l'ordine alfabetico quando non esiste una sequenza logica o temporale specifica. \\
+\midrule
+Didascalie complete & Ogni tabella e figura deve essere accompagnata da una didascalia esplicativa mediante il comando \texttt{\textbackslash caption\{\}}. \\
+\midrule
+Sezioni non vuote & Tutte le sezioni e sottosezioni devono contenere testo o elementi. Non sono ammesse intestazioni senza contenuto. \\
+\midrule
+Unicità dei file & Ogni documento deve essere definito in un file \texttt{.tex} dedicato, collegato al documento principale tramite \texttt{\textbackslash input} per favorire la modularità. \\
+\bottomrule
+\end{tabularx}
+\caption{Checklist coerenza strutturale}
+\end{table}
+
+\subsubsection{Correttezza Ortografica e Grammaticale}
+
+Questa checklist integra i controlli automatici di LanguageTool con la verifica manuale di errori ricorrenti:
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{@{}p{0.28\textwidth}X@{}}
+\toprule
+\textbf{Elemento} & \textbf{Criterio di Verifica} \\
+\midrule
+Accenti gravi e acuti & Utilizzare l'accento grave (\texttt{\`{}}) per "è", "più", "già" e l'accento acuto (\texttt{\'{}}) per "perché", "poiché". L'accento sbagliato costituisce un errore ortografico. \\
+\midrule
+Articolo eufonica & L'articolo "d" eufonica (es. "ad", "od") si utilizza solo quando la parola successiva inizia con la stessa vocale dell'articolo, evitando usi non necessari. \\
+\midrule
+Concordanza soggetto-verbo & Il verbo deve concordare in numero e persona con il soggetto della frase. Verificare con particolare attenzione le frasi complesse. \\
+\midrule
+Errori di digitazione & La maggior parte degli errori ortografici deriva da sviste di battitura. Effettuare una rilettura attenta dopo ogni modifica significativa. \\
+\midrule
+Forma verbale & Privilegiare il presente indicativo nella stesura tecnica. Altre forme verbali (condizionale, congiuntivo) devono essere valutate caso per caso. \\
+\midrule
+Forme impersonali & Nelle descrizioni formali, il soggetto deve essere sempre esplicito nella frase, evitando costruzioni impersonali ambigue. \\
+\bottomrule
+\end{tabularx}
+\caption{Checklist correttezza ortografica e grammaticale}
+\end{table}
+
+\subsubsection{Conformità alle Norme Grafiche}
+
+La seguente checklist assicura il rispetto delle convenzioni grafiche e tipografiche del gruppo:
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{@{}p{0.28\textwidth}X@{}}
+\toprule
+\textbf{Elemento} & \textbf{Criterio di Verifica} \\
+\midrule
+Punteggiatura negli elenchi & Ogni elemento di un elenco deve terminare con punto e virgola ";", ad eccezione dell'ultimo che termina con punto ".". \\
+\midrule
+Utilizzo del grassetto & Il grassetto si utilizza per evidenziare termini chiave alla loro prima introduzione o per enfatizzare concetti fondamentali. Evitare un uso eccessivo. \\
+\midrule
+Maiuscole nei ruoli & I ruoli di progetto devono essere scritti con la lettera iniziale maiuscola quando si riferiscono a membri specifici del gruppo. \\
+\midrule
+Lettera iniziale dei titoli & Solo la prima parola dei titoli di sezione deve avere l'iniziale maiuscola, salvo nomi propri o acronimi. \\
+\midrule
+Segnalazione termini glossario & Quando un termine del Glossario viene introdotto per la prima volta in un documento, deve essere marcato con il pedice G. \\
+\midrule
+Aggiornamento registro modifiche & Dopo ogni verifica, il registro delle modifiche (changelog) del documento deve essere aggiornato con la descrizione delle correzioni apportate. \\
+\midrule
+Indicazione versione & Quando si cita un documento, è necessario specificarne la versione. Se non si indica alcuna versione, si intende la versione più recente disponibile. \\
+\bottomrule
+\end{tabularx}
+\caption{Checklist conformità norme grafiche}
+\end{table}
+
+\subsubsection{Qualità dei Requisiti}
+
+Per i documenti di analisi, viene applicata una checklist specifica per garantire la qualità dei requisiti:
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{@{}p{0.28\textwidth}X@{}}
+\toprule
+\textbf{Elemento} & \textbf{Criterio di Verifica} \\
+\midrule
+Tracciamento UC-Requisiti & Ogni caso d'uso deve essere collegato ad almeno un requisito specifico che ne deriva, garantendo la tracciabilità bidirezionale. \\
+\midrule
+Codifica Use Case & La numerazione degli Use Case deve rispettare la gerarchia: gli UC derivati devono avere lo stesso livello gerarchico del caso principale da cui dipendono. \\
+\midrule
+Formulazione requisiti & I requisiti devono essere espressi nella forma "[soggetto] deve [verbo all'infinito] [complemento]" per garantire chiarezza e verificabilità. \\
+\midrule
+Diagrammi UML completi & Estensioni, inclusioni e specializzazioni di un caso d'uso devono essere rappresentate all'interno del medesimo diagramma UML del caso principale per facilitare la comprensione. \\
+\bottomrule
+\end{tabularx}
+\caption{Checklist qualità dei requisiti}
+\end{table}
+
+\subsection{Automazione e Verifica Continua}
+
+Le verifiche di qualità della documentazione sono automatizzate e integrate nel processo di CI/CD tramite il workflow GitHub \texttt{quality\_checks.yml}. Questo workflow:
+
+\begin{enumerate}
+    \item Si attiva automaticamente dopo il completamento della compilazione \LaTeX{} (workflow \textit{Build LaTeX documents});
+    \item Può essere eseguito manualmente in qualsiasi momento tramite \textit{workflow dispatch};
+    \item Esegue in sequenza i tre script di verifica (Gulpease, LanguageTool, ChkTeX);
+    \item Genera un report Markdown consolidato accessibile come artifact;
+    \item Commenta automaticamente i pull request con i risultati della verifica.
+\end{enumerate}
+
+La verifica è non-bloccante per i build, ovvero gli errori rilevati non impediscono il progresso della pipeline, tuttavia vengono tracciati e riportati nel report per consentire al gruppo di monitorare gli standard di qualità e di correggere sistematicamente i problemi identificati.
+
+% -------------------------------------------------------------------
+% CRUSCOTTO DI VALUTAZIONE DELLA QUALITÀ
+% -------------------------------------------------------------------
+\newpage
+\section{Cruscotto di Valutazione della Qualità}
+
+Questa sezione presenta un'analisi quantitativa dell'andamento del progetto attraverso grafici e metriche derivate dai dati raccolti durante gli otto sprint completati fino alla data corrente. L'obiettivo è fornire una visione d'insieme dello stato di salute del progetto in termini di costi, tempi e qualità della documentazione prodotta.
+
+\subsection{Andamento del Valore e dei Costi}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=14cm,
+    height=8cm,
+    xlabel={Sprint},
+    ylabel={Valore (\euro{})},
+    symbolic x coords={S1, S2, S3, S4, S5, S6, S7, S8},
+    xtick=data,
+    xticklabel style={rotate=0, anchor=center},
+    ymin=0, ymax=5500,
+    legend style={at={(0.5,-0.20)}, anchor=north, legend columns=3},
+    grid=major,
+    ymajorgrids=true,
+    grid style={dashed, gray!30}
+]
+% Planned Value (PV)
+\addplot[blue, thick, mark=*, mark size=2.5pt] coordinates {
+    (S1, 480)
+    (S2, 1115)
+    (S3, 1645)
+    (S4, 2158)
+    (S5, 2555)
+    (S6, 2990)
+    (S7, 3650)
+    (S8, 4285)
+};
+% Earned Value (EV)
+\addplot[green!70!black, thick, mark=square*, mark size=2.5pt] coordinates {
+    (S1, 480)
+    (S2, 920)
+    (S3, 1362)
+    (S4, 1576)
+    (S5, 1956)
+    (S6, 2316)
+    (S7, 2892)
+    (S8, 3389)
+};
+% Actual Cost (AC)
+\addplot[red, thick, mark=triangle*, mark size=2.5pt] coordinates {
+    (S1, 675)
+    (S2, 1180)
+    (S3, 1730)
+    (S4, 2175)
+    (S5, 2630)
+    (S6, 3010)
+    (S7, 3700)
+    (S8, 4780)
+};
+\legend{Planned Value (PV), Earned Value (EV), Actual Cost (AC)}
+\end{axis}
+\end{tikzpicture}
+\caption{Andamento cumulativo di Planned Value, Earned Value e Actual Cost}
+\label{fig:pv_ev_ac}
+\end{figure}
+
+\subsubsection*{Analisi}
+
+Il grafico mostra l'andamento cumulativo delle tre metriche fondamentali dell'Earned Value Management. Il \textbf{Planned Value (PV)} rappresenta il valore pianificato del lavoro che avrebbe dovuto essere completato, mentre l'\textbf{Earned Value (EV)} indica il valore effettivamente guadagnato attraverso il completamento delle attività. L'\textbf{Actual Cost (AC)} rappresenta i costi realmente sostenuti.
+
+Si osserva che l'AC supera costantemente sia il PV che l'EV, indicando un impiego di risorse superiore al previsto. Questo andamento è riconducibile alla natura della fase RTB, caratterizzata da attività ad alto investimento formativo: il team ha dovuto acquisire competenze su tecnologie complesse (LLM, architetture RAG, containerizzazione Docker) e affrontare le sfide dello sviluppo del Proof of Concept. Lo sprint 8 mostra un incremento significativo della forbice tra AC e le altre metriche, corrispondente all'intensificazione delle attività di sviluppo del PoC.
+
+Con il passaggio alla fase di Product Baseline, dove le conoscenze acquisite potranno essere applicate in modo più efficiente, il gruppo prevede un progressivo riallineamento delle curve, grazie anche alle politiche di ottimizzazione pianificate.
+
+\subsection{Indici di Performance (CPI e SPI)}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=14cm,
+    height=8cm,
+    xlabel={Sprint},
+    ylabel={Indice},
+    symbolic x coords={S1, S2, S3, S4, S5, S6, S7, S8},
+    xtick=data,
+    xticklabel style={rotate=0, anchor=center},
+    ymin=0.5, ymax=1.3,
+    legend style={at={(0.5,-0.20)}, anchor=north, legend columns=4},
+    grid=major,
+    ymajorgrids=true,
+    grid style={dashed, gray!30}
+]
+% Cost Performance Index (CPI)
+\addplot[blue, thick, mark=*, mark size=2.5pt] coordinates {
+    (S1, 0.71)
+    (S2, 0.78)
+    (S3, 0.79)
+    (S4, 0.72)
+    (S5, 0.74)
+    (S6, 0.77)
+    (S7, 0.78)
+    (S8, 0.71)
+};
+% Schedule Performance Index (SPI)
+\addplot[green!70!black, thick, mark=square*, mark size=2.5pt] coordinates {
+    (S1, 1.00)
+    (S2, 0.83)
+    (S3, 0.83)
+    (S4, 0.73)
+    (S5, 0.77)
+    (S6, 0.77)
+    (S7, 0.79)
+    (S8, 0.79)
+};
+% Linea ideale (1.0)
+\addplot[black, thick, dashed, const plot] coordinates {
+    (S1, 1.0) (S8, 1.0)
+};
+% Soglia accettabile inferiore (0.85)
+\addplot[red, thick, dashed, const plot] coordinates {
+    (S1, 0.85) (S8, 0.85)
+};
+\legend{CPI, SPI, Valore Ideale (1.0), Soglia Accettabile (0.85)}
+\end{axis}
+\end{tikzpicture}
+\caption{Andamento degli indici Cost Performance Index e Schedule Performance Index}
+\label{fig:cpi_spi}
+\end{figure}
+
+\subsubsection*{Analisi}
+
+Il grafico evidenzia l'andamento degli indici di performance economica (CPI) e temporale (SPI). Il \textbf{CPI} si è mantenuto costantemente al di sotto della soglia di accettabilità (0.85), oscillando tra 0.71 e 0.79, indicando che per ogni euro di valore prodotto il team sta spendendo circa 1.30\euro{}. Lo \textbf{SPI} mostra un andamento variabile: partito da un valore ottimale di 1.0 nel primo sprint, è sceso progressivamente fino a stabilizzarsi intorno a 0.77-0.79.
+
+È importante contestualizzare questi risultati: gli sprint analizzati corrispondono alla fase RTB{\scriptsize\raisebox{-0.5ex}{G}} del progetto, caratterizzata da un'intensa attività di apprendimento delle tecnologie richieste dal capitolato e dallo sviluppo esplorativo del Proof of Concept. La curva di apprendimento del team, unita alla complessità intrinseca delle tecnologie da padroneggiare (LLM{\scriptsize\raisebox{-0.5ex}{G}}, RAG{\scriptsize\raisebox{-0.5ex}{G}}, architetture a microservizi{\scriptsize\raisebox{-0.5ex}{G}}), ha comportato un impiego di risorse superiore a quanto inizialmente preventivato.
+
+Per i prossimi sprint, il gruppo intende attuare le seguenti politiche correttive:
+\begin{itemize}
+    \item Stime più conservative basate sull'esperienza acquisita durante la fase RTB;
+    \item Allocazione più mirata delle risorse sui ruoli effettivamente necessari;
+    \item Maggiore parallelizzazione delle attività per ottimizzare i tempi;
+    \item Revisione periodica delle stime in corso d'opera.
+\end{itemize}
+
+\subsection{Proiezioni di Costo: ETC, EAC e BAC}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    width=14cm,
+    height=8cm,
+    xlabel={Sprint},
+    ylabel={Costo (\euro{})},
+    symbolic x coords={S1, S2, S3, S4, S5, S6, S7, S8},
+    xtick=data,
+    xticklabel style={rotate=0, anchor=center},
+    ymin=0, ymax=20000,
+    bar width=12pt,
+    legend style={at={(0.5,-0.20)}, anchor=north, legend columns=4},
+    grid=major,
+    ymajorgrids=true,
+    grid style={dashed, gray!30}
+]
+% Estimate to Complete (ETC)
+\addplot[fill=blue!60, draw=blue!80] coordinates {
+    (S1, 17422)
+    (S2, 15295)
+    (S3, 14544)
+    (S4, 15658)
+    (S5, 14723)
+    (S6, 13681)
+    (S7, 12767)
+    (S8, 13325)
+};
+% Estimate at Completion (EAC)
+\addplot[fill=orange!70, draw=orange!90] coordinates {
+    (S1, 18097)
+    (S2, 16475)
+    (S3, 16274)
+    (S4, 17833)
+    (S5, 17353)
+    (S6, 16691)
+    (S7, 16467)
+    (S8, 18105)
+};
+% Budget at Completion (BAC) - linea orizzontale
+\addplot[red, ultra thick, dashed, const plot] coordinates {
+    (S1, 12850) (S8, 12850)
+};
+\legend{ETC, EAC, BAC (\euro{} 12.850)}
+\end{axis}
+\end{tikzpicture}
+\caption{Proiezioni di costo: Estimate to Complete, Estimate at Completion e Budget at Completion}
+\label{fig:etc_eac_bac}
+\end{figure}
+
+\subsubsection*{Analisi}
+
+Il grafico confronta le proiezioni di costo con il budget originale del progetto (BAC = \euro{} 12.850). L'\textbf{Estimate to Complete (ETC)} rappresenta la stima del costo necessario per completare le attività rimanenti, calcolata considerando l'efficienza economica dimostrata (CPI). L'\textbf{Estimate at Completion (EAC)} combina i costi già sostenuti (AC) con l'ETC per fornire una proiezione del costo finale totale.
+
+I valori di EAC oscillano tra \euro{} 16.274 (S3) e \euro{} 18.105 (S8), superando il BAC di circa il 26-41\%. Tuttavia, è fondamentale considerare che queste proiezioni si basano sull'efficienza della fase RTB, durante la quale il team ha affrontato una significativa curva di apprendimento: studio delle tecnologie del capitolato (LLM, architetture RAG, microservizi Docker{\scriptsize\raisebox{-0.5ex}{G}}), familiarizzazione con i processi di sviluppo agile e realizzazione del Proof of Concept.
+
+Con il consolidamento delle competenze tecniche acquisite e l'avvio della fase di sviluppo effettivo (Product Baseline{\scriptsize\raisebox{-0.5ex}{G}}), il gruppo prevede un sensibile miglioramento dell'efficienza economica. Le politiche correttive pianificate includono:
+\begin{itemize}
+    \item Riutilizzo delle conoscenze e dei componenti sviluppati durante il PoC;
+    \item Preventivi più accurati basati sui dati storici raccolti;
+    \item Ottimizzazione dell'allocazione oraria per ruolo;
+    \item Monitoraggio settimanale degli scostamenti con interventi tempestivi.
+\end{itemize}
+
+L'obiettivo è riportare l'EAC entro margini accettabili rispetto al BAC nelle successive fasi del progetto.
+
+\subsection{Varianza dell'Impegno Orario}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    width=14cm,
+    height=8cm,
+    xlabel={Sprint},
+    ylabel={Varianza (\%)},
+    symbolic x coords={S1, S2, S3, S4, S5, S6, S7, S8},
+    xtick=data,
+    xticklabel style={rotate=0, anchor=center},
+    ymin=-15, ymax=100,
+    bar width=15pt,
+    legend style={at={(0.5,-0.20)}, anchor=north, legend columns=3},
+    grid=major,
+    ymajorgrids=true,
+    grid style={dashed, gray!30}
+]
+% Varianza ore
+\addplot[fill=blue!60, draw=blue!80] coordinates {
+    (S1, 43.5)
+    (S2, 16.7)
+    (S3, 21.1)
+    (S4, 2.4)
+    (S5, 18.8)
+    (S6, 5.9)
+    (S7, 0.0)
+    (S8, 96.7)
+};
+% Linea accettabile positivo (+10%)
+\addplot[red, thick, dashed, const plot] coordinates {
+    (S1, 10) (S8, 10)
+};
+% Linea accettabile negativo (-10%)
+\addplot[orange, thick, dashed, const plot] coordinates {
+    (S1, -10) (S8, -10)
+};
+\legend{Varianza Ore (\%), Accettabile Positivo (+10\%), Accettabile Negativo (-10\%)}
+\end{axis}
+\end{tikzpicture}
+\caption{Varianza dell'impegno orario per sprint}
+\label{fig:varianza_ore}
+\end{figure}
+
+\subsubsection*{Analisi}
+
+Analizzando i valori riportati nel grafico, è riscontrabile una difficoltà nel produrre preventivi orari vicini al consuntivato. Questo è dovuto alla scarsa esperienza del team nel preventivare il tempo necessario per lo svolgimento delle attività. Nel primo sprint la varianza è stata particolarmente elevata (+43,5\%), riflettendo la fase di avvio del progetto e la necessità di familiarizzare con gli strumenti e i processi. Con il progredire degli sprint, il team ha acquisito maggiore esperienza nella preventivazione, riuscendo ad ottenere un valore perfettamente in linea nel settimo sprint (0,0\%). Gli sprint successivi mostrano varianze contenute entro un range accettabile, indicando un miglioramento nella capacità di stima, ad eccezione dello sprint 8 che presenta una varianza critica del 96,7\% dovuta alla complessità delle attività di sviluppo del PoC.
+
+\subsection{Varianza di Budget}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    width=14cm,
+    height=8cm,
+    xlabel={Sprint},
+    ylabel={Varianza (\%)},
+    symbolic x coords={S1, S2, S3, S4, S5, S6, S7, S8},
+    xtick=data,
+    xticklabel style={rotate=0, anchor=center},
+    ymin=-10, ymax=100,
+    bar width=15pt,
+    legend style={at={(0.5,-0.20)}, anchor=north, legend columns=3},
+    grid=major,
+    ymajorgrids=true,
+    grid style={dashed, gray!30}
+]
+% Varianza budget
+\addplot[fill=blue!60, draw=blue!80] coordinates {
+    (S1, 40.6)
+    (S2, 14.8)
+    (S3, 18.3)
+    (S4, 4.1)
+    (S5, 19.7)
+    (S6, 5.6)
+    (S7, 7.8)
+    (S8, 84.6)
+};
+% Linea accettabile positivo (+5%)
+\addplot[red, thick, dashed, const plot] coordinates {
+    (S1, 5) (S8, 5)
+};
+% Linea accettabile negativo (-5%)
+\addplot[orange, thick, dashed, const plot] coordinates {
+    (S1, -5) (S8, -5)
+};
+\legend{Varianza Budget (\%), Accettabile Positivo (+5\%), Accettabile Negativo (-5\%)}
+\end{axis}
+\end{tikzpicture}
+\caption{Varianza di budget per sprint}
+\label{fig:varianza_budget}
+\end{figure}
+
+\subsubsection*{Analisi}
+
+Dall'analisi del grafico è evidente che i valori di varianza di budget sono sempre rimasti positivi, indicando che il costo effettivo è stato costantemente maggiore rispetto a quanto preventivato. Negli sprint 1, 2, 3 e 5 la varianza è risultata elevata (15-40\%) ma comunque gestibile. Lo sprint 4 ha rappresentato un ottimo risultato con varianza minima (+4,1\%), dimostrando quasi perfetta aderenza al budget pianificato. Gli sprint 6 e 7 hanno mostrato varianze contenute (+5,6\% e +7,8\%), indicando un temporaneo miglioramento nell'efficienza economica. Tuttavia, lo sprint 8 ha registrato un picco critico (+84,6\%) attribuibile all'intensificazione delle attività di sviluppo del Proof of Concept e alla necessità di coinvolgere maggiormente ruoli ad alto costo orario (Responsabile, Analista). Il superamento frequente della soglia di accettabilità (+5\%) evidenzia la necessità di rivedere le strategie di allocazione delle risorse e di migliorare l'accuratezza delle stime economiche per i prossimi sprint.
+
+\subsection{Requisiti Soddisfatti}
+
+\begin{figure}[H]
+\centering
+
+\begin{tikzpicture}
+% Requisiti Obbligatori
+\begin{scope}[xshift=0cm]
+\begin{axis}[
+    width=4.5cm,
+    height=4.5cm,
+    axis lines=none,
+    clip=false
+]
+\addplot[fill=gray!30, draw=black, thick] coordinates {(0,0) (0,100) (100,100) (100,0)} -- cycle;
+\node at (axis cs:50,110) {\textbf{Obbligatori}};
+\node at (axis cs:50,50) {\Large 0\%};
+\end{axis}
+\end{scope}
+
+% Requisiti Desiderabili
+\begin{scope}[xshift=5.5cm]
+\begin{axis}[
+    width=4.5cm,
+    height=4.5cm,
+    axis lines=none,
+    clip=false
+]
+\addplot[fill=gray!30, draw=black, thick] coordinates {(0,0) (0,100) (100,100) (100,0)} -- cycle;
+\node at (axis cs:50,110) {\textbf{Desiderabili}};
+\node at (axis cs:50,50) {\Large 0\%};
+\end{axis}
+\end{scope}
+
+% Requisiti Opzionali
+\begin{scope}[xshift=11cm]
+\begin{axis}[
+    width=4.5cm,
+    height=4.5cm,
+    axis lines=none,
+    clip=false
+]
+\addplot[fill=gray!30, draw=black, thick] coordinates {(0,0) (0,100) (100,100) (100,0)} -- cycle;
+\node at (axis cs:50,110) {\textbf{Opzionali}};
+\node at (axis cs:50,50) {\Large 0\%};
+\end{axis}
+\end{scope}
+
+\end{tikzpicture}
+
+\caption{Requisiti obbligatori, desiderabili e opzionali soddisfatti}
+\label{fig:requisiti_soddisfatti}
+\end{figure}
+
+\subsubsection*{Analisi}
+
+Il progetto si trova attualmente nella fase RTB (Requirements and Technology Baseline), focalizzata sulla definizione dei requisiti e sullo sviluppo di un Proof of Concept. Di conseguenza, al momento non risultano soddisfatti requisiti funzionali né nelle categorie obbligatorie, desiderabili o opzionali. Questa situazione è coerente con lo stato di avanzamento del progetto: gli sprint completati sono stati dedicati principalmente ad attività di analisi, pianificazione, documentazione e sviluppo esplorativo del PoC. L'implementazione vera e propria dei requisiti avrà inizio nelle fasi successive, una volta consolidata la baseline tecnologica e approvato il PoC dal committente. È previsto che i primi requisiti obbligatori vengano soddisfatti a partire dalla fase di Product Baseline, quando il team procederà con lo sviluppo incrementale del prodotto finale seguendo le priorità definite nel Product Backlog{\scriptsize\raisebox{-0.5ex}{G}}.
+
+\subsection{Gestione dei Rischi}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    width=14cm,
+    height=8cm,
+    xlabel={Sprint},
+    ylabel={Numero},
+    symbolic x coords={S1, S2, S3, S4, S5, S6, S7, S8},
+    xtick=data,
+    xticklabel style={rotate=0, anchor=center},
+    ymin=0, ymax=5,
+    bar width=12pt,
+    legend style={at={(0.5,-0.20)}, anchor=north, legend columns=3},
+    grid=major,
+    ymajorgrids=true,
+    grid style={dashed, gray!30},
+    nodes near coords,
+    nodes near coords style={font=\small},
+]
+% Rischi Inattesi
+\addplot[fill=blue!60, draw=blue!80] coordinates {
+    (S1, 0)
+    (S2, 0)
+    (S3, 1)
+    (S4, 1)
+    (S5, 1)
+    (S6, 0)
+    (S7, 2)
+    (S8, 1)
+};
+% Misure Insufficienti
+\addplot[fill=orange!70, draw=orange!90] coordinates {
+    (S1, 0)
+    (S2, 0)
+    (S3, 0)
+    (S4, 1)
+    (S5, 1)
+    (S6, 0)
+    (S7, 2)
+    (S8, 1)
+};
+% Soglia accettabile (3)
+\addplot[red, ultra thick, dashed, const plot] coordinates {
+    (S1, 3) (S8, 3)
+};
+\legend{Rischi Inattesi (PM-15), Misure Insufficienti (PM-14), Soglia Accettabile (3)}
+\end{axis}
+\end{tikzpicture}
+\caption{Rischi inattesi e misure di mitigazione insufficienti per sprint}
+\label{fig:rischi}
+\end{figure}
+
+\subsubsection*{Analisi}
+
+Il grafico mostra l'andamento dei rischi inattesi (PM-15) e delle misure di mitigazione insufficienti (PM-14) nel corso degli otto sprint. Complessivamente, entrambe le metriche si mantengono ben al di sotto della soglia di accettabilità fissata a 3.
+
+Nei primi due sprint non si sono verificati rischi imprevisti né fallimenti nelle strategie di mitigazione, indicando una buona capacità iniziale di identificazione e gestione dei rischi. A partire dallo sprint 3 si osserva la comparsa di rischi inattesi, principalmente legati alla complessità tecnologica sottostimata e alle difficoltà di integrazione delle tecnologie del capitolato.
+
+Lo sprint 7 ha registrato il picco massimo con 2 rischi inattesi e 2 misure insufficienti, coincidente con l'intensificazione delle attività di sviluppo del PoC e l'emergere di problematiche tecniche non previste in fase di analisi. Tuttavia, anche in questo caso i valori rimangono entro i limiti di accettabilità.
+
+La correlazione tra rischi inattesi e misure insufficienti negli sprint 4, 5, 7 e 8 suggerisce che alcuni rischi emersi hanno trovato il team impreparato, evidenziando la necessità di rafforzare il processo di identificazione proattiva dei rischi e di aggiornare periodicamente il registro dei rischi con le lezioni apprese.
+
+\subsection{Indice di Gulpease della Documentazione}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=15cm,
+    height=9cm,
+    xlabel={Data Verbale},
+    ylabel={Indice di Gulpease},
+    symbolic x coords={2025-10-14, 2025-10-15, 2025-10-20, 2025-10-22, 2025-10-27, 2025-10-29, 2025-11-04, 2025-11-10, 2025-11-12, 2025-11-21, 2025-11-24, 2025-11-28, 2025-12-05, 2025-12-11, 2025-12-12, 2025-12-19, 2026-01-02, 2026-01-13, 2026-01-14},
+    xtick=data,
+    xticklabel style={rotate=90, anchor=east, font=\tiny},
+    ymin=40, ymax=75,
+    grid=major,
+    ymajorgrids=true,
+    grid style={dashed, gray!30},
+    legend style={at={(0.5,-0.35)}, anchor=north, legend columns=2}
+]
+% Verbali Interni
+\addplot[blue, thick, mark=*, mark size=2pt] coordinates {
+    (2025-10-14, 55.67) (2025-10-15, 51.93) (2025-10-20, 50.34) 
+    (2025-10-27, 54.29) (2025-10-29, 55.27) (2025-11-04, 50.88)
+    (2025-11-10, 70.88) (2025-11-21, 55.10) (2025-11-24, 50.16)
+    (2025-11-28, 50.55) (2025-12-05, 55.30) (2025-12-12, 53.68)
+    (2025-12-19, 51.25) (2026-01-02, 50.36) (2026-01-13, 45.75)
+};
+% Verbali Esterni
+\addplot[green!70!black, thick, mark=square*, mark size=2pt] coordinates {
+    (2025-10-22, 51.94) (2025-11-12, 67.22) (2025-12-05, 65.50)
+    (2025-12-11, 59.26) (2026-01-14, 58.83)
+};
+% Soglia accettabile (45)
+\addplot[red, thick, dashed, const plot] coordinates {
+    (2025-10-14, 45) (2026-01-14, 45)
+};
+% Soglia preferibile (60)
+\addplot[orange, thick, dashed, const plot] coordinates {
+    (2025-10-14, 60) (2026-01-14, 60)
+};
+\legend{Verbali Interni, Verbali Esterni, Valore Accettabile (45), Valore Preferibile (60)}
+\end{axis}
+\end{tikzpicture}
+\caption{Andamento dell'indice di Gulpease nei verbali prodotti durante il progetto}
+\label{fig:gulpease_verbali}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    width=15cm,
+    height=9cm,
+    xlabel={Documento},
+    ylabel={Indice di Gulpease},
+    symbolic x coords={Glo, NdP, AdR, PdP, PdQ},
+    xtick=data,
+    xticklabel style={rotate=0, anchor=center},
+    ymin=40, ymax=70,
+    bar width=25pt,
+    legend style={at={(0.5,-0.20)}, anchor=north, legend columns=3},
+    grid=major,
+    ymajorgrids=true,
+    grid style={dashed, gray!30},
+    nodes near coords,
+    nodes near coords style={font=\small},
+]
+% Indici Gulpease documenti principali RTB
+\addplot[fill=blue!60, draw=blue!80] coordinates {
+    (Glo, 45.41)
+    (NdP, 46.03)
+    (AdR, 62.82)
+    (PdP, 63.41)
+    (PdQ, 59.65)
+};
+% Soglia accettabile (45)
+\addplot[red, thick, dashed, const plot] coordinates {
+    (Glo, 45) (PdQ, 45)
+};
+% Soglia preferibile (60)
+\addplot[orange, thick, dashed, const plot] coordinates {
+    (Glo, 60) (PdQ, 60)
+};
+\legend{Indice Gulpease, Accettabile (45), Preferibile (60)}
+\end{axis}
+\end{tikzpicture}
+\caption{Indice di Gulpease per i documenti principali (RTB)}
+\label{fig:gulpease_documenti}
+\end{figure}
+
+\noindent\textit{\small Legenda: \\Glo = Glossario, \\NdP = Norme di Progetto, \\AdR = Analisi dei Requisiti, \\PdP = Piano di Progetto, \\PdQ = Piano di Qualifica}
+
+\subsection{Errori di Qualità Linguistica}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=15cm,
+    height=9cm,
+    xlabel={Data Verbale},
+    ylabel={Errori Critici (LanguageTool)},
+    symbolic x coords={2025-10-14, 2025-10-15, 2025-10-20, 2025-10-22, 2025-10-27, 2025-10-29, 2025-11-04, 2025-11-10, 2025-11-12, 2025-11-21, 2025-11-24, 2025-11-28, 2025-12-05, 2025-12-11, 2025-12-12, 2025-12-19, 2026-01-02, 2026-01-13, 2026-01-14},
+    xtick=data,
+    xticklabel style={rotate=90, anchor=east, font=\tiny},
+    ymin=0, ymax=8,
+    grid=major,
+    ymajorgrids=true,
+    grid style={dashed, gray!30},
+    legend style={at={(0.5,-0.35)}, anchor=north, legend columns=2}
+]
+% Verbali Interni - errori critici
+\addplot[blue, thick, mark=*, mark size=2pt] coordinates {
+    (2025-10-14, 0) (2025-10-15, 2) (2025-10-20, 0) 
+    (2025-10-27, 0) (2025-10-29, 0) (2025-11-04, 6)
+    (2025-11-10, 0) (2025-11-21, 0) (2025-11-24, 2)
+    (2025-11-28, 0) (2025-12-05, 2) (2025-12-12, 3)
+    (2025-12-19, 0) (2026-01-02, 0) (2026-01-13, 0)
+};
+% Verbali Esterni - errori critici
+\addplot[green!70!black, thick, mark=square*, mark size=2pt] coordinates {
+    (2025-10-22, 2) (2025-11-12, 6) (2025-12-05, 2)
+    (2025-12-11, 1) (2026-01-14, 2)
+};
+% Soglia accettabile (3 errori)
+\addplot[red, thick, dashed, const plot] coordinates {
+    (2025-10-14, 3) (2026-01-14, 3)
+};
+\legend{Verbali Interni, Verbali Esterni, Soglia Accettabile (3 errori)}
+\end{axis}
+\end{tikzpicture}
+\caption{Errori critici rilevati da LanguageTool nei verbali}
+\label{fig:errori_verbali}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    width=15cm,
+    height=9cm,
+    xlabel={Documento},
+    ylabel={Errori Critici (LanguageTool)},
+    symbolic x coords={Glossario, Norme, AdR, PdP, PdQ, Lettera, Prev. Costi, Val. Cap.},
+    xtick=data,
+    xticklabel style={rotate=45, anchor=east, font=\small},
+    ymin=0, ymax=3,
+    bar width=20pt,
+    legend style={at={(0.5,-0.30)}, anchor=north, legend columns=2},
+    grid=major,
+    ymajorgrids=true,
+    grid style={dashed, gray!30},
+    nodes near coords,
+    nodes near coords style={font=\small},
+]
+% Errori critici documenti principali
+\addplot[fill=red!60, draw=red!80] coordinates {
+    (Glossario, 2)
+    (Norme, 1)
+    (AdR, 2)
+    (PdP, 1)
+    (PdQ, 2)
+    (Lettera, 1)
+    (Prev. Costi, 0)
+    (Val. Cap., 0)
+};
+% Soglia accettabile (2 errori)
+\addplot[orange, thick, dashed, const plot] coordinates {
+    (Glossario, 2) (Val. Cap., 2)
+};
+\legend{Errori Critici, Soglia Max (2)}
+\end{axis}
+\end{tikzpicture}
+\caption{Errori critici rilevati da LanguageTool nei documenti principali}
+\label{fig:errori_documenti}
+\end{figure}
+
+\subsubsection*{Analisi}
+
+L'analisi della qualità linguistica mostra risultati complessivamente positivi. Per i verbali, si osserva un andamento variabile con alcuni picchi critici: il verbale esterno del 2025-11-12 e il verbale interno del 2025-11-04 hanno registrato 6 errori critici ciascuno, superando la soglia accettabile di 3 errori. \textit{Si precisa che questi errori sono risultati essere falsi positivi da parte di LanguageTool, dovuti a limitazioni dello strumento.} Tuttavia, la maggior parte dei verbali (70\%) presenta 0-2 errori, rientrando nei parametri di qualità. I documenti principali mostrano una situazione eccellente: Preventivo Costi e Valutazione Capitolati non presentano errori critici, mentre Norme di Progetto e Piano di Progetto ne contengono solo 1 ciascuno. Glossario, Analisi dei Requisiti e Piano di Qualifica raggiungono la soglia massima di 2 errori, ma rimangono entro i limiti di accettabilità. Gli errori più comuni riguardano l'uso della d eufonica, anglicismi non tradotti ("input", "output") e occasionali errori di concordanza. Il gruppo ha implementato verifiche automatiche con LanguageTool nella pipeline CI/CD per garantire un monitoraggio continuo della qualità linguistica.
+
+Per quanto riguarda l'indice di Gulpease, i verbali mostrano un andamento temporale con valori generalmente superiori a 50, con un picco eccezionale di 70,88 nel verbale interno del 2025-11-10. I verbali esterni tendono ad avere valori leggermente superiori (media 60,55) rispetto agli interni (media 53,05), probabilmente per la maggiore attenzione alla chiarezza comunicativa verso stakeholder esterni. Solo il verbale interno del 2026-01-13 scende sotto la soglia di 50 (45,75), richiedendo revisione. I documenti principali presentano una buona leggibilità: Analisi dei Requisiti (62,82) e Piano di Progetto (63,41) superano il valore preferibile di 60, mentre Piano di Qualifica (59,65) si avvicina. Glossario (45,41) e Norme di Progetto (46,03) rimangono sotto la soglia dei 50 punti, riflettendo la natura più tecnica e formale di questi documenti, che richiedono terminologia specialistica e costrutti sintattici complessi.
+
+\end{document}
