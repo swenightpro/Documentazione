@@ -1,0 +1,280 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{array}
+\graphicspath{{assets/}{../assets/}{../../assets/}{../../../assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[svgnames]{xcolor}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Interno 2026-01-16 - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ------ FRONTESPIZIO -----------------------------------------
+\begin{document}
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+\begin{figure}
+    \centering
+    % Assicurati che il logo sia presente nella cartella assets
+    \includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+    \vfill
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    \vfill
+    {\Huge \bfseries Verbale di Riunione \par}
+    \vspace{1cm}
+
+    {\Large \itshape Verbale Interno del 16 Gennaio 2026 \par}
+    \vfill
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    \vfill
+
+    {\large Data: 2026-01-16 \par}
+
+\end{titlepage}
+
+% ------ INDICE -----------------------------------------
+\newpage
+\tableofcontents
+\pagestyle{fancy}
+
+% ------ INFORMAZIONI GENERALI -----------------------------------------
+\newpage
+\section{Informazioni Generali}
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+% ------ DETTAGLI RIUNIONE -----------------------------------------
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2026-01-16
+    \item \textbf{Ora:} 09:00 - 11:00
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Michele Ogniben, Davide Biasuzzi, Mihaela-Mariana Romascu, Giovanni Ponso, Francesco Zanella, Samuele Perozzo.
+    \item \textbf{Assenti:} Leonardo Bilato
+    \item \textbf{Redatto da:} Michele Ogniben
+    \item \textbf{Verificato da:} Francesco Zanella
+    \item \textbf{Versione:} 1.0
+\end{itemize}
+
+
+% ------ ORDINI DEL GIORNO -----------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Resoconto dello Sprint 8 e ricezione del dataset dall’azienda proponente.
+    \item[2.] Discussione della riunione con l'azienda proponente e allineamento sulle decisioni emerse.
+    \item[3.] Definizione delle funzionalità da implementare nel Proof of Concept.
+    \item[4.] Discussione sulla struttura del database e sulla gestione degli ordini.
+    \item[5.] Analisi dell'interfaccia utente e della sezione profilo.
+    \item[6.] Pianificazione delle attività per lo Sprint 9 e definizione dei ruoli.
+\end{itemize}
+
+% ------ DIARIO DELLA RIUNIONE -----------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+% --- Punto 1: Resoconto Sprint 8 e dataset ---
+\subsection{Resoconto dello Sprint 8 e ricezione del dataset dall'azienda proponente}
+Il gruppo ha effettuato un resoconto delle ore lavorate e dell'avanzamento dello Sprint 8 da parte di tutti i membri, verificando le attività assegnate e identificando eventuali criticità o ritardi nello sviluppo del progetto. È stato affrontato il tema della ricezione del dataset dall'azienda proponente in vista delle attività di Proof of Concept.
+
+% --- Punto 2: Discussione riunione azienda ---
+\subsection{Discussione della riunione con l'azienda proponente e allineamento sulle decisioni emerse}
+Il gruppo ha discusso gli esiti della riunione precedente con l'azienda proponente, allineando tutti i membri sulle decisioni e sulle indicazioni emerse. In particolare, è emersa la necessità di implementare la funzionalità di aggiunta degli articoli al carrello nel Proof of Concept.
+
+Durante la discussione è stato chiarito un aspetto importante relativo alla gestione delle quantità: il sistema deve permettere all'utente di specificare sia i \textbf{colli} che i \textbf{pezzi}, poiché queste sono le unità di misura presenti nel database. Il sistema deve essere in grado di gestire anche colli non interi, calcolando automaticamente le quantità in base al formato dei prodotti, convertendo correttamente tra colli e pezzi.
+
+
+% --- Punto 3: Funzionalità da implementare nel PoC ---
+\subsection{Definizione delle funzionalità da implementare nel Proof of Concept}
+\subsubsection{Aggiunta articoli al carrello e gestione quantità}
+Come emerso dall'allineamento con l'azienda, è prioritaria l'implementazione dell'aggiunta degli articoli al carrello con gestione di colli e pezzi (inclusi colli non interi).
+
+\subsubsection{Valutazione del Vector Search}
+Il gruppo ha discusso l'utilizzo del Vector Search per la ricerca dei prodotti. È stata presa la decisione di valutare attentamente questa tecnologia, prediligendo i tempi di risposta rispetto ad altre caratteristiche. La scelta finale verrà presa in base alle performance e all'efficienza del sistema.
+
+% --- Punto 4: Struttura database e gestione ordini ---
+\subsection{Discussione sulla struttura del database e sulla gestione degli ordini}
+\subsubsection{Struttura delle tabelle ordini}
+Durante la riunione è emersa una criticità relativa alla struttura del database, risultata poco chiara in alcune tabelle. Dopo un'analisi approfondita, il gruppo è giunto alla conclusione che, quando si conferma un ordine, è necessario creare lo stesso record in due tabelle distinte:
+\begin{itemize}
+    \item \textbf{ordclidet:} tabella interna degli ordini utilizzata dal sistema;
+    \item \textbf{preordclidet:} tabella degli ordini con la struttura richiesta dall'ERP dell'azienda.
+\end{itemize}
+
+Questa duplicazione è necessaria per garantire la compatibilità con il sistema ERP esistente, mantenendo al contempo una struttura dati interna ottimizzata per le esigenze dell'applicazione. Il gruppo ha inoltre confermato la possibilità di modificare il database se necessario, aggiungendo nuove tabelle per migliorare l'architettura del sistema.
+
+% --- Punto 5: Interfaccia utente e sezione profilo ---
+\subsection{Analisi dell'interfaccia utente e della sezione profilo}
+\subsubsection{Approccio mobile first e visualizzazione prodotti}
+Il gruppo ha confermato l'approccio \textbf{mobile first} per lo sviluppo dell'applicazione, ritenendo che l'utente utilizzerà principalmente il software da dispositivi mobili. La grafica proposta è stata approvata, con particolare attenzione al posizionamento del carrello laterale, ritenuto adeguato per l'esperienza utente.
+
+Per quanto riguarda la visualizzazione dei prodotti quando sono presenti più risultati, è stata definita una priorità:
+\begin{itemize}
+    \item \textbf{Prima priorità:} storico degli ordini del cliente;
+    \item \textbf{Seconda priorità:} prodotti più venduti a tutti i clienti.
+\end{itemize}
+
+Questa strategia mira a migliorare l'usabilità del sistema, suggerendo prima i prodotti che il cliente ha già ordinato in passato e, in secondo luogo, i prodotti più popolari.
+
+\subsubsection{Sezione profilo e Analisi dei Requisiti}
+Il gruppo ha discusso la grafica e i campi necessari all'interno della sezione ``profilo'' del software. È stata identificata la necessità di:
+\begin{itemize}
+    \item Implementare nell'Analisi dei Requisiti l'indicazione che l'utente userà il software principalmente da mobile;
+    \item Allineare l'Analisi dei Requisiti con la grafica della sezione profilo;
+    \item Includere la funzionalità di cambio password con i seguenti requisiti:
+    \begin{itemize}
+        \item Richiesta della password vecchia;
+        \item Conferma della nuova password;
+        \item Disabilitazione della funzione di copia e incolla per motivi di sicurezza.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Interfaccia operatore e filtri}
+È stata discussa in dettaglio l'interfaccia operatore. Nella sezione degli ordini in attesa devono essere presenti:
+\begin{itemize}
+    \item Bottone filtro per la visualizzazione;
+    \item Dettagli dell'ordine, visibili dopo la richiesta d'aiuto da parte dell'utente;
+    \item Possibilità di rispondere all'utente che ha bisogno di aiuto;
+    \item Possibilità di modificare i dettagli dell'ordine;
+    \item Visualizzazione della conferma dell'ordine;
+    \item Possibilità di eliminare l'ordine.
+\end{itemize}
+
+Nella sezione dello storico degli ordini è previsto un bottone filtro analogo a quello della visualizzazione in attesa.
+
+I filtri di ordinamento devono permettere di: ordinare per cliente; ordinare per data; filtrare gli ordini per data specifica (filtro giornaliero). I filtri di ordinamento sono \textbf{esclusivi}, ovvero è possibile applicarne solo uno alla volta. È stato deciso di \textbf{non implementare filtri nella barra di ricerca per più campi}. I filtri non devono essere basati sugli ID, ma su criteri significativi per l'utente (cliente, data, ecc.).
+
+\subsubsection{Pagina di assistenza degli operatori}
+Il gruppo ha discusso come procedere con la gestione della pagina di assistenza degli operatori, definendo i requisiti e le funzionalità necessarie per garantire un supporto efficace agli utenti.
+
+% --- Punto 6: Pianificazione Sprint 9 e ruoli ---
+\subsection{Pianificazione delle attività per lo Sprint 9 e definizione dei ruoli}
+\subsubsection{Scadenze RTB}
+Il gruppo ha discusso la data di scadenza per la revisione RTB. È stato proposto il \textbf{6 febbraio} come scadenza interna (completamento Proof of Concept e documentazione RTB entro tale data). La \textbf{scadenza ufficiale} è stata fissata al \textbf{13 febbraio}, a fine sprint, per garantire un margine di sicurezza.
+
+\subsubsection{Gestione delle versioni della documentazione}
+Il gruppo ha discusso la gestione delle versioni della documentazione. È emerso che il progetto è avanti di una versione rispetto a quanto previsto. È stato deciso di aggiornare il professor Vardanega tramite il diario di bordo asincrono sull'andamento del progetto, chiedendo conferma se sia possibile mantenere la versione corrente o se sia necessario allinearsi alla versione successiva.
+
+Le attività pianificate e la definizione dei ruoli per lo Sprint 9 sono riportate nella sezione successiva (Attività da Svolgere e Definizione dei ruoli).
+
+% ------ DECISIONI PRESE -----------------------------------------
+\newpage
+\section{Decisioni Prese}
+\begin{enumerate}
+    \item Implementazione della funzionalità di aggiunta degli articoli al carrello nel Proof of Concept.
+    \item Gestione delle quantità tramite colli e pezzi, con calcolo automatico delle conversioni anche per colli non interi.
+    \item Conferma dell'approccio mobile first per lo sviluppo dell'applicazione.
+    \item Priorità nella visualizzazione dei prodotti: prima lo storico del cliente, poi i prodotti più venduti.
+    \item Assegnazione della gestione degli stati dell'ordine al Programmatore.
+    \item Valutazione del Vector Search con priorità ai tempi di risposta.
+    \item Implementazione della logica di duplicazione degli ordini nelle tabelle \texttt{ordclidet} e \texttt{preordclidet}.
+    \item Possibilità di modificare il database aggiungendo nuove tabelle se necessario.
+    \item Implementazione della funzionalità di inserimento manuale degli ordini.
+    \item Aggiornamento dell'Analisi dei Requisiti per includere l'approccio mobile first e la sezione profilo.
+    \item Definizione dei filtri di ordinamento esclusivi per l'interfaccia operatore (cliente, data, filtro giornaliero).
+    \item Esclusione dei filtri nella barra di ricerca per più campi.
+    \item Conferma di Telegram come canale di comunicazione principale del progetto.
+    \item Scadenza interna RTB fissata al 6 febbraio, scadenza ufficiale al 13 febbraio.
+    \item Implementazione della funzionalità di cambio password con i requisiti di sicurezza definiti.
+\end{enumerate}
+
+
+\newpage
+% ------ PIANIFICAZIONE SPRINT 9 (punto 6 dell'Agenda) -----------------------------------------
+\section{Pianificazione delle attività per lo Sprint 9 e definizione dei ruoli}
+
+\subsection{Attività da Svolgere}
+Le seguenti attività sono state identificate come prioritarie per il completamento del Proof of Concept e della documentazione RTB. L'assegnazione è indicata per ruolo.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}p{9.2cm}l@{}}
+\toprule
+\textbf{Attività} & \textbf{Ruolo} \\
+\midrule
+Completamento del Proof of Concept & Programmatore \\
+Funzionamento corretto dell'AI e aggiunta del carrello & Programmatore \\
+Aggiornamento delle Norme di Progetto con tutte le novità & Analista \\
+Ricontrollo del Piano di Progetto & Responsabile \\
+Aggiornamento del Piano di Qualifica & Analista \\
+Aggiornamento dell'Analisi dei Requisiti (sezione profilo, mobile first) & Analista \\
+Implementazione logica tabelle cloni ordini (ordclidet/preordclidet) & Programmatore \\
+Modifica backend per restituire codice ordine alla creazione & Programmatore \\
+Implementazione gestione stati ordine & Programmatore \\
+Implementazione filtri interfaccia operatore & Programmatore \\
+Implementazione sezione profilo con cambio password & Programmatore \\
+\bottomrule
+\end{tabular}
+\caption{Task prioritari per il completamento del PoC e della documentazione RTB.}
+\end{table}
+
+\subsection{Definizione dei ruoli}
+Sono stati definiti i ruoli e le relative assegnazioni per il prossimo periodo operativo. La ripartizione è stata stabilita come segue:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}l l@{}}
+\toprule
+\textbf{Ruolo} & \textbf{Membro} \\
+\midrule
+Responsabile   & Michele Ogniben \\
+Amministratore & - \\
+Analista       & Giovanni Ponso, Davide Biasuzzi, \\
+               & Mihaela-Mariana Romascu, Leonardo Bilato \\
+Progettista    & - \\
+Programmatore  & Samuele Perozzo, Francesco Zanella, \\
+               & Michele Ogniben \\
+Verificatore   & Francesco Zanella \\
+\bottomrule
+\end{tabular}
+\caption{Distribuzione ruoli per il prossimo periodo.}
+\end{table}
+
+\newpage
+
+\end{document}
