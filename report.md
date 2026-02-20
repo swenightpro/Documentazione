@@ -1,12 +1,12 @@
-# Report di compilazione del 2026-02-02T11:51:56+00:00
+# Report di compilazione del 2026-02-20T12:08:25+00:00
 
-Compilazione basata sul commit 184780ae6dd424d9ce2666c77bc2a06a481bd2dd (base: 184780a)
+Compilazione basata sul commit e7c2f7be7cb1d3acca4bcd1f9919c0be3be88feb (base: e7c2f7b)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/RTB/Documentazione Esterna/Piano_di_Qualifica_v0.3.pdf](docs/RTB/Documentazione%20Esterna/Piano_di_Qualifica_v0.3.pdf)
+✅ [docs/RTB/Documentazione Interna/Verbali Interni/verbale_interno_2026-01-16.pdf](docs/RTB/Documentazione%20Interna/Verbali%20Interni/verbale_interno_2026-01-16.pdf)
 
-✅ [docs/RTB/Documentazione Esterna/Glossario_v1.5.pdf](docs/RTB/Documentazione%20Esterna/Glossario_v1.5.pdf)
+✅ [docs/RTB/Documentazione Esterna/Piano_di_Progetto_v0.10.pdf](docs/RTB/Documentazione%20Esterna/Piano_di_Progetto_v0.10.pdf)
 
