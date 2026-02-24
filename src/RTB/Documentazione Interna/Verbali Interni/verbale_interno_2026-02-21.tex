@@ -1,0 +1,244 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{array}
+\graphicspath{{assets/}{../assets/}{../../assets/}{../../../assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[svgnames]{xcolor}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Interno 2026-02-21 - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ------ FRONTESPIZIO -----------------------------------------
+\begin{document}
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+    \vfill
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    \vfill
+    {\Huge \bfseries Verbale di Riunione \par}
+    \vspace{1cm}
+
+    {\Large \itshape Verbale Interno del 21 Febbraio 2026 \par}
+    \vfill
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    \vfill
+
+    {\large Data: 2026-02-21 \par}
+
+\end{titlepage}
+
+% ------ INDICE -----------------------------------------
+\newpage
+\tableofcontents
+\pagestyle{fancy}
+
+% ------ INFORMAZIONI GENERALI -----------------------------------------
+\newpage
+\section{Informazioni Generali}
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+% ------ DETTAGLI RIUNIONE -----------------------------------------
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2026-02-21
+    \item \textbf{Ora:} 17:00 -- 18:30
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Davide Biasuzzi, Mihaela-Mariana Romascu, Michele Ogniben, Samuele Perozzo, Giovanni Ponso, Francesco Zanella.
+    \item \textbf{Assenti:} Leonardo Bilato
+    \item \textbf{Redatto da:} Davide Biasuzzi
+    \item \textbf{Verificato da:} Samuele Perozzo
+    \item \textbf{Versione:} 1.0
+\end{itemize}
+
+% ------ ORDINE DEL GIORNO -----------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Aggiornamento sullo stato dei Diagrammi dei Casi d'Uso.
+    \item[2.] Sviluppo e bug fixing del Proof of Concept (POC).
+    \item[3.] Revisione del documento di Analisi dei Requisiti (MvP).
+    \item[4.] Pianificazione, scadenze e preparazione alla RTB.
+\end{itemize}
+
+% ------ DIARIO DELLA RIUNIONE -----------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+% --- Punto 1: Diagrammi Use Case ---
+\subsection{Aggiornamento sullo stato dei Diagrammi dei Casi d'Uso}
+Mihaela-Mariana Romascu ha aggiornato il gruppo sullo stato di avanzamento dei diagrammi dei Casi d'Uso, realizzati tramite il software StarUML. I diagrammi sono in fase di ultimazione.
+
+È stato concordato che i file degli screenshot degli UC verranno rinominati in modo standardizzato (es.\ UC1, UC2, UC13, ecc.) per facilitarne il rapido inserimento nel documento finale di Analisi dei Requisiti. Mariana ha comunicato che invierà una cartella ZIP con tutti gli screenshot tramite il gruppo Telegram nel corso della serata. La revisione degli UC prodotti sarà a cura di Davide Biasuzzi e Leonardo Bilato.
+
+% --- Punto 2: POC ---
+\subsection{Sviluppo e bug fixing del Proof of Concept}
+\subsubsection{Stato generale del POC}
+Samuele Perozzo ha illustrato lo stato attuale del Proof of Concept. La funzionalità di \textbf{Vector Search} (ricerca vettoriale) è operativa, con un'affidabilità stimata superiore al 50\%.
+
+\subsubsection{Bug rilevati e da risolvere}
+Durante la riunione sono stati identificati i seguenti problemi aperti:
+\begin{itemize}
+    \item \textbf{Gestione carrello e disponibilità:} l'IA suggerisce a volte prodotti non disponibili (ad esempio la voce ``Coca 033'') e non riesce ad aggiungerli fisicamente al carrello. Devono essere inoltre corrette la gestione delle quantità e la logica relativa alla vendita a colli.
+    \item \textbf{Funzioni base:} l'aggiunta manuale di un articolo senza l'ausilio dell'IA non è al momento funzionante; sono ugualmente non operativi il salvataggio dello storico degli ordini e il tasto di conferma/invio.
+    \item \textbf{Input vocale (Whisper):} la funzionalità di dettatura vocale presenta gravi malfunzionamenti: in alcuni casi viene acquisita solo la prima parola della frase; in altri vengono inseriti testi errati o del tutto non pertinenti.
+\end{itemize}
+
+\subsubsection{Scelta dei modelli IA}
+Al fine di risolvere i problemi relativi all'audio e migliorare la qualità delle risposte, il gruppo ha discusso la possibilità di passare dall'attuale modello \textbf{GPT-4o mini} a modelli più performanti, come \textbf{GPT-4o} o \textbf{GPT-5}, valutando i relativi costi delle API.
+
+\subsubsection{Hosting e gestione del timeout}
+È emerso che l'applicazione, ospitata su \textbf{Railway}, va in stato di sleep/timeout dopo soli 30 minuti di inattività, rendendo necessario un redeploy manuale. Sarà necessario modificare le impostazioni della piattaforma per evitare questo comportamento e garantire la disponibilità continua del servizio.
+
+% --- Punto 3: Analisi dei Requisiti ---
+\subsection{Revisione del documento di Analisi dei Requisiti (MvP)}
+\subsubsection{Ampliamento dei requisiti}
+Giovanni Ponso e Leonardo Bilato hanno effettuato una revisione approfondita del documento di Analisi dei Requisiti, portando il numero totale di requisiti da circa 40 a 120. I requisiti sono stati implementati e suddivisi con la corretta identificazione.
+
+\subsubsection{Nuove funzionalità documentate}
+Nel corso della revisione sono state introdotte le seguenti nuove funzionalità:
+\begin{itemize}
+    \item \textbf{Dashboard di ottimizzazione AI:} una tabella riepilogativa che tiene traccia dei feedback negativi ricevuti e delle correzioni applicate al carrello da parte dell'utente, al fine di migliorare progressivamente le risposte del sistema.
+    \item \textbf{Sistema di feedback:} aggiunto un meccanismo di valutazione tramite pollici (``pollice su'' / ``pollice giù''); la selezione del pollice giù apre un modale che consente all'utente di specificare la natura del problema riscontrato.
+    \item \textbf{Modifica quantità carrello:} inserito un pulsante dedicato per sbloccare la modifica manuale delle quantità lato carrello.
+    \item \textbf{Area Personale:} aggiunta come funzionalità obbligatoria, include il cambio password; il recupero della password è stato classificato come funzionalità desiderabile.
+\end{itemize}
+
+\subsubsection{Modello di business}
+È stato confermato definitivamente che l'applicazione è di tipo \textbf{B2B} (Business to Business).
+
+\subsubsection{Azioni richieste}
+Giovanni Ponso ha richiesto al team una revisione generale del documento per verificare la completezza dei requisiti e la coerenza dello stile di stesura. Davide Biasuzzi si è incaricato di eseguire tale verifica.
+
+% --- Punto 4: Pianificazione e RTB ---
+\subsection{Pianificazione, scadenze e preparazione alla RTB}
+\subsubsection{Estensione dello sprint corrente}
+Lo sprint in corso è stato prolungato di 2 settimane, con nuova scadenza fissata al \textbf{27 febbraio 2026}. I ruoli del team rimangono invariati rispetto alla pianificazione precedente.
+
+\subsubsection{Obiettivi a breve termine}
+Il gruppo punta a completare i diagrammi dei Casi d'Uso, inserire le immagini nel documento di Analisi dei Requisiti e sistemare il codice del POC entro l'inizio della settimana successiva.
+
+\subsubsection{Colloquio con il Prof.\ Cardin e RTB}
+L'obiettivo del gruppo è inviare una mail al professor Cardin entro martedì o mercoledì della prossima settimana per richiedere un appuntamento in vista della Revisione Tecnico-Burocratica (RTB), con l'auspicio di ottenere un incontro a metà della settimana successiva.
+
+\subsubsection{Presentazione delle tecnologie}
+È stato stabilito che le tecnologie utilizzate per il POC \textbf{non saranno inserite} nel documento di Analisi dei Requisiti; verranno invece illustrate a voce o tramite una breve presentazione in sede di colloquio con il professore.
+
+% ------ DECISIONI PRESE -----------------------------------------
+\newpage
+\section{Decisioni Prese}
+\begin{enumerate}
+    \item Adozione di una nomenclatura standardizzata per i file degli UC (es.\ UC1, UC2, UC13).
+    \item Revisione degli UC a cura di Davide Biasuzzi e Leonardo Bilato.
+    \item Valutazione del passaggio a modelli IA più performanti (GPT-4o o GPT-5) per risolvere i problemi di input vocale e migliorare la qualità delle risposte.
+    \item Modifica delle impostazioni di hosting su Railway per evitare il timeout dopo 30 minuti di inattività.
+    \item Conferma del modello di business B2B per l'applicazione.
+    \item Introduzione della dashboard di ottimizzazione AI per il tracciamento dei feedback negativi.
+    \item Introduzione del sistema di feedback tramite pollici con modale descrittivo per il pollice giù.
+    \item Aggiunta del pulsante per la modifica manuale delle quantità nel carrello.
+    \item Aggiunta dell'Area Personale con cambio password (obbligatoria) e recupero password (desiderabile).
+    \item Verifica generale dell'Analisi dei Requisiti assegnata a Davide Biasuzzi.
+    \item Estensione dello sprint corrente fino al 27 febbraio 2026, con ruoli invariati.
+    \item Invio della mail al prof.\ Cardin entro martedì/mercoledì per fissare l'appuntamento per la RTB.
+    \item Le tecnologie del POC saranno presentate a voce durante il colloquio con il professore, senza inserirle nel documento di Analisi dei Requisiti.
+\end{enumerate}
+
+% ------ PIANIFICAZIONE SPRINT SUCCESSIVO -----------------------------------------
+\newpage
+\section{Pianificazione delle attività per il prossimo Sprint}
+
+\subsection{Attività da Svolgere}
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}p{9.2cm}l@{}}
+\toprule
+\textbf{Attività} & \textbf{Ruolo} \\
+\midrule
+Rinominazione standardizzata degli screenshot dei Casi d'Uso & Analista \\
+Revisione e validazione dei diagrammi UC (StarUML) & Analista \\
+Inserimento immagini UC nel documento di Analisi dei Requisiti & Analista \\
+Verifica generale della coerenza e completezza dell'Analisi dei Requisiti & Verificatore \\
+Bug fixing POC: gestione carrello, quantità e logica a colli & Programmatore \\
+Bug fixing POC: risoluzione malfunzionamenti input vocale (Whisper) & Programmatore \\
+Bug fixing POC: aggiunta manuale articoli, storico ordini e tasto conferma & Programmatore \\
+Valutazione e possibile migrazione a GPT-4o o GPT-5 & Programmatore \\
+Modifica impostazioni Railway per evitare il timeout dopo 30 minuti & Programmatore \\
+Invio mail al prof.\ Cardin per richiedere appuntamento RTB & Responsabile \\
+Coordinamento e supervisione delle attività di sprint & Responsabile \\
+\bottomrule
+\end{tabular}
+\caption{Task prioritari per il prossimo sprint (scadenza: 27 febbraio 2026).}
+\end{table}
+
+\subsection{Definizione dei ruoli}
+I ruoli rimangono invariati rispetto allo sprint precedente, in quanto lo sprint corrente è stato prolungato di due settimane (nuova scadenza: \textbf{27 febbraio 2026}).
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}l l@{}}
+\toprule
+\textbf{Ruolo} & \textbf{Membro} \\
+\midrule
+Responsabile   & Davide Biasuzzi \\
+Amministratore & -- \\
+Analista       & Giovanni Ponso, Mihaela-Mariana Romascu, Leonardo Bilato \\
+Progettista    & -- \\
+Programmatore  & Michele Ogniben, Samuele Perozzo, Francesco Zanella \\
+Verificatore   & Samuele Perozzo \\
+\bottomrule
+\end{tabular}
+\caption{Distribuzione ruoli per il proseguimento dello sprint (invariati).}
+\end{table}
+
+\newpage
+
+\end{document}
