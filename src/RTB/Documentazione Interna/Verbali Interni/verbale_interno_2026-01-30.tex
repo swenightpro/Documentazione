@@ -1,0 +1,248 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{array}
+\graphicspath{{assets/}{../assets/}{../../assets/}{../../../assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[svgnames]{xcolor}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Interno 2026-01-30 - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ------ FRONTESPIZIO -----------------------------------------
+\begin{document}
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+    \vfill
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    \vfill
+    {\Huge \bfseries Verbale di Riunione \par}
+    \vspace{1cm}
+
+    {\Large \itshape Verbale Interno del 30 Gennaio 2026 \par}
+    \vfill
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    \vfill
+
+    {\large Data: 2026-01-30 \par}
+
+\end{titlepage}
+
+% ------ INDICE -----------------------------------------
+\newpage
+\tableofcontents
+\pagestyle{fancy}
+
+% ------ INFORMAZIONI GENERALI -----------------------------------------
+\newpage
+\section{Informazioni Generali}
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+% ------ DETTAGLI RIUNIONE -----------------------------------------
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2026-01-30
+    \item \textbf{Ora:} 16:00 - 18:00
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Davide Biasuzzi, Leonardo Bilato, Francesco Zanella, Mihaela-Mariana Romascu, Samuele Perozzo, Giovanni Ponso.
+    \item \textbf{Assenti:} Michele Ogniben
+    \item \textbf{Redatto da:} Davide Biasuzzi
+    \item \textbf{Verificato da:} Francesco Zanella
+    \item \textbf{Versione:} 1.0
+\end{itemize}
+
+
+% ------ ORDINI DEL GIORNO -----------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Analisi dei Requisiti e revisione dei casi d'uso.
+    \item[2.] Aggiornamento sullo sviluppo del Proof of Concept.
+    \item[3.] Documentazione e metriche: Piano di Qualifica e Piano di Progetto.
+    \item[4.] Gestione delle sessioni di chat e della memoria del chatbot.
+    \item[5.] Organizzazione per la RTB e pianificazione sprint successivo.
+\end{itemize}
+
+% ------ DIARIO DELLA RIUNIONE -----------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+% --- Punto 1: Analisi dei Requisiti e Casi d'Uso ---
+\subsection{Analisi dei Requisiti e Casi d'Uso}
+
+\subsubsection{Rifacimento dei casi d'uso}
+I casi d'uso sono stati rivisti al fine di ottenere una struttura più chiara e coerente. Il lavoro ha portato alla definizione di circa 23 casi d'uso principali, che salgono a oltre 50-60 includendo le estensioni. È stato deciso di adottare \textbf{StarUML} per la realizzazione dei diagrammi UML, in quanto risulta più veloce e pratico rispetto a DrawIO.
+
+\subsubsection{Moduli AI (LLM) non considerati come ``Attori''}
+Il gruppo ha discusso se il modello di intelligenza artificiale (OpenAI) debba essere considerato un attore esterno nel sistema. Seguendo le indicazioni del professor Cardin, è stato deciso di \textbf{non classificarlo come attore}, ma di considerarlo un componente interno del sistema su cui si ha pieno controllo, gestibile tramite prompt, RAG e parametri configurabili come la temperatura.
+
+\subsubsection{Ruolo dell'Operatore e ordini di test}
+È stata scartata l'ipotesi di fornire agli operatori due set distinti di credenziali (una da amministratore e una da cliente). In alternativa, è stato deciso di implementare un \textbf{flag booleano} (es. \texttt{ordine\_di\_test}) nel database: tramite un apposito pulsante nell'interfaccia, l'operatore potrà simulare un ordine senza che questo influisca sui dati reali del sistema.
+
+% --- Punto 2: Sviluppo del POC ---
+\subsection{Sviluppo del Proof of Concept (POC)}
+
+\subsubsection{Migrazione del Database}
+È emerso un problema di compatibilità tra MariaDB/MySQL e la funzionalità di Vector Search sull'hosting Railway. Per risolvere la criticità, è stata presa la decisione di \textbf{migrare a PostgreSQL}. L'implementazione della nuova connessione al database è stata identificata come attività prioritaria.
+
+\subsubsection{Vector Search}
+È stata discussa la necessità di studiare e implementare correttamente il funzionamento della \textbf{ricerca vettoriale}, ritenuta fondamentale per il sistema RAG (Retrieval-Augmented Generation). L'implementazione corretta di questa componente è considerata una priorità per il completamento del POC.
+
+% --- Punto 3: Documentazione e Metriche ---
+\subsection{Documentazione e Metriche (Piano di Qualifica e Piano di Progetto)}
+
+\subsubsection{Aggiornamento del Piano di Qualifica}
+Il Piano di Qualifica ha subito un aggiornamento sostanziale con l'aggiunta di \textbf{grafici} e \textbf{metriche EVM} (Earned Value Management), oltre alla gestione degli errori linguistici rilevati.
+
+\subsubsection{Correzione dei preventivi orari}
+I grafici attuali evidenziano una forte varianza negativa tra le ore preventivate e quelle effettivamente consumate (consuntivo). La decisione strategica adottata per i prossimi sprint è di calcolare le ore nel preventivo tenendo conto dei possibili rallentamenti, anche se una volta finita la sessione non dovrebbero più esserci, al fine di allinearle maggiormente al lavoro reale e migliorare così le metriche di progetto.
+
+% --- Punto 4: Gestione delle Sessioni di Chat ---
+\subsection{Gestione delle Sessioni di Chat}
+
+\subsubsection{Tracciamento tramite Session ID}
+Per gestire la memoria del chatbot e il carrello, è stato discusso di legare ogni messaggio e ogni ordine non ancora confermato a una specifica ``sessione'' nel database, identificata tramite un \textbf{Session ID}.
+
+\subsubsection{Chiusura di una sessione}
+Una sessione e il relativo contesto terminano in due casi:
+\begin{itemize}
+    \item quando l'utente clicca manualmente su ``nuova chat'';
+    \item automaticamente, al momento della conferma dell'ordine.
+\end{itemize}
+Le sessioni (attive, completate e archiviate) saranno mantenute nel database per ragioni legali e di storico, e saranno visibili anche all'operatore.
+
+% --- Punto 5: Organizzazione per la RTB ---
+\subsection{Organizzazione per la RTB (Requirements and Technology Baseline)}
+
+\subsubsection{Scadenze}
+Il gruppo punta a completare il POC e tutta la documentazione associata entro la \textbf{fine di febbraio}, in modo da poter richiedere al professor Cardin il colloquio semaforico per la RTB.
+
+\subsubsection{Rotazione dei Ruoli}
+Per il prossimo sprint i ruoli sono stati riassegnati come segue:
+\begin{itemize}
+    \item \textbf{Davide Biasuzzi} ricoprirà il ruolo di \textbf{Responsabile} (circa 5 ore previste), avendo contribuito in modo significativo alla documentazione nel periodo precedente;
+    \item \textbf{Giovanni Ponso, Mihaela-Mariana Romascu e Leonardo Bilato} saranno gli \textbf{Analisti} incaricati di completare l'Analisi dei Requisiti e i diagrammi UML;
+    \item \textbf{Michele Ogniben e Samuele Perozzo} saranno i \textbf{Programmatori} responsabili del completamento del POC.
+\end{itemize}
+
+\subsubsection{Preparazione al colloquio RTB}
+È stato deciso di creare un \textbf{documento Google condiviso} per raccogliere le giustificazioni relative alle tecnologie adottate, con l'obiettivo di rispondere in modo efficace alle domande durante la revisione con il professor Cardin.
+
+
+% ------ DECISIONI PRESE -----------------------------------------
+\newpage
+\section{Decisioni Prese}
+\begin{enumerate}
+    \item Revisione dei casi d'uso, con circa 23 casi d'uso principali e oltre 50-60 includendo le estensioni.
+    \item Adozione di StarUML per la realizzazione dei diagrammi UML.
+    \item Il modulo AI (OpenAI/LLM) è classificato come componente interno del sistema, non come attore esterno.
+    \item Implementazione di un flag booleano (\texttt{ordine\_di\_test}) per consentire all'operatore di simulare ordini senza influire sui dati reali.
+    \item Migrazione del database da MariaDB/MySQL a PostgreSQL per risolvere il problema di compatibilità con il Vector Search su Railway.
+    \item Priorità all'implementazione della nuova connessione al database PostgreSQL.
+    \item Studio e implementazione della ricerca vettoriale (Vector Search) per il sistema RAG.
+    \item Aggiunta di grafici e metriche EVM al Piano di Qualifica.
+    \item Ponderazione più abbondante delle ore nel preventivo per i prossimi sprint, al fine di ridurre la varianza con il consuntivo.
+    \item Tracciamento della memoria del chatbot e del carrello tramite Session ID nel database.
+    \item Chiusura della sessione alla pressione di ``nuova chat'' o alla conferma dell'ordine.
+    \item Mantenimento di tutte le sessioni (attive, completate, archiviate) nel database per ragioni legali e di storico.
+    \item Scadenza interna fissata a fine febbraio per POC e documentazione RTB, in vista del colloquio semaforico.
+    \item Assegnazione dei ruoli per il prossimo sprint: Davide Biasuzzi (Responsabile), Giovanni Ponso, Mihaela-Mariana Romascu e Leonardo Bilato (Analisti), Michele Ogniben e Samuele Perozzo (Programmatori).
+    \item Creazione di un documento Google condiviso per raccogliere le giustificazioni sulle tecnologie utilizzate in vista del colloquio RTB.
+\end{enumerate}
+
+
+% ------ PIANIFICAZIONE SPRINT SUCCESSIVO -----------------------------------------
+\newpage
+\section{Pianificazione delle attività per il prossimo Sprint}
+
+\subsection{Attività da Svolgere}
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}p{9.2cm}l@{}}
+\toprule
+\textbf{Attività} & \textbf{Ruolo} \\
+\midrule
+Completamento del Proof of Concept & Programmatore \\
+Migrazione e connessione al database PostgreSQL & Programmatore \\
+Implementazione del Vector Search per il sistema RAG & Programmatore \\
+Revisione e completamento dell'Analisi dei Requisiti & Analista \\
+Completamento e revisione dei diagrammi UML (StarUML) & Analista \\
+Coordinamento e supervisione delle attività & Responsabile \\
+Revisione del Piano di Progetto e Piano di Qualifica & Responsabile \\
+Creazione documento Google per giustificazioni tecnologiche & Responsabile \\
+\bottomrule
+\end{tabular}
+\caption{Task prioritari per il prossimo sprint.}
+\end{table}
+
+\subsection{Definizione dei ruoli}
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}l l@{}}
+\toprule
+\textbf{Ruolo} & \textbf{Membro} \\
+\midrule
+Responsabile   & Davide Biasuzzi \\
+Amministratore & Francesco Zanella \\
+Analista       & Giovanni Ponso, Mihaela-Mariana Romascu, Leonardo Bilato \\
+Progettista    & - \\
+Programmatore  & Michele Ogniben, Samuele Perozzo \\
+Verificatore   & Samuele Perozzo \\
+\bottomrule
+\end{tabular}
+\caption{Distribuzione ruoli per il prossimo sprint.}
+\end{table}
+
+\newpage
+
+\end{document}
