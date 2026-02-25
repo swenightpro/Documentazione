@@ -1,0 +1,265 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana
+\usepackage{lmodern}   
+\usepackage{array}     % Risolve l'errore >{\raggedright\arraybackslash}
+\usepackage{colortbl}  % Risolve gli eventuali errori legati a \rowcolor
+\usepackage{longtable}          % Font "Latin Modern"
+\usepackage{float}              % Per l'opzione [H] nelle tabelle e figure
+
+% --- Grafica e Layout --
+\usepackage{graphicx}           % Per le immagini
+\graphicspath{{../../assets/}{../assets/}{assets/}{assets/UC_AnalisiRequisiti}{Contenuti/}{out/uc/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
+
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{hyperref}           % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Documento Progetto - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+\usepackage[italian]{cleveref}
+\newcommand{\uc}[1]{\hyperref[uc#1]{\textbf{UC#1}}}
+\newcommand{\ucsub}[1]{\hyperref[uc#1]{\textbf{UC#1}}}
+
+% ===================================================================
+%  HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce i campi
+\fancyhead[L]{\textbf{NightPRO – Progetto Ingegneria del Software}}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\setcounter{secnumdepth}{5} % Numera i titoli fino al livello 5
+\setcounter{tocdepth}{5}    % Inserisce nell'indice i titoli fino al livello 5
+
+% ===================================================================
+%  INIZIO DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  FRONTESPIZIO
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \includegraphics[width=0.35\textwidth]{logo.png}\\[1cm]
+
+    \vfill
+
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    \vfill
+
+    {\Huge \bfseries Analisi dei Requisiti \par}
+    \vspace{1cm}
+    % NASCOSTO REDATTORI    {\Large Redattori: Francesco Zanella, Davide Biasuzzi, Samuele Perozzo\par}
+    \vfill
+
+    {\Large \bfseries Gruppo: NightPRO}    \vspace{0.5cm}\\
+    {\Large \bfseries Sistema: SmartOrder}    \vspace{0.5cm}
+
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
+
+    {\large Data: 2026-02-19 \par}
+
+    {\Large Versione: 0.4\par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Tabella delle Versioni
+% -------------------------------------------------------------------
+\newpage
+\pagestyle{fancy}
+\phantomsection
+\section*{Tabella delle Versioni}
+\vspace{0.2cm}
+\begin{center}
+    \resizebox{\textwidth}{!}{
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{@{}llp{0.25\textwidth}p{0.45\textwidth}c@{}}
+            \toprule
+            \textbf{Versione} & \textbf{Data} & \textbf{Autore/i}                                   & \textbf{Descrizione delle Modifiche}                                                                                                                                                                                                                & \textbf{Verificatore}   \\
+            \midrule
+            0.4               & 2026-02-19    & Giovanni Ponso, Bilato Leonardo                     & Consolidamento del documento per la baseline RTB. Espansione dei Casi d'Uso (inclusione moduli Ticketing\textsubscript{\textsc{g}} e Ottimizzazione AI) a seguito della maturazione architetturale. Raffinamento dei requisiti e aggiornamento delle matrici di tracciabilità & Samuele Perozzo         \\
+            0.3               & 2026-01-04    & Davide Biasuzzi                                     & Aggiunto UC6.2, Aggiunti Requisiti di Sicurezza e Requisiti Prestazionali, Aggiunte le matrici di tracciabilità UC<->RF, Sincronizzazione terminologia con Glossario.                                                                               & Leonardo Bilato         \\
+            0.2               & 2026-01-02    & Davide Biasuzzi                                     & Modificato Frontespizio, Inseriti Diagrammi UML degli Use Case, Aggiunto paragrafo sui Requisiti Prestazionali, Aggiornati RF7.4, RF1.1 e RF1.2.                                                                                                    & Leonardo Bilato         \\
+            0.1               & 2025-12-12    & Francesco Zanella, Davide Biasuzzi, Samuele Perozzo & Creazione bozza documento con integrazione analisi dettagliata: stakeholder\textsubscript{\textsc{g}} e requisiti funzionali completi.                                                                                                                                        & Mihaela-Mariana Romascu \\
+            \bottomrule
+        \end{tabular}
+    }
+\end{center}
+
+\newpage
+\tableofcontents % Genera l'indice
+\listoffigures
+\listoftables
+\pagestyle{fancy}
+
+% -------------------------------------------------------------------
+%  INFORMAZIONI GENERALI E COMPONENTI
+% -------------------------------------------------------------------
+\newpage
+\section*{Componenti del Gruppo}
+\addcontentsline{toc}{section}{Componenti del Gruppo}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{@{}llc@{}}
+        \toprule
+        \textbf{Cognome} & \textbf{Nome}   & \textbf{Matricola} \\
+        \midrule
+        Biasuzzi         & Davide          & 2111000            \\
+        Bilato           & Leonardo        & 2071084            \\
+        Zanella          & Francesco       & 2116442            \\
+        Romascu          & Mihaela-Mariana & 2079726            \\
+        Ogniben          & Michele         & 2042325            \\
+        Perozzo          & Samuele         & 2110989            \\
+        Ponso            & Giovanni        & 2000558            \\
+        \bottomrule
+    \end{tabular}
+    \caption{Componenti del gruppo NightPRO.}
+\end{table}
+
+% ===================================================================
+%  1. INTRODUZIONE
+% ===================================================================
+\newpage
+\section{Introduzione}
+
+\subsection{Scopo del documento}
+Il presente documento definisce l'Analisi dei Requisiti per il progetto \textbf{SmartOrder}. Esso è redatto in occasione della fase di revisione RTB\textsubscript{\textsc{g}} (Requirements and Technology Baseline), con l'obiettivo di delineare il perimetro funzionale (Scope) del sistema. Le specifiche qui contenute fungeranno da contratto e linea guida per lo sviluppo del MVP\textsubscript{\textsc{g}} (Minimum Viable Product) previsto per la successiva fase di PB\textsubscript{\textsc{g}} (Product Baseline).
+
+Il documento ha lo scopo di fornire una visione chiara e condivisa tra tutti gli stakeholder, traducendo le esigenze del capitolato in una formale modellazione UML (Casi d'Uso) e in un elenco tracciabile di requisiti funzionali, non funzionali, prestazionali e di vincolo.
+
+\subsection{Glossario}
+Al fine di evitare ambiguità e incomprensioni, è stato redatto un documento separato denominato Glossario. Tale documento raccoglie e definisce rigorosamente le terminologie tecniche (es. LLM\textsubscript{\textsc{g}}, OCR\textsubscript{\textsc{g}}, Embedding\textsubscript{\textsc{g}}, Vector Search\textsubscript{\textsc{g}}) e le espressioni di dominio specifiche del progetto.
+Per facilitare la lettura, ogni termine presente nel Glossario è segnalato all'interno del presente documento tramite l'apice \textbf{G} (es. ERP\textsubscript{\textsc{g}}).
+
+\subsection{Riferimenti}
+\subsubsection{Riferimenti normativi}
+\begin{itemize}
+    \item \textbf{Norme di Progetto} \\
+          \url{https://swenightpro.github.io/Documentazione/docs/RTB/Documentazione%20Interna/Norme_di_Progetto_v2.0.pdf}
+    \item \textbf{Capitolato C8 - Ergon Informatica Srl - SmartOrder} \\
+          \url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C8.pdf}
+\end{itemize}
+
+\subsubsection{Riferimenti informativi}
+\begin{itemize}
+    \item \textbf{Lezione sull’Analisi dei Requisiti} \\
+          \url{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf}
+    \item \textbf{Standard ISO/IEC 830:1998} \\
+          \url{https://ieeexplore.ieee.org/document/720574}
+    \item \textbf{Approfondimenti standard ISO/IEC 12207:1995} \\
+          \url{https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf}
+    \item \textbf{Glossario} \\
+          \url{https://swenightpro.github.io/Documentazione/docs/RTB/Documentazione%20Esterna/Glossario_v2.0.pdf}
+\end{itemize}
+
+% ===================================================================
+%  2. DESCRIZIONE DEL PRODOTTO
+% ===================================================================
+\section{Descrizione del prodotto}
+
+\subsection{Obiettivo del prodotto}
+SmartOrder è una piattaforma intelligente B2B\textsubscript{\textsc{g}} (Business-to-Business) progettata per automatizzare e ottimizzare il processo di ricezione e inserimento degli ordini aziendali.
+L'obiettivo principale del software è fungere da \textit{Assistente Virtuale Unificato}: il sistema deve permettere al cliente di formulare il proprio ordine in linguaggio naturale e demandare a un'infrastruttura di Intelligenza Artificiale\textsubscript{\textsc{g}} il compito di interpretare l'intento, dedurre le quantità, mappare gli articoli sul catalogo aziendale e generare un output strutturato.
+
+\subsection{Contesto d'uso (AS-IS\textsubscript{\textsc{g}} e TO-BE\textsubscript{\textsc{g}})}
+
+\subsubsection*{Situazione Attuale (AS-IS)}
+Attualmente, le aziende fornitrici si trovano a dover gestire richieste di ordini provenienti da una molteplicità di canali non strutturati, come messaggi vocali, email e chat. In questo scenario, i clienti descrivono i prodotti in modo discorsivo, spesso utilizzando termini colloquiali, omettendo dettagli o fornendo informazioni parziali rispetto alle anagrafiche ufficiali. La gestione manuale di queste comunicazioni obbliga il personale a un continuo lavoro di data-entry e interpretazione, con un conseguente enorme dispendio di tempo e un elevato rischio di errori operativi.
+
+\subsubsection*{Situazione Desiderata (TO-BE)}
+L'introduzione di SmartOrder mira a reingegnerizzare questo processo sostituendo l'inserimento manuale con una pipeline automatizzata. Nella situazione desiderata, il cliente continua a utilizzare il linguaggio naturale, ma le sue richieste (audio o testo) vengono processate istantaneamente da un motore semantico basato su LLM. Il sistema mappa autonomamente le descrizioni vaghe con gli specifici codici prodotto del database (Vector Search) e genera un file strutturato pronto per l'ERP. Questo nuovo paradigma riduce drasticamente l'intervento umano per le mansioni ripetitive, limitandolo alla sola gestione delle eccezioni, aumentando così la scalabilità e la precisione dei flussi aziendali.
+
+\subsection{Funzionalità del prodotto}
+In conformità con il capitolato d'appalto, il sistema SmartOrder è concepito come una pipeline modulare per la trasformazione di dati non strutturati in dati strutturati. Le funzionalità principali si articolano nei seguenti layer logici:
+\begin{itemize}
+    \item \textbf{Raccolta Input e Pre-processing:} Il sistema acquisisce ordini attraverso una WebApp multimodale. La baseline si concentra sull'acquisizione di input testuale, audio e visivo (il visivo è classificati tra i requisiti desiderabili). Il sistema normalizza i dati ed estrae le entità rilevanti (NER\textsubscript{\textsc{g}}).
+    \item \textbf{Interpretazione Semantica e Vector Search:} Tramite l'impiego di Large Language Models (LLM), l'input testuale viene trasformato in formato vettoriale (Embedding) per mappare semanticamente le richieste ambigue con i codici articolo del catalogo aziendale, rispettando rigorosamente le restrizioni di assortimento per ogni cliente.
+    \item \textbf{Validazione, Arricchimento e Output:} Prima dell'inserimento nel gestionale, i dati elaborati dall'AI popolano un carrello virtuale per la validazione visiva e quantitativa da parte del cliente. Al momento della conferma, il sistema genera un ordine strutturato in formato JSON\textsubscript{\textsc{g}}, reso disponibile in una directory condivisa con il database ERP.
+    \item \textbf{Gestione Eccezioni e Handoff (Ticketing):} Il sistema prevede un meccanismo di fallback a garanzia dell'affidabilità. In caso di fallimento semantico o richiesta di supporto, il cliente può aprire un Ticket, permettendo il subentro in chat di un Operatore umano che assume il controllo del carrello in tempo reale.
+    \item \textbf{Monitoraggio e Tracciamento (Logging):} Il sistema intercetta e storicizza a database le correzioni manuali applicate ai carrelli e i feedback negativi degli utenti, garantendo la tracciabilità degli errori dell'AI. Come previsto dall'architettura di riferimento, tali dati pongono le basi per il miglioramento continuo del modello; l'implementazione di un cruscotto di backoffice interattivo ("Human-in-the-Loop\textsubscript{\textsc{g}}") per la validazione visiva di questi log e il conseguente riaddestramento del sistema vettoriale è classificata come funzionalità desiderabile.
+\end{itemize}
+
+\subsection{Caratteristiche dell'utente}
+L'architettura del sistema modella due tipologie di attori, che operano in contesti e con interfacce progettate su misura per le loro esigenze. L'accesso è strettamente governato da utenze pre-caricate nel database aziendale, garantendo l'assenza di registrazioni non autorizzate.
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{@{}p{3.5cm}p{6cm}p{5.5cm}@{}}
+        \toprule
+        \textbf{Attore\textsubscript{\textsc{g}} Principale} & \textbf{Descrizione e Competenze}                                                                                                                         & \textbf{Ambiente di Interazione}                                                                                                       \\
+        \midrule
+        \textbf{Cliente Aziendale}                           & Esercente o ristoratore cliente dell'azienda fornitrice. Possiede scarse competenze tecniche ma profonda conoscenza dei prodotti desiderati.              & Interfaccia Mobile-first rapida e intuitiva, focalizzata sulla dettatura (audio/testo) e sulla revisione del carrello.                 \\
+        \midrule
+        \textbf{Operatore}                                   & Dipendente/Amministratore dell'azienda fornitrice. Possiede buone competenze tecniche e profonda conoscenza del catalogo ERP e delle logiche commerciali. & Interfaccia Desktop-first (Backoffice) focalizzata sul monitoraggio simultaneo, la risoluzione dei ticket e la validazione dei log AI. \\
+        \bottomrule
+    \end{tabular}
+    \caption{Profilazione degli utenti del sistema.}
+\end{table}
+
+\subsection{Stakeholder}
+I soggetti coinvolti e interessati dal ciclo di vita, dallo sviluppo e dall'adozione del software sono i seguenti:
+\begin{itemize}
+    \item \textbf{Committente}: Università degli Studi di Padova (Rappresentata dai Docenti Prof. Tullio Vardanega e Prof. Riccardo Cardin).
+    \item \textbf{Proponente (Product Owner)}: Ergon Informatica Srl (Rappresentata dal Dott. Gianluca Carlesso).
+    \item \textbf{Team di Sviluppo}: Gruppo universitario NightPRO.
+    \item \textbf{Utenti Finali}: Aziende clienti (acquirenti B2B) e personale amministrativo di Ergon Informatica Srl o delle aziende terze che adotteranno l'ERP.
+\end{itemize}
+
+% ===================================================================
+%  3. CASI D'USO
+% ===================================================================
+\newpage
+\section{Casi d'Uso}
+
+\subsection{Introduzione}
+Questa sezione descrive i casi d'uso del sistema \textbf{SmartOrder}. I casi d'uso sono stati strutturati per isolare le funzionalità di accesso, le interazioni multimodali (testo e audio) con l'Intelligenza Artificiale, la gestione dinamica del carrello e le operazioni operative di backoffice, quali l'assistenza in tempo reale ai clienti (Ticketing) e la validazione dei dati per l'ottimizzazione del modello (Human-in-the-Loop).
+
+\vspace{0.3cm}
+\noindent\textit{\textbf{Nota Metodologica:} Al fine di definire il perimetro del Minimum Viable Product, la presente modellazione UML copre il nucleo dei requisiti Obbligatori e Desiderabili. Requisiti Opzionali sono documentati nel successivo capitolo dei Requisiti ma omessi da questa sezione.}
+
+\subsection{Attori del Sistema}
+Il sistema interagisce con i seguenti attori:
+\begin{itemize}
+    \item \textbf{Utente non autenticato}: Visitatore esterno che tenta di accedere alla piattaforma e necessita della validazione delle proprie credenziali.
+    \item \textbf{Utente (Generico)}: Attore astratto che rappresenta qualsiasi entità loggata a sistema, raggruppando le operazioni comuni e trasversali (es. logout).
+    \item \textbf{Cliente}: Utente B2B autenticato che interagisce con l'AI per dettare gli ordini, manipola il proprio carrello e richiede assistenza tecnica.
+    \item \textbf{Operatore}: Utente interno all'azienda fornitrice che accede al backoffice per risolvere i ticket subentrando nei carrelli dei clienti, consultare lo storico ordini e validare i log dell'AI.
+    \item \textbf{Sistema ERP (Esterno)}: Sistema gestionale aziendale che fornisce le anagrafiche (clienti, articoli, assortimenti) e riceve in output i file strutturati (JSON) degli ordini finalizzati.
+\end{itemize}
+
+\input{Contenuti/use_cases}
+
+\input{Contenuti/requisiti}
+
+\input{Contenuti/tracciamento}
+
+
+\end{document}

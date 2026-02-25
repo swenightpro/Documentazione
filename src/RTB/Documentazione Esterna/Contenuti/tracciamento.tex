@@ -1,0 +1,352 @@
+% ===================================================================
+%  5. MATRICI DI TRACCIABILITÀ
+% ===================================================================
+\newpage
+\section{Matrici di Tracciabilità}
+
+Al fine di garantire la totale copertura e consistenza dell'analisi svolta, in questa sezione vengono esposte le Matrici di Tracciabilità. Questi strumenti permettono di verificare in modo formale la corrispondenza biunivoca tra le fonti scaturite dall'analisi (Casi d'Uso, Capitolato, Decisioni Interne, Norme di Progetto) e i singoli Requisiti di sistema. 
+
+Il tracciamento mediante hyperlink previene l'insorgere di requisiti "orfani" (privi di giustificazione logica) o di "buchi" architetturali (Casi d'Uso non coperti da prescrizioni di sviluppo).
+
+% -------------------------------------------------------------------
+\subsection{Riepilogo Quantitativo dei Requisiti}
+
+La seguente tabella offre una sintesi numerica dei requisiti individuati, aggregati per tipologia logica e priorità di implementazione.
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|>{\raggedright\arraybackslash}p{0.28\textwidth}|>{\centering\arraybackslash}p{0.15\textwidth}|>{\centering\arraybackslash}p{0.15\textwidth}|>{\centering\arraybackslash}p{0.15\textwidth}|>{\centering\arraybackslash}p{0.15\textwidth}|}
+        \hline
+        \rowcolor[gray]{0.9}
+        \textbf{Tipologia Requisito} & \textbf{Obbligatorio (OB)} & \textbf{Desiderabile (DE)} & \textbf{Opzionale (OP)} & \textbf{Totale Tipologia} \\
+        \hline
+        Funzionale (RF) & 71 & 19 & 3 & \textbf{93} \\
+        \hline
+        Qualitativo (RQA) & 12 & 0 & 0 & \textbf{12} \\
+        \hline
+        Prestazionale (RP) & 6 & 2 & 0 & \textbf{8} \\
+        \hline
+        Di Vincolo (RV) & 7 & 0 & 0 & \textbf{7} \\
+        \hline
+        \rowcolor[gray]{0.95}
+        \textbf{Totale Priorità} & \textbf{96} & \textbf{21} & \textbf{3} & \textbf{120} \\
+        \hline
+    \end{tabular}
+    \caption{Riepilogo quantitativo globale dei requisiti}
+    \label{tab:riepilogo_quantitativo}
+\end{table}
+
+% -------------------------------------------------------------------
+\newpage
+\subsection{Tracciamento Fonte $\rightarrow$ Requisito}
+La seguente matrice dimostra come ogni fonte informativa (interna, esterna o interattiva) abbia generato specifici vincoli di sviluppo. I codici dei requisiti sono navigabili.
+
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{|>{\raggedright}p{0.3\textwidth}|>{\raggedright\arraybackslash}p{0.6\textwidth}|}
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{Fonte (Origine)} & \textbf{Requisiti Generati} \\
+    \hline
+    \endfirsthead
+    
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{Fonte (Origine)} & \textbf{Requisiti Generati} \\
+    \hline
+    \endhead
+
+    \hline
+    \textbf{Capitolato (Committente)} & \hyperlink{rf-ob_23}{RF-OB\_23}, \hyperlink{rf-ob_25}{RF-OB\_25}, \hyperlink{rf-ob_48}{RF-OB\_48}, \hyperlink{rf-ob_70}{RF-OB\_70}, \hyperlink{rp-ob_1}{RP-OB\_01}, \hyperlink{rv-ob_3}{RV-OB\_03}, \hyperlink{rv-ob_4}{RV-OB\_04} \\
+    \hline
+    \textbf{Interno (Decisione Architetturale)} & \hyperlink{rf-ob_26}{RF-OB\_26}, \hyperlink{rf-ob_27}{RF-OB\_27}, \hyperlink{rf-ob_28}{RF-OB\_28}, \hyperlink{rf-ob_29}{RF-OB\_29}, \hyperlink{rf-ob_30}{RF-OB\_30}, \hyperlink{rf-ob_47}{RF-OB\_47}, \hyperlink{rf-ob_49}{RF-OB\_49}, \hyperlink{rf-ob_70}{RF-OB\_70}, \hyperlink{rf-de_8}{RF-DE\_08}, \hyperlink{rf-op_1}{RF-OP\_01}, \hyperlink{rf-op_2}{RF-OP\_02}, \hyperlink{rf-op_3}{RF-OP\_03}, \hyperlink{rqa-ob_1}{RQA-OB\_01}, \hyperlink{rqa-ob_2}{RQA-OB\_02}, \hyperlink{rqa-ob_3}{RQA-OB\_03}, \hyperlink{rqa-ob_4}{RQA-OB\_04}, \hyperlink{rqa-ob_5}{RQA-OB\_05}, \hyperlink{rqa-ob_6}{RQA-OB\_06}, \hyperlink{rqa-ob_8}{RQA-OB\_08}, \hyperlink{rqa-ob_9}{RQA-OB\_09}, \hyperlink{rqa-ob_10}{RQA-OB\_10}, \hyperlink{rqa-ob_11}{RQA-OB\_11}, \hyperlink{rqa-ob_12}{RQA-OB\_12}, \hyperlink{rp-ob_1}{RP-OB\_01}, \hyperlink{rp-ob_2}{RP-OB\_02}, \hyperlink{rp-ob_3}{RP-OB\_03}, \hyperlink{rp-ob_4}{RP-OB\_04}, \hyperlink{rp-ob_5}{RP-OB\_05}, \hyperlink{rp-ob_6}{RP-OB\_06}, \hyperlink{rp-de_1}{RP-DE\_01}, \hyperlink{rp-de_2}{RP-DE\_02}, \hyperlink{rv-ob_1}{RV-OB\_01}, \hyperlink{rv-ob_2}{RV-OB\_02}, \hyperlink{rv-ob_5}{RV-OB\_05}, \hyperlink{rv-ob_6}{RV-OB\_06}, \hyperlink{rv-ob_7}{RV-OB\_07} \\
+    \hline
+    \textbf{Norme di Progetto} & \hyperlink{rqa-ob_7}{RQA-OB\_07}, \hyperlink{rv-ob_1}{RV-OB\_01} \\
+    \hline
+    \hyperref[uc_00.1]{UC\_00.1} & \hyperlink{rf-ob_34}{RF-OB\_34} \\
+    \hline
+    \hyperref[uc_00.2]{UC\_00.2} & \hyperlink{rf-ob_13}{RF-OB\_13} \\
+    \hline
+    \hyperref[uc_00.3]{UC\_00.3} & \hyperlink{rf-ob_51}{RF-OB\_51} \\
+    \hline
+    \hyperref[uc_00.4]{UC\_00.4} & \hyperlink{rf-ob_53}{RF-OB\_53} \\
+    \hline
+    \hyperref[uc_01.1]{UC\_01.1} & \hyperlink{rf-ob_1}{RF-OB\_01}, \hyperlink{rf-ob_2}{RF-OB\_02} \\
+    \hline
+    \hyperref[uc_01.2]{UC\_01.2} & \hyperlink{rf-ob_3}{RF-OB\_03}, \hyperlink{rf-ob_4}{RF-OB\_04} \\
+    \hline
+    \hyperref[uc_01.3]{UC\_01.3} & \hyperlink{rf-ob_5}{RF-OB\_05}, \hyperlink{rf-ob_6}{RF-OB\_06}, \hyperlink{rf-ob_10}{RF-OB\_10} \\
+    \hline
+    \hyperref[uc_01.3.1]{UC\_01.3.1} & \hyperlink{rf-ob_7}{RF-OB\_07}, \hyperlink{rf-ob_8}{RF-OB\_08}, \hyperlink{rf-ob_9}{RF-OB\_09} \\
+    \hline
+    \hyperref[uc_02]{UC\_02} & \hyperlink{rf-de_1}{RF-DE\_01} \\
+    \hline
+    \hyperref[uc_02.1]{UC\_02.1} & \hyperlink{rf-de_2}{RF-DE\_02} \\
+    \hline
+    \hyperref[uc_02.2]{UC\_02.2} & \hyperlink{rf-de_2}{RF-DE\_02} \\
+    \hline
+    \hyperref[uc_03]{UC\_03} & \hyperlink{rf-ob_11}{RF-OB\_11}, \hyperlink{rf-ob_12}{RF-OB\_12} \\
+    \hline
+    \hyperref[uc_04.1]{UC\_04.1} & \hyperlink{rf-ob_14}{RF-OB\_14} \\
+    \hline
+    \hyperref[uc_04.2]{UC\_04.2} & \hyperlink{rf-de_3}{RF-DE\_03} \\
+    \hline
+    \hyperref[uc_05.1]{UC\_05.1} & \hyperlink{rf-de_4}{RF-DE\_04}, \hyperlink{rf-de_5}{RF-DE\_05} \\
+    \hline
+    \hyperref[uc_05.2]{UC\_05.2} & \hyperlink{rf-de_4}{RF-DE\_04} \\
+    \hline
+    \hyperref[uc_05.3]{UC\_05.3} & \hyperlink{rf-de_4}{RF-DE\_04}, \hyperlink{rf-de_5}{RF-DE\_05} \\
+    \hline
+    \hyperref[uc_07.1]{UC\_07.1} & \hyperlink{rf-ob_15}{RF-OB\_15} \\
+    \hline
+    \hyperref[uc_07.2]{UC\_07.2} & \hyperlink{rf-ob_16}{RF-OB\_16} \\
+    \hline
+    \hyperref[uc_08.1]{UC\_08.1} & \hyperlink{rf-ob_17}{RF-OB\_17}, \hyperlink{rf-ob_18}{RF-OB\_18}, \hyperlink{rf-ob_19}{RF-OB\_19}, \hyperlink{rf-ob_59}{RF-OB\_59} \\
+    \hline
+    \hyperref[uc_08.2]{UC\_08.2} & \hyperlink{rf-ob_20}{RF-OB\_20}, \hyperlink{rf-ob_21}{RF-OB\_21}, \hyperlink{rf-ob_22}{RF-OB\_22}, \hyperlink{rf-ob_23}{RF-OB\_23} \\
+    \hline
+    \hyperref[uc_08.3]{UC\_08.3} & \hyperlink{rf-de_6}{RF-DE\_06}, \hyperlink{rf-de_7}{RF-DE\_07}, \hyperlink{rf-de_8}{RF-DE\_08} \\
+    \hline
+    \hyperref[uc_09.1]{UC\_09.1} & \hyperlink{rf-de_9}{RF-DE\_09} \\
+    \hline
+    \hyperref[uc_09.2]{UC\_09.2} & \hyperlink{rf-de_9}{RF-DE\_09}, \hyperlink{rf-de_10}{RF-DE\_10}, \hyperlink{rf-de_11}{RF-DE\_11} \\
+    \hline
+    \hyperref[uc_10]{UC\_10} & \hyperlink{rf-ob_24}{RF-OB\_24} \\
+    \hline
+    \hyperref[uc_11]{UC\_11} & \hyperlink{rf-ob_31}{RF-OB\_31}, \hyperlink{rf-ob_60}{RF-OB\_60} \\
+    \hline
+    \hyperref[uc_11.1]{UC\_11.1} & \hyperlink{rf-ob_32}{RF-OB\_32} \\
+    \hline
+    \hyperref[uc_11.2]{UC\_11.2} & \hyperlink{rf-ob_33}{RF-OB\_33} \\
+    \hline
+    \hyperref[uc_12]{UC\_12} & \hyperlink{rf-ob_35}{RF-OB\_35}, \hyperlink{rf-ob_36}{RF-OB\_36}, \hyperlink{rf-ob_37}{RF-OB\_37}, \hyperlink{rf-ob_38}{RF-OB\_38}, \hyperlink{rf-ob_60}{RF-OB\_60} \\
+    \hline
+    \hyperref[uc_13.1]{UC\_13.1} & \hyperlink{rf-ob_39}{RF-OB\_39} \\
+    \hline
+    \hyperref[uc_13.2]{UC\_13.2} & \hyperlink{rf-ob_40}{RF-OB\_40} \\
+    \hline
+    \hyperref[uc_13.2.1]{UC\_13.2.1} & \hyperlink{rf-ob_40}{RF-OB\_40} \\
+    \hline
+    \hyperref[uc_13.3]{UC\_13.3} & \hyperlink{rf-ob_41}{RF-OB\_41} \\
+    \hline
+    \hyperref[uc_13.4]{UC\_13.4} & \hyperlink{rf-ob_43}{RF-OB\_43} \\
+    \hline
+    \hyperref[uc_14]{UC\_14} & \hyperlink{rf-ob_42}{RF-OB\_42}, \hyperlink{rf-ob_61}{RF-OB\_61} \\
+    \hline
+    \hyperref[uc_15]{UC\_15} & \hyperlink{rf-ob_44}{RF-OB\_44}, \hyperlink{rf-ob_45}{RF-OB\_45}, \hyperlink{rf-ob_47}{RF-OB\_47} \\
+    \hline
+    \hyperref[uc_15.1]{UC\_15.1} & \hyperlink{rf-ob_46}{RF-OB\_46} \\
+    \hline
+    \hyperref[uc_15.2]{UC\_15.2} & \hyperlink{rf-ob_48}{RF-OB\_48}, \hyperlink{rf-ob_49}{RF-OB\_49} \\
+    \hline
+    \hyperref[uc_16]{UC\_16} & \hyperlink{rf-ob_50}{RF-OB\_50} \\
+    \hline
+    \hyperref[uc_16.1]{UC\_16.1} & \hyperlink{rf-ob_51}{RF-OB\_51} \\
+    \hline
+    \hyperref[uc_16.2]{UC\_16.2} & \hyperlink{rf-ob_51}{RF-OB\_51} \\
+    \hline
+    \hyperref[uc_16.3]{UC\_16.3} & \hyperlink{rf-de_12}{RF-DE\_12} \\
+    \hline
+    \hyperref[uc_17]{UC\_17} & \hyperlink{rf-ob_52}{RF-OB\_52} \\
+    \hline
+    \hyperref[uc_18.1]{UC\_18.1} & \hyperlink{rf-ob_54}{RF-OB\_54} \\
+    \hline
+    \hyperref[uc_18.2]{UC\_18.2} & \hyperlink{rf-ob_63}{RF-OB\_63} \\
+    \hline
+    \hyperref[uc_19.1]{UC\_19.1} & \hyperlink{rf-ob_55}{RF-OB\_55} \\
+    \hline
+    \hyperref[uc_19.2]{UC\_19.2} & \hyperlink{rf-ob_64}{RF-OB\_64} \\
+    \hline
+    \hyperref[uc_19.3]{UC\_19.3} & \hyperlink{rf-de_13}{RF-DE\_13} \\
+    \hline
+    \hyperref[uc_20]{UC\_20} & \hyperlink{rf-ob_67}{RF-OB\_67} \\
+    \hline
+    \hyperref[uc_21]{UC\_21} & \hyperlink{rf-ob_68}{RF-OB\_68} \\
+    \hline
+    \hyperref[uc_22]{UC\_22} & \hyperlink{rf-ob_69}{RF-OB\_69} \\
+    \hline
+    \hyperref[uc_23.5]{UC\_23.5} & \hyperlink{rf-ob_56}{RF-OB\_56} \\
+    \hline
+    \hyperref[uc_23.6]{UC\_23.6} & \hyperlink{rf-ob_65}{RF-OB\_65} \\
+    \hline
+    \hyperref[uc_23.7]{UC\_23.7} & \hyperlink{rf-ob_57}{RF-OB\_57} \\
+    \hline
+    \hyperref[uc_24]{UC\_24} & \hyperlink{rf-ob_58}{RF-OB\_58} \\
+    \hline
+    \hyperref[uc_24.1]{UC\_24.1} & \hyperlink{rf-ob_71}{RF-OB\_71} \\
+    \hline
+    \hyperref[uc_24.2]{UC\_24.2} & \hyperlink{rf-ob_62}{RF-OB\_62} \\
+    \hline
+    \hyperref[uc_25.1]{UC\_25.1} & \hyperlink{rf-ob_65}{RF-OB\_65} \\
+    \hline
+    \hyperref[uc_26]{UC\_26} & \hyperlink{rf-ob_66}{RF-OB\_66} \\
+    \hline
+    \hyperref[uc_26.1]{UC\_26.1} & \hyperlink{rf-ob_71}{RF-OB\_71} \\
+    \hline
+    \hyperref[uc_27]{UC\_27} & \hyperlink{rf-de_14}{RF-DE\_14} \\
+    \hline
+    \hyperref[uc_27.7]{UC\_27.7} & \hyperlink{rf-ob_65}{RF-OB\_65} \\
+    \hline
+    \hyperref[uc_28]{UC\_28} & \hyperlink{rf-de_15}{RF-DE\_15} \\
+    \hline
+    \hyperref[uc_29]{UC\_29} & \hyperlink{rf-de_16}{RF-DE\_16} \\
+    \hline
+    \hyperref[uc_30.1]{UC\_30.1} & \hyperlink{rf-de_17}{RF-DE\_17} \\
+    \hline
+    \hyperref[uc_30.2]{UC\_30.2} & \hyperlink{rf-de_18}{RF-DE\_18} \\
+    \hline
+    \hyperref[uc_31]{UC\_31} & \hyperlink{rf-de_19}{RF-DE\_19} \\
+    \hline
+    \caption{Tracciamento Fonte $\rightarrow$ Requisito}
+\end{longtable}
+
+
+% -------------------------------------------------------------------
+\newpage
+\subsection{Tracciamento Requisito $\rightarrow$ Fonte}
+La seguente matrice inversa funge da indice e dimostra la totale copertura dei requisiti stabiliti. Anche in questa tabella, i codici dei Requisiti e dei Casi d'Uso sono navigabili tramite hyperlink.
+
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{|>{\raggedright}p{0.3\textwidth}|>{\raggedright\arraybackslash}p{0.6\textwidth}|}
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{Codice Requisito} & \textbf{Fonte (Origine)} \\
+    \hline
+    \endfirsthead
+    
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{Codice Requisito} & \textbf{Fonte (Origine)} \\
+    \hline
+    \endhead
+
+    \hline
+    \hyperlink{rf-ob_1}{RF-OB\_01} & \hyperref[uc_01.1]{UC\_01.1} \\ \hline
+    \hyperlink{rf-ob_2}{RF-OB\_02} & \hyperref[uc_01.1]{UC\_01.1} \\ \hline
+    \hyperlink{rf-ob_3}{RF-OB\_03} & \hyperref[uc_01.2]{UC\_01.2} \\ \hline
+    \hyperlink{rf-ob_4}{RF-OB\_04} & \hyperref[uc_01.2]{UC\_01.2} \\ \hline
+    \hyperlink{rf-ob_5}{RF-OB\_05} & \hyperref[uc_01.3]{UC\_01.3} \\ \hline
+    \hyperlink{rf-ob_6}{RF-OB\_06} & \hyperref[uc_01.3]{UC\_01.3} \\ \hline
+    \hyperlink{rf-ob_7}{RF-OB\_07} & \hyperref[uc_01.3.1]{UC\_01.3.1} \\ \hline
+    \hyperlink{rf-ob_8}{RF-OB\_08} & \hyperref[uc_01.3.1]{UC\_01.3.1} \\ \hline
+    \hyperlink{rf-ob_9}{RF-OB\_09} & \hyperref[uc_01.3.1]{UC\_01.3.1} \\ \hline
+    \hyperlink{rf-ob_10}{RF-OB\_10} & \hyperref[uc_01.3]{UC\_01.3} \\ \hline
+    \hyperlink{rf-ob_11}{RF-OB\_11} & \hyperref[uc_03]{UC\_03} \\ \hline
+    \hyperlink{rf-ob_12}{RF-OB\_12} & \hyperref[uc_03]{UC\_03} \\ \hline
+    \hyperlink{rf-ob_13}{RF-OB\_13} & \hyperref[uc_00.2]{UC\_00.2} \\ \hline
+    \hyperlink{rf-ob_14}{RF-OB\_14} & \hyperref[uc_04.1]{UC\_04.1} \\ \hline
+    \hyperlink{rf-ob_15}{RF-OB\_15} & \hyperref[uc_07.1]{UC\_07.1} \\ \hline
+    \hyperlink{rf-ob_16}{RF-OB\_16} & \hyperref[uc_07.2]{UC\_07.2} \\ \hline
+    \hyperlink{rf-ob_17}{RF-OB\_17} & \hyperref[uc_08.1]{UC\_08.1} \\ \hline
+    \hyperlink{rf-ob_18}{RF-OB\_18} & \hyperref[uc_08.1]{UC\_08.1} \\ \hline
+    \hyperlink{rf-ob_19}{RF-OB\_19} & \hyperref[uc_08.1]{UC\_08.1} \\ \hline
+    \hyperlink{rf-ob_20}{RF-OB\_20} & \hyperref[uc_08.2]{UC\_08.2} \\ \hline
+    \hyperlink{rf-ob_21}{RF-OB\_21} & \hyperref[uc_08.2]{UC\_08.2} \\ \hline
+    \hyperlink{rf-ob_22}{RF-OB\_22} & \hyperref[uc_08.2]{UC\_08.2} \\ \hline
+    \hyperlink{rf-ob_23}{RF-OB\_23} & \hyperref[uc_08.2]{UC\_08.2}, Capitolato \\ \hline
+    \hyperlink{rf-ob_24}{RF-OB\_24} & \hyperref[uc_10]{UC\_10} \\ \hline
+    \hyperlink{rf-ob_25}{RF-OB\_25} & Capitolato \\ \hline
+    \hyperlink{rf-ob_26}{RF-OB\_26} & Interno \\ \hline
+    \hyperlink{rf-ob_27}{RF-OB\_27} & Interno \\ \hline
+    \hyperlink{rf-ob_28}{RF-OB\_28} & Interno (Logica ERP) \\ \hline
+    \hyperlink{rf-ob_29}{RF-OB\_29} & Interno (Logica ERP) \\ \hline
+    \hyperlink{rf-ob_30}{RF-OB\_30} & Interno (Logica ERP) \\ \hline
+    \hyperlink{rf-ob_31}{RF-OB\_31} & \hyperref[uc_11]{UC\_11} \\ \hline
+    \hyperlink{rf-ob_32}{RF-OB\_32} & \hyperref[uc_11.1]{UC\_11.1} \\ \hline
+    \hyperlink{rf-ob_33}{RF-OB\_33} & \hyperref[uc_11.2]{UC\_11.2} \\ \hline
+    \hyperlink{rf-ob_34}{RF-OB\_34} & \hyperref[uc_00.1]{UC\_00.1} \\ \hline
+    \hyperlink{rf-ob_35}{RF-OB\_35} & \hyperref[uc_12]{UC\_12} \\ \hline
+    \hyperlink{rf-ob_36}{RF-OB\_36} & \hyperref[uc_12]{UC\_12} \\ \hline
+    \hyperlink{rf-ob_37}{RF-OB\_37} & \hyperref[uc_12]{UC\_12} \\ \hline
+    \hyperlink{rf-ob_38}{RF-OB\_38} & \hyperref[uc_12]{UC\_12} \\ \hline
+    \hyperlink{rf-ob_39}{RF-OB\_39} & \hyperref[uc_13.1]{UC\_13.1} \\ \hline
+    \hyperlink{rf-ob_40}{RF-OB\_40} & \hyperref[uc_13.2]{UC\_13.2}, \hyperref[uc_13.2.1]{UC\_13.2.1} \\ \hline
+    \hyperlink{rf-ob_41}{RF-OB\_41} & \hyperref[uc_13.3]{UC\_13.3} \\ \hline
+    \hyperlink{rf-ob_42}{RF-OB\_42} & \hyperref[uc_14]{UC\_14} \\ \hline
+    \hyperlink{rf-ob_43}{RF-OB\_43} & \hyperref[uc_13.4]{UC\_13.4} \\ \hline
+    \hyperlink{rf-ob_44}{RF-OB\_44} & \hyperref[uc_15]{UC\_15} \\ \hline
+    \hyperlink{rf-ob_45}{RF-OB\_45} & \hyperref[uc_15]{UC\_15} \\ \hline
+    \hyperlink{rf-ob_46}{RF-OB\_46} & \hyperref[uc_15.1]{UC\_15.1} \\ \hline
+    \hyperlink{rf-ob_47}{RF-OB\_47} & \hyperref[uc_15]{UC\_15}, Interno \\ \hline
+    \hyperlink{rf-ob_48}{RF-OB\_48} & \hyperref[uc_15.2]{UC\_15.2}, Capitolato \\ \hline
+    \hyperlink{rf-ob_49}{RF-OB\_49} & \hyperref[uc_15.2]{UC\_15.2}, Interno \\ \hline
+    \hyperlink{rf-ob_50}{RF-OB\_50} & \hyperref[uc_16]{UC\_16} \\ \hline
+    \hyperlink{rf-ob_51}{RF-OB\_51} & \hyperref[uc_00.3]{UC\_00.3}, \hyperref[uc_16.1]{UC\_16.1}, \hyperref[uc_16.2]{UC\_16.2} \\ \hline
+    \hyperlink{rf-ob_52}{RF-OB\_52} & \hyperref[uc_17]{UC\_17} \\ \hline
+    \hyperlink{rf-ob_53}{RF-OB\_53} & \hyperref[uc_00.4]{UC\_00.4} \\ \hline
+    \hyperlink{rf-ob_54}{RF-OB\_54} & \hyperref[uc_18.1]{UC\_18.1} \\ \hline
+    \hyperlink{rf-ob_55}{RF-OB\_55} & \hyperref[uc_19.1]{UC\_19.1} \\ \hline
+    \hyperlink{rf-ob_56}{RF-OB\_56} & \hyperref[uc_23.5]{UC\_23.5} \\ \hline
+    \hyperlink{rf-ob_57}{RF-OB\_57} & \hyperref[uc_23.7]{UC\_23.7} \\ \hline
+    \hyperlink{rf-ob_58}{RF-OB\_58} & \hyperref[uc_24]{UC\_24} \\ \hline
+    \hyperlink{rf-ob_59}{RF-OB\_59} & \hyperref[uc_08.1]{UC\_08.1} \\ \hline
+    \hyperlink{rf-ob_60}{RF-OB\_60} & \hyperref[uc_11]{UC\_11}, \hyperref[uc_12]{UC\_12} \\ \hline
+    \hyperlink{rf-ob_61}{RF-OB\_61} & \hyperref[uc_13]{UC\_13}, \hyperref[uc_14]{UC\_14} \\ \hline
+    \hyperlink{rf-ob_62}{RF-OB\_62} & \hyperref[uc_24.2]{UC\_24.2} \\ \hline
+    \hyperlink{rf-ob_63}{RF-OB\_63} & \hyperref[uc_18.2]{UC\_18.2} \\ \hline
+    \hyperlink{rf-ob_64}{RF-OB\_64} & \hyperref[uc_19.2]{UC\_19.2} \\ \hline
+    \hyperlink{rf-ob_65}{RF-OB\_65} & \hyperref[uc_23.6]{UC\_23.6}, \hyperref[uc_25.1]{UC\_25.1}, \hyperref[uc_27.7]{UC\_27.7} \\ \hline
+    \hyperlink{rf-ob_66}{RF-OB\_66} & \hyperref[uc_26]{UC\_26} \\ \hline
+    \hyperlink{rf-ob_67}{RF-OB\_67} & \hyperref[uc_20]{UC\_20} \\ \hline
+    \hyperlink{rf-ob_68}{RF-OB\_68} & \hyperref[uc_21]{UC\_21} \\ \hline
+    \hyperlink{rf-ob_69}{RF-OB\_69} & \hyperref[uc_22]{UC\_22} \\ \hline
+    \hyperlink{rf-ob_70}{RF-OB\_70} & Interno, Capitolato \\ \hline
+    \hyperlink{rf-ob_71}{RF-OB\_71} & \hyperref[uc_24.1]{UC\_24.1}, \hyperref[uc_26.1]{UC\_26.1} \\ \hline
+    
+    \hyperlink{rf-de_1}{RF-DE\_01} & \hyperref[uc_02]{UC\_02} \\ \hline
+    \hyperlink{rf-de_2}{RF-DE\_02} & \hyperref[uc_02.1]{UC\_02.1}, \hyperref[uc_02.2]{UC\_02.2} \\ \hline
+    \hyperlink{rf-de_3}{RF-DE\_03} & \hyperref[uc_04.2]{UC\_04.2} \\ \hline
+    \hyperlink{rf-de_4}{RF-DE\_04} & \hyperref[uc_05.1]{UC\_05.1}, \hyperref[uc_05.2]{UC\_05.2}, \hyperref[uc_05.3]{UC\_05.3} \\ \hline
+    \hyperlink{rf-de_5}{RF-DE\_05} & \hyperref[uc_05.1]{UC\_05.1}, \hyperref[uc_05.3]{UC\_05.3} \\ \hline
+    \hyperlink{rf-de_6}{RF-DE\_06} & \hyperref[uc_08.3]{UC\_08.3} \\ \hline
+    \hyperlink{rf-de_7}{RF-DE\_07} & \hyperref[uc_08.3]{UC\_08.3} \\ \hline
+    \hyperlink{rf-de_8}{RF-DE\_08} & \hyperref[uc_08.3]{UC\_08.3}, Interno \\ \hline
+    \hyperlink{rf-de_9}{RF-DE\_09} & \hyperref[uc_09.1]{UC\_09.1}, \hyperref[uc_09.2]{UC\_09.2} \\ \hline
+    \hyperlink{rf-de_10}{RF-DE\_10} & \hyperref[uc_09.2]{UC\_09.2} \\ \hline
+    \hyperlink{rf-de_11}{RF-DE\_11} & \hyperref[uc_09.2]{UC\_09.2} \\ \hline
+    \hyperlink{rf-de_12}{RF-DE\_12} & \hyperref[uc_16.3]{UC\_16.3} \\ \hline
+    \hyperlink{rf-de_13}{RF-DE\_13} & \hyperref[uc_19.3]{UC\_19.3} \\ \hline
+    \hyperlink{rf-de_14}{RF-DE\_14} & \hyperref[uc_27]{UC\_27} \\ \hline
+    \hyperlink{rf-de_15}{RF-DE\_15} & \hyperref[uc_28]{UC\_28} \\ \hline
+    \hyperlink{rf-de_16}{RF-DE\_16} & \hyperref[uc_29]{UC\_29} \\ \hline
+    \hyperlink{rf-de_17}{RF-DE\_17} & \hyperref[uc_30.1]{UC\_30.1} \\ \hline
+    \hyperlink{rf-de_18}{RF-DE\_18} & \hyperref[uc_30.2]{UC\_30.2} \\ \hline
+    \hyperlink{rf-de_19}{RF-DE\_19} & \hyperref[uc_31]{UC\_31} \\ \hline
+    
+    \hyperlink{rf-op_1}{RF-OP\_01} & Interno \\ \hline
+    \hyperlink{rf-op_2}{RF-OP\_02} & Interno \\ \hline
+    \hyperlink{rf-op_3}{RF-OP\_03} & Interno \\ \hline
+
+    \hyperlink{rqa-ob_1}{RQA-OB\_01} & Interno \\ \hline
+    \hyperlink{rqa-ob_2}{RQA-OB\_02} & Interno \\ \hline
+    \hyperlink{rqa-ob_3}{RQA-OB\_03} & Interno \\ \hline
+    \hyperlink{rqa-ob_4}{RQA-OB\_04} & Interno \\ \hline
+    \hyperlink{rqa-ob_5}{RQA-OB\_05} & Interno \\ \hline
+    \hyperlink{rqa-ob_6}{RQA-OB\_06} & Interno \\ \hline
+    \hyperlink{rqa-ob_7}{RQA-OB\_07} & Norme di Progetto \\ \hline
+    \hyperlink{rqa-ob_8}{RQA-OB\_08} & Interno \\ \hline
+    \hyperlink{rqa-ob_9}{RQA-OB\_09} & Interno, Performance \\ \hline
+    \hyperlink{rqa-ob_10}{RQA-OB\_10} & Interno \\ \hline
+    \hyperlink{rqa-ob_11}{RQA-OB\_11} & Interno \\ \hline
+    \hyperlink{rqa-ob_12}{RQA-OB\_12} & Interno \\ \hline
+
+    \hyperlink{rp-ob_1}{RP-OB\_01} & Interno, Capitolato \\ \hline
+    \hyperlink{rp-ob_2}{RP-OB\_02} & Interno \\ \hline
+    \hyperlink{rp-ob_3}{RP-OB\_03} & Interno \\ \hline
+    \hyperlink{rp-ob_4}{RP-OB\_04} & Interno \\ \hline
+    \hyperlink{rp-ob_5}{RP-OB\_05} & Interno \\ \hline
+    \hyperlink{rp-ob_6}{RP-OB\_06} & Interno \\ \hline
+
+    \hyperlink{rp-de_1}{RP-DE\_01} & Interno \\ \hline
+    \hyperlink{rp-de_2}{RP-DE\_02} & Interno \\ \hline
+
+    \hyperlink{rv-ob_1}{RV-OB\_01} & Interno, Norme di Progetto \\ \hline
+    \hyperlink{rv-ob_2}{RV-OB\_02} & Interno \\ \hline
+    \hyperlink{rv-ob_3}{RV-OB\_03} & Capitolato \\ \hline
+    \hyperlink{rv-ob_4}{RV-OB\_04} & Capitolato \\ \hline
+    \hyperlink{rv-ob_5}{RV-OB\_05} & Interno (Logica ERP) \\ \hline
+    \hyperlink{rv-ob_6}{RV-OB\_06} & Interno (Logica B2B) \\ \hline
+    \hyperlink{rv-ob_7}{RV-OB\_07} & Interno (Logica ERP) \\ \hline
+    
+    \caption{Tracciamento Requisito $\rightarrow$ Fonte}
+\end{longtable}
