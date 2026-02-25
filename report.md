@@ -1,10 +1,12 @@
-# Report di compilazione del 2026-02-25T16:30:38+00:00
+# Report di compilazione del 2026-02-25T16:34:40+00:00
 
-Compilazione basata sul commit a8e8f48acb9be9c3473ed8afeccaa204dfec52dd (base: a8e8f48)
+Compilazione basata sul commit b5b501d805ec9100973d3ab9d2d238551f0b0102 (base: b5b501d)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/RTB/Documentazione Esterna/Glossario_v2.0.pdf](docs/RTB/Documentazione%20Esterna/Glossario_v2.0.pdf)
+✅ [docs/RTB/Documentazione Esterna/Piano_di_Progetto_v1.0.pdf](docs/RTB/Documentazione%20Esterna/Piano_di_Progetto_v1.0.pdf)
+
+✅ [docs/RTB/Documentazione Esterna/Piano_di_Progetto_v0.10.pdf](docs/RTB/Documentazione%20Esterna/Piano_di_Progetto_v0.10.pdf)
 
