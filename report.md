@@ -1,10 +1,10 @@
-# Report di compilazione del 2026-02-25T16:13:56+00:00
+# Report di compilazione del 2026-02-25T16:30:38+00:00
 
-Compilazione basata sul commit 062acc6240e1c8dd551516e547132fb2a2c2622a (base: 062acc6)
+Compilazione basata sul commit a8e8f48acb9be9c3473ed8afeccaa204dfec52dd (base: a8e8f48)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/RTB/Documentazione Interna/Norme_di_Progetto_v2.0.pdf](docs/RTB/Documentazione%20Interna/Norme_di_Progetto_v2.0.pdf)
+✅ [docs/RTB/Documentazione Esterna/Glossario_v2.0.pdf](docs/RTB/Documentazione%20Esterna/Glossario_v2.0.pdf)
 
