@@ -95,8 +95,8 @@
 
 \vfill
 
-{\large Data: 2026-01-30 \par}
-{\Large Versione: 0.3 \par}
+{\large Data: 2026-02-25 \par}
+{\Large Versione: 0.5 \par}
 
 \end{titlepage}
 
@@ -113,6 +113,7 @@
 \toprule
 \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione} & \textbf{Verificatore} \\
 \midrule
+0.4 & 2026-02-19 & Francesco Zanella & Ristrutturazione della sezione 4.3 per allineare le strategie di test ai 124 requisiti dell'Analisi v1.0 e aggiornamento grafici allo Sprint 9 (sez. 6). & Samuele Perozzo-\\
 0.3 & 2026-01-30 & Davide Biasuzzi & Inserimento metriche di processo e di qualità sw dettagliate con codici, formule e soglie di accettazione, grafici, strategie di test & Francesco Zanella\\
 0.2 & 2025-12-18 & Davide Biasuzzi & Aggiunto paragrafo relativo alla qualità della documentazione & Samuele Perozzo\\
 0.1 & 2025-12-05 & Mihaela-Mariana Romascu & Stesura iniziale del documento, definizione metriche di processo e prodotto. & Giovanni Ponso\\
@@ -467,7 +468,7 @@ Per il monitoraggio dell'avanzamento, il gruppo utilizza la metodologia Earned V
 \end{tabular}
 
 \subsubsection{PM-8 - Cost Performance Index}
-
+ 
 \noindent
 \begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
 \textbf{Codice:} & PM-8 \\
@@ -976,7 +977,11 @@ Questa sezione definisce la strategia di verifica e validazione per ciascun requ
     \item \textbf{REV} - Code Review: revisione del codice e della configurazione.
 \end{itemize}
 
-\subsubsection{Requisiti Funzionali}
+% ===================================================================
+% 4.3 STRATEGIE DI TEST PER REQUISITO
+% ===================================================================
+
+\subsubsection{Requisiti Funzionali Obbligatori (RF-OB)}
 
 \begin{longtable}{|p{1.5cm}|p{4.5cm}|p{1.8cm}|p{6cm}|}
 \hline
@@ -988,90 +993,83 @@ Questa sezione definisce la strategia di verifica e validazione per ciascun requ
 \hline
 \endhead
 
-\multicolumn{4}{|l|}{\textbf{Gestione Input Multimodale}} \\
-\hline
-RF1.1 & Acquisizione testo & UT, IT, ST & Verifica ricezione messaggi da interfaccia chat. Test di integrazione con il backend. \\
-\hline
-RF1.2 & Acquisizione audio & UT, IT, ST & Test upload file con formati diversi (MP3, WAV, OGG) e sample rate variabili. Verifica gestione file corrotti. \\
-\hline
-RF1.3 & Validazione format input & UT & Test con input validi/invalidi, dimensioni fuori range, formati non supportati. Verifica messaggi di errore. \\
-\hline
-RF1.4 & Normalizzazione dati grezzi & UT & Test su testi con rumore, caratteri speciali, formattazioni diverse. Verifica output normalizzato. \\
-\hline
-
-\multicolumn{4}{|l|}{\textbf{Estrazione e Riconoscimento Entità}} \\
-\hline
-RF2.1 & NER (Named Entity Recognition) & UT, IT & Test con frasi contenenti entità note/sconosciute. Verifica accuratezza identificazione. \\
-\hline
-RF2.2 & Speech-to-text & UT, IT, PT & Test con audio di qualità variabile, accenti regionali. Verifica accuracy $\geq$ 90\%. Benchmark prestazioni. \\
-\hline
-RF2.3 & Tokenizzazione e normalizzazione testuale & UT & Test con testi diversi. Verifica tokenizzazione, lowercasing, rimozione simboli. \\
-\hline
-
-\multicolumn{4}{|l|}{\textbf{Elaborazione Semantica e Mapping}} \\
-\hline
-RF3.1 & Generazione embedding semantici & UT, IT & Test generazione embedding per testi campione. Verifica dimensionalità e consistenza. \\
-\hline
-RF3.2 & Generazione embedding audio & UT, IT & Test su audio trascritti. Verifica coerenza embedding audio/testo. \\
-\hline
-RF3.3 & Mapping catalogo prodotti & UT, IT, ST & Test con descrizioni esatte/parziali/ambigue. Verifica confidence score e correttezza mapping. \\
-\hline
-RF3.4 & Completamento informazioni & UT, IT & Test con ordini incompleti. Verifica completamento basato su regole aziendali. \\
-\hline
-
-\multicolumn{4}{|l|}{\textbf{Validazione e Arricchimento Dati}} \\
-\hline
-RF4.1 & Verifica integrità ordine & UT, IT & Test con ordini completi/incompleti. Verifica identificazione campi obbligatori mancanti. \\
-\hline
-RF4.2 & Applicazione regole aziendali & UT, IT & Test quantità minime, disponibilità magazzino. Verifica applicazione regole configurabili. \\
-\hline
-RF4.3 & Validazione coerenza & UT & Test coerenza quantità/unità misura, prodotto/categoria. Verifica rilevamento incoerenze. \\
-\hline
-RF4.4 & Arricchimento metadati & UT, IT & Verifica presenza di tutti i metadati richiesti (timestamp, canale, confidence score). \\
-\hline
-RF4.5 & Handling ambiguità & UT, IT, ST & Test con input ambigui. Verifica segnalazione confidence basso e routing a validazione manuale. \\
-\hline
-
-\multicolumn{4}{|l|}{\textbf{Strutturazione Output e Integrazione Database}} \\
-\hline
-RF5.1 & Strutturazione JSON & UT, IT & Verifica output JSON valido e conforme allo schema definito. Test parser JSON. \\
-\hline
-RF5.2 & Strutturazione XML & UT, IT & Verifica output XML valido e conforme allo schema XSD. Test compatibilità con sistemi ERP. \\
-\hline
-RF5.3 & Tracciamento metadati & UT, IT, ST & Verifica tracciabilità completa metadati per ogni ordine. Test query su metadati. \\
-\hline
-
-\multicolumn{4}{|l|}{\textbf{Supervisione e Gestione Manuale}} \\
-\hline
-RF6.1 & Interfaccia supervisione & ST, UAT & Test funzionalità dashboard. Verifica accessibilità e usabilità interfaccia. \\
-\hline
-RF6.2 & Visualizzazione dettagli ordine & ST, UAT & Verifica visualizzazione completa dei dati. Test con ordini diversi. \\
-\hline
-RF6.3 & Correzione manuale & IT, ST, UAT & Test modifica campi ordine. Verifica salvataggio e propagazione correzioni. \\
-\hline
-RF6.4 & Approvazione/Rifiuto & IT, ST, UAT & Test flusso approvazione/rifiuto. Verifica cambio stato ordine e notifiche. \\
-\hline
-RF6.5 & Feedback per retraining & IT, ST & Verifica registrazione correzioni. Test recupero dati per retraining. \\
-\hline
-RF6.6 & Visualizzazione storico & ST, UAT & Test filtri (data, canale, cliente). Verifica performance con grande volume dati. \\
-\hline
-
-\multicolumn{4}{|l|}{\textbf{Monitoraggio e Feedback Continuo}} \\
-\hline
-RF7.1 & Logging dettagliato & REV, IT & Verifica logging completo operazioni. Test formato log e persistenza. \\
-\hline
-RF7.2 & Monitoraggio prestazioni & IT, PT & Verifica tracciamento metriche. Test dashboard monitoraggio in tempo reale. \\
-\hline
-RF7.3 & Meccanismo feedback & IT, ST & Test ciclo feedback operatore-sistema. Verifica registrazione e processamento feedback. \\
-\hline
-RF7.4 & Retraining periodico & IT, ST & Test pipeline retraining. Verifica aggiornamento modelli con nuovi dati. \\
-\hline
-RF7.5 & Aggiornamento regole & IT, ST, REV & Test modifica regole runtime. Verifica applicazione nuove regole senza riavvio. \\
-\hline
-\caption{Strategie di test per i requisiti funzionali}
+RF-OB 01 & Vista campo Email login & ST & Verifica presenza input email nel form di login. \\ \hline
+RF-OB 02 & Inserimento Email & ST & Verifica corretta ricezione della stringa email. \\ \hline
+RF-OB 03 & Vista campo Password & ST & Verifica presenza input password (testo oscurato). \\ \hline
+RF-OB 04 & Inserimento Password & ST & Verifica digitazione credenziali nel campo sicuro. \\ \hline
+RF-OB 05 & Vista tasto Accedi & ST & Verifica presenza fisica del pulsante di conferma. \\ \hline
+RF-OB 06 & Pressione Accedi & ST & Verifica attivazione del flusso di autenticazione al click. \\ \hline
+RF-OB 07 & Errore formato Email & UT, ST & Test con email senza @; verifica alert validazione. \\ \hline
+RF-OB 08 & Errore Email non in DB & IT, ST & Test con utente inesistente; verifica errore ERP. \\ \hline
+RF-OB 09 & Errore Password errata & IT, ST & Test con password fallata; verifica errore autenticazione. \\ \hline
+RF-OB 10 & Redirect post-login & ST & Verifica reindirizzamento in base al ruolo (Cliente/Op). \\ \hline
+RF-OB 11 & Vista tasto Logout & ST & Verifica presenza pulsante in Area Personale. \\ \hline
+RF-OB 12 & Esecuzione Logout & ST & Verifica distruzione sessione e ritorno al Login. \\ \hline
+RF-OB 13 & Vista Ragione Sociale & ST & Verifica visualizzazione nome azienda (solo Cliente). \\ \hline
+RF-OB 14 & Vista Email Personale & ST & Verifica visualizzazione email account (sola lettura). \\ \hline
+RF-OB 15 & Vista messaggi Cliente & ST & Verifica rendering messaggi inviati (allineamento DX). \\ \hline
+RF-OB 16 & Vista risposte AI/Op & ST & Verifica rendering risposte ricevute (allineamento SX). \\ \hline
+RF-OB 17 & Vista barra input chat & ST & Verifica presenza area di testo interattiva. \\ \hline
+RF-OB 18 & Inserimento testo chat & ST & Verifica invio stringhe in linguaggio naturale. \\ \hline
+RF-OB 19 & Errore limite caratteri & UT, ST & Test con stringa > limite; verifica blocco invio. \\ \hline
+RF-OB 20 & Vista tasto Microfono & ST & Verifica presenza pulsante per messaggi vocali. \\ \hline
+RF-OB 21 & Registrazione Audio & ST & Verifica attivazione hardware e acquisizione voce. \\ \hline
+RF-OB 22 & Conversione STT & IT & Verifica trascrizione dell'audio in testo tramite modulo. \\ \hline
+RF-OB 23 & Limite Audio 10MB & UT, ST & Test upload file pesante; verifica blocco e alert. \\ \hline
+RF-OB 24 & Nuova Sessione & IT, ST & Verifica azzeramento totale di chat e carrello al reset. \\ \hline
+RF-OB 25 & Estrazione Entità AI & IT & Verifica riconoscimento prodotti/quantità dal testo. \\ \hline
+RF-OB 26 & Ricerca Vettoriale & IT & Verifica interrogazione database tramite Vector Search. \\ \hline
+RF-OB 27 & Auto-aggiunta (>70\%) & IT & Verifica iniezione carrello se confidenza AI è elevata. \\ \hline
+RF-OB 28 & Vincolo Assortimento & IT & Verifica blocco aggiunta se prodotto non in "asscli". \\ \hline
+RF-OB 29 & Vincolo Stato Prodotto & IT & Verifica blocco aggiunta se prodotto sospeso in "anaart". \\ \hline
+RF-OB 30 & Deduzione Formati & UT, IT & Verifica arrotondamento quantità secondo unità ERP. \\ \hline
+RF-OB 31 & Vista Barra Live & ST & Verifica presenza barra ricerca manuale nel carrello. \\ \hline
+RF-OB 32 & Testo ricerca manuale & ST & Verifica attivazione ricerca asincrona alla digitazione. \\ \hline
+RF-OB 33 & Tendina Risultati & ST & Verifica comparsa lista a discesa dinamica. \\ \hline
+RF-OB 34 & Metadati in Tendina & ST & Verifica presenza ID, Linea e Famiglia nel risultato. \\ \hline
+RF-OB 35 & Apertura Modale Aggiunta & ST & Verifica che il click sul risultato apra il popup quantità. \\ \hline
+RF-OB 36 & Pulsanti +/- Modale & ST & Verifica variazione numerica tramite controlli grafici. \\ \hline
+RF-OB 37 & Quantità da tastiera & ST & Verifica inserimento numerico manuale nel form. \\ \hline
+RF-OB 38 & Errore valori invalidi & UT, ST & Test con numeri negativi; verifica reset a zero/alert. \\ \hline
+RF-OB 39 & Conferma Aggiunta & ST & Verifica salvataggio riga e chiusura modale. \\ \hline
+RF-OB 40 & Avviso Carrello Vuoto & ST & Verifica presenza placeholder descrittivo se zero record. \\ \hline
+RF-OB 41 & Schede Riepilogo & ST & Verifica rendering di tutte le righe articolo carrello. \\ \hline
+RF-OB 42 & Icona Modifica Carrello & ST & Verifica sblocco editing quantità su riga esistente. \\ \hline
+RF-OB 43 & Salvataggio Modifica & IT, ST & Verifica aggiornamento persistente della quantità. \\ \hline
+RF-OB 44 & Rimozione (Cestino) & ST & Verifica sparizione riga e aggiornamento carrello. \\ \hline
+RF-OB 45 & Abilitazione Invia Ordine & ST & Verifica che il tasto sia attivo solo con articoli presenti. \\ \hline
+RF-OB 46 & Pressione Invia Ordine & ST & Verifica trasmissione payload al backend per validazione. \\ \hline
+RF-OB 47 & Blocco Business Logic & IT, ST & Test invio con prodotto sospeso; verifica stop transazione. \\ \hline
+RF-OB 48 & Redirect post-invio & ST & Verifica pulizia carrello e navigazione verso Storico. \\ \hline
+RF-OB 49 & Generazione JSON & IT & Verifica creazione file conforme allo schema ERP. \\ \hline
+RF-OB 50 & Deposito cartella condivisa & IT & Verifica presenza file ordine nella directory di scambio. \\ \hline
+RF-OB 51 & Elenco Storico Ordini & ST & Verifica visualizzazione lista cronologica acquisti. \\ \hline
+RF-OB 52 & Dati card storico & ST & Verifica visibilità ID, Data e Numero Articoli. \\ \hline
+RF-OB 53 & Apertura Dettaglio & ST & Verifica click card e caricamento vista approfondita. \\ \hline
+RF-OB 54 & Log chat Storico & ST & Verifica presenza cronologia chat in sola lettura. \\ \hline
+RF-OB 55 & Apertura Ticket Assistenza & IT, ST & Verifica inibizione AI e visibilità in coda Operatore. \\ \hline
+RF-OB 56 & Navigazione Ticket Op & ST & Verifica accesso alla dashboard assistenza Operatore. \\ \hline
+RF-OB 57 & Tabella Ticket & ST & Verifica presenza record con indicatore tempo attesa. \\ \hline
+RF-OB 58 & Live Sync Ticket & IT & Verifica aggiornamento via WebSocket senza refresh. \\ \hline
+RF-OB 59 & Subentro Assistenza & IT, ST & Verifica click riga e assegnazione lock ticket a Operatore. \\ \hline
+RF-OB 60 & Chat Op -> Cliente & IT, ST & Verifica ricezione istantanea messaggi sul lato cliente. \\ \hline
+RF-OB 61 & Aggiunta Remota & IT, ST & Operatore aggiunge prodotto; verifica carrello cliente. \\ \hline
+RF-OB 62 & Modifica/Rimozione Remota & IT, ST & Operatore altera quantità; verifica carrello cliente. \\ \hline
+RF-OB 63 & Chiusura Ticket (Op) & IT, ST & Verifica sblocco terminale cliente e stato Risolto. \\ \hline
+RF-OB 64 & Chiusura Ticket (Cliente) & IT, ST & Verifica terminazione sessione supporto da cliente. \\ \hline
+RF-OB 65 & Vista Ordini Globale & ST & Verifica accesso storico totale ordini (tutti i clienti). \\ \hline
+RF-OB 66 & Ordinamento Colonne & ST & Verifica inversione cronologica tramite header tabella. \\ \hline
+RF-OB 67 & Ispezione Ordine Globale & ST & Verifica apertura dettaglio ordine (Read-only). \\ \hline
+RF-OB 68 & Filtro Calendario & ST & Verifica isolamento record per range Inizio/Fine. \\ \hline
+RF-OB 69 & Ricerca Mirata Radio & ST & Verifica vincolo ricerca su colonna Target selezionata. \\ \hline
+RF-OB 70 & Filtraggio Dinamico & ST & Verifica aggiornamento tabelle alla digitazione query. \\ \hline
+RF-OB 71 & Logging Silente & IT & Verifica storicizzazione variazioni carrello per training. \\ \hline
+RF-OB 72 & Vista Confidenza AI & ST & Verifica presenza grafico \% in carrello remoto/dettaglio. \\ \hline
+\caption{Strategie di test per i requisiti funzionali obbligatori (v1.0)}
 \end{longtable}
 
-\subsubsection{Requisiti di Qualità}
+\newpage
+\subsubsection{Requisiti Funzionali Desiderabili (RF-DE)}
 
 \begin{longtable}{|p{1.5cm}|p{5.5cm}|p{1.8cm}|p{5cm}|}
 \hline
@@ -1083,86 +1081,100 @@ RF7.5 & Aggiornamento regole & IT, ST, REV & Test modifica regole runtime. Verif
 \hline
 \endhead
 
-RQ01 & Messaggi di errore chiari & ST, UAT & Test con input invalidi diversi. Verifica chiarezza e completezza messaggi. \\
-\hline
-RQ02 & Estensibilità nuovi canali & REV, IT & Code review architettura. Test aggiunta mock di nuovo canale input. \\
-\hline
-\caption{Strategie di test per i requisiti di qualità}
+RF-DE 01 & Link Pwd dimenticata & ST & Verifica presenza e funzionalità link in Login. \\ \hline
+RF-DE 02 & Invio mail recupero & IT, ST & Verifica ricezione email di reset al contatto fornito. \\ \hline
+RF-DE 03 & Tasto Modifica Pwd & ST & Verifica apertura form cambio in Area Personale. \\ \hline
+RF-DE 04 & Campi Vecchia/Nuova Pwd & ST & Verifica input nei tre campi dedicati. \\ \hline
+RF-DE 05 & Errori Validazione Pwd & UT, ST & Test con password errate; verifica blocco/alert. \\ \hline
+RF-DE 06 & Icona Invio Immagini & ST & Verifica presenza pulsante allegati grafici in chat. \\ \hline
+RF-DE 07 & Selezione Fotocamera & ST & Verifica apertura selettore sorgente immagine. \\ \hline
+RF-DE 08 & Limite Immagine 5MB & UT, ST & Test upload file pesante; verifica intercettazione. \\ \hline
+RF-DE 09 & Icone Feedback AI & ST & Verifica presenza pulsanti Pollice Su/Giù in chat. \\ \hline
+RF-DE 10 & Modale Segnalazione & ST & Verifica apertura finestra al click su feedback negativo. \\ \hline
+RF-DE 11 & Tag Causa Errore & ST & Verifica selezione obbligatoria categoria errore. \\ \hline
+RF-DE 12 & Note Segnalazione & ST & Verifica ricezione commenti testuali del cliente. \\ \hline
+RF-DE 13 & Export CSV Storico & IT, ST & Verifica generazione e download file tabellare. \\ \hline
+RF-DE 14 & Conferma Invio Feedback & IT, ST & Verifica chiusura modale e toast di successo. \\ \hline
+RF-DE 15 & Vista Ottimizzazione AI & ST & Verifica caricamento dashboard training Operatore. \\ \hline
+RF-DE 16 & Tabella Log AI & ST & Verifica visibilità discrepanze Input/AI/Carrello. \\ \hline
+RF-DE 17 & Filtro Stato Segnalazione & ST & Verifica isolamento record Da Gestire/Accettate. \\ \hline
+RF-DE 18 & Ispezione Contesto Log & ST & Verifica apertura chat contestuale al log di errore. \\ \hline
+RF-DE 19 & Approvazione Errore & IT & Verifica invio dati validati al dataset di re-training. \\ \hline
+RF-DE 20 & Scarto Errore & IT & Verifica archiviazione record come falso positivo. \\ \hline
+RF-DE 21 & Undo Validazione & IT & Verifica ripristino stato segnalazione (Rollback). \\ \hline
+\caption{Strategie di test per i requisiti funzionali desiderabili}
 \end{longtable}
 
-\subsubsection{Requisiti di Vincolo}
+\newpage
+\subsubsection{Requisiti Funzionali Opzionali (RF-OP)}
 
 \begin{longtable}{|p{1.5cm}|p{5.5cm}|p{1.8cm}|p{5cm}|}
 \hline
 \textbf{ID Req.} & \textbf{Requisito} & \textbf{Tipo Test} & \textbf{Strategia di Verifica} \\
 \hline
-\endfirsthead
-\hline
-\textbf{ID Req.} & \textbf{Requisito} & \textbf{Tipo Test} & \textbf{Strategia di Verifica} \\
-\hline
-\endhead
-
-RV01 & Database relazionale & REV, IT & Verifica configurazione DB. Test connettività e operazioni CRUD. \\
-\hline
-RV02 & API REST standard & REV, IT, ST & Code review API. Test conformità standard REST. Verifica documentazione OpenAPI. \\
-\hline
-RV03 & Webapp responsive & ST, UAT & Test su dispositivi con risoluzioni diverse (desktop, tablet, mobile). \\
-\hline
-RV04 & Compatibilità browser & ST & Test funzionalità su Chrome, Firefox, Safari, Edge. Verifica compatibilità CSS/JS. \\
-\hline
-RV05 & Addestramento locale/cloud & IT, ST & Test pipeline addestramento in entrambi gli ambienti. Verifica portabilità. \\
-\hline
-\caption{Strategie di test per i requisiti di vincolo}
+RF-OP 01 & Registrazione Pubblica & ST & Verifica presenza form per nuovi account esterni. \\ \hline
+RF-OP 02 & Integrazione WhatsApp & IT & Test ricezione messaggi da API esterne Meta. \\ \hline
+RF-OP 03 & Integrazione Telegram & IT & Test ricezione messaggi da API esterne Telegram. \\ \hline
+RF-OP 04 & Dashboard KPI Statistica & ST & Verifica visualizzazione metriche business Operatore. \\ \hline
+\caption{Strategie di test per i requisiti funzionali opzionali}
 \end{longtable}
 
-\subsubsection{Requisiti Prestazionali}
+\newpage
+\subsubsection{Requisiti Qualitativi Obbligatori (RQA-OB)}
 
 \begin{longtable}{|p{1.5cm}|p{5.5cm}|p{1.8cm}|p{5cm}|}
 \hline
 \textbf{ID Req.} & \textbf{Requisito} & \textbf{Tipo Test} & \textbf{Strategia di Verifica} \\
 \hline
-\endfirsthead
+RQA-OB 01 & Mobile-first Cliente & ST, UAT & Ispezione grafica su viewport smartphone (375px). \\ \hline
+RQA-OB 02 & Desktop-first Operatore & ST, UAT & Ispezione grafica su schermi desktop (1024px). \\ \hline
+RQA-OB 03 & Protocollo HTTPS & SEC & Verifica certificato SSL su tutte le comunicazioni. \\ \hline
+RQA-OB 04 & Hashing Pwd (Salted) & REV & Ispezione DB: password non leggibili in chiaro. \\ \hline
+RQA-OB 05 & Feedback Asincrono & ST & Verifica presenza spinner durante i caricamenti. \\ \hline
+RQA-OB 06 & Protezione JWT & IT, SEC & Verifica rigetto chiamate API senza token valido. \\ \hline
+RQA-OB 07 & Versionamento Git & REV & Verifica conformità repository e documentazione. \\ \hline
+RQA-OB 08 & Conformità GDPR & REV & Verifica logiche trattamento dati personali. \\ \hline
+RQA-OB 09 & Paginazione Tabelle & ST, PT & Verifica limite 10/20 record per vista caricata. \\ \hline
+RQA-OB 10 & Compatibilità Browser & ST & Test su Chrome, Firefox, Safari e Edge. \\ \hline
+RQA-OB 11 & Responsive min 375px & ST & Test usabilità su risoluzioni mobile minime. \\ \hline
+RQA-OB 12 & Desktop min 1024px & ST & Verifica layout dashboard su risoluzioni laptop. \\ \hline
+\caption{Strategie di test per i requisiti qualitativi obbligatori}
+\end{longtable}
+
+\newpage
+\subsubsection{Requisiti Prestazionali (RP)}
+
+\begin{longtable}{|p{1.5cm}|p{5.5cm}|p{1.8cm}|p{5cm}|}
 \hline
 \textbf{ID Req.} & \textbf{Requisito} & \textbf{Tipo Test} & \textbf{Strategia di Verifica} \\
 \hline
-\endhead
-
-RP01 & Tempo caricamento dashboard & PT, ST & Test caricamento con cronometraggio. Verifica tempo $\le$ 2 secondi. \\
-\hline
-RP02 & Elaborazione ordine testuale & PT, ST & Test processing ordini. Verifica tempo medio $\le$ 10 secondi. \\
-\hline
-RP03 & Trascrizione audio 1 min & PT, ST & Benchmark trascrizione audio. Verifica tempo $\le$ 20 secondi. \\
-\hline
-RP04 & Throughput 50 ordini/ora & PT & Test carico con 50+ ordini/ora. Verifica assenza degrado prestazioni. \\
-\hline
+RP-OB 01 & Risposta AI < 20s & PT & Stress test con input complessi; verifica tempi. \\ \hline
+RP-OB 02 & Accuracy STT > 90\% & IT & Test audio standard; calcolo Word Error Rate. \\ \hline
+RP-OB 03 & Confidenza AI > 70\% & IT & Verifica blocco aggiunta automatica se score basso. \\ \hline
+RP-OB 04 & Audio < 10MB & UT, ST & Tentativo invio file oversize; verifica intercettazione. \\ \hline
+RP-OB 05 & FCP < 3s (4G) & PT & Analisi First Contentful Paint su rete mobile. \\ \hline
+RP-OB 06 & Live Search < 500ms & PT & Verifica latenza query catalogo asincrona. \\ \hline
+RP-DE 01 & OCR Image < 5MB & UT, ST & Verifica limite caricamento moduli visivi. \\ \hline
+RP-DE 02 & Export CSV < 5s & PT & Verifica velocità generazione report su 1000 record. \\ \hline
 \caption{Strategie di test per i requisiti prestazionali}
 \end{longtable}
 
-\subsubsection{Requisiti di Sicurezza}
+\newpage
+\subsubsection{Requisiti di Vincolo Obbligatori (RV-OB)}
 
 \begin{longtable}{|p{1.5cm}|p{5.5cm}|p{1.8cm}|p{5cm}|}
 \hline
 \textbf{ID Req.} & \textbf{Requisito} & \textbf{Tipo Test} & \textbf{Strategia di Verifica} \\
 \hline
-\endfirsthead
-\hline
-\textbf{ID Req.} & \textbf{Requisito} & \textbf{Tipo Test} & \textbf{Strategia di Verifica} \\
-\hline
-\endhead
-
-RS01 & Autenticazione credenziali & SEC, ST & Test login con credenziali valide/invalide. Verifica gestione sessioni. \\
-\hline
-RS02 & RBAC (controllo accessi) & SEC, ST & Test accesso risorse con ruoli diversi. Verifica enforcement permessi. \\
-\hline
-RS03 & Comunicazioni HTTPS & SEC, REV & Verifica certificato SSL/TLS. Test intercettazione traffico. \\
-\hline
-RS04 & Audit log operazioni critiche & IT, ST & Verifica tracciamento operazioni. Test immutabilità log. \\
-\hline
-RS05 & Complessità password e hashing & SEC, UT & Test policy password. Verifica algoritmo hashing (bcrypt/Argon2). Test dizionario password deboli. \\
-\hline
-\caption{Strategie di test per i requisiti di sicurezza}
+RV-OB 01 & Separazione Front-Back & REV & Ispezione: Frontend indipendente dal Server API. \\ \hline
+RV-OB 02 & Database Relazionale & REV & Verifica utilizzo tecnologia SQL per persistenza. \\ \hline
+RV-OB 03 & Vector Search & IT & Verifica implementazione embedding vettoriali. \\ \hline
+RV-OB 04 & Output JSON & IT & Verifica validità sintattica file ordine esportato. \\ \hline
+RV-OB 05 & Cartella ERP & IT & Verifica accessibilità file da sistema esterno ERP. \\ \hline
+RV-OB 06 & No Registrazione Pub. & ST & Verifica assenza form per utenze non censite B2B. \\ \hline
+RV-OB 07 & No Prezzi/Totali & ST, UAT & Ispezione UI: assenza valute o calcoli economici. \\ \hline
+\caption{Strategie di test per i requisiti di vincolo}
 \end{longtable}
-
 % -------------------------------------------------------------------
 %  QUALITÀ DELLA DOCUMENTAZIONE
 % -------------------------------------------------------------------
@@ -1370,7 +1382,7 @@ La verifica è non-bloccante per i build, ovvero gli errori rilevati non impedis
 \newpage
 \section{Cruscotto di Valutazione della Qualità}
 
-Questa sezione presenta un'analisi quantitativa dell'andamento del progetto attraverso grafici e metriche derivate dai dati raccolti durante gli otto sprint completati fino alla data corrente. L'obiettivo è fornire una visione d'insieme dello stato di salute del progetto in termini di costi, tempi e qualità della documentazione prodotta.
+Questa sezione presenta un'analisi quantitativa dell'andamento del progetto attraverso grafici e metriche derivate dai dati raccolti durante i nove sprint completati fino alla data corrente. L'obiettivo è fornire una visione d'insieme dello stato di salute del progetto in termini di costi, tempi e qualità della documentazione prodotta.
 
 \subsection{Andamento del Valore e dei Costi}
 
@@ -1382,10 +1394,10 @@ Questa sezione presenta un'analisi quantitativa dell'andamento del progetto attr
     height=8cm,
     xlabel={Sprint},
     ylabel={Valore (\euro{})},
-    symbolic x coords={S1, S2, S3, S4, S5, S6, S7, S8},
+    symbolic x coords={S1, S2, S3, S4, S5, S6, S7, S8, S9},
     xtick=data,
     xticklabel style={rotate=0, anchor=center},
-    ymin=0, ymax=5500,
+    ymin=0, ymax=6500,
     legend style={at={(0.5,-0.20)}, anchor=north, legend columns=3},
     grid=major,
     ymajorgrids=true,
@@ -1401,6 +1413,7 @@ Questa sezione presenta un'analisi quantitativa dell'andamento del progetto attr
     (S6, 2990)
     (S7, 3650)
     (S8, 4285)
+    (S9, 5975)
 };
 % Earned Value (EV)
 \addplot[green!70!black, thick, mark=square*, mark size=2.5pt] coordinates {
@@ -1412,6 +1425,7 @@ Questa sezione presenta un'analisi quantitativa dell'andamento del progetto attr
     (S6, 2316)
     (S7, 2892)
     (S8, 3389)
+    (S9, 4584)
 };
 % Actual Cost (AC)
 \addplot[red, thick, mark=triangle*, mark size=2.5pt] coordinates {
@@ -1423,6 +1437,7 @@ Questa sezione presenta un'analisi quantitativa dell'andamento del progetto attr
     (S6, 3010)
     (S7, 3700)
     (S8, 4780)
+    (S9, 5855)
 };
 \legend{Planned Value (PV), Earned Value (EV), Actual Cost (AC)}
 \end{axis}
@@ -1435,7 +1450,7 @@ Questa sezione presenta un'analisi quantitativa dell'andamento del progetto attr
 
 Il grafico mostra l'andamento cumulativo delle tre metriche fondamentali dell'Earned Value Management. Il \textbf{Planned Value (PV)} rappresenta il valore pianificato del lavoro che avrebbe dovuto essere completato, mentre l'\textbf{Earned Value (EV)} indica il valore effettivamente guadagnato attraverso il completamento delle attività. L'\textbf{Actual Cost (AC)} rappresenta i costi realmente sostenuti.
 
-Si osserva che l'AC supera costantemente sia il PV che l'EV, indicando un impiego di risorse superiore al previsto. Questo andamento è riconducibile alla natura della fase RTB, caratterizzata da attività ad alto investimento formativo: il team ha dovuto acquisire competenze su tecnologie complesse (LLM, architetture RAG, containerizzazione Docker) e affrontare le sfide dello sviluppo del Proof of Concept. Lo sprint 8 mostra un incremento significativo della forbice tra AC e le altre metriche, corrispondente all'intensificazione delle attività di sviluppo del PoC.
+Si osserva che l'AC supera costantemente sia il PV che l'EV, indicando un impiego di risorse superiore al previsto. Questo andamento è riconducibile alla natura della fase RTB, caratterizzata da attività ad alto investimento formativo: il team ha dovuto acquisire competenze su tecnologie complesse (LLM, architetture RAG, containerizzazione Docker) e affrontare le sfide dello sviluppo del Proof of Concept. Lo sprint 8 ha mostrato un incremento significativo della forbice tra AC e le altre metriche, corrispondente all'intensificazione delle attività di sviluppo del PoC. Nel nono sprint si osserva invece una parziale riduzione dell'AC relativo rispetto al PV, grazie alla maggiore efficienza consentita dal consolidamento delle conoscenze tecniche acquisite e dalla concomitanza con la sessione d'esami che ha ridotto le ore disponibili al di sotto del preventivo.
 
 Con il passaggio alla fase di Product Baseline, dove le conoscenze acquisite potranno essere applicate in modo più efficiente, il gruppo prevede un progressivo riallineamento delle curve, grazie anche alle politiche di ottimizzazione pianificate.
 
@@ -1449,7 +1464,7 @@ Con il passaggio alla fase di Product Baseline, dove le conoscenze acquisite pot
     height=8cm,
     xlabel={Sprint},
     ylabel={Indice},
-    symbolic x coords={S1, S2, S3, S4, S5, S6, S7, S8},
+    symbolic x coords={S1, S2, S3, S4, S5, S6, S7, S8, S9},
     xtick=data,
     xticklabel style={rotate=0, anchor=center},
     ymin=0.5, ymax=1.3,
@@ -1468,6 +1483,7 @@ Con il passaggio alla fase di Product Baseline, dove le conoscenze acquisite pot
     (S6, 0.77)
     (S7, 0.78)
     (S8, 0.71)
+    (S9, 0.78)
 };
 % Schedule Performance Index (SPI)
 \addplot[green!70!black, thick, mark=square*, mark size=2.5pt] coordinates {
@@ -1479,14 +1495,15 @@ Con il passaggio alla fase di Product Baseline, dove le conoscenze acquisite pot
     (S6, 0.77)
     (S7, 0.79)
     (S8, 0.79)
+    (S9, 0.77)
 };
 % Linea ideale (1.0)
 \addplot[black, thick, dashed, const plot] coordinates {
-    (S1, 1.0) (S8, 1.0)
+    (S1, 1.0) (S9, 1.0)
 };
 % Soglia accettabile inferiore (0.85)
 \addplot[red, thick, dashed, const plot] coordinates {
-    (S1, 0.85) (S8, 0.85)
+    (S1, 0.85) (S9, 0.85)
 };
 \legend{CPI, SPI, Valore Ideale (1.0), Soglia Accettabile (0.85)}
 \end{axis}
@@ -1497,9 +1514,9 @@ Con il passaggio alla fase di Product Baseline, dove le conoscenze acquisite pot
 
 \subsubsection*{Analisi}
 
-Il grafico evidenzia l'andamento degli indici di performance economica (CPI) e temporale (SPI). Il \textbf{CPI} si è mantenuto costantemente al di sotto della soglia di accettabilità (0.85), oscillando tra 0.71 e 0.79, indicando che per ogni euro di valore prodotto il team sta spendendo circa 1.30\euro{}. Lo \textbf{SPI} mostra un andamento variabile: partito da un valore ottimale di 1.0 nel primo sprint, è sceso progressivamente fino a stabilizzarsi intorno a 0.77-0.79.
+Il grafico evidenzia l'andamento degli indici di performance economica (CPI) e temporale (SPI). Il \textbf{CPI} si è mantenuto costantemente al di sotto della soglia di accettabilità (0.85), oscillando tra 0.71 e 0.79. Nel nono sprint il CPI registra un lieve recupero a 0.78 rispetto al minimo di 0.71 dello sprint 8, indicando una maggiore efficienza nell'impiego delle risorse economiche. Lo \textbf{SPI} mostra un andamento variabile: partito da un valore ottimale di 1.0 nel primo sprint, è sceso progressivamente fino a stabilizzarsi intorno a 0.77-0.79 negli sprint più recenti.
 
-È importante contestualizzare questi risultati: gli sprint analizzati corrispondono alla fase RTB{\scriptsize\raisebox{-0.5ex}{G}} del progetto, caratterizzata da un'intensa attività di apprendimento delle tecnologie richieste dal capitolato e dallo sviluppo esplorativo del Proof of Concept. La curva di apprendimento del team, unita alla complessità intrinseca delle tecnologie da padroneggiare (LLM{\scriptsize\raisebox{-0.5ex}{G}}, RAG{\scriptsize\raisebox{-0.5ex}{G}}, architetture a microservizi{\scriptsize\raisebox{-0.5ex}{G}}), ha comportato un impiego di risorse superiore a quanto inizialmente preventivato.
+È importante contestualizzare questi risultati: gli sprint analizzati corrispondono alla fase RTB{\scriptsize\raisebox{-0.5ex}{G}} del progetto, caratterizzata da un'intensa attività di apprendimento delle tecnologie richieste dal capitolato e dallo sviluppo esplorativo del Proof of Concept. La curva di apprendimento del team, unita alla complessità intrinseca delle tecnologie da padroneggiare (LLM{\scriptsize\raisebox{-0.5ex}{G}}, RAG{\scriptsize\raisebox{-0.5ex}{G}}, architetture a microservizi{\scriptsize\raisebox{-0.5ex}{G}}), ha comportato un impiego di risorse superiore a quanto inizialmente preventivato. Il miglioramento nel nono sprint è da attribuire al completamento della fase di apprendimento e alla maggiore fluidità operativa del team nelle attività di documentazione in vista della revisione RTB.
 
 Per i prossimi sprint, il gruppo intende attuare le seguenti politiche correttive:
 \begin{itemize}
@@ -1520,11 +1537,11 @@ Per i prossimi sprint, il gruppo intende attuare le seguenti politiche correttiv
     height=8cm,
     xlabel={Sprint},
     ylabel={Costo (\euro{})},
-    symbolic x coords={S1, S2, S3, S4, S5, S6, S7, S8},
+    symbolic x coords={S1, S2, S3, S4, S5, S6, S7, S8, S9},
     xtick=data,
     xticklabel style={rotate=0, anchor=center},
     ymin=0, ymax=20000,
-    bar width=12pt,
+    bar width=10pt,
     legend style={at={(0.5,-0.20)}, anchor=north, legend columns=4},
     grid=major,
     ymajorgrids=true,
@@ -1540,6 +1557,7 @@ Per i prossimi sprint, il gruppo intende attuare le seguenti politiche correttiv
     (S6, 13681)
     (S7, 12767)
     (S8, 13325)
+    (S9, 10597)
 };
 % Estimate at Completion (EAC)
 \addplot[fill=orange!70, draw=orange!90] coordinates {
@@ -1551,10 +1569,11 @@ Per i prossimi sprint, il gruppo intende attuare le seguenti politiche correttiv
     (S6, 16691)
     (S7, 16467)
     (S8, 18105)
+    (S9, 16452)
 };
 % Budget at Completion (BAC) - linea orizzontale
 \addplot[red, ultra thick, dashed, const plot] coordinates {
-    (S1, 12850) (S8, 12850)
+    (S1, 12850) (S9, 12850)
 };
 \legend{ETC, EAC, BAC (\euro{} 12.850)}
 \end{axis}
@@ -1567,7 +1586,7 @@ Per i prossimi sprint, il gruppo intende attuare le seguenti politiche correttiv
 
 Il grafico confronta le proiezioni di costo con il budget originale del progetto (BAC = \euro{} 12.850). L'\textbf{Estimate to Complete (ETC)} rappresenta la stima del costo necessario per completare le attività rimanenti, calcolata considerando l'efficienza economica dimostrata (CPI). L'\textbf{Estimate at Completion (EAC)} combina i costi già sostenuti (AC) con l'ETC per fornire una proiezione del costo finale totale.
 
-I valori di EAC oscillano tra \euro{} 16.274 (S3) e \euro{} 18.105 (S8), superando il BAC di circa il 26-41\%. Tuttavia, è fondamentale considerare che queste proiezioni si basano sull'efficienza della fase RTB, durante la quale il team ha affrontato una significativa curva di apprendimento: studio delle tecnologie del capitolato (LLM, architetture RAG, microservizi Docker{\scriptsize\raisebox{-0.5ex}{G}}), familiarizzazione con i processi di sviluppo agile e realizzazione del Proof of Concept.
+I valori di EAC oscillano tra \euro{} 16.274 (S3) e \euro{} 18.105 (S8), superando il BAC di circa il 26-41\%. Nel nono sprint si osserva un significativo miglioramento: l'EAC scende a \euro{} 16.452 e l'ETC si riduce a \euro{} 10.597, valori che riflettono la maggiore efficienza operativa del team e la riduzione dei costi rispetto al preventivo. Tuttavia, è fondamentale considerare che queste proiezioni si basano sull'efficienza cumulativa della fase RTB, durante la quale il team ha affrontato una significativa curva di apprendimento: studio delle tecnologie del capitolato (LLM, architetture RAG, microservizi Docker{\scriptsize\raisebox{-0.5ex}{G}}), familiarizzazione con i processi di sviluppo agile e realizzazione del Proof of Concept.
 
 Con il consolidamento delle competenze tecniche acquisite e l'avvio della fase di sviluppo effettivo (Product Baseline{\scriptsize\raisebox{-0.5ex}{G}}), il gruppo prevede un sensibile miglioramento dell'efficienza economica. Le politiche correttive pianificate includono:
 \begin{itemize}
@@ -1590,11 +1609,11 @@ L'obiettivo è riportare l'EAC entro margini accettabili rispetto al BAC nelle s
     height=8cm,
     xlabel={Sprint},
     ylabel={Varianza (\%)},
-    symbolic x coords={S1, S2, S3, S4, S5, S6, S7, S8},
+    symbolic x coords={S1, S2, S3, S4, S5, S6, S7, S8, S9},
     xtick=data,
     xticklabel style={rotate=0, anchor=center},
-    ymin=-15, ymax=100,
-    bar width=15pt,
+    ymin=-20, ymax=100,
+    bar width=12pt,
     legend style={at={(0.5,-0.20)}, anchor=north, legend columns=3},
     grid=major,
     ymajorgrids=true,
@@ -1610,14 +1629,15 @@ L'obiettivo è riportare l'EAC entro margini accettabili rispetto al BAC nelle s
     (S6, 5.9)
     (S7, 0.0)
     (S8, 96.7)
+    (S9, -11.3)
 };
 % Linea accettabile positivo (+10%)
 \addplot[red, thick, dashed, const plot] coordinates {
-    (S1, 10) (S8, 10)
+    (S1, 10) (S9, 10)
 };
 % Linea accettabile negativo (-10%)
 \addplot[orange, thick, dashed, const plot] coordinates {
-    (S1, -10) (S8, -10)
+    (S1, -10) (S9, -10)
 };
 \legend{Varianza Ore (\%), Accettabile Positivo (+10\%), Accettabile Negativo (-10\%)}
 \end{axis}
@@ -1628,7 +1648,7 @@ L'obiettivo è riportare l'EAC entro margini accettabili rispetto al BAC nelle s
 
 \subsubsection*{Analisi}
 
-Analizzando i valori riportati nel grafico, è riscontrabile una difficoltà nel produrre preventivi orari vicini al consuntivato. Questo è dovuto alla scarsa esperienza del team nel preventivare il tempo necessario per lo svolgimento delle attività. Nel primo sprint la varianza è stata particolarmente elevata (+43,5\%), riflettendo la fase di avvio del progetto e la necessità di familiarizzare con gli strumenti e i processi. Con il progredire degli sprint, il team ha acquisito maggiore esperienza nella preventivazione, riuscendo ad ottenere un valore perfettamente in linea nel settimo sprint (0,0\%). Gli sprint successivi mostrano varianze contenute entro un range accettabile, indicando un miglioramento nella capacità di stima, ad eccezione dello sprint 8 che presenta una varianza critica del 96,7\% dovuta alla complessità delle attività di sviluppo del PoC.
+Analizzando i valori riportati nel grafico, è riscontrabile una difficoltà nel produrre preventivi orari vicini al consuntivato. Questo è dovuto alla scarsa esperienza del team nel preventivare il tempo necessario per lo svolgimento delle attività. Nel primo sprint la varianza è stata particolarmente elevata (+43,5\%), riflettendo la fase di avvio del progetto e la necessità di familiarizzare con gli strumenti e i processi. Con il progredire degli sprint, il team ha acquisito maggiore esperienza nella preventivazione, riuscendo ad ottenere un valore perfettamente in linea nel settimo sprint (0,0\%). Lo sprint 8 ha presentato una varianza critica del 96,7\% dovuta alla complessità delle attività di sviluppo del PoC. Nel nono sprint la varianza è diventata negativa (-11,3\%), superando di poco la soglia di accettabilità (-10\%): il team ha lavorato meno ore del previsto a causa della concomitanza con la sessione d'esami, tuttavia le attività prioritarie sono state comunque portate a termine.
 
 \subsection{Varianza di Budget}
 
@@ -1641,11 +1661,11 @@ Analizzando i valori riportati nel grafico, è riscontrabile una difficoltà nel
     height=8cm,
     xlabel={Sprint},
     ylabel={Varianza (\%)},
-    symbolic x coords={S1, S2, S3, S4, S5, S6, S7, S8},
+    symbolic x coords={S1, S2, S3, S4, S5, S6, S7, S8, S9},
     xtick=data,
     xticklabel style={rotate=0, anchor=center},
-    ymin=-10, ymax=100,
-    bar width=15pt,
+    ymin=-15, ymax=100,
+    bar width=12pt,
     legend style={at={(0.5,-0.20)}, anchor=north, legend columns=3},
     grid=major,
     ymajorgrids=true,
@@ -1661,14 +1681,15 @@ Analizzando i valori riportati nel grafico, è riscontrabile una difficoltà nel
     (S6, 5.6)
     (S7, 7.8)
     (S8, 84.6)
+    (S9, -10.0)
 };
 % Linea accettabile positivo (+5%)
 \addplot[red, thick, dashed, const plot] coordinates {
-    (S1, 5) (S8, 5)
+    (S1, 5) (S9, 5)
 };
 % Linea accettabile negativo (-5%)
 \addplot[orange, thick, dashed, const plot] coordinates {
-    (S1, -5) (S8, -5)
+    (S1, -5) (S9, -5)
 };
 \legend{Varianza Budget (\%), Accettabile Positivo (+5\%), Accettabile Negativo (-5\%)}
 \end{axis}
@@ -1679,7 +1700,7 @@ Analizzando i valori riportati nel grafico, è riscontrabile una difficoltà nel
 
 \subsubsection*{Analisi}
 
-Dall'analisi del grafico è evidente che i valori di varianza di budget sono sempre rimasti positivi, indicando che il costo effettivo è stato costantemente maggiore rispetto a quanto preventivato. Negli sprint 1, 2, 3 e 5 la varianza è risultata elevata (15-40\%) ma comunque gestibile. Lo sprint 4 ha rappresentato un ottimo risultato con varianza minima (+4,1\%), dimostrando quasi perfetta aderenza al budget pianificato. Gli sprint 6 e 7 hanno mostrato varianze contenute (+5,6\% e +7,8\%), indicando un temporaneo miglioramento nell'efficienza economica. Tuttavia, lo sprint 8 ha registrato un picco critico (+84,6\%) attribuibile all'intensificazione delle attività di sviluppo del Proof of Concept e alla necessità di coinvolgere maggiormente ruoli ad alto costo orario (Responsabile, Analista). Il superamento frequente della soglia di accettabilità (+5\%) evidenzia la necessità di rivedere le strategie di allocazione delle risorse e di migliorare l'accuratezza delle stime economiche per i prossimi sprint.
+Dall'analisi del grafico è evidente che nei primi otto sprint i valori di varianza di budget sono stati generalmente positivi, indicando che il costo effettivo era costantemente maggiore rispetto a quanto preventivato. Negli sprint 1, 2, 3 e 5 la varianza è risultata elevata (15-40\%) ma comunque gestibile. Lo sprint 4 ha rappresentato un ottimo risultato con varianza minima (+4,1\%), mentre gli sprint 6 e 7 hanno mostrato varianze contenute (+5,6\% e +7,8\%). Lo sprint 8 ha registrato un picco critico (+84,6\%) attribuibile all'intensificazione delle attività di sviluppo del Proof of Concept. Nel nono sprint, per la prima volta, la varianza di budget è diventata negativa (-10,0\%), indicando che il costo effettivo è stato inferiore a quello preventivato: il team ha impiegato meno risorse del pianificato a causa della ridotta disponibilità oraria durante la sessione d'esami. Sebbene il valore superi leggermente la soglia di accettabilità di -5\%, esso riflette una situazione straordinaria e le attività prioritarie sono state ugualmente completate.
 
 \subsection{Requisiti Soddisfatti}
 
@@ -1750,11 +1771,11 @@ Il progetto si trova attualmente nella fase RTB (Requirements and Technology Bas
     height=8cm,
     xlabel={Sprint},
     ylabel={Numero},
-    symbolic x coords={S1, S2, S3, S4, S5, S6, S7, S8},
+    symbolic x coords={S1, S2, S3, S4, S5, S6, S7, S8, S9},
     xtick=data,
     xticklabel style={rotate=0, anchor=center},
     ymin=0, ymax=5,
-    bar width=12pt,
+    bar width=10pt,
     legend style={at={(0.5,-0.20)}, anchor=north, legend columns=3},
     grid=major,
     ymajorgrids=true,
@@ -1772,6 +1793,7 @@ Il progetto si trova attualmente nella fase RTB (Requirements and Technology Bas
     (S6, 0)
     (S7, 2)
     (S8, 1)
+    (S9, 2)
 };
 % Misure Insufficienti
 \addplot[fill=orange!70, draw=orange!90] coordinates {
@@ -1783,10 +1805,11 @@ Il progetto si trova attualmente nella fase RTB (Requirements and Technology Bas
     (S6, 0)
     (S7, 2)
     (S8, 1)
+    (S9, 2)
 };
 % Soglia accettabile (3)
 \addplot[red, ultra thick, dashed, const plot] coordinates {
-    (S1, 3) (S8, 3)
+    (S1, 3) (S9, 3)
 };
 \legend{Rischi Inattesi (PM-15), Misure Insufficienti (PM-14), Soglia Accettabile (3)}
 \end{axis}
@@ -1797,13 +1820,13 @@ Il progetto si trova attualmente nella fase RTB (Requirements and Technology Bas
 
 \subsubsection*{Analisi}
 
-Il grafico mostra l'andamento dei rischi inattesi (PM-15) e delle misure di mitigazione insufficienti (PM-14) nel corso degli otto sprint. Complessivamente, entrambe le metriche si mantengono ben al di sotto della soglia di accettabilità fissata a 3.
+Il grafico mostra l'andamento dei rischi inattesi (PM-15) e delle misure di mitigazione insufficienti (PM-14) nel corso dei nove sprint. Complessivamente, entrambe le metriche si mantengono ben al di sotto della soglia di accettabilità fissata a 3.
 
 Nei primi due sprint non si sono verificati rischi imprevisti né fallimenti nelle strategie di mitigazione, indicando una buona capacità iniziale di identificazione e gestione dei rischi. A partire dallo sprint 3 si osserva la comparsa di rischi inattesi, principalmente legati alla complessità tecnologica sottostimata e alle difficoltà di integrazione delle tecnologie del capitolato.
 
-Lo sprint 7 ha registrato il picco massimo con 2 rischi inattesi e 2 misure insufficienti, coincidente con l'intensificazione delle attività di sviluppo del PoC e l'emergere di problematiche tecniche non previste in fase di analisi. Tuttavia, anche in questo caso i valori rimangono entro i limiti di accettabilità.
+Lo sprint 7 ha registrato un picco con 2 rischi inattesi e 2 misure insufficienti, coincidente con l'intensificazione delle attività di sviluppo del PoC e l'emergere di problematiche tecniche non previste in fase di analisi. Nel nono sprint si è verificato un nuovo picco equivalente, con 2 rischi inattesi e 2 misure di mitigazione insufficienti: in fase di preparazione alla RTB sono emerse criticità legate alla finalizzazione della documentazione e all'allineamento dei requisiti, che hanno richiesto interventi correttivi non previsti.
 
-La correlazione tra rischi inattesi e misure insufficienti negli sprint 4, 5, 7 e 8 suggerisce che alcuni rischi emersi hanno trovato il team impreparato, evidenziando la necessità di rafforzare il processo di identificazione proattiva dei rischi e di aggiornare periodicamente il registro dei rischi con le lezioni apprese.
+La correlazione tra rischi inattesi e misure insufficienti negli sprint 4, 5, 7, 8 e 9 suggerisce che alcuni rischi emersi hanno trovato il team impreparato, evidenziando la necessità di rafforzare il processo di identificazione proattiva dei rischi e di aggiornare periodicamente il registro dei rischi con le lezioni apprese. Il ripetersi del picco nell'ultimo sprint indica che la fase conclusiva della RTB ha introdotto nuove sfide non coperte dalle strategie di mitigazione esistenti, confermando l'importanza di un monitoraggio continuo anche nelle fasi finali.
 
 \subsection{Indice di Gulpease della Documentazione}
 
