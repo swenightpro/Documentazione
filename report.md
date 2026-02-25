@@ -1,12 +1,12 @@
-# Report di compilazione del 2026-02-25T12:52:23+00:00
+# Report di compilazione del 2026-02-25T15:53:26+00:00
 
-Compilazione basata sul commit acbe09554076a2a08a3fa7e5df8e6b3d6fc53a10 (base: acbe095)
+Compilazione basata sul commit 7d7c0a4a88199e3c7b4c93746263b5bddbb97762 (base: 7d7c0a4)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/RTB/Documentazione Esterna/Piano_di_Qualifica_v0.4.pdf](docs/RTB/Documentazione%20Esterna/Piano_di_Qualifica_v0.4.pdf)
+✅ [docs/RTB/Documentazione Esterna/Analisi_dei_Requisiti_v0.3.pdf](docs/RTB/Documentazione%20Esterna/Analisi_dei_Requisiti_v0.3.pdf)
 
-✅ [docs/RTB/Documentazione Esterna/Glossario_v2.0.pdf](docs/RTB/Documentazione%20Esterna/Glossario_v2.0.pdf)
+✅ [docs/RTB/Documentazione Esterna/Glossario_v1.5.pdf](docs/RTB/Documentazione%20Esterna/Glossario_v1.5.pdf)
 
