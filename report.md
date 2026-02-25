@@ -1,12 +1,10 @@
-# Report di compilazione del 2026-02-24T18:33:34+00:00
+# Report di compilazione del 2026-02-25T12:49:25+00:00
 
-Compilazione basata sul commit b01bf7ccc922b3e9aaf6caa6d9b757fa23b90464 (base: b01bf7c)
+Compilazione basata sul commit 303b73c3416fbc61afc7169a078658074a679602 (base: 303b73c)
 
 ## Falliti
-💡 Nessun errore di compilazione
+❌ [src/RTB/Documentazione Esterna/Verbali Esterni/Piano_di_Qualifica_v0.4.tex](https://github.com/swenightpro/Documentazione/actions/runs/22397531630)
+
 
 ## Compilati
-✅ [docs/RTB/Documentazione Interna/Verbali Interni/verbale_interno_2026-02-21.pdf](docs/RTB/Documentazione%20Interna/Verbali%20Interni/verbale_interno_2026-02-21.pdf)
-
-✅ [docs/RTB/Documentazione Interna/Verbali Interni/verbale_interno_2026-01-30.pdf](docs/RTB/Documentazione%20Interna/Verbali%20Interni/verbale_interno_2026-01-30.pdf)
-
+💡 Nessun PDF compilato
