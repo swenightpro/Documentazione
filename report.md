@@ -1,10 +1,12 @@
-# Report di compilazione del 2026-02-25T12:49:25+00:00
+# Report di compilazione del 2026-02-25T12:52:23+00:00
 
-Compilazione basata sul commit 303b73c3416fbc61afc7169a078658074a679602 (base: 303b73c)
+Compilazione basata sul commit acbe09554076a2a08a3fa7e5df8e6b3d6fc53a10 (base: acbe095)
 
 ## Falliti
-❌ [src/RTB/Documentazione Esterna/Verbali Esterni/Piano_di_Qualifica_v0.4.tex](https://github.com/swenightpro/Documentazione/actions/runs/22397531630)
-
+💡 Nessun errore di compilazione
 
 ## Compilati
-💡 Nessun PDF compilato
+✅ [docs/RTB/Documentazione Esterna/Piano_di_Qualifica_v0.4.pdf](docs/RTB/Documentazione%20Esterna/Piano_di_Qualifica_v0.4.pdf)
+
+✅ [docs/RTB/Documentazione Esterna/Glossario_v2.0.pdf](docs/RTB/Documentazione%20Esterna/Glossario_v2.0.pdf)
+
