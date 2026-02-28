@@ -51,10 +51,11 @@ jobs:
           if [ -n "$changed_latex" ]; then
             echo "$changed_latex" | while IFS= read -r file; do
               [ -z "$file" ] && continue
-              if [[ "$file" == *"/contenuti/"* ]]; then
-                parent_dir=$(echo "$file" | sed 's|/contenuti/.*||')
-                parent_tex=$(find "$parent_dir" -maxdepth 1 -type f -name "*.tex" | head -n 1)
-                [ -n "$parent_tex" ] && echo "$parent_tex" >> pdfs_to_remove.txt
+              if echo "$file" | grep -q -i "/contenuti/"; then
+                parent_dir=$(echo "$file" | sed 's|/contenuti/.*||I')
+                if [ -d "$parent_dir" ]; then
+                  find "$parent_dir" -maxdepth 1 -type f -name "*.tex" >> pdfs_to_remove.txt
+                fi
               else
                 echo "$file" >> pdfs_to_remove.txt
               fi
@@ -113,7 +114,7 @@ jobs:
           # scannerizzazione completa di docs per trovare i pdf mancanti e creare la compile_list.txt
           echo "--- Preparing compile list ---"
           > compile_list.txt
-          find src -type f -name "*.tex" | grep -v '/contenuti/' | while IFS= read -r texfile; do
+          find src -type f -name "*.tex" | grep -v -i '/contenuti/' | while IFS= read -r texfile; do
             pdf_file=$(echo "$texfile" | sed 's|^src/|docs/|; s|\.tex$|\.pdf|')
             if [ ! -f "$pdf_file" ]; then
               echo "$texfile" >> compile_list.txt
