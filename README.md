@@ -15,16 +15,17 @@
 - **Sito Web:** [https://swenightpro.github.io/Documentazione/](https://swenightpro.github.io/Documentazione/)
 
 
-## 2. Architettura dell'Organizzazione
+## 2. Struttura dei Repository
 
-Il progetto è articolato su tre repository distinti, ospitati all'interno dell'organizzazione del gruppo:
-- [Documentazione](https://github.com/swenightpro/Documentazione)
-- [SmartOrder-Poc](https://github.com/swenightpro/SmartOrder-PoC)
-- [SmartOrder-MVP](https://github.com/swenightpro/SmartOrder-PoC)
+Questo repository ospita la documentazione ufficiale prodotta dal gruppo **NightPro**.
+Il codice sorgente del software **SmartOrder** è invece distribuito su due repository distinti, corrispondenti alle fasi di sviluppo del prodotto:
+
+- **[SmartOrder-PoC](https://github.com/swenightpro/SmartOrder-PoC)**: Codice relativo al *Proof of Concept* (Requirements and Technology Baseline).
+- **SmartOrder-MVP** _(Coming Soon)_: Repository destinato allo sviluppo del *Minimum Viable Product* (Product Baseline).
 
 ## 3. Contenuti del repository
 
-- **`.github/workflows/`**: Contiene i workflow GitHub Actions utilizzati per automatizzare la compilazione dei file LaTeX in PDF (build_latex.yml) e la pubblicazione dei documenti tramite GitHub Pages (deploy_pages.yml).
+- **`.github/workflows/`**: Contiene le definizioni delle GitHub Actions per l'automazione del ciclo di vita del progetto: compilazione dei documenti (`build_latex.yml`), pubblicazione del sito web (`deploy_pages.yml`) e analisi della qualità con generazione di report (`quality_checks.yml`).
 
 - **`src/`**: Contiene i file sorgente LaTeX (.tex) e i relativi asset utilizzati per la compilazione dell'intera documentazione.
 
@@ -32,7 +33,7 @@ Il progetto è articolato su tre repository distinti, ospitati all'interno dell'
 
 - **`site/`**: Contiene il codice sorgente del sito web pubblicato tramite GitHub Pages (HTML/CSS/JS) e uno script Python che, durante il workflow di build e deploy, scansiona la directory docs/ e genera un file JSON con la struttura aggiornata dei documenti, utilizzato per popolare il sito con i contenuti aggiornati.
 
-- **`template/`**: Contiene i file modello messi a disposizione del team per la stesura dei documenti.
+- **`quality/`**: Contiene gli script e le configurazioni necessarie per il workflow `quality_checks.yml`.
 
 - **`report.md`**: File generato automaticamente dal workflow di build dei file LaTeX: fornisce una panoramica dei risultati di compilazione e include link diretti ai PDF prodotti per una rapida verifica.
 
