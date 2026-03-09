@@ -1,0 +1,198 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{array}
+\graphicspath{{assets/}{../assets/}{../../assets/}{../../../assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[svgnames]{xcolor}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\hypersetup{
+colorlinks=true,
+linkcolor=DarkBlue,
+filecolor=DarkBlue,
+urlcolor=DarkBlue,
+citecolor=DarkBlue,
+pdftitle={Verbale Interno 2026-02-27 - NightPRO},
+pdfauthor={Gruppo NightPRO},
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ------ FRONTESPIZIO -----------------------------------------
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{titlepage}
+\centering
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+
+\vfill
+
+{\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+{\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+\vspace{0.5cm}
+{\large Corso di Ingegneria del Software \par}
+{\small Anno Accademico 2025/2026 \par}
+
+\vfill
+
+{\Huge \bfseries Verbale di Riunione \par}
+\vspace{1cm}
+{\Large \itshape Verbale Interno del 27 Febbraio 2026 \par}
+
+\vfill
+
+{\Large \bfseries Gruppo: NightPRO \par}
+\vspace{0.5cm}
+{\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+
+\vfill
+
+{\large Data: 2026-02-27 \par}
+\end{titlepage}
+
+% ------ INDICE -----------------------------------------
+
+\newpage
+\tableofcontents
+\pagestyle{fancy}
+
+% ------ INFORMAZIONI GENERALI -----------------------------------------
+
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+
+Elenco dei membri del gruppo di lavoro NightPRO.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+% ------ DETTAGLI RIUNIONE -----------------------------------------
+
+\subsection{Dettagli Riunione}
+
+\begin{itemize}
+\item \textbf{Data:} 2026-02-27
+\item \textbf{Ora:} 17:00 -- 18:30
+\item \textbf{Luogo:} Google Meet
+\item \textbf{Partecipanti:} Davide Biasuzzi, Leonardo Bilato, Mihaela-Mariana Romascu, Michele Ogniben, Samuele Perozzo, Giovanni Ponso, Francesco Zanella.
+\item \textbf{Redatto da:} Giovanni Ponso
+\item \textbf{Verificato da:} Mihaela-Mariana Romascu
+\item \textbf{Versione:} 1.0
+\end{itemize}
+
+% ------ ORDINE DEL GIORNO -----------------------------------------
+
+\newpage
+\section{Ordine del Giorno (Agenda)}
+
+\begin{itemize}
+\item[1.] Analisi del consuntivo ore (Sprint 10)
+\item[2.] Presentazione interna del Proof of Concept
+\item[3.] Suddivisione e studio delle tecnologie adottate
+\item[4.] Gestione del periodo di valutazione e nomina del nuovo responsabile
+\end{itemize}
+
+% ------ DIARIO DELLA RIUNIONE -----------------------------------------
+
+\newpage
+\section{Diario della Riunione}
+
+% --- Punto 1: Ore e Consuntivo ---
+\subsection{Analisi del consuntivo ore (Sprint 10)}
+
+Il gruppo ha discusso la chiusura dello Sprint 10 appena terminato, procedendo alla stesura del consuntivo per il periodo in terminazione. Questo sprint ha avuto una durata di quattro settimane a causa della concomitanza con la sessione d'esami. È stato sottolineato chiaramente come questa estensione temporale non sia da considerarsi fisiologica, ma abbia rappresentato un vero e proprio problema che ha procurato un ritardo importante sulla tabella di marcia del progetto.
+
+Durante l'analisi, è emersa una forte preoccupazione legata alle ore residue. Il margine a disposizione risulta ridotto e il ritardo accumulato potrebbe provocare un danno rilevante in caso l'esito della revisione RTB dovesse risultare in un semaforo rosso. In tale scenario, ci si troverebbe infatti obbligati a dover rinegoziare i requisiti obbligatori con il proponente per restare dentro i limiti di costo e di ore rimaste a disposizione, oppure potrebbe rendersi necessaria una ridistribuzione interna del monte ore tra i vari ruoli.
+
+% --- Punto 2: POC ---
+\subsection{Presentazione interna del Proof of Concept}
+
+Samuele Perozzo ha tenuto una presentazione interna per illustrare il Proof of Concept. Nello specifico, ha descritto l'architettura delle tecnologie che lo compongono e l'organizzazione strutturale del codice sorgente. 
+
+Questo momento di allineamento è stato pensato per quei membri del gruppo che finora si erano concentrati esclusivamente sulla stesura della documentazione, al fine di garantire a tutti una comprensione tecnica omogenea in vista dell'incontro con il docente.
+
+% --- Punto 3: Studio Tecnologie ---
+\subsection{Suddivisione e studio delle tecnologie adottate}
+
+In vista del colloquio, il gruppo ha concordato la necessità di saper giustificare il motivo per cui sono state adottate certe scelte tecniche. Le singole tecnologie impiegate nel prodotto software sono state quindi ripartite equamente tra i membri del team. Questo permetterà uno studio individuale mirato, in modo che ciascuno possa esporre e motivare una parte specifica durante l'incontro.
+
+% --- Punto 4: Periodo di valutazione ---
+\subsection{Gestione del periodo di valutazione e nomina del nuovo responsabile}
+
+Con l'invio della mail di richiesta per l'incontro, effettuato in data 26 febbraio, il progetto entra in una fase di valutazione transitoria, stimata in circa due settimane. Durante questo lasso di tempo, l'avanzamento verso la successiva Product Baseline subisce un momentaneo blocco in attesa dell'esito a semaforo.
+
+Al fine di gestire le comunicazioni istituzionali e il coordinamento in questa finestra di transizione, il ruolo di Responsabile passa ufficialmente a Giovanni Ponso.
+
+% ------ DECISIONI PRESE -----------------------------------------
+
+\newpage
+\section{Decisioni Prese}
+
+\begin{enumerate}
+\item Chiusura formale del consuntivo per lo Sprint 10 (durata 4 settimane) e approvazione della rendicontazione.
+\item Ripartizione sintetica delle tecnologie software tra i membri del team per lo studio individuale in vista del colloquio.
+\item Formalizzazione di Giovanni Ponso nel ruolo di Responsabile.
+\end{enumerate}
+
+% ------ PIANIFICAZIONE SPRINT SUCCESSIVO -----------------------------------------
+
+\newpage
+\section{Pianificazione per il periodo di valutazione RTB}
+
+Poiché l'esito della valutazione è vincolante per l'accesso alla Product Baseline, non è possibile aprire un nuovo Sprint di sviluppo. Le attività si concentreranno unicamente sulla preparazione per difendere le scelte effettuate.
+
+\subsection{Definizione dei ruoli}
+
+Per la gestione di questa fase transitoria, la ripartizione dei ruoli si limita alla designazione del referente organizzativo principale:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}l l@{}}
+\toprule
+\textbf{Ruolo} & \textbf{Membro} \\
+\midrule
+Responsabile & Giovanni Ponso \\
+\bottomrule
+\end{tabular}
+\caption{Responsabilità per il periodo di valutazione.}
+\end{table}
+
+\end{document}
