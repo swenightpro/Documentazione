@@ -77,7 +77,7 @@ def estrai_info(filename, root):
     else:
         try:
             result = subprocess.check_output(
-                ["git", "log", "-1", "--format=%cd", "--date=iso", os.path.join(root, filename)],
+                ["git", "log", "-1", "--format=%cd", "--date=iso", os.path.join(root, filename).replace('../docs', './docs')],
                 text=True
             ).strip()
             date = result[:10]  # YYYY-MM-DD
@@ -164,4 +164,5 @@ if __name__ == "__main__":
             
     with open(output, 'w', encoding='utf-8') as f:
         json.dump(tree, f, indent=2, ensure_ascii=False)
+
 
