@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const row = document.createElement("div");
         row.className = "pdf_row";
         const version = item.version ? ` v${item.version.replace(/^v+/, "")}` : "";
-        const date = item.date ? ` ${item.date}` : "";
+        const date = (item.name.toLowerCase().startsWith("verbale") && item.date) ? ` ${item.date}` : "";
         const signed = item.signed ? `<span class="signed-badge">Firmato</span>` : "";
         const link = document.createElement("a");
         link.className = "file-name";

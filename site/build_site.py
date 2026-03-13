@@ -1,6 +1,7 @@
 import os
 import re
 import json
+import subprocess
 from datetime import datetime
 
 class Item:
@@ -10,7 +11,7 @@ class Item:
     def __gt__(self, other):
         if self.val["type"] == 'folder':
             if other.val["type"] == 'folder':
-                return self.val["name"].lower() > other.val["name"].lower()
+                return self.fold_fold_comp(other)
             return False
         if other.val["type"] == 'folder': return True
         if self.val["date"]:
@@ -19,6 +20,21 @@ class Item:
             return True
         if other.val["date"]: return False
         return self.val["name"].lower() > other.val["name"].lower()
+    
+    def fold_fold_comp(self, other):
+        s: str = self.val["name"].lower()
+        o: str = other.val["name"].lower()
+        match s:
+            case "documentazione esterna": s = '2_' + s
+            case "documentazione interna": s = '1_' + s
+            case _: s = '0_' + s
+        
+        match o:
+            case "documentazione esterna": o = '2_' + o
+            case "documentazione interna": o = '1_' + o
+            case _: o = '0_' + o
+            
+        return s > o
     
     def __repr__(self):
         return self.val["name"]
@@ -30,7 +46,7 @@ def sorting(children):
     ch = [Item(i) for i in children]
     return list(map(lambda i: i.val, sorted(ch, reverse=True)))
 
-def estrai_info(filename):
+def estrai_info(filename, root):
     name_no_ext = os.path.splitext(filename)[0]
     normalized = name_no_ext.strip()
     normalized = re.sub(r'_+', ' ', normalized)
@@ -59,13 +75,21 @@ def estrai_info(filename):
             date = None
         normalized = re.sub(r'\s+', ' ', normalized).strip()
     else:
-        date = None
+        try:
+            result = subprocess.check_output(
+                ["git", "log", "-1", "--format=%cd", "--date=iso", os.path.join(root, filename)],
+                text=True
+            ).strip()
+            date = result[:10]  # YYYY-MM-DD
+            open("report.md", "a").write(os.path.join(root, filename) + '\n' + result + '\n\n')
+        except:
+            date = None
 
     clean_name = normalize_text(normalized.strip().title())
 
     parts = [clean_name]
     if version: parts.append(version)
-    if date: parts.append(date)
+    if date and clean_name.lower().startswith("verbale"): parts.append(date)
     if signed: parts.append("firmato")
     search_name = " ".join(parts).lower()
 
@@ -101,7 +125,7 @@ def build_file_tree(directory):
             base_key = re.sub(r'(?i)(?:[\s_\-\.]*)(firmato|signed)$', '', base_key)
             base_key = re.sub(r'[\s_]+', '', base_key).lower()
 
-            clean_name, version, date, signed, search_name = estrai_info(file)
+            clean_name, version, date, signed, search_name = estrai_info(file, root)
 
             if base_key not in base_files:
                 base_files[base_key] = {'normal': None, 'signed': None}
@@ -134,7 +158,10 @@ if __name__ == "__main__":
     directory_docs = '../docs'
     output = './docs_tree.json'
 
-    tree = build_file_tree(directory_docs)
+    tree_ = build_file_tree(directory_docs)  
+    
+    tree = {root: tree_[root] for root in ["PB", "RTB", "Candidatura"] if root in tree_}
+            
     with open(output, 'w', encoding='utf-8') as f:
         json.dump(tree, f, indent=2, ensure_ascii=False)
 
