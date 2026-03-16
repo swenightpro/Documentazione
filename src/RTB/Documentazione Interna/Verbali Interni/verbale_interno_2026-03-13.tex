@@ -1,0 +1,189 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}      % Codifica UTF-8
+\usepackage[T1]{fontenc}         % Font encoding moderno
+\usepackage[italian]{babel}      % Lingua italiana 
+\usepackage{lmodern}             % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}            % Per includere immagini
+\graphicspath{{../../../assets/}}
+
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}            % Per header e footer personalizzati
+\usepackage{microtype}           % Migliora la tipografia
+\usepackage[svgnames]{xcolor}    % Colori
+
+% --- Utility ---
+\usepackage{booktabs}            % Tabelle più professionali
+\usepackage{enumitem}            % Per personalizzare liste
+\usepackage{hyperref}            % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,     
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Interno 2026-03-13 - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce tutti i campi
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro in basso
+\renewcommand{\headrulewidth}{0.4pt} % Linea sottile sotto l'header
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: intestazione_titolo.tex
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    {\Large \itshape Verbale Interno del 13 Marzo 2026 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+ 
+    {\large Data: 2026-03-13 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: indice.tex
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy} % Riattiva lo stile di pagina da qui in poi
+
+% -------------------------------------------------------------------
+%  SEZIONE: informazioni.tex
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+Elenco dei membri del gruppo di lavoro NightPRO.
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2026-03-13
+    \item \textbf{Ora:} 16:30 - 17:30
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Francesco Zanella, Davide Biasuzzi, Mihaela-Mariana Romascu, Leonardo Bilato
+    \item \textbf{Redatto da:} Francesco Zanella
+    \item \textbf{Verificato da:} Leonardo Bilato
+    \item \textbf{Versione:} 1.0
+\end{itemize}
+
+
+% -------------------------------------------------------------------
+%  SEZIONE: odg.tex (Ordine del Giorno)
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Visione e discussione delle modifiche al Piano di Qualifica 
+    \item[2.] Visione e discussione del nuovo sito
+    \item[3.] Visione e discussione delle Norme di Progetto
+    \item[4.] Definizione Ruoli prossimo periodo
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: diario.tex (Diario della riunione)
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+Come nota preliminare, si segnala che non sono state chiuse issue rispetto allo scorso verbale di sprint, in quanto il gruppo è rimasto in attesa della valutazione della revisione RTB. L'unica attività operativa svolta si tratta della modifica del documento di Analisi dei Requisiti, fatta a seguito del riscontro negativo ricevuto dal docente.
+
+\subsection{Piano di Qualifica}
+Francesco Zanella ha presentato al gruppo gli aggiornamenti effettuati al documento del Piano di Qualifica. In particolare, è stato illustrato il lavoro di adattamento dei requisiti in modo che risultino coerenti con quanto definito all'interno dell'Analisi dei Requisiti. 
+Durante la riunione sono stati inoltre aggiunti e analizzati gli sprint 9 e 10. Per ciascuno di essi sono stati presi in considerazione gli obiettivi previsti e i risultati ottenuti, verificando la coerenza tra quanto pianificato e quanto effettivamente svolto dal gruppo. L'analisi ha permesso di valutare l'andamento complessivo delle attività e di individuare eventuali punti di miglioramento per gli sprint successivi.
+
+\subsection{Visione del Sito}
+Il gruppo ha dedicato una breve parte della riunione alla visione del nuovo sito del progetto. Durante la navigazione sono state controllate le principali sezioni e la struttura generale della pagina.
+Nel complesso il sito risulta chiaro e ben organizzato. 
+
+\subsection{Norme di Progetto}
+Successivamente il gruppo ha visionato gli aggiornamenti effettuati da Samuele Perozzo al documento delle Norme di Progetto. Sono state discusse le modifiche apportate nelle varie sezioni con l'obiettivo di migliorare la chiarezza delle regole interne e la coerenza con le modalità operative attualmente adottate dal gruppo.
+La discussione ha permesso di verificare che le modifiche siano allineate con il flusso di lavoro del team e con la documentazione prodotta fino a questo momento.
+
+\subsection{Definizione dei Ruoli}
+Poiché il gruppo è attualmente in attesa della valutazione relativa alla RTB, si è deciso di mantenere una configurazione dei ruoli temporanea.
+Per il momento sono stati assegnati solamente i seguenti ruoli operativi:
+\begin{itemize}
+    \item \textbf{Responsabile:} Francesco Zanella
+    \item \textbf{Verificatore documenti:} Leonardo Bilato
+\end{itemize}
+
+Gli altri ruoli verranno definiti non appena il gruppo riceverà il via libera in seguito alla valutazione della revisione RTB.
+
+% -------------------------------------------------------------------
+%  SEZIONE: decisioni.tex (Decisioni prese)
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese}
+
+\begin{enumerate}
+    \item Formalizzazione di Francesco Zanella come responsabile e di Leonardo Bilato come verificatore.
+    \item Studio individuale dei documenti in vista del prossimo colloquio.
+\end{enumerate}
+\vspace{0.5cm}
+Si precisa infine che, al momento, non ci sono nuove issue aperte o assegnate ai membri del team, in quanto si resta in attesa dell'esito ufficiale della valutazione RTB prima di procedere con la pianificazione e l'avvio delle prossime attività.
+
+\newpage
+\end{document}
