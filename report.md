@@ -1,10 +1,10 @@
-# Report di compilazione del 2026-03-16T20:17:03+00:00
+# Report di compilazione del 2026-03-17T10:33:23+00:00
 
-Compilazione basata sul commit 8ea992899c456f931c086f97f47df5f607587dc2 (base: 8ea9928)
+Compilazione basata sul commit 8506bbbccd6f4cbd271eee09e9eaaa76b4fd67d9 (base: 8506bbb)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/RTB/Documentazione Interna/Verbali Interni/verbale_interno_2026-03-13.pdf](docs/RTB/Documentazione%20Interna/Verbali%20Interni/verbale_interno_2026-03-13.pdf)
+✅ [docs/RTB/Documentazione Esterna/Analisi_dei_Requisiti_v2.0.pdf](docs/RTB/Documentazione%20Esterna/Analisi_dei_Requisiti_v2.0.pdf)
 
