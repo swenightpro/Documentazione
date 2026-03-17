@@ -12,3 +12,4 @@
 src/RTB/Documentazione Esterna/Piano_di_Qualifica_v0.4.pdf
 /src/RTB/Documentazione Interna/build
 *.md
+/src/RTB/build
