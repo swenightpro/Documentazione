@@ -1,10 +1,10 @@
-# Report di compilazione del 2026-03-17T12:50:53+00:00
+# Report di compilazione del 2026-03-17T13:16:03+00:00
 
-Compilazione basata sul commit d6378304a1086bab2317429ef33d45caed236d36 (base: d637830)
+Compilazione basata sul commit 0a2b8061d267a32b3e700ab24861c9526e97b578 (base: 0a2b806)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/RTB/Documentazione Interna/Norme_di_Progetto_v3.0.pdf](docs/RTB/Documentazione%20Interna/Norme_di_Progetto_v3.0.pdf)
+✅ [docs/RTB/Lettera_di_Presentazione_v2.0.pdf](docs/RTB/Lettera_di_Presentazione_v2.0.pdf)
 
