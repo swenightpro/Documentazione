@@ -1,0 +1,387 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl}
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{scrhack}
+\usepackage{placeins}
+\usepackage{tabularx}
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}
+\graphicspath{{Contenuti/}{../../assets/}{../assets/}{assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[svgnames,table]{xcolor}
+
+% --- Utility ---
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{hhline}
+\usepackage[italian]{cleveref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Manuale Utente - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% --- Colonne tabella personalizzate ---
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+% ===================================================================
+%  HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textbf{NightPRO -- Progetto Ingegneria del Software}}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{4}
+
+% ===================================================================
+%  INIZIO DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  FRONTESPIZIO
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \includegraphics[width=0.35\textwidth]{logo.png}\\[1cm]
+
+    \vfill
+
+    {\small UNIVERSIT\`A DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    \vfill
+
+    {\Huge \bfseries Manuale Utente \par}
+    \vspace{1cm}
+
+    \vfill
+
+    {\Large \bfseries Gruppo: NightPRO}    \vspace{0.5cm}\\
+    {\Large \bfseries Sistema: SmartOrder}    \vspace{0.5cm}
+
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
+
+    {\large Data: 2026-03-20 \par}
+
+    {\Large Versione: 0.1\par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  TABELLA DELLE VERSIONI
+% -------------------------------------------------------------------
+\newpage
+\pagestyle{fancy}
+\phantomsection
+\section*{Tabella delle Versioni}
+\vspace{0.2cm}
+\begin{center}
+    \resizebox{\textwidth}{!}{
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{@{}llp{0.25\textwidth}p{0.45\textwidth}c@{}}
+            \toprule
+            \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
+            \midrule
+            0.1 & 2026-03-20 & Davide Biasuzzi & Versione iniziale & Leonardo Bilato \\
+            \bottomrule
+        \end{tabular}
+    }
+\end{center}
+
+% -------------------------------------------------------------------
+%  INDICE
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents
+\listoffigures
+\listoftables
+\pagestyle{fancy}
+
+% -------------------------------------------------------------------
+%  COMPONENTI DEL GRUPPO
+% -------------------------------------------------------------------
+\newpage
+\section*{Componenti del Gruppo}
+\addcontentsline{toc}{section}{Componenti del Gruppo}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{@{}llc@{}}
+        \toprule
+        \textbf{Cognome} & \textbf{Nome}   & \textbf{Matricola} \\
+        \midrule
+        Biasuzzi         & Davide          & 2111000            \\
+        Bilato           & Leonardo        & 2071084            \\
+        Zanella          & Francesco       & 2116442            \\
+        Romascu          & Mihaela-Mariana & 2079726            \\
+        Ogniben          & Michele         & 2042325            \\
+        Perozzo          & Samuele         & 2110989            \\
+        Ponso            & Giovanni        & 2000558            \\
+        \bottomrule
+    \end{tabular}
+    \caption{Componenti del gruppo NightPRO.}
+\end{table}
+
+% ===================================================================
+%  1. INTRODUZIONE
+% ===================================================================
+\newpage
+\section{Introduzione}
+
+\subsection{Scopo del documento}
+Il presente documento costituisce il \textbf{Manuale Utente} del sistema \textit{SmartOrder}, sviluppato dal gruppo NightPRO nell'ambito del corso di Ingegneria del Software (A.A.\ 2025/2026) dell'Universit\`a degli Studi di Padova.
+
+Lo scopo del manuale \`e fornire agli utenti finali tutte le informazioni necessarie per utilizzare in modo efficace la piattaforma, descrivendone le funzionalit\`a, l'interfaccia e le modalit\`a di interazione.
+
+Il documento \`e redatto in modo incrementale: le sezioni relative alle istruzioni d'uso verranno completate parallelamente allo sviluppo del prodotto.
+
+\subsection{Scopo del prodotto}
+\textit{SmartOrder} \`e una piattaforma B2B\textsubscript{\textsc{g}} per la gestione automatizzata degli ordini commerciali. Il sistema consente ai clienti di formulare ordini in \textbf{linguaggio naturale} --- tramite testo, audio e, opzionalmente, immagini --- sfruttando un pipeline di intelligenza artificiale basato su LLM\textsubscript{\textsc{g}} per:
+
+\begin{itemize}[noitemsep]
+    \item interpretare l'intento dell'utente e dedurre quantit\`a e prodotti;
+    \item mappare gli articoli richiesti sul catalogo aziendale tramite \textbf{Vector Search}\textsubscript{\textsc{g}} (embedding);
+    \item generare un output strutturato in formato JSON\textsubscript{\textsc{g}} pronto per l'integrazione con il sistema ERP\textsubscript{\textsc{g}} aziendale.
+\end{itemize}
+
+La piattaforma mette inoltre a disposizione un \textbf{carrello virtuale} per la validazione visiva dell'ordine prima dell'invio, un \textbf{sistema di ticketing} per l'assistenza umana in tempo reale e un meccanismo di \textbf{logging e feedback} per il miglioramento continuo del modello (Human-in-the-Loop).
+
+\subsection{Destinatari del documento}
+Il manuale si rivolge a due categorie di utenti:
+
+\begin{description}[style=nextline]
+    \item[\textbf{Cliente}] Acquirente B2B (ad esempio ristoratore, negoziante) che utilizza l'interfaccia mobile-first per dettare ordini, gestire il carrello e consultare lo storico.
+    \item[\textbf{Operatore}] Dipendente dell'azienda fornitrice che utilizza l'interfaccia desktop-first di backoffice per monitorare gli ordini, gestire i ticket di assistenza e validare le risposte dell'IA.
+\end{description}
+
+\subsection{Glossario}
+Per evitare ambiguit\`a, i termini tecnici e di dominio sono definiti nel \textit{Glossario v2.0}.
+I termini presenti nel glossario sono contrassegnati con il simbolo \textsubscript{\textsc{g}} alla prima occorrenza in ogni sezione.
+
+\subsection{Riferimenti}
+
+\subsubsection{Riferimenti normativi}
+\begin{itemize}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/RTB/Documentazione%20Interna/Norme_di_Progetto_v2.0.pdf}{Norme di Progetto v2.0} (Ultima modifica 2026-03-20)
+    \item \href{https://swenightpro.github.io/Documentazione/docs/RTB/Documentazione%20Esterna/Analisi_dei_Requisiti_v1.1.pdf}{Analisi dei Requisiti v1.1} (Ultima modifica 2026-03-20)
+    \item \href{https://swenightpro.github.io/Documentazione/docs/PB/Documentazione%20Esterna/Specifica_Tecnica_v0.1.pdf}{Specifica Tecnica v0.1} (Ultima modifica 2026-03-20)
+\end{itemize}
+
+\subsubsection{Riferimenti informativi}
+\begin{itemize}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/RTB/Documentazione%20Esterna/Glossario_v2.0.pdf}{Glossario v2.0} (Ultima modifica 2026-03-20)
+    \item \href{https://nextjs.org/docs}{Next.js Documentation} (Ultima modifica 2026-03-20)
+    \item \href{https://fastapi.tiangolo.com/}{FastAPI Documentation} (Ultima modifica 2026-03-20)
+\end{itemize}
+
+% ===================================================================
+%  2. REQUISITI
+% ===================================================================
+\newpage
+\section{Requisiti}
+Per poter utilizzare SmartOrder \`e necessario soddisfare i seguenti requisiti minimi. L'applicazione \`e una \textit{web application}\textsubscript{\textsc{g}} accessibile tramite browser\textsubscript{\textsc{g}}: non \`e richiesta l'installazione di software aggiuntivo sul dispositivo dell'utente.
+
+\subsection{Requisiti hardware}
+Trattandosi di un'applicazione web, non sono richieste risorse hardware particolarmente elevate. Si raccomandano comunque i seguenti requisiti minimi:
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{ll}
+        \toprule
+        \textbf{Componente} & \textbf{Requisito minimo} \\
+        \midrule
+        Processore  & Dual-core, 1.5~GHz \\
+        Memoria RAM & 2~GB \\
+        Connessione & Connessione Internet stabile \\
+        Audio (opzionale) & Microfono per input vocale \\
+        \bottomrule
+    \end{tabular}
+    \caption{Requisiti hardware minimi.}
+    \label{tab:req-hw}
+\end{table}
+
+\subsection{Requisiti software}
+\`E necessario utilizzare un browser\textsubscript{\textsc{g}} web aggiornato. La compatibilit\`a \`e garantita per le seguenti versioni minime:
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{ll}
+        \toprule
+        \textbf{Browser} & \textbf{Versione minima} \\
+        \midrule
+        Google Chrome   & 110+ \\
+        Mozilla Firefox & 110+ \\
+        Apple Safari    & 16+ \\
+        Microsoft Edge  & 110+ \\
+        \bottomrule
+    \end{tabular}
+    \caption{Browser supportati.}
+    \label{tab:req-browser}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{ll}
+        \toprule
+        \textbf{Sistema Operativo} & \textbf{Versione minima} \\
+        \midrule
+        Windows    & 10 \\
+        macOS      & 12 (Monterey) \\
+        Linux      & Ubuntu 20.04 / equivalente \\
+        Android    & 12 \\
+        iOS/iPadOS & 16 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Sistemi operativi supportati.}
+    \label{tab:req-os}
+\end{table}
+
+\textbf{Nota:} per l'input vocale \`e necessario che il browser\textsubscript{\textsc{g}} abbia accesso al microfono del dispositivo.
+
+% ===================================================================
+%  3. ACCESSO ALLA PIATTAFORMA
+% ===================================================================
+\newpage
+\section{Accesso alla piattaforma}
+SmartOrder \`e una web application: per accedervi \`e sufficiente aprire il browser\textsubscript{\textsc{g}} e navigare all'indirizzo fornito dall'azienda. Non \`e richiesta alcuna installazione.
+
+\subsection{Autenticazione}
+L'accesso al sistema \`e riservato agli utenti registrati. L'autenticazione avviene tramite le credenziali fornite dall'azienda:
+
+\begin{enumerate}[noitemsep]
+    \item Inserire l'\textbf{indirizzo email} nel campo apposito.
+    \item Inserire la \textbf{password} associata.
+    \item Premere il pulsante \textbf{Accedi}.
+\end{enumerate}
+
+\subsection{Logout}
+Per disconnettersi dalla piattaforma, selezionare l'opzione \textbf{Logout} dal menu del profilo utente.
+
+% ===================================================================
+%  4. PANORAMICA DELLE FUNZIONALITÀ
+% ===================================================================
+\newpage
+\section{Panoramica delle funzionalit\`a}
+Questa sezione fornisce una visione d'insieme delle funzionalit\`a offerte dalla piattaforma, suddivise per ruolo utente.
+
+\subsection{Funzionalit\`a del Cliente}
+\begin{description}[style=nextline, leftmargin=1.5cm]
+    \item[\textbf{Chat con IA}] Invio di messaggi in linguaggio naturale (testo e audio) per comporre un ordine. L'IA interpreta la richiesta e popola automaticamente il carrello.
+    \item[\textbf{Feedback messaggi IA}] Possibilit\`a di fornire feedback positivo o negativo (con tag predefiniti) su ogni risposta dell'IA, contribuendo al miglioramento del modello.
+    \item[\textbf{Ricerca nel catalogo}] Ricerca live nel catalogo prodotti per nome, codice articolo (SKU\textsubscript{\textsc{g}}) o categoria.
+    \item[\textbf{Gestione carrello}] Visualizzazione del carrello con indicazione dell'origine di ogni articolo (IA o manuale), modifica delle quantit\`a e rimozione di prodotti.
+    \item[\textbf{Conferma ordine}] Invio dell'ordine finalizzato al sistema gestionale (ERP\textsubscript{\textsc{g}}) dell'azienda fornitrice.
+    \item[\textbf{Storico ordini}] Consultazione cronologica degli ordini passati ed esportazione in formato CSV\textsubscript{\textsc{g}} (funzionalit\`a desiderabile).
+    \item[\textbf{Apertura ticket}] Richiesta di assistenza umana in caso di difficolt\`a, con passaggio in tempo reale della conversazione a un Operatore.
+    \item[\textbf{Area personale}] Consultazione e modifica dei dati del proprio profilo; cambio password.
+\end{description}
+
+\subsection{Funzionalit\`a dell'Operatore}
+\begin{description}[style=nextline, leftmargin=1.5cm]
+    \item[\textbf{Monitoraggio ticket}] Dashboard per visualizzare e gestire i ticket aperti dai clienti.
+    \item[\textbf{Gestione carrello cliente}] Possibilit\`a di intervenire sul carrello del cliente in tempo reale durante un ticket di assistenza.
+    \item[\textbf{Log IA}] Consultazione dei log delle risposte dell'IA e validazione delle correzioni effettuate.
+    \item[\textbf{Area personale}] Consultazione del proprio profilo e cambio password.
+\end{description}
+
+% ===================================================================
+%  5. ISTRUZIONI D'USO -- CLIENTE
+% ===================================================================
+\newpage
+\section{Istruzioni d'uso -- Cliente}
+\textit{Questa sezione verr\`a completata con screenshot e istruzioni passo-passo a seguito dello sviluppo dell'MVP\textsubscript{\textsc{g}}.}
+
+\subsection{Creazione di un ordine tramite chat}
+% TODO: screenshot + passi
+
+\subsection{Input vocale}
+% TODO: screenshot + passi
+
+\subsection{Ricerca e aggiunta manuale di prodotti}
+% TODO: screenshot + passi
+
+\subsection{Gestione del carrello}
+% TODO: screenshot + passi
+
+\subsection{Conferma e invio dell'ordine}
+% TODO: screenshot + passi
+
+\subsection{Consultazione dello storico ordini}
+% TODO: screenshot + passi
+
+\subsection{Apertura di un ticket di assistenza}
+% TODO: screenshot + passi
+
+% ===================================================================
+%  6. ISTRUZIONI D'USO -- OPERATORE
+% ===================================================================
+\newpage
+\section{Istruzioni d'uso -- Operatore}
+\textit{Questa sezione verr\`a completata con screenshot e istruzioni passo-passo a seguito dello sviluppo dell'MVP\textsubscript{\textsc{g}}.}
+
+\subsection{Dashboard e gestione ticket}
+% TODO: screenshot + passi
+
+\subsection{Intervento sul carrello del cliente}
+% TODO: screenshot + passi
+
+\subsection{Consultazione log IA}
+% TODO: screenshot + passi
+
+% ===================================================================
+%  7. MESSAGGI DI ERRORE E RISOLUZIONE PROBLEMI
+% ===================================================================
+\newpage
+\section{Messaggi di errore e risoluzione problemi}
+\textit{Questa sezione verr\`a completata a seguito dello sviluppo dell'MVP\textsubscript{\textsc{g}}.}
+
+Di seguito saranno elencati i principali messaggi di errore che l'utente potrebbe incontrare durante l'utilizzo della piattaforma, con le relative soluzioni suggerite.
+
+% TODO: tabella errori / soluzioni
+
+% ===================================================================
+%  8. SUPPORTO
+% ===================================================================
+\newpage
+\section{Supporto}
+Per segnalazioni, richieste di assistenza o feedback relativi al presente manuale o al sistema SmartOrder, \`e possibile contattare il gruppo NightPRO all'indirizzo:
+
+\begin{center}
+    \large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}
+\end{center}
+
+\end{document}
