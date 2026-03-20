@@ -1,0 +1,203 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}      % Codifica UTF-8
+\usepackage[T1]{fontenc}         % Font encoding moderno
+\usepackage[italian]{babel}      % Lingua italiana 
+\usepackage{lmodern}             % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}            % Per includere immagini
+\graphicspath{{../../../assets/}}
+
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}            % Per header e footer personalizzati
+\usepackage{microtype}           % Migliora la tipografia
+\usepackage[svgnames]{xcolor}    % Colori
+
+% --- Utility ---
+\usepackage{booktabs}            % Tabelle più professionali
+\usepackage{enumitem}            % Per personalizzare liste
+\usepackage{hyperref}            % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,     
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Interno 2026-03-20 - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce tutti i campi
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro in basso
+\renewcommand{\headrulewidth}{0.4pt} % Linea sottile sotto l'header
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Frontespizio
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    {\Large \itshape Verbale Interno del 20 Marzo 2026 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+ 
+    {\large Data: 2026-03-20 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Indice
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents % Genera l'indice
+\pagestyle{fancy} % Riattiva lo stile di pagina da qui in poi
+
+% -------------------------------------------------------------------
+%  SEZIONE: Informazioni Generali
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Nominativo} & \textbf{Matricola} & \textbf{Ruolo Operativo} \\
+\midrule
+Francesco Zanella & 2116442 & Responsabile, Progettista \\
+Leonardo Bilato & 2071084 & Verificatore, Progettista , Analista\\
+Davide Biasuzzi & 2111000 & Progettista \\
+Mihaela-Mariana Romascu & 2079726 & Progettista \\
+Michele Ogniben & 2042325 & Progettista \\
+Samuele Perozzo & 2110989 & Progettista \\
+Giovanni Ponso & 2000558 & Progettista, Analista \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO e ruoli ricoperti durante la seduta.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2026-03-20
+    \item \textbf{Ora:} 10:30 - 11:30
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Francesco Zanella, Mihaela-Mariana Romascu, Leonardo Bilato, Giovanni Ponso, Samuele Perozzo
+    \item \textbf{Redatto da:} Francesco Zanella
+    \item \textbf{Verificato da:} Leonardo Bilato
+\end{itemize}
+
+
+% -------------------------------------------------------------------
+%  SEZIONE: Ordine del Giorno
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{enumerate}
+    \item Visione della correzione del RTB
+    \item Definizione Ruoli
+    \item Prossimi Passi
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Diario della Riunione
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Visione della correzione del RTB}
+In apertura, il gruppo ha analizzato l'esito ufficiale ricevuto per la revisione RTB. Francesco Zanella ha esposto i punti critici evidenziati dalla correzione, soffermandosi in particolare sui feedback relativi all'Analisi dei Requisiti. Il team ha discusso le azioni correttive necessarie per allineare definitivamente i documenti (Piano di Qualifica e Norme di Progetto) e ha verificato che le modifiche già apportate in precedenza fossero coerenti con i commenti ricevuti.
+
+\subsection{Definizione Ruoli}
+Concluso il processo di RTB, il gruppo ha formalizzato i ruoli operativi per la fase imminente. È stato deciso di mantenere una struttura che garantisca massima efficacia nella progettazione:
+\begin{itemize}
+    \item \textbf{Francesco Zanella:} Assume il ruolo di Responsabile e Progettista.
+    \item \textbf{Leonardo Bilato:} Assume il ruolo di Verificatore e Progettista.
+    \item \textbf{Tutti gli altri membri:} Operano in qualità di Progettisti.
+\end{itemize}
+Giovanni Ponso e Leonardo Bilato successivamente al colloquio con il prof. Cardin assumeranno il ruolo di Analista per sistemare definitivamente l'Analisi der Requisiti
+
+\subsection{Prossimi Passi}
+Il gruppo ha stabilito che l'impegno principale si sposterà immediatamente sulla progettazione del Minimum Viable Product (MVP). Tale fase è prioritaria per garantire la consegna di un prototipo funzionante entro le scadenze.
+
+In particolare, il team ha approvato l'adozione del C4 model per la rappresentazione dell'architettura software, assicurando così una documentazione chiara a più livelli (Context, Container, Component e Code).
+Oltre all'attività tecnica, sono stati pianificati i seguenti incontri strategici:
+\begin{itemize}
+    \item \textbf{Colloquio con Ergon Informatica:} Per discutere i dettagli implementativi dell'MVP con il proponente e allineare le scelte tecnologiche.
+    \item \textbf{Colloquio con il Prof. Cardin:} Per sottoporre a revisione finale l'Analisi dei Requisiti e chiudere definitivamente il documento sulla base degli esiti RTB.
+    \item \textbf{Modellazione C4:} Inizio della stesura dei diagrammi di Context e Container.
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Decisioni e Issue GitHub
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese e Gestione Issue}
+
+\begin{enumerate}
+    \item Formalizzazione dei ruoli: F. Zanella (Responsabile), L. Bilato (Verificatore), tutti (Progettisti).
+    \item \textbf{Standard Architetturale:} Adozione ufficiale del C4 model per l'architettura dell'MVP.
+    \item \textbf{Incontri:} Richiesta di colloquio con Ergon Informatica e con il Prof. Cardin entro la settimana.
+\end{enumerate}
+
+\subsection{Pianificazione Issue GitHub}
+Di seguito le issue aperte o aggiornate per tracciare i compiti discussi:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lllc@{}}
+\toprule
+\textbf{ID Issue} & \textbf{Task} & \textbf{Assegnatario} & \textbf{Stato} \\
+\midrule
+\#67 & Redazione Diagrammi C4 (Context e Container) & Francesco, Davide & To Do \\
+\#68 & Contatto Ergon Informatica per colloquio tecnico & Francesco Z. & To Do \\
+\#69 & Revisione finale Analisi dei Requisiti post-RTB & Giovanni, Leonardo & To Do \\
+\#70 & Stesura Verbale Interno 20/03/26 & Francesco Z. & To Do \\
+\#71 & Contatto Prof. Cardin per revisione finale Analisi dei Requisiti& Francesco Z. & To Do \\
+\bottomrule
+\end{tabular}
+\caption{Task operative pianificate su GitHub.}
+\end{table}
+
+\newpage
+\end{document}
