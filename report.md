@@ -1,10 +1,10 @@
-# Report di compilazione del 2026-03-17T13:16:03+00:00
+# Report di compilazione del 2026-03-20T16:35:49+00:00
 
-Compilazione basata sul commit 0a2b8061d267a32b3e700ab24861c9526e97b578 (base: 0a2b806)
+Compilazione basata sul commit f07ee1a6068dcd0ca6b4f253afe674aca6561156 (base: f07ee1a)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/RTB/Lettera_di_Presentazione_v2.0.pdf](docs/RTB/Lettera_di_Presentazione_v2.0.pdf)
+✅ [docs/PB/Documentazione Esterna/Specifica_Tecnica_v0.1.pdf](docs/PB/Documentazione%20Esterna/Specifica_Tecnica_v0.1.pdf)
 
