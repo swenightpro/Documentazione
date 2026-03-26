@@ -1,0 +1,241 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana
+\usepackage{lmodern}            % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}           % Per le immagini
+\graphicspath{{assets/}{../assets/}{../../assets/}{../../../assets}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
+
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{tabularx}           % Per tabelle flessibili
+\usepackage{hyperref}           % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Esterno 2026-03-26 - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyhead[L]{\textbf{NightPRO – Progetto Ingegneria del Software}}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} 
+\renewcommand{\headrulewidth}{0.4pt} 
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Frontespizio
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png} 
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    {\Large \itshape Verbale Esterno del 26 Marzo 2026 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+ 
+    {\large Data: 2026-03-26 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Indice
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents 
+\pagestyle{fancy} 
+
+% -------------------------------------------------------------------
+%  SEZIONE: Informazioni Generali
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2026-03-26
+    \item \textbf{Ora:} 15:00 - 16:00
+    \item \textbf{Luogo:} Microsoft Teams
+    \item \textbf{Partecipanti (NightPRO):} Biasuzzi Davide, Ponso Giovanni, Perozzo Samuele, Romascu Mihaela-Mariana, Leonardo Bilato, Francesco Zanella
+    \item \textbf{Assenti:} Ogniben Michele
+    \item \textbf{Partecipanti (Esterni):} Gianluca Carlesso (Ergon Informatica)
+    \item \textbf{Redatto da: } Francesco Zanella
+    \item \textbf{Verificato da:} Leonardo Bilato
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Ordine del Giorno
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Revisione della struttura Database (Utenti e Ordini)
+    \item[2.] Proposta e approvazione nuove tabelle per la gestione chat
+    \item[3.] Presentazione Mockup MVP e gestione Ticket Operatore
+    \item[4.] Discussione sulla gestione delle sessioni e feedback
+    \item[5.] Revisione della Progettazione (C4 Model e Design Patterns)
+\end{itemize}
+
+% -------------------------------------------------------------------
+% SEZIONE: Diario della Riunione
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+Durante il colloquio con la Proponente, il gruppo ha esposto l'avanzamento tecnologico relativo alla progettazione dell'architettura e all'interfaccia utente, ricevendo feedback estremamente positivi sulla direzione intrapresa.
+
+\vspace{0.5cm}
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\begin{tabularx}{\textwidth}{p{0.35\textwidth} X}
+\toprule
+\textbf{Argomento/Domanda} & \textbf{Risposta/Discussione} \\
+\midrule
+
+\textbf{1) Modifica e ottimizzazione Database} \par
+È stata presentata la nuova suddivisione delle tabelle per la gestione utenti e ordini.
+&
+L'azienda ha confermato la validità della divisione proposta, ritenendo il dataset fornito correttamente integrato nella nuova logica di gestione.
+\\ \addlinespace
+
+\textbf{2) Introduzione tabelle Chat} \par
+Proposta di inserimento tabelle \texttt{chat\_session}, \texttt{chat\_message} e \texttt{message\_feedback}.
+&
+Gianluca Carlesso ha giudicato "molto ragionevole" la modifica, approvando ufficialmente l'aggiunta di queste tabelle per tracciare la cronologia e la qualità delle risposte AI.
+\\ \addlinespace
+
+\textbf{3) Mockup MVP e gestione Ticket} \par
+Presentazione dell'interfaccia per la gestione dell'assistenza tramite ticket.
+&
+La Proponente ha espresso grande soddisfazione, definendo il lavoro "ben al di sopra delle aspettative". L'idea del ticket è stata considerata un'ottima interpretazione dei requisiti generici del capitolato.
+\\ \addlinespace
+
+\textbf{4) Gestione Sessioni e Feedback} \par
+Spiegazione del pulsante "Nuova Sessione" e logiche di feedback.
+&
+È stata chiarita l'utilità delle sessioni per isolare i contesti di acquisto. Per quanto riguarda il feedback, si è deciso di spostare le logiche più complesse (es. retraining) tra i \textbf{Requisiti Desiderabili}, dando priorità alla stabilità del sistema.
+La Proponente aggiunge che possiamo renderlo desiderabile dato il livello di cura che abbiamo dato alla User Interface, che offre già un bel pacchetto di funzionalità
+\\ \addlinespace
+
+\textbf{5) Valutazione C4 Model e Architettura} \par
+Validazione dei diagrammi C4 (Frontend/Backend) e dei design pattern scelti.
+&
+L'azienda ha approvato l'uso dei design pattern proposti e ha \textbf{caldamente consigliato} il mantenimento dell'architettura monolitica per questa fase del progetto, giudicandola la più efficace per le necessità dell'MVP. Ha inoltre approvato il lavoro fatto sui 4 diversi livelli giudicandoli precisi e conformi (a parte il lavoro fatto al layer 4 del frontend dato che non è completo).
+\\ \addlinespace
+\bottomrule
+\end{tabularx}
+\normalsize
+
+% -------------------------------------------------------------------
+% SEZIONE: Decisioni Prese
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese}
+
+\begin{enumerate}
+\item \textbf{Database:} Approvata formalmente l'estensione del database con le tabelle \texttt{chat\_session}, \texttt{chat\_message} e \texttt{message\_feedback}.
+\item \textbf{Architettura Software:} Conferma della scelta \textbf{Monolitica} come standard per lo sviluppo del backend, validando i diagrammi C4 presentati.
+\item \textbf{Gestione Ticket:} La logica di assistenza basata su ticket diventa il fulcro della dashboard operatore, superando le specifiche iniziali per completezza e usabilità.
+\item \textbf{Priorità Sviluppo:} Le funzionalità di retraining automatico del modello AI vengono declassate a \textbf{Requisiti Desiderabili} per focalizzare il team sulla realizzazione delle core features (ordinamento e gestione catalogo).
+\item \textbf{UI/UX:} Confermata l'interfaccia mostrata nel mockup come base per lo sviluppo del frontend.
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: To-Do
+% -------------------------------------------------------------------
+\newpage
+\section{Attività da Svolgere (To-Do)}
+
+\begin{table}[h!]
+\centering
+\begin{tabularx}{\textwidth}{@{}X l c@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} & \textbf{Scadenza} \\
+\midrule
+Redazione Verbale Esterno 26/03/26 & Responsabile & 2026-03-27 \\
+\addlinespace
+Aggiornamento Analisi dei Requisiti (inserimento tabelle chat e logiche ticket) & Analisti & Fine Sprint \\
+\addlinespace
+Avanzamento Progettazione C4 Livello 4 basato su feedback Ergon & Progettisti & Fine Sprint \\
+\bottomrule
+\end{tabularx}
+\caption{Riepilogo task assegnati.}
+\end{table}
+
+% ------ FIRMA AZIENDA PROPONENTE --------------------------------
+\vspace{2cm} 
+\begin{flushright}
+    \textbf{Firma Ergon Informatica S.r.l.} \\[0.5cm]
+
+    
+    \vspace{3cm}
+    \rule{6cm}{0.4pt} \\
+    \small{Gianluca Carlesso}
+\end{flushright}
+
+\end{document}
