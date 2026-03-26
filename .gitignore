@@ -17,3 +17,4 @@ src/RTB/Documentazione Esterna/Piano_di_Qualifica_v0.4.pdf
 
 *.md
 /src/RTB/build
+*.puml

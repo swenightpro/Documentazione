@@ -1,0 +1,591 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl}
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{scrhack}
+\usepackage{placeins}
+\usepackage{tabularx}
+\usepackage{amsmath, amssymb, mathtools}
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}
+\graphicspath{{Contenuti/}{../../assets/}{../assets/}{assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[svgnames,table]{xcolor}
+
+% --- Utility ---
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{hhline}
+\usepackage[italian]{cleveref}
+\usepackage{listings}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Specifica Tecnica - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% --- Colonne tabella personalizzate ---
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+% --- Stile codice ---
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    backgroundcolor=\color{gray!5},
+    rulecolor=\color{gray!40},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{DarkBlue}\bfseries,
+    stringstyle=\color{OrangeRed},
+    commentstyle=\color{ForestGreen}\itshape,
+    showstringspaces=false,
+    tabsize=2
+}
+
+% ===================================================================
+%  HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textbf{NightPRO -- Progetto Ingegneria del Software}}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{4}
+
+% ===================================================================
+%  INIZIO DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  FRONTESPIZIO
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \includegraphics[width=0.35\textwidth]{logo.png}\\[1cm]
+
+    \vfill
+
+    {\small UNIVERSIT\`A DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    \vfill
+
+    {\Huge \bfseries Specifica Tecnica \par}
+    \vspace{1cm}
+
+    \vfill
+
+    {\Large \bfseries Gruppo: NightPRO}    \vspace{0.5cm}\\
+    {\Large \bfseries Sistema: SmartOrder}    \vspace{0.5cm}
+
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
+
+    {\large Data: 2026-03-26 \par}
+
+    {\Large Versione: 0.2\par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  TABELLA DELLE VERSIONI
+% -------------------------------------------------------------------
+\newpage
+\pagestyle{fancy}
+\phantomsection
+\section*{Tabella delle Versioni}
+\vspace{0.2cm}
+\begin{center}
+    \resizebox{\textwidth}{!}{
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{@{}llp{0.25\textwidth}p{0.45\textwidth}c@{}}
+            \toprule
+            \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche}                           & \textbf{Verificatore} \\
+            \midrule
+            0.2               & 2026-03-26    & Davide Biasuzzi   & Inserimento paragrafo su esecuzione e su tecnologie utilizzate & Leonardo Bilato       \\
+            0.1               & 2026-03-20    & Davide Biasuzzi   & Stesura base documento (Introduzione e Requisiti di Sistema)   & Leonardo Bilato       \\
+            \bottomrule
+        \end{tabular}
+    }
+\end{center}
+
+% -------------------------------------------------------------------
+%  INDICE
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents
+\listoffigures
+\listoftables
+\pagestyle{fancy}
+
+% -------------------------------------------------------------------
+%  COMPONENTI DEL GRUPPO
+% -------------------------------------------------------------------
+\newpage
+\section*{Componenti del Gruppo}
+\addcontentsline{toc}{section}{Componenti del Gruppo}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{@{}llc@{}}
+        \toprule
+        \textbf{Cognome} & \textbf{Nome}   & \textbf{Matricola} \\
+        \midrule
+        Biasuzzi         & Davide          & 2111000            \\
+        Bilato           & Leonardo        & 2071084            \\
+        Zanella          & Francesco       & 2116442            \\
+        Romascu          & Mihaela-Mariana & 2079726            \\
+        Ogniben          & Michele         & 2042325            \\
+        Perozzo          & Samuele         & 2110989            \\
+        Ponso            & Giovanni        & 2000558            \\
+        \bottomrule
+    \end{tabular}
+    \caption{Componenti del gruppo NightPRO.}
+\end{table}
+
+% ===================================================================
+%  1. INTRODUZIONE
+% ===================================================================
+\newpage
+\section{Introduzione}
+
+\subsection{Scopo del documento}
+Il presente documento ha lo scopo di descrivere l'architettura software del sistema \textit{SmartOrder}, definendo le scelte tecnologiche, i pattern architetturali e progettuali adottati, e l'architettura di dettaglio di ciascun componente.
+La Specifica Tecnica costituisce il riferimento principale per la fase di codifica, garantendo coerenza tra progettazione e implementazione.
+
+\subsection{Scopo del prodotto}
+\textit{SmartOrder} \`e una piattaforma B2B per l'automazione della gestione degli ordini commerciali. Il sistema consente ai clienti di formulare ordini in linguaggio naturale (testo, audio, immagini) e li converte automaticamente in ordini strutturati pronti per l'integrazione con sistemi ERP aziendali, riducendo errori e tempi di inserimento manuale.
+
+\subsection{Glossario}
+Per evitare ambiguit\`a, i termini tecnici e di dominio utilizzati nel documento sono definiti nel \textit{Glossario v2.0}.
+I termini presenti nel glossario sono contrassegnati con il simbolo \textsubscript{\textsc{g}} alla prima occorrenza in ogni sezione.
+
+\subsection{Riferimenti}
+
+\subsubsection{Riferimenti normativi}
+\begin{itemize}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/RTB/Documentazione%20Interna/Norme_di_Progetto_v2.0.pdf}{Norme di Progetto v2.0} (Ultima modifica 2026-03-20)
+    \item \href{https://swenightpro.github.io/Documentazione/docs/RTB/Documentazione%20Esterna/Analisi_dei_Requisiti_v1.1.pdf}{Analisi dei Requisiti v1.1} (Ultima modifica 2026-03-20)
+\end{itemize}
+
+\subsubsection{Riferimenti informativi}
+\begin{itemize}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/RTB/Documentazione%20Esterna/Glossario_v2.0.pdf}{Glossario v2.0} (Ultima modifica 2026-03-20)
+    \item \href{https://swenightpro.github.io/Documentazione/docs/RTB/Documentazione%20Esterna/Piano_di_Qualifica_v1.0.pdf}{Piano di Qualifica v1.0} (Ultima modifica 2026-03-20)
+    \item \href{https://nextjs.org/docs}{Next.js Documentation} (Ultima modifica 2026-03-20)
+    \item \href{https://fastapi.tiangolo.com/}{FastAPI Documentation} (Ultima modifica 2026-03-20)
+    \item \href{https://platform.openai.com/docs}{OpenAI API Documentation} (Ultima modifica 2026-03-20)
+    \item \href{https://www.postgresql.org/docs/}{PostgreSQL Documentation} (Ultima modifica 2026-03-20)
+    \item \href{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T05.pdf}{Analisi dei requisitiG, SWE 2025-2026} (Ultima modifica 2026-03-26)
+    \item \href{https://www.math.unipd.it/~rcardin/swea/2022/Software%20Architecture%20Patterns.pdf}{Software Architecture Patterns, SWE 2025-2026} (Ultima modifica 2026-03-26)
+    \item \href{https://www.math.unipd.it/~rcardin/swea/2022/Design%20Pattern%20Architetturali%20-%20Dependency%20Injection.pdf}{Dependency Injection, SWE 2025-2026} (Ultima modifica 2026-03-26)
+    \item \href{https://www.math.unipd.it/~rcardin/swea/2022/Design%20Pattern%20Creazionali.pdf}{Design Pattern Creazionali, SWE 2025-2026} (Ultima modifica 2026-03-26)
+    \item \href{https://www.math.unipd.it/~rcardin/swea/2022/Design%20Pattern%20Strutturali.pdf}{Design Pattern Strutturali, SWE 2025-2026} (Ultima modifica 2026-03-26)
+
+\end{itemize}
+
+% ===================================================================
+%  2. REQUISITI DI SISTEMA
+% ===================================================================
+\newpage
+\section{Requisiti di sistema}
+
+\subsection{Requisiti software}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{\textwidth}{@{}lXl@{}}
+        \toprule
+        \textbf{Software} & \textbf{Descrizione}                                  & \textbf{Versione minima} \\
+        \midrule
+        Node.js           & Runtime JavaScript per l'esecuzione dell'applicazione & $\geq$ 20.0              \\
+        npm               & Gestore pacchetti Node.js                             & $\geq$ 10.0              \\
+        Python            & Interprete Python per il modulo AI                    & $\geq$ 3.11              \\
+        pip               & Gestore pacchetti Python                              & $\geq$ 23.0              \\
+        PostgreSQL        & Database relazionale                                  & $\geq$ 16                \\
+        Browser web       & Chrome, Firefox, Safari, Edge                         & Ultime 2 versioni        \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Requisiti software per il deployment.}
+\end{table}
+
+\subsection{Requisiti hardware}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{\textwidth}{@{}lX@{}}
+        \toprule
+        \textbf{Componente} & \textbf{Requisito}                    \\
+        \midrule
+        CPU                 & Processore 64-bit, $\geq$ 2 core      \\
+        RAM                 & $\geq$ 4 GB                           \\
+        Spazio disco        & $\geq$ 5 GB                           \\
+        Connessione di rete & Richiesta per accesso alle API OpenAI \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Requisiti hardware minimi.}
+\end{table}
+
+% ===================================================================
+%  3. ESECUZIONE DEL SOFTWARE
+% ===================================================================
+\newpage
+\section{Esecuzione del software}
+
+In questa sezione viene descritta la modalit\`a di avvio manuale del sistema \textit{SmartOrder} in ambiente di sviluppo.
+
+% -------------------------------------------------------------------
+\subsection{Variabili d'ambiente}
+% -------------------------------------------------------------------
+
+Prima dell'avvio \`e necessario configurare un file \texttt{.env} nella directory \texttt{backend} con le seguenti variabili:
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{\textwidth}{@{}p{4.5cm}X@{}}
+        \toprule
+        \textbf{Variabile}        & \textbf{Descrizione}                      \\
+        \midrule
+        \texttt{DB\_HOST}         & Host del database PostgreSQL              \\
+        \texttt{DB\_PORT}         & Porta del database PostgreSQL             \\
+        \texttt{DB\_USER}         & Utente del database                       \\
+        \texttt{DB\_PASSWORD}     & Password del database                     \\
+        \texttt{DB\_NAME}         & Nome del database                         \\
+        \texttt{HOST}             & Host di bind del backend FastAPI          \\
+        \texttt{PORT}             & Porta del backend FastAPI                 \\
+        \texttt{API\_DEBUG}       & Abilitazione modalit\`a debug del backend \\
+        \texttt{OPENAI\_API\_KEY} & Chiave API per i servizi OpenAI           \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Variabili d'ambiente richieste.}
+\end{table}
+
+% -------------------------------------------------------------------
+\subsection{Avvio manuale (senza Docker)}
+% -------------------------------------------------------------------
+
+La procedura di avvio descritta in questa sottosezione ha lo scopo di consentire l'esecuzione locale del sistema per attivit\`a di verifica tecnica, debug e dimostrazione. Essa non rappresenta la procedura di rilascio in ambiente di produzione, che \`e invece gestita tramite pipeline di deploy automatizzato sulla piattaforma Railway.
+
+Questa prevede l'utilizzo di due terminali separati, uno per il backend e uno per il frontend.
+
+\subsubsection{Terminale 1 - Backend (FastAPI)}
+\begin{enumerate}
+    \item Posizionarsi nella cartella del backend:
+          \begin{lstlisting}[language=bash]
+cd backend
+\end{lstlisting}
+    \item Creare l'ambiente virtuale Python:
+          \begin{lstlisting}[language=bash]
+python3.11 -m venv venv
+\end{lstlisting}
+    \item Attivare l'ambiente virtuale:
+          \begin{lstlisting}[language=bash]
+source venv/bin/activate
+# Windows: venv\Scripts\activate
+\end{lstlisting}
+    \item Installare le dipendenze:
+          \begin{lstlisting}[language=bash]
+pip install -r requirements.txt
+\end{lstlisting}
+    \item Avviare il backend:
+          \begin{lstlisting}[language=bash]
+python main.py
+\end{lstlisting}
+\end{enumerate}
+
+Lasciare questo terminale in esecuzione e aprirne un secondo per il frontend.
+
+\subsubsection{Terminale 2 - Frontend (Next.js)}
+\begin{enumerate}
+    \item Installare le dipendenze del frontend:
+          \begin{lstlisting}[language=bash]
+npm install
+\end{lstlisting}
+    \item Avviare il server di sviluppo:
+          \begin{lstlisting}[language=bash]
+npm run dev
+\end{lstlisting}
+\end{enumerate}
+
+Anche questo terminale deve rimanere in esecuzione durante l'utilizzo dell'applicazione.
+
+\subsubsection{Accesso alla webapp}
+La webapp \`e disponibile all'indirizzo \texttt{http://localhost:3000}.
+In ambiente di sviluppo, le modifiche al codice vengono applicate in tempo reale tramite aggiornamento live.
+
+% -------------------------------------------------------------------
+\subsection{Deployment in produzione (Railway)}
+% -------------------------------------------------------------------
+
+Il deployment in produzione del sistema \textit{SmartOrder} \`e gestito tramite la piattaforma \textbf{Railway}, utilizzata come ambiente di hosting per l'applicazione web e per il database PostgreSQL.
+
+In sintesi, il flusso di rilascio \`e il seguente:
+\begin{itemize}
+    \item il codice sorgente viene mantenuto sul repository GitHub del progetto;
+    \item Railway \`e configurato per monitorare il branch principale del repository (ad esempio \texttt{main}) e avviare automaticamente una build ad ogni push;
+    \item durante la build, Railway installa le dipendenze necessarie (pacchetti Node.js e Python) e costruisce l'immagine eseguibile dell'applicazione;
+    \item al termine della build, Railway attiva i servizi applicativi esponendoli tramite URL pubblico HTTPS;
+    \item le variabili d'ambiente di produzione (database, chiavi API, parametri di configurazione) vengono gestite all'interno della console di Railway e non sono versionate nel repository.
+\end{itemize}
+
+In ambiente di produzione:
+\begin{itemize}
+    \item il backend (modulo FastAPI) e il frontend (Next.js) vengono eseguiti come servizi gestiti da Railway, rispettando le risorse e i limiti configurati sul progetto;
+    \item il database PostgreSQL \`e ospitato su un'istanza Railway dedicata, raggiungibile tramite i parametri configurati nelle variabili d'ambiente;
+    \item la piattaforma gestisce automaticamente aspetti infrastrutturali come il bilanciamento del carico, la terminazione TLS e il riavvio dei servizi in caso di errore.
+\end{itemize}
+
+L'URL pubblico dell'istanza di produzione \`e fornito da Railway (ad esempio \texttt{https://xyz.railway.app/}) e costituisce il punto di accesso esterno al sistema per gli utenti finali.
+
+
+% ===================================================================
+%  4. TECNOLOGIE UTILIZZATE
+% ===================================================================
+\newpage
+
+\section{Tecnologie utilizzate}
+
+In questa sezione vengono elencate le tecnologie adottate per lo sviluppo del sistema \textit{SmartOrder}. Per ciascuna tecnologia viene indicata la versione utilizzata, la motivazione della scelta e il contesto d'impiego nel progetto.
+
+% -------------------------------------------------------------------
+\subsection{Linguaggi di programmazione}
+% -------------------------------------------------------------------
+
+\subsubsection{TypeScript}
+\begin{itemize}[noitemsep]
+\item \textbf{Versione:} 5
+\item \textbf{Documentazione ufficiale:} \href{https://www.typescriptlang.org/docs/}{TypeScript
+ Documentation} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} Frontend
+\item \textbf{Contesto di utilizzo:} linguaggio principale per l'interfaccia utente dell'applicativo Next.js, sia per i componenti React che per la gestione dello stato lato client.
+\item \textbf{Vantaggi:} tipizzazione statica che riduce errori a runtime, ottimo supporto IDE, compatibilit\`a nativa con React e Next.js.
+\item \textbf{Svantaggi:} overhead di compilazione rispetto a JavaScript puro.
+\end{itemize}
+
+\subsubsection{Python}
+\begin{itemize}[noitemsep]
+\item \textbf{Versione:} 3.11
+\item \textbf{Documentazione ufficiale:} \href{https://docs.python.org/3/}{Python 3 Documentation} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} Backend / Modulo AI
+\item \textbf{Contesto di utilizzo:} implementazione della pipeline di elaborazione degli ordini tramite intelligenza artificiale e gestione delle API REST tramite FastAPI.
+\item \textbf{Vantaggi:} ecosistema maturo in ambito NLP/ML, compatibilit\`a nativa con le librerie OpenAI, sintassi concisa, supporto asincrono con Uvicorn/ASGI.
+\item \textbf{Svantaggi:} prestazioni inferiori a linguaggi compilati; mitigato dall'uso di Uvicorn (ASGI asincrono).
+\end{itemize}
+
+\subsubsection{SQL}
+\begin{itemize}[noitemsep]
+\item \textbf{Documentazione ufficiale:} \href{https://www.iso.org/standard/76584.html}{ISO/IEC 9075:2023 (SQL)} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} Database
+\item \textbf{Contesto di utilizzo:} interrogazioni sul catalogo prodotti, gestione ordini, sessioni e carrelli.
+\end{itemize}
+
+% -------------------------------------------------------------------
+\subsection{Framework e librerie}
+% -------------------------------------------------------------------
+
+\subsubsection{Next.js}
+\begin{itemize}[noitemsep]
+\item \textbf{Versione:} 15.5
+\item \textbf{Documentazione ufficiale:} \href{https://nextjs.org/docs}{Next.js Documentation} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} Frontend full-stack
+\item \textbf{Contesto di utilizzo:} framework principale per il frontend. Gestisce il rendering dell'interfaccia utente (React) e la logica lato client.
+\item \textbf{Vantaggi:} App Router con Server Components, SSR e SSG, integrazione ottimale con React.
+\item \textbf{Svantaggi:} curva di apprendimento per le convenzioni App Router; vincolo a React come libreria UI.
+\end{itemize}
+
+\subsubsection{React}
+\begin{itemize}[noitemsep]
+\item \textbf{Versione:} 19
+\item \textbf{Documentazione ufficiale:} \href{https://react.dev/learn}{React Documentation} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} UI
+\item \textbf{Contesto di utilizzo:} costruzione dell'interfaccia utente tramite componenti dichiarativi, gestione dello stato con Context API e Hooks.
+\item \textbf{Vantaggi:} ecosistema vastissimo, modello a componenti riutilizzabili, Virtual DOM per aggiornamenti efficienti.
+\end{itemize}
+
+\subsubsection{Tailwind CSS}
+\begin{itemize}[noitemsep]
+\item \textbf{Versione:} 4.1
+\item \textbf{Documentazione ufficiale:} \href{https://tailwindcss.com/docs}{Tailwind CSS Documentation} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} Styling
+\item \textbf{Contesto di utilizzo:} stilizzazione dei componenti React con approccio utility-first.
+\item \textbf{Vantaggi:} prototipazione rapida, design responsive\textsubscript{\textsc{g}} integrato, nessun CSS custom da mantenere.
+\item \textbf{Svantaggi:} classi verbose nel markup; mitigato dalla composizione in componenti React.
+\end{itemize}
+
+\subsubsection{FastAPI}
+\begin{itemize}[noitemsep]
+\item \textbf{Versione:} 0.115
+\item \textbf{Documentazione ufficiale:} \href{https://fastapi.tiangolo.com/}{FastAPI Documentation} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} Backend / Modulo AI
+\item \textbf{Contesto di utilizzo:} espone gli endpoint \texttt{/chat} e \texttt{/transcribe} per l'elaborazione AI, gestione degli ordini e delle sessioni. Funziona come backend principale dell’applicazione.
+\item \textbf{Vantaggi:} validazione automatica dei dati tramite Pydantic\textsubscript{\textsc{g}}, documentazione OpenAPI auto-generata, supporto nativo async/await.
+\item \textbf{Svantaggi:} richiede un processo separato (Uvicorn) rispetto al runtime Node.js.
+\end{itemize}
+
+\subsubsection{Pydantic}
+\begin{itemize}[noitemsep]
+\item \textbf{Versione:} 2.9
+\item \textbf{Documentazione ufficiale:} \href{https://docs.pydantic.dev/latest/}{Pydantic Documentation} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} Backend / Modulo AI
+\item \textbf{Contesto di utilizzo:} definizione dei modelli di request/response per le API FastAPI, con validazione automatica dei tipi.
+\end{itemize}
+
+\subsubsection{OpenAI SDK}
+\begin{itemize}[noitemsep]
+\item \textbf{Versione:} 1.51
+\item \textbf{Documentazione ufficiale:} \href{https://platform.openai.com/docs}{OpenAI API Documentation} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} Backend / Modulo AI
+\item \textbf{Contesto di utilizzo:} SDK\textsubscript{\textsc{g}} ufficiale per l'integrazione con GPT-4o, GPT-4o-mini e Whisper.
+\end{itemize}
+
+% -------------------------------------------------------------------
+\subsection{Strumenti di persistenza}
+% -------------------------------------------------------------------
+
+\subsubsection{PostgreSQL}
+\begin{itemize}[noitemsep]
+\item \textbf{Versione:} 16
+\item \textbf{Documentazione ufficiale:} \href{https://www.postgresql.org/docs/16/}{PostgreSQL 16 Documentation} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} Database
+\item \textbf{Contesto di utilizzo:} unica base dati del sistema, accessibile dal modulo AI tramite Python (\texttt{psycopg2}). Tutte le operazioni sul catalogo prodotti, ordini, sessioni e carrelli avvengono tramite FastAPI.
+\item \textbf{Vantaggi:} robustezza, supporto a query complesse e full-text search, estensibilit\`a (pgvector per Vector Search\textsubscript{\textsc{g}}).
+\end{itemize}
+
+\subsubsection{psycopg2}
+\begin{itemize}[noitemsep]
+\item \textbf{Documentazione ufficiale:} \href{https://www.psycopg.org/docs/}{psycopg2 Documentation} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} Modulo AI / Backend
+\item \textbf{Contesto di utilizzo:} driver Python per PostgreSQL con connection pooling\textsubscript{\textsc{g}} (\texttt{SimpleConnectionPool}).
+\end{itemize}
+
+% -------------------------------------------------------------------
+\subsection{Intelligenza artificiale}
+% -------------------------------------------------------------------
+
+\subsubsection{GPT-4o}
+\begin{itemize}[noitemsep]
+    \item \textbf{Versione:} 2024-08-06
+    \item \textbf{Documentazione ufficiale:} \href{https://platform.openai.com/docs/models/gpt-4o}{OpenAI GPT-4o} (Ultima modifica 2026-03-26)
+    \item \textbf{Contesto di utilizzo:} modello linguistico principale per la comprensione degli ordini, la classificazione degli intenti e le decisioni di business. Utilizzato con temperature=0.1 per risposte deterministiche.
+\end{itemize}
+
+\subsubsection{GPT-4o-mini}
+\begin{itemize}[noitemsep]
+    \item \textbf{Documentazione ufficiale:} \href{https://platform.openai.com/docs/models/gpt-4o-mini}{OpenAI GPT-4o-mini} (Ultima modifica 2026-03-26)
+    \item \textbf{Contesto di utilizzo:} modello leggero per l'estrazione rapida dei parametri di ricerca e la classificazione semantica degli intenti utente.
+\end{itemize}
+
+\subsubsection{Whisper}
+\begin{itemize}[noitemsep]
+    \item \textbf{Versione:} 1
+    \item \textbf{Documentazione ufficiale:} \href{https://platform.openai.com/docs/guides/speech-to-text}{OpenAI Speech-to-Text (Whisper)} (Ultima modifica 2026-03-26)
+    \item \textbf{Contesto di utilizzo:} trascrizione di messaggi audio in testo, con prompt specifico per il dominio Ergon e lingua forzata a italiano.
+\end{itemize}
+
+% -------------------------------------------------------------------
+\subsection{Infrastruttura e DevOps}
+% -------------------------------------------------------------------
+
+\subsubsection{Docker}
+\begin{itemize}[noitemsep]
+    \item \textbf{Versione:} $\geq$ 24.0
+    \item \textbf{Documentazione ufficiale:} \href{https://docs.docker.com/}{Docker Documentation} (Ultima modifica 2026-03-26)
+    \item \textbf{Contesto di utilizzo:} containerizzazione dell'intero sistema per garantire portabilit\`a e riproducibilit\`a degli ambienti. Docker Compose ($\geq$ 2.20) orchestra l'avvio dei container.
+\end{itemize}
+
+\subsubsection{Node.js}
+\begin{itemize}[noitemsep]
+    \item \textbf{Versione:} 20
+    \item \textbf{Documentazione ufficiale:} \href{https://nodejs.org/docs/latest-v20.x/api/}{Node.js 20 Documentation} (Ultima modifica 2026-03-26)
+    \item \textbf{Contesto di utilizzo:} runtime JavaScript per l'esecuzione di Next.js in sviluppo e produzione.
+\end{itemize}
+
+\subsubsection{Uvicorn}
+\begin{itemize}[noitemsep]
+    \item \textbf{Versione:} 0.32
+    \item \textbf{Documentazione ufficiale:} \href{https://www.uvicorn.org/}{Uvicorn Documentation} (Ultima modifica 2026-03-26)
+    \item \textbf{Contesto di utilizzo:} server ASGI\textsubscript{\textsc{g}} per l'esecuzione di FastAPI, con supporto a richieste asincrone.
+\end{itemize}
+
+\subsubsection{GitHub Actions}
+\begin{itemize}[noitemsep]
+    \item \textbf{Documentazione ufficiale:} \href{https://docs.github.com/actions}{GitHub Actions Documentation} (Ultima modifica 2026-03-26)
+    \item \textbf{Contesto di utilizzo:} pipeline di integrazione continua per quality checks (ESLint, build verification).
+\end{itemize}
+
+\subsubsection{ESLint}
+\begin{itemize}[noitemsep]
+    \item \textbf{Versione:} 9
+    \item \textbf{Documentazione ufficiale:} \href{https://eslint.org/docs/latest/}{ESLint Documentation} (Ultima modifica 2026-03-26)
+    \item \textbf{Contesto di utilizzo:} linter\textsubscript{\textsc{g}} statico per il codice TypeScript/JavaScript.
+\end{itemize}
+
+
+
+% ===================================================================
+%  5. ARCHITETTURA DI SISTEMA
+% ===================================================================
+\newpage
+%\input{Contenuti/architettura_monolitica}
+
+% ===================================================================
+%  6. ARCHITETTURA DI DEPLOYMENT
+% ===================================================================
+\newpage
+%\input{Contenuti/architettura_deployment_v2}
+
+% ===================================================================
+%  7. DESIGN PATTERN
+% ===================================================================
+\newpage
+%\input{Contenuti/design_pattern_v2}
+
+% ===================================================================
+%  8. DATABASE
+% ===================================================================
+\newpage
+%\input{Contenuti/database}
+
+% ===================================================================
+%  9. ARCHITETTURA DI DETTAGLIO
+% ===================================================================
+\newpage
+%\input{Contenuti/architettura_dettaglio}
+
+% ===================================================================
+%  10. TRACCIAMENTO REQUISITI - COMPONENTI
+% ===================================================================
+\newpage
+%\input{Contenuti/tracciamento}
+
+\end{document}
