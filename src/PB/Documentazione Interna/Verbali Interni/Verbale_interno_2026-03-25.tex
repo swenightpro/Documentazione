@@ -1,0 +1,209 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}      % Codifica UTF-8
+\usepackage[T1]{fontenc}         % Font encoding moderno
+\usepackage[italian]{babel}      % Lingua italiana 
+\usepackage{lmodern}             % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}            % Per includere immagini
+\graphicspath{{../../../assets/}}
+
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}            % Per header e footer personalizzati
+\usepackage{microtype}           % Migliora la tipografia
+\usepackage{tabularx}            % Migliora le tabelle
+\usepackage[svgnames]{xcolor}    % Colori
+
+% --- Utility ---
+\usepackage{booktabs}            % Tabelle più professionali
+\usepackage{enumitem}            % Per personalizzare liste
+\usepackage{hyperref}            % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,    
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Interno 2026-03-25 - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} 
+\renewcommand{\headrulewidth}{0.4pt} 
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Frontespizio
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    {\Large \itshape Verbale Interno del 25 Marzo 2026 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+ 
+    {\large Data: 2026-03-25 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Indice
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents 
+\pagestyle{fancy} 
+
+% -------------------------------------------------------------------
+%  SEZIONE: Informazioni Generali
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Nominativo} & \textbf{Matricola} & \textbf{Ruolo Operativo} \\
+\midrule
+Francesco Zanella & 2116442 & Responsabile, Progettista \\
+Leonardo Bilato & 2071084 & Verificatore, Progettista \\
+Davide Biasuzzi & 2111000 & Progettista \\
+Mihaela-Mariana Romascu & 2079726 & Progettista \\
+Michele Ogniben & 2042325 & Progettista \\
+Samuele Perozzo & 2110989 & Analista, Progettista \\
+Giovanni Ponso & 2000558 & Analista, Progettista \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO e ruoli ricoperti durante la seduta.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2026-03-25
+    \item \textbf{Ora:} 17:00 - 17:30
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Tutti i componenti del gruppo tranne Michele Ogniben
+    \item \textbf{Redatto da:} Francesco Zanella
+    \item \textbf{Verificato da:} Leonardo Bilato
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Ordine del Giorno
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{enumerate}
+    \item Verifica stato avanzamento issue precedenti
+    \item Riassegnazione task Analisi dei Requisiti
+    \item Pianificazione livelli C4 Model
+    \item Varie ed eventuali
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Diario della Riunione
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Verifica stato avanzamento issue precedenti}
+Il gruppo ha aperto la seduta verificando il completamento dei task definiti nel verbale del 20/03/2026. Il professor Cardin e la Proponente Ergon Informatica sono stati contattati. I diagrammi di Context e Container sono stati abbozzati. L'unica issue non ancora conclusa è la revisione dell'Analisi dei Requisiti, attualmente in fase di verifica finale.
+
+\subsection{Riassegnazione task Analisi dei Requisiti}
+A causa di impedimenti tecnici e carichi di lavoro imprevisti, è stato constatato che il sotto-gruppo inizialmente designato per le modifiche all'Analisi dei Requisiti non è riuscito a completare l'intero documento (in particolare Leonardo Bilato, che si concentrerà ora sulla verifica). 
+Pertanto, il compito di finalizzare le correzioni post-RTB è stato riassegnato a:
+\begin{itemize}
+    \item \textbf{Francesco Zanella, Samuele Perozzo e Giovanni Ponso.}
+\end{itemize}
+Il team si impegna a chiudere la stesura entro la fine dello Sprint
+
+\subsection{Pianificazione livelli C4 Model}
+Visto il successo dei primi diagrammi, il gruppo ha deciso di approfondire la modellazione dell'architettura software. La discussione si è spostata sulla necessità di definire i livelli di dettaglio inferiori del C4 Model (Component e Code) per facilitare lo sviluppo dell'MVP. Sono state quindi aperte nuove issue specifiche per la scomposizione dei Container in Componenti logici e per la definizione preliminare dei diagrammi di classe (Code).
+
+% -------------------------------------------------------------------
+%  SEZIONE: Decisioni e Issue GitHub
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese e Gestione Issue}
+
+\begin{enumerate}
+    \item \textbf{Gestione Analisi:} Riassegnazione della responsabilità del documento a Francesco Z., Samuele P. e Giovanni P.
+    \item \textbf{Architettura:} Estensione della documentazione C4 ai livelli 3 (Component) e 4 (Code) per i moduli critici.
+    \item \textbf{Verifica:} Leonardo B. assume la supervisione della qualità su tutti i diagrammi prodotti.
+\end{enumerate}
+
+\subsection{Pianificazione Issue GitHub}
+Di seguito le nuove issue aperte per tracciare i compiti derivanti dalla riunione odierna:
+
+\subsection{Pianificazione Issue GitHub}
+Di seguito le nuove issue aperte per tracciare i compiti derivanti dalla riunione odierna:
+
+\begin{table}[h!]
+\centering
+\small % Riduce leggermente il font per far stare tutto meglio
+\begin{tabularx}{\textwidth}{@{}l X l c@{}} % X indica la colonna a larghezza variabile
+\toprule
+\textbf{ID} & \textbf{Task} & \textbf{Assegnatario} & \textbf{Stato} \\
+\midrule
+\#71 & Revisione finale Analisi dei Requisiti post-RTB & Francesco, Samuele, Giovanni & In Progress \\
+\addlinespace
+\#72 & Redazione Diagrammi C4 - Livello 3 (Component) Backend & Davide, Francesco & To Do \\
+\addlinespace
+\#73 & Redazione Diagrammi C4 - Livello 3 (Component) Frontend & Samuele, Leonardo & To Do \\
+\addlinespace
+\#74 & Definizione Diagrammi C4 - Livello 4 (Code/Class) Backend & Francesco, Davide, Michele & To Do \\
+\addlinespace
+\#75 & Definizione Diagrammi C4 - Livello 4 (Code/Class) Frontend & Samuele, Giovanni, Leonardo, Mariana & To Do \\
+\addlinespace
+\#76 & Verifica coerenza architetturale C4 & Leonardo B. & To Do \\
+\addlinespace
+\#77 & Stesura Verbale Interno 25/03/26 & Francesco Z. & To Do \\
+\addlinespace
+\#78 & Redazione sezione Tecnologie e Avvio applicazione di Specifiche Tecniche & Francesco, Davide, Michele & To Do \\
+\bottomrule
+\end{tabularx}
+\caption{Nuove task operative pianificate su GitHub.}
+\end{table}
+
+\newpage
+\end{document}
