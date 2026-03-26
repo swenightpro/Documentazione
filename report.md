@@ -1,10 +1,10 @@
-# Report di compilazione del 2026-03-23T09:57:27+00:00
+# Report di compilazione del 2026-03-26T10:56:02+00:00
 
-Compilazione basata sul commit 1f78b7b551842e0594b4230ae4cdfc87bf0c55d4 (base: 1f78b7b)
+Compilazione basata sul commit 672af0111441ab5663a52acf0aa48f3edee85d16 (base: 672af01)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/RTB/Documentazione Interna/Norme_di_Progetto_v3.0.pdf](docs/RTB/Documentazione%20Interna/Norme_di_Progetto_v3.0.pdf)
+✅ [docs/PB/Documentazione Interna/Verbali Interni/Verbale_interno_2026-03-25.pdf](docs/PB/Documentazione%20Interna/Verbali%20Interni/Verbale_interno_2026-03-25.pdf)
 
