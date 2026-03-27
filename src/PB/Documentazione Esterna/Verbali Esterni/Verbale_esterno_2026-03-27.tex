@@ -1,0 +1,229 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana
+\usepackage{lmodern}            % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}           % Per le immagini
+\graphicspath{{assets/}{../assets/}{../../assets/}{../../../assets}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
+
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{tabularx}           % Per tabelle flessibili
+\usepackage{hyperref}           % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Esterno 2026-03-27 - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyhead[L]{\textbf{NightPRO – Progetto Ingegneria del Software}}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} 
+\renewcommand{\headrulewidth}{0.4pt} 
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Frontespizio
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png} 
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    {\Large \itshape Verbale Esterno del 27 Marzo 2026 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+ 
+    {\large Data: 2026-03-27 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Indice
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents 
+\pagestyle{fancy} 
+
+% -------------------------------------------------------------------
+%  SEZIONE: Informazioni Generali
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2026-03-27
+    \item \textbf{Ora:} 17:00 - 17:20
+    \item \textbf{Luogo:} Zoom
+    \item \textbf{Partecipanti (NightPRO):} Biasuzzi Davide, Ponso Giovanni, Perozzo Samuele, Romascu Mihaela-Mariana, Bilato Leonardo, Zanella Francesco
+    \item \textbf{Assenti:} Ogniben Michele
+    \item \textbf{Partecipanti (Esterni):} Prof. Tullio Vardanega (Università degli Studi di Padova)
+    \item \textbf{Redatto da: } Francesco Zanella
+    \item \textbf{Verificato da:} Leonardo Bilato
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Ordine del Giorno
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+    \item[1.] Discussione sulle criticità relativa a un componente del gruppo
+    \item[2.] Valutazione della situazione collaborativa e della rendicontazione delle ore
+    \item[3.] Decisioni sul proseguimento del progetto e modalità operative
+    \item[4.] Formalizzazione delle azioni intraprese
+\end{itemize}
+
+% -------------------------------------------------------------------
+% SEZIONE: Diario della Riunione
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+Durante il colloquio con il Professore, il gruppo ha sottoposto una questione critica riguardante le difficoltà di collaborazione e i problemi organizzativi incontrati nel proseguimento del progetto. Di seguito il dettaglio della discussione avvenuta.
+
+\vspace{0.5cm}
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\begin{tabularx}{\textwidth}{p{0.47\textwidth} p{0.47\textwidth}}
+\toprule
+\textbf{Argomenti} & \textbf{Discussione} \\
+\midrule
+
+\textbf{1) Mancata partecipazione e comunicazione} \par
+Gravi difficoltà di collaborazione con un componente in costante assenza dalle riunioni, con vincoli lavorativi, che contrastano con la disponibilità inizialmente dichiarata. Numerosi tentativi di coinvolgimento rimasti senza risposta.
+&
+Il Professore ha riconosciuto come tale comportamento genera stress ingiustificato sul resto della squadra e necessita di formalizzazione documentale.\\ \addlinespace
+
+\textbf{2) Episodio pre-RTB} \par
+Mancata partecipazione del componente a una riunione d'emergenza serale di preparazione al colloquio RTB e assente riscontro ai messaggi di coordinamento.
+&
+Il Professore ha confermato tale episodio come indicatore della problematica di comunicazione e disponibilità.\\ \addlinespace
+
+\textbf{3) Rendicontazione ore e produttività} \par
+Il componente ha rendicontato circa 49--50 ore (POC iniziale) ma negli ultimi due sprint la produttività è pari a zero. Il gruppo ammette errori di valutazione iniziali.
+&
+Il Professore ha ribadito l'obbligo assoluto di rendicontare esclusivamente ore effettivamente lavorate, proibendo ``numeri diplomatici'' e rendicontazioni fittizie.\\ \addlinespace
+
+\textbf{4) Precedenti comportamentali} \par
+Verificati precedenti analoghi durante il progetto di Ingegneria del Software dell'anno precedente, suggerendo un comportamento sistematico.
+&
+Il Professore ha confermato che la problematica richiede una risoluzione definitiva.\\ \addlinespace
+
+\bottomrule
+\end{tabularx}
+\normalsize
+
+% -------------------------------------------------------------------
+% SEZIONE: Decisioni Prese
+% -------------------------------------------------------------------
+\section{Decisioni Prese}
+
+\begin{enumerate}
+\item \textbf{Autorizzazione a procedere in 6 componenti:} Il Professore ha formalmente autorizzato il gruppo a proseguire lo sviluppo del progetto con 6 componenti attivi, attestando l'esclusione del componente dalle attività operative. Tale decisione è motivata dal riconoscimento che la situazione esistente causa uno stress ingiustificato sugli elementi della squadra e compromette l'efficienza progettuale complessiva.
+
+\item \textbf{Colloquio docente-studente separato:} Il Professore s'impegna a condurre un colloquio individuale con il componente escluso al fine di valutare la sua posizione e disponibilità a rientrare attivamente nel progetto mediante una partecipazione effettiva. Qualora tale rientro non sia possibile, il Professore valuterà l'opzione di ritiro formale del componente dal progetto, analogamente a quanto accaduto nell'anno accademico precedente.
+
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: To-Do
+% -------------------------------------------------------------------
+\newpage
+\section{Attività da Svolgere (To-Do)}
+
+\begin{table}[h!]
+\centering
+\begin{tabularx}{\textwidth}{@{}X l c@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} & \textbf{Scadenza} \\
+\midrule
+Redazione Verbale Esterno 27/03/26 & Francesco Zanella & 2026-03-27 \\
+\addlinespace
+Colloquio individuale con componente escluso & Prof. Tullio Vardanega & N/A \\
+\addlinespace
+Riorganizzazione task e assegnazione in 6 componenti & Responsabile di Progetto & Inizio prossimo sprint \\
+\bottomrule
+\end{tabularx}
+\caption{Riepilogo task assegnati.}
+\end{table}
+
+% ------ FIRMA DOCENTE --------------------------------
+\vspace{2cm} 
+\begin{flushright}
+    \textbf{Firma Docente} \\[0.5cm]
+
+    
+    \vspace{3cm}
+    \rule{6cm}{0.4pt} \\
+    \small{Prof. Tullio Vardanega}
+\end{flushright}
+
+\end{document}
