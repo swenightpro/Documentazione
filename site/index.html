@@ -5,6 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NightPRO - Documentazione</title>
+    <meta name="description" content="Documentazione ufficiale del gruppo NightPRO per il progetto di Ingegneria del Software — Università degli Studi di Padova, a.a. 2025/2026." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./assets/style.css" />
     <link rel="icon" href="./assets/images/piccolo_logo.jpeg" type="image/jpeg" />
     <script defer src="./assets/script.js"></script>
@@ -49,7 +53,7 @@
     <div id="about-section" class="hidden">
         <div class="about-info-block">
             <p class="about-intro">
-                Questo sito raccoglie tutta la documentazione ufficiale prodotta dal gruppo NightPRO per il progetto di Ingegneria del Software dell’Università degli Studi di Padova (a.a. 2025/2026).
+                Questo sito raccoglie tutta la documentazione ufficiale prodotta dal gruppo NightPRO per il progetto di Ingegneria del Software dell'Università degli Studi di Padova (a.a. 2025/2026).
             </p>
             <div class="contact-links">
                 <p><strong>Email:</strong> <a href="mailto:swe.nightpro@gmail.com">swe.nightpro@gmail.com</a></p>
@@ -71,8 +75,10 @@
             </div>
         </div>
 
-        <h3 class="team-intro-title">Membri del team:</h3>
-        <table class="team-table">
+        <h3 class="team-intro-title">Membri del team</h3>
+        <div class="team-grid" id="team-grid"></div>
+        <!-- Fallback table kept for compatibility -->
+        <table class="team-table hidden">
             <tbody id="team-table-body"></tbody>
         </table>
     </div>

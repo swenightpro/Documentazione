@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('document-search');
   const filtersContainer = document.getElementById("section-filters");
   const container = document.getElementById('sections-container');
+  const teamGrid = document.getElementById("team-grid");
   const teamBody = document.getElementById("team-table-body");
   const siteLogo = document.getElementById("site-logo");
 
@@ -69,15 +70,32 @@ document.addEventListener('DOMContentLoaded', () => {
     {name:"Ogniben Michele", git:"Micheleogniben"}
   ];
 
-  teamMembers.forEach(m => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td><img src="https://github.com/${m.git}.png" alt="${m.name}"></td>
-      <td>${m.name}</td>
-      <td><a href="https://github.com/${m.git}" target="_blank">@${m.git}</a></td>
-    `;
-    teamBody.appendChild(row);
-  });
+  // Render team as modern card grid
+  if (teamGrid) {
+    teamMembers.forEach(m => {
+      const card = document.createElement("div");
+      card.className = "team-card";
+      card.innerHTML = `
+        <img src="https://github.com/${m.git}.png" alt="${m.name}" loading="lazy">
+        <div class="member-name">${m.name}</div>
+        <a class="member-github" href="https://github.com/${m.git}" target="_blank">@${m.git}</a>
+      `;
+      teamGrid.appendChild(card);
+    });
+  }
+
+  // Fallback: also populate the old table (hidden) for compatibility
+  if (teamBody) {
+    teamMembers.forEach(m => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td><img src="https://github.com/${m.git}.png" alt="${m.name}"></td>
+        <td>${m.name}</td>
+        <td><a href="https://github.com/${m.git}" target="_blank">@${m.git}</a></td>
+      `;
+      teamBody.appendChild(row);
+    });
+  }
 
   docsBtn.onclick = () => {
     docsBtn.classList.add("active");
@@ -235,7 +253,7 @@ function showSection(name, filtered=null) {
       if (f.length) results[sec]=f, count+=f.length;
     });
     if (!count) {
-      container.innerHTML = `<p style="text-align:center;margin-top:2rem;color:#888;font-style:italic;">Nessun risultato trovato.</p>`;
+      container.innerHTML = `<p style="text-align:center;margin-top:2rem;color:var(--muted);font-style:italic;">Nessun risultato trovato.</p>`;
       return;
     }
     showSection(currentSection, results);
