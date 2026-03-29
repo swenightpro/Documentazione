@@ -951,13 +951,14 @@ footer::before {
 
 /* Tech stack pills */
 .tech-stack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.6rem;
   margin-bottom: 0.5rem;
 }
 .tech-pill {
-  padding: 0.35rem 0.9rem;
+  text-align: center;
+  padding: 0.35rem 0.5rem;
   border: 1px solid var(--border-strong);
   background: var(--bg-card);
   border-radius: 999px;
@@ -1111,5 +1112,9 @@ footer::before {
   }
   .users-grid {
     grid-template-columns: 1fr;
+  }
+  .tech-stack {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
   }
 }
