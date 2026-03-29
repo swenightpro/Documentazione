@@ -1,0 +1,385 @@
+% ===================================================================
+%  4. ANALISI DEI REQUISITI E TRACCIABILITA'
+% ===================================================================
+\newpage
+\section{Analisi dei Requisiti}
+
+\subsection{Introduzione e Classificazione}
+In questa sezione vengono elencati, classificati e descritti formalmente tutti i requisiti individuati durante la fase di analisi del dominio, dallo studio del capitolato d'appalto e dalle decisioni architetturali interne. I requisiti rappresentano i vincoli operativi e strutturali che il sistema \textbf{SmartOrder} deve soddisfare.
+
+I requisiti sono identificati da un codice univoco secondo la seguente struttura:
+\begin{center}
+    \textbf{[TIPO]-[PRIORITÀ]\_[ID]}
+\end{center}
+
+\textbf{TIPO di requisito:}
+\begin{itemize}
+    \item \textbf{RF}: Requisito Funzionale (Cosa fa il sistema).
+    \item \textbf{RQA}: Requisito Qualitativo / Non Funzionale (Come si comporta il sistema).
+    \item \textbf{RP}: Requisito Prestazionale (Limiti e tempi di risposta).
+    \item \textbf{RV}: Requisito di Vincolo (Scelte tecnologiche e architetturali obbligate).
+\end{itemize}
+
+\textbf{PRIORITÀ del requisito:}
+\begin{itemize}
+    \item \textbf{OB (Obbligatorio)}: Requisito fondamentale per il funzionamento base.
+    \item \textbf{DE (Desiderabile)}: Requisito a valore aggiunto, utile ma non strettamente vitale.
+    \item \textbf{OP (Opzionale)}: Possibile sviluppo futuro, non previsto in questa fase.
+\end{itemize}
+
+% -------------------------------------------------------------------
+\newpage
+\subsection{Requisiti Funzionali}
+
+\subsubsection{Requisiti Funzionali obbligatori}
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{|>{\raggedright}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.5\textwidth}|>{\raggedright\arraybackslash}p{0.2\textwidth}|}
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti} \\
+    \hline
+    \endfirsthead
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti} \\
+    \hline
+    \endhead
+    \hline
+    RF-OB\_01 \hypertarget{rf-ob_1} & Il sistema deve permettere all'Utente di inserire il proprio indirizzo email nel campo dedicato per effettuare il login. & \hyperref[uc_01.1]{UC\_01.1} \\
+    \hline
+    RF-OB\_02 \hypertarget{rf-ob_2} & Il sistema deve permettere all'Utente di inserire la propria password in modo oscurato tramite il campo dedicato. & \hyperref[uc_01.2]{UC\_01.2} \\
+    \hline
+    RF-OB\_03 \hypertarget{rf-ob_3} & Il sistema deve fornire un pulsante o comando per confermare l'accesso e inviare le credenziali per la validazione. & \hyperref[uc_01]{UC\_01} \\
+    \hline
+    RF-OB\_04 \hypertarget{rf-ob_4} & Il sistema deve mostrare un errore se l'email inserita non ha un formato valido. & \hyperref[uc_01]{UC\_01} \\
+    \hline
+    RF-OB\_05 \hypertarget{rf-ob_5} & Il sistema deve mostrare un errore se l'email inserita non è presente nel database locale. & \hyperref[uc_01]{UC\_01} \\
+    \hline
+    RF-OB\_06 \hypertarget{rf-ob_6} & Il sistema deve mostrare un errore se la combinazione di email e password è sbagliata. & \hyperref[uc_01]{UC\_01} \\
+    \hline
+    RF-OB\_07 \hypertarget{rf-ob_7} & Dopo un login valido, il sistema deve creare la sessione e far accedere l'utente alla propria area (Cliente o Operatore). & \hyperref[uc_01]{UC\_01} \\
+    \hline
+    RF-OB\_08 \hypertarget{rf-ob_8} & Il sistema deve fornire un pulsante per effettuare il logout, invalidando e chiudendo la sessione corrente lato server. & \hyperref[uc_03]{UC\_03} \\
+    \hline
+    RF-OB\_09 \hypertarget{rf-ob_9} & Il sistema deve mostrare i dati aziendali del Cliente (ID e Ragione Sociale) in sola lettura. & \hyperref[uc_00.2]{UC\_00.2} \\
+    \hline
+    RF-OB\_10 \hypertarget{rf-ob_10} & Il sistema deve rendere accessibile la pagina Area Personale tramite un elemento di navigazione dedicato, consentendo all'Utente di consultare le informazioni del proprio profilo in base al ruolo assegnato. & \hyperref[uc_04]{UC\_04} \\
+    \hline
+    RF-OB\_11 \hypertarget{rf-ob_11} & Il sistema deve mostrare all'Utente il proprio indirizzo email in sola lettura. & \hyperref[uc_04.1]{UC\_04.1} \\
+    \hline
+    RF-OB\_12 \hypertarget{rf-ob_12} & Il sistema deve esporre un comando di contatto che, alla sua attivazione, invochi il protocollo URI \textit{mailto:} per aprire il client di posta elettronica nativo dell'Utente con il campo destinatario pre-compilato con l'email di supporto aziendale. & \hyperref[uc_06]{UC\_06} \\
+    \hline
+    RF-OB\_13 \hypertarget{rf-ob_13} & Il sistema deve mostrare in tempo reale tutti i messaggi inviati dall'Utente nella chat corrente. & \hyperref[uc_07]{UC\_07} \\
+    \hline
+    RF-OB\_14 \hypertarget{rf-ob_14} & Il sistema deve mostrare in tempo reale le risposte testuali scritte dall'AI o dall'Operatore di supporto. & \hyperref[uc_07]{UC\_07} \\
+    \hline
+    RF-OB\_15 \hypertarget{rf-ob_15} & Il sistema deve fornire un campo di testo per l'inserimento e l'invio di messaggi testuali nella chat. & \hyperref[uc_08.1]{UC\_08.1} \\
+    \hline
+    RF-OB\_16 \hypertarget{rf-ob_16} & Il sistema deve bloccare l'invio e mostrare un errore se il messaggio di testo supera il limite di caratteri. & \hyperref[uc_08.1]{UC\_08.1} \\
+    \hline
+    RF-OB\_17 \hypertarget{rf-ob_17} & Il sistema deve permettere all'Utente la registrazione e l'invio di messaggi vocali tramite il microfono del dispositivo. & \hyperref[uc_08.2]{UC\_08.2} \\
+    \hline
+    RF-OB\_18 \hypertarget{rf-ob_18} & Il sistema deve convertire l'audio in testo usando un modulo Speech-to-Text. & \hyperref[uc_08.2]{UC\_08.2} \\
+    \hline
+    RF-OB\_19 \hypertarget{rf-ob_19} & Il sistema deve bloccare l'invio e mostrare un errore se il file audio pesa più di 10MB. & \hyperref[uc_08.2]{UC\_08.2}, Capitolato \\
+    \hline
+    RF-OB\_20 \hypertarget{rf-ob_20} & Il sistema deve richiedere esplicitamente i permessi hardware necessari (microfono, fotocamera) al momento del primo utilizzo della relativa funzionalità e, in caso di rifiuto da parte dell'Utente, mostrare un messaggio informativo che spieghi l'impossibilità di procedere senza tali permessi. & Interno \\
+    \hline
+    RF-OB\_21 \hypertarget{rf-ob_21} & Il Cliente deve poter resettare la chat con l'AI e svuotare il carrello attuale. & \hyperref[uc_10]{UC\_10} \\
+    \hline
+    RF-OB\_22 \hypertarget{rf-ob_22} & Il sistema deve disabilitare il comando di reset della sessione qualora sia presente un ticket di assistenza in stato ``Aperto'' o ``In lavorazione'' per la sessione corrente, impedendo all'Utente di azzerare il contesto durante un'assistenza attiva. & \hyperref[uc_10]{UC\_10}, Interno \\
+    \hline
+    RF-OB\_23 \hypertarget{rf-ob_23} & L'AI (LLM) deve capire quali prodotti vuole l'utente e in che quantità leggendo/ascoltando il messaggio. & Capitolato \\
+    \hline
+    RF-OB\_24 \hypertarget{rf-ob_24} & Il sistema deve cercare i prodotti nel database usando la ricerca vettoriale (Vector Search). & Interno \\
+    \hline
+    RF-OB\_25 \hypertarget{rf-ob_25} & Il sistema deve aggiungere in automatico i prodotti trovati al carrello se il Confidence Score calcolato dall'AI supera la soglia definita in \hyperlink{rp-ob_3}{RP-OB\_03}. & Interno \\
+    \hline
+    RF-OB\_26 \hypertarget{rf-ob_26} & Vincolo Assortimento: Il sistema deve ignorare i prodotti che non fanno parte del catalogo assegnato a quel Cliente (tabella \texttt{asscli}). & Interno \\
+    \hline
+    RF-OB\_27 \hypertarget{rf-ob_27} & Vincolo Stato: Il sistema deve impedire l'aggiunta di prodotti segnati come ``non disponibili'' o ``sospesi'' nel database (\texttt{anaart}). & Interno \\
+    \hline
+    RF-OB\_28 \hypertarget{rf-ob_28} & Deduzione Formati: L'AI deve convertire automaticamente le quantità richieste nelle giuste unità di vendita (es. da bottiglie a casse). & Interno \\
+    \hline
+    RF-OB\_29 \hypertarget{rf-ob_29} & Il sistema deve fornire una barra di ricerca per cercare manualmente i prodotti nel catalogo tramite input testuale. & \hyperref[uc_11]{UC\_11} \\
+    \hline
+    RF-OB\_30 \hypertarget{rf-ob_30} & Il sistema deve mostrare i risultati della ricerca in tempo reale (Live Search). & \hyperref[uc_11]{UC\_11} \\
+    \hline
+    RF-OB\_31 \hypertarget{rf-ob_31} & Il sistema deve mostrare per ogni prodotto trovato: Nome, ID, Linea, Famiglia e Modalità di Vendita. & \hyperref[uc_00.1]{UC\_00.1} \\
+    \hline
+    RF-OB\_32 \hypertarget{rf-ob_32} & L'Utente deve poter cliccare su un risultato per decidere quanti pezzi acquistarne. & \hyperref[uc_12]{UC\_12} \\
+    \hline
+    RF-OB\_33 \hypertarget{rf-ob_33} & L'Utente deve poter modificare la quantità usando i tasti +/- o scrivendo direttamente il numero. & \hyperref[uc_12]{UC\_12} \\
+    \hline
+    RF-OB\_34 \hypertarget{rf-ob_34} & Il sistema deve correggere in automatico la quantità se l'utente inserisce numeri negativi, zero o troppo grandi. & \hyperref[uc_12]{UC\_12} \\
+    \hline
+    RF-OB\_35 \hypertarget{rf-ob_35} & L'Utente deve poter confermare l'aggiunta del prodotto al carrello della sessione corrente. & \hyperref[uc_12]{UC\_12} \\
+    \hline
+    RF-OB\_36 \hypertarget{rf-ob_36} & Il sistema deve mostrare un avviso di ``Carrello Vuoto'' se non ci sono prodotti inseriti. & \hyperref[uc_13]{UC\_13} \\
+    \hline
+    RF-OB\_37 \hypertarget{rf-ob_37} & Il sistema deve mostrare i dettagli logistici e le quantità di tutti i prodotti presenti nel carrello. & \hyperref[uc_13]{UC\_13} \\
+    \hline
+    RF-OB\_38 \hypertarget{rf-ob_38} & L'Utente deve poter sbloccare la riga di un prodotto nel carrello per poterne modificare la quantità. & \hyperref[uc_14.2]{UC\_14.2} \\
+    \hline
+    RF-OB\_39 \hypertarget{rf-ob_39} & L'Utente deve poter salvare la nuova quantità modificata per un prodotto nel carrello. & \hyperref[uc_14]{UC\_14} \\
+    \hline
+    RF-OB\_40 \hypertarget{rf-ob_40} & L'Utente deve poter rimuovere definitivamente un articolo dal carrello. & \hyperref[uc_14.1]{UC\_14.1} \\
+    \hline
+    RF-OB\_41 \hypertarget{rf-ob_41} & Il sistema deve disabilitare il pulsante per inviare l'ordine se il carrello è vuoto. & \hyperref[uc_15]{UC\_15} \\
+    \hline
+    RF-OB\_42 \hypertarget{rf-ob_42} & L'Utente (Cliente o Operatore in subentro) deve poter chiudere il carrello e inviare l'ordine definitivo. & \hyperref[uc_15]{UC\_15} \\
+    \hline
+    RF-OB\_43 \hypertarget{rf-ob_43} & Il sistema deve bloccare l'invio dell'ordine e segnalare gli errori se ci sono problemi con le regole del gestionale (es. prodotto fuori catalogo). & \hyperref[uc_15]{UC\_15} \\
+    \hline
+    RF-OB\_44 \hypertarget{rf-ob_44} & Dopo l'invio dell'ordine, il sistema deve svuotare la sessione e reindirizzare l'Utente alla vista appropriata al proprio ruolo: il Cliente allo Storico Ordini, l'Operatore alla chiusura del ticket e dismissione della console di subentro. & \hyperref[uc_15]{UC\_15}, Interno \\
+    \hline
+    RF-OB\_45 \hypertarget{rf-ob_45} & Il sistema deve creare un file JSON formattato contenente tutti i dati dell'ordine appena chiuso. & \hyperref[uc_15]{UC\_15}, Capitolato \\
+    \hline
+    RF-OB\_46 \hypertarget{rf-ob_46} & Il Cliente deve poter visualizzare la lista dei propri ordini passati, ordinati per data. & \hyperref[uc_16]{UC\_16} \\
+    \hline
+    RF-OB\_47 \hypertarget{rf-ob_47} & Il sistema deve mostrare per ogni ordine storico: ID, Data, totale degli articoli e una piccola anteprima dei prodotti. & \hyperref[uc_00.3]{UC\_00.3}, \hyperref[uc_16]{UC\_16} \\
+    \hline
+    RF-OB\_48 \hypertarget{rf-ob_48} & Il Cliente deve poter cliccare su un ordine passato per vederne tutti i dettagli logistici. & \hyperref[uc_18]{UC\_18} \\
+    \hline
+    RF-OB\_49 \hypertarget{rf-ob_49} & Il sistema deve mostrare in sola lettura la chat originale tra utente e AI che ha generato quell'ordine specifico. & \hyperref[uc_00.4]{UC\_00.4} \\
+    \hline
+    RF-OB\_50 \hypertarget{rf-ob_50} & Il Cliente deve poter richiedere l'aiuto di un operatore umano, mettendo in pausa l'AI. & \hyperref[uc_19]{UC\_19} \\
+    \hline
+    RF-OB\_51 \hypertarget{rf-ob_51} & L'Operatore deve poter accedere alla dashboard con la lista dei Ticket Aperti (richieste d'aiuto). & \hyperref[uc_21]{UC\_21} \\
+    \hline
+    RF-OB\_52 \hypertarget{rf-ob_52} & Nella lista dei ticket, il sistema deve mostrare da quanto tempo il Cliente sta aspettando una risposta. & \hyperref[uc_21.5]{UC\_21.5} \\
+    \hline
+    RF-OB\_53 \hypertarget{rf-ob_53} & L'Operatore deve poter prendere in carico un ticket bloccandolo per gli altri colleghi (Lock) per aprire la console di assistenza. & \hyperref[uc_22]{UC\_22} \\
+    \hline
+    RF-OB\_54 \hypertarget{rf-ob_54} & L'Operatore deve poter scrivere e inviare messaggi in chat direttamente al Cliente per fornirgli assistenza. & \hyperref[uc_08.1]{UC\_08.1} \\
+    \hline
+    RF-OB\_55 \hypertarget{rf-ob_55} & L'Operatore deve poter usare la ricerca per aggiungere forzatamente prodotti al carrello del Cliente che sta aiutando. & \hyperref[uc_11]{UC\_11}, \hyperref[uc_12]{UC\_12} \\
+    \hline
+    RF-OB\_56 \hypertarget{rf-ob_56} & L'Operatore deve poter modificare le quantità o rimuovere prodotti dal carrello del Cliente. & \hyperref[uc_13]{UC\_13}, \hyperref[uc_14]{UC\_14} \\
+    \hline
+    RF-OB\_57 \hypertarget{rf-ob_57} & L'Operatore deve poter chiudere il ticket per segnare il problema come risolto e sbloccare la sessione (rimuovere il Lock). & \hyperref[uc_22.2]{UC\_22.2} \\
+    \hline
+    RF-OB\_58 \hypertarget{rf-ob_58} & L'Utente (Cliente o Operatore) deve poter chiudere il ticket da solo se risolve il problema o non ha più bisogno di aiuto. & \hyperref[uc_20]{UC\_20} \\
+    \hline
+    RF-OB\_59 \hypertarget{rf-ob_59} & L'Operatore deve poter accedere alla dashboard che mostra tutti gli ordini inviati da tutti i Clienti. & \hyperref[uc_23]{UC\_23} \\
+    \hline
+    RF-OB\_60 \hypertarget{rf-ob_60} & L'Operatore deve poter cliccare su un ordine di qualsiasi cliente per aprirlo e vederne i dettagli. & \hyperref[uc_24]{UC\_24} \\
+    \hline
+    RF-OB\_61 \hypertarget{rf-ob_61} & L'Operatore deve poter cercare del testo solo all'interno di una colonna specifica (es. cercare solo l'ID Ordine). & \hyperref[uc_31]{UC\_31} \\
+    \hline
+    RF-OB\_62 \hypertarget{rf-ob_62} & L'Operatore deve poter ordinare le tabelle in modo crescente o decrescente cliccando sui nomi delle colonne. & \hyperref[uc_29]{UC\_29} \\
+    \hline
+    RF-OB\_63 \hypertarget{rf-ob_63} & L'Operatore deve poter filtrare i dati delle tabelle scegliendo una data di inizio e di fine. & \hyperref[uc_30]{UC\_30} \\
+    \hline
+    RF-OB\_64 \hypertarget{rf-ob_64} & Il sistema deve salvare nel database tutto lo storico delle chat e delle decisioni prese dall'AI. & Interno, Capitolato \\
+    \hline
+    RF-OB\_65 \hypertarget{rf-ob_65} & Il sistema deve mostrare la percentuale di sicurezza dell'AI (Confidence Score) solo nelle schermate dedicate all'Operatore. & \hyperref[uc_22.1]{UC\_22.1}, \hyperref[uc_24.1]{UC\_24.1} \\
+    \hline
+    RF-OB\_66 \hypertarget{rf-ob_66} & Il sistema deve mostrare schermate di caricamento (spinner o barre di avanzamento) durante le operazioni che richiedono un tempo di elaborazione superiore a 1 secondo. & Interno \\
+    \hline
+    RF-OB\_67 \hypertarget{rf-ob_67} & Le API del server (Backend) devono rifiutare qualsiasi richiesta priva di un token di accesso valido per la sessione corrente. & Interno \\
+    \hline
+    RF-OB\_68 \hypertarget{rf-ob_68} & Il sistema deve caricare i dati delle tabelle in modo incrementale tramite paginazione con pagine da massimo 50 record, per evitare il blocco dell'interfaccia in presenza di grandi volumi di dati. & Interno \\
+    \hline
+    \multicolumn{3}{c}{} \\
+    \caption{Requisiti Funzionali Obbligatori}\hypertarget{tab:funzionali_obbligatori}\\
+\end{longtable}
+
+\subsubsection{Requisiti Funzionali desiderabili}
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{|>{\raggedright}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.5\textwidth}|>{\raggedright\arraybackslash}p{0.2\textwidth}|}
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti} \\
+    \hline
+    \endfirsthead
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti} \\
+    \hline
+    \endhead
+    \hline
+    RF-DE\_01 \hypertarget{rf-de_1} & Il sistema deve fornire un link per accedere alla pagina di recupero della password dimenticata. & \hyperref[uc_02]{UC\_02} \\
+    \hline
+    RF-DE\_02 \hypertarget{rf-de_2} & L'Utente deve poter richiedere il reset della password inserendo la propria email. & \hyperref[uc_02]{UC\_02}, \hyperref[uc_02.1]{UC\_02.1} \\
+    \hline
+    RF-DE\_03 \hypertarget{rf-de_3} & Il sistema deve permettere all'Utente loggato di avviare la procedura per cambiare la propria password. & \hyperref[uc_04.2]{UC\_04.2} \\
+    \hline
+    RF-DE\_04 \hypertarget{rf-de_4} & L'Utente deve poter inviare la vecchia password e la nuova password scelta per salvarla nel sistema. & \hyperref[uc_05.1]{UC\_05.1}, \hyperref[uc_05.2]{UC\_05.2}, \hyperref[uc_05.3]{UC\_05.3} \\
+    \hline
+    RF-DE\_05 \hypertarget{rf-de_5} & Il sistema deve bloccare il cambio password se la vecchia password è errata o se le due nuove password inserite non coincidono. & \hyperref[uc_05.1]{UC\_05.1}, \hyperref[uc_05.3]{UC\_05.3} \\
+    \hline
+    RF-DE\_06 \hypertarget{rf-de_6} & Il sistema deve permettere l'invio di file immagine nella chat, mediante scatto fotografico o selezione dalla galleria del dispositivo. & \hyperref[uc_08.3]{UC\_08.3} \\
+    \hline
+    RF-DE\_07 \hypertarget{rf-de_7} & Il sistema deve bloccare l'invio di immagini e mostrare un errore se il file pesa più di 5MB. & \hyperref[uc_08.3]{UC\_08.3}, Interno \\
+    \hline
+    RF-DE\_08 \hypertarget{rf-de_8} & Il Cliente deve poter valutare la qualità delle risposte dell'AI lasciando un feedback (es. pollice su / pollice giù). & \hyperref[uc_09.1]{UC\_09.1}, \hyperref[uc_09.2]{UC\_09.2} \\
+    \hline
+    RF-DE\_09 \hypertarget{rf-de_9} & Se il Cliente dà un voto negativo all'AI, il sistema deve richiedere che indichi il tipo di errore (tramite tag predisposti). & \hyperref[uc_09.2]{UC\_09.2} \\
+    \hline
+    RF-DE\_10 \hypertarget{rf-de_10} & Il Cliente deve poter aggiungere un testo libero per spiegare meglio il motivo dell'errore segnalato. & \hyperref[uc_09.2]{UC\_09.2} \\
+    \hline
+    RF-DE\_11 \hypertarget{rf-de_11} & Il Cliente deve poter scaricare l'elenco dei propri ordini storici in un file formato CSV. & \hyperref[uc_17]{UC\_17} \\
+    \hline
+    RF-DE\_12 \hypertarget{rf-de_12} & L'Operatore deve poter accedere alla dashboard per il controllo degli errori e l'addestramento dell'AI (Ottimizzazione AI). & \hyperref[uc_25]{UC\_25} \\
+    \hline
+    RF-DE\_13 \hypertarget{rf-de_13} & Il sistema deve mostrare all'Operatore la lista degli errori segnalati dai clienti e le correzioni manuali fatte ai carrelli. & \hyperref[uc_25]{UC\_25} \\
+    \hline
+    RF-DE\_14 \hypertarget{rf-de_14} & L'Operatore deve poter aprire un singolo errore AI per rileggere tutta la chat originale tra il Cliente e il bot. & \hyperref[uc_26]{UC\_26} \\
+    \hline
+    RF-DE\_15 \hypertarget{rf-de_15} & L'Operatore deve poter approvare una segnalazione di errore, confermando che i dati verranno usati per riaddestrare l'AI. & \hyperref[uc_27.1]{UC\_27.1} \\
+    \hline
+    RF-DE\_16 \hypertarget{rf-de_16} & L'Operatore deve poter scartare una segnalazione se non si tratta di un vero errore dell'AI (es. l'utente ha scritto male). & \hyperref[uc_27.2]{UC\_27.2} \\
+    \hline
+    RF-DE\_17 \hypertarget{rf-de_17} & L'Operatore deve poter annullare l'approvazione di una segnalazione se l'aveva confermata per sbaglio (Rollback). & \hyperref[uc_28]{UC\_28} \\
+    \hline
+    \multicolumn{3}{c}{} \\
+    \caption{Requisiti Funzionali Desiderabili}\hypertarget{tab:funzionali_desiderabili}\\
+\end{longtable}
+
+\subsubsection{Requisiti Funzionali opzionali}
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{|>{\raggedright}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.5\textwidth}|>{\raggedright\arraybackslash}p{0.2\textwidth}|}
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti} \\
+    \hline
+    \endfirsthead
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti} \\
+    \hline
+    \endhead
+    \hline
+    RF-OP\_01 \hypertarget{rf-op_1} & Il sistema deve permettere l'invio di messaggi d'ordine e la loro elaborazione tramite l'app di WhatsApp. & Interno \\
+    \hline
+    RF-OP\_02 \hypertarget{rf-op_2} & Il sistema deve permettere l'invio di messaggi d'ordine e la loro elaborazione tramite l'app di Telegram. & Interno \\
+    \hline
+    RF-OP\_03 \hypertarget{rf-op_3} & Il sistema deve generare grafici e statistiche generali sull'uso della piattaforma, mostrandoli all'Operatore. & Interno \\
+    \hline
+    \multicolumn{3}{c}{} \\
+    \caption{Requisiti Funzionali Opzionali}\hypertarget{tab:funzionali_opzionali}\\
+\end{longtable}
+
+% -------------------------------------------------------------------
+\newpage
+\subsection{Requisiti Qualitativi (Non Funzionali)}
+Questa sezione traccia i requisiti legati alle qualità del software, quali manutenibilità, readability e testabilità (identificati dal prefisso \textbf{RQA}).
+
+\subsubsection{Requisiti Qualitativi obbligatori}
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{|>{\raggedright}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.5\textwidth}|>{\raggedright\arraybackslash}p{0.2\textwidth}|}
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti} \\
+    \hline
+    \endfirsthead
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti} \\
+    \hline
+    \endhead
+    \hline
+    RQA-OB\_01 \hypertarget{rqa-ob_1} & Il codice del sistema deve essere scritto seguendo gli standard di readability e manutenibilità definiti nelle Norme di Progetto. In particolare: funzioni non devono superare le 50 linee di codice, le costanti devono essere commentate, e i nomi di variabili e metodi devono essere significativi e seguire le convenzioni di naming. & Norme di Progetto, Interno \\
+    \hline
+    \multicolumn{3}{c}{} \\
+    \caption{Requisiti Qualitativi obbligatori}\hypertarget{tab:qualitativi_obbligatori}\\
+\end{longtable}
+
+% -------------------------------------------------------------------
+\newpage
+\subsection{Requisiti Prestazionali}
+Questa sezione raccoglie i limiti tecnici e i tempi di risposta che il sistema deve rispettare (identificati dal prefisso \textbf{RP}).
+
+\subsubsection{Requisiti Prestazionali obbligatori}
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{|>{\raggedright}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.5\textwidth}|>{\raggedright\arraybackslash}p{0.2\textwidth}|}
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti} \\
+    \hline
+    \endfirsthead
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti} \\
+    \hline
+    \endhead
+    \hline
+    RP-OB\_01 \hypertarget{rp-ob_1} & Il modello AI (LLM) deve completare l'elaborazione del messaggio e rispondere entro massimo 20 secondi, misurati come valore mediano su un campione di almeno 50 richieste consecutive in assenza di traffico concorrente. & Interno, Capitolato \\
+    \hline
+    RP-OB\_02 \hypertarget{rp-ob_2} & Il sistema di trascrizione vocale (Speech-to-Text) deve riconoscere le parole con un Word Error Rate (WER) inferiore al 10\%, misurato su un campione di almeno 100 registrazioni audio in italiano standard, con qualità audio non inferiore a 16\,kHz mono e in assenza di rumore di fondo superiore a 40\,dB. & Interno \\
+    \hline
+    RP-OB\_03 \hypertarget{rp-ob_3} & La percentuale di sicurezza (Confidence Score) calcolata dall'AI deve superare il 70\% per poter aggiungere prodotti in automatico. & Interno \\
+    \hline
+    RP-OB\_04 \hypertarget{rp-ob_4} & L'applicazione web deve caricare gli elementi principali a schermo in meno di 3 secondi, misurati al 90° percentile su 10 caricamenti consecutivi da una connessione con banda minima di 20\,Mbit/s in download. & Interno \\
+    \hline
+    RP-OB\_05 \hypertarget{rp-ob_5} & Quando l'utente usa la barra di ricerca prodotti, i risultati devono comparire in meno di 500 millisecondi, misurati al 95° percentile su un database contenente almeno 2000 prodotti, con un massimo di 10 utenti concorrenti e connessione locale (LAN). & Interno \\
+    \hline
+    \multicolumn{3}{c}{} \\
+    \caption{Requisiti Prestazionali obbligatori}\hypertarget{tab:prestazionali_obbligatori}\\
+\end{longtable}
+
+\subsubsection{Requisiti Prestazionali desiderabili}
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{|>{\raggedright}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.5\textwidth}|>{\raggedright\arraybackslash}p{0.2\textwidth}|}
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti} \\
+    \hline
+    \endfirsthead
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti} \\
+    \hline
+    \endhead
+    \hline
+    RP-DE\_01 \hypertarget{rp-de_1} & L'estrazione e il download in CSV dello storico ordini deve concludersi in massimo 5 secondi per liste con meno di 1000 ordini (dimensione stimata $\leq$ 2\,MB), misurato al 90° percentile su 10 esecuzioni consecutive in condizioni di rete locale (LAN). & Interno \\
+    \hline
+    \multicolumn{3}{c}{} \\
+    \caption{Requisiti Prestazionali desiderabili}\hypertarget{tab:prestazionali_desiderabili}\\
+\end{longtable}
+
+% -------------------------------------------------------------------
+\newpage
+\subsection{Requisiti di Vincolo}
+Questa sezione elenca gli obblighi e le scelte tecnologiche imposte dall'esterno a cui il sistema deve conformarsi (identificati dal prefisso \textbf{RV}).
+
+\subsubsection{Requisiti di Vincolo obbligatori}
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{|>{\raggedright}p{0.18\textwidth}|>{\raggedright\arraybackslash}p{0.5\textwidth}|>{\raggedright\arraybackslash}p{0.2\textwidth}|}
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti} \\
+    \hline
+    \endfirsthead
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{Codice} & \textbf{Descrizione} & \textbf{Fonti} \\
+    \hline
+    \endhead
+    \hline
+    RV-OB\_01 \hypertarget{rv-ob_1} & Il Frontend (la parte grafica usata dall'utente) e il Backend (il server) devono essere programmati come due sistemi separati che comunicano tra loro. & Interno, Norme di Progetto \\
+    \hline
+    RV-OB\_02 \hypertarget{rv-ob_2} & Il database della piattaforma web deve essere di tipo relazionale, nello specifico PostgreSQL. & Interno \\
+    \hline
+    RV-OB\_03 \hypertarget{rv-ob_3} & La comprensione del testo scritto dagli utenti deve essere gestita tramite tecnologie AI, nello specifico gli Embedding e la Vector Search. & Capitolato \\
+    \hline
+    RV-OB\_04 \hypertarget{rv-ob_4} & Il file JSON dell'ordine deve essere posizionato in una cartella o sistema condiviso in modo che il gestionale aziendale (ERP) possa leggerlo. & Interno (Logica ERP) \\
+    \hline
+    RV-OB\_05 \hypertarget{rv-ob_5} & Tutte le comunicazioni tra la webapp e il server devono usare esclusivamente connessioni sicure crittografate (HTTPS). & Interno \\
+    \hline
+    RV-OB\_06 \hypertarget{rv-ob_6} & Le password non devono mai essere salvate in chiaro, ma protette nel database usando l'algoritmo di hashing scrypt e salt. & Interno \\
+    \hline
+    RV-OB\_07 \hypertarget{rv-ob_7} & Il salvataggio nel database e l'uso delle email degli utenti deve rispettare le regole europee sulla privacy (GDPR). & Interno \\
+    \hline
+    RV-OB\_08 \hypertarget{rv-ob_8} & L'applicazione web deve funzionare correttamente sui seguenti browser desktop nelle versioni minime indicate: Google Chrome 120+, Mozilla Firefox 121+, Apple Safari 17+, Microsoft Edge 120+. & Interno \\
+    \hline
+    RV-OB\_09 \hypertarget{rv-ob_9} & L'applicazione web deve funzionare correttamente sui seguenti browser mobile nelle versioni minime indicate: Chrome per Android 120+, Safari per iOS 17+. & Interno \\
+    \hline
+    RV-OB\_10 \hypertarget{rv-ob_10} & L'interfaccia del Cliente deve adattarsi a schermi con larghezza minima di 375\,px, con approccio \textit{Mobile-first}: tutti i controlli interattivi devono avere un'area toccabile di almeno 44$\times$44\,px e l'interfaccia non deve presentare scroll orizzontale su alcun viewport supportato. & Interno \\
+    \hline
+    RV-OB\_11 \hypertarget{rv-ob_11} & L'interfaccia dell'Operatore è progettata per essere usata su monitor da computer con larghezza minima di 1024\,px, con approccio \textit{Desktop-first}: tutti i pannelli e i controlli devono essere completamente fruibili su questa larghezza senza degradazioni di layout. & Interno \\
+    \hline
+    \multicolumn{3}{c}{} \\
+    \caption{Requisiti di Vincolo obbligatori}\hypertarget{tab:vincolo_obbligatori}\\
+\end{longtable}
