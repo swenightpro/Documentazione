@@ -97,18 +97,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  docsBtn.onclick = () => {
-    docsBtn.classList.add("active");
-    aboutBtn.classList.remove("active");
-    docsSection.classList.remove("hidden");
-    aboutSection.classList.add("hidden");
-  };
-  aboutBtn.onclick = () => {
-    aboutBtn.classList.add("active");
-    docsBtn.classList.remove("active");
-    aboutSection.classList.remove("hidden");
-    docsSection.classList.add("hidden");
-  };
+  const projectBtn = document.getElementById("project-btn");
+  const projectSection = document.getElementById("project-section");
+
+  function switchTab(activeBtn, activeSection) {
+    [docsBtn, projectBtn, aboutBtn].forEach(b => b.classList.remove("active"));
+    [docsSection, projectSection, aboutSection].forEach(s => s.classList.add("hidden"));
+    activeBtn.classList.add("active");
+    activeSection.classList.remove("hidden");
+  }
+
+  docsBtn.onclick = () => switchTab(docsBtn, docsSection);
+  projectBtn.onclick = () => switchTab(projectBtn, projectSection);
+  aboutBtn.onclick = () => switchTab(aboutBtn, aboutSection);
 
   let docsTree = {};
   let currentSection = "Tutto";
