@@ -651,18 +651,20 @@ mark {
 
 /* Team grid */
 .team-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   margin: 0 0 2rem;
 }
 .team-card {
+  flex: 1 1 calc(25% - 1rem);
+  min-width: 220px;
   background: var(--bg-card);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 1.5rem 1rem;
+  padding: 0;
   text-align: center;
   transition: var(--transition);
   animation: fadeInUp 0.4s ease both;
@@ -675,6 +677,9 @@ mark {
 .team-card:nth-child(6) { animation-delay: 0.3s; }
 .team-card:nth-child(7) { animation-delay: 0.35s; }
 
+.team-card .tooltip-link {
+  padding: 1.5rem 1rem;
+}
 .team-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
@@ -688,6 +693,9 @@ mark {
   margin-bottom: 0.8rem;
   border: 2px solid var(--border);
   transition: var(--transition);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .team-card:hover img {
   border-color: var(--primary);
@@ -697,7 +705,13 @@ mark {
   font-size: 0.88rem;
   font-weight: 600;
   color: var(--text);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.1rem;
+}
+.team-card .member-id {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-family: monospace;
+  margin-bottom: 0.4rem;
 }
 .team-card .member-github {
   font-size: 0.8rem;
@@ -895,7 +909,7 @@ footer::before {
 /* Features grid */
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 0.8rem;
   margin-bottom: 0.5rem;
 }
@@ -957,7 +971,17 @@ footer::before {
   cursor: pointer;
   position: relative;
 }
-.tech-pill::after {
+.tooltip-link {
+  color: var(--primary);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.15s;
+}
+.tooltip-link:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+.tech-pill::after, .tooltip-link::after {
   content: attr(data-tooltip);
   position: absolute;
   bottom: calc(100% + 5px);
@@ -976,10 +1000,12 @@ footer::before {
   z-index: 10;
   font-weight: 500;
 }
-:root.light-mode .tech-pill::after {
+:root.light-mode .tech-pill::after,
+:root.light-mode .tooltip-link::after {
   background: #33334d;
 }
-.tech-pill:hover::after {
+.tech-pill:hover::after,
+.tooltip-link:hover::after {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
@@ -993,7 +1019,7 @@ footer::before {
 /* Users grid */
 .users-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 0.8rem;
   margin-bottom: 1rem;
 }

@@ -62,13 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
   const teamMembers = [
-    {name:"Biasuzzi Davide", git:"biasuzzi-davide"},
-    {name:"Bilato Leonardo", git:"towsatt"},
-    {name:"Ponso Giovanni", git:"sass0lino"},
-    {name:"Zanella Francesco", git:"frazane04"},
-    {name:"Romascu Mihaela-Mariana", git:"Mihaela-Mariana"},
-    {name:"Perozzo Samuele", git:"samuele-perozzo"},
-    {name:"Ogniben Michele", git:"Micheleogniben"}
+    {name:"Biasuzzi Davide", git:"biasuzzi-davide", id:"2111000"},
+    {name:"Bilato Leonardo", git:"towsatt", id:"2071084"},
+    {name:"Ponso Giovanni", git:"sass0lino", id:"2000558"},
+    {name:"Zanella Francesco", git:"frazane04", id:"2116442"},
+    {name:"Romascu Mihaela-Mariana", git:"Mihaela-Mariana", id:"2079726"},
+    {name:"Perozzo Samuele", git:"samuele-perozzo", id:"2110989"},
+    {name:"Ogniben Michele", git:"Micheleogniben", id:"2042325"}
   ];
 
   // Render team as modern card grid
@@ -77,9 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement("div");
       card.className = "team-card";
       card.innerHTML = `
-        <img src="https://github.com/${m.git}.png" alt="${m.name}" loading="lazy">
-        <div class="member-name">${m.name}</div>
-        <a class="member-github" href="https://github.com/${m.git}" target="_blank">@${m.git}</a>
+        <a href="https://github.com/${m.git}" target="_blank" class="tooltip-link" data-tooltip="Apri profilo ${m.name}" style="text-decoration: none; color: inherit; display: block;">
+          <img src="https://github.com/${m.git}.png" alt="${m.name}" loading="lazy">
+          <div class="member-name">${m.name}</div>
+          <div class="member-id">${m.id}</div>
+          <div class="member-github">@${m.git}</div>
+        </a>
       `;
       teamGrid.appendChild(card);
     });
