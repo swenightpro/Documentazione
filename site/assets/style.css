@@ -216,12 +216,13 @@ nav {
   width: 90%;
   margin: 0 auto;
 }
-#header-logo { cursor: default; pointer-events: none; }
+#header-logo { cursor: pointer; display: block; }
+#header-logo:hover img { transform: scale(1.05); }
 #header-logo img {
-  height: 3.2rem;
+  height: 3.68rem; /* Ingrandito del 15% (era 3.2rem) */
   width: auto;
   display: block;
-  transition: var(--transition);
+  transition: transform 0.2s ease;
 }
 nav ul {
   list-style: none;
@@ -311,6 +312,43 @@ nav a.active {
 .theme-menu > div:hover {
   background: var(--primary-light);
   color: var(--primary);
+}
+
+/* ── Info Alert ── */
+.info-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: var(--bg-card);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-strong);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.8rem;
+  margin: 0 0 1rem 0;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+.info-alert.hover-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  border-color: var(--primary-light);
+}
+.info-alert-icon {
+  color: var(--primary);
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+.info-alert-text p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+}
+.info-alert-text strong {
+  color: var(--text);
+  font-weight: 600;
 }
 
 /* ── Search ── */
@@ -914,6 +952,36 @@ footer::before {
   color: var(--text-secondary);
   transition: var(--transition);
   letter-spacing: 0.01em;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+}
+.tech-pill::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%) translateY(5px);
+  background: #2a2a3e; /* Sfondo scuro per contrasto */
+  color: #ffffff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: none;
+  box-shadow: var(--shadow-sm);
+  z-index: 10;
+  font-weight: 500;
+}
+:root.light-mode .tech-pill::after {
+  background: #33334d;
+}
+.tech-pill:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 .tech-pill:hover {
   border-color: var(--primary);
@@ -982,7 +1050,7 @@ footer::before {
     padding: 0.4rem 0.8rem;
   }
   #header-logo img {
-    height: 2.5rem;
+    height: 2.875rem; /* Ingrandito del 15% (era 2.5rem) */
   }
   .team-grid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
