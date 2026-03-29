@@ -113,13 +113,37 @@ document.addEventListener('DOMContentLoaded', () => {
   aboutBtn.onclick = () => switchTab(aboutBtn, aboutSection);
 
   let docsTree = {};
-  let currentSection = "Tutto";
+  let currentSection = "";
+
+  function getMaxDate(items) {
+    let max = "";
+    if (!items) return max;
+    for (const it of items) {
+      if (it.type === 'file' && it.date && it.date > max) {
+        max = it.date;
+      }
+      if (it.children) {
+        let cm = getMaxDate(it.children);
+        if (cm > max) max = cm;
+      }
+    }
+    return max;
+  }
 
   async function loadDocsTree() {
     const r = await fetch('./docs_tree.json');
     docsTree = await r.json();
+    const keys = Object.keys(docsTree);
+    if (keys.length) {
+      currentSection = keys[0];
+      let maxDate = "";
+      keys.forEach(sec => {
+        let m = getMaxDate(docsTree[sec]);
+        if (m > maxDate) { maxDate = m; currentSection = sec; }
+      });
+    }
     populateFilters();
-    showSection("Tutto");
+    if (currentSection) showSection(currentSection);
   }
 
   function populateFilters() {
@@ -130,10 +154,11 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     filtersContainer.style.display = "flex";
-    const allChip = createChip("Tutto");
-    allChip.classList.add("active");
-    filtersContainer.appendChild(allChip);
-    keys.forEach(sec => filtersContainer.appendChild(createChip(sec)));
+    keys.forEach(sec => {
+      const chip = createChip(sec);
+      if (sec === currentSection) chip.classList.add("active");
+      filtersContainer.appendChild(chip);
+    });
   }
 
   function createChip(name) {
