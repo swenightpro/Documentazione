@@ -1,0 +1,200 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}      % Codifica UTF-8
+\usepackage[T1]{fontenc}         % Font encoding moderno
+\usepackage[italian]{babel}      % Lingua italiana 
+\usepackage{lmodern}             % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}            % Per includere immagini
+\graphicspath{{../../../assets/}}
+
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}            % Per header e footer personalizzati
+\usepackage{microtype}           % Migliora la tipografia
+\usepackage{tabularx}            % Migliora le tabelle
+\usepackage[svgnames]{xcolor}    % Colori
+
+% --- Utility ---
+\usepackage{booktabs}            % Tabelle più professionali
+\usepackage{enumitem}            % Per personalizzare liste
+\usepackage{hyperref}            % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,    
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Interno 2026-03-27 - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} 
+\renewcommand{\headrulewidth}{0.4pt} 
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Frontespizio
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    {\Large \itshape Verbale Interno del 27 Marzo 2026 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+ 
+    {\large Data: 2026-03-27 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Indice
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents 
+\pagestyle{fancy} 
+
+% -------------------------------------------------------------------
+%  SEZIONE: Informazioni Generali
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Nominativo} & \textbf{Matricola} & \textbf{Ruolo Operativo} \\
+\midrule
+Francesco Zanella & 2116442 & Progettista \\
+Leonardo Bilato & 2071084 & Progettista, Amministratore \\
+Davide Biasuzzi & 2111000 & Progettista \\
+Mihaela-Mariana Romascu & 2079726 & Verificatrice \\
+Michele Ogniben & 2042325 & - \\
+Samuele Perozzo & 2110989 & Progettista \\
+Giovanni Ponso & 2000558 & Progettista, Responsabile \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO e ruoli ricoperti durante la seduta.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2026-03-27
+    \item \textbf{Ora:} 16:00 - 17:00
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Francesco Zanella, Mihaela-Mariana Romascu, Leonardo Bilato, Giovanni
+Ponso, Samuele Perozzo
+    \item \textbf{Redatto da:} Giovanni Ponso
+    \item \textbf{Verificato da:} Mihaela-Mariana Romascu
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Ordine del Giorno
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{enumerate}
+    \item Chiusura e consuntivazione Sprint 12
+    \item Definizione della durata dei futuri Sprint
+    \item Assegnazione dei ruoli per lo Sprint 13
+    \item Pianificazione delle attività sulle Specifiche Tecniche
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Diario della Riunione
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Chiusura e consuntivazione dello Sprint 12}
+Il gruppo ha aperto la seduta verificando il completamento di tutti i task assegnati nello sprint precedente. Tutte le attività previste per lo Sprint 12 sono state portate a termine e le relative issue su GitHub sono state chiuse con successo.
+
+\subsection{Definizione della durata dei futuri Sprint}
+Al fine di mantenere un ritmo di lavoro più agile e monitorare costantemente i progressi verso la conclusione del progetto, il team ha deciso che, a partire dallo Sprint 13 odierno, tutti i futuri sprint avranno una durata settimanale. È stata inoltre creata una attività per aggiornare la sezione del documento Norme di Progetto che descrive la durata degli sprint.
+
+\subsection{Assegnazione dei ruoli per lo Sprint 13}
+Per lo sprint 13 si è deciso che Giovanni Ponso assumerà il ruolo di Responsabile, Mariana il ruolo di Verificatrice, Leonardo il ruolo da Amministratore per la modifica di Norme di Progetto e in generale per far fronte all'imminente carico di lavoro rappresentato dal documento di specifiche tecniche ogni componente attivo del gruppo assumerà il ruolo di progettista (tranne Mariana). 
+
+\subsection{Pianificazione delle attività sulle Specifiche Tecniche}
+L'obiettivo prioritario del nuovo sprint consiste nello stendere attivamente il documento ``Specifiche Tecniche''. Si è deciso di parallelizzare il lavoro per ottimizzare le tempistiche, dividendo le sezioni da redigere. Infine, il gruppo ha concordato che, qualora la stesura tecnica dovesse essere completata in anticipo rispetto al termine dello sprint, verrà organizzato un ulteriore incontro interno per sancire formalmente la fine della progettazione e dare il via effettivo allo sviluppo del MVP (Minimum Viable Product), convertendo di conseguenza l'impegno dei progettisti in programmatori.
+
+% -------------------------------------------------------------------
+%  SEZIONE: Decisioni e Issue GitHub
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese e Gestione Issue}
+
+\begin{enumerate}
+    \item \textbf{Cambio durata sprint:} Adozione di Sprint settimanali.
+    \item \textbf{Fase Produttiva:} Concentrazione esclusiva sulle Specifiche Tecniche dividendo il carico di lavoro per ambito architetturale, così da favorire l'early start del MVP.
+\end{enumerate}
+
+\subsection{Pianificazione Issue GitHub}
+Di seguito le nuove issue aperte per tracciare i compiti operativi pianificati per lo Sprint 13 sui 6 componenti attivi della squadra:
+
+\begin{table}[h!]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}l X l c@{}} 
+\toprule
+\textbf{ID} & \textbf{Task} & \textbf{Assegnatario} & \textbf{Stato} \\
+\midrule
+\#82 & Stesura Specifiche Tecniche: Architettura Backend & Francesco, Davide, Leonardo & To Do \\
+\addlinespace
+\#83 & Stesura Specifiche Tecniche: Architettura Frontend e UI & Samuele, Giovanni, Leonardo & To Do \\
+\addlinespace
+\#84 & Stesura Specifiche Tecniche: Design Pattern & Samuele, Davide, Francesco & To Do \\
+\addlinespace
+\#85 & Attività del responsabile (Verbali, pdp, ddb) & Giovanni & To Do \\
+\addlinespace
+\#86 & Verifica continua delle Specifiche Tecniche & Mariana & To Do \\
+\addlinespace
+\#87 & Aggiornare Norme di Progetto con nuova durata sprint & Leonardo & To Do \\
+\bottomrule
+\end{tabularx}
+\caption{Nuove task operative pianificate su GitHub.}
+\end{table}
+
+\newpage
+\end{document}
