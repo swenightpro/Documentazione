@@ -1,10 +1,10 @@
-# Report di compilazione del 2026-03-31T17:18:29+00:00
+# Report di compilazione del 2026-04-01T12:03:32+00:00
 
-Compilazione basata sul commit 72dc7a091967a74f31fa822600ee5af94b8c477a (base: 72dc7a0)
+Compilazione basata sul commit 2b78bb2c88b31f26674dfb57a59f81b74f5f3a30 (base: 2b78bb2)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/PB/Documentazione Esterna/Specifica_Tecnica_v0.3.pdf](docs/PB/Documentazione%20Esterna/Specifica_Tecnica_v0.3.pdf)
+✅ [docs/PB/Documentazione Esterna/Manuale_Utente_v0.2.pdf](docs/PB/Documentazione%20Esterna/Manuale_Utente_v0.2.pdf)
 
