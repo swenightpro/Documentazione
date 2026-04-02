@@ -1,0 +1,110 @@
+\subsubsection{Layer 1 - Controllers (Inbound Ports)}
+
+\paragraph{AuthController}
+\textbf{Descrizione della classe:} gestisce gli endpoint di autenticazione e cambio password, traducendo le richieste HTTP in invocazioni ai casi d'uso applicativi.
+
+\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{login(credentials: CredentialsDTO)}: avvia autenticazione utente e genera la sessione applicativa.
+    \item \texttt{logout(authsessionId: String)}: invalida la sessione autenticata corrente.
+    \item \texttt{changePassword(req: PasswordChangeDTO)}: gestisce il flusso di aggiornamento credenziali.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{uml_backend/01_authcontroller.png}
+    \caption{UML della classe \texttt{AuthController}.}
+\end{figure}
+
+\paragraph{ConversationController}
+\textbf{Descrizione della classe:} espone gli endpoint per la conversazione multimodale e il recupero dello storico chat.
+
+\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{processInput(req: MultimodalInputDTO)}: riceve input testuale/audio e avvia l'elaborazione conversazionale.
+    \item \texttt{resetSession(chatsessionId: String)}: azzera il contesto della sessione chat.
+    \item \texttt{getChatHistory(chatsessionId: String)}: recupera la cronologia dei messaggi della sessione.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_backend/02_conversationcontroller.png}
+    \caption{UML della classe \texttt{ConversationController}.}
+\end{figure}
+
+\paragraph{CartController}
+\textbf{Descrizione della classe:} governa le operazioni sul carrello (inserimento, modifica, rimozione) e il checkout finale.
+
+\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{addProduct(req: CartActionDTO)}: inserisce una riga prodotto nel carrello di sessione.
+    \item \texttt{updateQuantity(req: CartActionDTO)}: aggiorna la quantita della riga selezionata.
+    \item \texttt{removeProduct(req: CartActionDTO)}: elimina un prodotto dal carrello.
+    \item \texttt{checkout(chatsessionId: String)}: finalizza il carrello e avvia la generazione ordine.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_backend/03_cartcontroller.png}
+    \caption{UML della classe \texttt{CartController}.}
+\end{figure}
+
+\paragraph{OrderHistoryController}
+\textbf{Descrizione della classe:} espone le API per consultazione storico ordini e dettaglio singolo ordine.
+
+\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{getOrders(clienteId: String)}: recupera la lista ordini del cliente.
+    \item \texttt{getOrderDetails(orderId: String)}: recupera i dettagli completi dell'ordine richiesto.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_backend/04_orderhistorycontroller.png}
+    \caption{UML della classe \texttt{OrderHistoryController}.}
+\end{figure}
+
+\paragraph{TicketController}
+\textbf{Descrizione della classe:} gestisce l'apertura, la presa in carico e la chiusura dei ticket di assistenza Human-in-the-Loop.
+
+\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{openTicket(req: TicketRequestDTO)}: crea un nuovo ticket applicativo.
+    \item \texttt{takeCharge(ticketId: String, operatorId: String)}: assegna il ticket a un operatore.
+    \item \texttt{closeTicket(ticketId: String)}: marca il ticket come risolto.
+    \item \texttt{getOpenTickets()}: restituisce i ticket ancora aperti.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_backend/05_ticketcontroller.png}
+    \caption{UML della classe \texttt{TicketController}.}
+\end{figure}
+
+\paragraph{LogAIController}
+\textbf{Descrizione della classe:} espone le API di raccolta feedback e verifica dei log AI per monitoraggio e miglioramento continuo.
+
+\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{submitFeedback(req: FeedbackDTO)}: registra feedback utente sul comportamento AI.
+    \item \texttt{getLogs(filter: LogFilterDTO)}: recupera i log applicando filtri operativi.
+    \item \texttt{validateLog(logId: String, status: ValidStatus)}: marca l'esito di validazione di un log.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_backend/06_logaicontroller.png}
+    \caption{UML della classe \texttt{LogAIController}.}
+\end{figure}

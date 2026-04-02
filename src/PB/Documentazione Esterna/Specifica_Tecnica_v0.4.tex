@@ -16,7 +16,7 @@
 
 % --- Grafica e Layout ---
 \usepackage{graphicx}
-\graphicspath{{Contenuti/}{../../assets/}{../assets/}{assets/}}
+\graphicspath{{Contenuti/}{Contenuti/specifiche_tecniche_assets/}{../../assets/}{../assets/}{assets/}}
 \usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
 \usepackage{fancyhdr}
 \usepackage{microtype}
@@ -88,7 +88,7 @@
 \begin{titlepage}
     \centering
     \vspace*{1cm}
-    %\includegraphics[width=0.35\textwidth]{logo.png}\\[1cm]
+    \includegraphics[width=0.35\textwidth]{logo.png}\\[1cm]
 
     \vfill
 
@@ -109,9 +109,9 @@
 
     {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
 
-    {\large Data: 2026-03-31 \par}
+    {\large Data: 2026-04-02 \par}
 
-    {\Large Versione: 0.3\par}
+    {\Large Versione: 0.4\par}
 
 \end{titlepage}
 
@@ -130,6 +130,7 @@
             \toprule
             \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche}                           & \textbf{Verificatore} \\
             \midrule
+            0.4               & 2026-04-02    & G. Ponso, L. Bilato   & Stesura sezione Architettura di dettaglio & M. M. Romascu\\
             0.3               & 2026-03-31    & D. Biasuzzi, F. Zanella, S. Perozzo    & Riorganizzazione documento, inserimento dei diagrammi PlantUML e stesura delle sezioni 4, 5, 6 e 7 & M. M. Romascu\\
             0.2               & 2026-03-26    & Davide Biasuzzi   & Inserimento paragrafo su esecuzione e su tecnologie utilizzate & Leonardo Bilato       \\
             0.1               & 2026-03-20    & Davide Biasuzzi   & Stesura base documento (Introduzione e Requisiti di Sistema)   & Leonardo Bilato       \\
@@ -639,7 +640,7 @@ Il Facade è un pattern strutturale che fornisce un'interfaccia unificata, astra
 Il pattern riduce l'accoppiamento tra i client e il sottosistema complesso, offrendo un punto di accesso centralizzato e facile da usare. Questo migliora la leggibilità del codice, agevola lo sviluppo e riduce la curva di apprendimento per i componenti che devono interfacciarsi con logiche articolate.
 
 \subsubsection{Utilizzo del pattern nel progetto}
-Nel frontend React/Next.js, i moduli presenti nel Livello 3 (Service Layer API Client), come \texttt{chatService}, \texttt{cartService} e \texttt{ticketService}, fungono da Facade verso la rete. Nascondono ai componenti visivi React l'intera complessità delle comunicazioni HTTP/REST verso FastAPI (iniezione dei token JWT negli header, gestione errori e serializzazione JSON), offrendo un'interfaccia pulita e semplice da invocare.
+Nel frontend React/Next.js, i moduli presenti nel Livello 3 (Service Layer API Client) fungono da Facade verso la rete: \texttt{authService}, \texttt{cartService}, \texttt{productService}, \texttt{orderService}, \texttt{ticketService}, \texttt{chatService} e \texttt{aiLogService}. Questi moduli nascondono ai componenti React la complessità delle comunicazioni HTTP/REST verso FastAPI (token JWT, serializzazione JSON, gestione errori), offrendo un'interfaccia uniforme e semplice da invocare.
 
 % -------------------------------------------------------------------
 \subsection{Observer (State Management Reattivo)}
@@ -651,7 +652,7 @@ L'Observer è un pattern comportamentale che definisce una dipendenza uno-a-molt
 Nel contesto dello sviluppo di interfacce utente, l'Observer è vitale per garantire che la UI rifletta sempre lo stato attuale dei dati senza dover implementare costosi meccanismi di polling. Permette di creare interfacce dinamiche e reattive in cui i componenti si limitano ad "ascoltare" le modifiche pertinenti.
 
 \subsubsection{Utilizzo del pattern nel progetto}
-Applicato nel frontend Next.js per la gestione dello stato globale al Livello 2. I vari Context Provider (es. \texttt{ChatContext}, \texttt{CartContext}, \texttt{NotificationContext}) assumono il ruolo di Subject, mantenendo la verità sui dati correnti. Event handler come \texttt{Chat Event Handler} o \texttt{Ticket Event Handler} ascoltano il \textit{RT Gateway} tramite WebSocket e aggiornano i contesti. I componenti grafici dell'interfaccia iscritti (Observer) vengono così notificati, innescando un re-render istantaneo della sola porzione interessata.
+Applicato nel frontend Next.js per la gestione dello stato globale al Livello 2. I Context Provider (es. \texttt{AuthContext}, \texttt{CartContext}, \texttt{ChatContext}, \texttt{NotificationContext}) mantengono lo stato condiviso; i componenti UI che consumano tali contesti tramite hook fungono da Observer. Nel Livello 4, gli event handler realtime (\texttt{ChatEventHandler}, \texttt{TicketEventHandler}, \texttt{OrderEventHandler}, \texttt{AILogEventHandler}) ricevono eventi dal \textit{RT Gateway} e propagano aggiornamenti ai contesti, innescando il re-render selettivo delle viste interessate.
 
 % ===================================================================
 %  8. DATABASE
@@ -710,139 +711,230 @@ Il sistema genera un \textbf{payload strutturato in formato JSON} conforme al co
 \newpage
 \section{Architettura di dettaglio}
 
-\subsection{Frontend - C4 Livello 3 e 4}
-Le pagine \texttt{C4L3F} e \texttt{C4L4F} descrivono una struttura a layer del frontend Next.js.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.98\textwidth]{arch_frontend_l3_components.png}
-    \caption{Frontend L3 (PlantUML compilato): componenti principali.}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.98\textwidth]{arch_frontend_l4_layers.png}
-    \caption{Frontend L4 (PlantUML compilato): layered architecture orientata al coding.}
-\end{figure}
-
-\subsubsection{Layer 1 - Routing e Pages}
-Organizza route e viste principali:
+In questa sezione vengono descritti gli elementi di dettaglio architetturale del sistema, suddivisi per ambito backend e frontend.
+Per ciascun componente/classe/interfaccia sono riportati:
 \begin{itemize}
-    \item area autenticazione (login, recupero password, profilo);
-    \item area cliente (chat, carrello, storico, supporto);
-    \item area operatore/backoffice (ticket, ordini globali, dashboard AI).
+    \item Titolo dell'elemento;
+    \item Descrizione della responsabilita;
+    \item Descrizione di attributi e metodi;
+    \item Diagramma UML dedicato (generato in PlantUML ed esportato in PNG).
 \end{itemize}
 
-\subsubsection{Layer 2 - State Management}
-Utilizza Context e custom hooks per stato condiviso:
-\begin{itemize}
-    \item \texttt{AuthContext}: identita e ruolo;
-    \item \texttt{CartContext}: stato carrello e confidence score;
-    \item \texttt{ChatContext}: messaggi live e modalita AI/Operatore;
-    \item \texttt{NotificationContext}: eventi e notifiche applicative.
-\end{itemize}
+\subsection{Backend - C4 Livello 4: Classi e interfacce}
+La sottosezione presenta classi e interfacce backend identificate nel C4 Livello 4.
 
-\subsubsection{Layer 3 - Service/API Client}
-Ogni dominio espone un modulo dedicato (auth, cart, product, order, ticket, chat, ai-log) con responsabilita circoscritte e contratto REST verso backend.
+\input{Contenuti/backend_l4_controllers}
+\input{Contenuti/backend_l4_services}
+\input{Contenuti/backend_l4_domain}
+\input{Contenuti/backend_l4_ports}
+\input{Contenuti/backend_l4_adapters}
 
-\subsubsection{Layer 4 - Real-time}
-Un gateway applicativo gestisce WebSocket/SSE e aggiorna in push chat, ticket, ordini e log AI.
+\subsection{Frontend - C4 Livello 4}
+La sottosezione presenta i componenti frontend identificati nel C4 Livello 4.
 
-\subsubsection{Layer 5 - UI Library}
-Componenti organizzati secondo \textit{Atomic Design} (atoms, molecules, organisms) per uniformare esperienza utente tra aree cliente e operatore.
-
-\subsection{Backend - C4 Livello 3 e 4}
-Le pagine \texttt{C4L3B} e \texttt{C4L4B} rappresentano la decomposizione interna del container FastAPI.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.98\textwidth]{arch_backend_l3_components.png}
-    \caption{Backend L3 (PlantUML compilato): componenti applicativi e dipendenze.}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.98\textwidth]{arch_backend_l4_layers.png}
-    \caption{Backend L4 (PlantUML compilato): layer, ports e adapters.}
-\end{figure}
-
-\subsubsection{Controllers (Inbound Ports)}
-Punto di ingresso HTTP per i principali domini:
-\texttt{AuthController}, \texttt{ConversationController}, \texttt{CartController}, \texttt{OrderHistoryController}, \texttt{TicketController}, \texttt{LogAIController}.
-
-\subsubsection{Application Services (Use Cases)}
-Orchestrano regole e collaborazioni tra moduli:
-\texttt{AuthService}, \texttt{ConversationService}, \texttt{CartService}, \texttt{OrderHistoryService}, \texttt{VectorSearchService}, \texttt{TicketService}, \texttt{LogAIService}.
-
-\subsubsection{Core Domain}
-Entita principali del dominio applicativo: Cliente, Operatore, Carrello, RigaCarrello, Ordine, Ticket, LogAI.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.95\textwidth]{arch_domain_class_core.png}
-    \caption{Core Domain (PlantUML compilato): classi principali e relazioni.}
-\end{figure}
-
-\subsubsection{Outbound Ports e Adapter}
-Interfacce astratte per dipendenze esterne:
-\begin{itemize}
-    \item repository dati (utenti, ordini, ticket, log);
-    \item manager sessioni DB;
-    \item client AI verso OpenAI;
-    \item exporter file JSON per integrazione ERP.
-\end{itemize}
-
-\subsection{Flusso applicativo principale (ordine)}
-\begin{enumerate}
-    \item Il Cliente invia input naturale (testo/audio/immagine) dalla Chat Page.
-    \item Il backend interpreta input e aggiorna il carrello con confidence score associato.
-    \item Il Cliente (o Operatore in delega) conferma il checkout del carrello.
-    \item Il backend valida vincoli (assortimento/disponibilita), persiste l'ordine e genera JSON.
-    \item Il file JSON viene depositato in storage condiviso per acquisizione ERP.
-\end{enumerate}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.98\textwidth]{arch_sequence_checkout.png}
-    \caption{Flusso checkout (PlantUML compilato): sequenza end-to-end.}
-\end{figure}
+\input{Contenuti/frontend_l4_pages}
+\input{Contenuti/frontend_l4_state}
+\input{Contenuti/frontend_l4_services}
+\input{Contenuti/frontend_l4_realtime}
+\input{Contenuti/frontend_l4_ui}
 
 % ===================================================================
-%  10. SORGENTI PLANTUML
+%  3. STATO DEI REQUISITI FUNZIONALI
 % ===================================================================
 \newpage
-\section{Sorgenti PlantUML}
+\section{Stato dei requisiti funzionali}
 
-Questa sezione elenca i sorgenti \texttt{.puml} ufficiali da usare per generare i diagrammi architetturali.
-Per ogni sorgente viene mantenuto anche l'output compilato in formato \texttt{.png}, cosi da poter includere direttamente le figure nel documento.
-I file sono mantenuti nella directory \texttt{Contenuti/} e versionati insieme alla specifica.
+Questa sezione riporta lo stato di implementazione dei requisiti funzionali derivati dall'ultima versione PB dell'Analisi dei Requisiti (v2.1). Per questa baseline, tutti i requisiti risultano \textbf{NON IMPLEMENTATO}.
 
-\begin{table}[H]
-    \centering
-    \renewcommand{\arraystretch}{1.2}
-    \begin{tabularx}{\textwidth}{@{}l l L@{}}
-        \toprule
-        \textbf{File \texttt{.puml}} & \textbf{Output \texttt{.png}} & \textbf{Contenuto} \\
-        \midrule
-        \texttt{arch\_c4\_l1\_context.puml} & \texttt{arch\_c4\_l1\_context.png} & C4 Livello 1: attori esterni, sistema SmartOrder, sistemi terzi. \\
-        \texttt{arch\_c4\_l2\_container.puml} & \texttt{arch\_c4\_l2\_container.png} & C4 Livello 2: WebApp, API, DB, File Storage, OpenAI, ERP. \\
-        \texttt{arch\_frontend\_l3\_components.puml} & \texttt{arch\_frontend\_l3\_components.png} & C4 Livello 3 frontend: pagine, context, servizi API client, real-time. \\
-        \texttt{arch\_backend\_l3\_components.puml} & \texttt{arch\_backend\_l3\_components.png} & C4 Livello 3 backend: controller, service, core, adapter. \\
-        \texttt{arch\_frontend\_l4\_layers.puml} & \texttt{arch\_frontend\_l4\_layers.png} & Livello 4 frontend: layered architecture per coding guidato. \\
-        \texttt{arch\_backend\_l4\_layers.puml} & \texttt{arch\_backend\_l4\_layers.png} & Livello 4 backend: layer applicativi e dipendenze interne. \\
-        \texttt{arch\_domain\_class\_core.puml} & \texttt{arch\_domain\_class\_core.png} & Diagramma classi del core domain (entita e relazioni). \\
-        \texttt{arch\_sequence\_checkout.puml} & \texttt{arch\_sequence\_checkout.png} & Diagramma di sequenza del flusso principale di checkout. \\
-        \bottomrule
-    \end{tabularx}
-    \caption{Elenco sorgenti PlantUML e output compilati dell'architettura.}
-\end{table}
-
-\subsection{Convenzioni operative}
-\begin{itemize}
-    \item ogni file PlantUML deve essere modificabile senza dipendere da asset esterni;
-    \item i nomi dei componenti devono essere allineati ai nomi usati nella sezione 9;
-    \item ogni diagramma include titolo, legenda minima e protocollo principale tra componenti;
-    \item i diagrammi L4 sono orientati alla codifica (classi, package, dipendenze).
-\end{itemize}
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.45\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|}
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{ID} & \textbf{Importanza} & \textbf{Descrizione} & \textbf{Stato} \\
+    \hline
+    \endfirsthead
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{ID} & \textbf{Importanza} & \textbf{Descrizione} & \textbf{Stato} \\
+    \hline
+    \endhead
+    \texttt{RF-OB\_01} & Obbligatorio & Il sistema deve permettere all'Utente di inserire il proprio indirizzo email nel campo dedicato per effettuare il login. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_02} & Obbligatorio & Il sistema deve permettere all'Utente di inserire la propria password in modo oscurato tramite il campo dedicato. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_03} & Obbligatorio & Il sistema deve fornire un pulsante o comando per confermare l'accesso e inviare le credenziali per la validazione. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_04} & Obbligatorio & Il sistema deve mostrare un errore se l'email inserita non ha un formato valido. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_05} & Obbligatorio & Il sistema deve mostrare un errore se l'email inserita non e presente nel database locale. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_06} & Obbligatorio & Il sistema deve mostrare un errore se la combinazione di email e password e sbagliata. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_07} & Obbligatorio & Dopo un login valido, il sistema deve creare la sessione e far accedere l'utente alla propria area (Cliente o Operatore). & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_08} & Obbligatorio & Il sistema deve fornire un pulsante per effettuare il logout, invalidando e chiudendo la sessione corrente lato server. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_09} & Obbligatorio & Il sistema deve mostrare i dati aziendali del Cliente (ID e Ragione Sociale) in sola lettura. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_10} & Obbligatorio & Il sistema deve rendere accessibile la pagina Area Personale tramite un elemento di navigazione dedicato, consentendo all'Utente di consultare le informazioni del proprio profilo in base al ruolo assegnato. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_11} & Obbligatorio & Il sistema deve mostrare all'Utente il proprio indirizzo email in sola lettura. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_12} & Obbligatorio & Il sistema deve esporre un comando di contatto che, alla sua attivazione, invochi il protocollo URI \textit{mailto:} per aprire il client di posta elettronica nativo dell'Utente con il campo destinatario pre-compilato con l'email di supporto aziendale. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_13} & Obbligatorio & Il sistema deve mostrare in tempo reale tutti i messaggi inviati dall'Utente nella chat corrente. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_14} & Obbligatorio & Il sistema deve mostrare in tempo reale le risposte testuali scritte dall'AI o dall'Operatore di supporto. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_15} & Obbligatorio & Il sistema deve fornire un campo di testo per l'inserimento e l'invio di messaggi testuali nella chat. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_16} & Obbligatorio & Il sistema deve bloccare l'invio e mostrare un errore se il messaggio di testo supera il limite di caratteri. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_17} & Obbligatorio & Il sistema deve permettere all'Utente la registrazione e l'invio di messaggi vocali tramite il microfono del dispositivo. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_18} & Obbligatorio & Il sistema deve convertire l'audio in testo usando un modulo Speech-to-Text. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_19} & Obbligatorio & Il sistema deve bloccare l'invio e mostrare un errore se il file audio pesa piu di 10MB. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_20} & Obbligatorio & Il sistema deve richiedere esplicitamente i permessi hardware necessari (microfono, fotocamera) al momento del primo utilizzo della relativa funzionalita e, in caso di rifiuto da parte dell'Utente, mostrare un messaggio informativo che spieghi l'impossibilita di procedere senza tali permessi. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_21} & Obbligatorio & Il Cliente deve poter resettare la chat con l'AI e svuotare il carrello attuale. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_22} & Obbligatorio & Il sistema deve disabilitare il comando di reset della sessione qualora sia presente un ticket di assistenza in stato ``Aperto'' o ``In lavorazione'' per la sessione corrente, impedendo all'Utente di azzerare il contesto durante un'assistenza attiva. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_23} & Obbligatorio & L'AI (LLM) deve capire quali prodotti vuole l'utente e in che quantita leggendo/ascoltando il messaggio. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_24} & Obbligatorio & Il sistema deve cercare i prodotti nel database usando la ricerca vettoriale (Vector Search). & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_25} & Obbligatorio & Il sistema deve aggiungere in automatico i prodotti trovati al carrello se il Confidence Score calcolato dall'AI supera la soglia definita in \hyperlink{rp-ob_3}{RP-OB\_03}. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_26} & Obbligatorio & Vincolo Assortimento: Il sistema deve ignorare i prodotti che non fanno parte del catalogo assegnato a quel Cliente (tabella \texttt{asscli}). & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_27} & Obbligatorio & Vincolo Stato: Il sistema deve impedire l'aggiunta di prodotti segnati come ``non disponibili'' o ``sospesi'' nel database (\texttt{anaart}). & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_28} & Obbligatorio & Deduzione Formati: L'AI deve convertire automaticamente le quantita richieste nelle giuste unita di vendita (es. da bottiglie a casse). & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_29} & Obbligatorio & Il sistema deve fornire una barra di ricerca per cercare manualmente i prodotti nel catalogo tramite input testuale. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_30} & Obbligatorio & Il sistema deve mostrare i risultati della ricerca in tempo reale (Live Search). & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_31} & Obbligatorio & Il sistema deve mostrare per ogni prodotto trovato: Nome, ID, Linea, Famiglia e Modalita di Vendita. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_32} & Obbligatorio & L'Utente deve poter cliccare su un risultato per decidere quanti pezzi acquistarne. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_33} & Obbligatorio & L'Utente deve poter modificare la quantita usando i tasti +/- o scrivendo direttamente il numero. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_34} & Obbligatorio & Il sistema deve correggere in automatico la quantita se l'utente inserisce numeri negativi, zero o troppo grandi. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_35} & Obbligatorio & L'Utente deve poter confermare l'aggiunta del prodotto al carrello della sessione corrente. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_36} & Obbligatorio & Il sistema deve mostrare un avviso di ``Carrello Vuoto'' se non ci sono prodotti inseriti. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_37} & Obbligatorio & Il sistema deve mostrare i dettagli logistici e le quantita di tutti i prodotti presenti nel carrello. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_38} & Obbligatorio & L'Utente deve poter sbloccare la riga di un prodotto nel carrello per poterne modificare la quantita. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_39} & Obbligatorio & L'Utente deve poter salvare la nuova quantita modificata per un prodotto nel carrello. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_40} & Obbligatorio & L'Utente deve poter rimuovere definitivamente un articolo dal carrello. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_41} & Obbligatorio & Il sistema deve disabilitare il pulsante per inviare l'ordine se il carrello e vuoto. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_42} & Obbligatorio & L'Utente (Cliente o Operatore in subentro) deve poter chiudere il carrello e inviare l'ordine definitivo. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_43} & Obbligatorio & Il sistema deve bloccare l'invio dell'ordine e segnalare gli errori se ci sono problemi con le regole del gestionale (es. prodotto fuori catalogo). & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_44} & Obbligatorio & Dopo l'invio dell'ordine, il sistema deve svuotare la sessione e reindirizzare l'Utente alla vista appropriata al proprio ruolo: il Cliente allo Storico Ordini, l'Operatore alla chiusura del ticket e dismissione della console di subentro. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_45} & Obbligatorio & Il sistema deve creare un file JSON formattato contenente tutti i dati dell'ordine appena chiuso. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_46} & Obbligatorio & Il Cliente deve poter visualizzare la lista dei propri ordini passati, ordinati per data. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_47} & Obbligatorio & Il sistema deve mostrare per ogni ordine storico: ID, Data, totale degli articoli e una piccola anteprima dei prodotti. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_48} & Obbligatorio & Il Cliente deve poter cliccare su un ordine passato per vederne tutti i dettagli logistici. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_49} & Obbligatorio & Il sistema deve mostrare in sola lettura la chat originale tra utente e AI che ha generato quell'ordine specifico. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_50} & Obbligatorio & Il Cliente deve poter richiedere l'aiuto di un operatore umano, mettendo in pausa l'AI. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_51} & Obbligatorio & L'Operatore deve poter accedere alla dashboard con la lista dei Ticket Aperti (richieste d'aiuto). & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_52} & Obbligatorio & Nella lista dei ticket, il sistema deve mostrare da quanto tempo il Cliente sta aspettando una risposta. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_53} & Obbligatorio & L'Operatore deve poter prendere in carico un ticket bloccandolo per gli altri colleghi (Lock) per aprire la console di assistenza. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_54} & Obbligatorio & L'Operatore deve poter scrivere e inviare messaggi in chat direttamente al Cliente per fornirgli assistenza. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_55} & Obbligatorio & L'Operatore deve poter usare la ricerca per aggiungere forzatamente prodotti al carrello del Cliente che sta aiutando. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_56} & Obbligatorio & L'Operatore deve poter modificare le quantita o rimuovere prodotti dal carrello del Cliente. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_57} & Obbligatorio & L'Operatore deve poter chiudere il ticket per segnare il problema come risolto e sbloccare la sessione (rimuovere il Lock). & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_58} & Obbligatorio & L'Utente (Cliente o Operatore) deve poter chiudere il ticket da solo se risolve il problema o non ha piu bisogno di aiuto. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_59} & Obbligatorio & L'Operatore deve poter accedere alla dashboard che mostra tutti gli ordini inviati da tutti i Clienti. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_60} & Obbligatorio & L'Operatore deve poter cliccare su un ordine di qualsiasi cliente per aprirlo e vederne i dettagli. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_61} & Obbligatorio & L'Operatore deve poter cercare del testo solo all'interno di una colonna specifica (es. cercare solo l'ID Ordine). & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_62} & Obbligatorio & L'Operatore deve poter ordinare le tabelle in modo crescente o decrescente cliccando sui nomi delle colonne. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_63} & Obbligatorio & L'Operatore deve poter filtrare i dati delle tabelle scegliendo una data di inizio e di fine. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_64} & Obbligatorio & Il sistema deve salvare nel database tutto lo storico delle chat e delle decisioni prese dall'AI. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_65} & Obbligatorio & Il sistema deve mostrare la percentuale di sicurezza dell'AI (Confidence Score) solo nelle schermate dedicate all'Operatore. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_66} & Obbligatorio & Il sistema deve mostrare schermate di caricamento (spinner o barre di avanzamento) durante le operazioni che richiedono un tempo di elaborazione superiore a 1 secondo. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_67} & Obbligatorio & Le API del server (Backend) devono rifiutare qualsiasi richiesta priva di un token di accesso valido per la sessione corrente. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_68} & Obbligatorio & Il sistema deve caricare i dati delle tabelle in modo incrementale tramite paginazione con pagine da massimo 50 record, per evitare il blocco dell'interfaccia in presenza di grandi volumi di dati. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_01} & Desiderabile & Il sistema deve fornire un link per accedere alla pagina di recupero della password dimenticata. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_02} & Desiderabile & L'Utente deve poter richiedere il reset della password inserendo la propria email. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_03} & Desiderabile & Il sistema deve permettere all'Utente loggato di avviare la procedura per cambiare la propria password. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_04} & Desiderabile & L'Utente deve poter inviare la vecchia password e la nuova password scelta per salvarla nel sistema. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_05} & Desiderabile & Il sistema deve bloccare il cambio password se la vecchia password e errata o se le due nuove password inserite non coincidono. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_06} & Desiderabile & Il sistema deve permettere l'invio di file immagine nella chat, mediante scatto fotografico o selezione dalla galleria del dispositivo. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_07} & Desiderabile & Il sistema deve bloccare l'invio di immagini e mostrare un errore se il file pesa piu di 5MB. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_08} & Desiderabile & Il Cliente deve poter valutare la qualita delle risposte dell'AI lasciando un feedback (es. pollice su / pollice giu). & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_09} & Desiderabile & Se il Cliente da un voto negativo all'AI, il sistema deve richiedere che indichi il tipo di errore (tramite tag predisposti). & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_10} & Desiderabile & Il Cliente deve poter aggiungere un testo libero per spiegare meglio il motivo dell'errore segnalato. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_11} & Desiderabile & Il Cliente deve poter scaricare l'elenco dei propri ordini storici in un file formato CSV. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_12} & Desiderabile & L'Operatore deve poter accedere alla dashboard per il controllo degli errori e l'addestramento dell'AI (Ottimizzazione AI). & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_13} & Desiderabile & Il sistema deve mostrare all'Operatore la lista degli errori segnalati dai clienti e le correzioni manuali fatte ai carrelli. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_14} & Desiderabile & L'Operatore deve poter aprire un singolo errore AI per rileggere tutta la chat originale tra il Cliente e il bot. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_15} & Desiderabile & L'Operatore deve poter approvare una segnalazione di errore, confermando che i dati verranno usati per riaddestrare l'AI. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_16} & Desiderabile & L'Operatore deve poter scartare una segnalazione se non si tratta di un vero errore dell'AI (es. l'utente ha scritto male). & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_17} & Desiderabile & L'Operatore deve poter annullare l'approvazione di una segnalazione se l'aveva confermata per sbaglio (Rollback). & \textbf{NON IMPLEMENTATO} \\
+    \texttt{RF-OP\_01} & Facoltativo & Il sistema deve permettere l'invio di messaggi d'ordine e la loro elaborazione tramite l'app di WhatsApp. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OP\_02} & Facoltativo & Il sistema deve permettere l'invio di messaggi d'ordine e la loro elaborazione tramite l'app di Telegram. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OP\_03} & Facoltativo & Il sistema deve generare grafici e statistiche generali sull'uso della piattaforma, mostrandoli all'Operatore. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \multicolumn{4}{c}{} \\
+    \caption{Stato dei requisiti funzionali (fonte: Analisi dei Requisiti PB v2.1)}\label{tab:stato_requisiti_funzionali}
+\end{longtable}
 
 \end{document}

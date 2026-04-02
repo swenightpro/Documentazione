@@ -1,0 +1,129 @@
+\subsubsection{Layer 3 - Service Layer (API Client Modules REST/HTTPS + JWT)}
+
+\paragraph{authService}
+\textbf{Descrizione del componente:} facade di accesso alle API di autenticazione e gestione credenziali.
+
+\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi persistenti.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{login(credentials: CredentialsDTO)}: esegue autenticazione e recupera sessione/token.
+    \item \texttt{logout()}: invalida la sessione lato backend.
+    \item \texttt{resetPassword(req: ResetPasswordDTO)}: avvia procedura di reset password.
+    \item \texttt{changePassword(req: PasswordChangeDTO)}: aggiorna la password dell'utente autenticato.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.66\textwidth]{uml_frontend/12_authservice.png}
+    \caption{UML del componente \texttt{authService}.}
+\end{figure}
+
+\paragraph{cartService}
+\textbf{Descrizione del componente:} modulo API dedicato alle operazioni di carrello e invio ordine, separato dal modulo di sola ricerca catalogo.
+
+\textbf{Descrizione degli attributi:} non sono esplicitati attributi nel diagramma.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{getCart(sessionId: string)}: recupera lo stato corrente del carrello.
+    \item \texttt{upsertCartItem(req: CartItemUpsertDTO)}: inserisce/aggiorna una riga carrello.
+    \item \texttt{removeItem(sessionId: string, productId: string)}: rimuove un articolo dal carrello.
+    \item \texttt{submitOrder(sessionId: string)}: conferma il checkout e invia l'ordine al backend.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.68\textwidth]{uml_frontend/13_cartservice.png}
+    \caption{UML del componente \texttt{cartService}.}
+\end{figure}
+
+\paragraph{productService}
+\textbf{Descrizione del componente:} modulo read-only per ricerca prodotti a catalogo (live search e filtri assortimento).
+
+\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{searchProducts(query: string, clientId: string)}: interroga catalogo prodotti filtrato sul cliente.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_frontend/14_productservice.png}
+    \caption{UML del componente \texttt{productService}.}
+\end{figure}
+
+\paragraph{orderService}
+\textbf{Descrizione del componente:} modulo di consultazione ordini gia finalizzati (storico, dettaglio, export CSV).
+
+\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi persistenti.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{getOrders(filters: OrderFilterDTO)}: recupera lista ordini con filtri e paginazione.
+    \item \texttt{getOrderDetail(orderId: string)}: recupera dettaglio completo del singolo ordine.
+    \item \texttt{exportCSV(filters: OrderFilterDTO)}: genera export CSV per reporting.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.66\textwidth]{uml_frontend/15_orderservice.png}
+    \caption{UML del componente \texttt{orderService}.}
+\end{figure}
+
+\paragraph{ticketService}
+\textbf{Descrizione del componente:} modulo API di supporto Human-in-the-Loop per gestione ticket cliente-operatore.
+
+\textbf{Descrizione degli attributi:} non sono rappresentati attributi di stato nel diagramma.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{getTickets(filters: TicketFilterDTO)}: recupera elenco ticket con filtri operativi.
+    \item \texttt{openTicket(req: OpenTicketDTO)}: apre un nuovo ticket di assistenza.
+    \item \texttt{closeTicket(ticketId: string)}: chiude un ticket in carico.
+    \item \texttt{lockTicket(ticketId: string)}: acquisisce lock operatore sul ticket.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.66\textwidth]{uml_frontend/16_ticketservice.png}
+    \caption{UML del componente \texttt{ticketService}.}
+\end{figure}
+
+\paragraph{chatService}
+\textbf{Descrizione del componente:} facade verso le API conversazionali (messaggi multimodali, storico, feedback AI).
+
+\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi persistenti.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{sendMessage(req: ChatMessageDTO)}: invia messaggio testo/audio/immagine al backend.
+    \item \texttt{getHistory(sessionId: string)}: recupera storico conversazione di una sessione.
+    \item \texttt{submitFeedback(req: AIFeedbackDTO)}: invia feedback qualitativo su risposta AI.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.66\textwidth]{uml_frontend/17_chatservice.png}
+    \caption{UML del componente \texttt{chatService}.}
+\end{figure}
+
+\paragraph{aiLogService}
+\textbf{Descrizione del componente:} modulo API dedicato al workflow di validazione delle discrepanze AI in dashboard operatore.
+
+\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{getLogs(filters: AILogFilterDTO)}: recupera lista log AI filtrata.
+    \item \texttt{approveSig(logId: string)}: approva una segnalazione per pipeline HITL.
+    \item \texttt{rejectSig(logId: string)}: scarta una segnalazione non valida.
+    \item \texttt{revokeSig(logId: string)}: revoca un'approvazione precedente.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.66\textwidth]{uml_frontend/18_ailogservice.png}
+    \caption{UML del componente \texttt{aiLogService}.}
+\end{figure}

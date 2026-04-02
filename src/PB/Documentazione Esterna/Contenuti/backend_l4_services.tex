@@ -1,0 +1,123 @@
+\subsubsection{Layer 2 - Application Services (Use Cases)}
+
+\paragraph{AuthService}
+\textbf{Descrizione della classe:} incapsula i casi d'uso di autenticazione e invalidazione sessione.
+
+\textbf{Descrizione degli attributi:} non sono esplicitati attributi nel diagramma; il servizio e modellato come componente applicativo stateless.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{authenticateUser(email: String, pass: String)}: valida credenziali e produce token di autenticazione.
+    \item \texttt{invalidateSession(authsessionId: String)}: disattiva una sessione autenticata.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{uml_backend/07_authservice.png}
+    \caption{UML della classe \texttt{AuthService}.}
+\end{figure}
+
+\paragraph{ConversationService}
+\textbf{Descrizione della classe:} implementa il flusso conversazionale (testo e audio) e la gestione del contesto dialogico.
+
+\textbf{Descrizione degli attributi:} non sono esplicitati attributi di stato nel diagramma.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{handleText(text: String, sessionId: String)}: processa input testuale e restituisce risposta chat.
+    \item \texttt{handleAudio(audioBlob: File, sessionId: String)}: gestisce input audio con trascrizione e interpretazione.
+    \item \texttt{clearContext(chatsessionId: String)}: cancella lo stato conversazionale associato alla sessione.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_backend/08_conversationservice.png}
+    \caption{UML della classe \texttt{ConversationService}.}
+\end{figure}
+
+\paragraph{CartService}
+\textbf{Descrizione della classe:} concentra la logica di business del carrello e la finalizzazione ordine.
+
+\textbf{Descrizione degli attributi:} non sono indicati attributi persistenti nel diagramma.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{manipulateCart(action: CartAction)}: applica operazioni di aggiunta/modifica/rimozione su carrello.
+    \item \texttt{finalizeOrder(chatsessionId: String)}: converte il carrello in ordine definitivo.
+    \item \texttt{validateAssortment(clienteId: String, prodottoId: String)}: verifica interna di validita assortimento cliente-articolo.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_backend/09_cartservice.png}
+    \caption{UML della classe \texttt{CartService}.}
+\end{figure}
+
+\paragraph{OrderHistoryService}
+\textbf{Descrizione della classe:} fornisce i casi d'uso di consultazione storico ordini e dettaglio ordine.
+
+\textbf{Descrizione degli attributi:} nessun attributo esplicitato nel diagramma.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{getOrdersByCliente(clienteId: String)}: recupera gli ordini di un cliente.
+    \item \texttt{getOrderDetail(orderId: String)}: restituisce il dettaglio di un ordine specifico.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.58\textwidth]{uml_backend/10_orderhistoryservice.png}
+    \caption{UML della classe \texttt{OrderHistoryService}.}
+\end{figure}
+
+\paragraph{VectorSearchService}
+\textbf{Descrizione della classe:} gestisce embedding e ricerca semantica dei prodotti nel catalogo cliente.
+
+\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{generateEmbedding(testo: String)}: produce il vettore semantico del testo in input.
+    \item \texttt{semanticSearch(vector: Vector, clienteId: String)}: esegue ricerca vettoriale filtrata per cliente.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_backend/11_vectorsearchservice.png}
+    \caption{UML della classe \texttt{VectorSearchService}.}
+\end{figure}
+
+\paragraph{TicketService}
+\textbf{Descrizione della classe:} implementa l'intero ciclo di vita del ticket di assistenza.
+
+\textbf{Descrizione degli attributi:} nessun attributo esplicitato nel diagramma.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{createTicket(clienteId: String, reason: String)}: crea un ticket a partire da richiesta cliente.
+    \item \texttt{assignOperator(ticketId: String, operatorId: String)}: assegna un operatore al ticket.
+    \item \texttt{resolveTicket(ticketId: String)}: chiude il ticket come risolto.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_backend/12_ticketservice.png}
+    \caption{UML della classe \texttt{TicketService}.}
+\end{figure}
+
+\paragraph{LogAIService}
+\textbf{Descrizione della classe:} presidia logging delle correzioni manuali e raccolta feedback negativi verso il modulo AI.
+
+\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi interni.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{logCorrection(delta: String, chatsessionId: String)}: persiste lo scostamento tra proposta AI e correzione utente.
+    \item \texttt{saveNegativeFeedback(feedback: FeedbackData)}: salva feedback negativo per analisi qualitativa.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.58\textwidth]{uml_backend/13_logaiservice.png}
+    \caption{UML della classe \texttt{LogAIService}.}
+\end{figure}
