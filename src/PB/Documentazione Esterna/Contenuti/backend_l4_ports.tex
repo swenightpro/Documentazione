@@ -1,0 +1,142 @@
+\subsubsection{Layer 4 - Outbound Ports (Interfaces)}
+
+\paragraph{IUserRepository}
+\textbf{Descrizione della classe/interfaccia:} definisce il contratto di accesso ai dati utente e alle regole di assortimento.
+
+\textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{findByEmail(email: String)}: recupera il cliente associato all'email.
+    \item \texttt{getAssortment(clienteId: String)}: restituisce i codici prodotto autorizzati per cliente.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{uml_backend/22_iuserrepository.png}
+    \caption{UML dell'interfaccia \texttt{IUserRepository}.}
+\end{figure}
+
+\paragraph{IDBSessionManager}
+\textbf{Descrizione della classe/interfaccia:} astrae la persistenza di sessioni e carrelli applicativi.
+
+\textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{saveSession(session: SessionData)}: persiste lo stato di sessione.
+    \item \texttt{getCart(chatsessionId: String)}: recupera il carrello della sessione.
+    \item \texttt{saveCart(cart: Carrello)}: aggiorna il carrello persistito.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.57\textwidth]{uml_backend/23_idbsessionmanager.png}
+    \caption{UML dell'interfaccia \texttt{IDBSessionManager}.}
+\end{figure}
+
+\paragraph{IOrderRepository}
+\textbf{Descrizione della classe/interfaccia:} definisce le operazioni di persistenza e ricerca ordini.
+
+\textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{saveOrder(order: Order)}: salva l'ordine finalizzato.
+    \item \texttt{findByCliente(clienteId: String)}: recupera ordini del cliente.
+    \item \texttt{findById(orderId: String)}: recupera ordine per identificativo.
+    \item \texttt{getOrders(filters, page, pageSize)}: ricerca ordini con filtri e paginazione.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.58\textwidth]{uml_backend/24_iorderrepository.png}
+    \caption{UML dell'interfaccia \texttt{IOrderRepository}.}
+\end{figure}
+
+\paragraph{ITicketRepository}
+\textbf{Descrizione della classe/interfaccia:} astrae persistenza e query dei ticket di assistenza.
+
+\textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{save(ticket: Ticket)}: persiste ticket nuovo o aggiornato.
+    \item \texttt{findAllOpen()}: recupera i ticket in stato aperto.
+    \item \texttt{getTickets(filters)}: ricerca ticket con criteri dinamici.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{uml_backend/25_iticketrepository.png}
+    \caption{UML dell'interfaccia \texttt{ITicketRepository}.}
+\end{figure}
+
+\paragraph{ILogAIRepository}
+\textbf{Descrizione della classe/interfaccia:} definisce l'accesso ai dati di logging AI.
+
+\textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{saveLog(log: LogAI)}: salva un evento di log AI.
+    \item \texttt{findPendingLogs()}: recupera i log in attesa di validazione.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{uml_backend/26_ilogairepository.png}
+    \caption{UML dell'interfaccia \texttt{ILogAIRepository}.}
+\end{figure}
+
+\paragraph{IFileExporter}
+\textbf{Descrizione della classe/interfaccia:} espone il contratto di esportazione file verso sistemi esterni.
+
+\textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{writeOrderAsJSON(order: Order)}: serializza ordine in formato JSON di integrazione.
+    \item \texttt{writeOrdersAsCSV(clientId: String)}: genera export CSV per storico/reportistica.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.55\textwidth]{uml_backend/27_ifileexporter.png}
+    \caption{UML dell'interfaccia \texttt{IFileExporter}.}
+\end{figure}
+
+\paragraph{IAIClient}
+\textbf{Descrizione della classe/interfaccia:} formalizza il contratto verso i servizi di AI generativa e speech-to-text.
+
+\textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{transcribeAudio(audio: File)}: converte audio in testo.
+    \item \texttt{interpretIntent(text: String, context: String)}: classifica intenti e produce decisione AI.
+    \item \texttt{createEmbedding(text: String)}: calcola embedding vettoriale del testo.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.57\textwidth]{uml_backend/28_iaiclient.png}
+    \caption{UML dell'interfaccia \texttt{IAIClient}.}
+\end{figure}
+
+\paragraph{INotificationPort}
+\textbf{Descrizione della classe/interfaccia:} definisce notifiche realtime verso operatori e client attivi.
+
+\textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{notifyOperator(operatorId: String, ticket: Ticket)}: invia notifica di presa in carico/aggiornamento ticket.
+    \item \texttt{sendRealtimeUpdate(chatsessionId: String, payload: String)}: invia aggiornamento realtime su sessione chat.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.57\textwidth]{uml_backend/29_inotificationport.png}
+    \caption{UML dell'interfaccia \texttt{INotificationPort}.}
+\end{figure}

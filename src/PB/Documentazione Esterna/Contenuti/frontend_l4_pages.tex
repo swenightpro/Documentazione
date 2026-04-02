@@ -1,0 +1,97 @@
+\subsubsection{Layer 1 - Routing \& Page Layer (Next.js App Router)}
+
+\paragraph{RouteGuard}
+\textbf{Descrizione del componente:} presidia la sicurezza di navigazione verificando validita della sessione e autorizzazioni per ruolo prima dell'accesso alle route protette.
+
+\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (logica middleware stateless).
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{validateSession(token: JWT)}: verifica la validita del token della sessione corrente.
+    \item \texttt{checkRole(requiredRole: UserRole)}: applica controllo di autorizzazione per ruolo utente.
+    \item \texttt{redirectToLogin()}: effettua redirect verso la pagina di accesso in caso di sessione non valida.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.58\textwidth]{uml_frontend/01_routeguard.png}
+    \caption{UML del componente \texttt{RouteGuard}.}
+\end{figure}
+
+\paragraph{AuthPages}
+\textbf{Descrizione del componente:} raggruppa le pagine di autenticazione (login e recupero password) e gestisce l'invio delle credenziali al backend.
+
+\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi persistenti.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{renderLoginForm()}: renderizza il form di accesso utente.
+    \item \texttt{renderForgotPasswordForm()}: renderizza il form di recupero password.
+    \item \texttt{submitCredentials(credentials: CredentialsDTO)}: inoltra le credenziali all'API di autenticazione.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_frontend/02_authpages.png}
+    \caption{UML del componente \texttt{AuthPages}.}
+\end{figure}
+
+\paragraph{ClientePages}
+\textbf{Descrizione del componente:} incapsula le viste principali dell'area cliente (chat, carrello, storico, profilo) con approccio mobile-first come da vincoli C4L4F.
+
+\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{openChat()}: apre la vista conversazionale cliente-AI.
+    \item \texttt{openCart()}: apre la vista di composizione carrello.
+    \item \texttt{openOrderHistory()}: apre la vista storico ordini cliente.
+    \item \texttt{openProfile()}: apre la vista profilo e dati account.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_frontend/03_clientepages.png}
+    \caption{UML del componente \texttt{ClientePages}.}
+\end{figure}
+
+\paragraph{BackofficePage}
+\textbf{Descrizione del componente:} realizza la rotta unica desktop-first per operatore e centralizza la navigazione a tab (ticket, ordini globali, AI log).
+
+\textbf{Descrizione degli attributi:}
+\begin{itemize}
+    \item \texttt{tabs}: collezione tab disponibili in dashboard backoffice.
+    \item \texttt{activeTab}: tab correntemente attiva nella vista operatore.
+\end{itemize}
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{switchTab(tab: BackofficeTab)}: commuta la sezione operativa visualizzata.
+    \item \texttt{renderTicketTable()}: renderizza la tabella ticket aperti/in lavorazione.
+    \item \texttt{renderOrdersTable()}: renderizza la tabella ordini globali.
+    \item \texttt{renderAILogTable()}: renderizza la tabella delle segnalazioni AI.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.66\textwidth]{uml_frontend/04_backofficepage.png}
+    \caption{UML del componente \texttt{BackofficePage}.}
+\end{figure}
+
+\paragraph{SharedLayout}
+\textbf{Descrizione del componente:} fornisce il layout condiviso dell'applicazione (navbar, sidebar e toasts) usato sia dall'area cliente sia dal backoffice.
+
+\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi di stato.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{renderNavbar()}: costruisce la barra di navigazione principale.
+    \item \texttt{renderSidebar()}: costruisce il menu laterale contestuale.
+    \item \texttt{showToast(notification: NotificationDTO)}: mostra notifiche utente transitorie.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.60\textwidth]{uml_frontend/05_sharedlayout.png}
+    \caption{UML del componente \texttt{SharedLayout}.}
+\end{figure}

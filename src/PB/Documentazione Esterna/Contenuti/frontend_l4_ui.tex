@@ -1,0 +1,98 @@
+\subsubsection{Layer 5 - UI Component Library (Atomic Design)}
+
+\paragraph{Atoms}
+\textbf{Descrizione del componente:} contiene componenti visuali minimi e riusabili (es. button, input, badge, spinner) indipendenti dal dominio applicativo.
+
+\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{buildButton(props: ButtonProps)}: costruisce il componente bottone base.
+    \item \texttt{buildInput(props: InputProps)}: costruisce campo input tipizzato.
+    \item \texttt{buildBadge(props: BadgeProps)}: costruisce badge informativo/stato.
+    \item \texttt{buildSpinner()}: costruisce indicatore visuale di caricamento.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_frontend/24_atoms.png}
+    \caption{UML del componente \texttt{Atoms}.}
+\end{figure}
+
+\paragraph{Molecules}
+\textbf{Descrizione del componente:} compone piu atoms in widget funzionali di medio livello (es. riga carrello, card prodotto, riga ticket).
+
+\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi persistenti.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{buildProductCard(data: ProductDTO)}: genera card prodotto per ricerca/catalogo.
+    \item \texttt{buildMessageBubble(msg: ChatMessage)}: genera bubble messaggio in chat.
+    \item \texttt{buildCartRow(item: CartItem)}: genera riga carrello editabile.
+    \item \texttt{buildTicketRow(ticket: TicketDTO)}: genera riga tabellare ticket.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.66\textwidth]{uml_frontend/25_molecules.png}
+    \caption{UML del componente \texttt{Molecules}.}
+\end{figure}
+
+\paragraph{OrganismsCliente}
+\textbf{Descrizione del componente:} aggrega molecules/atoms nelle feature di area cliente (chat window, carrello, storico ordini, pannello ricerca).
+
+\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{renderChatWindow()}: compone area messaggi e input multimodale.
+    \item \texttt{renderCartTable()}: compone tabella carrello con azioni sulle righe.
+    \item \texttt{renderOrderHistory()}: compone lista storico ordini cliente.
+    \item \texttt{renderProductSearchPanel()}: compone ricerca prodotto con risultati live.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.64\textwidth]{uml_frontend/26_organismscliente.png}
+    \caption{UML del componente \texttt{OrganismsCliente}.}
+\end{figure}
+
+\paragraph{OrganismsOperatore}
+\textbf{Descrizione del componente:} aggrega componenti avanzati desktop-first per operativita backoffice (tab navigator, tabelle, modali di assistenza).
+
+\textbf{Descrizione degli attributi:} non sono rappresentati attributi persistenti nel diagramma.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{renderTabNavigator()}: gestisce switching tra tab operative.
+    \item \texttt{renderTicketTable()}: visualizza ticket con filtri e ordinamenti.
+    \item \texttt{renderOrdersTable()}: visualizza ordini globali in tabella.
+    \item \texttt{renderAILogTable()}: visualizza segnalazioni AI per validazione.
+    \item \texttt{renderTicketModal()}: visualizza modale di assistenza in subentro.
+    \item \texttt{renderCartDelegatePanel()}: visualizza il pannello di delega sul carrello cliente durante il subentro operatore.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.66\textwidth]{uml_frontend/27_organismsoperatore.png}
+    \caption{UML del componente \texttt{OrganismsOperatore}.}
+\end{figure}
+
+\paragraph{SharedUIUtilities}
+\textbf{Descrizione del componente:} contiene utility trasversali di presentazione (data table, date picker, dialog e modal) riusate da cliente e operatore.
+
+\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi di stato.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{renderDataTable(data: any[])}: costruisce tabella con sort, filtri e paginazione.
+    \item \texttt{renderDatePicker()}: costruisce selettore intervalli data.
+    \item \texttt{openConfirmDialog(req: ConfirmRequest)}: mostra dialog conferma con esito booleano.
+    \item \texttt{openModal(component: JSX.Element)}: apre un componente in finestra modale.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.66\textwidth]{uml_frontend/28_shareduiutilities.png}
+    \caption{UML del componente \texttt{SharedUIUtilities}.}
+\end{figure}
