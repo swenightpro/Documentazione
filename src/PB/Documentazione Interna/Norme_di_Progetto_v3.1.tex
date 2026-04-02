@@ -1,0 +1,1008 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl}
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}
+\graphicspath{{assets/}{../assets/}{../../assets/}{../../../assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[svgnames]{xcolor}
+
+% --- Utility ---
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Documento Progetto - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textbf{NightPRO – Progetto Ingegneria del Software}}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  FRONTESPIZIO
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \includegraphics[width=0.35\textwidth]{logo.png}\\[1cm]
+
+    \vfill
+
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    \vfill
+
+    {\Huge \bfseries Norme di Progetto \par}
+
+    \vfill
+
+    {\Large \bfseries Gruppo: NightPRO} \vspace{0.5cm}
+
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
+
+    {\large Data: 2026-04-02 \par}
+    {\Large Versione: 3.1 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  TABELLA DELLE VERSIONI
+% -------------------------------------------------------------------
+\newpage
+\pagestyle{fancy}
+\phantomsection
+\addcontentsline{toc}{section}{Tabella delle Versioni}
+\section*{Tabella delle Versioni}
+\vspace{0.2cm}
+\begin{center}
+    \resizebox{\textwidth}{!}{
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{@{}llp{0.25\textwidth}p{0.45\textwidth}c@{}}
+            \toprule
+            \textbf{Versione} & \textbf{Data} & \textbf{Autore/i}     & \textbf{Descrizione delle Modifiche}                                                                                                                                                                            & \textbf{Verificatore} \\
+            \midrule
+            3.1               & 2026-04-02    & L. Bilato             & Aggiornata la sezione relativa alla rotazione dei ruoli                                                                                                                                                         & M. M. Romascu         \\
+            3.0               & 2026-03-17    & F. Zanella            & Approvazione del documento                                                                                                                                                                                      & -                     \\
+            2.1               & 2026-03-12    & S. Perozzo            & Ristrutturazione uniforme del documento.                                                                                                                                                                        & Leonardo Bilato       \\
+            2.0               & 2026-02-25    & D. Biasuzzi           & Approvazione del documento                                                                                                                                                                                      & -                     \\
+            1.4               & 2026-01-28    & D. Biasuzzi           & Completate sezioni Analisi dei Requisiti e Codifica; integrato Ciclo di Deming (PDCA) e metriche EVM nella sezione Ottimizzazione dei processi, Gestione dei Rischi, DdB e spiegazione progettazione UI per MVP & Francesco Zanella     \\
+            1.3               & 2025-12-03    & M. Ogniben            & Chiariti compiti Responsabile, aggiunta descrizione nuova sezione verbali interni, sistemata descrizione organizzazione repository                                                                              & Giovanni Ponso        \\
+            1.2               & 2025-11-13    & D. Biasuzzi           & Aggiunta struttura iniziale paragrafo relativo alla fornitura (sezioni "Analisi Req". e "Codifica" da completare)                                                                                               & Michele Ogniben       \\
+            1.1               & 2025-11-11    & M. Ogniben            & Aggiunto paragrafo relativo ai Processi Organizzativi                                                                                                                                                           & Davide Biasuzzi       \\
+            1.0               & 2025-11-05    & D. Biasuzzi           & Modifica struttura del file e verifica                                                                                                                                                                          & Francesco Zanella     \\
+            0.1               & 2025-11-05    & G. Ponso; D. Biasuzzi & Creazione documento + redazione processi di supporto                                                                                                                                                            & Francesco Zanella     \\
+            \bottomrule
+        \end{tabular}
+    }
+\end{center}
+
+\newpage
+\tableofcontents
+\pagestyle{fancy}
+
+% -------------------------------------------------------------------
+%  INFORMAZIONI GENERALI
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+
+\begin{table}[h!]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{@{}llc@{}}
+        \toprule
+        \textbf{Cognome} & \textbf{Nome}   & \textbf{Matricola} \\
+        \midrule
+        Biasuzzi         & Davide          & 2111000            \\
+        Bilato           & Leonardo        & 2071084            \\
+        Zanella          & Francesco       & 2116442            \\
+        Romascu          & Mihaela-Mariana & 2079726            \\
+        Ogniben          & Michele         & 2042325            \\
+        Perozzo          & Samuele         & 2110989            \\
+        Ponso            & Giovanni        & 2000558            \\
+        \bottomrule
+    \end{tabular}
+    \caption{Componenti del gruppo NightPRO.}
+\end{table}
+
+% -------------------------------------------------------------------
+%  INTRODUZIONE
+% -------------------------------------------------------------------
+\newpage
+\section{Introduzione}
+\label{sec:introduzione}
+
+\subsection{Scopo del Documento}
+Questo documento definisce le Norme di Progetto{\scriptsize\raisebox{-0.5ex}{G}} del gruppo NightPRO per il corso di Ingegneria del Software (A.A.~2025/2026).
+Stabilisce in forma univoca metodo di lavoro, regole redazionali e criteri di gestione dei documenti, garantendo coerenza, tracciabilità e chiarezza operativa.
+Ogni processo è descritto attraverso la gerarchia uniforme \textbf{Processo → Attività → Procedure → Strumenti}.
+La presente versione costituisce la base metodologica di riferimento e sarà aggiornata con l'avanzare delle attività.
+
+\subsection{Glossario}
+Per garantire chiarezza terminologica e uniformità nella comprensione dei concetti utilizzati, viene redatto un Glossario{\scriptsize\raisebox{-0.5ex}{G}} contenente i termini tecnici e potenzialmente ambigui.
+Alla \textbf{prima occorrenza} nel documento, ogni termine seguito dal simbolo {\scriptsize\raisebox{-0.5ex}{G}} è definito formalmente nel glossario.
+Le occorrenze successive non riportano tale marcatura.
+
+\subsection{Riferimenti}
+
+\subsubsection{Riferimenti normativi}
+I seguenti documenti costituiscono riferimento vincolante per le attività del gruppo.
+Le regole e le procedure qui definite devono essere conformi ad essi.
+
+\begin{itemize}
+    \item \href{URL_CAPITOLATO_C8}{Capitolato C8 – SmartOrder: piattaforma AI per la gestione intelligente degli ordini nella ristorazione} (Ultima modifica: 2025-12-12)
+    \item \href{URL_REGOLAMENTO}{Regolamento del progetto didattico} (Ultima modifica: 2025-11-24)
+\end{itemize}
+
+\subsubsection{Riferimenti informativi}
+I seguenti documenti e risorse sono stati consultati a scopo di studio e orientamento metodologico, senza costituire vincolo normativo.
+
+\begin{itemize}
+    \item \href{URL_GLOSSARIO}{Glossario} (Ultima modifica: 2026-03-12)
+    \item \href{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T2.pdf}{T2: Ciclo di vita del software} (Ultima modifica: 2025-11-24)
+    \item \href{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T4.pdf}{T4: Gestione di Progetto} (Ultima modifica: 2025-11-24)
+    \item \href{https://www.math.unipd.it/~rcardin/swea/2021/Lezione-ArchiSW-1.pdf}{Approfondimenti standard ISO/IEC 12207:1995} (Ultima modifica: 2025-12-12)
+    \item \href{https://git-scm.com/doc}{Documentazione ufficiale Git} (Ultima modifica: 2026-03-12)
+    \item \href{https://docs.github.com/en/actions}{Documentazione ufficiale GitHub Actions} (Ultima modifica: 2026-03-12)
+    \item \href{https://www.overleaf.com/learn}{Documentazione ufficiale Overleaf / \LaTeX{}} (Ultima modifica: 2026-03-12)
+    \item \href{https://help.penpot.app}{Documentazione ufficiale Penpot} (Ultima modifica: 2026-03-12)
+\end{itemize}
+
+% ===================================================================
+%  PROCESSI PRIMARI
+% ===================================================================
+\newpage
+\section{Processi Primari}
+
+% -------------------------------------------------------------------
+%  3.1 FORNITURA
+% -------------------------------------------------------------------
+\subsection{Fornitura}
+
+\subsubsection{Attività 1 – Gestione della comunicazione con il proponente}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item Il Responsabile di Progetto contatta il referente di \textit{Ergon Informatica} (Gianluca Carlesso) per concordare data, ora e piattaforma dell'incontro.
+    \item Prima di ogni riunione, il Responsabile prepara un'agenda con i punti da discutere e la condivide con il gruppo tramite Telegram almeno 24 ore prima.
+    \item Durante la riunione, un membro designato prende nota delle decisioni e degli impegni assunti.
+    \item Al termine della riunione, il Responsabile redige il verbale esterno entro 48 ore, secondo la struttura definita nella sezione \ref{sec:verbali}.
+    \item Il verbale viene verificato da un secondo membro e, se richiesto dal proponente, sottoposto ad approvazione prima della pubblicazione.
+    \item Gli impegni e i requisiti emersi vengono trascritti come task su GitHub Projects e assegnati ai membri competenti.
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{Google Meet}: piattaforma per videoconferenze con il proponente.
+    \item \textbf{Telegram}: canale per comunicazioni operative rapide con i referenti aziendali.
+    \item \textbf{Email} (\texttt{swe.nightpro@gmail.com}): comunicazioni formali e invio di documentazione ufficiale.
+    \item \textbf{GitHub Projects}: tracciamento degli impegni e dei requisiti emersi.
+\end{itemize}
+
+\subsubsection{Attività 2 – Redazione e consegna dei documenti di fornitura}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item Il Responsabile identifica i documenti richiesti per la milestone{\scriptsize\raisebox{-0.5ex}{G}} corrente (es. Lettera di Presentazione, Preventivo dei Costi).
+    \item Il redattore assegnato crea o aggiorna il file \texttt{.tex} su Overleaf, rispettando la struttura definita nella sezione \ref{sec:documentazione}.
+    \item Il Verificatore esamina il documento e segnala eventuali non conformità prima del caricamento su GitHub.
+    \item Il Responsabile approva il documento nella tabella delle versioni e lo pubblica sul sito tramite la pipeline CI{\scriptsize\raisebox{-0.5ex}{G}}.
+    \item In caso di documenti soggetti a firma, si aggiunge il suffisso \texttt{\_firmato} al nome del file prima della consegna.
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{\LaTeX{} / Overleaf}: redazione collaborativa dei documenti ufficiali.
+    \item \textbf{GitHub}: versionamento e archiviazione dei sorgenti \texttt{.tex} e dei PDF generati.
+    \item \textbf{GitHub Actions}: compilazione automatica e pubblicazione su GitHub Pages.
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  3.2 SVILUPPO
+% -------------------------------------------------------------------
+\subsection{Sviluppo}
+
+\subsubsection{Attività 1 – Analisi dei Requisiti{\scriptsize\raisebox{-0.5ex}{G}}}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item Studiare il capitolato{\scriptsize\raisebox{-0.5ex}{G}} e la documentazione fornita dal proponente per comprendere il dominio applicativo.
+    \item Raccogliere i requisiti tramite incontri col proponente; annotare le esigenze emerse nel verbale esterno.
+    \item Classificare ogni requisito con il codice strutturato:
+          \begin{center}
+              \texttt{R[Tipo][Numero].[Sottorequisito]}
+          \end{center}
+          dove \textbf{Tipo} è uno tra: \texttt{F} (Funzionale), \texttt{Q} (Qualità), \texttt{V} (Vincolo), \texttt{P} (Prestazionale), \texttt{S} (Sicurezza).
+    \item Assegnare a ogni requisito una priorità: \textbf{Obbligatorio}, \textbf{Desiderabile} o \textbf{Opzionale}.
+    \item Modellare i casi d'uso (Use Case) con diagrammi UML{\scriptsize\raisebox{-0.5ex}{G}}, identificando ogni UC con il codice:
+          \begin{center}
+              \texttt{UC[Numero].[Sottocaso]}
+          \end{center}
+    \item Per ogni caso d'uso, documentare: identificativo e titolo, attore principale, precondizioni, postcondizioni, scenario principale, estensioni, user story.
+    \item Costruire le matrici di tracciabilità bidirezionale tra casi d'uso e requisiti.
+    \item Formalizzare i risultati nel documento \emph{Analisi dei Requisiti}{\scriptsize\raisebox{-0.5ex}{G}} e sottoporlo al ciclo di verifica/approvazione.
+\end{enumerate}
+
+\paragraph{Esempi di codifica}
+\begin{itemize}
+    \item \texttt{RF1.1} – Requisito Funzionale 1, sottorequisito 1
+    \item \texttt{RV02} – Requisito di Vincolo numero 2
+    \item \texttt{UC1.1} – Primo sottocaso del caso d'uso 1
+\end{itemize}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{PlantUML}: creazione dei diagrammi dei casi d'uso.
+    \item \textbf{Overleaf / \LaTeX{}}: redazione del documento \emph{Analisi dei Requisiti}.
+    \item \textbf{GitHub Projects}: tracciamento dei task di analisi.
+\end{itemize}
+
+\subsubsection{Attività 2 – Progettazione}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item \textbf{Progettazione logica}:
+          \begin{enumerate}[label=\alph*.]
+              \item Selezionare lo stack tecnologico (linguaggi, framework{\scriptsize\raisebox{-0.5ex}{G}}, librerie) motivando le scelte rispetto ai requisiti.
+              \item Realizzare un Proof of Concept{\scriptsize\raisebox{-0.5ex}{G}} (PoC) per validare la fattibilità tecnica delle scelte adottate.
+              \item Documentare l'esito del PoC nel repository dedicato (\texttt{SmartOrder-PoC}).
+          \end{enumerate}
+    \item \textbf{Progettazione di dettaglio}:
+          \begin{enumerate}[label=\alph*.]
+              \item Definire l'architettura{\scriptsize\raisebox{-0.5ex}{G}} del sistema e i pattern architetturali{\scriptsize\raisebox{-0.5ex}{G}} adottati.
+              \item Produrre il diagramma UML delle classi e i diagrammi di sequenza per le interazioni principali.
+              \item Specificare le interfacce tra i componenti e le dipendenze tra moduli.
+              \item Verificare che l'architettura soddisfi tutti i requisiti classificati come Obbligatori.
+              \item Sottoporre il documento di progettazione al ciclo di verifica/approvazione.
+          \end{enumerate}
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{PlantUML / strumento UML concordato}: diagrammi architetturali e di classe.
+    \item \textbf{Overleaf / \LaTeX{}}: documentazione della progettazione.
+    \item \textbf{GitHub} (\texttt{SmartOrder-PoC}): versionamento del Proof of Concept.
+\end{itemize}
+
+\subsubsection{Attività 3 – Codifica (MVP)}
+
+\paragraph{Procedure}
+
+\subparagraph{3a. Preparazione del branch}
+\begin{enumerate}
+    \item Creare un branch dal \texttt{main} seguendo la convenzione:
+          \begin{itemize}
+              \item \texttt{feature/[nome]}: nuove funzionalità.
+              \item \texttt{fix/[nome]}: correzione di bug.
+              \item \texttt{hotfix/[nome]}: correzioni urgenti su codice in produzione.
+          \end{itemize}
+    \item Associare il branch al task corrispondente su GitHub Projects.
+\end{enumerate}
+
+\subparagraph{3b. Implementazione}
+\begin{enumerate}
+    \item Scrivere il codice rispettando le convenzioni di stile seguenti:
+          \begin{itemize}
+              \item \textbf{Indentazione}: 4 spazi; vietato il carattere di tabulazione (\texttt{tab}).
+              \item \textbf{Lunghezza righe}: massimo 120 caratteri; suddividere le righe più lunghe in modo logico.
+              \item \textbf{Spaziatura}: riga vuota tra blocchi logici; spazi attorno agli operatori binari; parentesi graffe anche per blocchi di una sola istruzione.
+          \end{itemize}
+    \item Applicare le convenzioni di nomenclatura:
+          \begin{itemize}
+              \item \textbf{Classi e Interfacce}: \texttt{PascalCase}{\scriptsize\raisebox{-0.5ex}{G}} (es. \texttt{OrderProcessor}).
+              \item \textbf{Metodi e Funzioni}: \texttt{camelCase}{\scriptsize\raisebox{-0.5ex}{G}}, nomi verbali (es. \texttt{validateInput()}).
+              \item \textbf{Variabili e Parametri}: \texttt{camelCase}, nomi descrittivi (es. \texttt{confidenceScore}).
+              \item \textbf{Costanti}: \texttt{UPPER\_SNAKE\_CASE} (es. \texttt{MAX\_RETRY\_COUNT}).
+          \end{itemize}
+    \item Documentare ogni componente:
+          \begin{itemize}
+              \item Intestazione del file con descrizione, autore e data di creazione.
+              \item Documentazione di ogni funzione pubblica (descrizione, parametri, valore di ritorno).
+              \item Commenti inline per logiche complesse o non immediatamente intuibili.
+              \item Marcatori \texttt{TODO} e \texttt{FIXME} per segnalare lavori in sospeso.
+          \end{itemize}
+    \item Scrivere test unitari per ogni unità di codice prodotta.
+\end{enumerate}
+
+\subparagraph{3c. Commit e push}
+\begin{enumerate}
+    \item Formulare messaggi di commit{\scriptsize\raisebox{-0.5ex}{G}} chiari e descrittivi, che spieghino sinteticamente la natura della modifica apportata.
+    \item Ogni commit deve rappresentare un'unità logica di modifica; evitare commit con modifiche non correlate.
+    \item Effettuare il push sul branch dedicato.
+\end{enumerate}
+
+\subparagraph{3d. Pull Request e Merge}
+\begin{enumerate}
+    \item Aprire una pull request{\scriptsize\raisebox{-0.5ex}{G}} verso \texttt{main} con descrizione delle modifiche apportate.
+    \item Associare la pull request al task su GitHub Projects.
+    \item Il Verificatore esegue la code review: verifica stile, logica, test e conformità alle norme.
+    \item Risolvere eventuali conflitti prima del merge.
+    \item Il merge sul branch \texttt{main} è consentito solo dopo approvazione del Verificatore.
+    \item Aggiornare lo stato del task su GitHub Projects a ``Completato''.
+\end{enumerate}
+
+\paragraph{Standard di qualità del codice}
+Il codice prodotto deve rispettare i criteri di: \textbf{leggibilità}, \textbf{manutenibilità}, \textbf{modularità}, \textbf{testabilità} ed \textbf{efficienza}.
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{Git}: controllo di versione distribuito.
+    \item \textbf{GitHub} (\texttt{SmartOrder-MVP}): hosting del repository, gestione branch e pull request.
+    \item \textbf{GitHub Projects}: tracciamento dei task di sviluppo.
+\end{itemize}
+
+% ===================================================================
+%  PROCESSI DI SUPPORTO
+% ===================================================================
+\newpage
+\section{Processi di Supporto}
+
+% -------------------------------------------------------------------
+%  4.1 GESTIONE DELLA CONFIGURAZIONE
+% -------------------------------------------------------------------
+\subsection{Gestione della Configurazione}
+
+\subsubsection{Attività 1 – Organizzazione del repository}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item Mantenere tre repository distinti all'interno dell'organizzazione GitHub \textbf{NightPRO}:
+          \begin{itemize}
+              \item \textbf{Documentazione}: sorgenti \LaTeX{}, PDF generati, sito GitHub Pages.
+              \item \textbf{SmartOrder-PoC}: codice del Proof of Concept.
+              \item \textbf{SmartOrder-MVP}: codice del Minimum Viable Product.
+          \end{itemize}
+    \item Rispettare la struttura del repository \texttt{Documentazione}:
+          \begin{verbatim}
+.github/workflows/   # Workflow CI (build PDF, deploy sito)
+src/                 # File .tex sorgenti dei documenti
+docs/                # PDF generati automaticamente
+site/                # Codice sorgente sito GitHub Pages
+template/            # Template e documenti base
+report.md            # Report compilazione automatica
+\end{verbatim}
+    \item Caricare direttamente su \texttt{main} i documenti verificati; non usare branch intermedi per la documentazione.
+    \item Per il codice sorgente, usare branch dedicati (\texttt{feature/}, \texttt{fix/}, \texttt{hotfix/}) e procedere tramite pull request.
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{Git}: sistema di controllo versione.
+    \item \textbf{GitHub}: piattaforma di hosting, revisione codice e collaborazione.
+\end{itemize}
+
+\subsubsection{Attività 2 – Automazione CI/CD}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item \textbf{Workflow di build \LaTeX{}}:
+          \begin{enumerate}[label=\alph*.]
+              \item Il workflow si attiva automaticamente a ogni push su file \texttt{.tex} in \texttt{src/}.
+              \item Il sistema rileva le modifiche rispetto all'ultima build valida e identifica i file da ricompilare.
+              \item I PDF obsoleti o privi di sorgente vengono eliminati (esclusi i PDF firmati, gestiti manualmente).
+              \item La compilazione avviene tramite \texttt{latexmk} in ambiente Docker{\scriptsize\raisebox{-0.5ex}{G}}.
+              \item Viene generato il file \texttt{report.md} con l'esito della compilazione e i link ai PDF prodotti.
+              \item Solo i file effettivamente aggiornati vengono inclusi nel commit automatico.
+              \item In caso di errore di compilazione, la pubblicazione viene bloccata.
+          \end{enumerate}
+    \item \textbf{Workflow di pubblicazione}:
+          \begin{enumerate}[label=\alph*.]
+              \item Si attiva al completamento con successo del workflow di build.
+              \item Sincronizza la struttura del sito con la cartella \texttt{docs/}.
+              \item Include automaticamente nuove versioni e nuovi documenti nell'indice del sito.
+              \item Pubblica il contenuto su GitHub Pages senza intervento manuale.
+          \end{enumerate}
+    \item \textbf{Workflow di controllo qualità}:
+          \begin{enumerate}[label=\alph*.]
+              \item Il workflow si attiva automaticamente al completamento del workflow di build, esclusivamente in caso di esito positivo.
+              \item è possibile eseguire il workflow manualmente tramite trigger esplicito.
+              \item Il sistema esegue controlli di qualità sui file \LaTeX{}, tra cui:
+                    \begin{itemize}
+                        \item indice di leggibilità Gulpease;
+                        \item analisi linguistica tramite LanguageTool;
+                        \item analisi statica del codice \LaTeX{} tramite ChkTeX.
+                    \end{itemize}
+              \item I risultati dei controlli vengono aggregati in un report (\texttt{quality\_report.md}).
+              \item Il report viene salvato come artefatto del workflow con retention configurata.
+              \item In caso di esecuzione su pull request, il report viene pubblicato automaticamente come commento.
+              \item Il workflow non blocca la pipeline in caso di errori nei controlli, ma li segnala nel report.
+          \end{enumerate}
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{GitHub Actions}: esecuzione automatica dei workflow di build e deploy.
+    \item \textbf{Docker}: ambiente di compilazione \LaTeX{} isolato e riproducibile.
+    \item \textbf{Latexmk}: compilatore \LaTeX{} con gestione automatica delle dipendenze.
+    \item \textbf{GitHub Pages}: hosting del sito statico di documentazione.
+    \item \textbf{LanguageTool}: analisi grammaticale e stilistica.
+    \item \textbf{ChkTeX}: analisi statica dei file \LaTeX{}.
+\end{itemize}
+
+\subsubsection{Attività 3 – Gestione della comunicazione e degli strumenti collaborativi}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item Utilizzare \textbf{Telegram} come canale principale per comunicazioni asincrone interne, sfruttando la funzionalità topic{\scriptsize\raisebox{-0.5ex}{G}} per separare le conversazioni per argomento (es. documentazione, riunioni, diario di bordo).
+    \item Utilizzare \textbf{Google Meet} per riunioni sincrone: condivisione schermo per attività collaborative, link di accesso comunicato su Telegram prima dell'incontro.
+    \item Utilizzare \textbf{GitHub Projects} per la gestione delle attività: ogni task deve avere titolo, descrizione, assegnatario, priorità e stima temporale.
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{Telegram}: messaggistica asincrona interna.
+    \item \textbf{Google Meet}: videoconferenze sincrone.
+    \item \textbf{GitHub Projects}: pianificazione e tracciamento dei task.
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  4.2 DOCUMENTAZIONE
+% -------------------------------------------------------------------
+\subsection{Documentazione}
+\label{sec:documentazione}
+
+\subsubsection{Attività 1 – Redazione}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item Creare o aprire il file sorgente \texttt{.tex} su Overleaf{\scriptsize\raisebox{-0.5ex}{G}}, usando il template condiviso nel repository.
+    \item Rispettare la struttura obbligatoria di ogni documento:
+          \begin{itemize}
+              \item Frontespizio{\scriptsize\raisebox{-0.5ex}{G}} con dati e metadati ufficiali.
+              \item Tabella delle versioni e delle modifiche.
+              \item Indice dei contenuti.
+              \item Corpo del documento articolato in sezioni e sottosezioni.
+              \item (Se necessario) Appendici, glossari, tabelle e riferimenti.
+          \end{itemize}
+    \item Nominare i file secondo la convenzione \texttt{snake\_case}{\scriptsize\raisebox{-0.5ex}{G}}:
+          \begin{itemize}
+              \item Versione: \texttt{vX.Y} — Data: formato ISO \texttt{AAAA-MM-GG}.
+              \item Esempi: \texttt{norme\_di\_progetto\_v2.1.tex}, \texttt{verbale\_interno\_2025-10-29.tex}.
+          \end{itemize}
+    \item Marcare la prima occorrenza di ogni termine tecnico con il simbolo {\scriptsize\raisebox{-0.5ex}{G}} in apice.
+    \item Aggiornare la tabella delle versioni a ogni modifica significativa, indicando autore, data e descrizione sintetica delle modifiche.
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{\LaTeX{}}: formato sorgente di tutta la documentazione ufficiale.
+    \item \textbf{Overleaf}: editing collaborativo online dei documenti \LaTeX{}.
+\end{itemize}
+
+\subsubsection{Attività 2 – Verifica}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item Il Verificatore esamina il documento su Overleaf prima del caricamento su GitHub, controllando:
+          \begin{itemize}
+              \item conformità alle Norme di Progetto (struttura, nomenclatura, glossario);
+              \item correttezza dei contenuti e coerenza interna;
+              \item qualità formale e lessicale;
+              \item aggiornamento della tabella delle versioni.
+          \end{itemize}
+    \item Il Verificatore segnala al redattore le non conformità riscontrate.
+    \item La verifica è superata quando tutte le non conformità sono state risolte.
+    \item Il Verificatore aggiorna il campo ``Verificatore'' nella tabella delle versioni.
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{Overleaf}: revisione del documento prima del push.
+    \item \textbf{Telegram}: canale per la comunicazione delle non conformità al redattore.
+\end{itemize}
+
+\subsubsection{Attività 3 – Approvazione e pubblicazione}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item \textbf{Approvazione} (solo per documenti ufficiali: Lettera di Presentazione, Valutazione Capitolati, Preventivo dei Costi, Norme di Progetto, ecc.):
+          \begin{enumerate}[label=\alph*.]
+              \item Il Responsabile esamina il documento verificato e ne certifica la completezza e correttezza.
+              \item Il Responsabile aggiorna la tabella delle versioni con la voce di approvazione.
+          \end{enumerate}
+    \item \textbf{Caricamento su GitHub}:
+          \begin{enumerate}[label=\alph*.]
+              \item Il redattore esegue il push del file \texttt{.tex} sul branch \texttt{main} del repository \texttt{Documentazione}.
+              \item La pipeline CI si avvia automaticamente e compila il PDF.
+              \item Verificare l'esito della build nel file \texttt{report.md}.
+          \end{enumerate}
+    \item \textbf{Documenti firmati}: aggiungere il suffisso \texttt{\_firmato} (o \texttt{\_signed}) al PDF prima della consegna (es. \texttt{norme\_di\_progetto\_v2.1\_firmato.pdf}).
+    \item \textbf{Pubblicazione}: al termine della build con esito positivo, il workflow di deploy aggiorna automaticamente il sito GitHub Pages.
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{GitHub}: repository e storico delle versioni.
+    \item \textbf{GitHub Actions}: compilazione e deploy automatici.
+    \item \textbf{GitHub Pages}: portale di consultazione pubblica della documentazione.
+\end{itemize}
+
+\subsubsection{Verbali}
+\label{sec:verbali}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item Strutturare ogni verbale nelle seguenti sezioni obbligatorie:
+          \begin{itemize}
+              \item \textbf{Sezione 1 – Informazioni Generali}: tabella dei componenti del gruppo; dettagli riunione (data, ora, luogo, partecipanti, assenti, redattore, verificatore, versione).
+              \item \textbf{Sezione 2 – Ordine del Giorno}: elenco puntato degli argomenti pianificati.
+              \item \textbf{Sezione 3 – Diario della Riunione}: resoconto dettagliato articolato in sottosezioni che rispecchiano i punti dell'ordine del giorno.
+              \item \textbf{Sezione 4 – Decisioni Prese}: elenco numerato delle decisioni ufficiali deliberate.
+              \item \textbf{Sezione 5 – Attività da Svolgere (To-Do)}: tabella dei task con ruolo di riferimento.
+              \item \textbf{Sezione 6 – Definizione dei Ruoli (Preventivo)}: tabella con assegnazione dei ruoli e ore previste per lo sprint successivo.
+          \end{itemize}
+    \item Il Responsabile redige il verbale della riunione in cui \textbf{assume} il mandato (non di quella successiva che gestirà).
+    \item Il verbale viene verificato da un secondo membro del gruppo.
+    \item Per i verbali esterni, se richiesto dal proponente, il verbale viene sottoposto ad approvazione prima della pubblicazione.
+    \item Il verbale verificato (o approvato) viene caricato su GitHub e pubblicato tramite pipeline CI.
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{\LaTeX{} / Overleaf}: redazione del verbale.
+    \item \textbf{GitHub}: archiviazione e pubblicazione.
+\end{itemize}
+
+% ===================================================================
+%  PROCESSI ORGANIZZATIVI
+% ===================================================================
+\newpage
+\section{Processi Organizzativi}
+\label{sec:processi_organizzativi}
+
+% -------------------------------------------------------------------
+%  5.1 GESTIONE DEI RUOLI
+% -------------------------------------------------------------------
+\subsection{Gestione dei Ruoli}
+
+\subsubsection{Attività 1 – Assegnazione e rotazione dei ruoli}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item Il Responsabile di Progetto assegna i ruoli per ogni periodo di sprint, garantendo che ogni membro ricopra almeno una volta tutti i ruoli previsti nel corso del progetto.
+    \item \textbf{Fase Iniziale} (primi 6 sprint): rotazione settimanale per completare rapidamente il ciclo completo dei ruoli.
+    \item \textbf{Fase a Regime} (dallo sprint 7 allo sprint 12): rotazione ogni 2 settimane.
+    \item \textbf{Fase Finale} (dallo sprint 13 in poi): rotazione ogni settimana.
+    \item Lo switch formale dei ruoli avviene il \textbf{sabato alla mezzanotte} (tra venerdì e sabato).
+    \item Il Responsabile uscente documenta lo stato delle attività in corso per garantire continuità al successore.
+\end{enumerate}
+
+\paragraph{Ruoli previsti e relative responsabilità}
+
+\subparagraph{Responsabile di Progetto}
+\begin{itemize}
+    \item Redige i verbali delle riunioni, compresa la riunione interna di inizio mandato.
+    \item Aggiorna GitHub Projects: inserisce e assegna i task emersi dalla riunione.
+    \item Mantiene i contatti con proponente e committente.
+    \item Redige ed espone il Diario di Bordo settimanale.
+    \item Gestisce e coordina la riunione interna di sprint del venerdì.
+    \item Aggiorna la sezione corrente del Piano di Progetto (attività svolte, risorse impiegate).
+    \item Approva la documentazione ufficiale prodotta dal team.
+    \item Contribuisce alla definizione degli obiettivi, delle scadenze e dell'allocazione delle risorse.
+\end{itemize}
+
+\subparagraph{Amministratore}
+\begin{itemize}
+    \item Gestisce l'archiviazione e il versionamento di documentazione e codice sorgente.
+    \item Amministra l'infrastruttura tecnologica e gli strumenti del team.
+    \item Fornisce supporto tecnico e risolve malfunzionamenti segnalati.
+    \item Automatizza i processi ricorrenti e ottimizza l'ambiente di lavoro.
+    \item Controlla le versioni e le configurazioni del prodotto software.
+    \item Redige e attua piani e procedure per la gestione della qualità.
+\end{itemize}
+
+\subparagraph{Analista}
+\begin{itemize}
+    \item Raccoglie e analizza i requisiti del proponente, trasformandoli in specifiche formali.
+    \item Definisce le specifiche funzionali{\scriptsize\raisebox{-0.5ex}{G}} e tecniche{\scriptsize\raisebox{-0.5ex}{G}} del prodotto.
+    \item Modella concettualmente il sistema e classifica i requisiti per categorie logiche.
+    \item Redige il documento \emph{Analisi dei Requisiti}{\scriptsize\raisebox{-0.5ex}{G}}.
+    \item Assicura che i requisiti siano espressi in modo chiaro, completo e non ambiguo.
+    \item Collabora col Progettista per verificare la fattibilità dei requisiti identificati.
+\end{itemize}
+
+\subparagraph{Progettista}
+\begin{itemize}
+    \item Progetta l'architettura software, privilegiando bassa dipendenza tra componenti e alta manutenibilità.
+    \item Seleziona le tecnologie e i pattern architetturali{\scriptsize\raisebox{-0.5ex}{G}} più appropriati.
+    \item Produce i diagrammi UML (classi, sequenza, componenti).
+    \item Verifica la sostenibilità economica e la manutenibilità della soluzione.
+    \item Guida l'implementazione collaborando con Analisti e Programmatori.
+\end{itemize}
+
+\subparagraph{Programmatore}
+\begin{itemize}
+    \item Implementa il codice rispettando le specifiche di progettazione e le norme di codifica definite nella sezione \ref{sec:processi_organizzativi}.
+    \item Applica le best practices{\scriptsize\raisebox{-0.5ex}{G}} di settore per garantire qualità e leggibilità.
+    \item Risolve i problemi tecnici compatibili con l'architettura definita.
+    \item Scrive test unitari per il proprio codice.
+    \item Mantiene il codice ben documentato e correttamente versionato.
+\end{itemize}
+
+\subparagraph{Verificatore}
+\begin{itemize}
+    \item Esamina i documenti su Overleaf prima del caricamento su GitHub.
+    \item Esegue la code review delle pull request: controlla errori ortografici, sintattici, logici e problemi di build.
+    \item Segnala non conformità con feedback dettagliati al produttore del lavoro.
+    \item Redige la parte retrospettiva del Piano di Qualifica{\scriptsize\raisebox{-0.5ex}{G}}.
+    \item Mantiene sorveglianza continua sulla qualità durante l'intero ciclo di vita del progetto.
+\end{itemize}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{GitHub Projects}: assegnazione e tracciamento dei ruoli per sprint.
+    \item \textbf{Telegram}: comunicazione del cambio ruolo e passaggio di consegne.
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  5.2 GESTIONE DELLE COMUNICAZIONI E DEGLI INCONTRI
+% -------------------------------------------------------------------
+\subsection{Gestione delle Comunicazioni e degli Incontri}
+
+\subsubsection{Attività 1 – Comunicazione interna}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item Utilizzare \textbf{Telegram} per tutte le comunicazioni asincrone interne, organizzando i messaggi per topic (documentazione, riunioni, diario di bordo, ecc.).
+    \item Comunicare tempestivamente su Telegram eventuali ritardi, assenze o impedimenti.
+    \item Per questioni che richiedono confronto diretto, richiedere al Responsabile la convocazione di una riunione su Google Meet.
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{Telegram}: comunicazioni asincrone con funzionalità topic.
+    \item \textbf{Google Meet}: riunioni sincrone interne.
+\end{itemize}
+
+\subsubsection{Attività 2 – Comunicazione esterna}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item Il Responsabile di Progetto gestisce tutte le comunicazioni ufficiali con proponente e committenti.
+    \item Utilizzare \textbf{email} (\texttt{swe.nightpro@gmail.com}) per comunicazioni formali e invio di documenti ufficiali.
+    \item Utilizzare \textbf{Telegram} per comunicazioni operative rapide che non richiedono formalità.
+    \item Organizzare le riunioni esterne tramite \textbf{Google Meet}; concordare data e ora con il proponente con anticipo sufficiente.
+    \item Redigere il verbale esterno al termine di ogni riunione con il proponente (vedi sezione \ref{sec:verbali}).
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{Email} (\texttt{swe.nightpro@gmail.com}): comunicazioni formali esterne.
+    \item \textbf{Telegram}: aggiornamenti operativi rapidi col proponente.
+    \item \textbf{Google Meet}: riunioni esterne in modalità virtuale.
+\end{itemize}
+
+\subsubsection{Attività 3 – Organizzazione delle riunioni interne}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item La riunione principale si tiene ogni \textbf{venerdì mattina o pomeriggio}, in base alle disponibilità del guppo, ed è gestita dal Responsabile di Progetto in carica.
+    \item \textbf{Prima della riunione}:
+          \begin{enumerate}[label=\alph*.]
+              \item Il Responsabile prepara l'ordine del giorno con i punti da discutere.
+              \item L'ordine del giorno viene comunicato ai membri su Telegram.
+          \end{enumerate}
+    \item \textbf{Durante la riunione}:
+          \begin{enumerate}[label=\alph*.]
+              \item Il Responsabile guida la discussione, assicurando la trattazione di tutti i punti.
+              \item Ogni membro riporta le attività svolte dall'ultimo incontro.
+              \item Si discutono dubbi, problematiche e si prendono le decisioni necessarie.
+              \item Si pianificano i task per il periodo successivo.
+          \end{enumerate}
+    \item \textbf{Dopo la riunione}:
+          \begin{enumerate}[label=\alph*.]
+              \item Il Responsabile redige il verbale entro 48 ore.
+              \item I nuovi task vengono inseriti su GitHub Projects con assegnatario e priorità.
+              \item Il Diario di Bordo viene aggiornato con lo stato di avanzamento.
+          \end{enumerate}
+    \item Qualsiasi membro può richiedere una riunione straordinaria al Responsabile; il Responsabile la organizza in base alla disponibilità del team.
+    \item I partecipanti si impegnano a partecipare puntualmente; le assenze devono essere comunicate su Telegram prima dell'inizio.
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{Google Meet}: piattaforma per le riunioni in modalità virtuale.
+    \item \textbf{Telegram}: comunicazione dell'ordine del giorno e delle variazioni.
+    \item \textbf{GitHub Projects}: inserimento dei task post-riunione.
+\end{itemize}
+
+\subsubsection{Attività 4 – Organizzazione delle riunioni esterne}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item Il Responsabile concorda con il proponente frequenza e modalità degli incontri.
+    \item Prima della riunione, il Responsabile prepara l'agenda e la condivide con il gruppo.
+    \item Durante la riunione, un membro prende nota degli argomenti trattati e delle decisioni prese.
+    \item Al termine, il Responsabile redige il verbale esterno secondo la struttura definita nella sezione \ref{sec:verbali}.
+    \item Se richiesto dal proponente, il verbale viene sottoposto ad approvazione prima della pubblicazione.
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{Google Meet}: riunioni virtuali con proponente e committenti.
+    \item \textbf{\LaTeX{} / Overleaf}: redazione del verbale esterno.
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  5.3 PIANIFICAZIONE E TRACCIAMENTO DELLE ATTIVITÀ
+% -------------------------------------------------------------------
+\subsection{Pianificazione e Tracciamento delle Attività}
+
+\subsubsection{Attività 1 – Gestione del ciclo di vita dei task}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item \textbf{Creazione}: il Responsabile crea il task su GitHub Projects compilando: titolo, descrizione, priorità, assegnatari, stima temporale e milestone{\scriptsize\raisebox{-0.5ex}{G}} di riferimento.
+    \item \textbf{Assegnazione}: i task vengono distribuiti in base alle competenze e al carico di lavoro corrente; i task non assegnati possono essere presi in carico autonomamente.
+    \item \textbf{Esecuzione}:
+          \begin{enumerate}[label=\alph*.]
+              \item L'assegnatario aggiorna lo stato del task da ``To Do'' a ``In Progress''.
+              \item Per task di documentazione: lavoro collaborativo su Overleaf.
+              \item Per task di sviluppo: lavoro su branch dedicato (vedi sezione 3.2.3).
+          \end{enumerate}
+    \item \textbf{Revisione}:
+          \begin{enumerate}[label=\alph*.]
+              \item Il Verificatore esamina il lavoro prodotto.
+              \item Per documentazione: verifica su Overleaf prima del push su GitHub.
+              \item Per codice: review della pull request con commenti su GitHub.
+              \item Il Verificatore valida il task se conforme agli standard; altrimenti segnala le modifiche necessarie.
+          \end{enumerate}
+    \item \textbf{Accettazione}:
+          \begin{enumerate}[label=\alph*.]
+              \item Il Responsabile approva il task completato.
+              \item Per documentazione verificata: push su \texttt{main}.
+              \item Per codice: merge del branch su \texttt{main}.
+              \item Lo stato del task viene aggiornato a ``Completato''.
+          \end{enumerate}
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{GitHub Projects}: creazione, assegnazione e tracciamento dei task.
+    \item \textbf{GitHub}: gestione branch e pull request per i task di sviluppo.
+    \item \textbf{Overleaf}: collaborazione sui task di documentazione.
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  5.4 OTTIMIZZAZIONE DEI PROCESSI
+% -------------------------------------------------------------------
+\subsection{Ottimizzazione dei Processi}
+
+\subsubsection{Attività 1 – Applicazione del Ciclo di Deming (PDCA{\scriptsize\raisebox{-0.5ex}{G}})}
+
+\paragraph{Procedure}
+Il gruppo applica il \textbf{Ciclo di Deming}{\scriptsize\raisebox{-0.5ex}{G}} (Plan-Do-Check-Act) a cadenza di sprint:
+
+\begin{enumerate}
+    \item \textbf{Plan (Pianificare)}:
+          \begin{enumerate}[label=\alph*.]
+              \item Definire gli obiettivi dello sprint e i processi da eseguire.
+              \item Identificare le metriche di riferimento e le soglie di accettazione.
+              \item Pianificare le risorse e assegnare i task su GitHub Projects.
+          \end{enumerate}
+    \item \textbf{Do (Fare)}:
+          \begin{enumerate}[label=\alph*.]
+              \item Eseguire le attività pianificate.
+              \item Raccogliere dati sulle metriche di processo e di prodotto durante lo sprint.
+          \end{enumerate}
+    \item \textbf{Check (Verificare)}:
+          \begin{enumerate}[label=\alph*.]
+              \item Al termine dello sprint, raccogliere i valori delle metriche.
+              \item Confrontare i risultati con le soglie di accettazione definite nel Piano di Qualifica{\scriptsize\raisebox{-0.5ex}{G}}.
+              \item Identificare aree di successo e opportunità di miglioramento.
+              \item Documentare scostamenti e relative cause.
+          \end{enumerate}
+    \item \textbf{Act (Agire)}:
+          \begin{enumerate}[label=\alph*.]
+              \item Formulare azioni correttive concrete per gli scostamenti rilevati.
+              \item Tracciare le azioni correttive come task su GitHub Projects.
+              \item Documentare le azioni nel verbale della riunione di sprint.
+              \item Consolidare le modifiche validate come nuova baseline per il ciclo successivo.
+          \end{enumerate}
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{GitHub Projects}: tracciamento delle azioni correttive.
+    \item \textbf{\LaTeX{} / Overleaf}: documentazione delle metriche nel Piano di Qualifica.
+    \item \textbf{Verbali interni}: registrazione delle decisioni di miglioramento.
+\end{itemize}
+
+\subsubsection{Attività 2 – Raccolta e analisi delle metriche}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item Raccogliere al termine di ogni sprint i valori delle seguenti metriche, definite nel Piano di Qualifica{\scriptsize\raisebox{-0.5ex}{G}}:
+          \begin{itemize}
+              \item \textbf{Metriche di processo} (metodologia EVM{\scriptsize\raisebox{-0.5ex}{G}}): scostamenti budget, varianze orarie, indici di performance temporale ed economica, proiezioni di completamento.
+              \item \textbf{Metriche di prodotto – documentazione}: indice Gulpease{\scriptsize\raisebox{-0.5ex}{G}}, correttezza ortografica, conformità redazionale.
+              \item \textbf{Metriche di prodotto – codice}: copertura dei test, complessità ciclomatica, densità di commenti, conformità alle convenzioni di stile.
+          \end{itemize}
+    \item Confrontare ogni valore con le soglie definite nel Piano di Qualifica:
+          \begin{itemize}
+              \item \textbf{Valore preferibile}: obiettivo ottimale da perseguire.
+              \item \textbf{Valore accettabile}: soglia minima; al di sotto è richiesto un intervento correttivo.
+          \end{itemize}
+    \item Discutere i risultati nella riunione di sprint e avviare il passo \textbf{Act} del ciclo PDCA.
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{Piano di Qualifica}: definizione delle metriche e delle soglie di accettazione.
+    \item \textbf{GitHub Projects}: tracciamento degli interventi correttivi.
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  5.5 GESTIONE DEI RISCHI
+% -------------------------------------------------------------------
+\subsection{Gestione dei Rischi}
+
+\subsubsection{Attività 1 – Identificazione e analisi dei rischi}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item Classificare ogni rischio con il codice \texttt{R[Tipo][Indice]}, dove:
+          \begin{itemize}
+              \item \textbf{RT}: rischi tecnologici (strumenti, tecnologie, infrastrutture).
+              \item \textbf{RO}: rischi organizzativi (gestione, comunicazione, coordinamento).
+              \item \textbf{RP}: rischi personali (disponibilità, competenze, impegni individuali).
+          \end{itemize}
+    \item Per ogni rischio identificato, valutare:
+          \begin{enumerate}[label=\alph*.]
+              \item \textbf{Probabilità di occorrenza}: bassa / media / alta.
+              \item \textbf{Grado di pericolosità}: basso / medio / alto.
+          \end{enumerate}
+    \item Determinare la priorità del rischio in base alla combinazione di probabilità e pericolosità.
+    \item Definire per ogni rischio una strategia di mitigazione preventiva e un piano di contingenza.
+    \item Documentare l'elenco dei rischi nel \emph{Piano di Progetto}{\scriptsize\raisebox{-0.5ex}{G}}.
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{Piano di Progetto}: registro ufficiale dei rischi e delle strategie di mitigazione.
+    \item \textbf{Telegram / riunioni interne}: segnalazione di nuovi rischi emergenti.
+\end{itemize}
+
+\subsubsection{Attività 2 – Monitoraggio dei rischi}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item Ad ogni riunione di sprint, il Responsabile verifica lo stato dei rischi già identificati.
+    \item Se un rischio si concretizza, si attua il piano di contingenza definito e si documenta l'evento nel verbale.
+    \item Identificare nuovi rischi emersi durante lo sprint e aggiungerli al Piano di Progetto con classificazione e strategia.
+    \item Valutare l'efficacia delle misure di mitigazione adottate nei cicli precedenti.
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{Piano di Progetto}: aggiornamento del registro dei rischi.
+    \item \textbf{GitHub Projects}: tracciamento delle azioni di mitigazione come task.
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  5.6 DIARIO DI BORDO
+% -------------------------------------------------------------------
+\subsection{Diario di Bordo}
+
+\subsubsection{Attività 1 – Preparazione e svolgimento}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item \textbf{Preparazione} (entro il giorno precedente l'esposizione):
+          \begin{enumerate}[label=\alph*.]
+              \item Il Responsabile in carica prepara 2–3 diapositive di contenuto.
+              \item Le diapositive devono includere: sintesi delle attività svolte nel periodo; difficoltà tecniche o organizzative incontrate; dubbi aperti e richieste di chiarimento; stato di avanzamento rispetto alla pianificazione.
+              \item La durata massima dell'esposizione è \textbf{4 minuti}.
+          \end{enumerate}
+    \item \textbf{Svolgimento}:
+          \begin{enumerate}[label=\alph*.]
+              \item Il Responsabile espone condividendo lo schermo nella stanza Zoom designata.
+              \item Al termine delle esposizioni di tutti i gruppi si partecipa alla discussione collettiva.
+          \end{enumerate}
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{Strumento di presentazione concordato dal gruppo}: creazione delle diapositive.
+    \item \textbf{Zoom}: piattaforma di esposizione del Diario di Bordo.
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  5.7 PROGETTAZIONE DELL'INTERFACCIA UTENTE
+% -------------------------------------------------------------------
+\subsection{Progettazione dell'Interfaccia Utente}
+
+\subsubsection{Attività 1 – Prototipazione e validazione UI}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item \textbf{Creazione dei mockup}:
+          \begin{enumerate}[label=\alph*.]
+              \item Definire su Penpot{\scriptsize\raisebox{-0.5ex}{G}} le schermate principali del prodotto e i flussi di navigazione.
+              \item Coprire tutti i requisiti funzionali obbligatori che impattano sull'interfaccia.
+          \end{enumerate}
+    \item \textbf{Revisione interna}:
+          \begin{enumerate}[label=\alph*.]
+              \item Presentare i mockup durante la riunione di sprint.
+              \item Raccogliere feedback da tutti i membri del gruppo.
+              \item Applicare le modifiche concordate prima della validazione esterna.
+          \end{enumerate}
+    \item \textbf{Validazione con il proponente}:
+          \begin{enumerate}[label=\alph*.]
+              \item Presentare i prototipi al proponente in una riunione esterna.
+              \item Documentare nel verbale esterno le conferme o le richieste di modifica.
+              \item Iterare il processo (passi 1–3) fino all'approvazione del proponente.
+          \end{enumerate}
+    \item \textbf{Passaggio all'implementazione}:
+          \begin{enumerate}[label=\alph*.]
+              \item I mockup approvati costituiscono il riferimento vincolante per lo sviluppo del frontend.
+              \item Qualsiasi scostamento dai mockup approvati deve essere motivato e concordato col Responsabile.
+          \end{enumerate}
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{Penpot}: piattaforma open source per la creazione di mockup e prototipi interattivi.
+    \item \textbf{Google Meet}: presentazione dei prototipi al proponente.
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  5.8 SVILUPPO DELLE COMPETENZE
+% -------------------------------------------------------------------
+\subsection{Sviluppo delle Competenze}
+
+\subsubsection{Attività 1 – Formazione individuale e condivisione delle conoscenze}
+
+\paragraph{Procedure}
+\begin{enumerate}
+    \item Ogni membro del gruppo è responsabile dell'apprendimento autonomo delle tecnologie e degli strumenti necessari al proprio ruolo corrente.
+    \item Le aree di formazione prioritarie sono:
+          \begin{itemize}
+              \item Linguaggio \LaTeX{} per la produzione documentale.
+              \item Linguaggi di programmazione, librerie e framework richiesti dal capitolato C8.
+              \item Strumenti e metodologie dell'ambiente di lavoro del proponente.
+          \end{itemize}
+    \item Il membro che acquisisce una competenza rilevante per il gruppo la condivide durante la riunione di sprint o tramite Telegram.
+    \item La rotazione periodica dei ruoli (sezione 5.1) garantisce l'acquisizione di esperienza pratica in tutti i ruoli previsti.
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{Risorse autonome}: documentazione ufficiale, tutorial, corsi online scelti dal singolo membro.
+    \item \textbf{Telegram}: condivisione rapida di risorse e conoscenze tra i membri.
+    \item \textbf{Google Meet}: sessioni di knowledge sharing durante le riunioni di sprint.
+\end{itemize}
+
+\end{document}
