@@ -1,0 +1,743 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl}
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{scrhack}
+\usepackage{placeins}
+\usepackage{tabularx}
+\usepackage{amsmath, amssymb, mathtools}
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}
+\graphicspath{{Contenuti/}{../../assets/}{../assets/}{assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[svgnames,table]{xcolor}
+
+% --- Utility ---
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{hhline}
+\usepackage[italian]{cleveref}
+\usepackage{listings}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Manuale Utente - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% --- Colonne tabella personalizzate ---
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+% --- Stile codice ---
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    backgroundcolor=\color{gray!5},
+    rulecolor=\color{gray!40},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{DarkBlue}\bfseries,
+    stringstyle=\color{OrangeRed},
+    commentstyle=\color{ForestGreen}\itshape,
+    showstringspaces=false,
+    tabsize=2
+}
+
+% ===================================================================
+%  HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textbf{NightPRO -- Progetto Ingegneria del Software}}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{4}
+
+% ===================================================================
+%  INIZIO DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  FRONTESPIZIO
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+    \begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png}
+    \end{figure}
+
+
+    \vfill
+
+    {\small UNIVERSIT\`A DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    \vfill
+
+    {\Huge \bfseries Manuale Utente \par}
+    \vspace{1cm}
+
+    \vfill
+
+    {\Large \bfseries Gruppo: NightPRO}    \vspace{0.5cm}\\
+    {\Large \bfseries Sistema: SmartOrder}    \vspace{0.5cm}
+
+    \large \leavevmode\href{swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \\[2cm]
+
+    {\large Data: 2026-04-03 \par}
+
+    {\Large Versione: 0.3 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  TABELLA DELLE VERSIONI
+% -------------------------------------------------------------------
+\newpage
+\pagestyle{fancy}
+\phantomsection
+\section*{Tabella delle Versioni}
+\vspace{0.2cm}
+\begin{center}
+    \resizebox{\textwidth}{!}{
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{@{}llp{0.25\textwidth}p{0.45\textwidth}c@{}}
+            \toprule
+            \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
+            \midrule
+            0.3 & 2026-04-03 & Davide Biasuzzi & Completamento sezioni 5 (cliente) e 6 (operatore), aggiornamento panoramica funzionalit\`a, aggiunta sezione 7 (errori). & M. M. Romascu \\
+            0.2 & 2026-04-01 & Leonardo Bilato & Stesura paragrafo "Esecuzione del software" & M. M. Romascu \\
+            0.1 & 2026-03-20 & Davide Biasuzzi & Versione iniziale & Leonardo Bilato \\
+            \bottomrule
+        \end{tabular}
+    }
+\end{center}
+
+% -------------------------------------------------------------------
+%  INDICE
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents
+\listoffigures
+\listoftables
+\pagestyle{fancy}
+
+% -------------------------------------------------------------------
+%  COMPONENTI DEL GRUPPO
+% -------------------------------------------------------------------
+\newpage
+\section*{Componenti del Gruppo}
+\addcontentsline{toc}{section}{Componenti del Gruppo}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{@{}llc@{}}
+        \toprule
+        \textbf{Cognome} & \textbf{Nome}   & \textbf{Matricola} \\
+        \midrule
+        Biasuzzi         & Davide          & 2111000            \\
+        Bilato           & Leonardo        & 2071084            \\
+        Zanella          & Francesco       & 2116442            \\
+        Romascu          & Mihaela-Mariana & 2079726            \\
+        Ogniben          & Michele         & 2042325            \\
+        Perozzo          & Samuele         & 2110989            \\
+        Ponso            & Giovanni        & 2000558            \\
+        \bottomrule
+    \end{tabular}
+    \caption{Componenti del gruppo NightPRO.}
+\end{table}
+
+% ===================================================================
+%  1. INTRODUZIONE
+% ===================================================================
+\newpage
+\section{Introduzione}
+
+\subsection{Scopo del documento}
+Il presente documento costituisce il \textbf{Manuale Utente} del sistema \textit{SmartOrder}, sviluppato dal gruppo NightPRO nell'ambito del corso di Ingegneria del Software (A.A.\ 2025/2026) dell'Universit\`a degli Studi di Padova.
+
+Lo scopo del manuale \`e fornire agli utenti finali tutte le informazioni necessarie per utilizzare in modo efficace la piattaforma, descrivendone le funzionalit\`a, l'interfaccia e le modalit\`a di interazione.
+
+Il documento \`e redatto in modo incrementale: le sezioni relative alle istruzioni d'uso sono state completate a seguito dello sviluppo dell'MVP.
+
+\subsection{Scopo del prodotto}
+\textit{SmartOrder} \`e una piattaforma B2B\textsubscript{\textit{g}} per la gestione automatizzata degli ordini commerciali. Il sistema consente ai clienti di formulare ordini in \textbf{linguaggio naturale} --- tramite testo e audio --- sfruttando un pipeline di intelligenza artificiale basato su LLM\textsubscript{\textit{g}} per:
+
+\begin{itemize}[noitemsep]
+    \item interpretare l'intento dell'utente e dedurre quantit\`a e prodotti;
+    \item mappare gli articoli richiesti sul catalogo aziendale tramite \textbf{Vector Search} (embedding);
+    \item generare un output strutturato in formato JSON\textsubscript{\textit{g}} pronto per l'integrazione con il sistema ERP\textsubscript{\textit{g}} aziendale.
+\end{itemize}
+
+La piattaforma mette inoltre a disposizione un \textbf{carrello virtuale} per la validazione visiva dell'ordine prima dell'invio, un \textbf{sistema di ticketing} per l'assistenza umana in tempo reale e un meccanismo di \textbf{logging e feedback} per il miglioramento continuo del modello (Human-in-the-Loop).
+
+\subsection{Destinatari del documento}
+Il manuale si rivolge a due categorie di utenti:
+
+\begin{description}[style=nextline]
+    \item[\textbf{Cliente}] Acquirente B2B (ad esempio ristoratore, negoziante) che utilizza l'interfaccia mobile-first per dettare ordini, gestire il carrello e consultare lo storico.
+    \item[\textbf{Operatore}] Dipendente dell'azienda fornitrice che utilizza l'interfaccia desktop-first di backoffice per monitorare gli ordini, gestire i ticket di assistenza e validare le risposte dell'IA.
+\end{description}
+
+\subsection{Glossario}
+Per evitare ambiguit\`a, i termini tecnici e di dominio sono definiti nel \textit{Glossario v2.0}.
+I termini presenti nel glossario sono contrassegnati con il simbolo \textsubscript{\textit{g}} alla prima occorrenza in ogni sezione.
+
+\subsection{Riferimenti}
+
+\subsubsection{Riferimenti normativi}
+\begin{itemize}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/RTB/Documentazione%20Interna/Norme_di_Progetto_v2.0.pdf}{Norme di Progetto v2.0}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/RTB/Documentazione%20Esterna/Analisi%20dei%20Requisiti%20v1.1.pdf}{Analisi dei Requisiti v1.1}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/PB/Documentazione%20Esterna/Specifica%20Tecnica%20v0.1.pdf}{Specifica Tecnica v0.1}
+\end{itemize}
+
+\subsubsection{Riferimenti informativi}
+\begin{itemize}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/RTB/Documentazione%20Esterna/Glossario_v2.0.pdf}{Glossario v2.0}
+    \item \href{https://nextjs.org/docs}{Next.js Documentation}
+    \item \href{https://fastapi.tiangolo.com}{FastAPI Documentation}
+\end{itemize}
+
+% ===================================================================
+%  2. REQUISITI
+% ===================================================================
+\newpage
+
+\section{Requisiti}
+Per poter utilizzare SmartOrder \`e necessario soddisfare i seguenti requisiti minimi. L'applicazione \`e una \textit{web application}\textsubscript{\textit{g}} accessibile tramite browser\textsubscript{\textit{g}}: non \`e richiesta l'installazione di software aggiuntivo sul dispositivo dell'utente.
+
+\subsection{Requisiti hardware}
+Trattandosi di un'applicazione web, non sono richieste risorse hardware particolarmente elevate. Si raccomandano comunque i seguenti requisiti minimi:
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{ll}
+        \toprule
+        \textbf{Componente} & \textbf{Requisito minimo} \\
+        \midrule
+        Processore  & Dual-core, 1.5~GHz \\
+        Memoria RAM & 2~GB \\
+        Connessione & Connessione Internet stabile \\
+        Audio (opzionale) & Microfono per input vocale \\
+        \bottomrule
+    \end{tabular}
+    \caption{Requisiti hardware minimi.}
+    \label{tab:req-hw}
+\end{table}
+
+\subsection{Requisiti software}
+\`E necessario utilizzare un browser\textsubscript{\textit{g}} web aggiornato. La compatibilit\`a \`e garantita per le seguenti versioni minime:
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{ll}
+        \toprule
+        \textbf{Browser} & \textbf{Versione minima} \\
+        \midrule
+        Google Chrome   & 110+ \\
+        Mozilla Firefox & 110+ \\
+        Apple Safari    & 16+ \\
+        Microsoft Edge  & 110+ \\
+        \bottomrule
+    \end{tabular}
+    \caption{Browser supportati.}
+    \label{tab:req-browser}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{ll}
+        \toprule
+        \textbf{Sistema Operativo} & \textbf{Versione minima} \\
+        \midrule
+        Windows    & 10 \\
+        macOS      & 12 (Monterey) \\
+        Linux      & Ubuntu 20.04 / equivalente \\
+        Android    & 12 \\
+        iOS/iPadOS & 16 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Sistemi operativi supportati.}
+    \label{tab:req-os}
+\end{table}
+
+\textbf{Nota:} per l'input vocale \`e necessario che il browser\textsubscript{\textit{g}} abbia accesso al microfono del dispositivo.
+
+
+% ===================================================================
+%  3. ESECUZIONE DEL SOFTWARE
+% ===================================================================
+\newpage
+\section{Esecuzione del software}
+
+In questa sezione viene descritta la modalit\`a di avvio manuale del sistema \textit{SmartOrder} in ambiente di sviluppo.
+
+\subsection{Variabili d'ambiente}
+
+Prima dell'avvio \`e necessario configurare un file \texttt{.env} nella directory \texttt{backend} con le seguenti variabili:
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{\textwidth}{@{}p{4.5cm}X@{}}
+        \toprule
+        \textbf{Variabile}        & \textbf{Descrizione}                      \\
+        \midrule
+        \texttt{DB\_HOST}         & Host del database PostgreSQL              \\
+        \texttt{DB\_PORT}         & Porta del database PostgreSQL             \\
+        \texttt{DB\_USER}         & Utente del database                       \\
+        \texttt{DB\_PASSWORD}     & Password del database                     \\
+        \texttt{DB\_NAME}         & Nome del database                         \\
+        \texttt{HOST}             & Host di bind del backend FastAPI          \\
+        \texttt{PORT}             & Porta del backend FastAPI                 \\
+        \texttt{API\_DEBUG}       & Abilitazione modalit\`a debug del backend \\
+        \texttt{OPENAI\_API\_KEY} & Chiave API per i servizi OpenAI           \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Variabili d'ambiente richieste.}
+\end{table}
+
+\subsection{Avvio manuale (senza Docker)}
+
+La procedura di avvio descritta in questa sottosezione ha lo scopo di consentire l'esecuzione locale del sistema per attivit\`a di verifica tecnica, debug e dimostrazione. Essa non rappresenta la procedura di rilascio in ambiente di produzione, che \`e invece gestita tramite pipeline di deploy automatizzato sulla piattaforma Railway.
+
+Questa prevede l'utilizzo di due terminali separati, uno per il backend e uno per il frontend.
+
+\subsubsection{Terminale 1 - Backend (FastAPI)}
+\begin{enumerate}
+    \item Posizionarsi nella cartella del backend:
+          \begin{lstlisting}[language=bash]
+cd backend
+\end{lstlisting}
+    \item Creare l'ambiente virtuale Python:
+          \begin{lstlisting}[language=bash]
+python3.11 -m venv venv
+\end{lstlisting}
+    \item Attivare l'ambiente virtuale:
+          \begin{lstlisting}[language=bash]
+source venv/bin/activate
+# Windows: venv\Scripts\activate
+\end{lstlisting}
+    \item Installare le dipendenze:
+          \begin{lstlisting}[language=bash]
+pip install -r requirements.txt
+\end{lstlisting}
+    \item Avviare il backend:
+          \begin{lstlisting}[language=bash]
+python main.py
+\end{lstlisting}
+\end{enumerate}
+
+Lasciare questo terminale in esecuzione e aprirne un secondo per il frontend.
+
+\subsubsection{Terminale 2 - Frontend (Next.js)}
+\begin{enumerate}
+    \item Posizionarsi nella directory principale del progetto:
+          \begin{lstlisting}[language=bash]
+cd ..
+\end{lstlisting}
+    \item Installare le dipendenze del frontend:
+          \begin{lstlisting}[language=bash]
+npm install
+\end{lstlisting}
+    \item Avviare il server di sviluppo:
+          \begin{lstlisting}[language=bash]
+npm run dev
+\end{lstlisting}
+\end{enumerate}
+
+Anche questo terminale deve rimanere in esecuzione durante l'utilizzo dell'applicazione.
+
+\subsubsection{Accesso alla webapp}
+La webapp \`e disponibile all'indirizzo \texttt{http://localhost:3000}.
+In ambiente di sviluppo, le modifiche al codice vengono applicate in tempo reale tramite aggiornamento live.
+Il backend FastAPI espone la propria documentazione API interattiva all'indirizzo \texttt{http://localhost:8000/docs}.
+
+\subsection{Deployment in produzione (Railway)}
+
+Il deployment in produzione del sistema \textit{SmartOrder} \`e gestito tramite la piattaforma \textbf{Railway}, utilizzata come ambiente di hosting per l'applicazione web e per il database PostgreSQL.
+
+In sintesi, il flusso di rilascio \`e il seguente:
+\begin{itemize}
+    \item il codice sorgente viene mantenuto sul repository GitHub del progetto;
+    \item Railway \`e configurato per monitorare il branch principale del repository (ad esempio \texttt{main}) e avviare automaticamente una build ad ogni push;
+    \item durante la build, Railway installa le dipendenze necessarie (pacchetti Node.js e Python) e costruisce l'immagine eseguibile dell'applicazione;
+    \item al termine della build, Railway attiva i servizi applicativi esponendoli tramite URL pubblico HTTPS;
+    \item le variabili d'ambiente di produzione (database, chiavi API, parametri di configurazione) vengono gestite all'interno della console di Railway e non sono versionate nel repository.
+\end{itemize}
+
+In ambiente di produzione:
+\begin{itemize}
+    \item il backend (modulo FastAPI) e il frontend (Next.js) vengono eseguiti come servizi gestiti da Railway, rispettando le risorse e i limiti configurati sul progetto;
+    \item il database PostgreSQL \`e ospitato su un'istanza Railway dedicata, raggiungibile tramite i parametri configurati nelle variabili d'ambiente;
+    \item la piattaforma gestisce automaticamente aspetti infrastrutturali come il bilanciamento del carico, la terminazione TLS e il riavvio dei servizi in caso di errore.
+\end{itemize}
+
+L'URL pubblico dell'istanza di produzione \`e fornito da Railway (ad esempio \texttt{https://xyz.railway.app/}) e costituisce il punto di accesso esterno al sistema per gli utenti finali.
+
+
+\newpage
+\section{Accesso alla piattaforma}
+SmartOrder \`e una web application: per accedervi \`e sufficiente aprire il browser\textsubscript{\textit{g}} e navigare all'indirizzo fornito dall'azienda. Non \`e richiesta alcuna installazione.
+
+\subsection{Schermata di login}
+All'apertura dell'applicazione viene visualizzata la schermata di autenticazione. L'utente inserisce le proprie credenziali (email e password) fornite dall'azienda nei campi dedicati e preme il pulsante \textbf{Accedi}.
+
+Se le credenziali sono corrette e l'utente ha ruolo \textbf{Cliente}, viene immediatamente reindirizzato all'interfaccia principale di ordinazione. Se le credenziali appartengono a un utente con ruolo \textbf{Operatore}, viene effettuato un redirect automatico all'interfaccia di backoffice.
+
+\`E inoltre possibile contattare il supporto direttamente dalla schermata di login tramite il pulsante \textbf{Contatta il Supporto}, che apre il client di posta predefinito con un template di richiesta assistenza precompilato.
+
+\subsection{Logout}
+Per disconnettersi dalla piattaforma, selezionare l'opzione \textbf{Logout} dal menu dell'area personale. La sessione viene invalidata e l'utente viene riportato alla schermata di login.
+
+% ===================================================================
+%  4. PANORAMICA DELLE FUNZIONALITA
+% ===================================================================
+\newpage
+\section{Panoramica delle funzionalit\`a}
+Questa sezione fornisce una visione d'insieme delle funzionalit\`a offerte dalla piattaforma, suddivise per ruolo utente.
+
+\subsection{Funzionalit\`a del Cliente}
+\begin{description}[style=nextline, leftmargin=1.5cm]
+    \item[\textbf{Chat con IA}] Invio di messaggi in linguaggio naturale (testo e audio) per comporre un ordine. L'IA interpreta la richiesta, identifica i prodotti nel catalogo e li aggiunge automaticamente al carrello. La risposta include una valutazione di confidenza per ogni articolo proposto.
+    \item[\textbf{Input vocale}] Registrazione audio con visualizzatore a barre dell'intensit\`a del microfono. L'audio viene trascritto automaticamente tramite Whisper e inviato alla chat.
+    \item[\textbf{Feedback messaggi IA}] Possibilit\`a di fornire feedback positivo o negativo (con tag predefiniti e commento facoltativo) su ogni risposta dell'IA, contribuendo al miglioramento del modello.
+    \item[\textbf{Ricerca nel catalogo}] Ricerca live nel catalogo prodotti per nome, codice articolo (SKU) o categoria, con autocomplete e suggerimenti.
+    \item[\textbf{Gestione carrello}] Visualizzazione del carrello con indicazione dell'origine di ogni articolo (AI o manuale), modifica interattiva delle quantit\`a e rimozione di prodotti. Gli articoli proposti dall'IA sono contrassegnati con un badge.
+    \item[\textbf{Conferma ordine}] Invio dell'ordine finalizzato al sistema gestionale (ERP) dell'azienda fornitrice. Il sistema mostra eventuali articoli bloccati o non disponibili.
+    \item[\textbf{Storico ordini}] Consultazione cronologica degli ordini passati con filtri di ricerca per ID, data di inizio e data di fine. Possibilit\`a di esportare i dettagli in formato JSON.
+    \item[\textbf{Apertura ticket}] Richiesta di assistenza umana in caso di difficolt\`a, con passaggio in tempo reale della conversazione a un Operatore. \`E possibile monitorare lo stato del ticket (aperto, in carico, chiuso).
+    \item[\textbf{Nuova sessione}] Avvio di una nuova sessione di chat con cancellazione della conversazione corrente e del carrello, previa conferma.
+    \item[\textbf{Area personale}] Consultazione e modifica dei dati del proprio profilo; cambio password.
+\end{description}
+
+\subsection{Funzionalit\`a dell'Operatore}
+\begin{description}[style=nextline, leftmargin=1.5cm]
+    \item[\textbf{Dashboard ticket}] Visualizzazione tabellare di tutti i ticket aperti/in lavorazione, ordinati per tempo di attesa decrescente (i pi\`u urgenti in alto). Aggiornamento automatico in tempo reale.
+    \item[\textbf{Gestione ticket}] Apertura di un pannello dedicato per ogni ticket con chat in tempo reale (SSE) e carrello del cliente modificabile. L'operatore pu\`o inviare messaggi, aggiungere/rimuovere/modificare articoli e inviare l'ordine per conto del cliente.
+    \item[\textbf{Storico ordini globale}] Consultazione di tutti gli ordini di tutti i clienti con filtri avanzati per ID ordine, codice cliente, ragione sociale e intervallo date. Ordinamento multicolonna. Esportazione in formato JSON e CSV.
+    \item[\textbf{Export batch}] Esportazione automatica degli ordini in formato CSV alla login dell'operatore, salvati nella cartella configurata.
+    \item[\textbf{Configurazione export}] Impostazione della cartella di salvataggio per i file di export ordini.
+    \item[\textbf{Area personale}] Consultazione del proprio profilo e cambio password.
+\end{description}
+
+% ===================================================================
+%  5. ISTRUZIONI D'USO -- CLIENTE
+% ===================================================================
+\newpage
+\section{Istruzioni d'uso -- Cliente}
+
+\subsection{Interfaccia principale e layout}
+
+L'interfaccia Cliente si presenta con un layout responsive a tre pannelli:
+
+\begin{itemize}
+    \item \textbf{Pannello Chat} (45\% a sinistra, desktop): Area di conversazione con l'IA dove l'utente digita o detta i propri ordini.
+    \item \textbf{Pannello Carrello/Storico} (55\% a destra, desktop): Alterna tra la visualizzazione del carrello e lo storico ordini tramite tab.
+    \item \textbf{Tab Bar mobile} (schermo $< 768$px): Barra di navigazione inferiore con tre tab: Chat, Carrello, Storico.
+\end{itemize}
+
+In alto \`e presente la barra superiore con il logo e il pulsante per accedere all'area personale. Al primo accesso viene mostrata la schermata di login.
+
+\subsection{Creazione di un ordine tramite chat}
+
+Per creare un ordine utilizzando la chat con l'IA:
+
+\begin{enumerate}
+    \item \textbf{Identificazione}: Dopo aver effettuato il login, l'applicazione mostra la schermata principale. Se l'utente non \`e ancora stato identificato, viene richiesto di selezionare il proprio profilo cliente dall'overlay di autenticazione.
+    \item \textbf{Composizione del messaggio}: Nella barra di input in fondo al pannello chat, digitare la richiesta in linguaggio naturale. Ad esempio: \texttt{Vorrei 5 confezioni di Pasta Barilla e 3 bottiglie di olio}. \`E possibile menzionare prodotti per nome, categoria o codice articolo.
+    \item \textbf{Invio}: Premere Invio o cliccare sul pulsante di invio (icona freccia). Il messaggio appare nella chat con uno stile distintivo.
+    \item \textbf{Risposta dell'IA}: L'IA elabora la richiesta e risponde confermando i prodotti identificati nel catalogo e le relative quantit\`a. Accanto a ciascun articolo proposto dall'IA compare un anello colorato che indica la confidenza della classificazione (verde = alta, rosso = bassa).
+    \item \textbf{Aggiunta al carrello}: Se l'IA riconosce i prodotti nel catalogo, questi vengono aggiunti automaticamente al carrello. L'utente visualizza immediatamente gli articoli nel pannello di destra. La chat segnala eventuali articoli non trovati o non disponibili.
+    \item \textbf{Feedback}: Sotto ogni risposta dell'IA compaiono due pulsanti: pollice in su (risposta utile) e pollice in gi\`u (segnala problema). Cliccando sul pollice in gi\`u si apre un modulo per selezionare un motivo e un commento opzionale.
+\end{enumerate}
+
+\subsection{Input vocale}
+
+Per dettare un ordine usando la voce:
+
+\begin{enumerate}
+    \item \textbf{Attivazione}: Nella barra di input della chat, se il campo di testo \`e vuoto, cliccare sull'icona del microfono. Il browser richieder\`a l'autorizzazione per l'accesso al microfono.
+    \item \textbf{Registrazione}: Il microfono si attiva e viene visualizzato un indicatore rosso pulsante con un visualizzatore a barre che mostra l'intensit\`a del suono captato in tempo reale.
+    \item \textbf{Fine registrazione}: Cliccare sulla X per annullare la registrazione senza inviare, oppure cliccare sul pulsante di invio (freccia) per terminare e inviare automaticamente.
+    \item \textbf{Trascrizione}: L'audio viene trascritto automaticamente tramite Whisper. Il testo riconosciuto appare come messaggio utente nella chat.
+    \item \textbf{Errore}: Se il riconoscimento vocale non produce testo, l'IA risponde chiedendo di ripetere.
+\end{enumerate}
+
+\subsection{Ricerca e aggiunta manuale di prodotti}
+
+Per cercare e aggiungere un prodotto manualmente (senza passare per la chat IA):
+
+\begin{enumerate}
+    \item \textbf{Campo di ricerca}: Nel pannello carrello, in alto, \`e presente il campo \texttt{Digita nome o codice dell'articolo}. Iniziare a digitare il nome o il codice del prodotto cercato.
+    \item \textbf{Autocomplete}: Dopo 2 caratteri, vengono visualizzati i suggerimenti dal catalogo in tempo reale. Ogni suggerimento mostra: descrizione articolo, codice (badge), linea e famiglia.
+    \item \textbf{Selezione}: Cliccare su un suggerimento per selezionare il prodotto. Viene visualizzata una card con il dettaglio del prodotto, comprensivo di unit\`a di misura e pezzi per confezione.
+    \item \textbf{Quantit\`a}: Utilizzare i pulsanti \texttt{+} e \texttt{-} per impostare la quantit\`a desiderata, oppure digitare direttamente nel campo numerico.
+    \item \textbf{Aggiunta}: Cliccare su \texttt{Aggiungi al carrello}. L'articolo appare nell'elenco sottostante con badge che ne indica l'origine manuale.
+    \item \textbf{Annulla}: Cliccare sulla X in alto a destra della card per annullare la selezione.
+\end{enumerate}
+
+\subsection{Gestione del carrello}
+
+Il pannello carrello mostra tutti gli articoli selezionati, distinti per origine:
+
+\begin{itemize}
+    \item \textbf{Articoli IA}: contrassegnati da badge \texttt{AI} di colore viola; includono l'anello di confidenza che indica l'attendibilit\`a della classificazione.
+    \item \textbf{Articoli manuali}: aggiunti direttamente dall'utente; privi di badge.
+\end{itemize}
+
+Per ogni articolo nel carrello \`e possibile:
+
+\begin{enumerate}
+    \item \textbf{Modificare la quantit\`a}: Cliccare sul valore numerico della quantit\`a per trasformarlo in un campo modificabile. Impostare il nuovo valore e premere Invio, oppure usare i pulsanti \texttt{+} e \texttt{-}. Il carrello si aggiorna in tempo reale.
+    \item \textbf{Rimuovere un articolo}: Cliccare sull'icona del cestino in alto a destra della riga dell'articolo. L'articolo viene rimosso immediatamente.
+    \item \textbf{Articoli bloccati}: Se un articolo non \`e pi\`u disponibile al momento dell'invio dell'ordine, viene evidenziato in rosso con il messaggio \texttt{Articolo non pi\`u disponibile}. Rimuoverlo dal carrello per procedere.
+\end{enumerate}
+
+\subsection{Conferma e invio dell'ordine}
+
+Per inviare l'ordine:
+
+\begin{enumerate}
+    \item \textbf{Revisione}: Verificare che tutti gli articoli nel carrello siano corretti e che le quantit\`a siano quelle desiderate.
+    \item \textbf{Invio}: Cliccare sul pulsante viola \texttt{CONFERMA E INVIA} in basso a destra del pannello carrello. Se il carrello \`e vuoto, il pulsante \`e disabilitato.
+    \item \textbf{Esito}: In caso di successo, il carrello viene svuotato, viene aperto automaticamente il pannello Storico e l'IA invia un messaggio di conferma nella chat. In caso di errore (articolo bloccato o non disponibile), viene visualizzato un messaggio di errore sopra il pulsante e l'articolo problematico viene evidenziato in rosso nel carrello.
+\end{enumerate}
+
+\subsection{Consultazione dello storico ordini}
+
+Per consultare gli ordini gi\`a inviati:
+
+\begin{enumerate}
+    \item \textbf{Accesso allo storico}: Sul desktop, cliccare sulla tab \texttt{Storico} in alto a destra nel pannello destro. Su mobile, selezionare la tab \texttt{Storico} nella barra inferiore.
+    \item \textbf{Lista ordini}: Viene visualizzata la lista degli ordini, caricata con scroll infinito (i pi\`u recenti in alto). Ciascun ordine mostra la data e il conteggio degli articoli.
+    \item \textbf{Filtri}:
+    \begin{itemize}
+        \item Campo di ricerca per ID ordine (ricerca debounced, attivata dopo 400~ms di inattivit\`a).
+        \item Filtro per intervallo date: due campi data per data inizio e data fine.
+        \item Pulsante X per cancellare tutti i filtri attivi.
+    \end{itemize}
+    \item \textbf{Dettaglio ordine}: Cliccare su un ordine per aprirne il dettaglio in un pannello modale. Il dettaglio mostra a sinistra la chat dell'ordine (con possibilit\`a di cliccare su un articolo per evidenziare il messaggio corrispondente nella chat) e a destra l'elenco completo degli articoli ordinati con quantit\`a, unit\`a di misura e confidenza IA. Il dettaglio mostra anche se l'ordine \`e stato esportato.
+\end{enumerate}
+
+\subsection{Apertura di un ticket di assistenza}
+
+Per richiedere assistenza umana a un operatore:
+
+\begin{enumerate}
+    \item \textbf{Apertura}: Cliccare sul pulsante \texttt{Assistenza} nel pannello carrello (accanto a \texttt{CONFERMA E INVIA}).
+    \item \textbf{Modale}: Si apre una finestra modale che mostra lo stato corrente dell'assistenza.
+    \item \textbf{Nessun ticket attivo}: Se non ci sono ticket aperti, cliccare su \texttt{Richiedi Assistenza}. Viene creato un ticket e il sistema notifica un operatore.
+    \item \textbf{Ticket esistente}: Se un ticket \`e gi\`a aperto, vengono mostrati lo stato (In attesa / In carico da un operatore) e, se gi\`a assegnato, il nome dell'operatore. \`E possibile chiudere il ticket con \texttt{Chiudi Assistenza}.
+    \item \textbf{Chat con operatore}: Una volta aperto il ticket, la chat principale si trasforma: compare un banner \texttt{Chatta con l'operatore} e tutti i messaggi vengono instradati all'operatore assegnato. L'utente riceve le risposte dell'operatore in tempo reale tramite SSE. Il pulsante \texttt{Nuova sessione} rimane disabilitato finché il ticket \`e aperto.
+\end{enumerate}
+
+\subsection{Nuova sessione}
+
+Per avviare una nuova conversazione:
+
+\begin{enumerate}
+    \item \textbf{Attivazione}: Cliccare sul pulsante \texttt{Nuova sessione} nella barra superiore del pannello chat. Il pulsante \`e disabilitato se \`e presente un ticket di assistenza aperto.
+    \item \textbf{Conferma}: Viene visualizzata una finestra modale che chiede conferma: \texttt{La conversazione attuale e il carrello verranno cancellati. Vuoi procedere?}
+    \item \textbf{Conferma / Annulla}: Premere \texttt{Conferma} per avviare una nuova sessione (chat e carrello vengono resettati) oppure \texttt{Annulla} per tornare alla sessione corrente.
+\end{enumerate}
+
+\subsection{Area personale (Cliente)}
+
+Per accedere alle impostazioni del proprio profilo:
+
+\begin{enumerate}
+    \item \textbf{Apertura}: Cliccare sull'icona del profilo nella barra superiore destra.
+    \item \textbf{Dati visibili}: Vengono mostrate le informazioni dell'account: email e ragione sociale.
+    \item \textbf{Cambio password}: Cliccare su \texttt{Modifica} nella sezione password. Inserire la password attuale, la nuova password (minimo 6 caratteri) e confermarla. Premere \texttt{Salva password}.
+    \item \textbf{Logout}: Cliccare sul pulsante \texttt{Logout} in fondo alla schermata per disconnettersi.
+\end{enumerate}
+
+% ===================================================================
+%  6. ISTRUZIONI D'USO -- OPERATORE
+% ===================================================================
+\newpage
+\section{Istruzioni d'uso -- Operatore}
+
+L'interfaccia Operatore \`e accessibile esclusivamente agli utenti con ruolo \texttt{admin}. Al login, se le credenziali appartengono a un operatore, viene effettuato un redirect automatico da \texttt{/} a \texttt{/operatore}.
+
+L'interfaccia presenta un layout desktop con barra di navigazione laterale contenente tre sezioni: \textbf{Ticket Aperti}, \textbf{Storico Ordini}, \textbf{Profilo}. In alto a sinistra \`e visibile il nome/ragione sociale dell'operatore; in alto a destra il pulsante di logout.
+
+All'accesso, se \`e configurata una cartella di export, viene eseguito automaticamente un export batch degli ultimi ordini (fino a 50) e viene mostrata una notifica toast con il risultato.
+
+\subsection{Dashboard e gestione ticket}
+
+La sezione \textbf{Ticket Aperti} \`e la vista predefinita dell'interfaccia operatore.
+
+\subsubsection{Lista ticket}
+\begin{enumerate}
+    \item \textbf{Visualizzazione}: La tabella mostra tutti i ticket aperti e in lavorazione, ordinati per tempo di attesa decrescente (i pi\`u urgenti in cima). Ogni riga contiene: ID ticket, codice cliente (badge), ragione sociale, data di apertura e tempo di attesa.
+    \item \textbf{Indicatore di gravit\`a}: Il tempo di attesa \`e colorato: rosso pulsante ($> 30$ minuti, urgente), ambra ($10$--$30$ minuti), verde ($< 10$ minuti).
+    \item \textbf{Stato ticket}: Se un ticket \`e \texttt{In carico} (un operatore lo sta gi\`a gestendo), compare un badge ambra sulla riga.
+    \item \textbf{Aggiorna}: Cliccare su \texttt{Aggiorna} in alto a destra per ricaricare la lista. L'elenco si aggiorna automaticamente anche in tempo reale tramite SSE.
+    \item \textbf{Apertura ticket}: Cliccare su una riga qualsiasi per aprire il pannello di gestione del ticket.
+\end{enumerate}
+
+\subsubsection{Pannello di gestione ticket}
+Aprendo un ticket si accede a un modale a schermo intero suddiviso in tre aree:
+
+\textbf{Header}: mostra l'ID ticket, il codice cliente, la ragione sociale e un badge di stato (Aperto o In carico). \`E presente il pulsante di chiusura (X).
+
+\textbf{Area centrale sinistra (45\%)} -- \textbf{Chat}:
+\begin{itemize}
+    \item Elenco dei messaggi scambiati con il cliente (sia via IA che direttamente con l'operatore).
+    \item I messaggi di sistema sono visualizzati in grigio corsivo centrato (ad esempio per segnalare che il ticket \`e stato aperto/assegnato).
+    \item Campo di input in basso per inviare messaggi di testo al cliente.
+    \item I nuovi messaggi arrivano in tempo reale tramite SSE.
+\end{itemize}
+
+\textbf{Area centrale destra (55\%)} -- \textbf{Carrello Cliente}:
+\begin{itemize}
+    \item Campo di ricerca prodotti con autocomplete per aggiungere articoli al carrello del cliente.
+    \item Elenco degli articoli attualmente nel carrello con possibilit\`a di modificarne le quantit\`a (pulsanti \texttt{+} e \texttt{-}) e rimuoverli (icona cestino).
+    \item Badge \texttt{AI} e anello di confidenza per articoli aggiunti dall'IA.
+    \item Il carrello si sincronizza in tempo reale sia con le azioni dell'operatore che con quelle del cliente.
+\end{itemize}
+
+\textbf{Area inferiore (footer)} -- \textbf{Azioni}:
+\begin{itemize}
+    \item \texttt{Rilascia}: Rilascia il lock sul ticket senza chiuderlo. Altri operatori potranno poi prenderlo in carico.
+    \item \texttt{Chiudi Ticket}: Chiude il ticket definitivamente. Non viene inviato alcun ordine.
+    \item \texttt{Invia Ordine}: Compila e invia l'ordine per conto del cliente usando il contenuto corrente del carrello, poi chiude automaticamente il ticket.
+\end{itemize}
+
+\subsection{Storico ordini (Operatore)}
+
+La sezione \textbf{Storico Ordini} consente la consultazione di tutti gli ordini di tutti i clienti.
+
+\begin{enumerate}
+    \item \textbf{Lista ordini}: Tabella con ordinamento multicolonna. Ogni riga mostra: ID ordine (cliccabile), ragione sociale cliente, data, numero di articoli e stato export.
+    \item \textbf{Filtri avanzati}:
+    \begin{itemize}
+        \item Campo di ricerca per ID ordine.
+        \item Campo per codice cliente.
+        \item Campo per ragione sociale (ricerca debounced).
+        \item Filtro per intervallo date (da -- a).
+        \item Ordinamento per qualsiasi colonna (ID, cliente, data, articoli) con frecce di direzione.
+    \end{itemize}
+    \item \textbf{Pulsante X}: Cancella tutti i filtri attivi.
+    \item \textbf{Dettaglio ordine}: Cliccando su una riga si apre un modale di dettaglio con:
+    \begin{itemize}
+        \item A sinistra: chat completa dell'ordine (se disponibile).
+        \item A destra: elenco articoli ordinati con codice, descrizione, linea/famiglia, quantit\`a ordinata, unit\`a di misura e confidenza IA. Cliccando su un articolo con messaggio collegato si scrolla alla chat evidenziando il messaggio.
+    \end{itemize}
+    \item \textbf{Export}: Nel dettaglio ordine sono presenti i pulsanti \texttt{JSON} e \texttt{CSV} per esportare l'ordine singolarmente. Il file viene salvato nella cartella configurata nelle variabili d'ambiente.
+    \item \textbf{Export batch}: Alla login, se la cartella di export \`e configurata, viene eseguito automaticamente un export batch degli ordini non ancora esportati (fino a 50). Il risultato viene notificato tramite toast.
+    \item \textbf{Stato export}: Nella lista ordini, la colonna \texttt{Stato} mostra un badge verde \texttt{Esportato} se l'ordine \`e gi\`a stato esportato, oppure un trattino se non ancora esportato.
+\end{enumerate}
+
+\subsection{Area personale (Operatore)}
+
+Per accedere alle impostazioni del profilo:
+
+\begin{enumerate}
+    \item \textbf{Apertura}: Selezionare la sezione \texttt{Profilo} nella barra di navigazione laterale.
+    \item \textbf{Dati}: Vengono mostrate email e ragione sociale dell'account operatore, oltre alle date di creazione account e ultima modifica password.
+    \item \textbf{Cartella di export}: Sezione dedicata (presente solo per admin) per configurare il percorso della cartella in cui verranno salvati i file CSV/JSON degli ordini esportati. Cliccare su \texttt{Configura} o \texttt{Modifica} per impostare il path assoluto (es. \texttt{/Users/davide/ordini}), poi \texttt{Salva}.
+    \item \textbf{Cambio password}: Cliccare su \texttt{Modifica} nella sezione password, inserire la password attuale, la nuova (minimo 6 caratteri) e la conferma, poi \texttt{Salva password}.
+    \item \textbf{Logout}: Cliccare su \texttt{Logout} in fondo alla schermata.
+\end{enumerate}
+
+% ===================================================================
+%  7. MESSAGGI DI ERRORE E RISOLUZIONE PROBLEMI
+% ===================================================================
+\newpage
+\section{Messaggi di errore e risoluzione problemi}
+
+Di seguito sono elencati i principali messaggi di errore che l'utente potrebbe incontrare durante l'utilizzo della piattaforma, con le relative soluzioni suggerite.
+
+\begin{longtable}{|p{4cm}|p{4cm}|p{5.5cm}|}
+    \caption{Tabella messaggi di errore e soluzioni.}
+    \label{tab:errori} \\
+    \hline
+    \rowcolor{gray!10} \textbf{Messaggio / Situazione} & \textbf{Causa probabile} & \textbf{Soluzione} \\
+    \hline
+    \endfirsthead
+    \hline
+    \rowcolor{gray!10} \textbf{Messaggio / Situazione} & \textbf{Causa probabile} & \textbf{Soluzione} \\
+    \hline
+    \endhead
+    \hline
+    \endfoot
+
+    \textit{``Errore di rete durante il login''} & Credenziali non corrette o server non raggiungibile & Verificare di aver inserito email e password corretti. Controllare la connessione a internet. \\
+    \hline
+    \textit{``Impossibile accedere al microfono''} & Browser non ha (o ha negato) il permesso di usare il microfono & Concedere il permesso del microfono nelle impostazioni del browser. Ricaricare la pagina. \\
+    \hline
+    \textit{``Non ho capito nulla dall'audio. Puoi ripetere o scrivere?''} & Audio troppo basso, rumore di fondo eccessivo o vocabolario non riconosciuto & Ripetere la frase in modo pi\`u chiaro, avvicinarsi al microfono, diminuire i rumori ambientali. In alternativa, digitare il testo. \\
+    \hline
+    \textit{``Servizio chat non disponibile. Verifica che il servizio Python sia attivo sulla porta 8000.''} & Il backend FastAPI non \`e in esecuzione & Avviare il backend con \texttt{python main.py} nella directory \texttt{backend}. Verificare che stia ascoltando sulla porta corretta. \\
+    \hline
+    Articolo evidenziato in rosso nel carrello: \texttt{Articolo non pi\`u disponibile} & Il prodotto non \`e pi\`u disponibile nel catalogo al momento dell'invio dell'ordine & Rimuovere l'articolo dal carrello prima di inviare nuovamente l'ordine. \\
+    \hline
+    Articolo non aggiunto al carrello (``Alcuni prodotti non risultano al momento disponibili'') & Il codice articolo richiesto non corrisponde a nessun prodotto nel catalogo dell'utente & Provare a descrivere il prodotto con altre parole chiave, oppure cercarlo manualmente nel catalogo. \\
+    \hline
+    \textit{``Errore invio ordine''} con codice articolo specifico & Il backend ha rifiutato l'articolo per vincoli di catalogo o autorizzazione & Rimuovere l'articolo indicato dall'errore e riprovare. Se il problema persiste, contattare il supporto. \\
+    \hline
+    \textit{``Articolo bloccato: [stato]''} & L'articolo ha uno stato che ne impedisce l'aggiunta (sospeso, su autorizzazione, non disponibile) & Non \`e possibile aggiungere questo articolo. Provare con un'alternativa o contattare l'assistenza. \\
+    \hline
+    La lista ticket non si aggiorna & Connessione SSE interrotta & Cliccare su \texttt{Aggiorna} per ricaricare manualmente. Verificare la connessione a internet. \\
+    \hline
+    \textit{``Errore di rete''} in qualsiasi operazione & Temporanea indisponibilit\`a del server o della connessione & Attendere qualche secondo e riprovare. Se il problema persiste, ricaricare la pagina. \\
+    \hline
+    \textit{``Le due password non corrispondono''} & Errore di digitazione nel campo conferma password & Verificare che i campi \texttt{Nuova password} e \texttt{Conferma password} siano identici. \\
+    \hline
+    \textit{``La nuova password deve avere almeno 6 caratteri''} & Password troppo corta & Scegliere una nuova password di almeno 6 caratteri. \\
+    \hline
+    \textit{``Password attuale''} non accettata & Password attuale errata & Verificare di star inserendo la password corrente correttamente. \\
+    \hline
+    Export batch fallito (toast: ``ordini esportati, X falliti'') & Errore nella scrittura dei file nella cartella export configurata & Verificare che la cartella di export esista e che l'utente abbia i permessi di scrittura su di essa. Controllare il path configurato nel profilo operatore. \\
+    \hline
+    \end{longtable}
+
+% ===================================================================
+%  8. SUPPORTO
+% ===================================================================
+\newpage
+\section{Supporto}
+Per segnalazioni, richieste di assistenza o feedback relativi al presente manuale o al sistema SmartOrder, \`e possibile contattare il gruppo NightPRO all'indirizzo:
+
+\begin{center}
+    \large \leavevmode\href{swe.nightpro@gmail.com}{swe.nightpro@gmail.com}
+\end{center}
+
+\end{document}
