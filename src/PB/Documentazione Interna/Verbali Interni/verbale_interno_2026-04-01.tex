@@ -1,0 +1,194 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}      % Codifica UTF-8
+\usepackage[T1]{fontenc}         % Font encoding moderno
+\usepackage[italian]{babel}      % Lingua italiana 
+\usepackage{lmodern}             % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}            % Per includere immagini
+\graphicspath{{../../../assets/}}
+
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}            % Per header e footer personalizzati
+\usepackage{microtype}           % Migliora la tipografia
+\usepackage{tabularx}            % Migliora le tabelle
+\usepackage[svgnames]{xcolor}    % Colori
+
+% --- Utility ---
+\usepackage{booktabs}            % Tabelle più professionali
+\usepackage{enumitem}            % Per personalizzare liste
+\usepackage{hyperref}            % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,    
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Interno 2026-04-01 - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} 
+\renewcommand{\headrulewidth}{0.4pt} 
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Frontespizio
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    {\Large \itshape Verbale Interno del 1 Aprile 2026 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+ 
+    {\large Data: 2026-04-01 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Indice
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents 
+\pagestyle{fancy} 
+
+% -------------------------------------------------------------------
+%  SEZIONE: Informazioni Generali
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Nominativo} & \textbf{Matricola} & \textbf{Ruolo Operativo} \\
+\midrule
+Francesco Zanella & 2116442 & Programmatore \\
+Leonardo Bilato & 2071084 & Programmatore \\
+Davide Biasuzzi & 2111000 & Programmatore \\
+Mihaela-Mariana Romascu & 2079726 & Verificatrice \\
+Michele Ogniben & 2042325 & Programmatore \\
+Samuele Perozzo & 2110989 & Programmatore \\
+Giovanni Ponso & 2000558 & Responsabile, Programmatore \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO e ruoli ricoperti durante la seduta.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2026-04-01
+    \item \textbf{Ora:} 14:30 - 15:30
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Tutti i componenti del gruppo tranne Michele Ogniben
+    \item \textbf{Redatto da:} Giovanni Ponso
+    \item \textbf{Verificato da:} Mihaela-Mariana Romascu
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Ordine del Giorno
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{enumerate}
+    \item Verifica dello stato di avanzamento delle Specifiche Tecniche.
+    \item Pianificazione del passaggio dalla modellazione allo sviluppo codice (approccio al MVP).
+    \item Suddivisione dei compiti e delle aree di competenza per la scrittura del codice.
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Diario della Riunione
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Conclusione della progettazione in Specifiche Tecniche}
+Come prestabilito nel corso del precedente verbale interno del 27 marzo, il gruppo si è riunito non in occasione di una fine sprint, bensì a seguito della redazione avanzata e stabile del documento di Specifiche Tecniche. Il team ha valutato quanto prodotto nei giorni precedenti e ha attestato di aver raggiunto un punto architetturale sufficientemente stabile per dichiarare conclusa l'esclusiva fase di teorizzazione ed analisi strutturale.
+
+\subsection{Strategia di approccio allo sviluppo del MVP}
+Acquisita l'ufficialità della conclusione dell'impianto progettuale, l'argomento centrale dell'incontro si è focalizzato sulle modalità di approccio per l'implementazione codice del Minimum Viable Product (MVP). Si prenderà come base di partenza parte dell'impalcatura del PoC, che verrà adeguata organicamente al design pattutito.
+È stato deciso di attuare provvisoriamente una separazione tecnica delle linee di competenza del team di sviluppo fra ``Backendisti'' e ``Frontendisti''. Tuttavia, al fine di scongiurare il cosiddetto problema della \emph{segregazione} applicativa, il team ha formalmente deliberato l'alternanza metodica della composizione aziendale nei suddetti sotto-gruppi. Tale alternanza avverrà nel tempo secondo le dinamiche del progetto, garantendo a tutti una polivalenza estesa su tutto lo stack.
+
+\subsection{Transizione dei Ruoli Tecnologici}
+Coerentemente con i nuovi ordini e impegni derivanti dall'inizio dello sviluppo, si attesta che tutti i precedenti Progettisti mutano operativamente il proprio ruolo tramutandosi in Programmatori. Anche
+Giovanni Ponso assume il ruolo di Programmatore, mantenendo comunque il ruolo di Responsabile per lo sprint in corso, per intensificare lo sviluppo. Mihaela-Mariana Romascu resta nelle funzioni di Verificatrice per garantire il controllo qualità delle prime eventuali implementazioni dell'mvp.
+
+% -------------------------------------------------------------------
+%  SEZIONE: Decisioni e Issue GitHub
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese e Gestione Issue}
+
+\begin{enumerate}
+    \item \textbf{Fine Progettazione:} Dichiarazione di adeguatezza e stabilità della base offerta dal documento di Specifiche Tecniche.
+    \item \textbf{Gestione Risorse (Ruoli):} Transizione del gruppo prettamente su attività di codifica: tutti i membri eccetto la Verificatrice passano alla mansione di Programmatore.
+    \item \textbf{Organizzazione Sviluppo:} Ripartizione provvisoria delle risorse operative in macro-gruppi Front e Back, con obbligatorietà d'interscambio ciclico dei ruoli per democratizzare interamente l'acquisizione delle skill nel gruppo.
+\end{enumerate}
+
+\subsection{Pianificazione Issue GitHub}
+A seguito della riunione sono stati immediatamente istanziati i nuovi task relativi alla scrittura del codice, assegnati ai 6 componenti attivi. Di seguito le assegnazioni tracciate su GitHub per implementare le core-features del MVP base:
+
+\begin{table}[h!]
+\centering
+\small 
+\begin{tabularx}{\textwidth}{@{}l X l c@{}} 
+\toprule
+\textbf{ID} & \textbf{Task} & \textbf{Assegnatario} & \textbf{Stato} \\
+\midrule
+\#88 & Inizio sviluppo MVP su base PoC: backend base (funzionalità login, chat, carrello lato cliente) & Davide, Francesco, Samuele & To Do \\
+\addlinespace
+\#89 & Inizio sviluppo MVP su base PoC: frontend base (funzionalità login, chat, carrello lato cliente) & Giovanni, Leonardo & To Do \\
+\addlinespace
+\#90 & Implementazione dashboard operatore (ordini) & Leonardo, Samuele & To Do \\
+\addlinespace
+\#91 & Implementazione flusso di assistenza ticket & Giovanni, Francesco & To Do \\
+\bottomrule
+\end{tabularx}
+\caption{Task iniziali per lo sviluppo del MVP pianificati su GitHub.}
+\end{table}
+
+\newpage
+\end{document}
