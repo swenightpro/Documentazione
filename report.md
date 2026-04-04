@@ -1,10 +1,12 @@
-# Report di compilazione del 2026-04-03T10:19:25+00:00
+# Report di compilazione del 2026-04-04T09:59:33+00:00
 
-Compilazione basata sul commit 323eec785dac5ea4f60badde8ab37318d3af58f6 (base: 323eec7)
+Compilazione basata sul commit f290e16fdf72735c8d8c048d2e0de84dd7e78638 (base: f290e16)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/PB/Documentazione Esterna/Manuale_Utente_v0.3.pdf](docs/PB/Documentazione%20Esterna/Manuale_Utente_v0.3.pdf)
+✅ [docs/PB/Documentazione Interna/Verbali Interni/verbale_interno_2026-03-27.pdf](docs/PB/Documentazione%20Interna/Verbali%20Interni/verbale_interno_2026-03-27.pdf)
+
+✅ [docs/PB/Documentazione Interna/Verbali Interni/verbale_interno_2026-04-04.pdf](docs/PB/Documentazione%20Interna/Verbali%20Interni/verbale_interno_2026-04-04.pdf)
 

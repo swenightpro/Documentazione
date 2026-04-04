@@ -70,8 +70,8 @@
 
     {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
 
-    {\large Data: 2026-04-02 \par}
-    {\Large Versione: 3.1 \par}
+    {\large Data: 2026-04-03 \par}
+    {\Large Versione: 3.2 \par}
 
 \end{titlepage}
 
@@ -89,18 +89,19 @@
         \renewcommand{\arraystretch}{1.2}
         \begin{tabular}{@{}llp{0.25\textwidth}p{0.45\textwidth}c@{}}
             \toprule
-            \textbf{Versione} & \textbf{Data} & \textbf{Autore/i}     & \textbf{Descrizione delle Modifiche}                                                                                                                                                                            & \textbf{Verificatore} \\
+            \textbf{Versione} & \textbf{Data} & \textbf{Autore/i}     & \textbf{Descrizione delle Modifiche}                                                                                                                                                                            & \textbf{Verificatore}   \\
             \midrule
-            3.1               & 2026-04-02    & L. Bilato             & Aggiornata la sezione relativa alla rotazione dei ruoli                                                                                                                                                         & M. M. Romascu         \\
-            3.0               & 2026-03-17    & F. Zanella            & Approvazione del documento                                                                                                                                                                                      & -                     \\
-            2.1               & 2026-03-12    & S. Perozzo            & Ristrutturazione uniforme del documento.                                                                                                                                                                        & Leonardo Bilato       \\
-            2.0               & 2026-02-25    & D. Biasuzzi           & Approvazione del documento                                                                                                                                                                                      & -                     \\
-            1.4               & 2026-01-28    & D. Biasuzzi           & Completate sezioni Analisi dei Requisiti e Codifica; integrato Ciclo di Deming (PDCA) e metriche EVM nella sezione Ottimizzazione dei processi, Gestione dei Rischi, DdB e spiegazione progettazione UI per MVP & Francesco Zanella     \\
-            1.3               & 2025-12-03    & M. Ogniben            & Chiariti compiti Responsabile, aggiunta descrizione nuova sezione verbali interni, sistemata descrizione organizzazione repository                                                                              & Giovanni Ponso        \\
-            1.2               & 2025-11-13    & D. Biasuzzi           & Aggiunta struttura iniziale paragrafo relativo alla fornitura (sezioni "Analisi Req". e "Codifica" da completare)                                                                                               & Michele Ogniben       \\
-            1.1               & 2025-11-11    & M. Ogniben            & Aggiunto paragrafo relativo ai Processi Organizzativi                                                                                                                                                           & Davide Biasuzzi       \\
-            1.0               & 2025-11-05    & D. Biasuzzi           & Modifica struttura del file e verifica                                                                                                                                                                          & Francesco Zanella     \\
-            0.1               & 2025-11-05    & G. Ponso; D. Biasuzzi & Creazione documento + redazione processi di supporto                                                                                                                                                            & Francesco Zanella     \\
+            3.2               & 2026-04-03    & L. Bilato             & Aggiunte le sezioni relative alla CI e al testing                                                                                                                                                               & Mihaela-Mariana Romascu \\
+            3.1               & 2026-04-02    & L. Bilato             & Aggiornata la sezione relativa alla rotazione dei ruoli                                                                                                                                                         & Mihaela-Mariana Romascu \\
+            3.0               & 2026-03-17    & F. Zanella            & Approvazione del documento                                                                                                                                                                                      & -                       \\
+            2.1               & 2026-03-12    & S. Perozzo            & Ristrutturazione uniforme del documento.                                                                                                                                                                        & Leonardo Bilato         \\
+            2.0               & 2026-02-25    & D. Biasuzzi           & Approvazione del documento                                                                                                                                                                                      & -                       \\
+            1.4               & 2026-01-28    & D. Biasuzzi           & Completate sezioni Analisi dei Requisiti e Codifica; integrato Ciclo di Deming (PDCA) e metriche EVM nella sezione Ottimizzazione dei processi, Gestione dei Rischi, DdB e spiegazione progettazione UI per MVP & Francesco Zanella       \\
+            1.3               & 2025-12-03    & M. Ogniben            & Chiariti compiti Responsabile, aggiunta descrizione nuova sezione verbali interni, sistemata descrizione organizzazione repository                                                                              & Giovanni Ponso          \\
+            1.2               & 2025-11-13    & D. Biasuzzi           & Aggiunta struttura iniziale paragrafo relativo alla fornitura (sezioni "Analisi Req". e "Codifica" da completare)                                                                                               & Michele Ogniben         \\
+            1.1               & 2025-11-11    & M. Ogniben            & Aggiunto paragrafo relativo ai Processi Organizzativi                                                                                                                                                           & Davide Biasuzzi         \\
+            1.0               & 2025-11-05    & D. Biasuzzi           & Modifica struttura del file e verifica                                                                                                                                                                          & Francesco Zanella       \\
+            0.1               & 2025-11-05    & G. Ponso; D. Biasuzzi & Creazione documento + redazione processi di supporto                                                                                                                                                            & Francesco Zanella       \\
             \bottomrule
         \end{tabular}
     }
@@ -386,15 +387,21 @@ Il codice prodotto deve rispettare i criteri di: \textbf{leggibilità}, \textbf{
           \end{itemize}
     \item Rispettare la struttura del repository \texttt{Documentazione}:
           \begin{verbatim}
-.github/workflows/   # Workflow CI (build PDF, deploy sito)
-src/                 # File .tex sorgenti dei documenti
-docs/                # PDF generati automaticamente
-site/                # Codice sorgente sito GitHub Pages
-template/            # Template e documenti base
-report.md            # Report compilazione automatica
+.github/workflows/  # Workflow CI (build PDF, deploy sito)
+src/                # File .tex sorgenti dei documenti
+docs/               # PDF generati automaticamente
+site/               # Codice sorgente sito GitHub Pages
+template/           # Template e documenti base
+report.md           # Report compilazione automatica
 \end{verbatim}
     \item Caricare direttamente su \texttt{main} i documenti verificati; non usare branch intermedi per la documentazione.
-    \item Per il codice sorgente, usare branch dedicati (\texttt{feature/}, \texttt{fix/}, \texttt{hotfix/}) e procedere tramite pull request.
+    \item Per la repository \texttt{SmartOrder-MVP}:
+    \begin{itemize}
+        \item Il lavoro avviene su branch dedicati (\texttt{feature/}, \texttt{fix/}, \texttt{hotfix/}) creati da \texttt{main}.
+        \item Ogni modifica viene integrata tramite Pull Request verso \texttt{main}.
+        \item La pipeline CI/CD si attiva automaticamente ad ogni push e Pull Request.
+    \end{itemize}
+    \item Per la repository \texttt{SmartOrder-PoC}: si segue lo stesso approccio della repository \texttt{SmartOrder-MVP}.
 \end{enumerate}
 
 \paragraph{Strumenti}
@@ -405,7 +412,46 @@ report.md            # Report compilazione automatica
 
 \subsubsection{Attività 2 – Automazione CI/CD}
 
-\paragraph{Procedure}
+L'integrazione continua (CI){\scriptsize\raisebox{-0.5ex}{G}} è una pratica di sviluppo software{\scriptsize\raisebox{-0.5ex}{G}} che automatizza l'integrazione frequente del codice sorgente da parte degli sviluppatori. Nel progetto NightPRO, il processo di CI è implementato per la repository \texttt{SmartOrder-MVP} ed è innescato dalla creazione di una Pull Request. Tale processo è descritto nel dettaglio nelle sezioni seguenti.
+
+La Continuous Delivery/Deployment (CD){\scriptsize\raisebox{-0.5ex}{G}} estende la CI automatizzando la consegna e il rilascio del software in ambienti di staging e produzione.
+
+\subparagraph{Pipeline automatizzata per il codice MVP}
+
+La pipeline per il codice dell'MVP si articola nelle seguenti fasi:
+
+\begin{enumerate}
+    \item \textbf{Build}:
+    \begin{enumerate}[label=\alph*.]
+        \item Il workflow si attiva automaticamente a ogni push o Pull Request sul branch \texttt{main} della repository \texttt{SmartOrder-MVP}.
+        \item Il codice sorgente viene ottenuto e le dipendenze vengono installate.
+        \item La compilazione avviene in ambiente Docker{\scriptsize\raisebox{-0.5ex}{G}}.
+        \item In caso di errore di build, il workflow si ferma e viene inviata una notifica al Programmatore.
+    \end{enumerate}
+    \item \textbf{Analisi statica}:
+    \begin{enumerate}[label=\alph*.]
+        \item Al termine della build con successo, vengono eseguiti gli strumenti di analisi statica (linting) per verificare la conformità del codice alle regole di stile definite.
+        \item L'esito viene esposto come badge nel file \texttt{README.md} della repository.
+        \item Se l'analisi statica fallisce, il Programmatore deve revisionare il codice affinché superi i controlli.
+    \end{enumerate}
+    \item \textbf{Test dinamici}:
+    \begin{enumerate}[label=\alph*.]
+        \item Vengono eseguiti i test di unità e di integrazione (cfr. sezione \ref{sec:testing}).
+        \item Se almeno uno dei test fallisce, il workflow si ferma con stato di fallimento.
+        \item Viene inviata una notifica al Programmatore che ha creato la Pull Request.
+        \item Se tutti i test passano, il code coverage viene calcolato e riportato come badge nel \texttt{README.md}.
+    \end{enumerate}
+    \item \textbf{Deployment}:
+    \begin{enumerate}[label=\alph*.]
+        \item Al completamento con successo di tutte le fasi precedenti, il software viene automaticamente distribuito nell'ambiente di staging.
+        \item La pubblicazione in ambiente di produzione avviene tramite approvazione manuale del Responsabile.
+    \end{enumerate}
+\end{enumerate}
+
+\subparagraph{Pipeline automatizzata per la documentazione \LaTeX{}}
+
+La pipeline per la documentazione si articola nelle seguenti fasi:
+
 \begin{enumerate}
     \item \textbf{Workflow di build \LaTeX{}}:
           \begin{enumerate}[label=\alph*.]
@@ -427,7 +473,7 @@ report.md            # Report compilazione automatica
     \item \textbf{Workflow di controllo qualità}:
           \begin{enumerate}[label=\alph*.]
               \item Il workflow si attiva automaticamente al completamento del workflow di build, esclusivamente in caso di esito positivo.
-              \item è possibile eseguire il workflow manualmente tramite trigger esplicito.
+              \item È possibile eseguire il workflow manualmente tramite trigger esplicito.
               \item Il sistema esegue controlli di qualità sui file \LaTeX{}, tra cui:
                     \begin{itemize}
                         \item indice di leggibilità Gulpease;
@@ -443,12 +489,16 @@ report.md            # Report compilazione automatica
 
 \paragraph{Strumenti}
 \begin{itemize}
-    \item \textbf{GitHub Actions}: esecuzione automatica dei workflow di build e deploy.
-    \item \textbf{Docker}: ambiente di compilazione \LaTeX{} isolato e riproducibile.
+    \item \textbf{GitHub Actions}: esecuzione automatica dei workflow di build, test e deploy.
+    \item \textbf{Docker}: ambiente di compilazione isolato e riproducibile.
     \item \textbf{Latexmk}: compilatore \LaTeX{} con gestione automatica delle dipendenze.
     \item \textbf{GitHub Pages}: hosting del sito statico di documentazione.
     \item \textbf{LanguageTool}: analisi grammaticale e stilistica.
     \item \textbf{ChkTeX}: analisi statica dei file \LaTeX{}.
+    \item \textbf{Pylint}: analisi statica del codice Python per identificare potenziali errori, bug e cattive abitudini di programmazione.
+    \item \textbf{Codacy}: servizio di analisi statica che verifica il codice tramite analisi automatica integrato in GitHub.
+    \item \textbf{Codecov}: servizio che traccia e mostra il code coverage come badge nel \texttt{README.md}.
+    \item \textbf{Coveralls}: servizio che traccia e mostra il code coverage integrato con GitHub Actions.
 \end{itemize}
 
 \subsubsection{Attività 3 – Gestione della comunicazione e degli strumenti collaborativi}
@@ -548,6 +598,155 @@ report.md            # Report compilazione automatica
     \item \textbf{GitHub Actions}: compilazione e deploy automatici.
     \item \textbf{GitHub Pages}: portale di consultazione pubblica della documentazione.
 \end{itemize}
+
+% -------------------------------------------------------------------
+%  4.3 TESTING
+% -------------------------------------------------------------------
+\subsection{Testing}
+\label{sec:testing}
+
+L'obiettivo del testing è assicurare il corretto funzionamento della componente soggetta al test{\scriptsize\raisebox{-0.5ex}{G}}, verificando che produca i risultati attesi e che rispetti accuratamente i vincoli assegnati. Questi test sono inoltre strumentali per individuare eventuali anomalie di funzionamento.
+Tali test andranno poi automatizzati.
+
+\subsubsection{Attività 1 -- Test di unità}
+
+I test di unità sono progettati per verificare singole unità di codice, come funzioni o metodi, in modo isolato e indipendente dal resto del sistema{\scriptsize\raisebox{-0.5ex}{G}}. L'obiettivo principale è garantire che ogni unità di codice funzioni correttamente, conformandosi alle specifiche e restituendo i risultati attesi.
+Essi vengono pianificati durante la progettazione di dettaglio e devono essere eseguiti per primi, in quanto verificano l'integrità della singola unità prima dell'integrazione con le altre.
+
+Per implementare tali test è consentito l'utilizzo di oggetti simulati o parziali, come mock e stub, al fine di separare l'unità di codice in esame dalle sue dipendenze esterne. Un ulteriore obiettivo consiste nel verificare la massima copertura possibile dei percorsi all'interno dell'unità, generando la \emph{structural coverage}.
+
+\subsubsection{Attività 2 -- Test di integrazione}
+
+I test di integrazione sono una fase essenziale nell'analisi dinamica del software{\scriptsize\raisebox{-0.5ex}{G}} e mirano a verificare il corretto funzionamento delle diverse unità di codice quando sono integrate per formare una componente più ampia o l'intero sistema{\scriptsize\raisebox{-0.5ex}{G}}.
+Questa fase si concentra sull'interazione tra le parti del software per garantire che lavorino sinergicamente secondo le specifiche del progetto.
+I test di integrazione vengono pianificati durante la fase di progettazione architetturale e possono avere un approccio:
+\begin{itemize}
+    \item \textbf{Top-down}: l'integrazione inizia con le componenti di sistema che presentano maggiori dipendenze e un maggiore valore esterno, rendendo disponibili tempestivamente le funzionalità di alto livello. Richiede tuttavia molti mock.
+    \item \textbf{Bottom-up}: l'integrazione ha inizio dalle componenti di sistema caratterizzate da minori dipendenze e un maggiore valore interno. Richiede meno mock ma ritarda il test delle funzionalità utente.
+\end{itemize}
+Il team svolgerà, ove possibile, i test di integrazione con l'approccio \emph{Top-down}.
+
+\subsubsection{Attività 3 -- Codici e stato dei test}
+
+Per classificare ogni test, si utilizza il codice identificativo nel formato:
+\begin{center}
+    \texttt{T[Tipo][Codice]}
+\end{center}
+dove:
+\begin{itemize}
+    \item \textbf{Tipo}:
+    \begin{itemize}
+        \item \texttt{U}: test di unità;
+        \item \texttt{I}: test di integrazione.
+    \end{itemize}
+    \item \textbf{Codice}: numero progressivo all'interno del tipo, nel formato \texttt{[padre].[figlio]} se il test ha un padre.
+\end{itemize}
+
+Ogni test può assumere uno dei seguenti stati:
+\begin{itemize}
+    \item \textbf{NI}: il test non è ancora stato implementato (Non Implementato);
+    \item \textbf{S}: il test ha riportato esito positivo (Superato);
+    \item \textbf{NS}: il test ha riportato esito negativo (Non Superato).
+\end{itemize}
+I risultati dei test saranno registrati nel Piano di Qualifica{\scriptsize\raisebox{-0.5ex}{G}}.
+
+La sequenza delle fasi di test è la seguente:
+\begin{enumerate}
+    \item Test di Unità;
+    \item Test di Integrazione.
+\end{enumerate}
+
+\subsubsection{Strumenti}
+\begin{itemize}
+    \item \textbf{JUnit}: framework per la scrittura e l'esecuzione di test di unità in Java.
+    \item \textbf{Mockito}: framework per la creazione di mock e stub nei test Java.
+    \item \textbf{Jest}: framework per la scrittura e l'esecuzione di test di unità in TypeScript/JavaScript.
+    \item \textbf{Pytest}: framework per la creazione, l'organizzazione e l'esecuzione automatizzata di test in Python.
+    \item \textbf{Unittest}: libreria standard Python per la creazione e l'esecuzione di test di unità.
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  4.4 REVISIONE DEL CODICE
+% -------------------------------------------------------------------
+\subsection{Revisione del Codice}
+\label{sec:revisione_codice}
+
+La revisione del codice è un'attività di verifica dinamica che prevede l'esame accurato del codice prodotto al fine di garantirne il corretto funzionamento. Il suo obiettivo è assicurare che il software{\scriptsize\raisebox{-0.5ex}{G}} esegua le funzioni previste e individuare eventuali discordanze tra i risultati ottenuti e quelli attesi.
+
+\subsubsection{Attività 1 -- Procedure di revisione}
+
+La revisione del codice si articola nell'esecuzione dei test unitari e di integrazione, che vengono eseguiti automaticamente dalla pipeline CI ad ogni push e Pull Request. Il Verificatore supervisiona l'esito dei test verificando che tutti passino con esito positivo e che il code coverage rispetti la soglia minima definita nel Piano di Qualifica{\scriptsize\raisebox{-0.5ex}{G}}.
+
+\subparagraph{Tecniche di revisione}
+\begin{itemize}
+    \item \textbf{Walkthrough}{\scriptsize\raisebox{-0.5ex}{G}}: il Verificatore esamina l'intero prodotto in cerca di difetti senza una ricerca mirata. Questa tecnica prevede una verifica approfondita attraverso i passaggi di pianificazione, lettura, discussione e correzione. È applicata prevalentemente nelle fasi iniziali del progetto.
+    \item \textbf{Inspection}{\scriptsize\raisebox{-0.5ex}{G}}: il Verificatore rileva difetti mediante un'analisi mirata, organizzata in liste di controllo (checklist). È particolarmente vantaggiosa per codice complesso e strutturato, specialmente nelle fasi avanzate del progetto.
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  4.5 DOCUMENTAZIONE DEL CODICE
+% -------------------------------------------------------------------
+\subsection{Documentazione del Codice}
+\label{sec:documentazione_codice}
+
+La documentazione del codice ha l'obiettivo di garantire la leggibilità, la manutenibilità e la tracciabilità del software{\scriptsize\raisebox{-0.5ex}{G}} prodotto. Ogni componente deve essere documentato in modo chiaro e uniforme.
+
+\subsubsection{Attività 1 -- Docstring e Javadoc}
+
+Ogni classe, interfaccia, metodo e funzione pubblica deve essere documentato con un docstring/Javadoc che include:
+\begin{itemize}
+    \item \textbf{Descrizione}: sintesi chiara e concisa della funzionalità del componente.
+    \item \textbf{Parametri}: elenco di tutti i parametri formali con tipo e descrizione del loro significato.
+    \item \textbf{Valore di ritorno}: descrizione del valore restituito, se presente.
+    \item \textbf{Eccezioni}: eventuali eccezioni sollevate con relativa motivazione.
+\end{itemize}
+
+\subparagraph{Standard Java}
+\begin{verbatim}
+/**
+ * Descrizione del metodo.
+ *
+ * @param nomeParam descrizione del parametro
+ * @return descrizione del valore di ritorno
+ * @throws TipoEccezione descrizione dell'eccezione
+ */
+\end{verbatim}
+
+\subparagraph{Standard TypeScript / JavaScript}
+\begin{verbatim}
+/**
+ * Descrizione del metodo.
+ * @param nomeParam - descrizione del parametro
+ * @returns descrizione del valore di ritorno
+ */
+\end{verbatim}
+
+\subparagraph{Standard Python}
+\begin{verbatim}
+def funzione(param: tipo) -> tipo_ritorno:
+    \"\"\"
+    Descrizione del metodo.
+
+    Args:
+        param (tipo): descrizione del parametro.
+
+    Returns:
+        tipo_ritorno: descrizione del valore di ritorno.
+
+    Raises:
+        TipoEccezione: descrizione dell'eccezione.
+    \"\"\"
+\end{verbatim}
+
+\subsubsection{Attività 2 -- Commenti inline}
+
+I commenti inline devono essere utilizzati per:
+\begin{itemize}
+    \item Spiegare logiche complesse o non immediatamente intuibili.
+    \item Clarificare decisioni architetturali o di design non evidenti dal codice.
+    \item Evidenziare workaround o fix temporanei (da evitare e documentare con marcatori \texttt{TODO}).
+\end{itemize}
+Non è necessario commentare codice autoesplicativo; il codice stesso deve essere sufficientemente leggibile.
 
 \subsubsection{Verbali}
 \label{sec:verbali}

@@ -1,0 +1,238 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}      % Codifica UTF-8
+\usepackage[T1]{fontenc}         % Font encoding moderno
+\usepackage[italian]{babel}      % Lingua italiana 
+\usepackage{lmodern}             % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}            % Per includere immagini
+\graphicspath{{../../../assets/}}
+
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}            % Per header e footer personalizzati
+\usepackage{microtype}           % Migliora la tipografia
+\usepackage{tabularx}            % Migliora le tabelle
+\usepackage[svgnames]{xcolor}    % Colori
+
+% --- Utility ---
+\usepackage{booktabs}            % Tabelle piu professionali
+\usepackage{enumitem}            % Per personalizzare liste
+\usepackage{hyperref}            % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,    
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale Interno 2026-04-04 - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} 
+\renewcommand{\headrulewidth}{0.4pt} 
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Frontespizio
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+
+    \vfill
+    
+    {\small UNIVERSITA DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    
+    \vfill
+    
+    {\Huge \bfseries Verbale di Riunione \par}
+    
+    \vspace{1cm}
+    
+    {\Large \itshape Verbale Interno del 4 Aprile 2026 \par} 
+    
+    \vfill
+    
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+    
+    \vfill
+ 
+    {\large Data: 2026-04-02 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Indice
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents 
+\pagestyle{fancy} 
+
+% -------------------------------------------------------------------
+%  SEZIONE: Informazioni Generali
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Nominativo} & \textbf{Matricola} & \textbf{Ruolo Operativo} \\
+\midrule
+Francesco Zanella & 2116442 & Progettista, Verificatore \\
+Leonardo Bilato & 2071084 & Verificatore, Progettista \\
+Davide Biasuzzi & 2111000 & Programmatore \\
+Mihaela-Mariana Romascu & 2079726 & Programmatore, Analista \\
+Michele Ogniben & 2042325 & - \\
+Samuele Perozzo & 2110989 & Verificatore \\
+Giovanni Ponso & 2000558 & Responsabile, Programmatore \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO e ruoli ricoperti durante la seduta.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+    \item \textbf{Data:} 2026-04-02
+    \item \textbf{Ora:} 8:30 - 10:30
+    \item \textbf{Luogo:} Google Meet
+    \item \textbf{Partecipanti:} Francesco Zanella, Mihaela-Mariana Romascu, Leonardo Bilato, Giovanni Ponso, Samuele Perozzo, Davide Biasuzzi
+    \item \textbf{Redatto da:} Giovanni Ponso
+    \item \textbf{Verificato da:} Leonardo Bilato
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Ordine del Giorno
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{enumerate}
+    \item Chiusura e consuntivazione Sprint 13.
+    \item Pianificazione delle prossime funzionalita da implementare nella webapp.
+    \item Definizione della strategia di testing software per Sprint 14.
+    \item Organizzazione di un incontro rapido con l'azienda proponente per feedback su MVP.
+    \item Assegnazione dei ruoli operativi per Sprint 14 e apertura task su GitHub Project.
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Diario della Riunione
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Pianificazione funzionalita MVP e apertura attivita GitHub}
+Il gruppo ha discusso le prossime funzionalita da implementare nella webapp per consolidare il MVP in sviluppo, con particolare attenzione all'evoluzione del flusso conversazionale e al miglioramento della precisione semantica.
+A valle del confronto sono state aperte attivita dedicate su GitHub Project, una per ciascuna funzionalita prioritaria:
+\begin{itemize}[noitemsep, topsep=2pt]
+    \item miglioramento della ricerca RAG tramite Vector Search;
+    \item aggiunta della funzionalita di scelta rapida in chat;
+    \item aggiunta del caricamento e dell'elaborazione immagini in chat;
+    \item introduzione del confidence score e relativo affinamento.
+\end{itemize}
+
+\subsection{Strategia di testing e tracciamento documentale}
+Durante la riunione si e discusso in merito alla strategia di testing del software.
+Il team ha quindi deliberato l'apertura di due linee operative distinte e complementari:
+\begin{itemize}[noitemsep, topsep=2pt]
+    \item una attivita di aggiornamento documentale per aggiungere i test di unita e di integrazione decisi durante la seduta e che verranno implementati nel corso dello sprint appena iniziato;
+    \item una attivita dedicata all'implementazione progressiva degli stessi test nel codice del MVP.
+\end{itemize}
+
+\subsection{Richiesta confronto con azienda proponente}
+Si e deciso di organizzare un incontro rapido con l'azienda proponente per ottenere un riscontro di conferma sull'MVP in sviluppo e raccogliere eventuali indicazioni correttive prima del successivo avanzamento implementativo.
+A tal fine e stata inviata una comunicazione formale per richiedere la prima disponibilita utile del referente aziendale.
+In attesa della riunione, il gruppo prosegue regolarmente lo sviluppo del MVP e l'avanzamento delle attivita pianificate per lo Sprint 14.
+
+\subsection{Consuntivo Sprint 13 e obiettivo milestone PB}
+Il gruppo ha svolto il consuntivo dello Sprint 13 rilevando una partecipazione elevata e continua di tutti i membri attivi.
+L'esito del periodo viene ritenuto positivo sia in termini di avanzamento tecnico sia in termini di coordinamento operativo. Proseguendo con il medesimo livello di contributo, il team ritiene realistico il rispetto della milestone PB del 17 Aprile 2026.
+
+\subsection{Assegnazione ruoli Sprint 14}
+Sono stati confermati i ruoli operativi per lo Sprint 14:
+\begin{itemize}[noitemsep, topsep=2pt]
+    \item Davide Biasuzzi: Programmatore;
+    \item Leonardo Bilato: Verificatore, Progettista;
+    \item Francesco Zanella: Progettista, Verificatore;
+    \item Mihaela-Mariana Romascu: Programmatore, Analista;
+    \item Michele Ogniben: nessun ruolo operativo assegnato;
+    \item Samuele Perozzo: Verificatore;
+    \item Giovanni Ponso: Responsabile, Programmatore.
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Decisioni e Issue GitHub
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese e Gestione Issue}
+
+\begin{enumerate}
+    \item \textbf{Testing:} Deliberata la definizione e formalizzazione documentale dei test da svolgere nello Sprint 14, con implementazione progressiva nel codice.
+    \item \textbf{Fornitura:} Approvata la richiesta di incontro breve con il proponente per validazione intermedia del MVP, senza sospendere le attivita di sviluppo in corso.
+    \item \textbf{Ruoli Sprint 14:} Formalizzata la distribuzione operativa dei ruoli per il nuovo sprint.
+\end{enumerate}
+
+\subsection{Pianificazione Issue GitHub}
+Di seguito le attivita aperte a valle della riunione:
+
+\begin{table}[h!]
+\centering
+\small 
+\begin{tabularx}{\textwidth}{@{}l X l c@{}} 
+\toprule
+\textbf{ID} & \textbf{Task} & \textbf{Assegnatario} & \textbf{Stato} \\
+\midrule
+\#92 & Modifica della ricerca del RAG con Vector Search & Programmatori & To Do \\
+\addlinespace
+\#93 & Aggiunta funzionalita scelta rapida chat & Programmatori & To Do \\
+\addlinespace
+\#94 & Aggiunta funzionalita caricamento ed elaborazione immagini in chat & Programmatori & To Do \\
+\addlinespace
+\#95 & Aggiunta del confidence score e miglioramento del confidence score & Programmatori & To Do \\
+\addlinespace
+\#96 & Studio e aggiunta test di unita e di integrazione da requisiti AdR & Verificatori & To Do \\
+\addlinespace
+\#97 & Aggiornare Manuale Utente & Progettisti & To Do \\
+\addlinespace
+\#98 & Aggiornare Specifiche Tecniche & Progettisti & To Do \\
+\addlinespace
+\#99 & Aggiornare Piano di Qualifica con test di unita e di integrazione & Responsabile & To Do \\
+\addlinespace
+\#100 & Aggiornare Analisi dei Requisiti & Analista & To Do \\
+\addlinespace
+\#101 & Attivita del Responsabile (verbali, PdP, DdB) & Responsabile & To Do \\
+\addlinespace
+\#102 & Verifica documentale & Verificatori & To Do \\
+\bottomrule
+\end{tabularx}
+\caption{Task operative pianificate su GitHub per lo Sprint 14.}
+\end{table}
+
+\newpage
+\end{document}
