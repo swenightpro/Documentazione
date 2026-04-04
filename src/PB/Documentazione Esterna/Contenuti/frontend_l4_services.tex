@@ -109,7 +109,7 @@
     \caption{UML del componente \texttt{chatService}.}
 \end{figure}
 
-\paragraph{aiLogService}
+\paragraph{feedbackService}
 \textbf{Descrizione del componente:} modulo API dedicato al workflow di validazione delle discrepanze AI in dashboard operatore.
 
 \textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma.
@@ -124,6 +124,22 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.66\textwidth]{uml_frontend/18_ailogservice.png}
-    \caption{UML del componente \texttt{aiLogService}.}
+    \includegraphics[width=0.66\textwidth]{uml_frontend/18_feedbackservice.png}
+    \caption{UML del componente \texttt{feedbackService}.}
+\end{figure}
+
+\paragraph{healthService}
+\textbf{Descrizione del componente:} fornisce i moduli per richiamare lo stato di salute del backend, utilissimo per dashboard e logging.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_frontend/20_healthservice.png}
+    \caption{UML del componente \texttt{healthService}.}
+\end{figure}
+
+\paragraph{sessionService}
+\textbf{Descrizione del componente:} separa la verifica di validità della sessione da auth, fornendo hook puliti per il layout client-side.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_frontend/21_sessionservice.png}
+    \caption{UML del componente \texttt{sessionService}.}
 \end{figure}

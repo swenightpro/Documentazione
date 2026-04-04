@@ -55,7 +55,7 @@
     \caption{UML della classe \texttt{CartController}.}
 \end{figure}
 
-\paragraph{OrderHistoryController}
+\paragraph{OrderController}
 \textbf{Descrizione della classe:} espone le API per consultazione storico ordini e dettaglio singolo ordine.
 
 \textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
@@ -68,8 +68,8 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.62\textwidth]{uml_backend/04_orderhistorycontroller.png}
-    \caption{UML della classe \texttt{OrderHistoryController}.}
+    \includegraphics[width=0.62\textwidth]{uml_backend/04_ordercontroller.png}
+    \caption{UML della classe \texttt{OrderController}.}
 \end{figure}
 
 \paragraph{TicketController}
@@ -91,7 +91,7 @@
     \caption{UML della classe \texttt{TicketController}.}
 \end{figure}
 
-\paragraph{LogAIController}
+\paragraph{FeedbackController}
 \textbf{Descrizione della classe:} espone le API di raccolta feedback e verifica dei log AI per monitoraggio e miglioramento continuo.
 
 \textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
@@ -105,6 +105,46 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.62\textwidth]{uml_backend/06_logaicontroller.png}
-    \caption{UML della classe \texttt{LogAIController}.}
+    \includegraphics[width=0.62\textwidth]{uml_backend/06_feedbackcontroller.png}
+    \caption{UML della classe \texttt{FeedbackController}.}
+\end{figure}
+
+\paragraph{ClientController}
+\textbf{Descrizione della classe:} gestisce il recupero delle informazioni specifiche del cliente connesso, integrandole eventualmente da sistemi esterni.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_backend/40_clientcontroller.png}
+    \caption{UML della classe \texttt{ClientController}.}
+\end{figure}
+
+\paragraph{HealthController}
+\textbf{Descrizione della classe:} fornisce un endpoint per l'health check e il monitoraggio dello stato di salute del backend.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_backend/41_healthcontroller.png}
+    \caption{UML della classe \texttt{HealthController}.}
+\end{figure}
+
+\paragraph{ProductController}
+\textbf{Descrizione della classe:} espone le API di ricerca ed esplorazione del catalogo prodotti, filtrato per assortimento cliente.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_backend/42_productcontroller.png}
+    \caption{UML della classe \texttt{ProductController}.}
+\end{figure}
+
+\paragraph{RegisterController}
+\textbf{Descrizione della classe:} gestisce la registrazione e il provisioning di nuovi clienti e account interni (secret-register).
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_backend/43_registercontroller.png}
+    \caption{UML della classe \texttt{RegisterController}.}
+\end{figure}
+
+\paragraph{SSEController}
+\textbf{Descrizione della classe:} gestisce la connessione Server-Sent Events rimpiazzando in parte il vecchio canale WebSocket per le notifiche in streaming.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_backend/44_ssecontroller.png}
+    \caption{UML della classe \texttt{SSEController}.}
 \end{figure}

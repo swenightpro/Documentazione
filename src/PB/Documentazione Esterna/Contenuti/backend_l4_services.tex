@@ -53,7 +53,7 @@
     \caption{UML della classe \texttt{CartService}.}
 \end{figure}
 
-\paragraph{OrderHistoryService}
+\paragraph{OrderService}
 \textbf{Descrizione della classe:} fornisce i casi d'uso di consultazione storico ordini e dettaglio ordine.
 
 \textbf{Descrizione degli attributi:} nessun attributo esplicitato nel diagramma.
@@ -66,8 +66,8 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.58\textwidth]{uml_backend/10_orderhistoryservice.png}
-    \caption{UML della classe \texttt{OrderHistoryService}.}
+    \includegraphics[width=0.58\textwidth]{uml_backend/10_orderservice.png}
+    \caption{UML della classe \texttt{OrderService}.}
 \end{figure}
 
 \paragraph{VectorSearchService}
@@ -105,7 +105,7 @@
     \caption{UML della classe \texttt{TicketService}.}
 \end{figure}
 
-\paragraph{LogAIService}
+\paragraph{FeedbackService}
 \textbf{Descrizione della classe:} presidia logging delle correzioni manuali e raccolta feedback negativi verso il modulo AI.
 
 \textbf{Descrizione degli attributi:} il diagramma non esplicita attributi interni.
@@ -118,6 +118,30 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.58\textwidth]{uml_backend/13_logaiservice.png}
-    \caption{UML della classe \texttt{LogAIService}.}
+    \includegraphics[width=0.58\textwidth]{uml_backend/13_feedbackservice.png}
+    \caption{UML della classe \texttt{FeedbackService}.}
+\end{figure}
+
+\paragraph{ClientService}
+\textbf{Descrizione della classe:} implementa la logica di business di recupero e verifica dei dati anagrafici del cliente registrato.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_backend/45_clientservice.png}
+    \caption{UML della classe \texttt{ClientService}.}
+\end{figure}
+
+\paragraph{ProductService}
+\textbf{Descrizione della classe:} incapsula la logica per il filtraggio e l'accesso ottimizzato all'assortimento e al catalogo articoli.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_backend/46_productservice.png}
+    \caption{UML della classe \texttt{ProductService}.}
+\end{figure}
+
+\paragraph{SSEBroadcaster}
+\textbf{Descrizione della classe:} si occupa del dispatch e della propagazione degli eventi realtime a tutte le sessioni connesse, disaccoppiando l'infrastruttura di stream dai domini.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_backend/47_ssebroadcaster.png}
+    \caption{UML della classe \texttt{SSEBroadcaster}.}
 \end{figure}

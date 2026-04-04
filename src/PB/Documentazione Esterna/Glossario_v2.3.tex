@@ -75,9 +75,9 @@
 
     {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
 
-    {\large Data: 2026-04-02 \par}
+    {\large Data: 2026-04-04 \par}
 
-    {\Large Versione: 2.2 \par}
+    {\Large Versione: 2.3 \par}
 
 \end{titlepage}
 
@@ -95,6 +95,7 @@
             \toprule
             \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
             \midrule
+            2.3 & 2026-04-04 & Francesco Zanella & Aggiunti i termini Audit, Base64, Bucket S3, Foreign Key (Chiave Esterna), FTP, Payload, Primary Key (Chiave Primaria), SSE (Server-Sent Events), Staging & Leonardo Bilato \\
             2.2 & 2026-04-02 & Mihaela-Mariana Romascu & Aggiunti i termini Aggiornamento live (Hot Reload), Ambiente di produzione, Ambiente di sviluppo, Ambiente virtuale (venv), Backend, Bilanciamento del carico (Load Balancing), Credenziali, Dashboard, Debug / API DEBUG, FastAPI, File .env, Frontend, Host / Port, Hosting, HTTPS, Istanza, Linguaggio naturale, Localhost, Log IA, Login / Logout, Modello (IA), Next.js, Node.js, npm, OpenAI API Key, pip, PostgreSQL, Push, Python (v3.11), Railway, Requirements.txt, SKU (Stock Keeping Unit), Terminale / Shell, Terminazione TLS, Ticket, Variabili d'ambiente, Web Application & Davide Biasuzzi \\
             \bottomrule
         \end{tabular}
@@ -257,19 +258,24 @@ La struttura organizzativa di un sistema software che definisce i componenti pri
 
 \vspace{0.5cm}
 
-\subsection*{ASGI}
-\addcontentsline{toc}{subsection}{ASGI}
-Acronimo di \textit{Asynchronous Server Gateway Interface}. Specifica per l'interfacciamento tra server web e applicazioni Python asincrone, utilizzata per gestire in modo efficiente richieste concorrenti.
-\vspace{0.5cm}
-
 \subsection*{AS-IS}
 \addcontentsline{toc}{subsection}{AS-IS}
 Rappresentazione dello stato attuale dei processi aziendali e operativi prima dell'introduzione della soluzione software.
 \vspace{0.5cm}
 
+\subsection*{ASGI}
+\addcontentsline{toc}{subsection}{ASGI}
+Acronimo di \textit{Asynchronous Server Gateway Interface}. Specifica per l'interfacciamento tra server web e applicazioni Python asincrone, utilizzata per gestire in modo efficiente richieste concorrenti.
+\vspace{0.5cm}
+
 \subsection*{Attore}
 \addcontentsline{toc}{subsection}{Attore}
 Entità esterna al sistema (essere umano o altro sistema informatico) che interagisce con esso per scambiare informazioni o richiedere l'esecuzione di una funzionalità.
+\vspace{0.5cm}
+
+\subsection*{Audit}
+\addcontentsline{toc}{subsection}{Audit}
+Processo di tracciamento e verifica a posteriori delle operazioni effettuate dagli utenti o dal sistema per scopi di sicurezza e validazione (es. origine di modifica di un ordine).
 \vspace{0.5cm}
 
 \subsection*{Azienda Proponente}
@@ -279,6 +285,7 @@ Entità esterna al sistema (essere umano o altro sistema informatico) che intera
 L'organizzazione o società che propone il capitolato d'appalto e con cui il gruppo collabora per la realizzazione del progetto. Nel contesto del progetto NightPRO, l'azienda proponente è Ergon Informatica.
 
 \vspace{0.5cm}
+
 
 % B
 
@@ -291,17 +298,22 @@ L'organizzazione o società che propone il capitolato d'appalto e con cui il gru
 Modello commerciale basato sullo scambio di beni o servizi tra aziende.
 \vspace{0.5cm}
 
-\subsection*{Baseline}
-\addcontentsline{toc}{subsection}{Baseline}
-Una versione specifica e stabile di un elemento di configurazione (documento o codice) che è stata formalmente approvata e che funge da base per le attività successive. Può essere modificata solo attraverso procedure formali di controllo delle modifiche.
-\vspace{0.5cm}
-
 \subsection*{Backend}
 
 \addcontentsline{toc}{subsection}{Backend}
 
 Parte dell'applicazione che gestisce la logica di business, l'accesso ai database e i servizi. È la componente "lato server" non visibile direttamente agli utenti finali.
 
+\vspace{0.5cm}
+
+\subsection*{Base64}
+\addcontentsline{toc}{subsection}{Base64}
+Metodo di codifica che consente di tradurre dati binari (es. immagini) in stringhe di testo ASCII, utile per incorporare dati grezzi nei flussi JSON.
+\vspace{0.5cm}
+
+\subsection*{Baseline}
+\addcontentsline{toc}{subsection}{Baseline}
+Una versione specifica e stabile di un elemento di configurazione (documento o codice) che è stata formalmente approvata e che funge da base per le attività successive. Può essere modificata solo attraverso procedure formali di controllo delle modifiche.
 \vspace{0.5cm}
 
 \subsection*{Best practices}
@@ -328,6 +340,11 @@ Una linea di sviluppo indipendente nel sistema di versionamento Git. Permette di
 
 \vspace{0.5cm}
 
+\subsection*{Bucket S3}
+\addcontentsline{toc}{subsection}{Bucket S3}
+Contenitore virtuale per l'archiviazione a oggetti in un'infrastruttura Cloud (es. Amazon S3), utilizzato per depositare file e risorse non transazionali.
+\vspace{0.5cm}
+
 \subsection*{Bug}
 \addcontentsline{toc}{subsection}{Bug}
 Un difetto o imperfezione nel software che causa un comportamento imprevisto, errato o diverso dalle specifiche funzionali definite.
@@ -342,6 +359,7 @@ Applicazione software progettata per tracciare e gestire i bug segnalati nei pro
 \addcontentsline{toc}{subsection}{Build}
 Il processo di conversione del codice sorgente in un artefatto software eseguibile o in un pacchetto distribuibile. Può includere compilazione, linking e packaging.
 \vspace{0.5cm}
+
 
 % C
 
@@ -429,6 +447,7 @@ Insieme di informazioni di autenticazione (tipicamente email/username e password
 Formato di file di testo utilizzato per rappresentare dati tabellari, in cui i campi sono separati da un carattere delimitatore.
 \vspace{0.5cm}
 
+
 % D
 
 \section*{D}
@@ -469,7 +488,8 @@ Piattaforma open source che permette di sviluppare, distribuire ed eseguire appl
 Rappresentazione strutturata dei documenti HTML o XML come un albero di oggetti, che permette la manipolazione dinamica degli elementi dell'interfaccia utente.
 \vspace{0.5cm}
 
-%E
+
+% E
 
 \section*{E}
 
@@ -489,6 +509,7 @@ Acronimo di \textit{Enterprise Resource Planning}. Un software di gestione che i
 \addcontentsline{toc}{subsection}{EVM (Earned Value Management)}
 Metodologia di gestione progetti che integra ambito, tempi e costi per misurare oggettivamente le prestazioni e l'avanzamento del progetto. Attraverso metriche come Earned Value, Actual Cost e Planned Value, permette di calcolare varianze e indici di performance per prevedere l'andamento futuro del progetto.
 \vspace{0.5cm}
+
 
 % F
 
@@ -520,6 +541,11 @@ File di configurazione utilizzato per memorizzare variabili d'ambiente in locale
 
 \vspace{0.5cm}
 
+\subsection*{Foreign Key (Chiave Esterna)}
+\addcontentsline{toc}{subsection}{Foreign Key (Chiave Esterna)}
+Vincolo relazionale in un database che collega i dati di due tabelle differenti per garantire l'integrità referenziale.
+\vspace{0.5cm}
+
 \subsection*{Framework}
 \addcontentsline{toc}{subsection}{Framework}
 Un ambiente software che fornisce funzionalità generiche e una struttura di supporto standardizzata per lo sviluppo di applicazioni, facilitando il lavoro dei programmatori attraverso il riutilizzo del codice.
@@ -540,6 +566,12 @@ Parte dell'applicazione che interagisce direttamente con l'utente, comprendente 
 La prima pagina di un documento ufficiale che contiene i metadati identificativi: titolo, autori, gruppo, versione, data, e contesto (es. università, corso).
 
 \vspace{0.5cm}
+
+\subsection*{FTP}
+\addcontentsline{toc}{subsection}{FTP}
+Acronimo di \textit{File Transfer Protocol}. Protocollo di rete standard usato nel livello applicativo per trasferire file.
+\vspace{0.5cm}
+
 
 % G
 
@@ -606,8 +638,11 @@ Piattaforma di videoconferenza utilizzata dal gruppo per le riunioni sincrone e 
 Indice di leggibilità specifico per la lingua italiana, sviluppato dal GULP (Gruppo Universitario Linguistico Pedagogico). Misura la facilità di lettura di un testo su una scala da 0 a 100, dove valori più alti indicano maggiore leggibilità. Considera la lunghezza delle parole e delle frasi rispetto al numero totale di lettere.
 \vspace{0.5cm}
 
+
 % H
+
 \section*{H}
+
 \addcontentsline{toc}{section}{H}
 
 \subsection*{Host / Port}
@@ -639,6 +674,7 @@ Protocollo sicuro per la comunicazione web basato su HTTP con crittografia SSL/T
 Approccio che prevede la partecipazione attiva di un operatore umano in un processo automatizzato o basato su IA, per validare i risultati o gestire eccezioni.
 \vspace{0.5cm}
 
+
 % I
 
 \section*{I}
@@ -655,14 +691,6 @@ L'IA è il ramo dell'informatica che progetta sistemi capaci di eseguire compiti
 Standard internazionale che definisce un modello di qualità del prodotto software, identificando otto caratteristiche principali: funzionalità, efficienza prestazionale, compatibilità, usabilità, affidabilità, sicurezza, manutenibilità e portabilità. Fornisce un framework di riferimento per valutare e misurare la qualità del software.
 \vspace{0.5cm}
 
-\subsection*{Istanza}
-
-\addcontentsline{toc}{subsection}{Istanza}
-
-Esecuzione specifica di un servizio, processo o database su un server. Rappresenta un'occorrenza singola di un'applicazione o servizio in esecuzione.
-
-\vspace{0.5cm}
-
 \subsection*{Issue}
 
 \addcontentsline{toc}{subsection}{Issue}
@@ -671,14 +699,26 @@ Un'attività, un problema o una richiesta tracciata nel sistema di gestione del 
 
 \vspace{0.5cm}
 
+\subsection*{Istanza}
+
+\addcontentsline{toc}{subsection}{Istanza}
+
+Esecuzione specifica di un servizio, processo o database su un server. Rappresenta un'occorrenza singola di un'applicazione o servizio in esecuzione.
+
+\vspace{0.5cm}
+
+
 % J
+
 \section*{J}
+
 \addcontentsline{toc}{section}{J}
 
 \subsection*{JSON (JavaScript Object Notation)}
 \addcontentsline{toc}{subsection}{JSON (JavaScript Object Notation)}
 Formato leggero per lo scambio di dati, leggibile sia dagli esseri umani che dalle macchine, utilizzato frequentemente nelle comunicazioni via API.
 \vspace{0.5cm}
+
 
 % L
 
@@ -694,11 +734,6 @@ Linguaggio di markup e sistema di preparazione di documenti ampiamente usato in 
 
 \vspace{0.5cm}
 
-\subsection*{Linter}
-\addcontentsline{toc}{subsection}{Linter}
-Strumento di analisi statica del codice che identifica errori sintattici, problemi stilistici e potenziali bug senza eseguire il programma. Aiuta a mantenere uno stile di codifica consistente e a prevenire errori comuni prima della compilazione o dell'esecuzione.
-\vspace{0.5cm}
-
 \subsection*{Linguaggio naturale}
 
 \addcontentsline{toc}{subsection}{Linguaggio naturale}
@@ -707,17 +742,27 @@ Modalità di input umano basata su testo o voce interpretata e processata da mod
 
 \vspace{0.5cm}
 
+\subsection*{Linter}
+\addcontentsline{toc}{subsection}{Linter}
+Strumento di analisi statica del codice che identifica errori sintattici, problemi stilistici e potenziali bug senza eseguire il programma. Aiuta a mantenere uno stile di codifica consistente e a prevenire errori comuni prima della compilazione o dell'esecuzione.
+\vspace{0.5cm}
+
+\subsection*{Live Sync}
+\addcontentsline{toc}{subsection}{Live Sync}
+Funzionalità che garantisce l'aggiornamento in tempo reale dei dati visualizzati nell'interfaccia utente senza necessità di ricaricare la pagina.
+\vspace{0.5cm}
+
+\subsection*{LLM}
+\addcontentsline{toc}{subsection}{LLM}
+Acronimo di \textit{Large Language Model} (Modello Linguistico di Grandi Dimensioni). Modello di intelligenza artificiale addestrato su enormi quantità di testo per comprendere e generare linguaggio naturale, utilizzato per attività come elaborazione semantica, traduzione e generazione di contenuti.
+\vspace{0.5cm}
+
 \subsection*{Localhost}
 
 \addcontentsline{toc}{subsection}{Localhost}
 
 Indirizzo speciale che punta alla macchina locale (solitamente 127.0.0.1 nel protocollo IPv4). Utilizzato durante lo sviluppo per testare applicazioni sul computer dello sviluppatore.
 
-\vspace{0.5cm}
-
-\subsection*{Live Sync}
-\addcontentsline{toc}{subsection}{Live Sync}
-Funzionalità che garantisce l'aggiornamento in tempo reale dei dati visualizzati nell'interfaccia utente senza necessità di ricaricare la pagina.
 \vspace{0.5cm}
 
 \subsection*{Log IA}
@@ -736,10 +781,6 @@ Procedure di accesso (login) e disconnessione (logout) da un sistema. Login aute
 
 \vspace{0.5cm}
 
-\subsection*{LLM}
-\addcontentsline{toc}{subsection}{LLM}
-Acronimo di \textit{Large Language Model} (Modello Linguistico di Grandi Dimensioni). Modello di intelligenza artificiale addestrato su enormi quantità di testo per comprendere e generare linguaggio naturale, utilizzato per attività come elaborazione semantica, traduzione e generazione di contenuti.
-\vspace{0.5cm}
 
 % M
 
@@ -762,14 +803,6 @@ Operazione di unione del contenuto di due branch distinti in un unico branch. In
 Stile architetturale che struttura un'applicazione come una collezione di servizi piccoli, indipendenti e debolmente accoppiati. Ogni microservizio implementa una funzionalità specifica, può essere sviluppato e distribuito in modo autonomo, e comunica con gli altri tramite API ben definite.
 \vspace{0.5cm}
 
-\subsection*{Modello (IA)}
-
-\addcontentsline{toc}{subsection}{Modello (IA)}
-
-Algoritmo addestrato su dati storici che genera risposte e previsioni. Nel contesto dell'IA, rappresenta il "cervello" del sistema capace di processare input e produrre output intelligenti.
-
-\vspace{0.5cm}
-
 \subsection*{Milestone}
 \addcontentsline{toc}{subsection}{Milestone}
 Un punto di controllo significativo nel progetto che rappresenta il completamento di un insieme di attività o il raggiungimento di un obiettivo intermedio. Utilizzata per monitorare i progressi verso gli obiettivi principali.
@@ -785,10 +818,19 @@ Nell'ambito della gestione dei rischi, indica l'insieme delle azioni pianificate
 La struttura metodologica utilizzata per organizzare i processi di sviluppo del software (es. Modello a cascata, Modello Agile, Modello a V), definendo l'ordine e la natura delle fasi del ciclo di vita.
 \vspace{0.5cm}
 
+\subsection*{Modello (IA)}
+
+\addcontentsline{toc}{subsection}{Modello (IA)}
+
+Algoritmo addestrato su dati storici che genera risposte e previsioni. Nel contesto dell'IA, rappresenta il "cervello" del sistema capace di processare input e produrre output intelligenti.
+
+\vspace{0.5cm}
+
 \subsection*{MVP}
 \addcontentsline{toc}{subsection}{MVP}
 Acronimo di \textit{Minimum Viable Product} (Prodotto Minimo Funzionante). La versione di un nuovo prodotto che include solo le caratteristiche fondamentali necessarie per essere rilasciata ai primi utenti e raccogliere feedback per gli sviluppi futuri.
 \vspace{0.5cm}
+
 
 % N
 
@@ -796,12 +838,22 @@ Acronimo di \textit{Minimum Viable Product} (Prodotto Minimo Funzionante). La ve
 
 \addcontentsline{toc}{section}{N}
 
+\subsection*{NER}
+\addcontentsline{toc}{subsection}{NER}
+Acronimo di \textit{Named Entity Recognition} (Riconoscimento di Entità Nominate). Tecnica di NLP che identifica ed estrae automaticamente entità specifiche da testi non strutturati, come nomi di persone, luoghi, quantità, date e codici prodotto.
+\vspace{0.5cm}
+
 \subsection*{Next.js}
 
 \addcontentsline{toc}{subsection}{Next.js}
 
 Framework React moderno per lo sviluppo del frontend. Fornisce funzionalità avanzate come rendering lato server (SSR), static generation e API routes integrate.
 
+\vspace{0.5cm}
+
+\subsection*{NLP}
+\addcontentsline{toc}{subsection}{NLP}
+Acronimo di \textit{Natural Language Processing} (Elaborazione del Linguaggio Naturale). Campo dell'intelligenza artificiale che si occupa dell'interazione tra computer e linguaggio umano, permettendo alle macchine di leggere, decifrare e comprendere le lingue umane.
 \vspace{0.5cm}
 
 \subsection*{Node.js}
@@ -812,14 +864,12 @@ Ambiente di runtime per l'esecuzione di JavaScript lato server. Permette di util
 
 \vspace{0.5cm}
 
-\subsection*{NER}
-\addcontentsline{toc}{subsection}{NER}
-Acronimo di \textit{Named Entity Recognition} (Riconoscimento di Entità Nominate). Tecnica di NLP che identifica ed estrae automaticamente entità specifiche da testi non strutturati, come nomi di persone, luoghi, quantità, date e codici prodotto.
-\vspace{0.5cm}
+\subsection*{Norme di Progetto}
 
-\subsection*{NLP}
-\addcontentsline{toc}{subsection}{NLP}
-Acronimo di \textit{Natural Language Processing} (Elaborazione del Linguaggio Naturale). Campo dell'intelligenza artificiale che si occupa dell'interazione tra computer e linguaggio umano, permettendo alle macchine di leggere, decifrare e comprendere le lingue umane.
+\addcontentsline{toc}{subsection}{Norme di Progetto}
+
+Il documento che definisce il metodo di lavoro, le regole redazionali, gli strumenti e i processi di gestione adottati dal gruppo per garantire coerenza, tracciabilità e qualità.
+
 \vspace{0.5cm}
 
 \subsection*{npm}
@@ -830,13 +880,6 @@ Gestore di pacchetti per Node.js e JavaScript. Permette di installare, gestire e
 
 \vspace{0.5cm}
 
-\subsection*{Norme di Progetto}
-
-\addcontentsline{toc}{subsection}{Norme di Progetto}
-
-Il documento che definisce il metodo di lavoro, le regole redazionali, gli strumenti e i processi di gestione adottati dal gruppo per garantire coerenza, tracciabilità e qualità.
-
-\vspace{0.5cm}
 
 % O
 
@@ -863,11 +906,11 @@ Chiave di autenticazione necessaria per accedere ai servizi di intelligenza arti
 
 Elenco degli argomenti (chiamato anche "Agenda") pianificati per la discussione durante una riunione. È una sezione obbligatoria dei verbali.
 
+\vspace{0.5cm}
+
 \subsection*{Overleaf}
 \addcontentsline{toc}{subsection}{Overleaf}
 Editor LaTeX collaborativo in cloud, utilizzato dal gruppo per la redazione simultanea, la compilazione e la gestione della documentazione di progetto in tempo reale.
-\vspace{0.5cm}
-
 \vspace{0.5cm}
 
 % P
@@ -886,25 +929,17 @@ Convenzione di scrittura per identificatori in cui ogni parola inizia con letter
 Un aggiornamento software rilasciato per correggere bug, vulnerabilità di sicurezza o per migliorare l'usabilità e le prestazioni di un programma esistente.
 \vspace{0.5cm}
 
-\subsection*{Penpot}
-\addcontentsline{toc}{subsection}{Penpot}
-Piattaforma open source di design e prototipazione per interfacce utente, che permette la creazione collaborativa di wireframe, mockup e prototipi interattivi.
-\vspace{0.5cm}
-
-\subsection*{pip}
-
-\addcontentsline{toc}{subsection}{pip}
-
-Gestore di pacchetti per Python. Permette di installare, gestire e condividere librerie riutilizzabili (moduli) nei progetti Python.
-
-\vspace{0.5cm}
-
 \subsection*{Pattern architetturali}
 
 \addcontentsline{toc}{subsection}{Pattern architetturali}
 
 Soluzioni progettuali riutilizzabili che descrivono l'organizzazione strutturale di sistemi software, fornendo template collaudati per risolvere problemi ricorrenti di design.
 
+\vspace{0.5cm}
+
+\subsection*{Payload}
+\addcontentsline{toc}{subsection}{Payload}
+La parte utile ed effettiva dei dati trasmessa in un pacchetto di rete o generata da un sistema, al netto delle intestazioni (header) e altri metadati di instradamento.
 \vspace{0.5cm}
 
 \subsection*{PB (Product Baseline)}
@@ -922,6 +957,11 @@ Acronimo di \textit{Plan-Do-Check-Act}. Modello iterativo a quattro fasi per il 
 Acronimo di \textit{Portable Document Format}. Formato di file utilizzato per presentare e scambiare documenti in modo affidabile, indipendentemente dal software, dall'hardware o dal sistema operativo. È il formato finale di pubblicazione dei documenti del gruppo.
 \vspace{0.5cm}
 
+\subsection*{Penpot}
+\addcontentsline{toc}{subsection}{Penpot}
+Piattaforma open source di design e prototipazione per interfacce utente, che permette la creazione collaborativa di wireframe, mockup e prototipi interattivi.
+\vspace{0.5cm}
+
 \subsection*{Piano di Progetto}
 
 \addcontentsline{toc}{subsection}{Piano di Progetto}
@@ -935,6 +975,14 @@ Documento che descrive la pianificazione temporale del progetto, l'allocazione d
 \addcontentsline{toc}{subsection}{Piano di Qualifica}
 
 Documento che definisce le strategie di verifica e validazione adottate dal gruppo, descrivendo le tecniche, le metriche e i test utilizzati per garantire la qualità del prodotto.
+
+\vspace{0.5cm}
+
+\subsection*{pip}
+
+\addcontentsline{toc}{subsection}{pip}
+
+Gestore di pacchetti per Python. Permette di installare, gestire e condividere librerie riutilizzabili (moduli) nei progetti Python.
 
 \vspace{0.5cm}
 
@@ -964,6 +1012,11 @@ Sistema di gestione di database relazionali (RDBMS) open source. Fornisce strutt
 Documento o sezione del Piano di Progetto che stima le risorse economiche e temporali necessarie per completare il progetto, calcolate in base alle ore produttive pianificate per ciascun ruolo.
 \vspace{0.5cm}
 
+\subsection*{Primary Key (Chiave Primaria)}
+\addcontentsline{toc}{subsection}{Primary Key (Chiave Primaria)}
+Insieme di uno o più campi che identificano univocamente un singolo record all'interno di una tabella di database relazionale.
+\vspace{0.5cm}
+
 \subsection*{Product Backlog}
 \addcontentsline{toc}{subsection}{Product Backlog}
 In Scrum, è la lista di tutto ciò che si sa essere necessario nel prodotto. È l'unica fonte dei requisiti per ogni modifica da apportare al prodotto.
@@ -989,6 +1042,7 @@ Richiesta di integrazione delle modifiche da un branch al branch principale del 
 \addcontentsline{toc}{subsection}{Pydantic}
 Libreria Python per la validazione e serializzazione dei dati basata su type hints. Consente di definire modelli dati robusti e verificare automaticamente il formato dei payload in ingresso e uscita.
 \vspace{0.5cm}
+
 
 % R
 
@@ -1046,11 +1100,6 @@ File di testo che elenca tutte le dipendenze (librerie e moduli Python) necessar
 
 \vspace{0.5cm}
 
-\subsection*{Responsive}
-\addcontentsline{toc}{subsection}{Responsive}
-Approccio di progettazione dell'interfaccia utente che adatta layout e contenuti a diverse dimensioni di schermo e dispositivi, mantenendo usabilità e leggibilità.
-\vspace{0.5cm}
-
 \subsection*{Requisiti}
 
 \addcontentsline{toc}{subsection}{Requisiti}
@@ -1059,17 +1108,21 @@ Le necessità e le aspettative che il prodotto software deve soddisfare, classif
 
 \vspace{0.5cm}
 
+\subsection*{Responsive}
+\addcontentsline{toc}{subsection}{Responsive}
+Approccio di progettazione dell'interfaccia utente che adatta layout e contenuti a diverse dimensioni di schermo e dispositivi, mantenendo usabilità e leggibilità.
+\vspace{0.5cm}
+
 \subsection*{Retraining (Addestramento)}
 \addcontentsline{toc}{subsection}{Retraining (Addestramento)}
 Processo di aggiornamento e miglioramento di un modello di intelligenza artificiale attraverso l'integrazione di nuovi dati e feedback.
 \vspace{0.5cm}
 
-
-
 \subsection*{RTB (Requirements and Technology Baseline)}
 \addcontentsline{toc}{subsection}{RTB (Requirements and Technology Baseline)}
 Prima revisione di avanzamento del progetto didattico. Rappresenta il punto in cui il team dimostra di aver compreso i requisiti del capitolato, definito l'analisi dei requisiti e validato le scelte tecnologiche attraverso un Proof of Concept (PoC).
 \vspace{0.5cm}
+
 
 % S
 
@@ -1085,14 +1138,14 @@ Diagramma creato utilizzando il linguaggio di modellazione unificato (Unified Mo
 
 \vspace{0.5cm}
 
-\subsection*{SDK}
-\addcontentsline{toc}{subsection}{SDK}
-Acronimo di \textit{Software Development Kit}. Insieme di librerie, strumenti e documentazione che facilita l'integrazione di un servizio o di una piattaforma all'interno di un'applicazione.
-\vspace{0.5cm}
-
 \subsection*{Scrum}
 \addcontentsline{toc}{subsection}{Scrum}
 Un framework Agile per la gestione di progetti complessi. Si basa su iterazioni brevi (Sprint), ruoli definiti e cerimonie regolari per favorire la trasparenza, l'ispezione e l'adattamento.
+\vspace{0.5cm}
+
+\subsection*{SDK}
+\addcontentsline{toc}{subsection}{SDK}
+Acronimo di \textit{Software Development Kit}. Insieme di librerie, strumenti e documentazione che facilita l'integrazione di un servizio o di una piattaforma all'interno di un'applicazione.
 \vspace{0.5cm}
 
 \subsection*{SmartOrder}
@@ -1151,6 +1204,15 @@ Riunione conclusiva dello Sprint focalizzata sul processo. Il team ispeziona sé
 Evento che si tiene al termine dello Sprint per ispezionare l'Incremento di prodotto realizzato e valutare i progressi rispetto all'Obiettivo di Prodotto. Coinvolge lo Scrum Team e gli stakeholder in una sessione di lavoro volta a raccogliere feedback e, se necessario, ad aggiornare il Product Backlog per ottimizzare il valore delle versioni future.
 \vspace{0.5cm}
 
+\subsection*{SSE}
+\addcontentsline{toc}{subsection}{SSE}
+Acronimo di \textit{Server-Sent Events}. Tecnologia per lo streaming web in tempo reale che consente a un client di ricevere aggiornamenti automatici unidirezionali da un server HTTP.
+\vspace{0.5cm}
+
+\subsection*{Staging}
+\addcontentsline{toc}{subsection}{Staging}
+Ambiente intermedio o stato architetturale temporaneo utilizzato per comporre, assemblare o testare dati e artefatti in sicurezza prima del rilascio in produzione o verso un sistema ERP estero.
+\vspace{0.5cm}
 
 \subsection*{Stakeholder}
 
@@ -1159,6 +1221,7 @@ Evento che si tiene al termine dello Sprint per ispezionare l'Incremento di prod
 Qualsiasi individuo o gruppo che ha un interesse nel progetto o è influenzato dal suo risultato (es. membri del team, committenti, docenti).
 
 \vspace{0.5cm}
+
 
 % T
 
@@ -1180,6 +1243,16 @@ Un'attività o un compito specifico e tracciabile che deve essere svolto. La ges
 
 Applicazione di messaggistica istantanea usata come canale di comunicazione principale dal gruppo.
 
+\vspace{0.5cm}
+
+\subsection*{Telemetria semantica}
+\addcontentsline{toc}{subsection}{Telemetria semantica}
+Monitoraggio dei dati relativi alla qualità e all'accuratezza semantica delle risposte fornite dai modelli di linguaggio.
+\vspace{0.5cm}
+
+\subsection*{Template}
+\addcontentsline{toc}{subsection}{Template}
+Modello predefinito di documento che contiene la struttura, lo stile e le impostazioni grafiche standard (come loghi e intestazioni), utilizzato per garantire uniformità in tutta la documentazione di progetto.
 \vspace{0.5cm}
 
 \subsection*{Terminale / Shell}
@@ -1206,16 +1279,6 @@ Richiesta formale di assistenza, supporto tecnico o risoluzione di un problema t
 
 \vspace{0.5cm}
 
-\subsection*{Telemetria semantica}
-\addcontentsline{toc}{subsection}{Telemetria semantica}
-Monitoraggio dei dati relativi alla qualità e all'accuratezza semantica delle risposte fornite dai modelli di linguaggio.
-\vspace{0.5cm}
-
-\subsection*{Template}
-\addcontentsline{toc}{subsection}{Template}
-Modello predefinito di documento che contiene la struttura, lo stile e le impostazioni grafiche standard (come loghi e intestazioni), utilizzato per garantire uniformità in tutta la documentazione di progetto.
-\vspace{0.5cm}
-
 \subsection*{Ticketing / Escalation}
 \addcontentsline{toc}{subsection}{Ticketing / Escalation}
 Sistema di gestione delle anomalie in cui una richiesta viene tracciata (ticket) e, se necessario, inoltrata a un livello superiore di supporto (escalation).
@@ -1234,6 +1297,7 @@ Funzionalità dei gruppi Telegram che permette di suddividere le conversazioni i
 
 \vspace{0.5cm}
 
+
 % U
 
 \section*{U}
@@ -1244,6 +1308,7 @@ Funzionalità dei gruppi Telegram che permette di suddividere le conversazioni i
 \addcontentsline{toc}{subsection}{Unit Test}
 Test automatizzato che verifica il corretto funzionamento di una singola unità di codice (tipicamente un metodo o una funzione) in isolamento dalle altre componenti del sistema. Costituisce il primo livello della piramide dei test e permette di identificare rapidamente regressioni nel codice.
 \vspace{0.5cm}
+
 
 % V
 
@@ -1285,6 +1350,7 @@ Fase del ciclo di vita di un documento in cui un membro del gruppo, diverso dal 
 La gestione delle diverse versioni di un documento o di un software. Permette di tracciare la storia delle modifiche, ripristinare stati precedenti e gestire lo sviluppo concorrente (vedi anche Git).
 \vspace{0.5cm}
 
+
 % W
 
 \section*{W}
@@ -1306,5 +1372,6 @@ Applicazione software accessibile tramite browser web senza necessità di instal
 Una sequenza configurabile di operazioni automatizzate. Nel contesto di GitHub Actions, definisce i passi per processi come la compilazione o la pubblicazione. Sinonimo di Pipeline.
 
 \vspace{0.5cm}
+
 
 \end{document}
