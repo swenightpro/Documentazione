@@ -1,28 +1,9 @@
-# Report di compilazione del 2026-04-04T14:14:17+00:00
+# Report di compilazione del 2026-04-04T16:04:26+00:00
 
-Compilazione basata sul commit ba2b118037a9507896bc39dd7ba7a30fc9dc932a (base: ba2b118)
+Compilazione basata sul commit 748d5738a027be469deb3d948113662a8a1c718d (base: 748d573)
 
 ## Falliti
-❌ [src/PB/Documentazione Esterna/manuale_parts/shared/sezione_requisiti.tex](https://github.com/swenightpro/Documentazione/actions/runs/23980570079)
-
-❌ [src/PB/Documentazione Esterna/manuale_parts/shared/sezione_errori.tex](https://github.com/swenightpro/Documentazione/actions/runs/23980570079)
-
-❌ [src/PB/Documentazione Esterna/manuale_parts/shared/sezione_accesso.tex](https://github.com/swenightpro/Documentazione/actions/runs/23980570079)
-
-❌ [src/PB/Documentazione Esterna/manuale_parts/shared/PanoramicaCliente.tex](https://github.com/swenightpro/Documentazione/actions/runs/23980570079)
-
-❌ [src/PB/Documentazione Esterna/manuale_parts/shared/sezione_supporto.tex](https://github.com/swenightpro/Documentazione/actions/runs/23980570079)
-
-❌ [src/PB/Documentazione Esterna/manuale_parts/shared/IstruzioniOperatore.tex](https://github.com/swenightpro/Documentazione/actions/runs/23980570079)
-
-❌ [src/PB/Documentazione Esterna/manuale_parts/shared/IntroduzioneCliente.tex](https://github.com/swenightpro/Documentazione/actions/runs/23980570079)
-
-❌ [src/PB/Documentazione Esterna/manuale_parts/shared/PanoramicaOperatore.tex](https://github.com/swenightpro/Documentazione/actions/runs/23980570079)
-
-❌ [src/PB/Documentazione Esterna/manuale_parts/shared/IstruzioniCliente.tex](https://github.com/swenightpro/Documentazione/actions/runs/23980570079)
-
-❌ [src/PB/Documentazione Esterna/manuale_parts/shared/IntroduzioneOperatore.tex](https://github.com/swenightpro/Documentazione/actions/runs/23980570079)
-
+💡 Nessun errore di compilazione
 
 ## Compilati
 ✅ [docs/PB/Documentazione Esterna/Manuale_Operatore_v0.1.pdf](docs/PB/Documentazione%20Esterna/Manuale_Operatore_v0.1.pdf)
