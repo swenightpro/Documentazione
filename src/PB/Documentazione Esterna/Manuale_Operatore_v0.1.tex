@@ -1,0 +1,202 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl}
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{scrhack}
+\usepackage{placeins}
+\usepackage{tabularx}
+\usepackage{amsmath, amssymb, mathtools}
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}
+\graphicspath{{Contenuti/}{../../assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[svgnames,table]{xcolor}
+
+% --- Utility ---
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{hhline}
+\usepackage[italian]{cleveref}
+\usepackage{listings}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Manuale Operatore - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% --- Colonne tabella personalizzate ---
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+% --- Stile codice ---
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    backgroundcolor=\color{gray!5},
+    rulecolor=\color{gray!40},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{DarkBlue}\bfseries,
+    stringstyle=\color{OrangeRed},
+    commentstyle=\color{ForestGreen}\itshape,
+    showstringspaces=false,
+    tabsize=2
+}
+
+% ===================================================================
+%  HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textbf{NightPRO -- Progetto Ingegneria del Software}}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{4}
+
+% ===================================================================
+%  INIZIO DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  FRONTESPIZIO
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+
+    \begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png}
+    \end{figure}
+
+
+    \vfill
+
+    {\small UNIVERSIT\`A DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    \vfill
+
+    {\Huge \bfseries Manuale Operatore \par}
+    \vspace{1cm}
+
+    \vfill
+
+    {\Large \bfseries Gruppo: NightPRO}    \vspace{0.5cm}\\
+    {\Large \bfseries Sistema: SmartOrder}    \vspace{0.5cm}
+
+    \large \leavevmode\href{swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \\[2cm]
+
+    {\large Data: 2026-04-04 \par}
+
+    {\Large Versione: 0.1 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  TABELLA DELLE VERSIONI
+% -------------------------------------------------------------------
+\newpage
+\pagestyle{fancy}
+\phantomsection
+\section*{Tabella delle Versioni}
+\vspace{0.2cm}
+\begin{center}
+    \resizebox{\textwidth}{!}{
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{@{}llp{0.25\textwidth}p{0.45\textwidth}c@{}}
+            \toprule
+            \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
+            \midrule
+            0.1 & 2026-04-04 & Davide Biasuzzi & Stesura base documento manuale operatore & L. Bilato \\
+            \bottomrule
+        \end{tabular}
+    }
+\end{center}
+
+% -------------------------------------------------------------------
+%  INDICE
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents
+\listoffigures
+\listoftables
+\pagestyle{fancy}
+
+% -------------------------------------------------------------------
+%  COMPONENTI DEL GRUPPO
+% -------------------------------------------------------------------
+\newpage
+\section*{Componenti del Gruppo}
+\addcontentsline{toc}{section}{Componenti del Gruppo}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{@{}llc@{}}
+        \toprule
+        \textbf{Cognome} & \textbf{Nome}   & \textbf{Matricola} \\
+        \midrule
+        Biasuzzi         & Davide          & 2111000            \\
+        Bilato           & Leonardo        & 2071084            \\
+        Zanella          & Francesco       & 2116442            \\
+        Romascu          & Mihaela-Mariana & 2079726            \\
+        Ogniben          & Michele         & 2042325            \\
+        Perozzo          & Samuele         & 2110989            \\
+        Ponso            & Giovanni        & 2000558            \\
+        \bottomrule
+    \end{tabular}
+    \caption{Componenti del gruppo NightPRO.}
+\end{table}
+
+% ===================================================================
+%  SEZIONI
+% ===================================================================
+\newpage
+\input{manuale_parts/shared/IntroduzioneOperatore}
+
+\newpage
+\input{manuale_parts/shared/sezione_requisiti}
+
+\newpage
+\input{manuale_parts/shared/sezione_accesso}
+
+\newpage
+\input{manuale_parts/shared/PanoramicaOperatore}
+
+\newpage
+\input{manuale_parts/shared/IstruzioniOperatore}
+
+\newpage
+\input{manuale_parts/shared/sezione_errori}
+
+\newpage
+\input{manuale_parts/shared/sezione_supporto}
+
+\end{document}

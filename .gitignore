@@ -18,3 +18,8 @@ src/RTB/Documentazione Esterna/Piano_di_Qualifica_v0.4.pdf
 *.md
 /src/RTB/build
 *.puml
+*.omc
+*.lof
+*.lot
+src/PB/Documentazione Esterna/Manuale_Cliente_v0.4.pdf
+src/PB/Documentazione Esterna/Manuale_Operatore_v0.1.pdf

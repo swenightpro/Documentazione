@@ -1,0 +1,44 @@
+\subsection{Scopo del documento}
+Il presente documento costituisce il \textbf{Manuale Cliente} del sistema \textit{SmartOrder}, sviluppato dal gruppo NightPRO nell'ambito del corso di Ingegneria del Software (A.A.\ 2025/2026) dell'Universit\`a degli Studi di Padova.
+
+Lo scopo del manuale \`e fornire agli utenti finali CLIENTI tutte le informazioni necessarie per utilizzare in modo efficace la piattaforma, descrivendone le funzionalit\`a, l'interfaccia e le modalit\`a di interazione.
+
+Il documento \`e redatto in modo incrementale: le sezioni relative alle istruzioni d'uso sono state completate a seguito dello sviluppo dell'MVP.
+
+\subsection{Scopo del prodotto}
+\textit{SmartOrder} \`e una piattaforma B2B\textsubscript{\textit{g}} per la gestione automatizzata degli ordini commerciali. Il sistema consente ai clienti di formulare ordini in \textbf{linguaggio naturale} --- tramite testo e audio --- sfruttando un pipeline di intelligenza artificiale basato su LLM\textsubscript{\textit{g}} per:
+
+\begin{itemize}[noitemsep]
+    \item interpretare l'intento dell'utente e dedurre quantit\`a e prodotti;
+    \item mappare gli articoli richiesti sul catalogo aziendale tramite \textbf{Vector Search} (embedding);
+    \item generare un output strutturato in formato JSON\textsubscript{\textit{g}} pronto per l'integrazione con il sistema ERP\textsubscript{\textit{g}} aziendale.
+\end{itemize}
+
+La piattaforma mette inoltre a disposizione un \textbf{carrello virtuale} per la validazione visiva dell'ordine prima dell'invio, un \textbf{sistema di ticketing} per l'assistenza umana in tempo reale e un meccanismo di \textbf{logging e feedback} per il miglioramento continuo del modello (Human-in-the-Loop).
+
+\subsection{Destinatari del documento}
+Il manuale si rivolge alla seguente categoria di utenti:
+
+\begin{description}[style=nextline]
+    \item[\textbf{Cliente}] Acquirente B2B (ad esempio ristoratore, negoziante) che utilizza l'interfaccia mobile-first per dettare ordini, gestire il carrello e consultare lo storico.
+\end{description}
+
+\subsection{Glossario}
+Per evitare ambiguit\`a, i termini tecnici e di dominio sono definiti nel \textit{Glossario v2.0}.
+I termini presenti nel glossario sono contrassegnati con il simbolo \textsubscript{\textit{g}} alla prima occorrenza in ogni sezione.
+
+\subsection{Riferimenti}
+
+\subsubsection{Riferimenti normativi}
+\begin{itemize}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/RTB/Documentazione%20Interna/Norme_di_Progetto_v2.0.pdf}{Norme di Progetto v2.0}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/RTB/Documentazione%20Esterna/Analisi%20dei%20Requisiti%20v1.1.pdf}{Analisi dei Requisiti v1.1}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/PB/Documentazione%20Esterna/Specifica%20Tecnica%20v0.1.pdf}{Specifica Tecnica v0.1}
+\end{itemize}
+
+\subsubsection{Riferimenti informativi}
+\begin{itemize}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/RTB/Documentazione%20Esterna/Glossario_v2.0.pdf}{Glossario v2.0}
+    \item \href{https://nextjs.org/docs}{Next.js Documentation}
+    \item \href{https://fastapi.tiangolo.com}{FastAPI Documentation}
+\end{itemize}

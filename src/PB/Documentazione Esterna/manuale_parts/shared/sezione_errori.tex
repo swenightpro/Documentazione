@@ -1,0 +1,45 @@
+Di seguito sono elencati i principali messaggi di errore che l'utente potrebbe incontrare durante l'utilizzo della piattaforma, con le relative soluzioni suggerite.
+
+\begin{longtable}{|p{4cm}|p{4cm}|p{5.5cm}|}
+    \caption{Tabella messaggi di errore e soluzioni.}
+    \label{tab:errori} \\
+    \hline
+    \rowcolor{gray!10} \textbf{Messaggio / Situazione} & \textbf{Causa probabile} & \textbf{Soluzione} \\
+    \hline
+    \endfirsthead
+    \hline
+    \rowcolor{gray!10} \textbf{Messaggio / Situazione} & \textbf{Causa probabile} & \textbf{Soluzione} \\
+    \hline
+    \endhead
+    \hline
+    \endfoot
+
+    \textit{``Errore di rete durante il login''} & Credenziali non corrette o server non raggiungibile & Verificare di aver inserito email e password corretti. Controllare la connessione a internet. \\
+    \hline
+    \textit{``Impossibile accedere al microfono''} & Browser non ha (o ha negato) il permesso di usare il microfono & Concedere il permesso del microfono nelle impostazioni del browser. Ricaricare la pagina. \\
+    \hline
+    \textit{``Non ho capito nulla dall'audio. Puoi ripetere o scrivere?''} & Audio troppo basso, rumore di fondo eccessivo o vocabolario non riconosciuto & Ripetere la frase in modo pi\`u chiaro, avvicinarsi al microfono, diminuire i rumori ambientali. In alternativa, digitare il testo. \\
+    \hline
+    \textit{``Servizio chat non disponibile. Verifica che il servizio Python sia attivo sulla porta 8000.''} & Il backend FastAPI non \`e in esecuzione & Avviare il backend con \texttt{python main.py} nella directory \texttt{backend}. Verificare che stia ascoltando sulla porta corretta. \\
+    \hline
+    Articolo evidenziato in rosso nel carrello: \texttt{Articolo non pi\`u disponibile} & Il prodotto non \`e pi\`u disponibile nel catalogo al momento dell'invio dell'ordine & Rimuovere l'articolo dal carrello prima di inviare nuovamente l'ordine. \\
+    \hline
+    Articolo non aggiunto al carrello (``Alcuni prodotti non risultano al momento disponibili'') & Il codice articolo richiesto non corrisponde a nessun prodotto nel catalogo dell'utente & Provare a descrivere il prodotto con altre parole chiave, oppure cercarlo manualmente nel catalogo. \\
+    \hline
+    \textit{``Errore invio ordine''} con codice articolo specifico & Il backend ha rifiutato l'articolo per vincoli di catalogo o autorizzazione & Rimuovere l'articolo indicato dall'errore e riprovare. Se il problema persiste, contattare il supporto. \\
+    \hline
+    \textit{``Articolo bloccato: [stato]''} & L'articolo ha uno stato che ne impedisce l'aggiunta (sospeso, su autorizzazione, non disponibile) & Non \`e possibile aggiungere questo articolo. Provare con un'alternativa o contattare l'assistenza. \\
+    \hline
+    La lista ticket non si aggiorna & Connessione SSE interrotta & Cliccare su \texttt{Aggiorna} per ricaricare manualmente. Verificare la connessione a internet. \\
+    \hline
+    \textit{``Errore di rete''} in qualsiasi operazione & Temporanea indisponibilit\`a del server o della connessione & Attendere qualche secondo e riprovare. Se il problema persiste, ricaricare la pagina. \\
+    \hline
+    \textit{``Le due password non corrispondono''} & Errore di digitazione nel campo conferma password & Verificare che i campi \texttt{Nuova password} e \texttt{Conferma password} siano identici. \\
+    \hline
+    \textit{``La nuova password deve avere almeno 6 caratteri''} & Password troppo corta & Scegliere una nuova password di almeno 6 caratteri. \\
+    \hline
+    \textit{``Password attuale''} non accettata & Password attuale errata & Verificare di star inserendo la password corrente correttamente. \\
+    \hline
+    Export batch fallito (toast: ``ordini esportati, X falliti'') & Errore nella scrittura dei file nella cartella export configurata & Verificare che la cartella di export esista e che l'utente abbia i permessi di scrittura su di essa. Controllare il path configurato nel profilo operatore. \\
+    \hline
+    \end{longtable}
