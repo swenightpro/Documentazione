@@ -556,9 +556,8 @@ ul { list-style: none; margin: 0; padding: 0; }
   color: var(--primary);
 }
 
-/* ── Signed Badge ── */
-.signed-badge {
-  background: var(--gradient-accent);
+/* ── Badges ── */
+.signed-badge, .version-badge {
   color: #fff;
   padding: 2px 8px;
   font-size: 0.7rem;
@@ -567,7 +566,23 @@ ul { list-style: none; margin: 0; padding: 0; }
   margin-left: 6px;
   letter-spacing: 0.03em;
   text-transform: uppercase;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.signed-badge {
+  background: var(--gradient-accent);
   box-shadow: 0 1px 4px rgba(124,58,237,0.25);
+}
+
+.version-badge {
+  background: var(--muted);
+  opacity: 0.85;
+}
+
+.dark-mode .version-badge {
+  background: var(--primary-light);
+  color: var(--primary);
+  border: 1px solid var(--border);
 }
 
 /* ── Search Highlight ── */

@@ -48,6 +48,10 @@ jobs:
           mkdir -p site/docs
           cp -r docs/* site/docs/
 
+      - name: Create stable PDF copies
+        run: python make_stable_copies.py
+        working-directory: ./site
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

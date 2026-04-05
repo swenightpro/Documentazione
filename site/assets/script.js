@@ -193,14 +193,14 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         const row = document.createElement("div");
         row.className = "pdf_row";
-        const version = item.version ? ` v${item.version.replace(/^v+/, "")}` : "";
+        const version = item.version ? `<span class="version-badge">${item.version.replace(/^v+/, "v")}</span>` : "";
         const date = (item.name.toLowerCase().startsWith("verbale") && item.date) ? ` ${item.date}` : "";
         const signed = item.signed ? `<span class="signed-badge">Firmato</span>` : "";
         const link = document.createElement("a");
         link.className = "file-name";
         link.href = item.path;
         link.target = "_blank";
-        link.innerHTML = `<img src="./assets/images/pdf.svg" class="icon-pdf"> ${item.name}${date}${version} ${signed}`;
+        link.innerHTML = `<img src="./assets/images/pdf.svg" class="icon-pdf"> ${item.name}${date} ${version} ${signed}`;
         const dl = document.createElement("a");
         dl.href = item.path;
         dl.download = "";
