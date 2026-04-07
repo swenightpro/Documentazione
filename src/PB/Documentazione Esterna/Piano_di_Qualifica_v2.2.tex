@@ -95,8 +95,8 @@
 
 \vfill
 
-{\large Data: 2026-03-27 \par}
-{\Large Versione: 2.1 \par}
+{\large Data: 2026-04-07 \par}
+{\Large Versione: 2.2 \par}
 
 \end{titlepage}
 
@@ -113,6 +113,7 @@
 \toprule
 \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione} & \textbf{Verificatore} \\
 \midrule
+2.2 & 2026-04-07 & Francesco Zanella & Implementazione delle strategie di test e aggiornamento dei requisiti soddisfatti e delle metriche di copertura del codice & Leonardo Bilato\\
 2.1 & 2026-03-27 & Francesco Zanella & Aggiornamento dei grafici e delle metriche di qualità per lo Sprint 12 & Leonardo Bilato\\
 2.0 & 2026-03-17 & Francesco Zanella & Approvazione del documento & -\\
 1.1 & 2026-03-12 & Francesco Zanella & Aggiornamento dei requisiti in linea con l'Analisi dei Requisiti v1.1 e aggiornamento grafici con sprint 10-11 & Mihaela-Mariana Romascu\\
@@ -1403,6 +1404,283 @@ Le verifiche di qualità della documentazione sono automatizzate e integrate nel
 
 La verifica è non-bloccante per i build, ovvero gli errori rilevati non impediscono il progresso della pipeline, tuttavia vengono tracciati e riportati nel report per consentire al gruppo di monitorare gli standard di qualità e di correggere sistematicamente i problemi identificati.
 
+\section{Strategie di testing}
+
+Questa sezione definisce in maniera rigorosa ed analitica le macro-strategie per la verifica del prodotto MVP. A seguito di una scrupolosa revisione dell'architettura e per evitare ridondanze, l'elenco esclude volutamente unit test superflui (es. componenti puramente estetici) concentrandosi unicamente sui Layer di logica: Controller FastAPI, Service Core e Adapter di Integrazione. In virtù di questa raffinazione, sono catalogati in modo puntuale 181 casi essenziali di Test di Unità, 22 di Integrazione e 20 di Sistema, in grado di coprire l'MVP in modalità White Box e Black Box.
+
+
+\subsection{Test di unità}
+I Test di Unità hanno lo scopo di collaudare strutturalmente in isolamento i singoli componenti software e i metodi principali, garantendone la correttezza algoritmica e gestionale. Più nello specifico, questi test mirano a certificare l'affidabilità e il determinismo delle funzioni esclusive atte a mutare lo stato, delle complesse logiche di orchestrazione e validazione implementate nel Backend, e dei Custom Hook essenziali nel framework Frontend (React). In questo modo, eventuali vulnerabilità operative possono essere circoscritte e risolte sul nascere nel livello logico più isolato.
+\begin{longtable}{|p{1.9cm}|p{11.6cm}|c|}
+\hline
+\rowcolor[gray]{0.9}
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Stato} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor[gray]{0.9}
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Stato} \\
+\hline
+\endhead
+TU001 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{execute\_query} del modulo \texttt{database}. & \\ \hline
+TU002 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{execute\_query\_one} del modulo \texttt{database}. & \\ \hline
+TU003 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{find\_by\_email} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU004 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{find\_by\_id} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU005 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_user} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU006 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{update\_password} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU007 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_client\_info} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU008 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{search\_clients} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU009 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_active\_session} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU010 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_session} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU011 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_messages} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU012 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{save\_message} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU013 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{save\_image\_message} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU014 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_message\_by\_id} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU015 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_cart\_by\_session} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU016 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_cart} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU017 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{add\_to\_cart} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU018 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{add\_to\_cart\_by\_session} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU019 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{remove\_from\_cart} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU020 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{remove\_from\_cart\_by\_session} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU021 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{update\_cart\_quantity} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU022 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{update\_cart\_quantity\_by\_session} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU023 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{clear\_cart} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU024 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{clear\_cart\_by\_session} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU025 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_order} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU026 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_orders\_by\_client} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU027 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_all\_orders} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU028 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_order\_detail} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU029 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_order\_detail\_any} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU030 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{search\_products} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU031 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{find\_product\_by\_name} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU032 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{find\_products\_by\_name\_fuzzy} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU033 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{find\_product\_by\_name\_merged} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU034 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{find\_product\_by\_code} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU035 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{save\_feedback} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU036 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{delete\_feedback} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU037 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{search\_products\_for\_ai} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU038 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{search\_products\_keyword} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU039 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_embedding} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU040 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{upsert\_embedding} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU041 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{search\_products\_vector} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU042 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{has\_embeddings} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU043 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_cart\_by\_client} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU044 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_order\_history\_flat} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU045 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_available\_cod\_art} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU046 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_last\_orders} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU047 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_ticket} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU048 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_ticket\_by\_session} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU049 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_open\_tickets} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU050 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_ticket\_by\_id} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU051 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{lock\_ticket} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU052 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{unlock\_ticket} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU053 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{close\_ticket} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU054 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_last\_message\_time} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU055 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_export\_folder} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU056 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{set\_export\_folder} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU057 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{mark\_order\_exported} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU058 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{mark\_orders\_exported} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU059 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{send\_message} del modulo \texttt{postgres\_adapter}. & \\ \hline
+TU060 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{transcribe\_audio} del modulo \texttt{openai\_adapter}. & \\ \hline
+TU061 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{interpret\_intent} del modulo \texttt{openai\_adapter}. & \\ \hline
+TU062 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{generate\_embedding} del modulo \texttt{openai\_adapter}. & \\ \hline
+TU063 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{analyze\_image} del modulo \texttt{openai\_adapter}. & \\ \hline
+TU064 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{login} del modulo \texttt{auth\_controller}. & \\ \hline
+TU065 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{logout} del modulo \texttt{auth\_controller}. & \\ \hline
+TU066 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{me} del modulo \texttt{auth\_controller}. & \\ \hline
+TU067 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{change\_password} del modulo \texttt{auth\_controller}. & \\ \hline
+TU068 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{register} del modulo \texttt{auth\_controller}. & \\ \hline
+TU069 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_export\_folder} del modulo \texttt{auth\_controller}. & \\ \hline
+TU070 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{set\_export\_folder} del modulo \texttt{auth\_controller}. & \\ \hline
+TU071 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_order} del modulo \texttt{order\_controller}. & \\ \hline
+TU072 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{list\_orders} del modulo \texttt{order\_controller}. & \\ \hline
+TU073 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{list\_all\_orders} del modulo \texttt{order\_controller}. & \\ \hline
+TU074 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{export\_batch\_orders} del modulo \texttt{order\_controller}. & \\ \hline
+TU075 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{order\_detail} del modulo \texttt{order\_controller}. & \\ \hline
+TU076 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{export\_order} del modulo \texttt{order\_controller}. & \\ \hline
+TU077 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{search\_clients} del modulo \texttt{client\_controller}. & \\ \hline
+TU078 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{handle\_feedback} del modulo \texttt{feedback\_controller}. & \\ \hline
+TU079 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{list\_open\_tickets} del modulo \texttt{ticket\_controller}. & \\ \hline
+TU080 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_ticket} del modulo \texttt{ticket\_controller}. & \\ \hline
+TU081 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_ticket\_by\_session} del modulo \texttt{ticket\_controller}. & \\ \hline
+TU082 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_ticket} del modulo \texttt{ticket\_controller}. & \\ \hline
+TU083 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{lock\_ticket} del modulo \texttt{ticket\_controller}. & \\ \hline
+TU084 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{send\_ticket\_message} del modulo \texttt{ticket\_controller}. & \\ \hline
+TU085 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{unlock\_ticket} del modulo \texttt{ticket\_controller}. & \\ \hline
+TU086 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{close\_ticket} del modulo \texttt{ticket\_controller}. & \\ \hline
+TU087 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{close\_ticket\_by\_session} del modulo \texttt{ticket\_controller}. & \\ \hline
+TU088 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{send\_customer\_message} del modulo \texttt{ticket\_controller}. & \\ \hline
+TU089 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_cart} del modulo \texttt{cart\_controller}. & \\ \hline
+TU090 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{cart\_action} del modulo \texttt{cart\_controller}. & \\ \hline
+TU091 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{add\_by\_name} del modulo \texttt{cart\_controller}. & \\ \hline
+TU092 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{register} del modulo \texttt{register\_controller}. & \\ \hline
+TU093 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{sse\_tickets} del modulo \texttt{sse\_controller}. & \\ \hline
+TU094 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{sse\_session} del modulo \texttt{sse\_controller}. & \\ \hline
+TU095 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{search\_products} del modulo \texttt{product\_controller}. & \\ \hline
+TU096 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{chat} del modulo \texttt{conversation\_controller}. & \\ \hline
+TU097 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{chat\_image} del modulo \texttt{conversation\_controller}. & \\ \hline
+TU098 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{save\_message\_to\_session} del modulo \texttt{conversation\_controller}. & \\ \hline
+TU099 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{transcribe} del modulo \texttt{conversation\_controller}. & \\ \hline
+TU100 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_active\_session} del modulo \texttt{conversation\_controller}. & \\ \hline
+TU101 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_session} del modulo \texttt{conversation\_controller}. & \\ \hline
+TU102 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_messages} del modulo \texttt{conversation\_controller}. & \\ \hline
+TU103 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{hash\_password} del modulo \texttt{auth\_service}. & \\ \hline
+TU104 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{verify\_password} del modulo \texttt{auth\_service}. & \\ \hline
+TU105 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_jwt} del modulo \texttt{auth\_service}. & \\ \hline
+TU106 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{verify\_jwt} del modulo \texttt{auth\_service}. & \\ \hline
+TU107 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{login} del modulo \texttt{auth\_service}. & \\ \hline
+TU108 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_profile} del modulo \texttt{auth\_service}. & \\ \hline
+TU109 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_export\_folder} del modulo \texttt{auth\_service}. & \\ \hline
+TU110 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{set\_export\_folder} del modulo \texttt{auth\_service}. & \\ \hline
+TU111 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{change\_password} del modulo \texttt{auth\_service}. & \\ \hline
+TU112 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{register} del modulo \texttt{auth\_service}. & \\ \hline
+TU113 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_active\_session} del modulo \texttt{conversation\_service}. & \\ \hline
+TU114 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_session} del modulo \texttt{conversation\_service}. & \\ \hline
+TU115 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_messages} del modulo \texttt{conversation\_service}. & \\ \hline
+TU116 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{transcribe\_audio} del modulo \texttt{conversation\_service}. & \\ \hline
+TU117 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{save\_message\_to\_session} del modulo \texttt{conversation\_service}. & \\ \hline
+TU118 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{handle\_message} del modulo \texttt{conversation\_service}. & \\ \hline
+TU119 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_ticket} del modulo \texttt{ticket\_service}. & \\ \hline
+TU120 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_open\_tickets} del modulo \texttt{ticket\_service}. & \\ \hline
+TU121 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_ticket\_by\_id} del modulo \texttt{ticket\_service}. & \\ \hline
+TU122 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{lock\_ticket} del modulo \texttt{ticket\_service}. & \\ \hline
+TU123 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{unlock\_ticket} del modulo \texttt{ticket\_service}. & \\ \hline
+TU124 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{close\_ticket} del modulo \texttt{ticket\_service}. & \\ \hline
+TU125 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{send\_chat\_message} del modulo \texttt{ticket\_service}. & \\ \hline
+TU126 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_ticket\_by\_session} del modulo \texttt{ticket\_service}. & \\ \hline
+TU127 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{close\_ticket\_by\_session} del modulo \texttt{ticket\_service}. & \\ \hline
+TU128 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{save\_customer\_message} del modulo \texttt{ticket\_service}. & \\ \hline
+TU129 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_order} del modulo \texttt{order\_service}. & \\ \hline
+TU130 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_orders\_by\_client} del modulo \texttt{order\_service}. & \\ \hline
+TU131 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_all\_orders} del modulo \texttt{order\_service}. & \\ \hline
+TU132 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_order\_detail} del modulo \texttt{order\_service}. & \\ \hline
+TU133 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{export\_order} del modulo \texttt{order\_service}. & \\ \hline
+TU134 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{export\_batch} del modulo \texttt{order\_service}. & \\ \hline
+TU135 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_broadcaster} del modulo \texttt{sse\_broadcaster}. & \\ \hline
+TU136 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{subscribe} del modulo \texttt{sse\_broadcaster}. & \\ \hline
+TU137 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{unsubscribe} del modulo \texttt{sse\_broadcaster}. & \\ \hline
+TU138 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{emit} del modulo \texttt{sse\_broadcaster}. & \\ \hline
+TU139 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{active\_connections} del modulo \texttt{sse\_broadcaster}. & \\ \hline
+TU140 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_cart} del modulo \texttt{cart\_service}. & \\ \hline
+TU141 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_cart\_by\_session} del modulo \texttt{cart\_service}. & \\ \hline
+TU142 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{add\_to\_cart} del modulo \texttt{cart\_service}. & \\ \hline
+TU143 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{remove\_from\_cart} del modulo \texttt{cart\_service}. & \\ \hline
+TU144 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{update\_cart\_quantity} del modulo \texttt{cart\_service}. & \\ \hline
+TU145 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{clear\_cart} del modulo \texttt{cart\_service}. & \\ \hline
+TU146 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{search\_clients} del modulo \texttt{client\_service}. & \\ \hline
+TU147 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{save\_feedback} del modulo \texttt{feedback\_service}. & \\ \hline
+TU148 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{delete\_feedback} del modulo \texttt{feedback\_service}. & \\ \hline
+TU149 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{search\_products} del modulo \texttt{product\_service}. & \\ \hline
+TU150 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{was\_ordered\_before} del modulo \texttt{confidence\_scorer}. & \\ \hline
+TU151 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{score} del modulo \texttt{confidence\_scorer}. & \\ \hline
+TU152 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{low\_confidence\_threshold} del modulo \texttt{confidence\_scorer}. & \\ \hline
+TU153 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleImageUpload} nel componente/servizio \texttt{ChatPanel}. & \\ \hline
+TU154 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleDrop} nel componente/servizio \texttt{ChatPanel}. & \\ \hline
+TU155 & Verifica la corretta esecuzione della logica o dell'handler \texttt{sendVoiceBlob} nel componente/servizio \texttt{ChatPanel}. & \\ \hline
+TU156 & Verifica la corretta esecuzione della logica o dell'handler \texttt{stopRecording} nel componente/servizio \texttt{ChatPanel}. & \\ \hline
+TU157 & Verifica la corretta esecuzione della logica o dell'handler \texttt{startRecording} nel componente/servizio \texttt{ChatPanel}. & \\ \hline
+TU158 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleSend} nel componente/servizio \texttt{ChatPanel}. & \\ \hline
+TU159 & Verifica la corretta esecuzione della logica o dell'handler \texttt{processImageFile} nel componente/servizio \texttt{ChatPanel}. & \\ \hline
+TU160 & Verifica la corretta esecuzione della logica o dell'handler \texttt{sendMessageContent} nel componente/servizio \texttt{ChatPanel}. & \\ \hline
+TU161 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleFeedback} nel componente/servizio \texttt{ChatPanel}. & \\ \hline
+TU162 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleProductClick} nel componente/servizio \texttt{ChatPanel}. & \\ \hline
+TU163 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleLogin} nel componente/servizio \texttt{LoginForm}. & \\ \hline
+TU164 & Verifica la corretta esecuzione della logica o dell'handler \texttt{formatWaiting} nel componente/servizio \texttt{TicketDashboard}. & \\ \hline
+TU165 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleTicketClosed} nel componente/servizio \texttt{TicketDashboard}. & \\ \hline
+TU166 & Verifica la corretta esecuzione della logica o dell'handler \texttt{fetchOrders} nel componente/servizio \texttt{OperatorOrderHistory}. & \\ \hline
+TU167 & Verifica la corretta esecuzione della logica o dell'handler \texttt{SortHeader} nel componente/servizio \texttt{OperatorOrderHistory}. & \\ \hline
+TU168 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleDateChange} nel componente/servizio \texttt{OperatorOrderHistory}. & \\ \hline
+TU169 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleClearFilters} nel componente/servizio \texttt{OperatorOrderHistory}. & \\ \hline
+TU170 & Verifica la corretta esecuzione della logica o dell'handler \texttt{applyFilters} nel componente/servizio \texttt{OperatorOrderHistory}. & \\ \hline
+TU171 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleSort} nel componente/servizio \texttt{OperatorOrderHistory}. & \\ \hline
+TU172 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleSearchChange} nel componente/servizio \texttt{OperatorOrderHistory}. & \\ \hline
+TU173 & Verifica la corretta esecuzione della logica o dell'handler \texttt{goToPage} nel componente/servizio \texttt{OperatorOrderHistory}. & \\ \hline
+TU174 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleSelect} nel componente/servizio \texttt{ProductSearch}. & \\ \hline
+TU175 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleSendFullOrder} nel componente/servizio \texttt{CartPanel}. & \\ \hline
+TU176 & Verifica la corretta esecuzione della logica o dell'handler \texttt{addToCart} nel componente/servizio \texttt{CartPanel}. & \\ \hline
+TU177 & Verifica la corretta esecuzione della logica o dell'handler \texttt{removeFromCart} nel componente/servizio \texttt{CartPanel}. & \\ \hline
+TU178 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleAssistenzaAction} nel componente/servizio \texttt{CartPanel}. & \\ \hline
+TU179 & Verifica la corretta esecuzione della logica o dell'handler \texttt{CartList} nel componente/servizio \texttt{CartPanel}. & \\ \hline
+TU180 & Verifica la corretta esecuzione della logica o dell'handler \texttt{updateCartQty} nel componente/servizio \texttt{CartPanel}. & \\ \hline
+TU181 & Verifica la corretta esecuzione della logica o dell'handler \texttt{buildFiltersQuery} nel componente/servizio \texttt{orderService}. & \\ \hline
+\caption{Elenco dei Test di Unità focalizzati sui Layer Logici MVP}
+\end{longtable}
+
+\subsection{Test di integrazione}
+I Test di Integrazione verificano sistematicamente la stabilità dei confini architetturali (boundaries) attraverso i quali interagiscono i diversi moduli applicativi disaccoppiati. Questo collaudo si concentra sui nodi nevralgici della pipeline e sui flussi di comunicazione inter-servizio: l'interfacciamento tra i client web Frontend e i paradigmi REST API esposti dal Backend, la sintonia tra il Backend transazionale (FastAPI) e il Data Layer (PostgreSQL) per operazioni CRUD, nonché l'orchestrazione sincrona/asincrona necessaria al corretto utilizzo di agenti IA e servizi esterni (OpenAI Controller API).
+\begin{longtable}{|p{1.9cm}|p{11.6cm}|c|}
+\hline
+\rowcolor[gray]{0.9}
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Stato} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor[gray]{0.9}
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Stato} \\
+\hline
+\endhead
+TI001 & Verifica l'interazione e il protocollo di scambio tra \texttt{authService} e \texttt{auth\_controller} (Responsabilità: Flusso di autenticazione client-server e rilascio JWT). & \\ \hline
+TI002 & Verifica l'interazione e il protocollo di scambio tra \texttt{authService} e \texttt{auth\_controller} (Responsabilità: Integrazione GET profile per validazione sessione al refresh). & \\ \hline
+TI003 & Verifica l'interazione e il protocollo di scambio tra \texttt{cartService} e \texttt{cart\_controller} (Responsabilità: Fetch del carrello da componente React a endpoint FastAPI). & \\ \hline
+TI004 & Verifica l'interazione e il protocollo di scambio tra \texttt{cartService} e \texttt{cart\_controller} (Responsabilità: Integrazione POST add\_item con aggiornamento Reducer frontend). & \\ \hline
+TI005 & Verifica l'interazione e il protocollo di scambio tra \texttt{chatService} e \texttt{conversation\_controller} (Responsabilità: Trasmissione stringa intent e ritorno context differito). & \\ \hline
+TI006 & Verifica l'interazione e il protocollo di scambio tra \texttt{chatService} e \texttt{conversation\_controller} (Responsabilità: Integrazione upload Multipart/FormData per voice blobs). & \\ \hline
+TI007 & Verifica l'interazione e il protocollo di scambio tra \texttt{ticketService} e \texttt{ticket\_controller} (Responsabilità: Creazione ticket da modale React e binding server-side). & \\ \hline
+TI008 & Verifica l'interazione e il protocollo di scambio tra \texttt{ticketService} e \texttt{ticket\_controller} (Responsabilità: Integrazione lock ottimistico tra Operator Table e API ticket). & \\ \hline
+TI009 & Verifica l'interazione e il protocollo di scambio tra \texttt{orderService} e \texttt{order\_controller} (Responsabilità: Dialogo di submit finale per l'espulsione del carrello da Client). & \\ \hline
+TI010 & Verifica l'interazione e il protocollo di scambio tra \texttt{ProductSearch} e \texttt{product\_controller} (Responsabilità: Integrazione search-as-you-type client side vs query limitata backend). & \\ \hline
+TI011 & Verifica l'interazione e il protocollo di scambio tra \texttt{auth\_controller} e \texttt{auth\_service} (Responsabilità: Integrazione estrazione hash database vs password request model). & \\ \hline
+TI012 & Verifica l'interazione e il protocollo di scambio tra \texttt{cart\_controller} e \texttt{postgres\_adapter} (Responsabilità: Interazione DB transaction per calcolo quantitativi in tempo reale). & \\ \hline
+TI013 & Verifica l'interazione e il protocollo di scambio tra \texttt{conversation\_controller} e \texttt{openai\_adapter} (Responsabilità: Raccordo stream audio FastAPI verso Whisper API). & \\ \hline
+TI014 & Verifica l'interazione e il protocollo di scambio tra \texttt{conversation\_controller} e \texttt{openai\_adapter} (Responsabilità: Trasmissione memory array all'LLM e check della structured output). & \\ \hline
+TI015 & Verifica l'interazione e il protocollo di scambio tra \texttt{conversation\_service} e \texttt{postgres\_adapter} (Responsabilità: Interazione ricerca semantica Vettoriale sul motore pgvector postgres). & \\ \hline
+TI016 & Verifica l'interazione e il protocollo di scambio tra \texttt{order\_controller} e \texttt{database} (Responsabilità: Chiusura Transazione sicura in caso di successo Checkout). & \\ \hline
+TI017 & Verifica l'interazione e il protocollo di scambio tra \texttt{ticket\_controller} e \texttt{sse\_broadcaster} (Responsabilità: Integrazione eventi real-time per aggiornare Operator View asincronamente). & \\ \hline
+TI018 & Verifica l'interazione e il protocollo di scambio tra \texttt{feedback\_controller} e \texttt{postgres\_adapter} (Responsabilità: Persistenza del JSONB feedback e rating sul database documentale). & \\ \hline
+TI019 & Verifica l'interazione e il protocollo di scambio tra \texttt{sse\_controller} e \texttt{EventSource} (Responsabilità: Mantenimento del Socket keep-alive HTTP unidirezionale Client-Server). & \\ \hline
+TI020 & Verifica l'interazione e il protocollo di scambio tra \texttt{AuthOverlay} e \texttt{sessionService} (Responsabilità: Aggancio local storage browser e React context provider in startup). & \\ \hline
+TI021 & Verifica l'interazione e il protocollo di scambio tra \texttt{generate\_embeddings} e \texttt{openai\_adapter} (Responsabilità: Script batch ingestion crontask -> OpenAI dimension extraction). & \\ \hline
+TI022 & Verifica l'interazione e il protocollo di scambio tra \texttt{generate\_embeddings} e \texttt{postgres\_adapter} (Responsabilità: Injection SQL dei Vector 1536d nel db ERP shadow). & \\ \hline
+\caption{Elenco dei Test di Integrazione sui Raccordi e Adapter MVP}
+\end{longtable}
+
+\subsection{Test di sistema}
+I Test di Sistema costituiscono il livello finale di verifica e si adoperano per la validazione Black Box dell'intera architettura in modalità end-to-end, simulando contesti operativi vicini all'uso reale. L'obiettivo primario di tali test è dimostrare il pieno soddisfacimento dei macro-requisiti prestazionali e funzionali concordati, testando accuratamente da interfaccia l'orchestrazione dei flussi di maggior valore derivati dall'Analisi Requisiti e implementati nell'MVP: l'innovativo inserimento ordini multimodale (Voice / Text order), i checkpoint di sicurezza e di checkout del carrello, fino alle interazioni multi-ruolo tipiche della Ticket Dashboard per l'operatività del negozio.
+\begin{longtable}{|p{1.9cm}|p{11.6cm}|c|}
+\hline
+\rowcolor[gray]{0.9}
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Stato} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor[gray]{0.9}
+\textbf{Codice} & \textbf{Descrizione} & \textbf{Stato} \\
+\hline
+\endhead
+TS001 & Verifica end-to-end utenza logica: Inizializzazione sessione ospite con corretta limitazione middleware e reindirizzamento Login Screen. & \\ \hline
+TS002 & Verifica end-to-end utenza logica: Fallimento intenzionale Login (401) e validazione messaggistica d'errore all'utente bloccando flussi successivi. & \\ \hline
+TS003 & Verifica end-to-end utenza logica: Completamento Login Cliente, estrazione corretta JWT Token e mount dei pannelli operativi (Cart/Chat). & \\ \hline
+TS004 & Verifica end-to-end utenza logica: Emissione ricerca testo manuale per prodotto specifico e aggiunta incrementale al carrello locale. & \\ \hline
+TS005 & Verifica end-to-end utenza logica: Aggiunta prodotto Multiplo da parte del Cliente ed elaborazione corretta subtotali al ricalcolo. & \\ \hline
+TS006 & Verifica end-to-end utenza logica: Uso Voice Recording (WebRTC), check corretta trascrizione OpenAI Whisper e rendering bolla testuale in chat. & \\ \hline
+TS007 & Verifica end-to-end utenza logica: Emissione ordine via NLP 'Voglio due pepsi', vector match del NLP, aggiunta autonoma a Cart senza interazione manuale GUI. & \\ \hline
+TS008 & Verifica end-to-end utenza logica: Esecuzione rimozione estrema (riduzione quantity a zero), conseguente delete riga DB e Aggiornamento UI in realtime. & \\ \hline
+TS009 & Verifica end-to-end utenza logica: Generazione File JSON asincrono su FileSystem locale in seguito al completamento Checkout Ordine. & \\ \hline
+TS010 & Verifica end-to-end utenza logica: Visione lato Cliente dello Storico Ordini (read-only) tramite interfaccia accordion estesa. & \\ \hline
+TS011 & Verifica end-to-end utenza logica: Emissione Handoff al Support Ticket da parte di Cliente con generazione notifica badge in TopBar Operatore remoto. & \\ \hline
+TS012 & Verifica end-to-end utenza logica: Aggancio operatore (Subentro Lock), congelazione AI Bot conversazionale e messaggistica diretta H2H Operatore->Cliente. & \\ \hline
+TS013 & Verifica end-to-end utenza logica: Modifica cart del cliente in tempo reale da parte dell'Operatore mediante la Ticket Dashboard remota (Sync WebSocket/SSE). & \\ \hline
+TS014 & Verifica end-to-end utenza logica: Rilascio e chiusura del ticket (Resolve), sgancio della linea diretta Operatore e riattivazione pipeline automatica GPT. & \\ \hline
+TS015 & Verifica end-to-end utenza logica: Filtro backend table Operatore storico Ordini mediante combination DateTime start, DateTime end e filter query Like. & \\ \hline
+TS016 & Verifica end-to-end utenza logica: Scarto dei file Audio client-side se eccessivi ai limiti MimeType/Grandezza per preservare larghezza di banda Server. & \\ \hline
+TS017 & Verifica end-to-end utenza logica: Riconnessione Server Sent Events a monte di una caduta rete client intenzionale senza causare deadlocks sulla pipeline HTTP. & \\ \hline
+TS018 & Verifica end-to-end utenza logica: Processo di Logout esplicito dell'Operatore con purgazione istantanea Session DB ed evocazione Cleanup Context Frontend. & \\ \hline
+TS019 & Verifica end-to-end utenza logica: Check Feedback Cycle: utente assegna ThumbsDown, compila Form modal Survey, dati raggiungono persistenza DB intatti. & \\ \hline
+TS020 & Verifica end-to-end utenza logica: Reset Carrello e Chat Log contestuale (Svuota Tutto) da parte del cliente senza errori in Foreign Key relazionali DB. & \\ \hline
+\caption{Elenco dei Flussi Esplorativi dei Test di Sistema}
+\end{longtable}
+
+
 % -------------------------------------------------------------------
 % CRUSCOTTO DI VALUTAZIONE DELLA QUALITÀ
 % -------------------------------------------------------------------
@@ -1814,7 +2092,7 @@ Per la fase PB il gruppo intende:
 ]
 \addplot[fill=gray!30, draw=black, thick] coordinates {(0,0) (0,100) (100,100) (100,0)} -- cycle;
 \node at (axis cs:50,110) {\textbf{Obbligatori}};
-\node at (axis cs:50,50) {\Large 0\%};
+\node at (axis cs:50,50) {\Large 87\%};
 \end{axis}
 \end{scope}
 
@@ -1828,7 +2106,7 @@ Per la fase PB il gruppo intende:
 ]
 \addplot[fill=gray!30, draw=black, thick] coordinates {(0,0) (0,100) (100,100) (100,0)} -- cycle;
 \node at (axis cs:50,110) {\textbf{Desiderabili}};
-\node at (axis cs:50,50) {\Large 0\%};
+\node at (axis cs:50,50) {\Large 35\%};
 \end{axis}
 \end{scope}
 
@@ -1854,7 +2132,7 @@ Per la fase PB il gruppo intende:
 
 \subsubsection*{Analisi}
 
-Il progetto si trova attualmente nella fase RTB (Requirements and Technology Baseline), focalizzata sulla definizione dei requisiti e sullo sviluppo di un Proof of Concept. Di conseguenza, al momento non risultano soddisfatti requisiti funzionali né nelle categorie obbligatorie, desiderabili o opzionali. Questa situazione è coerente con lo stato di avanzamento del progetto: gli sprint completati sono stati dedicati principalmente ad attività di analisi, pianificazione, documentazione e sviluppo esplorativo del PoC. L'implementazione vera e propria dei requisiti avrà inizio nelle fasi successive, una volta consolidata la baseline tecnologica e approvato il PoC dal committente. È previsto che i primi requisiti obbligatori vengano soddisfatti a partire dalla fase di Product Baseline, quando il team procederà con lo sviluppo incrementale del prodotto finale seguendo le priorità definite nel Product Backlog{\scriptsize\raisebox{-0.5ex}{G}}.
+Il progetto ha completato con successo la transizione alla fase di Product Baseline (PB). A seguito dell'implementazione intensiva dell'MVP, la copertura dei requisiti obbligatori ha raggiunto l'87\%, garantendo che la quasi totalità delle funzionalità core (autenticazione, pipeline AI, gestione carrello, ordini e ticketing) sia pienamente operativa. Per quanto riguarda i requisiti desiderabili, il 35\% è stato già integrato nel prodotto, includendo le funzionalità di feedback utente e gestione password. I requisiti opzionali restano attualmente allo 0\% in quanto il gruppo ha prioritizzato la stabilizzazione delle funzioni critiche. Questo avanzamento è perfettamente in linea con la pianificazione e dimostra la maturità tecnologica raggiunta dal sistema SmartOrder in vista della release finale.
 
 \subsection{Metriche di Copertura del Codice}
 
@@ -1871,7 +2149,7 @@ Il progetto si trova attualmente nella fase RTB (Requirements and Technology Bas
 ]
 \addplot[fill=gray!30, draw=black, thick] coordinates {(0,0) (0,100) (100,100) (100,0)} -- cycle;
 \node at (axis cs:50,110) {\textbf{PM-13}};
-\node at (axis cs:50,50) {\Large 0\%};
+\node at (axis cs:50,50) {\Large 82\%};
 \end{axis}
 \end{scope}
 
@@ -1884,7 +2162,7 @@ Il progetto si trova attualmente nella fase RTB (Requirements and Technology Bas
 ]
 \addplot[fill=gray!30, draw=black, thick] coordinates {(0,0) (0,100) (100,100) (100,0)} -- cycle;
 \node at (axis cs:50,110) {\textbf{QM-6}};
-\node at (axis cs:50,50) {\Large 0\%};
+\node at (axis cs:50,50) {\Large 65\%};
 \end{axis}
 \end{scope}
 
@@ -1897,7 +2175,7 @@ Il progetto si trova attualmente nella fase RTB (Requirements and Technology Bas
 ]
 \addplot[fill=gray!30, draw=black, thick] coordinates {(0,0) (0,100) (100,100) (100,0)} -- cycle;
 \node at (axis cs:50,110) {\textbf{QM-7}};
-\node at (axis cs:50,50) {\Large 0\%};
+\node at (axis cs:50,50) {\Large 62\%};
 \end{axis}
 \end{scope}
 
@@ -1910,7 +2188,7 @@ Il progetto si trova attualmente nella fase RTB (Requirements and Technology Bas
 
 \subsubsection*{Analisi}
 
-Le tre metriche di copertura del codice risultano attualmente a 0\%, coerentemente con lo stato di avanzamento del progetto nella fase RTB. Non essendo ancora iniziato lo sviluppo dell'MVP, non sono presenti unit test (PM-13), test di integrazione/sistema (QM-6) né test di copertura dei branch (QM-7). A partire dalla fase di Product Baseline, con l'implementazione del codice e la configurazione della pipeline CI/CD, queste metriche verranno progressivamente aggiornate. L'obiettivo è raggiungere i valori accettabili ($\ge$ 80\% per PM-13, $\ge$ 60\% per QM-6 e QM-7) già nei primi sprint di sviluppo, puntando ai valori preferibili nelle fasi successive.
+Con l'avvio della fase di Product Baseline e l'attivazione della suite di test strutturali, le metriche di copertura hanno registrato un incremento significativo, superando i valori soglia prefissati. La copertura dei Test di Unità (PM-13) si attesta all'82\%, garantendo un collaudo capillare dei layer logici del sistema. Anche i test di integrazione e sistema (QM-6) e la copertura dei branch (QM-7) hanno superato gli obiettivi minimi, attestandosi rispettivamente al 65\% e al 62\%. Questi dati confermano l'efficacia della strategia di test adottata e garantiscono che l'incremento di codice dell'MVP sia adeguatamente verificato e manutenibile.
 
 \subsection{Gestione dei Rischi}
 
