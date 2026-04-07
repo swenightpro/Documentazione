@@ -1,10 +1,10 @@
-# Report di compilazione del 2026-04-04T16:20:55+00:00
+# Report di compilazione del 2026-04-07T06:32:32+00:00
 
-Compilazione basata sul commit 889dd09da8a196acc6a7cb94f4105b580f262e12 (base: 889dd09)
+Compilazione basata sul commit 4db2f1af232c0d84d725633bb0c86f701fe97736 (base: 4db2f1a)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/PB/Documentazione Esterna/Piano_di_Progetto_v2.2.pdf](docs/PB/Documentazione%20Esterna/Piano_di_Progetto_v2.2.pdf)
+✅ [docs/PB/Documentazione Esterna/Specifica_Tecnica_v0.5.pdf](docs/PB/Documentazione%20Esterna/Specifica_Tecnica_v0.5.pdf)
 
