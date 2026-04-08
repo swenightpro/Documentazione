@@ -109,9 +109,9 @@
 
     {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
 
-    {\large Data: 2026-04-04 \par}
+    {\large Data: 2026-04-08 \par}
 
-    {\Large Versione: 0.5\par}
+    {\Large Versione: 0.6\par}
 
 \end{titlepage}
 
@@ -130,6 +130,7 @@
             \toprule
             \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche}                           & \textbf{Verificatore} \\
             \midrule
+            0.6               & 2026-04-08    & Davide Biasuzzi   & Aggiornamento dello stato di implementazione dei requisiti e allineamento alla rimozione di un requisito & Leonardo Bilato       \\
             0.5               & 2026-04-04    & Francesco Zanella   & Raffinamento dell'architettura (Backend e Frontend) per ottimizzare flussi asincroni e separazione dei servizi; approfondimento analitico della sezione Database. Aggiornato tabella requisiti & Leonardo Bilato       \\
             0.4               & 2026-04-02    & G. Ponso, L. Bilato   & Stesura sezione Architettura di dettaglio & M. M. Romascu\\
             0.3               & 2026-03-31    & D. Biasuzzi, F. Zanella, S. Perozzo    & Riorganizzazione documento, inserimento dei diagrammi PlantUML e stesura delle sezioni 4, 5, 6 e 7 & M. M. Romascu\\
@@ -789,7 +790,7 @@ La sottosezione presenta i componenti frontend identificati nel C4 Livello 4.
 \newpage
 \section{Stato dei requisiti funzionali}
 
-Questa sezione riporta lo stato di implementazione dei requisiti funzionali derivati dall'ultima versione PB dell'Analisi dei Requisiti (v2.1). Per questa baseline, lo stato di ciascun requisito è indicato nella colonna \textbf{Stato}.
+Questa sezione riporta lo stato di implementazione dei requisiti funzionali derivati dall'ultima versione PB dell'Analisi dei Requisiti (v2.2). Per questa baseline, lo stato di ciascun requisito è indicato nella colonna \textbf{Stato}.
 
 \renewcommand{\arraystretch}{1.15}
 \begin{longtable}{|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.45\textwidth}|>{\raggedright\arraybackslash}p{0.25\textwidth}|}
@@ -825,7 +826,7 @@ Questa sezione riporta lo stato di implementazione dei requisiti funzionali deri
     \hline
     \texttt{RF-OB\_11} & Obbligatorio & Il sistema deve mostrare all'Utente il proprio indirizzo email in sola lettura. & \textbf{IMPLEMENTATO} \\
     \hline
-    \texttt{RF-OB\_12} & Obbligatorio & Il sistema deve esporre un comando di contatto che, alla sua attivazione, invochi il protocollo URI \textit{mailto:} per aprire il client di posta elettronica nativo dell'Utente con il campo destinatario pre-compilato con l'email di supporto aziendale. & \textbf{NON IMPLEMENTATO} \\
+    \texttt{RF-OB\_12} & Obbligatorio & Il sistema deve esporre un comando di contatto che, alla sua attivazione, invochi il protocollo URI \textit{mailto:} per aprire il client di posta elettronica nativo dell'Utente con il campo destinatario pre-compilato con l'email di supporto aziendale. & \textbf{IMPLEMENTATO} \\
     \hline
     \texttt{RF-OB\_13} & Obbligatorio & Il sistema deve mostrare in tempo reale tutti i messaggi inviati dall'Utente nella chat corrente. & \textbf{IMPLEMENTATO} \\
     \hline
@@ -833,19 +834,19 @@ Questa sezione riporta lo stato di implementazione dei requisiti funzionali deri
     \hline
     \texttt{RF-OB\_15} & Obbligatorio & Il sistema deve fornire un campo di testo per l'inserimento e l'invio di messaggi testuali nella chat. & \textbf{IMPLEMENTATO} \\
     \hline
-    \texttt{RF-OB\_16} & Obbligatorio & Il sistema deve bloccare l'invio e mostrare un errore se il messaggio di testo supera il limite di caratteri. & \textbf{NON IMPLEMENTATO} \\
+    \texttt{RF-OB\_16} & Obbligatorio & Il sistema deve bloccare l'invio e mostrare un errore se il messaggio di testo supera il limite di caratteri. & \textbf{IMPLEMENTATO} \\
     \hline
     \texttt{RF-OB\_17} & Obbligatorio & Il sistema deve permettere all'Utente la registrazione e l'invio di messaggi vocali tramite il microfono del dispositivo. & \textbf{IMPLEMENTATO} \\
     \hline
     \texttt{RF-OB\_18} & Obbligatorio & Il sistema deve convertire l'audio in testo usando un modulo Speech-to-Text. & \textbf{IMPLEMENTATO} \\
     \hline
-    \texttt{RF-OB\_19} & Obbligatorio & Il sistema deve bloccare l'invio e mostrare un errore se il file audio pesa piu di 10MB. & \textbf{NON IMPLEMENTATO} \\
+    \texttt{RF-OB\_19} & Obbligatorio & Il sistema deve bloccare l'invio e mostrare un errore se il file audio pesa piu di 10MB. & \textbf{IMPLEMENTATO} \\
     \hline
-    \texttt{RF-OB\_20} & Obbligatorio & Il sistema deve richiedere esplicitamente i permessi hardware necessari (microfono, fotocamera) al momento del primo utilizzo della relativa funzionalita e, in caso di rifiuto da parte dell'Utente, mostrare un messaggio informativo che spieghi l'impossibilita di procedere senza tali permessi. & \textbf{NON IMPLEMENTATO} \\
+    \texttt{RF-OB\_20} & Obbligatorio & Il sistema deve richiedere esplicitamente i permessi hardware necessari (microfono, fotocamera) al momento del primo utilizzo della relativa funzionalita e, in caso di rifiuto da parte dell'Utente, mostrare un messaggio informativo che spieghi l'impossibilita di procedere senza tali permessi. & \textbf{IMPLEMENTATO} \\
     \hline
     \texttt{RF-OB\_21} & Obbligatorio & Il Cliente deve poter resettare la chat con l'AI e svuotare il carrello attuale. & \textbf{IMPLEMENTATO} \\
     \hline
-    \texttt{RF-OB\_22} & Obbligatorio & Il sistema deve disabilitare il comando di reset della sessione qualora sia presente un ticket di assistenza in stato ``Aperto'' o ``In lavorazione'' per la sessione corrente, impedendo all'Utente di azzerare il contesto durante un'assistenza attiva. & \textbf{NON IMPLEMENTATO} \\
+    \texttt{RF-OB\_22} & Obbligatorio & Il sistema deve disabilitare il comando di reset della sessione qualora sia presente un ticket di assistenza in stato ``Aperto'' o ``In lavorazione'' per la sessione corrente, impedendo all'Utente di azzerare il contesto durante un'assistenza attiva. & \textbf{IMPLEMENTATO} \\
     \hline
     \texttt{RF-OB\_23} & Obbligatorio & L'AI (LLM) deve capire quali prodotti vuole l'utente e in che quantita leggendo/ascoltando il messaggio. & \textbf{IMPLEMENTATO} \\
     \hline
@@ -855,7 +856,7 @@ Questa sezione riporta lo stato di implementazione dei requisiti funzionali deri
     \hline
     \texttt{RF-OB\_26} & Obbligatorio & Vincolo Assortimento: Il sistema deve ignorare i prodotti che non fanno parte del catalogo assegnato a quel Cliente (tabella \texttt{asscli}). & \textbf{IMPLEMENTATO} \\
     \hline
-    \texttt{RF-OB\_27} & Obbligatorio & Vincolo Stato: Il sistema deve impedire l'aggiunta di prodotti segnati come ``non disponibili'' o ``sospesi'' nel database (\texttt{anaart}). & \textbf{NON IMPLEMENTATO} \\
+    \texttt{RF-OB\_27} & Obbligatorio & Vincolo Stato: Il sistema deve impedire l'aggiunta di prodotti segnati come ``non disponibili'' o ``sospesi'' nel database (\texttt{anaart}). & \textbf{IMPLEMENTATO} \\
     \hline
     \texttt{RF-OB\_28} & Obbligatorio & Deduzione Formati: L'AI deve convertire automaticamente le quantita richieste nelle giuste unita di vendita (es. da bottiglie a casse). & \textbf{IMPLEMENTATO} \\
     \hline
@@ -869,7 +870,7 @@ Questa sezione riporta lo stato di implementazione dei requisiti funzionali deri
     \hline
     \texttt{RF-OB\_33} & Obbligatorio & L'Utente deve poter modificare la quantita usando i tasti +/- o scrivendo direttamente il numero. & \textbf{IMPLEMENTATO} \\
     \hline
-    \texttt{RF-OB\_34} & Obbligatorio & Il sistema deve correggere in automatico la quantita se l'utente inserisce numeri negativi, zero o troppo grandi. & \textbf{NON IMPLEMENTATO} \\
+    \texttt{RF-OB\_34} & Obbligatorio & Il sistema deve correggere in automatico la quantita se l'utente inserisce numeri negativi, zero o troppo grandi. & \textbf{IMPLEMENTATO} \\
     \hline
     \texttt{RF-OB\_35} & Obbligatorio & L'Utente deve poter confermare l'aggiunta del prodotto al carrello della sessione corrente. & \textbf{IMPLEMENTATO} \\
     \hline
@@ -887,7 +888,7 @@ Questa sezione riporta lo stato di implementazione dei requisiti funzionali deri
     \hline
     \texttt{RF-OB\_42} & Obbligatorio & L'Utente (Cliente o Operatore in subentro) deve poter chiudere il carrello e inviare l'ordine definitivo. & \textbf{IMPLEMENTATO} \\
     \hline
-    \texttt{RF-OB\_43} & Obbligatorio & Il sistema deve bloccare l'invio dell'ordine e segnalare gli errori se ci sono problemi con le regole del gestionale (es. prodotto fuori catalogo). & \textbf{NON IMPLEMENTATO} \\
+    \texttt{RF-OB\_43} & Obbligatorio & Il sistema deve bloccare l'invio dell'ordine e segnalare gli errori se ci sono problemi con le regole del gestionale (es. prodotto fuori catalogo). & \textbf{IMPLEMENTATO} \\
     \hline
     \texttt{RF-OB\_44} & Obbligatorio & Dopo l'invio dell'ordine, il sistema deve svuotare la sessione e reindirizzare l'Utente alla vista appropriata al proprio ruolo: il Cliente allo Storico Ordini, l'Operatore alla chiusura del ticket e dismissione della console di subentro. & \textbf{IMPLEMENTATO} \\
     \hline
@@ -937,7 +938,7 @@ Questa sezione riporta lo stato di implementazione dei requisiti funzionali deri
     \hline
     \texttt{RF-OB\_67} & Obbligatorio & Le API del server (Backend) devono rifiutare qualsiasi richiesta priva di un token di accesso valido per la sessione corrente. & \textbf{IMPLEMENTATO} \\
     \hline
-    \texttt{RF-OB\_68} & Obbligatorio & Il sistema deve caricare i dati delle tabelle in modo incrementale tramite paginazione con pagine da massimo 50 record, per evitare il blocco dell'interfaccia in presenza di grandi volumi di dati. & \textbf{NON IMPLEMENTATO} \\
+    \texttt{RF-OB\_68} & Obbligatorio & Il sistema deve caricare i dati delle tabelle in modo incrementale tramite paginazione con pagine da massimo 50 record, per evitare il blocco dell'interfaccia in presenza di grandi volumi di dati. & \textbf{IMPLEMENTATO} \\
     \hline
     \texttt{RF-DE\_01} & Desiderabile & Il sistema deve fornire un link per accedere alla pagina di recupero della password dimenticata. & \textbf{NON IMPLEMENTATO} \\
     \hline
@@ -949,9 +950,9 @@ Questa sezione riporta lo stato di implementazione dei requisiti funzionali deri
     \hline
     \texttt{RF-DE\_05} & Desiderabile & Il sistema deve bloccare il cambio password se la vecchia password e errata o se le due nuove password inserite non coincidono. & \textbf{IMPLEMENTATO} \\
     \hline
-    \texttt{RF-DE\_06} & Desiderabile & Il sistema deve permettere l'invio di file immagine nella chat, mediante scatto fotografico o selezione dalla galleria del dispositivo. & \textbf{NON IMPLEMENTATO} \\
+    \texttt{RF-DE\_06} & Desiderabile & Il sistema deve permettere l'invio di file immagine nella chat, mediante scatto fotografico o selezione dalla galleria del dispositivo. & \textbf{IMPLEMENTATO} \\
     \hline
-    \texttt{RF-DE\_07} & Desiderabile & Il sistema deve bloccare l'invio di immagini e mostrare un errore se il file pesa piu di 5MB. & \textbf{NON IMPLEMENTATO} \\
+    \texttt{RF-DE\_07} & Desiderabile & Il sistema deve bloccare l'invio di immagini e mostrare un errore se il file pesa piu di 5MB. & \textbf{IMPLEMENTATO} \\
     \hline
     \texttt{RF-DE\_08} & Desiderabile & Il Cliente deve poter valutare la qualita delle risposte dell'AI lasciando un feedback (es. pollice su / pollice giu). & \textbf{IMPLEMENTATO} \\
     \hline
@@ -961,7 +962,7 @@ Questa sezione riporta lo stato di implementazione dei requisiti funzionali deri
     \hline
     \texttt{RF-DE\_11} & Desiderabile & Il Cliente deve poter scaricare l'elenco dei propri ordini storici in un file formato CSV. & \textbf{NON IMPLEMENTATO} \\
     \hline
-    \texttt{RF-DE\_12} & Desiderabile & L'Operatore deve poter accedere alla dashboard per il controllo degli errori e l'addestramento dell'AI (Ottimizzazione AI). & \textbf{NON IMPLEMENTATO} \\
+    \texttt{RF-DE\_12} & Desiderabile & L'Operatore deve poter accedere alla dashboard per il controllo degli errori e l'addestramento dell'AI (Ottimizzazione AI). & \textbf{IMPLEMENTATO} \\
     \hline
     \texttt{RF-DE\_13} & Desiderabile & Il sistema deve mostrare all'Operatore la lista degli errori segnalati dai clienti e le correzioni manuali fatte ai carrelli. & \textbf{NON IMPLEMENTATO} \\
     \hline
@@ -972,14 +973,33 @@ Questa sezione riporta lo stato di implementazione dei requisiti funzionali deri
     \texttt{RF-DE\_16} & Desiderabile & L'Operatore deve poter scartare una segnalazione se non si tratta di un vero errore dell'AI (es. l'utente ha scritto male). & \textbf{NON IMPLEMENTATO} \\
     \hline
     \texttt{RF-DE\_17} & Desiderabile & L'Operatore deve poter annullare l'approvazione di una segnalazione se l'aveva confermata per sbaglio (Rollback). & \textbf{NON IMPLEMENTATO} \\
+    \hline
     \texttt{RF-OP\_01} & Facoltativo & Il sistema deve permettere l'invio di messaggi d'ordine e la loro elaborazione tramite l'app di WhatsApp. & \textbf{NON IMPLEMENTATO} \\
     \hline
     \texttt{RF-OP\_02} & Facoltativo & Il sistema deve permettere l'invio di messaggi d'ordine e la loro elaborazione tramite l'app di Telegram. & \textbf{NON IMPLEMENTATO} \\
     \hline
-    \texttt{RF-OP\_03} & Facoltativo & Il sistema deve generare grafici e statistiche generali sull'uso della piattaforma, mostrandoli all'Operatore. & \textbf{NON IMPLEMENTATO} \\
+    \texttt{RF-OP\_03} & Facoltativo & Il sistema deve generare grafici e statistiche generali sull'uso della piattaforma, mostrandoli all'Operatore. & \textbf{IMPLEMENTATO} \\
     \hline
     \multicolumn{4}{c}{} \\
-    \caption{Stato dei requisiti funzionali (fonte: Analisi dei Requisiti PB v2.1)}\label{tab:stato_requisiti_funzionali}
+    \caption{Stato dei requisiti funzionali (fonte: Analisi dei Requisiti PB v2.2)}\label{tab:stato_requisiti_funzionali}
 \end{longtable}
+
+\subsection{Riepilogo stato requisiti prestazionali e di vincolo}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{@{}lccc@{}}
+        \toprule
+        \textbf{Categoria} & \textbf{Totale} & \textbf{Implementati} & \textbf{Non implementati} \\
+        \midrule
+        RP-OB & 5  & 5  & 0 \\
+        RP-DE & 1  & 0  & 1 \\
+        RV-OB & 10 & 10 & 0 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Riepilogo implementazione requisiti prestazionali e di vincolo}
+    \label{tab:riepilogo_requisiti_non_funzionali}
+\end{table}
 
 \end{document}
