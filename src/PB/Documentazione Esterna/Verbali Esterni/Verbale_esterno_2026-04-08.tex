@@ -1,0 +1,260 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl}
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}
+\graphicspath{{assets/}{../assets/}{../../assets/}{../../../assets}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[svgnames]{xcolor}
+
+% --- Utility ---
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=DarkBlue,
+	filecolor=DarkBlue,
+	urlcolor=DarkBlue,
+	citecolor=DarkBlue,
+	pdftitle={Verbale Esterno 2026-04-08 - NightPRO},
+	pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textbf{NightPRO – Progetto Ingegneria del Software}}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Frontespizio
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+	\centering
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+
+	\vfill
+
+	{\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+	{\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+	\vspace{0.5cm}
+	{\large Corso di Ingegneria del Software \par}
+	{\small Anno Accademico 2025/2026 \par}
+
+	\vfill
+
+	{\Huge \bfseries Verbale di Riunione \par}
+
+	\vspace{1cm}
+
+	{\Large \itshape Verbale Esterno del 08 Aprile 2026 \par}
+
+	\vfill
+
+	{\Large \bfseries Gruppo: NightPRO \par}
+	\vspace{0.5cm}
+	{\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+
+	\vfill
+
+	{\large Data: 2026-04-08 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Indice
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents
+\pagestyle{fancy}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Informazioni Generali
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+	\item \textbf{Data:} 2026-04-08
+	\item \textbf{Ora:} 16:00 - 17:00
+	\item \textbf{Luogo:} Microsoft Teams
+	\item \textbf{Partecipanti (NightPRO):} Biasuzzi Davide, Bilato Leonardo, Zanella Francesco, Romascu Mihaela-Mariana, Perozzo Samuele, Ponso Giovanni
+	\item \textbf{Assenti:} Ogniben Michele
+	\item \textbf{Partecipanti (Esterni):} Gianluca Carlesso (Ergon Informatica)
+	\item \textbf{Redatto da:} Giovanni Ponso
+	\item \textbf{Verificato da:} Francesco Zanella
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Ordine del Giorno
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{itemize}
+	\item[1.] Collaudo guidato del MVP lato Cliente
+	\item[2.] Collaudo guidato del MVP lato Operatore
+	\item[3.] Rinegoziazione mirata di alcuni requisiti dell'Analisi dei Requisiti
+	\item[4.] Raccolta del riscontro finale della Proponente sull'MVP presentato
+\end{itemize}
+
+% -------------------------------------------------------------------
+% SEZIONE: Diario della Riunione
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+Durante l'incontro con la Proponente, il gruppo ha presentato il prodotto sviluppato fino alla data odierna in ottica di collaudo operativo del MVP. Il referente aziendale Gianluca Carlesso ha testato direttamente le funzionalità principali del sistema, sia dal punto di vista del Cliente sia dal punto di vista dell'Operatore, per poi confrontarsi con il gruppo su una rinegoziazione puntuale di alcuni requisiti emersi come eccessivamente stringenti o poco rappresentativi del comportamento reale del software.
+
+\vspace{0.5cm}
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\begin{tabularx}{\textwidth}{p{0.35\textwidth} X}
+\toprule
+\textbf{Argomento/Domanda} & \textbf{Risposta/Discussione} \\
+\midrule
+
+\textbf{1) Collaudo interfaccia Cliente} \par
+Sono state fornite credenziali di accesso al referente della Proponente per consentirgli di testare personalmente il flusso lato Cliente.
+&
+Gianluca Carlesso ha eseguito una prova guidata dell'interfaccia Cliente, verificando direttamente l'elaborazione dei messaggi in chat, le funzionalità del carrello, l'area personale e l'intero flusso di assistenza tramite ticket.
+\\ \addlinespace
+
+\textbf{2) Collaudo interfaccia Operatore} \par
+Terminata la prova lato Cliente, il gruppo ha mostrato il funzionamento dell'interfaccia Operatore.
+&
+Il referente ha visionato la dashboard degli ordini, la dashboard di gestione dei ticket e la dashboard delle analytics. Provando in tempo reale un caso di assistenza cliente.
+\\ \addlinespace
+
+\textbf{3) Rinegoziazione requisiti AdR} \par
+Nella fase finale dell'incontro il gruppo ha aperto il documento di Analisi dei Requisiti per proporre una revisione limitata di alcuni requisiti emersi come inadeguati durante l'effettivo sviluppo del MVP.
+&
+Il referente di Ergon Informatica ha accolto immediatamente la proposta di rinegoziazione, condividendo la necessità di allineare alcuni vincoli prestazionali e un requisito di vincolo alla reale natura del prodotto sviluppato. La rinegoziazione ha riguardato soltanto 4 requisiti su 106 complessivi, confermando la sostanziale stabilità del perimetro concordato.
+\\ \addlinespace
+
+\textbf{4) Esito finale del collaudo} \par
+Il gruppo ha richiesto una valutazione conclusiva sull'MVP mostrato durante la riunione.
+&
+Con la chiusura dell'incontro, Gianluca Carlesso ha espresso un riscontro positivo sulla correttezza dell'MVP presentato e sul lavoro svolto dal gruppo. \textbf{La conferma formale del raggiungimento dell'obiettivo progettuale verrà tuttavia successivamente confermata mediante esplicito verbale di collaudo firmato dalla proponente.}
+\\ \addlinespace
+\bottomrule
+\end{tabularx}
+\normalsize
+
+\newpage
+\subsection{Rinegoziazione dei requisiti}
+Per formalizzare il confronto svolto sull'\textit{Analisi dei Requisiti}, si riporta di seguito la variazione approvata dalla Proponente. La revisione ha interessato un insieme molto limitato di requisiti e non modifica il perimetro funzionale generale del prodotto.
+
+\renewcommand{\arraystretch}{1.2}
+\footnotesize
+\begin{longtable}{|>{\raggedright\arraybackslash}p{0.11\textwidth}|>{\raggedright\arraybackslash}p{0.36\textwidth}|>{\raggedright\arraybackslash}p{0.37\textwidth}|}
+	\hline
+	\rowcolor[gray]{0.9}
+	\textbf{Requisito} & \textbf{Prima della riunione} & \textbf{Dopo la rinegoziazione} \\
+	\hline
+	\endfirsthead
+	\hline
+	\rowcolor[gray]{0.9}
+	\textbf{Requisito} & \textbf{Prima della riunione} & \textbf{Dopo la rinegoziazione} \\
+	\hline
+	\endhead
+	RV-OB\_07 & Il salvataggio nel database e l'uso delle email degli utenti deve rispettare le regole europee sulla privacy (GDPR). & Requisito \textbf{rimosso} dall'Analisi dei Requisiti. L'azienda ha confermato che la gestione è a carico loro.\\
+	\hline
+	RP-OB\_02 & Il sistema di trascrizione vocale (Speech-to-Text) deve riconoscere le parole con un Word Error Rate (WER) inferiore al 10\%, misurato su un campione di almeno 100 registrazioni audio in italiano standard, con qualità audio non inferiore a 16\,kHz mono e in assenza di rumore di fondo superiore a 40\,dB. & Il sistema di trascrizione vocale (Speech-to-Text) deve riconoscere le parole con un Word Error Rate (WER) inferiore al 10\%, misurato su un campione di almeno 20 registrazioni audio in italiano standard. \\
+	\hline
+	RP-OB\_04 & L'applicazione web deve caricare gli elementi principali a schermo in meno di 3 secondi, misurati al 90° percentile su 10 caricamenti consecutivi da una connessione con banda minima di 20\,Mbit/s in download. & L'applicazione deve caricare gli elementi principali a schermo in meno di 5 secondi, misurati su 10 caricamenti consecutivi da una connessione con banda minima di 20 Mbit/s in download. \\
+	\hline
+	RP-OB\_05 & Quando l'utente usa la barra di ricerca prodotti, i risultati devono comparire in meno di 500 millisecondi, misurati al 95° percentile su un database contenente almeno 2000 prodotti, con un massimo di 10 utenti concorrenti e connessione locale (LAN). & Quando l'utente usa la barra di ricerca prodotti, i risultati devono comparire in meno di 2 secondi, senza elemento di caricamento, misurati su un database contenente almeno 2000 prodotti e con un massimo di 4 utenti concorrenti. \\
+	\hline
+\end{longtable}
+\normalsize
+
+% -------------------------------------------------------------------
+% SEZIONE: Decisioni Prese
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese}
+
+\begin{enumerate}
+\item \textbf{Collaudo MVP:} La Proponente ha collaudato direttamente il prodotto nelle sue funzionalità principali lato Cliente e lato Operatore, approvandone il comportamento complessivo.
+\item \textbf{Interfacce applicative:} Sono state approvate l'interfaccia Cliente, la dashboard ordini, la dashboard ticket e la dashboard analytics mostrate durante l'incontro.
+\item \textbf{Rinegoziazione requisiti:} È stata approvata la rimozione del requisito \texttt{RV-OB\_07} e la riformulazione dei requisiti \texttt{RP-OB\_02}, \texttt{RP-OB\_04} e \texttt{RP-OB\_05}.
+\item \textbf{Esito progettuale:} Il riscontro espresso dalla Proponente sull'MVP è stato positivo; la formalizzazione conclusiva dell'approvazione viene rimandata ad un verbale di collaudo.
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: To-Do
+% -------------------------------------------------------------------
+\newpage
+\section{Attività da Svolgere (To-Do)}
+
+\begin{table}[h!]
+\centering
+\begin{tabularx}{\textwidth}{@{}X l c@{}}
+\toprule
+\textbf{Attività} & \textbf{Assegnatario/i} & \textbf{Scadenza} \\
+\midrule
+Redazione Verbale Esterno 08/04/26 & Responsabile & 2026-04-09 \\
+\addlinespace
+Aggiornamento Analisi dei Requisiti con le rinegoziazioni approvate & Analisti & 2026-04-09 \\
+\bottomrule
+\end{tabularx}
+\caption{Riepilogo task assegnati.}
+\end{table}
+
+% ------ FIRMA AZIENDA PROPONENTE --------------------------------
+\vspace{2cm}
+\begin{flushright}
+	\textbf{Firma Ergon Informatica S.r.l.} \\[0.5cm]
+
+	\vspace{3cm}
+	\rule{6cm}{0.4pt} \\
+	\small{Gianluca Carlesso}
+\end{flushright}
+
+\end{document}
