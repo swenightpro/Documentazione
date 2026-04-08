@@ -8,6 +8,12 @@ All'accesso, se \`e configurata una cartella di export, viene eseguito automatic
 
 \subsection{Dashboard e gestione ticket}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Contenuti/immagini/lista ticket.png}
+    \caption{Lista ticket aperti}
+\end{figure}
+
 La sezione \textbf{Ticket Aperti} \`e la vista predefinita dell'interfaccia operatore.
 
 \subsubsection{Lista ticket}
@@ -20,6 +26,13 @@ La sezione \textbf{Ticket Aperti} \`e la vista predefinita dell'interfaccia oper
 \end{enumerate}
 
 \subsubsection{Pannello di gestione ticket}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Contenuti/immagini/ticket.png}
+    \caption{Finestra di gestione ticket}
+\end{figure}
+
 Aprendo un ticket si accede a un modale a schermo intero suddiviso in tre aree:
 
 \textbf{Header}: mostra l'ID ticket, il codice cliente, la ragione sociale e un badge di stato (Aperto o In carico). \`E presente il pulsante di chiusura (X).
@@ -28,6 +41,7 @@ Aprendo un ticket si accede a un modale a schermo intero suddiviso in tre aree:
 \begin{itemize}
     \item Elenco dei messaggi scambiati con il cliente (sia via IA che direttamente con l'operatore).
     \item I messaggi di sistema sono visualizzati in grigio corsivo centrato (ad esempio per segnalare che il ticket \`e stato aperto/assegnato).
+    \item Vengono segnati i feedback inviati dai clienti
     \item Campo di input in basso per inviare messaggi di testo al cliente.
     \item I nuovi messaggi arrivano in tempo reale tramite SSE.
 \end{itemize}
@@ -42,12 +56,17 @@ Aprendo un ticket si accede a un modale a schermo intero suddiviso in tre aree:
 
 \textbf{Area inferiore (footer)} -- \textbf{Azioni}:
 \begin{itemize}
-    \item \texttt{Rilascia}: Rilascia il lock sul ticket senza chiuderlo. Altri operatori potranno poi prenderlo in carico.
     \item \texttt{Chiudi Ticket}: Chiude il ticket definitivamente. Non viene inviato alcun ordine.
     \item \texttt{Invia Ordine}: Compila e invia l'ordine per conto del cliente usando il contenuto corrente del carrello, poi chiude automaticamente il ticket.
 \end{itemize}
 
 \subsection{Storico ordini (Operatore)}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Contenuti/immagini/storico operatore.png}
+    \caption{Storico degli ordini}
+\end{figure}
 
 La sezione \textbf{Storico Ordini} consente la consultazione di tutti gli ordini di tutti i clienti.
 
@@ -62,17 +81,53 @@ La sezione \textbf{Storico Ordini} consente la consultazione di tutti gli ordini
         \item Ordinamento per qualsiasi colonna (ID, cliente, data, articoli) con frecce di direzione.
     \end{itemize}
     \item \textbf{Pulsante X}: Cancella tutti i filtri attivi.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{Contenuti/immagini/dettagli ordine operatore.png}
+        \caption{Dettagli ordine}
+    \end{figure}
     \item \textbf{Dettaglio ordine}: Cliccando su una riga si apre un modale di dettaglio con:
     \begin{itemize}
         \item A sinistra: chat completa dell'ordine (se disponibile).
         \item A destra: elenco articoli ordinati con codice, descrizione, linea/famiglia, quantit\`a ordinata, unit\`a di misura e confidenza IA. Cliccando su un articolo con messaggio collegato si scrolla alla chat evidenziando il messaggio.
     \end{itemize}
     \item \textbf{Export}: Nel dettaglio ordine sono presenti i pulsanti \texttt{JSON} e \texttt{CSV} per esportare l'ordine singolarmente. Il file viene salvato nella cartella configurata nelle variabili d'ambiente.
-    \item \textbf{Export batch}: Alla login, se la cartella di export \`e configurata, viene eseguito automaticamente un export batch degli ordini non ancora esportati (fino a 50). Il risultato viene notificato tramite toast.
+    \item \textbf{Export batch}: Al login, se la cartella di export \`e configurata, viene eseguito automaticamente un export batch degli ordini non ancora esportati (fino a 50). Il risultato viene notificato tramite toast.
     \item \textbf{Stato export}: Nella lista ordini, la colonna \texttt{Stato} mostra un badge verde \texttt{Esportato} se l'ordine \`e gi\`a stato esportato, oppure un trattino se non ancora esportato.
 \end{enumerate}
 
+\subsection{Analytics}
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{Contenuti/immagini/analytics.jpeg}
+        \caption{Statistiche del sistema}
+    \end{figure}
+
+È disponibile una schermata \textbf{analytics} che permette di vedere:
+\begin{enumerate}
+    \item Gli ordini totali effettuati dal sistema.
+    \item I ticket totali.
+    \item I ticket attualmente aperti
+    \item Le sessioni attive al momento
+    \item Il numero di messaggi inviati al sistema
+    \item Il trend di ordini e tricket nel periodo scelto (7, 14 o 30 giorni)
+    \item Un riepilogo dei ticket aperti, in lavorazione e chiusi
+    \item L'elenco dei clienti più attivi
+\end{enumerate}
+
 \subsection{Area personale (Operatore)}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Contenuti/immagini/area personale operatore.png}
+    \caption{Area personale dell'operatore}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Contenuti/immagini/cambio password operatore.png}
+    \caption{Cambio password dell'account}
+\end{figure}
 
 Per accedere alle impostazioni del profilo:
 
