@@ -307,13 +307,13 @@ Questa sezione raccoglie i limiti tecnici e i tempi di risposta che il sistema d
     \hline
     RP-OB\_01 \hypertarget{rp-ob_1} & Il modello AI (LLM) deve completare l'elaborazione del messaggio e rispondere entro massimo 20 secondi, misurati come valore mediano su un campione di almeno 50 richieste consecutive in assenza di traffico concorrente. & Interno, Capitolato \\
     \hline
-    RP-OB\_02 \hypertarget{rp-ob_2} & Il sistema di trascrizione vocale (Speech-to-Text) deve riconoscere le parole con un Word Error Rate (WER) inferiore al 10\%, misurato su un campione di almeno 100 registrazioni audio in italiano standard, con qualità audio non inferiore a 16\,kHz mono e in assenza di rumore di fondo superiore a 40\,dB. & Interno \\
+    RP-OB\_02 \hypertarget{rp-ob_2} & Il sistema di trascrizione vocale (Speech-to-Text) deve riconoscere le parole con un Word Error Rate (WER) inferiore al 10\%, misurato su un campione di almeno 20 registrazioni audio in italiano standard. & Interno \\
     \hline
     RP-OB\_03 \hypertarget{rp-ob_3} & La percentuale di sicurezza (Confidence Score) calcolata dall'AI deve superare il 70\% per poter aggiungere prodotti in automatico. & Interno \\
     \hline
-    RP-OB\_04 \hypertarget{rp-ob_4} & L'applicazione web deve caricare gli elementi principali a schermo in meno di 3 secondi, misurati al 90° percentile su 10 caricamenti consecutivi da una connessione con banda minima di 20\,Mbit/s in download. & Interno \\
+    RP-OB\_04 \hypertarget{rp-ob_4} & L'applicazione deve caricare gli elementi principali a schermo in meno di 5 secondi, misurati su 10 caricamenti consecutivi da una connessione con banda minima di 20 Mbit/s in download. & Interno \\
     \hline
-    RP-OB\_05 \hypertarget{rp-ob_5} & Quando l'utente usa la barra di ricerca prodotti, i risultati devono comparire in meno di 500 millisecondi, misurati al 95° percentile su un database contenente almeno 2000 prodotti, con un massimo di 10 utenti concorrenti e connessione locale (LAN). & Interno \\
+    RP-OB\_05 \hypertarget{rp-ob_5} & Quando l'utente usa la barra di ricerca prodotti, i risultati devono comparire in meno di 2 secondi, senza elemento di caricamento, misurati su un database contenente almeno 2000 prodotti e con un massimo di 4 utenti concorrenti. & Interno \\
     \hline
     \multicolumn{3}{c}{} \\
     \caption{Requisiti Prestazionali obbligatori}\hypertarget{tab:prestazionali_obbligatori}\\
@@ -369,8 +369,6 @@ Questa sezione elenca gli obblighi e le scelte tecnologiche imposte dall'esterno
     RV-OB\_05 \hypertarget{rv-ob_5} & Tutte le comunicazioni tra la webapp e il server devono usare esclusivamente connessioni sicure crittografate (HTTPS). & Interno \\
     \hline
     RV-OB\_06 \hypertarget{rv-ob_6} & Le password non devono mai essere salvate in chiaro, ma protette nel database usando l'algoritmo di hashing scrypt e salt. & Interno \\
-    \hline
-    RV-OB\_07 \hypertarget{rv-ob_7} & Il salvataggio nel database e l'uso delle email degli utenti deve rispettare le regole europee sulla privacy (GDPR). & Interno \\
     \hline
     RV-OB\_08 \hypertarget{rv-ob_8} & L'applicazione web deve funzionare correttamente sui seguenti browser desktop nelle versioni minime indicate: Google Chrome 120+, Mozilla Firefox 121+, Apple Safari 17+, Microsoft Edge 120+. & Interno \\
     \hline
