@@ -95,8 +95,8 @@
 
 \vfill
 
-{\large Data: 2026-04-07 \par}
-{\Large Versione: 2.2 \par}
+{\large Data: 2026-04-08 \par}
+{\Large Versione: 2.3 \par}
 
 \end{titlepage}
 
@@ -113,6 +113,7 @@
 \toprule
 \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione} & \textbf{Verificatore} \\
 \midrule
+2.3 & 2026-04-08 & Davide Biasuzzi & Aggiornamento dello stato dei requisiti soddisfatti e allineamento del documento alla rimozione di un requisito & Leonardo Bilato\\
 2.2 & 2026-04-07 & Francesco Zanella & Implementazione delle strategie di test e aggiornamento dei requisiti soddisfatti e delle metriche di copertura del codice & Leonardo Bilato\\
 2.1 & 2026-03-27 & Francesco Zanella & Aggiornamento dei grafici e delle metriche di qualità per lo Sprint 12 & Leonardo Bilato\\
 2.0 & 2026-03-17 & Francesco Zanella & Approvazione del documento & -\\
@@ -968,7 +969,7 @@ BC = \frac{B_e}{B_t} \cdot 100\%
 
 \subsection{Strategie di Test per Requisito}
 
-Questa sezione definisce la strategia di verifica e validazione per ciascun requisito specificato nell'\textit{Analisi dei Requisiti v1.1}. Per ogni requisito viene indicato il tipo di test applicabile e la tecnica di verifica adottata, garantendo tracciabilità completa tra requisiti e attività di testing{\scriptsize\raisebox{-0.5ex}{G}}.
+Questa sezione definisce la strategia di verifica e validazione per ciascun requisito specificato nell'\textit{Analisi dei Requisiti v2.2}. Per ogni requisito viene indicato il tipo di test applicabile e la tecnica di verifica adottata, garantendo tracciabilità completa tra requisiti e attività di testing{\scriptsize\raisebox{-0.5ex}{G}}.
 
 \subsubsection{Legenda Tipologie di Test}
 
@@ -1140,10 +1141,10 @@ RQA-OB 01 & Il codice del sistema deve essere scritto seguendo gli stand... & RE
 \endhead
 
 RP-OB 01 & Il modello AI (LLM) deve completare l'elaborazione del messaggio e rispondere entro massimo 20 secondi, misurati come valore mediano su un campione di almeno 50 richieste consecutive in assenza di traffico concorrente. & PT & Verifica che il modello AI (LLM) deve completare l'elaborazione del messaggio e rispondere entro massimo 20 secondi, misurati come valore mediano su un campione di almeno 50 richieste consecutive in assenza di traffico concorrente. \\ \hline
-RP-OB 02 & Il sistema di trascrizione vocale (Speech-to-Text) deve riconoscere le parole con un Word Error Rate (WER) inferiore al 10\%, misurato su un campione di almeno 100 registrazioni audio in italiano standard, con qualità audio non inferiore a 16\,kHz mono e in assenza di rumore di fondo superiore a 40\,dB. & PT & Verifica che il sistema di trascrizione vocale (Speech-to-Text) deve riconoscere le parole con un Word Error Rate (WER) inferiore al 10\%, misurato su un campione di almeno 100 registrazioni audio in italiano standard, con qualità audio non inferiore a 16\,kHz mono e in assenza di rumore di fondo superiore a 40\,dB. \\ \hline
+RP-OB 02 & Il sistema di trascrizione vocale (Speech-to-Text) deve riconoscere le parole con un Word Error Rate (WER) inferiore al 10\%, misurato su un campione di almeno 20 registrazioni audio in italiano standard. & PT & Verifica che il sistema di trascrizione vocale (Speech-to-Text) deve riconoscere le parole con un Word Error Rate (WER) inferiore al 10\%, misurato su un campione di almeno 20 registrazioni audio in italiano standard. \\ \hline
 RP-OB 03 & La percentuale di sicurezza (Confidence Score) calcolata dall'AI deve superare il 70\% per poter aggiungere prodotti in automatico. & PT & Verifica che la percentuale di sicurezza (Confidence Score) calcolata dall'AI deve superare il 70\% per poter aggiungere prodotti in automatico. \\ \hline
-RP-OB 04 & L'applicazione web deve caricare gli elementi principali a schermo in meno di 3 secondi, misurati al 90° percentile su 10 caricamenti consecutivi da una connessione con banda minima di 20\,Mbit/s in download. & PT & Verifica che l'applicazione web deve caricare gli elementi principali a schermo in meno di 3 secondi, misurati al 90° percentile su 10 caricamenti consecutivi da una connessione con banda minima di 20\,Mbit/s in download. \\ \hline
-RP-OB 05 & Quando l'utente usa la barra di ricerca prodotti, i risultati devono comparire in meno di 500 millisecondi, misurati al 95° percentile su un database contenente almeno 2000 prodotti, con un massimo di 10 utenti concorrenti e connessione locale (LAN). & PT & Verifica che quando l'utente usa la barra di ricerca prodotti, i risultati devono comparire in meno di 500 millisecondi, misurati al 95° percentile su un database contenente almeno 2000 prodotti, con un massimo di 10 utenti concorrenti e connessione locale (LAN). \\ \hline
+RP-OB 04 & L'applicazione deve caricare gli elementi principali a schermo in meno di 5 secondi, misurati su 10 caricamenti consecutivi da una connessione con banda minima di 20 Mbit/s in download. & PT & Verifica che l'applicazione deve caricare gli elementi principali a schermo in meno di 5 secondi, misurati su 10 caricamenti consecutivi da una connessione con banda minima di 20 Mbit/s in download. \\ \hline
+RP-OB 05 & Quando l'utente usa la barra di ricerca prodotti, i risultati devono comparire in meno di 2 secondi, senza elemento di caricamento, misurati su un database contenente almeno 2000 prodotti e con un massimo di 4 utenti concorrenti. & PT & Verifica che quando l'utente usa la barra di ricerca prodotti, i risultati devono comparire in meno di 2 secondi, senza elemento di caricamento, misurati su un database contenente almeno 2000 prodotti e con un massimo di 4 utenti concorrenti. \\ \hline
 RP-DE 01 & L'estrazione e il download in CSV dello storico ordini deve concludersi in massimo 5 secondi per liste con meno di 1000 ordini (dimensione stimata $\leq$ 2\,MB), misurato al 90° percentile su 10 esecuzioni consecutive in condizioni di rete locale (LAN). & PT & Verifica che l'estrazione e il download in CSV dello storico ordini deve concludersi in massimo 5 secondi per liste con meno di 1000 ordini (dimensione stimata $\leq$ 2\,MB), misurato al 90° percentile su 10 esecuzioni consecutive in condizioni di rete locale (LAN). \\ \hline
 \caption{Strategie di test per i requisiti prestazionali (v1.1)}
 \end{longtable}
@@ -1167,7 +1168,6 @@ RV-OB 03 & La comprensione del testo scritto dagli utenti deve essere g... & REV
 RV-OB 04 & Il file JSON dell'ordine deve essere posizionato in una cart... & REV, ST, SEC & Verifica che il file JSON dell'ordine deve essere posizionato in una cartella o ... \\ \hline
 RV-OB 05 & Tutte le comunicazioni tra la webapp e il server devono usar... & REV, ST, SEC & Verifica che tutte le comunicazioni tra la webapp e il server devono usare esclu... \\ \hline
 RV-OB 06 & Le password non devono mai essere salvate in chiaro, ma prot... & REV, ST, SEC & Verifica che le password non devono mai essere salvate in chiaro, ma protette ne... \\ \hline
-RV-OB 07 & Il salvataggio nel database e l'uso delle email degli utenti... & REV, ST, SEC & Verifica che il salvataggio nel database e l'uso delle email degli utenti deve r... \\ \hline
 RV-OB 08 & L'applicazione web deve funzionare correttamente sui seguent... & REV, ST, SEC & Verifica che l'applicazione web deve funzionare correttamente sui seguenti brows... \\ \hline
 RV-OB 09 & L'applicazione web deve funzionare correttamente sui seguent... & REV, ST, SEC & Verifica che l'applicazione web deve funzionare correttamente sui seguenti brows... \\ \hline
 RV-OB 10 & L'interfaccia del Cliente deve adattarsi a schermi con largh... & REV, ST, SEC & Verifica che l'interfaccia del Cliente deve adattarsi a schermi con larghezza mi... \\ \hline
@@ -1192,9 +1192,9 @@ RF-DE  & 17 & 0 & 0 & 0 & 0 \\
 RF-OP  &  3 & 0 & 0 & 0 & 0 \\
 RQA-OB &  1 & 0 & 0 & 0 & 0 \\
 RP     &  6 & 0 & 0 & 0 & 0 \\
-RV-OB  & 11 & 0 & 0 & 0 & 0 \\
+RV-OB  & 10 & 0 & 0 & 0 & 0 \\
 \midrule
-\textbf{Totale} & \textbf{106} & \textbf{0} & \textbf{0} & \textbf{0} & \textbf{0} \\
+\textbf{Totale} & \textbf{105} & \textbf{0} & \textbf{0} & \textbf{0} & \textbf{0} \\
 \bottomrule
 \end{tabularx}
 \caption{Indicatori di progresso dei test per categoria di requisiti}
@@ -2092,7 +2092,7 @@ Per la fase PB il gruppo intende:
 ]
 \addplot[fill=gray!30, draw=black, thick] coordinates {(0,0) (0,100) (100,100) (100,0)} -- cycle;
 \node at (axis cs:50,110) {\textbf{Obbligatori}};
-\node at (axis cs:50,50) {\Large 87\%};
+\node at (axis cs:50,50) {\Large 100\%};
 \end{axis}
 \end{scope}
 
@@ -2106,7 +2106,7 @@ Per la fase PB il gruppo intende:
 ]
 \addplot[fill=gray!30, draw=black, thick] coordinates {(0,0) (0,100) (100,100) (100,0)} -- cycle;
 \node at (axis cs:50,110) {\textbf{Desiderabili}};
-\node at (axis cs:50,50) {\Large 35\%};
+\node at (axis cs:50,50) {\Large 50\%};
 \end{axis}
 \end{scope}
 
@@ -2120,7 +2120,7 @@ Per la fase PB il gruppo intende:
 ]
 \addplot[fill=gray!30, draw=black, thick] coordinates {(0,0) (0,100) (100,100) (100,0)} -- cycle;
 \node at (axis cs:50,110) {\textbf{Opzionali}};
-\node at (axis cs:50,50) {\Large 0\%};
+\node at (axis cs:50,50) {\Large 33\%};
 \end{axis}
 \end{scope}
 
@@ -2132,7 +2132,7 @@ Per la fase PB il gruppo intende:
 
 \subsubsection*{Analisi}
 
-Il progetto ha completato con successo la transizione alla fase di Product Baseline (PB). A seguito dell'implementazione intensiva dell'MVP, la copertura dei requisiti obbligatori ha raggiunto l'87\%, garantendo che la quasi totalità delle funzionalità core (autenticazione, pipeline AI, gestione carrello, ordini e ticketing) sia pienamente operativa. Per quanto riguarda i requisiti desiderabili, il 35\% è stato già integrato nel prodotto, includendo le funzionalità di feedback utente e gestione password. I requisiti opzionali restano attualmente allo 0\% in quanto il gruppo ha prioritizzato la stabilizzazione delle funzioni critiche. Questo avanzamento è perfettamente in linea con la pianificazione e dimostra la maturità tecnologica raggiunta dal sistema SmartOrder in vista della release finale.
+Con la presente baseline PB, il documento è stato allineato anche alla rimozione di un requisito dall'Analisi dei Requisiti. Lo stato attuale evidenzia una copertura completa dei requisiti obbligatori (100\%), con tutte le funzionalità core già operative. I requisiti desiderabili risultano implementati al 50\% (9 su 18), in linea con la priorità assegnata al consolidamento delle funzionalità essenziali. I requisiti opzionali hanno raggiunto il 33\% (1 su 3), segnando l'avvio anche delle estensioni non prioritarie. Nel complesso, l'avanzamento conferma la maturità raggiunta dal sistema SmartOrder nella fase PB.
 
 \subsection{Metriche di Copertura del Codice}
 
