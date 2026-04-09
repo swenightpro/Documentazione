@@ -130,7 +130,7 @@ jobs:
             echo "No files to compile."
             echo "compile_needed=false" >> $GITHUB_OUTPUT
             # sebbene il report dovrebbe essere generato nello step 4, per comoditá e immediatezza, nel caso non ci fosse nulla da compilare (questo caso), lo generiamo subito
-            echo "# Report di compilazione del $(date -u --iso-8601=seconds)" > report.md
+            echo "# Report di compilazione" > report.md
             echo "" >> report.md
             echo "Compilazione basata sul commit ${LAST_COMPILED} ${BASE_DESC}" >> report.md
             echo "" >> report.md
@@ -171,7 +171,7 @@ jobs:
             '
             
           # creazione del report
-          echo "# Report di compilazione del $(date -u --iso-8601=seconds)" > report.md
+          echo "# Report di compilazione" > report.md
           echo "" >> report.md
           build_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
           echo "Compilazione basata sul commit ${LAST_COMPILED} ${BASE_DESC}" >> report.md
