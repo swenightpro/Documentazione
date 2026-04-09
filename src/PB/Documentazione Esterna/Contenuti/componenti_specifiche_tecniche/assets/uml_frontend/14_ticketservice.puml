@@ -22,7 +22,7 @@ class "ticketService" as C1 {
   + getPlatformUsageOverview(days)
   + lockTicket(ticketId)
   + unlockTicket(ticketId)
-  + closeTicket(ticketId)
+  + closeTicket(ticketId, closedBy?)
   + openTicket(sessionId)
   + getTicketBySession(sessionId)
   + closeTicketBySession(sessionId)

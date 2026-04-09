@@ -11,7 +11,6 @@
     \item \texttt{logout()}: invalida la sessione autenticata corrente cancellando i cookie.
     \item \texttt{me()}: restituisce i dati dell'utente correntemente autenticato.
     \item \texttt{change\_password(body: ChangePasswordRequest)}: gestisce il flusso di aggiornamento credenziali.
-    \item \texttt{register(body: RegisterRequest)}: permette la registrazione di un nuovo cliente.
     \item \texttt{get\_export\_folder()}: recupera la cartella di esportazione configurata dall'operatore.
     \item \texttt{set\_export\_folder(body)}: imposta o aggiorna la cartella di esportazione dell'operatore.
     \item \texttt{sse\_token()}: restituisce il JWT dal cookie HTTPOnly per connessioni SSE dirette.
@@ -174,21 +173,6 @@
     \caption{UML della classe \texttt{ProductController}.}
 \end{figure}
 
-\paragraph{RegisterController}
-\textbf{Descrizione della classe:} gestisce la registrazione di nuovi account clienti e operatori.
-
-\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
-
-\textbf{Descrizione dei metodi:}
-\begin{itemize}
-    \item \texttt{register(body: RegisterRequest)}: registra un nuovo utente delegando la logica ad AuthService.
-\end{itemize}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.62\textwidth]{uml_backend/10_registercontroller.png}
-    \caption{UML della classe \texttt{RegisterController}.}
-\end{figure}
 
 \paragraph{SSEController}
 \textbf{Descrizione della classe:} gestisce le connessioni Server-Sent Events per le notifiche in streaming verso client e operatori.

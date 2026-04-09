@@ -24,7 +24,6 @@ class "AuthService" as C1 {
   + verify_jwt(token: str)
   + get_profile(user_id: int)
   + change_password(...)
-  + register(...)
   + get_export_folder(user_id: int)
   + set_export_folder(user_id: int, path)
 }

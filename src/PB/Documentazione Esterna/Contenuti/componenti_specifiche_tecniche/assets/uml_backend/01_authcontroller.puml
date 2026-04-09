@@ -21,7 +21,6 @@ class "AuthController" as C1 {
   + logout()
   + me()
   + change_password(body: ChangePasswordRequest)
-  + register(body: RegisterRequest)
   + get_export_folder()
   + set_export_folder(body)
   + sse_token()

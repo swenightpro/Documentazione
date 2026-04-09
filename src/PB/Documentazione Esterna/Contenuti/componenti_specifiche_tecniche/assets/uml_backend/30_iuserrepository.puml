@@ -19,7 +19,6 @@ skinparam classAttributeIconSize 0
 interface "IUserRepository" as C1 {
   + find_by_email(email: str)
   + find_by_id(user_id: int)
-  + create_user(email, password_hash, password_salt, role, cod_cli)
   + update_password(user_id, password_hash, password_salt)
   + get_client_info(cod_cli: int)
   + search_clients(query: str, limit: int)
