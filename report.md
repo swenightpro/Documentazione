@@ -1,10 +1,10 @@
-# Report di compilazione del 2026-04-09T10:03:13+00:00
+# Report di compilazione del 2026-04-09T10:27:37+00:00
 
-Compilazione basata sul commit 10a12def5cdd100ef1d98fc4728288fbcaac7eca (base: 10a12de)
+Compilazione basata sul commit 66602c35d18686eb1369e8e6db28f80530698fe8 (base: 66602c3)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/PB/Documentazione Esterna/Verbali Esterni/Verbale_accettazione_2026-04-09.pdf](docs/PB/Documentazione%20Esterna/Verbali%20Esterni/Verbale_accettazione_2026-04-09.pdf)
+✅ [docs/PB/Documentazione Interna/Norme_di_Progetto_v3.3.pdf](docs/PB/Documentazione%20Interna/Norme_di_Progetto_v3.3.pdf)
 
