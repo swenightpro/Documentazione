@@ -1,0 +1,213 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl}
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}
+\graphicspath{{assets/}{../assets/}{../../assets/}{../../../assets}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[svgnames]{xcolor}
+
+% --- Utility ---
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Verbale di Accettazione 2026-04-08 - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textbf{NightPRO - Progetto Ingegneria del Software}}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Frontespizio
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+
+    \vfill
+
+    {\small UNIVERSITA DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+
+    \vfill
+
+    {\Huge \bfseries Verbale di Accettazione \par}
+
+    \vspace{1cm}
+
+    \vfill
+
+    {\Large \bfseries Gruppo: NightPRO \par}
+    \vspace{0.5cm}
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+
+    \vfill
+
+    {\large Data: 2026-04-09 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Indice
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents
+\pagestyle{fancy}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Informazioni Generali
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO.}
+\end{table}
+
+\subsection{Dettagli Sessione di Accettazione}
+\begin{itemize}
+    \item \textbf{Data:} 2026-04-08 alle ore 16:00 (in presenza) e 2026-04-09 (asincrona)
+    \item \textbf{Luogo:} Microsoft Teams e modalità asincrona
+    \item \textbf{Prodotto:} SmartOrder - Versione finale per accettazione
+    \item \textbf{Testato da:} Gianluca Carlesso (Ergon Informatica SRL)
+    \item \textbf{Redatto da:} Giovanni Ponso
+    \item \textbf{Verificato da:} Leonardo Bilato
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Oggetto dell'Accettazione
+% -------------------------------------------------------------------
+\newpage
+\section{Oggetto dell'Accettazione}
+La sessione di accettazione ha avuto come obiettivo la verifica finale e formale del prodotto software \textbf{SmartOrder}. La revisione è stata condotta inizialmente su Microsoft Teams l'8 aprile 2026 e conclusa dal gruppo nel giorno successivo per rifinire gli ultimi dettagli tecnici e documentali.
+
+L'applicazione è stata valutata positivamente e rispetta tutti i \textbf{requisiti obbligatori} definiti nell'Analisi dei Requisiti e i requisiti tecnici descritti nelle \textbf{Specifiche Tecniche}. Il committente ha espresso parere favorevole alla prosecuzione del progetto verso la fase di consegna finale.
+
+In particolare sono stati verificati:
+\begin{itemize}
+    \item la conformità ai requisiti obbligatori;
+    \item la conformità ai requisiti desiderabili e opzionali implementati;
+    \item la rispondenza alle specifiche tecniche definite inizialmente;
+    \item la stabilità operativa dell'intera piattaforma (Frontend e Backend);
+\end{itemize}
+
+\subsection{Riferimenti e Link Utili}
+\begin{itemize}
+    \item \href{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C8.pdf}{Capitolato d'appalto C8: SmartOrder}
+    \item \href{https://github.com/swenightpro/SmartOrder-MVP}{Codice sorgente SmartOrder (Repository Prodotto)}
+    \item \href{https://github.com/swenightpro/Documentazione}{Repository Documentale (GitHub)}
+    \item \href{https://swenightpro.github.io/Documentazione/}{Sito Documentazione Ufficiale}
+    \item \href{https://frontend-production-afc4.up.railway.app/}{Webapp SmartOrder (Deploy)}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/PB/Documentazione%20Esterna/Analisi_Dei_Requisiti.pdf}{Analisi dei Requisiti}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/PB/Documentazione%20Esterna/Specifica_Tecnica.pdf}{Specifica Tecnica}
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Esito dell'Accettazione
+% -------------------------------------------------------------------
+\section{Esito dell'Accettazione}
+
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\begin{tabularx}{\textwidth}{p{0.42\textwidth} p{0.18\textwidth} X}
+\toprule
+\textbf{Criterio di accettazione} & \textbf{Esito} & \textbf{Evidenza} \\
+\midrule
+Consegna del prodotto software & Superato & Software disponibile e presentato in sessione con dimostrazione end-to-end dei flussi principali. \\
+\addlinespace
+Conformità ai requisiti obbligatori & Superato & Verifica dei requisiti prioritari concordati nella baseline di progetto e implementati nel prodotto. \\
+\addlinespace
+Rispondenza alle Specifiche Tecniche & Superato & Verifica dell'architettura e delle scelte tecnologiche descritte nella documentazione tecnica. \\
+\addlinespace
+Documentazione di supporto & Superato & Materiale documentale completo, aggiornato e coerente con lo stato del prodotto. \\
+\bottomrule
+\end{tabularx}
+\normalsize
+
+% -------------------------------------------------------------------
+%  SEZIONE: Dichiarazione di Accettazione
+% -------------------------------------------------------------------
+\newpage
+\section{Dichiarazione di Accettazione}
+Il sottoscritto \textbf{Gianluca Carlesso}, in qualità di referente del committente \textbf{Ergon Informatica S.r.l.}, dichiara che:
+
+\begin{enumerate}[label=\arabic*.]
+    \item il software \textbf{SmartOrder} è stato presentato e testato;
+    \item il prodotto risulta conforme ai requisiti obbligatori e alle specifiche tecniche concordate;
+    \item l'esito delle verifiche condotte sia in presenza che in modalità asincrona è positivo.
+\end{enumerate}
+
+La presente dichiarazione costituisce formale accettazione del prodotto e approvazione alla prosecuzione delle attività.
+
+% -------------------------------------------------------------------
+%  SEZIONE: Attività Conseguenti
+% -------------------------------------------------------------------
+\section{Attività Conseguenti}
+\begin{itemize}
+    \item Archiviazione del presente verbale nella documentazione ufficiale di progetto.
+    \item Presentazione della richiesta per il colloquio di revisione PB.
+    \item Consolidamento finale della Product Baseline.
+\end{itemize}
+
+% ------ FIRMA COMMITTENTE --------------------------------
+\vspace{2cm}
+\begin{flushright}
+    \textbf{Firma Ergon Informatica S.r.l.} \\[0.5cm]
+
+    \vspace{3cm}
+    \rule{6cm}{0.4pt} \\
+    \small{Gianluca Carlesso}
+\end{flushright}
+
+\end{document}
