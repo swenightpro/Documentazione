@@ -70,8 +70,8 @@
 
     {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
 
-    {\large Data: 2026-04-03 \par}
-    {\Large Versione: 3.2 \par}
+    {\large Data: 2026-04-09 \par}
+    {\Large Versione: 3.3 \par}
 
 \end{titlepage}
 
@@ -91,6 +91,7 @@
             \toprule
             \textbf{Versione} & \textbf{Data} & \textbf{Autore/i}     & \textbf{Descrizione delle Modifiche}                                                                                                                                                                            & \textbf{Verificatore}   \\
             \midrule
+            3.3               & 2026-04-09    & F. Zanella            & Revisione processi di CI/CD per integrazione deploy e completamento norme di implementazione e documentazione & Leonardo Bilato\\
             3.2               & 2026-04-03    & L. Bilato             & Aggiunte le sezioni relative alla CI e al testing                                                                                                                                                               & Mihaela-Mariana Romascu \\
             3.1               & 2026-04-02    & L. Bilato             & Aggiornata la sezione relativa alla rotazione dei ruoli                                                                                                                                                         & Mihaela-Mariana Romascu \\
             3.0               & 2026-03-17    & F. Zanella            & Approvazione del documento                                                                                                                                                                                      & -                       \\
@@ -297,7 +298,7 @@ I seguenti documenti e risorse sono stati consultati a scopo di studio e orienta
     \item \textbf{GitHub} (\texttt{SmartOrder-PoC}): versionamento del Proof of Concept.
 \end{itemize}
 
-\subsubsection{Attività 3 – Codifica (MVP)}
+\subsubsection{Attività 3 – Codifica}
 
 \paragraph{Procedure}
 
@@ -314,27 +315,27 @@ I seguenti documenti e risorse sono stati consultati a scopo di studio e orienta
 
 \subparagraph{3b. Implementazione}
 \begin{enumerate}
-    \item Scrivere il codice rispettando le convenzioni di stile seguenti:
+    \item L'applicazione principale si compone di un ecosistema backend (Python) e frontend (TypeScript). Per la stesura del codice attenersi alle convenzioni di stile seguenti:
           \begin{itemize}
-              \item \textbf{Indentazione}: 4 spazi; vietato il carattere di tabulazione (\texttt{tab}).
-              \item \textbf{Lunghezza righe}: massimo 120 caratteri; suddividere le righe più lunghe in modo logico.
-              \item \textbf{Spaziatura}: riga vuota tra blocchi logici; spazi attorno agli operatori binari; parentesi graffe anche per blocchi di una sola istruzione.
+              \item \textbf{Indentazione}: 4 spazi per Python; indentazione definita dalla configurazione nativa (es. 4 spazi) per TS/React. Vietato il carattere di tabulazione (\texttt{tab}).
+              \item \textbf{Lunghezza righe}: massimo 120 caratteri; suddividere le righe più lunghe in modo logico per facilitare la lettura orizzontale.
+              \item \textbf{Spaziatura}: riga vuota tra blocchi logici; spazi attorno agli operatori binari.
           \end{itemize}
-    \item Applicare le convenzioni di nomenclatura:
+    \item Applicare le convenzioni di nomenclatura relative all'ecosistema di riferimento:
           \begin{itemize}
-              \item \textbf{Classi e Interfacce}: \texttt{PascalCase}{\scriptsize\raisebox{-0.5ex}{G}} (es. \texttt{OrderProcessor}).
-              \item \textbf{Metodi e Funzioni}: \texttt{camelCase}{\scriptsize\raisebox{-0.5ex}{G}}, nomi verbali (es. \texttt{validateInput()}).
-              \item \textbf{Variabili e Parametri}: \texttt{camelCase}, nomi descrittivi (es. \texttt{confidenceScore}).
-              \item \textbf{Costanti}: \texttt{UPPER\_SNAKE\_CASE} (es. \texttt{MAX\_RETRY\_COUNT}).
+              \item \textbf{Classi, Interfacce e Componenti React}: \texttt{PascalCase}{\scriptsize\raisebox{-0.5ex}{G}} (es. \texttt{OrderService}, \texttt{OrderModal}).
+              \item \textbf{Metodi, Funzioni e Variabili (TypeScript)}: \texttt{camelCase}{\scriptsize\raisebox{-0.5ex}{G}} (es. \texttt{validateInput}).
+              \item \textbf{Metodi, Funzioni e Variabili (Python)}: \texttt{snake\_case}{\scriptsize\raisebox{-0.5ex}{G}} (es. \texttt{get\_order\_detail}).
+              \item \textbf{Costanti}: \texttt{UPPER\_SNAKE\_CASE} sia in Python che in JS/TS (es. \texttt{MAX\_RETRY\_COUNT}).
           \end{itemize}
-    \item Documentare ogni componente:
+    \item Documentare logicamente i componenti:
           \begin{itemize}
-              \item Intestazione del file con descrizione, autore e data di creazione.
-              \item Documentazione di ogni funzione pubblica (descrizione, parametri, valore di ritorno).
-              \item Commenti inline per logiche complesse o non immediatamente intuibili.
-              \item Marcatori \texttt{TODO} e \texttt{FIXME} per segnalare lavori in sospeso.
+              \item Sfruttare appieno la documentazione intrinseca fornita dai Type Hints e dalle firme Strongly Typed dei parametri prima di affidarsi a commenti verbali.
+              \item Utilizzare i blocchi descrittivi esclusivamente per i metodi complessi coerentemente alle direttive illustrate nella sezione 4.5.1 dell'attività Documentazione Inline.
+              \item Inserire commenti inline (\texttt{// x} oppure \texttt{\# x}) per chiarire logiche aggrovigliate o procedure workaround non elementari.
+              \item Impiegare i marcatori \texttt{TODO} e \texttt{FIXME} per evidenziare debiti tecnici e implementazioni monche da risolvere nei cicli successivi.
           \end{itemize}
-    \item Scrivere test unitari per ogni unità di codice prodotta.
+    \item Garantire copertura e correttezza logica del codice affiancandolo, laddove concordato dalla pianificazione di sprint, con adeguate procedure di test.
 \end{enumerate}
 
 \subparagraph{3c. Commit e push}
@@ -344,13 +345,11 @@ I seguenti documenti e risorse sono stati consultati a scopo di studio e orienta
     \item Effettuare il push sul branch dedicato.
 \end{enumerate}
 
-\subparagraph{3d. Pull Request e Merge}
+\subparagraph{3d. Push e Verifica del codice}
 \begin{enumerate}
-    \item Aprire una pull request{\scriptsize\raisebox{-0.5ex}{G}} verso \texttt{main} con descrizione delle modifiche apportate.
-    \item Associare la pull request al task su GitHub Projects.
-    \item Il Verificatore esegue la code review: verifica stile, logica, test e conformità alle norme.
-    \item Risolvere eventuali conflitti prima del merge.
-    \item Il merge sul branch \texttt{main} è consentito solo dopo approvazione del Verificatore.
+    \item Effettuare il push, assicurandosi di fornire una descrizione chiara delle modifiche apportate.
+    \item Il push deve inoltre specificare l'associazione al relativo task su GitHub Projects.
+    \item Il Verificatore esegue la code review assicurandosi della conformità, e convalida figurando come coautore del commit (tramite \texttt{Co-authored-by:}).
     \item Aggiornare lo stato del task su GitHub Projects a ``Completato''.
 \end{enumerate}
 
@@ -360,7 +359,7 @@ Il codice prodotto deve rispettare i criteri di: \textbf{leggibilità}, \textbf{
 \paragraph{Strumenti}
 \begin{itemize}
     \item \textbf{Git}: controllo di versione distribuito.
-    \item \textbf{GitHub} (\texttt{SmartOrder-MVP}): hosting del repository, gestione branch e pull request.
+    \item \textbf{GitHub} (\texttt{SmartOrder-MVP}): hosting del repository e gestione branch.
     \item \textbf{GitHub Projects}: tracciamento dei task di sviluppo.
 \end{itemize}
 
@@ -397,9 +396,9 @@ report.md           # Report compilazione automatica
     \item Caricare direttamente su \texttt{main} i documenti verificati; non usare branch intermedi per la documentazione.
     \item Per la repository \texttt{SmartOrder-MVP}:
     \begin{itemize}
-        \item Il lavoro avviene su branch dedicati (\texttt{feature/}, \texttt{fix/}, \texttt{hotfix/}) creati da \texttt{main}.
-        \item Ogni modifica viene integrata tramite Pull Request verso \texttt{main}.
-        \item La pipeline CI/CD si attiva automaticamente ad ogni push e Pull Request.
+        \item Il lavoro avviene su branch dedicati o direttamente su \texttt{main}.
+        \item Ogni modifica viene integrata tramite push validando l'operazione con un coautore (Verificatore).
+        \item La pipeline CI si attiva automaticamente ad ogni push.
     \end{itemize}
     \item Per la repository \texttt{SmartOrder-PoC}: si segue lo stesso approccio della repository \texttt{SmartOrder-MVP}.
 \end{enumerate}
@@ -412,39 +411,25 @@ report.md           # Report compilazione automatica
 
 \subsubsection{Attività 2 – Automazione CI/CD}
 
-L'integrazione continua (CI){\scriptsize\raisebox{-0.5ex}{G}} è una pratica di sviluppo software{\scriptsize\raisebox{-0.5ex}{G}} che automatizza l'integrazione frequente del codice sorgente da parte degli sviluppatori. Nel progetto NightPRO, il processo di CI è implementato per la repository \texttt{SmartOrder-MVP} ed è innescato dalla creazione di una Pull Request. Tale processo è descritto nel dettaglio nelle sezioni seguenti.
+L'integrazione continua (CI){\scriptsize\raisebox{-0.5ex}{G}} e la Continuous Delivery/Deployment (CD){\scriptsize\raisebox{-0.5ex}{G}} sono pratiche che automatizzano l'integrazione del codice e il suo rilascio. Nel progetto NightPRO, queste pratiche sono implementate per la repository \texttt{SmartOrder-MVP} ed entrano in funzione ad ogni push.
+L'infrastruttura si appoggia all'integrazione nativa tra \textbf{GitHub} per il tracciamento del versionamento e \textbf{Railway} come piattaforma di hosting e automazione.
 
-La Continuous Delivery/Deployment (CD){\scriptsize\raisebox{-0.5ex}{G}} estende la CI automatizzando la consegna e il rilascio del software in ambienti di staging e produzione.
+\subparagraph{Pipeline automatizzata per l'ambiente applicativo}
 
-\subparagraph{Pipeline automatizzata per il codice MVP}
-
-La pipeline per il codice dell'MVP si articola nelle seguenti fasi:
+La pipeline per il software applicativo si articola nelle seguenti fasi principali delegate a GitHub e Railway:
 
 \begin{enumerate}
-    \item \textbf{Build}:
+    \item \textbf{Build e Analisi Statica}:
     \begin{enumerate}[label=\alph*.]
-        \item Il workflow si attiva automaticamente a ogni push o Pull Request sul branch \texttt{main} della repository \texttt{SmartOrder-MVP}.
-        \item Il codice sorgente viene ottenuto e le dipendenze vengono installate.
-        \item La compilazione avviene in ambiente Docker{\scriptsize\raisebox{-0.5ex}{G}}.
-        \item In caso di errore di build, il workflow si ferma e viene inviata una notifica al Programmatore.
+        \item Il workflow di build di Railway si attiva automaticamente ad ogni push registrato sui branch collegati della repository GitHub.
+        \item Il codice sorgente viene ottenuto, le dipendenze vengono installate e avviene la compilazione nei container. L'obiettivo primario è accertarsi che il software buildi senza errori.
+        \item In caso di errore di build, l'esecuzione si ferma e viene inviata una notifica su Railway (e GitHub) evidenziando il problema tecnico che il Programmatore deve risolvere.
+        \item Vengono inoltre eseguiti controlli di base forniti dagli strumenti di analisi statica per la conformità alla sintassi, senza bloccare l'infrastruttura con suite complesse di test.
     \end{enumerate}
-    \item \textbf{Analisi statica}:
+    \item \textbf{Continuous Deployment (CD)}:
     \begin{enumerate}[label=\alph*.]
-        \item Al termine della build con successo, vengono eseguiti gli strumenti di analisi statica (linting) per verificare la conformità del codice alle regole di stile definite.
-        \item L'esito viene esposto come badge nel file \texttt{README.md} della repository.
-        \item Se l'analisi statica fallisce, il Programmatore deve revisionare il codice affinché superi i controlli.
-    \end{enumerate}
-    \item \textbf{Test dinamici}:
-    \begin{enumerate}[label=\alph*.]
-        \item Vengono eseguiti i test di unità e di integrazione (cfr. sezione \ref{sec:testing}).
-        \item Se almeno uno dei test fallisce, il workflow si ferma con stato di fallimento.
-        \item Viene inviata una notifica al Programmatore che ha creato la Pull Request.
-        \item Se tutti i test passano, il code coverage viene calcolato e riportato come badge nel \texttt{README.md}.
-    \end{enumerate}
-    \item \textbf{Deployment}:
-    \begin{enumerate}[label=\alph*.]
-        \item Al completamento con successo di tutte le fasi precedenti, il software viene automaticamente distribuito nell'ambiente di staging.
-        \item La pubblicazione in ambiente di produzione avviene tramite approvazione manuale del Responsabile.
+        \item Se la fase di build si conclude con successo senza eccezioni, Railway procede automaticamente con il deploy in ambiente cloud.
+        \item L'aggiornamento avviene in modalità zero-downtime applicando i container al web solver in automatico.
     \end{enumerate}
 \end{enumerate}
 
@@ -675,7 +660,7 @@ La revisione del codice è un'attività di verifica dinamica che prevede l'esame
 
 \subsubsection{Attività 1 -- Procedure di revisione}
 
-La revisione del codice si articola nell'esecuzione dei test unitari e di integrazione, che vengono eseguiti automaticamente dalla pipeline CI ad ogni push e Pull Request. Il Verificatore supervisiona l'esito dei test verificando che tutti passino con esito positivo e che il code coverage rispetti la soglia minima definita nel Piano di Qualifica{\scriptsize\raisebox{-0.5ex}{G}}.
+La revisione del codice e la validazione si articolano nell'esame manuale del codice effettuato dal Verificatore. Il Verificatore si accerta dell'assenza di errori logici e sintattici, validando le modifiche apponendo la propria firma come coautore del commit.
 
 \subparagraph{Tecniche di revisione}
 \begin{itemize}
@@ -691,51 +676,48 @@ La revisione del codice si articola nell'esecuzione dei test unitari e di integr
 
 La documentazione del codice ha l'obiettivo di garantire la leggibilità, la manutenibilità e la tracciabilità del software{\scriptsize\raisebox{-0.5ex}{G}} prodotto. Ogni componente deve essere documentato in modo chiaro e uniforme.
 
-\subsubsection{Attività 1 -- Docstring e Javadoc}
+\subsubsection{Attività 1 -- Documentazione Inline e Type Hints}
 
-Ogni classe, interfaccia, metodo e funzione pubblica deve essere documentato con un docstring/Javadoc che include:
+La documentazione del codice si basa su un approccio pragmatico orientato all'autodescrizione tramite forti tipizzazioni (Type Hints in Python, Interfaces/Types in TypeScript e costrutti di dominio), limitando l'uso di docstring estesi ai soli metodi che presentano logiche complesse.
+
 \begin{itemize}
-    \item \textbf{Descrizione}: sintesi chiara e concisa della funzionalità del componente.
-    \item \textbf{Parametri}: elenco di tutti i parametri formali con tipo e descrizione del loro significato.
-    \item \textbf{Valore di ritorno}: descrizione del valore restituito, se presente.
-    \item \textbf{Eccezioni}: eventuali eccezioni sollevate con relativa motivazione.
+    \item \textbf{Classi e Interfacce}: non richiedono obbligatoriamente un blocco strutturato qualora la loro nomenclatura e i membri associati risultino autoesplicativi nel contesto architetturale.
+    \item \textbf{Funzioni e Metodi Semplici}: la documentazione è fortemente delegata ai Type Hints. È consentito l'uso di descrizioni concise su linea singola (es. \texttt{/** Helper: descrizione */}) per chiarire lo scopo immediato all'interno dei componenti.
+    \item \textbf{Metodi Complessi}: i metodi che implementano logiche di business stratificate o integrazioni esterne (come l'export, il processing, o servizi di intelligenza artificiale) devono includere un blocco di documentazione esplicito che delinei:
+    \begin{itemize}
+        \item \textbf{Descrizione}: funzionamento del metodo;
+        \item \textbf{Args / Parametri}: se non banali da intuire tramite i Type Hint;
+        \item \textbf{Returns / Valore restituito}: forma o natura del risultato;
+        \item \textbf{Raises / Eccezioni}: condizioni per cui il metodo propaga volontariamente errori.
+    \end{itemize}
 \end{itemize}
 
-\subparagraph{Standard Java}
+\subparagraph{Standard TypeScript / React}
+Per le logiche algoritmiche o helper nel front-end si applica un subset dello standard JSDoc:
 \begin{verbatim}
 /**
- * Descrizione del metodo.
- *
- * @param nomeParam descrizione del parametro
- * @return descrizione del valore di ritorno
- * @throws TipoEccezione descrizione dell'eccezione
- */
-\end{verbatim}
-
-\subparagraph{Standard TypeScript / JavaScript}
-\begin{verbatim}
-/**
- * Descrizione del metodo.
- * @param nomeParam - descrizione del parametro
- * @returns descrizione del valore di ritorno
+ * Descrizione funzionale e del relativo Use Case.
+ * @param nomeParam - spiegazione tecnica opzionale
+ * @returns struttura ritornata ai controller
  */
 \end{verbatim}
 
 \subparagraph{Standard Python}
+Per i servizi e controller del back-end si segue lo standard Google limitatamente ai metodi complessi:
 \begin{verbatim}
-def funzione(param: tipo) -> tipo_ritorno:
-    \"\"\"
-    Descrizione del metodo.
+def elabora_processo(param: tipo) -> tipo_ritorno:
+    """
+    Descrizione analitica del comportamento del metodo.
 
     Args:
-        param (tipo): descrizione del parametro.
+        param: descrizione essenziale per le logiche condizionali.
 
     Returns:
-        tipo_ritorno: descrizione del valore di ritorno.
+        Dizionario o Pydantic model atteso dalla view o dal service.
 
     Raises:
-        TipoEccezione: descrizione dell'eccezione.
-    \"\"\"
+        ValueError / HTTPException: qualora uno dei controlli fallisca.
+    """
 \end{verbatim}
 
 \subsubsection{Attività 2 -- Commenti inline}
@@ -843,7 +825,7 @@ Non è necessario commentare codice autoesplicativo; il codice stesso deve esser
 
 \subparagraph{Programmatore}
 \begin{itemize}
-    \item Implementa il codice rispettando le specifiche di progettazione e le norme di codifica definite nella sezione \ref{sec:processi_organizzativi}.
+    \item Implementa il codice rispettando le specifiche di progettazione e le norme di codifica definite nel documento.
     \item Applica le best practices{\scriptsize\raisebox{-0.5ex}{G}} di settore per garantire qualità e leggibilità.
     \item Risolve i problemi tecnici compatibili con l'architettura definita.
     \item Scrive test unitari per il proprio codice.
@@ -853,7 +835,7 @@ Non è necessario commentare codice autoesplicativo; il codice stesso deve esser
 \subparagraph{Verificatore}
 \begin{itemize}
     \item Esamina i documenti su Overleaf prima del caricamento su GitHub.
-    \item Esegue la code review delle pull request: controlla errori ortografici, sintattici, logici e problemi di build.
+    \item Esegue la revisione del codice: controlla errori ortografici, logici, problemi di build e convalida il lavoro figurando come coautore del commit.
     \item Segnala non conformità con feedback dettagliati al produttore del lavoro.
     \item Redige la parte retrospettiva del Piano di Qualifica{\scriptsize\raisebox{-0.5ex}{G}}.
     \item Mantiene sorveglianza continua sulla qualità durante l'intero ciclo di vita del progetto.
@@ -975,7 +957,7 @@ Non è necessario commentare codice autoesplicativo; il codice stesso deve esser
           \begin{enumerate}[label=\alph*.]
               \item Il Verificatore esamina il lavoro prodotto.
               \item Per documentazione: verifica su Overleaf prima del push su GitHub.
-              \item Per codice: review della pull request con commenti su GitHub.
+              \item Per codice: revisione delle modifiche e validazione aggiungendosi come coautore del commit.
               \item Il Verificatore valida il task se conforme agli standard; altrimenti segnala le modifiche necessarie.
           \end{enumerate}
     \item \textbf{Accettazione}:
