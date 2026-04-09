@@ -1,10 +1,5 @@
-# Report di compilazione del 2026-04-08T17:39:56+00:00
+# Report di compilazione del 2026-04-09T07:14:09+00:00
 
-Compilazione basata sul commit 38da91a9b022e959b5d5e6d232d892baf9837305 (base: 38da91a)
+Compilazione basata sul commit 506cf5ff65071a9bcf1f81ad7b463c8e8a907e48 (base: 506cf5f)
 
-## Falliti
-💡 Nessun errore di compilazione
-
-## Compilati
-✅ [docs/PB/Documentazione Esterna/Specifica_Tecnica_v0.6.pdf](docs/PB/Documentazione%20Esterna/Specifica_Tecnica_v0.6.pdf)
-
+💡 Nessun file modificato o mancante. Nessuna compilazione eseguita.
