@@ -1,0 +1,165 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl} % Classe KOMA-Script
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}     % Codifica UTF-8
+\usepackage[T1]{fontenc}        % Font encoding moderno
+\usepackage[italian]{babel}     % Lingua italiana
+\usepackage{lmodern}            % Font "Latin Modern"
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}           % Per le immagini
+\graphicspath{{../assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % Margini
+\usepackage{fancyhdr}           % Per header e footer personalizzati
+\usepackage{microtype}          % Migliora la tipografia
+\usepackage[svgnames]{xcolor}   % Colori
+
+% --- Utility ---
+\usepackage{booktabs}           % Tabelle più professionali
+\usepackage{enumitem}           % Per personalizzare liste
+\usepackage{hyperref}           % Rende i link cliccabili
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,      
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Lettera di Presentazione PB - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+
+% ===================================================================
+%  HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{} % Pulisce i campi
+\fancyhead[L]{\textbf{NightPRO – Progetto Ingegneria del Software}}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage} % Numero di pagina al centro
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  FRONTESPIZIO
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \includegraphics[width=0.35\textwidth]{logo.png}\\[1cm]
+
+     \vfill
+    
+    {\small UNIVERSITÀ DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    \vfill
+    
+    {\Huge \bfseries Lettera di Presentazione PB\par}
+        \vspace{1cm}
+       
+    \vfill
+
+    {\Large \bfseries Gruppo: NightPRO}    \vspace{0.5cm}
+
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
+
+        {\large Data: 2026-04-09 \par}
+
+\end{titlepage}
+
+
+% -------------------------------------------------------------------
+% INTRODUZIONE
+% -------------------------------------------------------------------
+
+
+\newpage
+
+\noindent
+\textbf{Egregio Prof.~Tullio Vardanega,}\\
+\textbf{Egregio Prof.~Riccardo Cardin,}\\[0.6em]
+
+\noindent
+Il gruppo \textbf{NightPRO} desidera comunicare la propria partecipazione alla revisione \textbf{Product Baseline (PB)} del progetto \textbf{Capitolato C8 – SmartOrder: Analisi multimodale per la creazione automatica di ordini}, proposto dall'azienda \textbf{Ergon Informatica Srl}.\\[0.6em]
+\noindent
+L'obiettivo del progetto è la creazione di una piattaforma intelligente che, tramite un sistema di AI, automatizza l'elaborazione di ordini aziendali. Essa analizza dati provenienti da molteplici canali (\textit{messaggi di testo, immagini, registrazioni audio}) e li trasforma in ordini strutturati compatibili con i sistemi ERP aziendali.\\[0.6em]
+
+La documentazione prodotta dal gruppo è disponibile al seguente indirizzo Web:
+
+\begin{center}
+\fbox{\href{https://swenightpro.github.io/Documentazione/}{\texttt{https://swenightpro.github.io/Documentazione/}}}
+
+\end{center}
+
+All'interno del sito è possibile visualizzare con chiarezza i documenti sviluppati nel repository github, in particolare sono presenti:
+\begin{itemize}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/PB/Documentazione\%20Esterna/Analisi_Dei_Requisiti.pdf}{Analisi dei Requisiti}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/PB/Documentazione\%20Esterna/Specifica_Tecnica.pdf}{Specifica Tecnica}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/PB/Documentazione\%20Esterna/Manuale_Operatore.pdf}{Manuale Operatore}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/PB/Documentazione\%20Esterna/Manuale_Cliente.pdf}{Manuale Cliente}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/PB/Documentazione%20Esterna/Verbali%20Esterni/Verbale_accettazione_2026-04-09_firmato.pdf}{Verbale di accettazione della proponente}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/PB/Documentazione\%20Esterna/Piano_Di_Progetto.pdf}{Piano di Progetto}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/PB/Documentazione\%20Esterna/Piano_Di_Qualifica.pdf}{Piano di Qualifica}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/PB/Documentazione\%20Interna/Norme_Di_Progetto.pdf}{Norme di Progetto}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/PB/Documentazione\%20Esterna/Glossario.pdf}{Glossario}
+\end{itemize}
+
+È possibile consultare l'MVP al seguente link:
+
+    \begin{center}
+\fbox{\href{https://frontend-production-afc4.up.railway.app/}{\texttt{https://frontend-production-afc4.up.railway.app/}}}
+
+\end{center}
+
+Il repository del codice sorgente del MVP è disponibile al seguente indirizzo:
+
+\begin{center}
+\fbox{\href{https://github.com/swenightpro/SmartOrder-MVP}{\texttt{https://github.com/swenightpro/SmartOrder-MVP}}}
+\end{center}
+
+\vspace{0.5cm}
+
+Cordiali saluti,
+\begin{flushright}
+    Il gruppo \emph{NightPRO}\\[1cm]
+    Il Responsabile\\[0.3cm]
+    Giovanni Ponso
+\end{flushright}
+
+% -------------------------------------------------------------------
+%  INFORMAZIONI GENERALI
+% -------------------------------------------------------------------
+\newpage
+\section*{Informazioni Generali}
+
+\subsection*{Componenti del Gruppo}
+
+\begin{table}[h!]
+\centering
+\renewcommand{\arraystretch}{1.2} % più spazio tra le righe
+\begin{tabular}{@{}llc@{}}
+\toprule
+\textbf{Cognome} & \textbf{Nome} & \textbf{Matricola} \\
+\midrule
+Biasuzzi & Davide & 2111000 \\
+Bilato & Leonardo & 2071084 \\
+Zanella & Francesco & 2116442 \\
+Romascu & Mihaela-Mariana & 2079726 \\
+Ogniben & Michele & 2042325 \\
+Perozzo & Samuele & 2110989 \\
+Ponso & Giovanni & 2000558 \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del gruppo NightPRO.}
+\end{table}
+
+\end{document}
