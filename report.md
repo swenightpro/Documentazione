@@ -1,10 +1,5 @@
-# Report di compilazione del 2026-04-09T10:27:37+00:00
+# Report di compilazione del 2026-04-09T14:33:13+00:00
 
-Compilazione basata sul commit 66602c35d18686eb1369e8e6db28f80530698fe8 (base: 66602c3)
+Compilazione basata sul commit 7792efdcc282af9e8a14ce6ab3381e9c2bc544b1 (base: 7792efd)
 
-## Falliti
-💡 Nessun errore di compilazione
-
-## Compilati
-✅ [docs/PB/Documentazione Interna/Norme_di_Progetto_v3.3.pdf](docs/PB/Documentazione%20Interna/Norme_di_Progetto_v3.3.pdf)
-
+💡 Nessun file modificato o mancante. Nessuna compilazione eseguita.
