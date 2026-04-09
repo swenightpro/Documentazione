@@ -14,6 +14,7 @@
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 \usepackage{amsmath, amssymb, mathtools}
+\usepackage{longtable}
 \usepackage{eurosym}
 \usepackage{float}
 
@@ -95,8 +96,8 @@
 
 \vfill
 
-{\large Data: 2026-04-08 \par}
-{\Large Versione: 2.3 \par}
+{\large Data: 2026-04-09 \par}
+{\Large Versione: 3.0 \par}
 
 \end{titlepage}
 
@@ -105,27 +106,37 @@
 % -------------------------------------------------------------------
 \newpage
 \section*{Tabella delle Versioni}
-\addcontentsline{toc}{section}{Tabella delle Versioni}
-
-\begin{center}
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\textwidth}{@{}p{0.1\textwidth}p{0.15\textwidth}p{0.25\textwidth}X>{\centering\arraybackslash}p{0.15\textwidth}@{}}
-\toprule
-\textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione} & \textbf{Verificatore} \\
-\midrule
+\vspace{0.2cm}
+{%
+\renewcommand{\arraystretch}{1.2}
+\setlength{\LTleft}{-0.4cm}
+\setlength{\LTright}{0pt}
+\begin{longtable}{@{}llp{0.19\textwidth}p{0.35\textwidth}p{0.19\textwidth}@{}}
+    \toprule
+    \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
+    \midrule
+    \endfirsthead
+    \toprule
+    \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
+    \midrule
+    \endhead
+    \bottomrule
+    \endfoot
+    \bottomrule
+    \endlastfoot
+3.0 & 2026-04-09 & Giovanni Ponso & Approvazione del documento & -\\
 2.3 & 2026-04-08 & Davide Biasuzzi & Aggiornamento dello stato dei requisiti soddisfatti e allineamento del documento alla rimozione di un requisito & Leonardo Bilato\\
 2.2 & 2026-04-07 & Francesco Zanella & Implementazione delle strategie di test e aggiornamento dei requisiti soddisfatti e delle metriche di copertura del codice & Leonardo Bilato\\
 2.1 & 2026-03-27 & Francesco Zanella & Aggiornamento dei grafici e delle metriche di qualità per lo Sprint 12 & Leonardo Bilato\\
 2.0 & 2026-03-17 & Francesco Zanella & Approvazione del documento & -\\
 1.1 & 2026-03-12 & Francesco Zanella & Aggiornamento dei requisiti in linea con l'Analisi dei Requisiti v1.1 e aggiornamento grafici con sprint 10-11 & Mihaela-Mariana Romascu\\
 1.0 & 2026-02-25 & Davide Biasuzzi & Approvazione del documento & -\\
-0.4 & 2026-02-19 & Francesco Zanella & Ristrutturazione della sezione 4.3 per allineare le strategie di test ai 124 requisiti dell'Analisi v1.0 e aggiornamento grafici allo Sprint 9 (sez. 6). & Samuele Perozzo-\\
+0.4 & 2026-02-19 & Francesco Zanella & Ristrutturazione della sezione 4.3 per allineare le strategie di test ai 124 requisiti dell'Analisi v1.0 e aggiornamento grafici allo Sprint 9 (sez. 6). & Samuele Perozzo\\
 0.3 & 2026-01-30 & Davide Biasuzzi & Inserimento metriche di processo e di qualità sw dettagliate con codici, formule e soglie di accettazione, grafici, strategie di test & Francesco Zanella\\
 0.2 & 2025-12-18 & Davide Biasuzzi & Aggiunto paragrafo relativo alla qualità della documentazione & Samuele Perozzo\\
 0.1 & 2025-12-05 & Mihaela-Mariana Romascu & Stesura iniziale del documento, definizione metriche di processo e prodotto. & Giovanni Ponso\\
-\bottomrule
-\end{tabularx}
-\end{center}
+\end{longtable}
+}
 
 % -------------------------------------------------------------------
 % INDICE
