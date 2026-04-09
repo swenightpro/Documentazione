@@ -1,0 +1,27 @@
+@startuml
+skinparam dpi 300
+skinparam shadowing false
+skinparam backgroundColor White
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam ArrowColor #4B5563
+skinparam ArrowThickness 1
+skinparam roundcorner 8
+skinparam class {
+  BackgroundColor #F9FAFB
+  BorderColor #4B5563
+  FontColor #111827
+  AttributeFontColor #374151
+  StereotypeFontColor #6B7280
+}
+skinparam classAttributeIconSize 0
+
+class "OrderService" as C1 {
+  + create_order(cod_cli, user_id, session_id, items)
+  + get_orders_by_client(cod_cli, page, limit, ...)
+  + get_all_orders(page, limit, ...)
+  + get_order_detail(order_id, cod_cli)
+  + export_order(order_id, user_id, format)
+  + export_batch(user_id, ...)
+}
+@enduml

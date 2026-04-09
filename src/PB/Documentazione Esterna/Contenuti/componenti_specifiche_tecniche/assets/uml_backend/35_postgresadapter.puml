@@ -1,0 +1,28 @@
+@startuml
+skinparam dpi 300
+skinparam shadowing false
+skinparam backgroundColor White
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam ArrowColor #4B5563
+skinparam ArrowThickness 1
+skinparam roundcorner 8
+skinparam class {
+  BackgroundColor #F9FAFB
+  BorderColor #4B5563
+  FontColor #111827
+  AttributeFontColor #374151
+  StereotypeFontColor #6B7280
+}
+skinparam classAttributeIconSize 0
+
+class "PostgresAdapter" as C1 {
+  - pool
+  + find_by_email(email)
+  + get_active_session(user_id)
+  + create_order(cod_cli, user_id, session_id, items)
+  + create_ticket(session_id, cod_cli)
+  + search_products(query, cod_cli, limit)
+  + find_product_by_name(name, cod_cli)
+}
+@enduml

@@ -1,43 +1,47 @@
 \subsubsection{Layer 2 - State Management Layer (React Context + Custom Hooks)}
 
-\paragraph{AuthContext}
-\textbf{Descrizione del componente:} gestisce stato di autenticazione lato client (token, identita e ruolo) e rappresenta la base delle guardie di accesso.
+\paragraph{SessionContext}
+\textbf{Descrizione del componente:} gestisce il lifecycle della sessione utente, lo stato real-time della conversazione tramite SSE, e il flusso di reset sessione con modale di conferma.
 
 \textbf{Descrizione degli attributi:}
 \begin{itemize}
-    \item \texttt{token}: token JWT della sessione utente.
-    \item \texttt{role}: ruolo applicativo corrente (Cliente o Operatore).
-    \item \texttt{userId}: identificativo dell'utente autenticato.
+    \item \texttt{sessionId}: identificativo della sessione corrente.
+    \item \texttt{chatMessages}: storico messaggi della sessione attiva (espanso tramite SSE).
+    \item \texttt{showNewSessionModal}: flag che definisce lo stato del pannello di reset modale.
 \end{itemize}
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{login(payload: AuthPayload)}: inizializza lo stato di autenticazione locale.
-    \item \texttt{logout()}: azzera lo stato sessione lato client.
-    \item \texttt{isAuthenticated()}: verifica se l'utente e autenticato.
+    \item \texttt{initSession()}: stabilisce o recupera la sessione attiva tramite sessionService.
+    \item \texttt{confirmNewSession()}: svuota il carrello corrente, crea una nuova sessione e resetta i messaggi.
+    \item \texttt{cancelNewSession()}: annulla l'apertura della finestra modale di nuova sessione.
+    \item \texttt{handleNewSession()}: attiva la visualizzazione della finestra modale di conferma reset.
+    \item \texttt{setChatMessages(...)}: setter per l'aggiornamento diretto dell'elenco messaggi.
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.60\textwidth]{uml_frontend/06_authcontext.png}
-    \caption{UML del componente \texttt{AuthContext}.}
+    \includegraphics[width=0.62\textwidth]{uml_frontend/06_sessioncontext.png}
+    \caption{UML del componente \texttt{SessionContext}.}
 \end{figure}
 
 \paragraph{CartContext}
-\textbf{Descrizione del componente:} mantiene lo stato del carrello di sessione, inclusa la confidenza AI esposta in UI operatore.
+\textbf{Descrizione del componente:} mantiene lo stato del carrello di sessione con aggiornamenti ottimistici e debouncing\ped{g} delle quantit\`a.
 
 \textbf{Descrizione degli attributi:}
 \begin{itemize}
-    \item \texttt{sessionId}: identificativo della sessione chat associata al carrello.
-    \item \texttt{items}: righe prodotto attualmente presenti nel carrello.
-    \item \texttt{confidenceScore}: metrica di affidabilita AI aggregata/di contesto.
+    \item \texttt{cart}: righe prodotto attualmente presenti nel carrello.
+    \item \texttt{pendingUpdates}: mappa debounce per accorpare aggiornamenti rapidi di quantit\`a.
 \end{itemize}
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{upsertItem(item: CartItem)}: aggiunge o aggiorna una riga prodotto nel carrello.
-    \item \texttt{removeItem(productId: string)}: rimuove una riga prodotto.
-    \item \texttt{clearCart()}: svuota il carrello locale a fine flusso/reset.
+    \item \texttt{refreshCart()}: data-fetching\ped{g} forzato del carrello dal backend.
+    \item \texttt{addItem(codArt, qta, extra)}: inserisce un articolo nel carrello tramite cartService.
+    \item \texttt{removeItem(id)}: rimozione ottimistica dell'articolo con fallback\ped{g} server.
+    \item \texttt{updateQty(id, qta, source)}: aggiornamento ottimistico con debouncing a 600ms.
+    \item \texttt{clearCart()}: svuota il carrello nella UI locale.
+    \item \texttt{hasPendingUpdates()}: verifica se esistono aggiornamenti di quantit\`a in attesa.
 \end{itemize}
 
 \begin{figure}[H]
@@ -46,49 +50,7 @@
     \caption{UML del componente \texttt{CartContext}.}
 \end{figure}
 
-\paragraph{ChatContext}
-\textbf{Descrizione del componente:} mantiene lo stato realtime della conversazione (messaggi, connessione, modalita AI/Operatore).
 
-\textbf{Descrizione degli attributi:}
-\begin{itemize}
-    \item \texttt{messages}: storico messaggi della sessione attiva.
-    \item \texttt{connectionState}: stato del canale realtime (connesso/disconnesso/reconnecting).
-    \item \texttt{mode}: modalita conversazionale corrente (AI oppure Operatore).
-\end{itemize}
-
-\textbf{Descrizione dei metodi:}
-\begin{itemize}
-    \item \texttt{appendMessage(message: ChatMessage)}: aggiunge un messaggio al feed corrente.
-    \item \texttt{setMode(mode: ChatMode)}: aggiorna la modalita della sessione chat.
-    \item \texttt{resetSession()}: azzera il contesto conversazionale lato frontend.
-\end{itemize}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.62\textwidth]{uml_frontend/08_chatcontext.png}
-    \caption{UML del componente \texttt{ChatContext}.}
-\end{figure}
-
-\paragraph{NotificationContext}
-\textbf{Descrizione del componente:} centralizza notifiche transitorie e alert applicativi provenienti da azioni utente o eventi realtime.
-
-\textbf{Descrizione degli attributi:}
-\begin{itemize}
-    \item \texttt{queue}: coda notifiche visualizzabili nella UI.
-\end{itemize}
-
-\textbf{Descrizione dei metodi:}
-\begin{itemize}
-    \item \texttt{push(notification: NotificationDTO)}: inserisce una nuova notifica in coda.
-    \item \texttt{dismiss(notificationId: string)}: rimuove una notifica specifica.
-    \item \texttt{clear()}: svuota tutte le notifiche pendenti.
-\end{itemize}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.60\textwidth]{uml_frontend/09_notificationcontext.png}
-    \caption{UML del componente \texttt{NotificationContext}.}
-\end{figure}
 
 \paragraph{CustomHooks}
 \textbf{Descrizione del componente:} fornisce API di accesso uniforme ai contesti e agli stati applicativi, riducendo duplicazione logica nei componenti UI.
@@ -97,18 +59,15 @@
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{useAuth()}: espone stato e operazioni di autenticazione.
-    \item \texttt{useCart()}: espone stato e operazioni di carrello.
-    \item \texttt{useChat()}: espone stato e operazioni di chat.
-    \item \texttt{useTickets()}: espone stato ticket per dashboard operatore.
-    \item \texttt{useOrders()}: espone stato ordini per viste storico/globali.
-    \item \texttt{useAILogs()}: espone stato AI log per pipeline HITL.
-    \item \texttt{useRealtime()}: espone stato canale realtime e sottoscrizioni.
+    \item \texttt{useSession() / useCart()}: espongono lo stato centrale e le firme interattive.
+    \item \texttt{useSSE()}: espone le periferiche di ascolto event-stream reattivo push dal web server.
+    \item \texttt{useProductSearch()}: wrappa la logica di debounce input per la ricerca prodotti nel catalogo.
+    \item \texttt{useHealthCheck()}: gestisce periodic ping per rintracciare fallback\ped{g} di load downtime.
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.67\textwidth]{uml_frontend/10_customhooks.png}
+    \includegraphics[width=0.67\textwidth]{uml_frontend/08_customhooks.png}
     \caption{UML del componente \texttt{CustomHooks}.}
 \end{figure}
 
@@ -125,6 +84,6 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.60\textwidth]{uml_frontend/11_rolebasedrendering.png}
+    \includegraphics[width=0.60\textwidth]{uml_frontend/09_rolebasedrendering.png}
     \caption{UML del componente \texttt{RoleBasedRendering}.}
 \end{figure}

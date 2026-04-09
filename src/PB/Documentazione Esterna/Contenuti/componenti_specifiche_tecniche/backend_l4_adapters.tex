@@ -1,77 +1,44 @@
 \subsubsection{Layer 5 - Infrastructure Adapters}
 
 \paragraph{PostgresAdapter}
-\textbf{Descrizione della classe:} implementa le porte repository interagendo con PostgreSQL e traducendo query applicative in operazioni SQL.
+\textbf{Descrizione della classe:} implementa le porte IUserRepository, ISessionManager, IOrderRepository e ITicketRepository, interagendo direttamente con PostgreSQL tramite psycopg2 e connection pooling.
 
 \textbf{Descrizione degli attributi:}
 \begin{itemize}
-    \item \texttt{connectionString}: stringa di connessione al database.
+    \item \texttt{pool}: istanza di \texttt{SimpleConnectionPool} per la gestione ottimizzata delle connessioni al database.
 \end{itemize}
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{executeSQL(query: String)}: esegue query verso DB e restituisce il risultato elaborabile dagli adapter superiori.
+    \item \texttt{find\_by\_email(email)}: implementa IUserRepository — recupera utente per email.
+    \item \texttt{get\_active\_session(user\_id)}: implementa ISessionManager — recupera sessione attiva.
+    \item \texttt{create\_order(cod\_cli, user\_id, session\_id, items)}: implementa IOrderRepository — crea ordine.
+    \item \texttt{create\_ticket(session\_id, cod\_cli)}: implementa ITicketRepository — crea ticket.
+    \item \texttt{search\_products(query, cod\_cli, limit)}: ricerca prodotti nell'assortimento cliente.
+    \item \texttt{find\_product\_by\_name(name, cod\_cli)}: ricerca prodotto per nome testuale.
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.52\textwidth]{uml_backend/30_postgresadapter.png}
+    \includegraphics[width=0.52\textwidth]{uml_backend/35_postgresadapter.png}
     \caption{UML della classe \texttt{PostgresAdapter}.}
 \end{figure}
 
 \paragraph{OpenAIAdapter}
-\textbf{Descrizione della classe:} realizza il contratto \texttt{IAIClient} mappando chiamate di dominio verso le API OpenAI.
+\textbf{Descrizione della classe:} realizza il contratto \texttt{IAIClient} mappando chiamate di dominio verso le API OpenAI (GPT-5.4, Whisper, Embeddings, Vision).
 
-\textbf{Descrizione degli attributi:}
-\begin{itemize}
-    \item \texttt{apiKey}: chiave di autenticazione verso il servizio OpenAI.
-\end{itemize}
+\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi di configurazione (caricati da config).
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{transcribeAudio(audio: File)}: invoca il modello speech-to-text.
-    \item \texttt{interpretIntent(text: String, context: String)}: invia prompt contestualizzato al modello conversazionale.
-    \item \texttt{createEmbedding(text: String)}: richiede embedding per vector search.
+    \item \texttt{transcribe\_audio(audio\_file, filename)}: trascrizione audio via Whisper con prompt specifico per il dominio Ergon.
+    \item \texttt{interpret\_intent(text, context, system\_prompt, model)}: invoca il modello LLM con sistema prompt e contesto.
+    \item \texttt{generate\_embedding(text, model)}: genera un embedding vettoriale per il testo fornito.
+    \item \texttt{analyze\_image(image\_base64, conversation\_history, system\_prompt)}: analizza immagini con GPT-5.4 Vision e restituisce OCR strutturato.
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.58\textwidth]{uml_backend/31_openaiadapter.png}
+    \includegraphics[width=0.62\textwidth]{uml_backend/36_openaiadapter.png}
     \caption{UML della classe \texttt{OpenAIAdapter}.}
-\end{figure}
-
-\paragraph{FileSystemAdapter}
-\textbf{Descrizione della classe:} implementa la porta di esportazione ordini scrivendo file nel canale condiviso con ERP.
-
-\textbf{Descrizione degli attributi:}
-\begin{itemize}
-    \item \texttt{sharedFolderPath}: percorso logico/fisico della cartella di integrazione.
-\end{itemize}
-
-\textbf{Descrizione dei metodi:}
-\begin{itemize}
-    \item \texttt{writeOrderAsJSON(order: Order)}: serializza e salva l'ordine in JSON.
-\end{itemize}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.52\textwidth]{uml_backend/32_filesystemadapter.png}
-    \caption{UML della classe \texttt{FileSystemAdapter}.}
-\end{figure}
-
-\paragraph{WebSocketAdapter}
-\textbf{Descrizione della classe:} concretizza la porta di notifica realtime tramite canale WebSocket.
-
-\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi persistenti per questa classe.
-
-\textbf{Descrizione dei metodi:}
-\begin{itemize}
-    \item \texttt{notifyOperator(operatorId: String, ticket: Ticket)}: invia notifiche operative ad un operatore specifico.
-    \item \texttt{sendRealtimeUpdate(chatsessionId: String, payload: String)}: propaga aggiornamenti in tempo reale alla sessione client.
-\end{itemize}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.58\textwidth]{uml_backend/33_websocketadapter.png}
-    \caption{UML della classe \texttt{WebSocketAdapter}.}
 \end{figure}

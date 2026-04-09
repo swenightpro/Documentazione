@@ -1,0 +1,31 @@
+@startuml
+skinparam dpi 300
+skinparam shadowing false
+skinparam backgroundColor White
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam ArrowColor #4B5563
+skinparam ArrowThickness 1
+skinparam roundcorner 8
+skinparam class {
+  BackgroundColor #F9FAFB
+  BorderColor #4B5563
+  FontColor #111827
+  AttributeFontColor #374151
+  StereotypeFontColor #6B7280
+}
+skinparam classAttributeIconSize 0
+
+interface "ITicketRepository" as C1 {
+  + create_ticket(session_id, cod_cli)
+  + get_ticket_by_session(session_id, cod_cli)
+  + get_open_tickets()
+  + get_ticket_by_id(ticket_id)
+  + lock_ticket(ticket_id, operator_id)
+  + unlock_ticket(ticket_id)
+  + close_ticket(ticket_id)
+  + get_platform_usage_overview(days)
+  + get_last_message_time(session_id)
+  + send_message(session_id, sender, content)
+}
+@enduml

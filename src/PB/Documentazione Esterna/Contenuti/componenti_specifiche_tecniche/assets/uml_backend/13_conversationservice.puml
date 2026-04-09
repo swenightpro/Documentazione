@@ -1,0 +1,28 @@
+@startuml
+skinparam dpi 300
+skinparam shadowing false
+skinparam backgroundColor White
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam ArrowColor #4B5563
+skinparam ArrowThickness 1
+skinparam roundcorner 8
+skinparam class {
+  BackgroundColor #F9FAFB
+  BorderColor #4B5563
+  FontColor #111827
+  AttributeFontColor #374151
+  StereotypeFontColor #6B7280
+}
+skinparam classAttributeIconSize 0
+
+class "ConversationService" as C1 {
+  + handle_message(message: str, client_id: int, ...)
+  + transcribe_audio(audio_file: IO[bytes], filename: str)
+  + create_session(user_id: int)
+  + get_active_session(user_id: int)
+  + get_messages(session_id: int)
+  + get_messages_for_user(session_id: int, user_id: int)
+  + save_message_to_session(session_id, sender, content)
+}
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+skinparam dpi 300
+skinparam shadowing false
+skinparam backgroundColor White
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam ArrowColor #4B5563
+skinparam ArrowThickness 1
+skinparam roundcorner 8
+skinparam class {
+  BackgroundColor #F9FAFB
+  BorderColor #4B5563
+  FontColor #111827
+  AttributeFontColor #374151
+  StereotypeFontColor #6B7280
+}
+skinparam classAttributeIconSize 0
+
+class "AILogEventHandler" as C1 {
+  + handle(event: AILogEvent)
+  + refreshAILogsTable()
+}
+@enduml

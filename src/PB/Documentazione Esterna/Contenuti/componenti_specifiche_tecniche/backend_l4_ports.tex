@@ -1,37 +1,54 @@
 \subsubsection{Layer 4 - Outbound Ports (Interfaces)}
 
 \paragraph{IUserRepository}
-\textbf{Descrizione della classe/interfaccia:} definisce il contratto di accesso ai dati utente e alle regole di assortimento.
+\textbf{Descrizione della classe/interfaccia:} definisce il contratto di accesso ai dati utente, credenziali e informazioni cliente.
 
 \textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{findByEmail(email: String)}: recupera il cliente associato all'email.
-    \item \texttt{getAssortment(clienteId: String)}: restituisce i codici prodotto autorizzati per cliente.
+    \item \texttt{find\_by\_email(email: str)}: recupera l'utente associato all'email.
+    \item \texttt{find\_by\_id(user\_id: int)}: recupera l'utente per ID.
+    \item \texttt{create\_user(email, password\_hash, password\_salt, role, cod\_cli)}: crea un nuovo utente.
+    \item \texttt{update\_password(user\_id, password\_hash, password\_salt)}: aggiorna hash e salt della password.
+    \item \texttt{get\_client\_info(cod\_cli: int)}: recupera ragione sociale e dati del cliente.
+    \item \texttt{search\_clients(query: str, limit: int)}: cerca clienti per ragione sociale o codice.
+    \item \texttt{get\_export\_folder(user\_id: int)}: recupera la cartella di esportazione.
+    \item \texttt{set\_export\_folder(user\_id: int, path)}: salva la cartella di esportazione.
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{uml_backend/22_iuserrepository.png}
+    \includegraphics[width=0.58\textwidth]{uml_backend/30_iuserrepository.png}
     \caption{UML dell'interfaccia \texttt{IUserRepository}.}
 \end{figure}
 
 \paragraph{ISessionManager}
-\textbf{Descrizione della classe/interfaccia:} astrae la persistenza di sessioni e carrelli applicativi.
+\textbf{Descrizione della classe/interfaccia:} astrae la persistenza di sessioni, messaggi e carrelli applicativi.
 
 \textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{saveSession(session: SessionData)}: persiste lo stato di sessione.
-    \item \texttt{getCart(chatsessionId: String)}: recupera il carrello della sessione.
-    \item \texttt{saveCart(cart: Carrello)}: aggiorna il carrello persistito.
+    \item \texttt{get\_active\_session(user\_id: int)}: recupera la sessione attiva dell'utente.
+    \item \texttt{create\_session(user\_id: int)}: crea una nuova sessione.
+    \item \texttt{get\_messages(session\_id: int)}: recupera i messaggi di una sessione.
+    \item \texttt{save\_message(session\_id, sender, content, metadata)}: salva un messaggio.
+    \item \texttt{get\_cart\_by\_session(session\_id: int)}: recupera il carrello della sessione.
+    \item \texttt{get\_cart(user\_id: int)}: recupera il carrello dell'utente.
+    \item \texttt{add\_to\_cart(user\_id, cod\_art, qta, source, ...)}: aggiunge un articolo al carrello.
+    \item \texttt{add\_to\_cart\_by\_session(session\_id, cod\_art, qta, source, ...)}: aggiunge per sessione.
+    \item \texttt{remove\_from\_cart(cart\_item\_id, user\_id)}: rimuove un articolo.
+    \item \texttt{remove\_from\_cart\_by\_session(cart\_item\_id, session\_id)}: rimuove per sessione.
+    \item \texttt{update\_cart\_quantity(cart\_item\_id, user\_id, qta, source)}: aggiorna quantit\`a.
+    \item \texttt{update\_cart\_quantity\_by\_session(cart\_item\_id, session\_id, qta, source)}: aggiorna per sessione.
+    \item \texttt{clear\_cart(user\_id)}: svuota il carrello dell'utente.
+    \item \texttt{clear\_cart\_by\_session(session\_id)}: svuota il carrello della sessione.
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.57\textwidth]{uml_backend/23_isessionmanager.png}
+    \includegraphics[width=0.62\textwidth]{uml_backend/31_isessionmanager.png}
     \caption{UML dell'interfaccia \texttt{ISessionManager}.}
 \end{figure}
 
@@ -42,15 +59,16 @@
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{saveOrder(order: Order)}: salva l'ordine finalizzato.
-    \item \texttt{findByCliente(clienteId: String)}: recupera ordini del cliente.
-    \item \texttt{findById(orderId: String)}: recupera ordine per identificativo.
-    \item \texttt{getOrders(filters, page, pageSize)}: ricerca ordini con filtri e paginazione.
+    \item \texttt{create\_order(cod\_cli, user\_id, session\_id, items)}: crea un ordine con le sue righe.
+    \item \texttt{get\_orders\_by\_client(cod\_cli, page, limit, ...)}: recupera ordini del cliente con filtri.
+    \item \texttt{get\_all\_orders(page, limit, ...)}: recupera tutti gli ordini (admin) con filtri.
+    \item \texttt{get\_order\_detail(order\_id, cod\_cli)}: dettaglio completo di un ordine.
+    \item \texttt{get\_order\_detail\_any(order\_id)}: dettaglio ordine senza filtro cod\_cli (admin).
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.58\textwidth]{uml_backend/24_iorderrepository.png}
+    \includegraphics[width=0.58\textwidth]{uml_backend/32_iorderrepository.png}
     \caption{UML dell'interfaccia \texttt{IOrderRepository}.}
 \end{figure}
 
@@ -61,82 +79,39 @@
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{save(ticket: Ticket)}: persiste ticket nuovo o aggiornato.
-    \item \texttt{findAllOpen()}: recupera i ticket in stato aperto.
-    \item \texttt{getTickets(filters)}: ricerca ticket con criteri dinamici.
+    \item \texttt{create\_ticket(session\_id, cod\_cli)}: crea un nuovo ticket.
+    \item \texttt{get\_ticket\_by\_session(session\_id, cod\_cli)}: recupera il ticket per sessione.
+    \item \texttt{get\_open\_tickets()}: ritorna tutti i ticket aperti o in lavorazione.
+    \item \texttt{get\_ticket\_by\_id(ticket\_id)}: recupera un ticket per ID.
+    \item \texttt{lock\_ticket(ticket\_id, operator\_id)}: imposta lo stato in\_lavorazione.
+    \item \texttt{unlock\_ticket(ticket\_id)}: rilascia il lock.
+    \item \texttt{close\_ticket(ticket\_id)}: chiude il ticket definitivamente.
+    \item \texttt{get\_platform\_usage\_overview(days)}: metriche aggregate.
+    \item \texttt{get\_last\_message\_time(session\_id)}: timestamp dell'ultimo messaggio.
+    \item \texttt{send\_message(session\_id, sender, content)}: salva un messaggio nella chat.
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{uml_backend/25_iticketrepository.png}
+    \includegraphics[width=0.58\textwidth]{uml_backend/33_iticketrepository.png}
     \caption{UML dell'interfaccia \texttt{ITicketRepository}.}
 \end{figure}
 
-\paragraph{ILogAIRepository}
-\textbf{Descrizione della classe/interfaccia:} definisce l'accesso ai dati di logging AI.
-
-\textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
-
-\textbf{Descrizione dei metodi:}
-\begin{itemize}
-    \item \texttt{saveLog(log: LogAI)}: salva un evento di log AI.
-    \item \texttt{findPendingLogs()}: recupera i log in attesa di validazione.
-\end{itemize}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.55\textwidth]{uml_backend/26_ilogairepository.png}
-    \caption{UML dell'interfaccia \texttt{ILogAIRepository}.}
-\end{figure}
-
-\paragraph{IFileExporter}
-\textbf{Descrizione della classe/interfaccia:} espone il contratto di esportazione file verso sistemi esterni.
-
-\textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
-
-\textbf{Descrizione dei metodi:}
-\begin{itemize}
-    \item \texttt{writeOrderAsJSON(order: Order)}: serializza ordine in formato JSON di integrazione.
-    \item \texttt{writeOrdersAsCSV(clientId: String)}: genera export CSV per storico/reportistica.
-\end{itemize}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.55\textwidth]{uml_backend/27_ifileexporter.png}
-    \caption{UML dell'interfaccia \texttt{IFileExporter}.}
-\end{figure}
-
 \paragraph{IAIClient}
-\textbf{Descrizione della classe/interfaccia:} formalizza il contratto verso i servizi di AI generativa e speech-to-text.
+\textbf{Descrizione della classe/interfaccia:} formalizza il contratto verso i servizi di AI generativa, speech-to-text e analisi immagini.
 
 \textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{transcribeAudio(audio: File)}: converte audio in testo.
-    \item \texttt{interpretIntent(text: String, context: String)}: classifica intenti e produce decisione AI.
-    \item \texttt{createEmbedding(text: String)}: calcola embedding vettoriale del testo.
+    \item \texttt{transcribe\_audio(audio\_file: IO[bytes], filename: str)}: converte audio in testo.
+    \item \texttt{interpret\_intent(text, context, system\_prompt, model)}: classifica intenti e produce decisione AI.
+    \item \texttt{generate\_embedding(text, model)}: calcola embedding vettoriale del testo.
+    \item \texttt{analyze\_image(image\_base64, conversation\_history, system\_prompt)}: analizza un'immagine con GPT-5.4 Vision.
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.57\textwidth]{uml_backend/28_iaiclient.png}
+    \includegraphics[width=0.58\textwidth]{uml_backend/34_iaiclient.png}
     \caption{UML dell'interfaccia \texttt{IAIClient}.}
-\end{figure}
-
-\paragraph{INotificationPort}
-\textbf{Descrizione della classe/interfaccia:} definisce notifiche realtime verso operatori e client attivi.
-
-\textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
-
-\textbf{Descrizione dei metodi:}
-\begin{itemize}
-    \item \texttt{notifyOperator(operatorId: String, ticket: Ticket)}: invia notifica di presa in carico/aggiornamento ticket.
-    \item \texttt{sendRealtimeUpdate(chatsessionId: String, payload: String)}: invia aggiornamento realtime su sessione chat.
-\end{itemize}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.57\textwidth]{uml_backend/29_inotificationport.png}
-    \caption{UML dell'interfaccia \texttt{INotificationPort}.}
 \end{figure}

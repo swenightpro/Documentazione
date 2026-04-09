@@ -1,0 +1,31 @@
+@startuml
+skinparam dpi 300
+skinparam shadowing false
+skinparam backgroundColor White
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam ArrowColor #4B5563
+skinparam ArrowThickness 1
+skinparam roundcorner 8
+skinparam class {
+  BackgroundColor #F9FAFB
+  BorderColor #4B5563
+  FontColor #111827
+  AttributeFontColor #374151
+  StereotypeFontColor #6B7280
+}
+skinparam classAttributeIconSize 0
+
+class "AuthService" as C1 {
+  + login(email: str, password: str)
+  + verify_password(...)
+  + hash_password(password: str)
+  + create_jwt(user_id: int, cod_cli: int, role: str)
+  + verify_jwt(token: str)
+  + get_profile(user_id: int)
+  + change_password(...)
+  + register(...)
+  + get_export_folder(user_id: int)
+  + set_export_folder(user_id: int, path)
+}
+@enduml

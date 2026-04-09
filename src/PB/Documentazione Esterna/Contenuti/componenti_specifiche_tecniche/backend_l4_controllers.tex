@@ -1,33 +1,42 @@
 \subsubsection{Layer 1 - Controllers (Inbound Ports)}
 
 \paragraph{AuthController}
-\textbf{Descrizione della classe:} gestisce gli endpoint di autenticazione e cambio password, traducendo le richieste HTTP in invocazioni ai casi d'uso applicativi.
+\textbf{Descrizione della classe:} gestisce gli endpoint di autenticazione, cambio password, gestione cartella di esportazione e rilascio token SSE, traducendo le richieste HTTP in invocazioni ai casi d'uso applicativi.
 
 \textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{login(credentials: CredentialsDTO)}: avvia autenticazione utente e genera la sessione applicativa.
-    \item \texttt{logout(authsessionId: String)}: invalida la sessione autenticata corrente.
-    \item \texttt{changePassword(req: PasswordChangeDTO)}: gestisce il flusso di aggiornamento credenziali.
+    \item \texttt{login(body: LoginRequest)}: avvia autenticazione utente e genera la sessione applicativa tramite cookie JWT.
+    \item \texttt{logout()}: invalida la sessione autenticata corrente cancellando i cookie.
+    \item \texttt{me()}: restituisce i dati dell'utente correntemente autenticato.
+    \item \texttt{change\_password(body: ChangePasswordRequest)}: gestisce il flusso di aggiornamento credenziali.
+    \item \texttt{register(body: RegisterRequest)}: permette la registrazione di un nuovo cliente.
+    \item \texttt{get\_export\_folder()}: recupera la cartella di esportazione configurata dall'operatore.
+    \item \texttt{set\_export\_folder(body)}: imposta o aggiorna la cartella di esportazione dell'operatore.
+    \item \texttt{sse\_token()}: restituisce il JWT dal cookie HTTPOnly per connessioni SSE dirette.
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{uml_backend/01_authcontroller.png}
+    \includegraphics[width=0.58\textwidth]{uml_backend/01_authcontroller.png}
     \caption{UML della classe \texttt{AuthController}.}
 \end{figure}
 
 \paragraph{ConversationController}
-\textbf{Descrizione della classe:} espone gli endpoint per la conversazione multimodale e il recupero dello storico chat.
+\textbf{Descrizione della classe:} espone gli endpoint per la conversazione multimodale (testo, audio, immagini) e il recupero dello storico chat e sessioni.
 
 \textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{processInput(req: MultimodalInputDTO)}: riceve input testuale/audio e avvia l'elaborazione conversazionale.
-    \item \texttt{resetSession(chatsessionId: String)}: azzera il contesto della sessione chat.
-    \item \texttt{getChatHistory(chatsessionId: String)}: recupera la cronologia dei messaggi della sessione.
+    \item \texttt{chat(body: ChatRequest)}: elabora input testuale inviato dall'utente tramite la pipeline AI.
+    \item \texttt{chat\_image(file: UploadFile)}: gestisce input multimodale includendo immagini con OCR via GPT-5.4 Vision.
+    \item \texttt{save\_message\_to\_session(body: SaveMessageRequest)}: salva un messaggio UI nella sessione per persistenza.
+    \item \texttt{transcribe(file: UploadFile)}: effettua trascrizione di messaggi vocali via Whisper.
+    \item \texttt{get\_active\_session()}: recupera la sessione conversazionale attiva dell'utente.
+    \item \texttt{create\_session()}: istanzia una nuova sessione conversazionale.
+    \item \texttt{get\_messages(session\_id: int)}: recupera lo storico messaggi della sessione.
 \end{itemize}
 
 \begin{figure}[H]
@@ -37,16 +46,15 @@
 \end{figure}
 
 \paragraph{CartController}
-\textbf{Descrizione della classe:} governa le operazioni sul carrello (inserimento, modifica, rimozione) e il checkout finale.
+\textbf{Descrizione della classe:} governa le operazioni sul carrello (inserimento, modifica, rimozione) e l'aggiunta per nome prodotto.
 
 \textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{addProduct(req: CartActionDTO)}: inserisce una riga prodotto nel carrello di sessione.
-    \item \texttt{updateQuantity(req: CartActionDTO)}: aggiorna la quantita della riga selezionata.
-    \item \texttt{removeProduct(req: CartActionDTO)}: elimina un prodotto dal carrello.
-    \item \texttt{checkout(chatsessionId: String)}: finalizza il carrello e avvia la generazione ordine.
+    \item \texttt{get\_cart(session\_id: int)}: restituisce l'elenco corrente delle righe prodotto nel carrello.
+    \item \texttt{cart\_action(body: CartActionRequest)}: agisce centralmente per inserire, modificare quantit\`a o rimuovere articoli dal carrello.
+    \item \texttt{add\_by\_name(body: AddByNameRequest)}: aggiunge un prodotto al carrello ricercandolo per nome testuale.
 \end{itemize}
 
 \begin{figure}[H]
@@ -56,14 +64,18 @@
 \end{figure}
 
 \paragraph{OrderController}
-\textbf{Descrizione della classe:} espone le API per consultazione storico ordini e dettaglio singolo ordine.
+\textbf{Descrizione della classe:} espone le API per creazione ordini, consultazione storico, dettaglio singolo ordine, esportazione singola e batch.
 
 \textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{getOrders(clienteId: String)}: recupera la lista ordini del cliente.
-    \item \texttt{getOrderDetails(orderId: String)}: recupera i dettagli completi dell'ordine richiesto.
+    \item \texttt{create\_order(body: CreateOrderRequest)}: tramuta un carrello finale in ordine persistente.
+    \item \texttt{list\_orders(...)}: recupera lo storico ordini paginato per il cliente loggato.
+    \item \texttt{list\_all\_orders(...)}: interfaccia estesa a disposizione dell'operatore con filtri avanzati.
+    \item \texttt{order\_detail(id: int)}: recupera il dettaglio completo di un ordine specifico.
+    \item \texttt{export\_order(id: int, format: str)}: esportazione dell'ordine singolo in formato JSON o CSV.
+    \item \texttt{export\_batch\_orders(...)}: avvia macroesportazione filtrata di ordini multipli.
 \end{itemize}
 
 \begin{figure}[H]
@@ -73,16 +85,23 @@
 \end{figure}
 
 \paragraph{TicketController}
-\textbf{Descrizione della classe:} gestisce l'apertura, la presa in carico e la chiusura dei ticket di assistenza Human-in-the-Loop.
+\textbf{Descrizione della classe:} gestisce l'apertura, la presa in carico, la chiusura e la messaggistica dei ticket di assistenza Human-in-the-Loop, sia lato operatore che lato cliente.
 
 \textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{openTicket(req: TicketRequestDTO)}: crea un nuovo ticket applicativo.
-    \item \texttt{takeCharge(ticketId: String, operatorId: String)}: assegna il ticket a un operatore.
-    \item \texttt{closeTicket(ticketId: String)}: marca il ticket come risolto.
-    \item \texttt{getOpenTickets()}: restituisce i ticket ancora aperti.
+    \item \texttt{list\_open\_tickets()}: restituisce la lista dei ticket pendenti (operatori).
+    \item \texttt{create\_ticket(body: CreateTicketRequest)}: crea un ticket di assistenza per la sessione corrente.
+    \item \texttt{get\_ticket\_by\_session(session\_id: int)}: ritorna il ticket associato a una sessione.
+    \item \texttt{get\_analytics\_overview(days: int)}: metriche aggregate per la dashboard operatore.
+    \item \texttt{get\_ticket(ticket\_id: int)}: dettaglio di un ticket specifico.
+    \item \texttt{lock\_ticket(ticket\_id: int)}: assegna il ticket all'operatore corrente (lock).
+    \item \texttt{send\_ticket\_message(ticket\_id: int, body: SendMessageRequest)}: invia un messaggio operatore nella chat del ticket.
+    \item \texttt{unlock\_ticket(ticket\_id: int)}: rilascia il lock sull'operatore.
+    \item \texttt{close\_ticket(ticket\_id: int)}: chiude un ticket (operatore o cliente).
+    \item \texttt{close\_ticket\_by\_session(session\_id: int)}: chiude il ticket associato a una sessione (cliente).
+    \item \texttt{send\_customer\_message(session\_id: int, body: SendMessageRequest)}: invia un messaggio del cliente nella chat del ticket.
 \end{itemize}
 
 \begin{figure}[H]
@@ -92,15 +111,13 @@
 \end{figure}
 
 \paragraph{FeedbackController}
-\textbf{Descrizione della classe:} espone le API di raccolta feedback e verifica dei log AI per monitoraggio e miglioramento continuo.
+\textbf{Descrizione della classe:} espone le API di raccolta e cancellazione feedback relativi alle risposte dell'AI.
 
 \textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{submitFeedback(req: FeedbackDTO)}: registra feedback utente sul comportamento AI.
-    \item \texttt{getLogs(filter: LogFilterDTO)}: recupera i log applicando filtri operativi.
-    \item \texttt{validateLog(logId: String, status: ValidStatus)}: marca l'esito di validazione di un log.
+    \item \texttt{handle\_feedback(body: FeedbackRequest)}: salva, aggiorna o cancella il feedback qualitativo relativo alle scelte deduttive dell'LLM.
 \end{itemize}
 
 \begin{figure}[H]
@@ -110,41 +127,82 @@
 \end{figure}
 
 \paragraph{ClientController}
-\textbf{Descrizione della classe:} gestisce il recupero delle informazioni specifiche del cliente connesso, integrandole eventualmente da sistemi esterni.
+\textbf{Descrizione della classe:} espone l'endpoint di ricerca clienti per ragione sociale o codice cliente.
+
+\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{search\_clients(q: str)}: cerca clienti nel database per ragione sociale o codice.
+\end{itemize}
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.62\textwidth]{uml_backend/40_clientcontroller.png}
+    \includegraphics[width=0.62\textwidth]{uml_backend/07_clientcontroller.png}
     \caption{UML della classe \texttt{ClientController}.}
 \end{figure}
 
 \paragraph{HealthController}
 \textbf{Descrizione della classe:} fornisce un endpoint per l'health check e il monitoraggio dello stato di salute del backend.
+
+\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{health\_check()}: verifica lo stato operativo del backend e dei servizi AI collegati.
+\end{itemize}
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.62\textwidth]{uml_backend/41_healthcontroller.png}
+    \includegraphics[width=0.62\textwidth]{uml_backend/08_healthcontroller.png}
     \caption{UML della classe \texttt{HealthController}.}
 \end{figure}
 
 \paragraph{ProductController}
-\textbf{Descrizione della classe:} espone le API di ricerca ed esplorazione del catalogo prodotti, filtrato per assortimento cliente.
+\textbf{Descrizione della classe:} espone l'endpoint di ricerca prodotti nel catalogo, filtrato per assortimento cliente.
+
+\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{search\_products(q: str)}: cerca prodotti nel catalogo filtrando per l'assortimento del cliente autenticato.
+\end{itemize}
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.62\textwidth]{uml_backend/42_productcontroller.png}
+    \includegraphics[width=0.62\textwidth]{uml_backend/09_productcontroller.png}
     \caption{UML della classe \texttt{ProductController}.}
 \end{figure}
 
 \paragraph{RegisterController}
-\textbf{Descrizione della classe:} gestisce la registrazione e il provisioning di nuovi clienti e account interni (secret-register).
+\textbf{Descrizione della classe:} gestisce la registrazione di nuovi account clienti e operatori.
+
+\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{register(body: RegisterRequest)}: registra un nuovo utente delegando la logica ad AuthService.
+\end{itemize}
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.62\textwidth]{uml_backend/43_registercontroller.png}
+    \includegraphics[width=0.62\textwidth]{uml_backend/10_registercontroller.png}
     \caption{UML della classe \texttt{RegisterController}.}
 \end{figure}
 
 \paragraph{SSEController}
-\textbf{Descrizione della classe:} gestisce la connessione Server-Sent Events rimpiazzando in parte il vecchio canale WebSocket per le notifiche in streaming.
+\textbf{Descrizione della classe:} gestisce le connessioni Server-Sent Events per le notifiche in streaming verso client e operatori.
+
+\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{sse\_tickets()}: stream SSE per aggiornamenti lista ticket (canale operatori).
+    \item \texttt{sse\_session(session\_id: int)}: stream SSE per aggiornamenti real-time su una sessione specifica.
+\end{itemize}
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.62\textwidth]{uml_backend/44_ssecontroller.png}
+    \includegraphics[width=0.62\textwidth]{uml_backend/11_ssecontroller.png}
     \caption{UML della classe \texttt{SSEController}.}
 \end{figure}

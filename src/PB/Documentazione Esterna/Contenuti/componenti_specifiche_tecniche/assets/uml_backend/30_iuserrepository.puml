@@ -1,0 +1,29 @@
+@startuml
+skinparam dpi 300
+skinparam shadowing false
+skinparam backgroundColor White
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam ArrowColor #4B5563
+skinparam ArrowThickness 1
+skinparam roundcorner 8
+skinparam class {
+  BackgroundColor #F9FAFB
+  BorderColor #4B5563
+  FontColor #111827
+  AttributeFontColor #374151
+  StereotypeFontColor #6B7280
+}
+skinparam classAttributeIconSize 0
+
+interface "IUserRepository" as C1 {
+  + find_by_email(email: str)
+  + find_by_id(user_id: int)
+  + create_user(email, password_hash, password_salt, role, cod_cli)
+  + update_password(user_id, password_hash, password_salt)
+  + get_client_info(cod_cli: int)
+  + search_clients(query: str, limit: int)
+  + get_export_folder(user_id: int)
+  + set_export_folder(user_id: int, path)
+}
+@enduml

@@ -1,147 +1,202 @@
 \subsubsection{Layer 2 - Application Services (Use Cases)}
 
 \paragraph{AuthService}
-\textbf{Descrizione della classe:} incapsula i casi d'uso di autenticazione e invalidazione sessione.
+\textbf{Descrizione della classe:} incapsula i casi d'uso di autenticazione, gestione credenziali, generazione/verifica JWT e gestione profilo utente.
 
 \textbf{Descrizione degli attributi:} non sono esplicitati attributi nel diagramma; il servizio e modellato come componente applicativo stateless.
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{authenticateUser(email: String, pass: String)}: valida credenziali e produce token di autenticazione.
-    \item \texttt{invalidateSession(authsessionId: String)}: disattiva una sessione autenticata.
+    \item \texttt{login(email: str, password: str)}: autentica utente. Ritorna il token e dettagli sessione.
+    \item \texttt{verify\_password(...)}: gestisce l'hashing e la validazione scrypt multi-profilo.
+    \item \texttt{hash\_password(password: str)}: genera hash e salt per una nuova password.
+    \item \texttt{create\_jwt(user\_id: int, cod\_cli: int, role: str)}: crea un token JWT firmato.
+    \item \texttt{verify\_jwt(token: str)}: verifica e decodifica un JWT. Ritorna il payload o None.
+    \item \texttt{get\_profile(user\_id: int)}: recupera profilo utente specifico.
+    \item \texttt{change\_password(...)}: sostituisce l'impronta della password nel database.
+    \item \texttt{register(...)}: registra un nuovo account permanente.
+    \item \texttt{get\_export\_folder(user\_id: int)}: recupera la cartella di esportazione.
+    \item \texttt{set\_export\_folder(user\_id: int, path)}: salva la cartella di esportazione.
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.55\textwidth]{uml_backend/07_authservice.png}
+    \includegraphics[width=0.58\textwidth]{uml_backend/12_authservice.png}
     \caption{UML della classe \texttt{AuthService}.}
 \end{figure}
 
 \paragraph{ConversationService}
-\textbf{Descrizione della classe:} implementa il flusso conversazionale (testo e audio) e la gestione del contesto dialogico.
+\textbf{Descrizione della classe:} implementa il flusso conversazionale (testo e audio), la gestione del contesto dialogico e il coordinamento con la pipeline AI.
 
 \textbf{Descrizione degli attributi:} non sono esplicitati attributi di stato nel diagramma.
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{handleText(text: String, sessionId: String)}: processa input testuale e restituisce risposta chat.
-    \item \texttt{handleAudio(audioBlob: File, sessionId: String)}: gestisce input audio con trascrizione e interpretazione.
-    \item \texttt{clearContext(chatsessionId: String)}: cancella lo stato conversazionale associato alla sessione.
+    \item \texttt{handle\_message(message: str, client\_id: int, ...)}: orchiestra la pipeline decisionale LLM tramite intent recognition.
+    \item \texttt{transcribe\_audio(audio\_file: IO[bytes], filename: str)}: delega trascrizione al servizio AI.
+    \item \texttt{create\_session(user\_id: int)}: crea una nuova sessione conversazionale.
+    \item \texttt{get\_active\_session(user\_id: int)}: recupera la sessione attiva per l'utente.
+    \item \texttt{get\_messages(session\_id: int)}: recupera lo storico messaggi della sessione.
+    \item \texttt{get\_messages\_for\_user(session\_id: int, user\_id: int)}: recupera i messaggi filtrati per utente.
+    \item \texttt{save\_message\_to\_session(session\_id, sender, content)}: salva un messaggio nella sessione.
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.62\textwidth]{uml_backend/08_conversationservice.png}
+    \includegraphics[width=0.62\textwidth]{uml_backend/13_conversationservice.png}
     \caption{UML della classe \texttt{ConversationService}.}
 \end{figure}
 
 \paragraph{CartService}
-\textbf{Descrizione della classe:} concentra la logica di business del carrello e la finalizzazione ordine.
+\textbf{Descrizione della classe:} concentra la logica di business del carrello con supporto per operazioni per utente e per sessione, e notifica SSE sugli aggiornamenti.
 
 \textbf{Descrizione degli attributi:} non sono indicati attributi persistenti nel diagramma.
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{manipulateCart(action: CartAction)}: applica operazioni di aggiunta/modifica/rimozione su carrello.
-    \item \texttt{finalizeOrder(chatsessionId: String)}: converte il carrello in ordine definitivo.
-    \item \texttt{validateAssortment(clienteId: String, prodottoId: String)}: verifica interna di validita assortimento cliente-articolo.
+    \item \texttt{get\_cart(user\_id: int)}: recupera il carrello dell'utente.
+    \item \texttt{get\_cart\_by\_session(session\_id: int)}: recupera il carrello della sessione.
+    \item \texttt{add\_to\_cart(user\_id, cod\_art, qta, ...)}: inserisce un articolo nel carrello con validazione.
+    \item \texttt{remove\_from\_cart(cart\_item\_id, user\_id, ...)}: elimina un articolo dal carrello.
+    \item \texttt{update\_cart\_quantity(cart\_item\_id, user\_id, qta, ...)}: aggiorna la quantit\`a di un articolo.
+    \item \texttt{clear\_cart(user\_id, session\_id)}: svuota il carrello dell'utente.
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.62\textwidth]{uml_backend/09_cartservice.png}
+    \includegraphics[width=0.62\textwidth]{uml_backend/14_cartservice.png}
     \caption{UML della classe \texttt{CartService}.}
 \end{figure}
 
 \paragraph{OrderService}
-\textbf{Descrizione della classe:} fornisce i casi d'uso di consultazione storico ordini e dettaglio ordine.
+\textbf{Descrizione della classe:} fornisce i casi d'uso di creazione ordini, consultazione storico, dettaglio ed esportazione ordini.
 
 \textbf{Descrizione degli attributi:} nessun attributo esplicitato nel diagramma.
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{getOrdersByCliente(clienteId: String)}: recupera gli ordini di un cliente.
-    \item \texttt{getOrderDetail(orderId: String)}: restituisce il dettaglio di un ordine specifico.
+    \item \texttt{create\_order(cod\_cli, user\_id, session\_id, items)}: crea un ordine validando gli articoli e chiudendo la sessione.
+    \item \texttt{get\_orders\_by\_client(cod\_cli, page, limit, ...)}: recupera lo storico paginato per cliente.
+    \item \texttt{get\_all\_orders(page, limit, ...)}: dashboard estesa con filtri avanzati per operatori.
+    \item \texttt{get\_order\_detail(order\_id, cod\_cli)}: vista profonda per singolo ordine.
+    \item \texttt{export\_order(order\_id, user\_id, format)}: esporta un ordine in JSON o CSV.
+    \item \texttt{export\_batch(user\_id, ...)}: esportazione batch di ordini filtrati.
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.58\textwidth]{uml_backend/10_orderservice.png}
+    \includegraphics[width=0.58\textwidth]{uml_backend/15_orderservice.png}
     \caption{UML della classe \texttt{OrderService}.}
 \end{figure}
 
-\paragraph{VectorSearchService}
-\textbf{Descrizione della classe:} gestisce embedding e ricerca semantica dei prodotti nel catalogo cliente.
-
-\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma.
-
-\textbf{Descrizione dei metodi:}
-\begin{itemize}
-    \item \texttt{generateEmbedding(testo: String)}: produce il vettore semantico del testo in input.
-    \item \texttt{semanticSearch(vector: Vector, clienteId: String)}: esegue ricerca vettoriale filtrata per cliente.
-\end{itemize}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.62\textwidth]{uml_backend/11_vectorsearchservice.png}
-    \caption{UML della classe \texttt{VectorSearchService}.}
-\end{figure}
 
 \paragraph{TicketService}
-\textbf{Descrizione della classe:} implementa l'intero ciclo di vita del ticket di assistenza.
+\textbf{Descrizione della classe:} implementa l'intero ciclo di vita del ticket di assistenza, inclusa messaggistica, lock/unlock e notifiche SSE.
 
 \textbf{Descrizione degli attributi:} nessun attributo esplicitato nel diagramma.
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{createTicket(clienteId: String, reason: String)}: crea un ticket a partire da richiesta cliente.
-    \item \texttt{assignOperator(ticketId: String, operatorId: String)}: assegna un operatore al ticket.
-    \item \texttt{resolveTicket(ticketId: String)}: chiude il ticket come risolto.
+    \item \texttt{create\_ticket(session\_id: int, cod\_cli: int)}: crea un nuovo ticket.
+    \item \texttt{get\_open\_tickets()}: recupera i ticket aperti o in lavorazione.
+    \item \texttt{get\_ticket\_by\_id(ticket\_id: int)}: recupera un ticket per ID.
+    \item \texttt{get\_ticket\_by\_session(session\_id, cod\_cli)}: recupera il ticket di una sessione.
+    \item \texttt{lock\_ticket(ticket\_id, operator\_id)}: assegna l'operatore (con notifica SSE).
+    \item \texttt{unlock\_ticket(ticket\_id)}: rilascia il lock operatore.
+    \item \texttt{close\_ticket(ticket\_id, closed\_by)}: chiude definitivamente il ticket.
+    \item \texttt{close\_ticket\_by\_session(session\_id, closed\_by, cod\_cli)}: chiude il ticket via sessione.
+    \item \texttt{send\_chat\_message(ticket\_id, content)}: invia messaggio operatore nel ticket (con SSE).
+    \item \texttt{save\_customer\_message(session\_id, content)}: salva messaggio cliente nel ticket.
+    \item \texttt{get\_platform\_usage\_overview(days)}: metriche aggregate per dashboard.
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.62\textwidth]{uml_backend/12_ticketservice.png}
+    \includegraphics[width=0.62\textwidth]{uml_backend/16_ticketservice.png}
     \caption{UML della classe \texttt{TicketService}.}
 \end{figure}
 
 \paragraph{FeedbackService}
-\textbf{Descrizione della classe:} presidia logging delle correzioni manuali e raccolta feedback negativi verso il modulo AI.
+\textbf{Descrizione della classe:} presidia la raccolta e la rimozione dei feedback qualitativi degli utenti sulle risposte AI.
 
 \textbf{Descrizione degli attributi:} il diagramma non esplicita attributi interni.
 
 \textbf{Descrizione dei metodi:}
 \begin{itemize}
-    \item \texttt{logCorrection(delta: String, chatsessionId: String)}: persiste lo scostamento tra proposta AI e correzione utente.
-    \item \texttt{saveNegativeFeedback(feedback: FeedbackData)}: salva feedback negativo per analisi qualitativa.
+    \item \texttt{save\_feedback(message\_id, user\_id, is\_positive, reason\_category, comment)}: salva il feedback nel database.
+    \item \texttt{delete\_feedback(message\_id, user\_id)}: rimuove un feedback esistente.
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.58\textwidth]{uml_backend/13_feedbackservice.png}
+    \includegraphics[width=0.58\textwidth]{uml_backend/17_feedbackservice.png}
     \caption{UML della classe \texttt{FeedbackService}.}
 \end{figure}
 
 \paragraph{ClientService}
-\textbf{Descrizione della classe:} implementa la logica di business di recupero e verifica dei dati anagrafici del cliente registrato.
+\textbf{Descrizione della classe:} implementa la logica di business di ricerca clienti per ragione sociale o codice.
+
+\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi interni.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{search\_clients(query: str, limit: int)}: cerca clienti nel database delegando al repository.
+\end{itemize}
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.62\textwidth]{uml_backend/45_clientservice.png}
+    \includegraphics[width=0.62\textwidth]{uml_backend/18_clientservice.png}
     \caption{UML della classe \texttt{ClientService}.}
 \end{figure}
 
 \paragraph{ProductService}
-\textbf{Descrizione della classe:} incapsula la logica per il filtraggio e l'accesso ottimizzato all'assortimento e al catalogo articoli.
+\textbf{Descrizione della classe:} incapsula la logica per la ricerca prodotti nel catalogo, filtrata per assortimento cliente.
+
+\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi interni.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{search\_products(query: str, cod\_cli: int, limit: int)}: cerca prodotti filtrati per assortimento cliente.
+\end{itemize}
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.62\textwidth]{uml_backend/46_productservice.png}
+    \includegraphics[width=0.62\textwidth]{uml_backend/19_productservice.png}
     \caption{UML della classe \texttt{ProductService}.}
 \end{figure}
 
 \paragraph{SSEBroadcaster}
-\textbf{Descrizione della classe:} si occupa del dispatch e della propagazione degli eventi realtime a tutte le sessioni connesse, disaccoppiando l'infrastruttura di stream dai domini.
+\textbf{Descrizione della classe:} singleton asyncio per il dispatch e la propagazione degli eventi real-time (SSE) a tutti i subscriber connessi, identificati per session\_id.
+
+\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi persistenti per questa classe.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{subscribe(session\_id: int)}: registra un nuovo subscriber per la sessione.
+    \item \texttt{unsubscribe(session\_id: int, queue)}: rimuove uno specifico subscriber.
+    \item \texttt{emit(session\_id: int, event\_type: str, data)}: broadcast di un evento a tutti i subscriber della sessione.
+    \item \texttt{active\_connections}: propriet\`a che conta le connessioni SSE attive totali.
+\end{itemize}
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.62\textwidth]{uml_backend/47_ssebroadcaster.png}
+    \includegraphics[width=0.62\textwidth]{uml_backend/20_ssebroadcaster.png}
     \caption{UML della classe \texttt{SSEBroadcaster}.}
+\end{figure}
+
+\paragraph{ConfidenceScorer}
+\textbf{Descrizione della classe:} calcola il punteggio di affidabilit\`a (Confidence Score) delle proposte AI, combinando segnali di storico, similarit\`a, tipo di match, intento e quantit\`a.
+
+\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi persistenti.
+
+\textbf{Descrizione dei metodi:}
+\begin{itemize}
+    \item \texttt{score(context: ConfidenceContext)}: calcola i punteggi di confidence per tutti i prodotti nel contesto.
+    \item \texttt{low\_confidence\_threshold}: propriet\`a che restituisce la soglia sotto cui un articolo viene segnalato.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.62\textwidth]{uml_backend/21_confidencescorer.png}
+    \caption{UML della classe \texttt{ConfidenceScorer}.}
 \end{figure}

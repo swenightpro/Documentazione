@@ -1,0 +1,32 @@
+@startuml
+skinparam dpi 300
+skinparam shadowing false
+skinparam backgroundColor White
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 12
+skinparam ArrowColor #4B5563
+skinparam ArrowThickness 1
+skinparam roundcorner 8
+skinparam class {
+  BackgroundColor #F9FAFB
+  BorderColor #4B5563
+  FontColor #111827
+  AttributeFontColor #374151
+  StereotypeFontColor #6B7280
+}
+skinparam classAttributeIconSize 0
+
+class "TicketController" as C1 {
+  + list_open_tickets()
+  + create_ticket(body: CreateTicketRequest)
+  + get_ticket_by_session(session_id: int)
+  + get_analytics_overview(days: int)
+  + get_ticket(ticket_id: int)
+  + lock_ticket(ticket_id: int)
+  + send_ticket_message(ticket_id: int, body: SendMessageRequest)
+  + unlock_ticket(ticket_id: int)
+  + close_ticket(ticket_id: int)
+  + close_ticket_by_session(session_id: int)
+  + send_customer_message(session_id: int, body: SendMessageRequest)
+}
+@enduml
