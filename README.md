@@ -21,7 +21,7 @@ Questo repository ospita la documentazione ufficiale prodotta dal gruppo **Night
 Il codice sorgente del software **SmartOrder** è invece distribuito su due repository distinti, corrispondenti alle fasi di sviluppo del prodotto:
 
 - **[SmartOrder-PoC](https://github.com/swenightpro/SmartOrder-PoC)**: Codice relativo al *Proof of Concept* (Requirements and Technology Baseline).
-- **SmartOrder-MVP** _(Coming Soon)_: Repository destinato allo sviluppo del *Minimum Viable Product* (Product Baseline).
+- **[SmartOrder-MVP](https://github.com/swenightpro/SmartOrder-MVP)**: Codice relativo al  *Minimum Viable Product* (Product Baseline).
 
 ## 3. Contenuti del repository
 
