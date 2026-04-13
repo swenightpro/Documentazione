@@ -1,0 +1,186 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl}
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}
+\graphicspath{{../../../assets/}}
+
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage{tabularx}
+\usepackage[svgnames]{xcolor}
+
+% --- Utility ---
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=DarkBlue,
+	filecolor=DarkBlue,
+	urlcolor=DarkBlue,
+	citecolor=DarkBlue,
+	pdftitle={Verbale Interno 2026-04-09 - NightPRO},
+	pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Frontespizio
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+	\centering
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+
+	\vfill
+
+	{\small UNIVERSITA DEGLI STUDI DI PADOVA \par}
+	{\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+	\vspace{0.5cm}
+	{\large Corso di Ingegneria del Software \par}
+	{\small Anno Accademico 2025/2026 \par}
+
+	\vfill
+
+	{\Huge \bfseries Verbale di Riunione \par}
+
+	\vspace{1cm}
+
+	{\Large \itshape Verbale Interno del 9 Aprile 2026 \par}
+
+	\vfill
+
+	{\Large \bfseries Gruppo: NightPRO \par}
+	\vspace{0.5cm}
+	{\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+
+	\vfill
+
+	{\large Data: 2026-04-09 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Indice
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents
+\pagestyle{fancy}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Informazioni Generali
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Nominativo} & \textbf{Matricola} & \textbf{Ruolo Operativo} \\
+\midrule
+Francesco Zanella & 2116442 & Progettista \\
+Leonardo Bilato & 2071084 & Verificatore \\
+Davide Biasuzzi & 2111000 & Responsabile \\
+Mihaela-Mariana Romascu & 2079726 & Verificatrice \\
+Michele Ogniben & 2042325 & - \\
+Samuele Perozzo & 2110989 & Progettista \\
+Giovanni Ponso & 2000558 & Progettista \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO e ruoli ricoperti durante la seduta.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+	\item \textbf{Data:} 2026-04-09
+	\item \textbf{Ora:} 9:00 - 11:00
+	\item \textbf{Luogo:} Google Meet
+	\item \textbf{Partecipanti:} Francesco Zanella, Leonardo Bilato, Davide Biasuzzi, Mihaela-Mariana Romascu, Samuele Perozzo, Giovanni Ponso
+	\item \textbf{Redatto da:} Davide Biasuzzi
+	\item \textbf{Verificato da:} Francesco Zanella
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Ordine del Giorno
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{enumerate}
+	\item Ricognizione delle attivita svolte nello Sprint 14 e verifica delle attivita residue.
+	\item Riesame dell'incontro del giorno 8 aprile con la Proponente e valutazione dell'esito del collaudo del MVP.
+	\item Definizione delle decisioni operative successive alla riunione.
+	\item Definizione dei ruoli per il prossimo sprint in vista della candidatura alla fase di valutazione della milestone PB.
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Diario della Riunione
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Ricognizione delle attivita svolte nello Sprint 14 e verifica delle attivita residue}
+Il gruppo ha ripercorso le attivita svolte durante lo Sprint 14, rilevando che la quasi totalita dei task pianificati e stata portata a termine con esito positivo. Restano da completare soltanto le attivita \#97 e \#98, rispettivamente dedicate al completamento dei manuali utente e all'aggiornamento del documento di Specifica Tecnica. La riunione e stata quindi utilizzata per verificare l'allineamento complessivo del lavoro svolto e per confermare che il lavoro residuo e circoscritto agli ultimi aggiornamenti documentali.
+
+\subsection{Riesame dell'incontro del giorno 8 aprile con la Proponente e valutazione dell'esito del collaudo del MVP}
+Il gruppo ha discusso l'esito dell'incontro esterno dell'8 aprile con il referente aziendale Gianluca Carlesso, durante il quale e stato mostrato il MVP in una versione ritenuta stabile e sostanzialmente definitiva. Il riscontro ricevuto e stato giudicato molto positivo: la Proponente ha approvato quasi integralmente il prodotto presentato, segnalando soltanto un numero limitato di modifiche puntuali da effettuare prima della formalizzazione conclusiva dell'accettazione.
+
+Nel corso delle ore successive alla riunione con la Proponente, il gruppo e riuscito a intervenire sulle ultime correzioni richieste. Per questo motivo, nella seduta odierna si e deliberato di procedere con l'invio del verbale di approvazione finale del MVP alla Proponente. Alla luce del riscontro favorevole espresso da Gianluca Carlesso, il team ha inoltre deciso di procedere con la candidatura alla fase di valutazione della milestone PB, una volta conclusi gli ultimi aggiornamenti documentali.
+
+\subsection{Decisioni operative successive alla riunione}
+Nel corso della seduta il gruppo ha definito le operazioni da svolgere come completamento del lavoro avviato nei giorni precedenti e come passaggio necessario verso la candidatura alla valutazione PB.
+
+In particolare, il gruppo ha concordato di:
+\begin{enumerate}[noitemsep, topsep=3pt]
+	\item procedere con l'invio del verbale di approvazione finale del MVP alla Proponente;
+	\item completare l'aggiornamento della Specifica Tecnica, proseguendo la chiusura dell'attivita \#98;
+	\item terminare il Manuale Cliente e il Manuale Operatore, proseguendo la chiusura dell'attivita \#97;
+	\item sottoporre i documenti al consueto ciclo di verifica e approvazione finale;
+	\item inviare l'email di candidatura al prof. Cardin una volta completato l'aggiornamento documentale.
+\end{enumerate}
+
+\subsection{Definizione dei ruoli per il prossimo sprint in vista della candidatura alla fase di valutazione della milestone PB}
+Il gruppo ha inoltre evidenziato che, una volta concluse le ultime attivita documentali e formalizzata la candidatura, il lavoro si concentrera sulla preparazione al colloquio relativo alla milestone PB.
+Si e deciso di assegnare a Davide Biasuzzi il ruolo di \textbf{Responsabile}. Per il prossimo sprint, orientato alla preparazione dei colloqui e a eventuali interventi nel caso in cui emergano esiti negativi durante le due fasi di valutazione, prima con il prof. Cardin e successivamente con il prof. Tullio Vardanega, Giovanni Ponso e Samuele Perozzo assumono il ruolo di \textbf{Progettisti}; Leonardo Bilato e Mihaela-Mariana Romascu assumono il ruolo di \textbf{Programmatori};  Francesco Zanella assume il ruolo di \textbf{Verificatore}.
+
+% -------------------------------------------------------------------
+%  SEZIONE: Decisioni Prese
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese}
+
+\begin{enumerate}
+	\item \textbf{Chiusura Sprint 14:} Confermato che la quasi totalita delle attivita pianificate e stata completata; restano da concludere soltanto le issue \#97 e \#98.
+	\item \textbf{Esito MVP:} Preso atto del riscontro positivo ricevuto dalla Proponente sull'MVP presentato l'8 aprile e deliberato l'invio del verbale di approvazione finale.
+	\item \textbf{Avvio iter PB:} Deliberato che, una volta conclusi gli aggiornamenti documentali, verra inviata l'email di candidatura al prof. Cardin per richiedere il colloquio relativo alla fase di valutazione della milestone PB.
+	\item \textbf{Ruoli per il prossimo sprint:} Confermato Davide Biasuzzi nel ruolo di Responsabile; per il prossimo sprint, orientato alla preparazione dei colloqui e a eventuali interventi in caso di esiti negativi durante le due fasi di valutazione, Giovanni Ponso e Samuele Perozzo assumono il ruolo di Progettisti, Mihaela-Mariana Romascu e Leonardo Bilato assumono il ruolo di Programmatori mentre Francesco Zanella assume il ruolo di Verificatore.
+\end{enumerate}
+
+\end{document}
