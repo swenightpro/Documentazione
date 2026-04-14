@@ -1,0 +1,146 @@
+@startuml
+!theme plain
+skinparam linetype ortho
+skinparam shadowing false
+
+entity "app_users" as users {
+  * id : int8 <<PK>>
+  --
+  email : varchar(255)
+  password_hash : varchar(128)
+  password_salt : varchar(64)
+  role : varchar(20)
+  cod_cli : int8 <<FK>>
+  is_active : bool
+  export_folder : varchar(500)
+  created_at : timestamptz
+  updated_at : timestamptz
+}
+
+entity "anacli" as customers {
+  * cod_cli : int8 <<PK>>
+  --
+  rag_soc : varchar(255)
+}
+
+entity "anaart" as products {
+  * cod_art : varchar(13) <<PK>>
+  --
+  des_art : varchar(255)
+  stato : varchar(40)
+  linea : varchar(40)
+  settore : varchar(40)
+  famiglia : varchar(40)
+  sottofamiglia : varchar(40)
+  des_um : varchar(40)
+  peso_netto_conf : float8
+  ...
+}
+
+entity "product_embeddings" as embeddings {
+  * cod_art : varchar(20) <<PK, FK>>
+  --
+  embedding : vector
+  created_at : timestamp
+}
+
+entity "asscli" as asscli {
+  * cod_cli : int8 <<PK, FK>>
+  * cod_art : varchar(13) <<PK, FK>>
+}
+
+entity "chat_sessions" as sessions {
+  * id : int8 <<PK>>
+  --
+  user_id : int8 <<FK>>
+  status : varchar(20)
+  created_at : timestamptz
+  closed_at : timestamptz
+}
+
+entity "chat_messages" as messages {
+  * id : int8 <<PK>>
+  --
+  session_id : int8 <<FK>>
+  sender : varchar(20)
+  content : text
+  image_data : bytea
+  ocr_text : text
+  metadata : jsonb
+  created_at : timestamptz
+}
+
+entity "message_feedbacks" as feedbacks {
+  * id : int8 <<PK>>
+  --
+  message_id : int8 <<FK>>
+  user_id : int8 <<FK>>
+  is_positive : bool
+  reason_category : varchar(50)
+  comment : text
+}
+
+entity "cart_items" as cart {
+  * id : int8 <<PK>>
+  --
+  session_id : int8 <<FK>>
+  cod_art : varchar(13) <<FK>>
+  qta : float8
+  source : varchar(20)
+  related_message_id : int8 <<FK>>
+  updated_at : timestamptz
+}
+
+entity "orders" as orders {
+  * id : int8 <<PK>>
+  --
+  cod_cli : int8 <<FK>>
+  user_id : int8 <<FK>>
+  session_id : int8 <<FK>>
+  data_ord : timestamptz
+  esportato : bool
+}
+
+entity "order_items" as order_items {
+  * id : int8 <<PK>>
+  --
+  order_id : int8 <<FK>>
+  cod_art : varchar(13) <<FK>>
+  qta_ordinata : float8
+}
+
+entity "tickets" as tickets {
+  * id : int8 <<PK>>
+  --
+  session_id : int8 <<FK>>
+  cod_cli : int8 <<FK>>
+  status : varchar(30)
+  locked_by : int8
+  created_at : timestamptz
+}
+
+' Relazioni
+customers ||--o{ users : "associato a"
+customers ||--o{ asscli : "ha assortimento"
+products ||--o{ asscli : "in assortimento"
+products ||--|| embeddings : "ha vettorializzazione"
+
+users ||--o{ sessions : "apre"
+sessions ||--o{ messages : "contiene"
+messages ||--o{ feedbacks : "riceve"
+users ||--o{ feedbacks : "fornisce"
+
+sessions ||--o{ cart : "contiene"
+products ||--o{ cart : "inserito in"
+messages ||--o{ cart : "genera"
+
+users ||--o{ orders : "effettua"
+customers ||--o{ orders : "intestatario"
+sessions ||--o| orders : "converte in"
+orders ||--o{ order_items : "composto da"
+products ||--o{ order_items : "ordinato in"
+
+sessions ||--o{ tickets : "riferita a"
+customers ||--o{ tickets : "apre"
+
+@enduml

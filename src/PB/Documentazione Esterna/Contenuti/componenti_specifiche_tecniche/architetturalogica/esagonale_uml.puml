@@ -1,0 +1,265 @@
+@startuml
+
+skinparam monochrome false
+skinparam classBackgroundColor White/Beige
+skinparam classBorderColor Black
+skinparam dpi 300
+skinparam componentStyle uml2
+
+class "main.py {Composition Root}" as Main {
+  _db = PostgresAdapter()
+  _ai_client = OpenAIAdapter()
+  _broadcaster = SSEBroadcaster()
+  _auth_service = AuthService(_db)
+  _cart_service = CartService(_db, _broadcaster)
+  _conv_service = ConversationService(_db, _ai_client, _broadcaster)
+  _order_service = OrderService(_db, _db, _broadcaster)
+  _ticket_service = TicketService(_db, _db, _broadcaster)
+  _configure_dependency_overrides(app)
+}
+
+class AuthController {
+  + POST /auth/login
+  + POST /auth/logout
+  + GET /auth/me
+  + POST /auth/change-password
+  + GET/PUT /auth/export-folder
+}
+
+class CartController {
+  + GET /cart
+  + POST /cart
+  + POST /cart/add-by-name
+}
+
+class ConversationController {
+  + POST /chat
+  + POST /chat/image
+  + POST /transcribe
+  + GET/POST /sessions
+  + GET /messages
+}
+
+class OrderController {
+  + POST /orders/create
+  + GET /orders/list
+  + GET /orders/all
+  + GET /orders/detail
+  + POST /orders/export{-batch}
+}
+
+class TicketController {
+  + GET /tickets
+  + POST /tickets
+  + GET /tickets/{id}
+  + PATCH /{id}/lock
+  + GET /tickets/analytics/overview
+}
+
+class SSEController {
+  + GET /sse/{session_id}
+  + GET /sse/tickets
+}
+
+class FeedbackController {
+  + POST /feedback
+}
+
+class ProductController {
+  + GET /products/search
+}
+
+class ClientController {
+  + GET /clients/search
+}
+
+class AuthService {
+  + __init__(user_repo: IUserRepository)
+  + login(email, password): dict
+  + get_profile(user_id): dict
+  + change_password(user_id, curr, new)
+  + get_set_export_folder(user_id, ...)
+  + verify_jwt(token): dict
+  + create_jwt(user_id, cod_cli, role): str
+}
+
+class CartService {
+  + __init__(session_manager: ISessionManager, broadcaster: SSEBroadcaster)
+  + get_cart(user_id): list[dict]
+  + get_cart_by_session(session_id): list
+  + add_to_cart(user_id, cod_art, qta, ...)
+  + remove_from_cart(cart_item_id, user_id)
+  + update_cart_quantity(cart_item_id, ...)
+  + clear_cart(user_id, session_id): void
+}
+
+class ConversationService {
+  + __init__(db: PostgresAdapter, ai_client: IAIClient, broadcaster: SSEBroadcaster)
+  + get_active_session(user_id): dict
+  + create_session(user_id): dict
+  + get_messages(session_id): list
+  + save_message_to_session(...): int
+  + handle_chat(body, user): ChatResponse
+  + handle_image(body, user): ChatResponse
+}
+
+class OrderService {
+  + __init__(order_repo: IOrderRepository, session_manager: ISessionManager, broadcaster: SSEBroadcaster)
+  + create_order(cod_cli, user_id, ...): dict
+  + get_orders_by_client(cod_cli, ...): list
+  + get_all_orders(page, limit, ...): list
+  + get_order_detail(order_id, cod_cli): dict
+  + export_order(order_id, user_id, ...)
+  + export_batch(user_id, ...): dict
+}
+
+class TicketService {
+  + __init__(ticket_repo: ITicketRepository, db_adapter, broadcaster)
+  + create_ticket(session_id, cod_cli): dict
+  + get_open_tickets(): list
+  + get_ticket_by_id(ticket_id): dict
+  + get_ticket_by_session(session_id, ...)
+  + get_platform_usage_overview(days)
+}
+
+class SSEBroadcaster {
+  - _subscribers: dict
+  + subscribe(session_id: int): AsyncGenerator
+  + subscribe_tickets(): AsyncGenerator
+  + emit(session_id: int, event: dict): void
+}
+
+class FeedbackService {
+  + __init__(feedback_repo: PostgresAdapter)
+  + save_feedback(message_id, user_id, is_positive: bool): void
+  + delete_feedback(message_id, user_id): bool
+}
+
+class ProductService {
+  + __init__(product_repo: PostgresAdapter)
+  + search_products(query: str, cod_cli: int, limit): list[dict]
+}
+
+class ClientService {
+  + __init__(client_repo: PostgresAdapter)
+  + search_clients(query: str, limit: int): list[dict]
+}
+
+interface IUserRepository {
+  + find_by_email(email: str): dict
+  + find_by_id(user_id: int): dict
+  + update_password(user_id, hash, salt)
+  + get_client_info(cod_cli: int): dict
+  + search_clients(query, limit): list
+  + get_set_export_folder(user_id, ...)
+}
+
+interface ISessionManager {
+  + get_active_session(user_id): dict
+  + create_session(user_id: int): dict
+  + get_cart(user_id: int): list
+  + get_cart_by_session(session_id): list
+  + add_to_cart(user_id, cod_art, qta, ...)
+  + remove_update_from_cart(...)
+  + clear_cart(user_id): void
+  + get_messages(session_id): list
+  + save_message(session_id, ...): int
+}
+
+interface IAIClient {
+  + transcribe_audio(audio_file, filename): str
+  + interpret_intent(text, context, system_prompt, model): str
+  + generate_embedding(text, model): list
+  + analyze_image(image_base64, conversation_history, ...): dict
+}
+
+interface IOrderRepository {
+  + create_order(cod_cli, user_id, session_id, items): int
+  + get_orders_by_client(cod_cli, ...): list
+  + get_all_orders(page, limit, ...): list
+  + get_order_detail(order_id, cod_cli): dict
+  + get_order_detail_any(order_id): dict
+}
+
+interface ITicketRepository {
+  + create_ticket(session_id, cod_cli): dict
+  + get_ticket_by_session(session_id, ...)
+  + get_open_tickets(): list
+  + get_ticket_by_id(ticket_id): dict
+  + lock_ticket(ticket_id, operator_id): bool
+  + unlock_close_ticket(ticket_id)
+  + send_message(session_id, ...): int
+  + get_platform_usage_overview(days): dict
+}
+
+class PostgresAdapter {
+  + find_by_email / find_by_id / update_password
+  + get_export_folder / set_export_folder
+  + get_active_session / create_session
+  + get_cart / add_to_cart / remove_from_cart
+  + update_cart_quantity / clear_cart
+  + get_messages / save_message
+  + create_order / get_orders_by_client
+  + get_order_detail / get_order_detail_any
+  + create_ticket / lock_ticket / close_ticket
+  + send_message / get_platform_usage_overview
+}
+
+class OpenAIAdapter {
+  - client: AsyncOpenAI
+  - model: str = "gpt-4o"
+  + generate_embedding(text, model): list[float]
+  + transcribe_audio(audio_file, filename): str
+  + interpret_intent(text, context, ...): str
+  + analyze_image(image_base64, ...): dict
+}
+
+class "AsyncOpenAI (SDK — Adaptee)" as AsyncOpenAI {
+  + chat.completions.create(...)
+  + audio.transcriptions.create(...)
+  + embeddings.create(...)
+}
+
+' Creation & Injection (main.py)
+Main ..> PostgresAdapter : <<create>>
+Main ..> OpenAIAdapter : <<create>>
+Main ..> AuthService : inject IUserRepository
+Main ..> CartService : inject ISessionManager
+Main ..> ConversationService : inject IAIClient
+Main ..> OrderService : inject IOrderRepository\n+ ISessionManager
+Main ..> TicketService : inject ITicketRepository
+
+' Controllers -> Services
+AuthController ..> AuthService : <<use>>
+CartController ..> CartService : <<use>>
+ConversationController ..> ConversationService : <<use>>
+OrderController ..> OrderService : <<use>>
+TicketController ..> TicketService : <<use>>
+SSEController ..> SSEBroadcaster : <<use>>
+FeedbackController ..> FeedbackService : <<use>>
+ProductController ..> ProductService : <<use>>
+ClientController ..> ClientService : <<use>>
+
+' Services -> Interfaces
+AuthService ..> IUserRepository : <<use>>
+CartService ..> ISessionManager : <<use>>
+ConversationService ..> IAIClient : <<use>>
+OrderService ..> IOrderRepository : <<use>>
+OrderService ..> ISessionManager : <<use>>
+TicketService ..> ITicketRepository : <<use>>
+
+' Direct Services -> Adapters (no interface)
+FeedbackService ..> PostgresAdapter : <<use>> direct
+ProductService ..> PostgresAdapter : <<use>> direct
+ClientService ..> PostgresAdapter : <<use>> direct
+
+' Adapters -> Interfaces Realization
+PostgresAdapter .up.|> IUserRepository : <<realize>>
+PostgresAdapter .up.|> ISessionManager : <<realize>>
+PostgresAdapter .up.|> IOrderRepository : <<realize>>
+PostgresAdapter .up.|> ITicketRepository : <<realize>>
+
+OpenAIAdapter .up.|> IAIClient : <<realize>>
+OpenAIAdapter --> AsyncOpenAI : <<call>> Adaptee
+
+@enduml
