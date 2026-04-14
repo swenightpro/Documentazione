@@ -1,12 +1,10 @@
 # Report di compilazione
 
-Compilazione basata sul commit f43cfe9abde91ef70d3d990f63b48fc3df2e3489 (base: f43cfe9)
+Compilazione basata sul commit e83a30b006d0fe310e6fef5b01430b7b624c02fc (base: e83a30b)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/PB/Documentazione Interna/Verbali Interni/Verbale_interno_2026-04-09.pdf](docs/PB/Documentazione%20Interna/Verbali%20Interni/Verbale_interno_2026-04-09.pdf)
-
-✅ [docs/PB/Documentazione Interna/Verbali Interni/verbale_interno_2026-04-04.pdf](docs/PB/Documentazione%20Interna/Verbali%20Interni/verbale_interno_2026-04-04.pdf)
+✅ [docs/PB/Documentazione Esterna/Specifica_Tecnica_v1.1.pdf](docs/PB/Documentazione%20Esterna/Specifica_Tecnica_v1.1.pdf)
 
