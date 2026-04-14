@@ -1,0 +1,243 @@
+' ==========================================
+' DIAGRAMMA 1: Observer Pattern (SSE)
+' ==========================================
+@startuml
+skinparam monochrome false
+skinparam classBackgroundColor White/Beige
+skinparam classBorderColor Black
+skinparam dpi 300
+skinparam componentStyle uml2
+
+abstract class ISubject <<abstract>> {
+  + subscribe(session_id: int): AsyncGenerator
+  + unsubscribe(session_id: int, queue: AsyncQueue): void
+  + emit(in session_id: int, in event: dict): void
+}
+
+interface IObserver <<interface>> {
+  + update(in event: dict): void
+}
+
+class SSEBroadcaster {
+  - _observers: dict[int, list[IObserver]]
+  + subscribe(session_id: int): AsyncGenerator
+  + unsubscribe(session_id: int, queue: AsyncQueue): void
+  + emit(in session_id: int, in event: dict): void
+  + subscribe_tickets(): AsyncGenerator
+}
+
+class SSEClientQueue {
+  - _queue: asyncio.Queue
+  + update(in event: dict): void
+}
+
+class CartService {
+  + add_item(cmd: CartItemCommand): void
+}
+
+ISubject -> IObserver : observers
+SSEBroadcaster -up-|> ISubject
+SSEClientQueue -up-|> IObserver
+CartService ..> SSEBroadcaster : <<use>>
+@enduml
+
+
+' ==========================================
+' DIAGRAMMA 2: Facade Pattern (Frontend)
+' ==========================================
+@startuml
+skinparam monochrome false
+skinparam classBackgroundColor White/Beige
+skinparam classBorderColor Black
+skinparam dpi 300
+skinparam componentStyle uml2
+
+class CartPanel {
+  + render(): JSX
+  + handleAdd(codArt): void
+  + handleRemove(id): void
+}
+
+class cartService << (S,#FF7700) Singleton >> {
+  + getCart(sessionId?): Promise<CartItem[]>
+  + addItem(codArt: str, qty: int): Promise
+  + removeItem(id: int): Promise
+  + updateQty(id: int, qty: int, src): Promise
+}
+
+class apiFetch {
+  + call(url: str, options: RequestInit): Promise<Response>
+}
+
+class CartApiRoutes {
+  + BASE = '/api/cart'
+  + getUrl(id?): string
+  + getMethod(action): str
+}
+
+class CsrfCookie {
+  + getToken(): string
+  + addHeader(h: dict): dict
+}
+
+class AuthErrorHandler {
+  + handle(resp: Response): Promise<Response>
+  + redirectLogin(): void
+}
+
+CartPanel ..> cartService : <<use>>
+cartService --> apiFetch
+cartService --> CartApiRoutes
+cartService --> CsrfCookie
+cartService --> AuthErrorHandler
+@enduml
+
+
+' ==========================================
+' DIAGRAMMA 3: Adapter Pattern (OpenAI)
+' ==========================================
+@startuml
+skinparam monochrome false
+skinparam classBackgroundColor White/Beige
+skinparam classBorderColor Black
+skinparam dpi 300
+skinparam componentStyle uml2
+
+interface IAIClient <<interface>> {
+  + interpret_intent(text: str, ctx: list): str
+  + transcribe_audio(file: bytes): str
+  + generate_embedding(text: str): list
+  + analyze_image(image_base64, conversation_history, system_prompt)
+}
+
+class ConversationService {
+  + handle_chat(body, user): ChatResponse
+  + handle_image(body, user): ChatResponse
+}
+
+class OpenAIAdapter {
+  - _client: AsyncOpenAI
+  + interpret_intent(text: str, ctx: list): str
+  + transcribe_audio(file: bytes): str
+  + generate_embedding(text: str): list
+  + analyze_image(image_base64, conversation_history, system_prompt)
+}
+
+class AsyncOpenAI <<SDK>> {
+  + chat.completions.create(model, messages, ...)
+  + audio.transcriptions.create(model, file, ...)
+  + embeddings.create(model, input, ...)
+}
+
+ConversationService --> IAIClient
+OpenAIAdapter -up-|> IAIClient
+OpenAIAdapter --> AsyncOpenAI : adaptee
+@enduml
+
+
+' ==========================================
+' DIAGRAMMA 4: Repository Pattern
+' ==========================================
+@startuml
+skinparam monochrome false
+skinparam classBackgroundColor White/Beige
+skinparam classBorderColor Black
+skinparam dpi 300
+skinparam componentStyle uml2
+
+class AuthService {
+  + login(email: str, pwd: str): dict
+  + logout(session_id: int): void
+}
+
+interface IUserRepository <<interface>> {
+  + find_by_email(email: str): dict
+  + find_by_id(user_id: int): dict
+  + update_password(user_id, hash, salt): void
+}
+
+class FakeUserRepository {
+  - _users: dict
+  + find_by_email(email: str): dict
+  + find_by_id(user_id: int): dict
+  + update_password(user_id, hash, salt): void
+}
+
+class PostgresAdapter {
+  - _pool: ConnectionPool
+  + find_by_email(email: str): dict
+  + find_by_id(user_id: int): dict
+  + update_password(user_id, hash, salt): void
+}
+
+AuthService ..> IUserRepository : <<use>>
+FakeUserRepository .up.|> IUserRepository : <<realize>>
+PostgresAdapter .up.|> IUserRepository : <<realize>>
+@enduml
+
+
+' ==========================================
+' DIAGRAMMA 5: Dependency Injection Root
+' ==========================================
+@startuml
+skinparam monochrome false
+skinparam classBackgroundColor White/Beige
+skinparam classBorderColor Black
+skinparam dpi 300
+skinparam componentStyle uml2
+
+class main_py as "main.py {Composition Root}" {
+  + configure_app(): FastAPI
+  + _provide_cart_service(): CartService
+  + _provide_auth_service(): AuthService
+  + _configure_dependency_overrides(app)
+}
+
+class PostgresAdapter {
+  - _pool: ConnectionPool
+}
+
+class OpenAIAdapter {
+  - _client: AsyncOpenAI
+}
+
+class SSEBroadcaster {
+  - _subs: dict[int, list[Queue]]
+  + subscribe(sid: int): Queue
+  + emit(sid, type, data): void
+}
+
+class CartService {
+  + __init__(db: ISessionManager, bc: SSEBroadcaster)
+}
+
+class AuthService {
+  + __init__(user_repo: IUserRepository)
+}
+
+class ConversationService {
+  + __init__(db: ISessionManager, ai: IAIClient, bc: SSEBroadcaster)
+}
+
+class FakeSessionManager {
+  - _data: dict
+  + get_cart(sid): list
+  + update_cart_item(id, qty): void
+}
+
+main_py ..> PostgresAdapter : <<create>>
+main_py ..> OpenAIAdapter : <<create>>
+main_py ..> SSEBroadcaster : <<create>>
+
+main_py ..> CartService : injects
+main_py ..> AuthService : injects
+main_py ..> ConversationService : injects
+
+PostgresAdapter --> CartService : as ISessionManager
+PostgresAdapter --> AuthService : as IUserRepository
+OpenAIAdapter --> ConversationService
+SSEBroadcaster --> CartService
+SSEBroadcaster --> ConversationService
+
+FakeSessionManager ..> CartService : replaces in tests
+@enduml

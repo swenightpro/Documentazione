@@ -1,4 +1,4 @@
-@startuml
+@startuml 1_Architettura_Esagonale
 
 skinparam monochrome false
 skinparam classBackgroundColor White/Beige
@@ -7,27 +7,27 @@ skinparam dpi 300
 skinparam componentStyle uml2
 
 class "main.py {Composition Root}" as Main {
-  _db = PostgresAdapter()
-  _ai_client = OpenAIAdapter()
-  _broadcaster = SSEBroadcaster()
-  _auth_service = AuthService(_db)
-  _cart_service = CartService(_db, _broadcaster)
-  _conv_service = ConversationService(_db, _ai_client, _broadcaster)
-  _order_service = OrderService(_db, _db, _broadcaster)
-  _ticket_service = TicketService(_db, _db, _broadcaster)
+  _db              = PostgresAdapter()
+  _ai_client       = OpenAIAdapter()
+  _broadcaster     = SSEBroadcaster()
+  _auth_service    = AuthService(_db)
+  _cart_service    = CartService(_db, _broadcaster)
+  _conv_service    = ConversationService(_db, _ai_client, _broadcaster)
+  _order_service   = OrderService(_db, _db, _broadcaster)
+  _ticket_service  = TicketService(_db, _db, _broadcaster)
   _configure_dependency_overrides(app)
 }
 
 class AuthController {
   + POST /auth/login
   + POST /auth/logout
-  + GET /auth/me
+  + GET  /auth/me
   + POST /auth/change-password
   + GET/PUT /auth/export-folder
 }
 
 class CartController {
-  + GET /cart
+  + GET  /cart
   + POST /cart
   + POST /cart/add-by-name
 }
@@ -42,18 +42,18 @@ class ConversationController {
 
 class OrderController {
   + POST /orders/create
-  + GET /orders/list
-  + GET /orders/all
-  + GET /orders/detail
+  + GET  /orders/list
+  + GET  /orders/all
+  + GET  /orders/detail
   + POST /orders/export{-batch}
 }
 
 class TicketController {
-  + GET /tickets
-  + POST /tickets
-  + GET /tickets/{id}
+  + GET   /tickets
+  + POST  /tickets
+  + GET   /tickets/{id}
   + PATCH /{id}/lock
-  + GET /tickets/analytics/overview
+  + GET   /tickets/analytics/overview
 }
 
 class SSEController {
@@ -75,6 +75,7 @@ class ClientController {
 
 class AuthService {
   + __init__(user_repo: IUserRepository)
+  --
   + login(email, password): dict
   + get_profile(user_id): dict
   + change_password(user_id, curr, new)
@@ -85,6 +86,7 @@ class AuthService {
 
 class CartService {
   + __init__(session_manager: ISessionManager, broadcaster: SSEBroadcaster)
+  --
   + get_cart(user_id): list[dict]
   + get_cart_by_session(session_id): list
   + add_to_cart(user_id, cod_art, qta, ...)
@@ -95,6 +97,7 @@ class CartService {
 
 class ConversationService {
   + __init__(db: PostgresAdapter, ai_client: IAIClient, broadcaster: SSEBroadcaster)
+  --
   + get_active_session(user_id): dict
   + create_session(user_id): dict
   + get_messages(session_id): list
@@ -105,6 +108,7 @@ class ConversationService {
 
 class OrderService {
   + __init__(order_repo: IOrderRepository, session_manager: ISessionManager, broadcaster: SSEBroadcaster)
+  --
   + create_order(cod_cli, user_id, ...): dict
   + get_orders_by_client(cod_cli, ...): list
   + get_all_orders(page, limit, ...): list
@@ -115,6 +119,7 @@ class OrderService {
 
 class TicketService {
   + __init__(ticket_repo: ITicketRepository, db_adapter, broadcaster)
+  --
   + create_ticket(session_id, cod_cli): dict
   + get_open_tickets(): list
   + get_ticket_by_id(ticket_id): dict
@@ -124,6 +129,7 @@ class TicketService {
 
 class SSEBroadcaster {
   - _subscribers: dict
+  --
   + subscribe(session_id: int): AsyncGenerator
   + subscribe_tickets(): AsyncGenerator
   + emit(session_id: int, event: dict): void
@@ -131,17 +137,20 @@ class SSEBroadcaster {
 
 class FeedbackService {
   + __init__(feedback_repo: PostgresAdapter)
+  --
   + save_feedback(message_id, user_id, is_positive: bool): void
   + delete_feedback(message_id, user_id): bool
 }
 
 class ProductService {
   + __init__(product_repo: PostgresAdapter)
+  --
   + search_products(query: str, cod_cli: int, limit): list[dict]
 }
 
 class ClientService {
   + __init__(client_repo: PostgresAdapter)
+  --
   + search_clients(query: str, limit: int): list[dict]
 }
 
@@ -207,7 +216,8 @@ class PostgresAdapter {
 
 class OpenAIAdapter {
   - client: AsyncOpenAI
-  - model: str = "gpt-4o"
+  - model: str = "gpt-5.4"
+  --
   + generate_embedding(text, model): list[float]
   + transcribe_audio(audio_file, filename): str
   + interpret_intent(text, context, ...): str
@@ -221,45 +231,64 @@ class "AsyncOpenAI (SDK — Adaptee)" as AsyncOpenAI {
 }
 
 ' Creation & Injection (main.py)
-Main ..> PostgresAdapter : <<create>>
-Main ..> OpenAIAdapter : <<create>>
-Main ..> AuthService : inject IUserRepository
-Main ..> CartService : inject ISessionManager
+Main ..> PostgresAdapter   : <<create>>
+Main ..> OpenAIAdapter     : <<create>>
+Main ..> AuthService       : inject IUserRepository
+Main ..> CartService       : inject ISessionManager
 Main ..> ConversationService : inject IAIClient
-Main ..> OrderService : inject IOrderRepository\n+ ISessionManager
-Main ..> TicketService : inject ITicketRepository
+Main ..> OrderService      : inject IOrderRepository\n+ ISessionManager
+Main ..> TicketService     : inject ITicketRepository
 
 ' Controllers -> Services
-AuthController ..> AuthService : <<use>>
-CartController ..> CartService : <<use>>
+AuthController         ..> AuthService         : <<use>>
+CartController         ..> CartService         : <<use>>
 ConversationController ..> ConversationService : <<use>>
-OrderController ..> OrderService : <<use>>
-TicketController ..> TicketService : <<use>>
-SSEController ..> SSEBroadcaster : <<use>>
-FeedbackController ..> FeedbackService : <<use>>
-ProductController ..> ProductService : <<use>>
-ClientController ..> ClientService : <<use>>
+OrderController        ..> OrderService        : <<use>>
+TicketController       ..> TicketService       : <<use>>
+SSEController          ..> SSEBroadcaster      : <<use>>
+FeedbackController     ..> FeedbackService     : <<use>>
+ProductController      ..> ProductService      : <<use>>
+ClientController       ..> ClientService       : <<use>>
 
 ' Services -> Interfaces
-AuthService ..> IUserRepository : <<use>>
-CartService ..> ISessionManager : <<use>>
-ConversationService ..> IAIClient : <<use>>
-OrderService ..> IOrderRepository : <<use>>
-OrderService ..> ISessionManager : <<use>>
-TicketService ..> ITicketRepository : <<use>>
+AuthService         ..> IUserRepository   : <<use>>
+CartService         ..> ISessionManager   : <<use>>
+ConversationService ..> IAIClient         : <<use>>
+OrderService        ..> IOrderRepository  : <<use>>
+OrderService        ..> ISessionManager   : <<use>>
+TicketService       ..> ITicketRepository : <<use>>
 
-' Direct Services -> Adapters (no interface)
+' Direct Services -> Adapters (no interface — debito tecnico)
 FeedbackService ..> PostgresAdapter : <<use>> direct
-ProductService ..> PostgresAdapter : <<use>> direct
-ClientService ..> PostgresAdapter : <<use>> direct
+ProductService  ..> PostgresAdapter : <<use>> direct
+ClientService   ..> PostgresAdapter : <<use>> direct
 
 ' Adapters -> Interfaces Realization
-PostgresAdapter .up.|> IUserRepository : <<realize>>
-PostgresAdapter .up.|> ISessionManager : <<realize>>
-PostgresAdapter .up.|> IOrderRepository : <<realize>>
+PostgresAdapter .up.|> IUserRepository   : <<realize>>
+PostgresAdapter .up.|> ISessionManager   : <<realize>>
+PostgresAdapter .up.|> IOrderRepository  : <<realize>>
 PostgresAdapter .up.|> ITicketRepository : <<realize>>
 
-OpenAIAdapter .up.|> IAIClient : <<realize>>
-OpenAIAdapter --> AsyncOpenAI : <<call>> Adaptee
+OpenAIAdapter .up.|> IAIClient  : <<realize>>
+OpenAIAdapter --> AsyncOpenAI   : <<call>> Adaptee
+
+note bottom of ConversationService
+  usa PostgresAdapter direttamente
+  (non via porta) per le sessioni.
+  Usa IAIClient via porta.
+end note
+
+note right of FeedbackService
+  FeedbackService, ProductService,
+  ClientService: nessuna porta
+  dedicata (debito tecnico).
+  Future: IFeedbackRepository,
+  IProductRepository, ...
+end note
 
 @enduml
+
+
+' ============================================================
+' 2. DEPENDENCY INJECTION
+' ============================================================

@@ -49,6 +49,33 @@
 \newcolumntype{C}{>{\centering\arraybackslash}X}
 
 % --- Stile codice ---
+\lstdefinelanguage{json}{
+    showstringspaces=false,
+    breaklines=true,
+    basicstyle=\ttfamily\small,
+    string=[s]{"}{"},
+    stringstyle=\color{OrangeRed},
+    comment=[l]{//},
+    commentstyle=\color{ForestGreen}\itshape,
+    literate=
+     *{0}{{{0}}}{1}
+      {1}{{{1}}}{1}
+      {2}{{{2}}}{1}
+      {3}{{{3}}}{1}
+      {4}{{{4}}}{1}
+      {5}{{{5}}}{1}
+      {6}{{{6}}}{1}
+      {7}{{{7}}}{1}
+      {8}{{{8}}}{1}
+      {9}{{{9}}}{1}
+      {:}{{{:\ }}}{1}
+      {,}{{{,\ }}}{1}
+      {\{}{{\{}}{1}
+      {\}}{{\}}}{1}
+      {[}{{[}}{1}
+      {]}{{]}}{1},
+}
+
 \lstset{
     basicstyle=\ttfamily\small,
     breaklines=true,
@@ -111,9 +138,9 @@
 
     {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
 
-    {\large Data: 2026-04-13 \par}
+    {\large Data: 2026-04-14 \par}
 
-    {\Large Versione: 1.1\par}
+    {\Large Versione: 1.2\par}
 
 \end{titlepage}
 
@@ -132,6 +159,7 @@
             \toprule
             \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche}                           & \textbf{Verificatore} \\
             \midrule
+            1.2               & 2026-04-14    & Samuele Perozzo   & Migliorie alla documentazione dei pattern (principi SOLID), introduzione della struttura JSON di export ERP, sezione Security by Design e uso dei log database & Francesco Zanella \\
             1.1               & 2026-04-13    & Davide Biasuzzi   & Revisione tecnologie, design patterns, architettura logica & Francesco Zanella \\
             1.0               & 2026-04-09    & Giovanni Ponso   & Approvazione del documento & - \\
             0.8               & 2026-04-09    & Samuele Perozzo & Correzioni finali & Leonardo Bilato \\
@@ -318,7 +346,7 @@ In questa sezione vengono elencate le tecnologie adottate per lo sviluppo del si
 \item \textbf{Versione:} 1.6.0
 \item \textbf{Documentazione ufficiale:} \href{https://platform.openai.com/docs}{OpenAI API Documentation} (Ultima modifica 2026-03-26)
 \item \textbf{Ambito:} Backend / Modulo AI
-\item \textbf{Contesto di utilizzo:} SDK\textsubscript{\textsc{g}} ufficiale per l'integrazione con GPT-5.4, GPT-5.4mini, Whisper, GPT-5.4 Vision e text-embedding-3-small.
+\item \textbf{Contesto di utilizzo:} SDK\textsubscript{\textsc{g}} ufficiale per l'integrazione con GPT-5.4, GPT-5.4-mini, Whisper e text-embedding-3-small.
 \end{itemize}
 
 % -------------------------------------------------------------------
@@ -350,11 +378,12 @@ In questa sezione vengono elencate le tecnologie adottate per lo sviluppo del si
 \begin{itemize}[noitemsep]
     \item \textbf{Versione:} 2026-03-05
     \item \textbf{Documentazione ufficiale:} \href{https://platform.openai.com/docs/models/gpt-5.4}{OpenAI GPT-5.4} (Ultima modifica 2026-03-26)
-    \item \textbf{Contesto di utilizzo:} modello linguistico principale per la comprensione degli ordini, la classificazione degli intenti e le decisioni di business. Utilizzato con temperature=0.1 per risposte deterministiche.
+    \item \textbf{Contesto di utilizzo:} modello linguistico principale per la comprensione degli ordini, la classificazione degli intenti e le decisioni di business. Utilizzato con temperature=0.1 per risposte deterministiche. Natively multimodale: supporta analisi di immagini e documenti caricati dagli utenti per l'estrazione di testo tramite OCR e la comprensione del contenuto visivo (es. foto di ordini cartacei).
 \end{itemize}
 
 \subsubsection{GPT-5.4-mini}
 \begin{itemize}[noitemsep]
+    \item \textbf{Versione:} 2026-03-17
     \item \textbf{Documentazione ufficiale:} \href{https://platform.openai.com/docs/models/gpt-5.4-mini}{OpenAI GPT-5.4-mini} (Ultima modifica 2026-03-26)
     \item \textbf{Contesto di utilizzo:} modello leggero per l'estrazione rapida dei parametri di ricerca e la classificazione semantica degli intenti utente.
 \end{itemize}
@@ -364,13 +393,6 @@ In questa sezione vengono elencate le tecnologie adottate per lo sviluppo del si
     \item \textbf{Versione:} 1
     \item \textbf{Documentazione ufficiale:} \href{https://platform.openai.com/docs/guides/speech-to-text}{OpenAI Speech-to-Text (Whisper)} (Ultima modifica 2026-03-26)
     \item \textbf{Contesto di utilizzo:} trascrizione di messaggi audio in testo, con prompt specifico per il dominio Ergon e lingua forzata a italiano.
-\end{itemize}
-
-\subsubsection{GPT-5.4 Vision}
-\begin{itemize}[noitemsep]
-    \item \textbf{Versione:} 2024-08-06
-    \item \textbf{Documentazione ufficiale:} \href{https://platform.openai.com/docs/guides/vision}{OpenAI Vision} (Ultima modifica 2026-03-26)
-    \item \textbf{Contesto di utilizzo:} analisi di immagini e documenti caricati dagli utenti per l'estrazione di testo tramite OCR e la comprensione del contenuto visivo (es. foto di ordini cartacei).
 \end{itemize}
 
 \subsubsection{text-embedding-3-small}
@@ -617,7 +639,7 @@ Il diagramma C4 Livello 2 decompone SmartOrder nei container applicativi princip
 \end{table}
 
 \subsection{Stile architetturale adottato}
-La soluzione adotta uno stile \textbf{client-server a servizi}, con frontend e backend separati e API REST come contratto principale.
+“La soluzione adotta un'architettura client-server composta da sottosistemi modulari, con frontend e backend separati e API REST come contratto principale.
 All'interno del backend viene applicata una suddivisione per layer logici (Controller, Application Service, Core Domain, Outbound Ports) coerente con i principi di \textit{Ports and Adapters}.
 
 Le principali motivazioni della scelta sono:
@@ -634,49 +656,79 @@ Le principali motivazioni della scelta sono:
 \newpage
 \section{Architettura di deployment}
 
-Questa sezione descrive la distribuzione fisica dei componenti del sistema \textit{SmartOrder}, illustrando gli ambienti di esecuzione, i nodi infrastrutturali coinvolti e le strategie di Continuous Integration e Continuous Deployment (CI/CD\ped{g}) adottate.
+Questa sezione descrive la distribuzione fisica dei componenti del sistema \textit{SmartOrder}, illustrando gli ambienti di esecuzione, i nodi
+     infrastrutturali coinvolti e le strategie di Continuous Integration e Continuous Deployment (CI/CD\ped{g}).
 
-\subsection{Architettura: Modular Monolith}
-L'applicazione \textit{SmartOrder} adotta un'architettura \textbf{Modular Monolith}. Il termine riflette due proprietà fondamentali:
+\subsection{Architettura: Sottosistemi Monolitici Indipendenti}
+Il sistema \textit{SmartOrder} adotta un'architettura \textbf{Client-Server} basata su due unità di deployment indipendenti. Entrambi i componenti
+      sono strutturati internamente come monoliti, garantendo una gestione semplificata del rilascio pur mantenendo una netta separazione delle
+      responsabilità:
+
 \begin{itemize}
-    \item \textbf{Monolitica}: l'intera applicazione viene distribuita come un unico processo (il file \texttt{main.py} del backend FastAPI), il quale ospita tutti i servizi e la logica di business.
-    \item \textbf{Modulare}: nonostante sia un singolo processo, la logica di business è organizzata e isolata \textbf{verticalmente} per dominio. Ogni modulo attraversa tutti i layer dell'architettura (dal controller alla persistenza).
+    \item \textbf{Backend (Modular Monolith)}: Il server è un monolite modulare implementato in FastAPI (Python). Nonostante venga eseguito come un
+      unico processo, la logica di business è isolata verticalmente per domini funzionali, assicurando coesione interna e facilità di manutenzione.
+    \item \textbf{Frontend (Frontend Monolith)}: Il client è un'applicazione Next.js distribuita come unità singola. Gestisce interamente lo strato
+      di presentazione e lo stato dell'interfaccia utente, operando in un ambiente di runtime Node.js separato e dedicato.
+\end{itemize}
+Il disaccoppiamento tra i due sottosistemi è garantito dall'utilizzo di interfacce API REST per lo scambio di dati in formato JSON.
+L'organizzazione del codice segue l'approccio \textbf{Monorepo}: entrambi i sottosistemi risiedono in un unico repository dei sorgenti. Questa
+scelta semplifica la gestione delle dipendenze e garantisce la coerenza tra le interfacce del frontend e le API del backend durante lo sviluppo.
+
+\subsubsection{Motivazioni della scelta architettonica}
+L'adozione di questa struttura garantisce un equilibrio ottimale tra semplicità operativa e flessibilità evolutiva, offrendo i seguenti vantaggi:
+\begin{itemize}
+    \item \textbf{Efficienza Infrastrutturale}: L'approccio monolitico riduce drasticamente l'overhead di gestione rispetto a un'architettura a
+     microservizi, pur mantenendo una chiara separazione delle responsabilità.
+    \item \textbf{Scalabilità Indipendente}: La natura disaccoppiata dei due sottosistemi permette di scalare le risorse di calcolo in modo
+     differenziato (es. aumentando le risorse del solo backend durante picchi di elaborazione AI).
+    \item \textbf{Coerenza del Ciclo di Vita}: L'organizzazione in Monorepo assicura che il rilascio di nuove funzionalità avvenga in modo atomico,
+     eliminando il rischio di disallineamento tra l'interfaccia utente e le logiche del server.
 \end{itemize}
 
-\subsubsection{Separazione logica e disaccoppiamento}
-Le principali caratteristiche della struttura modulare sono:
+\subsection{Modularità e organizzazione dei sottosistemi}
+Il sistema garantisce un elevato grado di manutenibilità grazie all'organizzazione modulare del codice, che permette di gestire la complessità dei
+      due sottosistemi senza ricorrere a un'architettura a microservizi.
+
+\subsubsection{Isolamento verticale del Backend}
+Il backend è strutturato secondo i principi della \textbf{modularità verticale}. Ogni dominio di business (es. gestione ordini, carrello, ticket) è
+      racchiuso in un modulo indipendente che contiene sia la logica applicativa che le interfacce per l'accesso ai dati. Questo isolamento permette di:
 \begin{itemize}
-    \item \textbf{Separazione per Dominio}: Ogni dominio applicativo (es. Order, Ticket, Carrello, Sessione) possiede il proprio \textbf{Service} (logica di business) e il proprio \textbf{Controller} (entry point API). I servizi rimangono indipendenti l'uno dall'altro, evitando dipendenze circolari e semplificando la manutenzione.
-    
-    \item \textbf{Disaccoppiamento dall'Infrastruttura}: I servizi non accedono direttamente al database, ai file storage o ai servizi esterni (OpenAI, ERP). Ogni accesso esterno avviene attraverso \textbf{Ports} (interfacce), che definiscono il contratto necessario. Le implementazioni concrete (Adapter) sono fornite dal framework FastAPI tramite Dependency Injection, rendendo la logica applicativa completamente indipendente dalla tecnologia di persistenza o dall'infrastruttura utilizzata.
+    \item Evitare dipendenze circolari tra le diverse funzionalità del sistema.
+    \item Facilitare il collaudo dei singoli moduli in isolamento.
+    \item Semplificare l'evoluzione di una specifica parte del sistema senza impatti sulle altre.
 \end{itemize}
 
-\subsubsection{Definizione di ``Modulo'' nella nostra App}
-Nella architettura di \textit{SmartOrder}, un \textbf{Modulo} è un'unità funzionale autonoma e coesiva che attraversa verticalmente tutti i layer dell'architettura. Un modulo non è una semplice cartella nel filesystem, ma l'insieme coordinato dei seguenti componenti:
-
+\subsubsection{Componenti di un modulo}
+Per garantire uniformità e coesione, ogni modulo del backend si articola nei seguenti componenti logici:
 \begin{enumerate}
-    \item \textbf{Entry Point (Controller)}: Un file controller (es. \texttt{order\_controller.py}) che espone l'interfaccia HTTP del modulo. Definisce gli endpoint REST, valida i parametri ricevuti dal client e delega l'elaborazione al Service.
-    
-    \item \textbf{Logica di Business (Service)}: Il cuore del modulo (es. \texttt{order\_service.py}). Qui risiede l'intera intelligenza applicativa: le regole di dominio, l'orchestrazione tra moduli, la validazione transazionale e la coordinazione con servizi esterni (es. OpenAI).
-    
-    \item \textbf{Contratto di Persistenza (Port)}: Un'interfaccia astratta (es. \texttt{i\_order\_repository.py}) che dichiara quali dati il modulo necessita. Il Service dipende da questa interfaccia, non da implementazioni concrete. La Port definisce operazioni come \texttt{save()}, \texttt{find\_by\_id()}, \texttt{delete()}, etc.
-    
-    \item \textbf{Dati (Schema/Domain)}: Gli oggetti di trasferimento dati del modulo (definiti in \texttt{schemas.py}). Rappresentano la forma dei dati che il modulo scambia con il mondo esterno: strutture in ingresso (Request DTO) e in uscita (Response DTO).
-    
-    \item \textbf{Implementazione (Adapter)}: Il codice specifico che parla con il database, il file storage o sistemi terzi (es. \texttt{postgres\_adapter.py}). Implementa concretamente la Port, traducendo le chiamate del Service in operazioni SQL, chiamate API REST o I/O su file. Adapter diversi possono implementare la medesima Port, permettendo di sostituire la persistenza senza toccare il Service.
+    \item \textbf{Controller}: Punto di ingresso per le richieste HTTP e validazione dell'input.
+    \item \textbf{Service}: Implementazione della logica di business e delle regole di dominio.
+    \item \textbf{Port}: Definizione astratta dei requisiti infrastrutturali (es. interfacce per il database).
+    \item \textbf{Schema}: Modelli di dati utilizzati per lo scambio di informazioni (DTO).
+    \item \textbf{Adapter}: Implementazione specifica delle Port per le tecnologie utilizzate (es. PostgreSQL, OpenAI).
 \end{enumerate}
 
-Questa struttura garantisce che il modulo sia \textbf{coeso} (tutti i componenti concorrono a una medesima responsabilità di business), \textbf{disaccoppiato} (il Service non conosce come i dati sono effettivamente memorizzati) e \textbf{testabile} (la logica di business può essere testata in assenza di database reale, mockando la Port).
-
 \subsection{Scenario di esecuzione}
-Il sistema prevede due configurazioni principali per l'esecuzione, pensate per separare l'ambiente di sviluppo da quello di produzione:
+Il sistema è progettato per operare in due modalità distinte, garantendo sia l'accessibilità pubblica del servizio che la manutenibilità del codice
+      sorgente.
+
+\subsubsection{Ambiente di Produzione (Cloud)}
+È l'ambiente principale in cui l'applicazione è effettivamente erogata agli utenti finali come \textbf{Web Application} accessibile via internet.
+      L'intera infrastruttura è ospitata sulla piattaforma cloud \textbf{Railway}, che gestisce l'esecuzione dei seguenti servizi in container isolati:
 \begin{itemize}
-    \item \textbf{Ambiente di Sviluppo (Locale)}: i servizi di frontend e backend vengono eseguiti localmente sulla macchina di sviluppo, sfruttando la containerizzazione (Docker Compose) o task eseguiti in locale per avviare l'applicativo e un database PostgreSQL isolato. Questo garantisce un ambiente di test riproducibile.
-    \item \textbf{Ambiente di Produzione (Cloud)}: l'intero applicativo è ospitato sulla piattaforma cloud \textbf{Railway}. Railway gestisce nativamente il provisioning delle risorse, ospitando in container isolati i servizi di frontend (Next.js), backend (FastAPI) e il database relazionale (PostgreSQL).
+    \item \textbf{Frontend Service}: Un'istanza Node.js che serve l'interfaccia web (Next.js) via protocollo sicuro HTTPS.
+    \item \textbf{Backend Service}: Un'istanza Python che esegue il server FastAPI per l'elaborazione delle richieste API.
+    \item \textbf{Database Service}: Un'istanza gestita di PostgreSQL per la persistenza dei dati transazionali.
 \end{itemize}
 
+\subsubsection{Ambiente di Sviluppo e Manutenzione (Locale)}
+Questo scenario viene utilizzato esclusivamente per l'implementazione di nuove funzionalità o per attività di debugging. In questa modalità,
+l'applicazione viene eseguita localmente sulla macchina dello sviluppatore avviando i processi di frontend e backend in modo indipendente. La
+comunicazione avviene tramite l'interfaccia di rete locale (\textit{localhost}), permettendo di testare le modifiche prima del rilascio definitivo
+in produzione.
+
 \subsection{Nodi e responsabilità di deployment}
-La seguente vista descrive la mappatura tra i container software e le risorse cloud che li ospitano in ambiente di produzione.
+La seguente vista descrive la mappatura tra i componenti software e le risorse cloud che li ospitano in ambiente di produzione.
 
 \begin{figure}[H]
     \centering
@@ -691,33 +743,61 @@ La seguente vista descrive la mappatura tra i container software e le risorse cl
         \toprule
         \textbf{Nodo Cloud} & \textbf{Responsabilità} \\
         \midrule
-        \textbf{Frontend Service} (Railway) & Espone la web application in Next.js tramite protocollo HTTPS. Gestisce il rendering dell'interfaccia utente, l'idratazione lato client e inoltra le richieste API verso il backend. \\
-        \textbf{Backend Service} (Railway) & Esegue il server Uvicorn con l'applicazione FastAPI. Centralizza la logica di business, l'orchestrazione delle chiamate AI e la validazione transazionale degli ordini. \\
-        \textbf{Database Service} (Railway PostgreSQL) & Istanza cloud gestita di PostgreSQL. Conserva i dati transazionali (utenti, ordini, carrelli, ticket) garantendo integrità, persistenza e backup continui. \\
-        \textbf{File Storage Condiviso} \newline & Cartella condivisa accessibile nel File System, raggiungibile dal backend e dal sistema ERP aziendale. Il backend vi deposita i file JSON degli ordini finalizzati, i quali vengono successivamente prelevati dal processo ERP esterno tramite lettura diretta dal filesystem. \\
-        \textbf{OpenAI Cloud API} \newline (Servizio Esterno) & Endpoint gestiti direttamente da OpenAI, richiamati dal backend per i servizi di Natural Language Processing (GPT-5.4), speech-to-text (Whisper) e riconoscimento di immagini (Vision). \\
+        \textbf{Frontend Service} (Railway) & Eroga l'applicazione Next.js tramite protocollo HTTPS. Gestisce il rendering dell'interfaccia utente
+      e l'inoltro delle richieste API verso il backend. \\
+        \textbf{Backend Service} (Railway) & Esegue il server FastAPI (Uvicorn). Centralizza la logica di business, l'orchestrazione delle chiamate
+      AI e la persistenza dei dati. \\
+        \textbf{Database Service} (Railway PostgreSQL) & Istanza gestita di PostgreSQL. Garantisce l'integrità e la persistenza dei dati
+      transazionali relativi a utenti, ordini e sessioni. \\
+        \textbf{File Storage Condiviso} & Cartella accessibile nel File System utilizzata per depositare i file JSON degli ordini finalizzati,
+      facilitando l'integrazione con il sistema ERP aziendale. \\
+        \textbf{OpenAI Cloud API} & Servizio esterno richiamato dal backend per l'elaborazione del linguaggio naturale (LLM), trascrizione vocale e
+      riconoscimento immagini. \\
         \bottomrule
     \end{tabularx}
     \caption{Nodi logici di deployment e relative responsabilità.}
 \end{table}
 
-\textit{Nota architetturale sullo Storage Condiviso:} Per l'integrazione con l'ERP aziendale, discutendo anche con la proponente, si è scelto di adottare una \textbf{cartella condivisa nel File System}. Questo approccio, standard nelle infrastrutture aziendali, permette un'integrazione semplice e diretta: il backend deposita i file JSON degli ordini, e il processo ERP li recupera tramite accesso diretto al filesystem senza necessità di API di terze parti.
-
 \subsection{Canali di comunicazione}
-Le comunicazioni tra i vari nodi del sistema avvengono esclusivamente tramite protocolli sicuri e standardizzati:
+Le interazioni tra i diversi componenti del sistema avvengono attraverso protocolli standardizzati, garantendo sicurezza e interoperabilità:
 \begin{itemize}
-    \item \textbf{Frontend $\leftrightarrow$ Backend}: le chiamate API avvengono su canale cifrato HTTPS, scambiando payload in formato JSON. L'autenticazione è garantita tramite token o cookie di sessione sicuri.
-    \item \textbf{Backend $\leftrightarrow$ PostgreSQL}: connessione su protocollo TCP proprietario del database, ottimizzata tramite un meccanismo di \textit{connection pooling} (gestito tramite \texttt{psycopg2}) per sopportare picchi di traffico.
-    \item \textbf{Backend $\leftrightarrow$ OpenAI API}: invocazioni REST su rete pubblica cifrata HTTPS verso i server cloud di OpenAI.
-    \item \textbf{Backend $\rightarrow$ File Storage}: scritture nella cartella condivisa tramite operazioni di I/O su filesystem, necessarie a depositare il file JSON dell'ordine per il recupero da parte del sistema ERP.
+    \item \textbf{Frontend $\leftrightarrow$ Backend}: La comunicazione avviene tramite chiamate API REST su protocollo cifrato HTTPS, con scambio
+      di payload in formato JSON.
+    \item \textbf{Backend $\leftrightarrow$ PostgreSQL}: Il backend comunica con il database tramite protocollo TCP, ottimizzato attraverso un
+      meccanismo di \textit{connection pooling} per la gestione efficiente delle sessioni.
+    \item \textbf{Backend $\leftrightarrow$ OpenAI API}: Le richieste ai servizi di intelligenza artificiale vengono effettuate tramite invocazioni
+      REST su canale sicuro HTTPS verso gli endpoint cloud di OpenAI.
+    \item \textbf{Backend $\rightarrow$ File Storage}: L'integrazione con il sistema ERP avviene tramite operazioni di I/O su filesystem per il
+      deposito dei file d'ordine in formato JSON.
 \end{itemize}
 
-\subsection{Aspetti operativi e CD}
-Per garantire rilasci continui, controllati e privi di disservizi, il progetto adotta pratiche automatizzate di \textit{Continuous Deployment} (CD\ped{g}):
+\subsection{Aspetti operativi e Continuous Deployment}
+Il ciclo di vita del software è gestito tramite pratiche automatizzate di \textbf{Continuous Deployment} (CD\ped{g}) per assicurare rilasci
+frequenti, coordinati e privi di disservizi.
 \begin{itemize}
-    \item \textbf{Continuous Deployment (CD\ped{g}) automatizzato}: il deployment in produzione è delegato a \textbf{Railway}, il quale è interfacciato direttamente al repository GitHub. Ad ogni push sul branch principale, Railway rileva automaticamente i cambiamenti e lancia il processo di build e deploy. Questo avviene in modalità \textit{zero-downtime}, aggiornando i container senza causare interruzioni agli utenti.
-    \item \textbf{Gestione dei Segreti}: chiavi API, credenziali del database e secret di cifratura non vengono mai committati nel repository. Sono configurati come variabili d'ambiente (Environment Variables) criptate direttamente all'interno della dashboard del progetto su Railway.
+    \item \textbf{Rilascio Unificato e Automatizzato}: Grazie all'adozione di un'architettura \textbf{Monorepo}, il processo di deployment è
+     centralizzato. La piattaforma \textbf{Railway} è interfacciata direttamente con il repository GitHub e, ad ogni aggiornamento sul branch principale,
+     avvia simultaneamente la build e il rilascio di entrambi i container (frontend e backend). Questo garantisce che le versioni dei due sottosistemi
+     siano sempre sincronizzate e compatibili tra loro.
+    \item \textbf{Aggiornamenti Zero-Downtime}: Il deployment avviene senza interruzioni di servizio per l'utente finale. I nuovi container vengono
+     avviati e sostituiscono quelli precedenti solo dopo aver superato con successo i controlli di integrità del sistema, assicurando la massima
+     disponibilità della piattaforma.
+    \item \textbf{Gestione delle Configurazioni}: I dati sensibili, quali chiavi API e credenziali di accesso al database, non sono memorizzati nel
+     codice sorgente. Vengono iniettati nei runtime come variabili d'ambiente criptate attraverso la dashboard di gestione della piattaforma cloud,
+     rispettando i moderni standard di sicurezza.
 \end{itemize}
+
+\subsection{Sicurezza e protezione dei dati}
+Nel progetto la sicurezza e' stata considerata in modo continuo, integrandola nelle principali scelte architetturali. Di seguito sono riportate le misure adottate:
+\begin{itemize}
+    \item \textbf{Difesa in profondita' contro il furto di sessione}: autenticazione basata su cookie \texttt{HTTPOnly} e \texttt{Secure}, preferiti allo storage nel browser per ridurre la superficie d'attacco XSS.
+    \item \textbf{Protezione credenziali con scrypt + pepper}: le password sono salvate con salt univoco, cost factor elevato e pepper lato server, cosi' da rendere non riutilizzabili gli hash anche in caso di compromissione del solo database.
+    \item \textbf{Controllo accessi real-time su SSE}: l'apertura dei canali Server-Sent Events e' subordinata a validazione JWT; gli stream sono segregati per sessione e ruolo applicativo (cliente/operatore).
+    \item \textbf{Mitigazione nativa SQL Injection}: l'accesso dati e' concentrato nei repository/adapters PostgreSQL con query parametrizzate, evitando concatenazioni manuali di input utente in statement SQL.
+    \item \textbf{Policy CORS restrittiva}: il backend accetta richieste solo da origini autorizzate tramite regole esplicite (incluse validazioni regex per ambienti certificati), riducendo rischi CSRF e chiamate cross-origin abusive.
+\end{itemize}
+
+Queste scelte permettono di proteggere l'intero ciclo operativo, dalla conversazione in chat alla persistenza dell'ordine e alla sua esportazione verso ERP.
 
 % ===================================================================
 %  7. DESIGN PATTERN
@@ -751,13 +831,7 @@ L'organizzazione segue un'\textbf{Architettura Esagonale (Ports and Adapters)}:
     \label{fig:esagonale-architettura-logica}
 \end{figure}
 
-\noindent\textbf{Versione completa del diagramma:} \href{https://ibb.co/FTyYQsL}{Apri l'immagine a schermo intero e scaricala} (Ultima modifica 2026-04-14).
-
-In questo contesto sono applicati i seguenti pattern:
-\begin{itemize}
-    \item \textbf{Dependency Injection}: composizione delle dipendenze nel punto di avvio applicativo e iniezione nei controller/servizi.
-    \item \textbf{Repository}: astrazione della persistenza tramite interfacce dedicate ai casi d'uso di dominio.
-\end{itemize}
+\noindent\textbf{Versione completa del diagramma:} \href{https://ibb.co/SXZ019zR}{Apri l'immagine a schermo intero e scaricala} (Ultima modifica 2026-04-14).
 
 \subsubsection{Realizzazione}
 Il Core opera tramite interfacce, senza dipendere direttamente dai dettagli tecnologici. I controller FastAPI fungono da \textit{driving adapters} traducendo le richieste esterne in invocazioni dei servizi applicativi; gli adapter infrastrutturali (database e AI) fungono da \textit{driven adapters} implementando i Ports. Questa struttura consente di evolvere i dettagli di integrazione mantenendo stabile la logica di dominio.
@@ -786,7 +860,14 @@ I pattern principali adottati sono:
 \end{itemize}
 
 \subsubsection{Realizzazione}
-I componenti UI delegano la logica applicativa ai context e la logica di accesso dati ai servizi. Per il carrello sono applicate strategie operative complementari: \textit{Optimistic UI} per aggiornamento immediato dell'interfaccia, \textit{rollback} in caso di errore e \textit{debounce} sugli update rapidi, riducendo richieste ridondanti mantenendo la coerenza con lo stato server.
+Per la gestione dello stato globale è stata adottata la \textbf{React Context API}, con separazione in due provider principali e un service layer dedicato:
+\begin{itemize}
+    \item \textbf{SessionContext}: gestisce identita' utente (\texttt{sessionId}), cronologia dei messaggi e ciclo di vita della sessione; integra l'hook \texttt{useSSE} per ricevere aggiornamenti real-time (es. messaggi operatore) e sincronizzarli nello stato condiviso.
+    \item \textbf{CartContext}: gestisce lo stato del carrello con strategia \textit{Optimistic UI}; le modifiche alle quantita' vengono rese subito in interfaccia e inviate al backend con \textit{debounce} a 600ms, per ridurre burst di chiamate su interazioni rapide.
+    \item \textbf{Servizi disaccoppiati}: la comunicazione API e' incapsulata in \texttt{services/}, cosi' i context restano focalizzati su stato, reattivita' e sincronizzazione.
+\end{itemize}
+
+Questa soluzione e' stata scelta per mantenere un equilibrio tra leggerezza e robustezza: semplicit\`a implementativa coerente con un MVP, esperienza utente fluida grazie agli aggiornamenti ottimistici, propagazione immediata degli eventi server via SSE e maggiore modularita' nel testing (componenti dipendenti da sessione e carrello testabili in modo indipendente).
 
 % -------------------------------------------------------------------
 \subsection{Design pattern adottati}
@@ -801,6 +882,9 @@ Questa sottosezione mantiene una vista problem-oriented, separando i pattern eff
     \item \textbf{Soluzione Architetturale:} Le dipendenze vengono composte nel punto di avvio e iniettate nei componenti tramite provider del framework, mantenendo separati il wiring infrastrutturale e il comportamento di dominio.
     \item \textbf{Realizzazione:} Controller e servizi ricevono istanze gia' risolte; in collaudo e test si possono iniettare implementazioni alternative (mock/stub) senza intervenire sul codice applicativo.
 \end{itemize}
+
+\paragraph{Principi SOLID rispettati}
+L'iniezione delle dipendenze applica il \textbf{Dependency Inversion Principle}: i servizi dipendono da astrazioni e non da classi concrete. Inoltre favorisce l'\textbf{Open/Closed Principle}, poiche' nuove implementazioni possono essere introdotte nel composition root senza modificare la logica di dominio esistente.
 
 \noindent\textbf{Esempio:} il composition root in \texttt{main.py} costruisce adapter e broadcaster, quindi inietta le dipendenze nei servizi applicativi (\texttt{CartService}, \texttt{AuthService}, \texttt{ConversationService}). Nei test le dipendenze possono essere sostituite (es. \texttt{FakeSessionManager}) senza modificare la logica di dominio.
 
@@ -818,6 +902,9 @@ Questa sottosezione mantiene una vista problem-oriented, separando i pattern eff
     \item \textbf{Realizzazione:} I servizi lavorano su repository astratti; gli adapter concreti gestiscono SQL, mapping e vincoli di persistenza, preservando il disaccoppiamento tra dominio e DBMS.
 \end{itemize}
 
+\paragraph{Principi SOLID rispettati}
+Il pattern supporta il \textbf{Single Responsibility Principle}: la logica applicativa resta distinta dalla persistenza. Rafforza anche il \textbf{Dependency Inversion Principle}, perche' i service dipendono dal contratto repository; il dettaglio tecnologico (PostgreSQL, mock) e' confinato negli adapter concreti.
+
 \noindent\textbf{Esempio:} \texttt{AuthService} dipende da \texttt{IUserRepository} e usa il contratto per login/lookup utenze. L'implementazione puo' essere \texttt{PostgresAdapter} in esercizio o \texttt{FakeUserRepository} in test: il servizio mantiene invariata l'interfaccia d'uso e resta indipendente dalla persistenza.
 
 \begin{figure}[H]
@@ -833,6 +920,9 @@ Questa sottosezione mantiene una vista problem-oriented, separando i pattern eff
     \item \textbf{Soluzione Architetturale:} Le Ports definiscono contratti stabili; i driven adapter traducono le operazioni di dominio in chiamate tecniche verso le integrazioni esterne.
     \item \textbf{Realizzazione:} Nel caso AI, \texttt{ConversationService} dipende da \texttt{IAIClient} e non dall'SDK OpenAI. \texttt{OpenAIAdapter} implementa l'interfaccia e converte i metodi applicativi (\texttt{interpret\_intent}, \texttt{transcribe\_audio}, \texttt{generate\_embedding}) nelle chiamate specifiche di \texttt{AsyncOpenAI}.
 \end{itemize}
+
+\paragraph{Principi SOLID rispettati}
+L'Adapter concretizza il \textbf{Dependency Inversion Principle} mantenendo stabile il contratto verso il dominio. In ottica \textbf{Open/Closed Principle}, il sistema puo' integrare nuovi provider o protocolli aggiungendo adapter dedicati senza modificare i servizi core.
 
 \noindent\textbf{Esempio:} il diagramma mostra un adattamento \textit{port-to-sdk}: il contratto applicativo resta stabile nel Core, mentre la traduzione dei payload e delle API del provider e' confinata nell'adapter. In questo modo, un cambio di provider AI impatta il layer di integrazione senza modificare il servizio di dominio.
 
@@ -852,6 +942,9 @@ Questa sottosezione mantiene una vista problem-oriented, separando i pattern eff
     \item \textbf{Realizzazione:} I componenti React invocano operazioni di dominio ad alto livello; internamente i servizi orchestrano utilita' di basso livello (\texttt{apiFetch}, \texttt{buildApiUrl}, \texttt{getApiBaseUrl}, \texttt{getApiErrorMessage}) e uniformano il trattamento delle risposte HTTP non valide.
 \end{itemize}
 
+\paragraph{Principi SOLID rispettati}
+La Facade favorisce il \textbf{Single Responsibility Principle}: i componenti UI gestiscono presentazione e stato locale, mentre il layer servizi centralizza la comunicazione remota. L'approccio rispetta anche l'\textbf{Interface Segregation Principle}, esponendo API frontend mirate per casi d'uso specifici.
+
 \noindent\textbf{Caso d'uso (\texttt{cartService}):} operazioni come \texttt{addItem}, \texttt{removeItem} e \texttt{updateQty} coordinano routing endpoint, serializzazione parametri (es. \texttt{cod\_art}, \texttt{quantity}) e invocazione rete. L'incapsulamento riduce la superficie di modifica: variazioni degli endpoint o dello schema di risposta sono localizzate nel solo Service Layer.
 
 \begin{figure}[H]
@@ -868,6 +961,9 @@ Questa sottosezione mantiene una vista problem-oriented, separando i pattern eff
     \item \textbf{Realizzazione:} L'implementazione adottata e' unica e coincide con il diagramma: \texttt{CartService} emette eventi verso \texttt{SSEBroadcaster}, mentre \texttt{SSEClientQueue} materializza la coda asincrona del singolo subscriber SSE.
 \end{itemize}
 
+\paragraph{Principi SOLID rispettati}
+Il pattern rispetta l'\textbf{Open/Closed Principle}: nuovi observer possono essere introdotti senza modificare il subject. Inoltre supporta il \textbf{Dependency Inversion Principle}, perche' il broadcaster interagisce tramite contratto \texttt{IObserver} anziche' dipendere da consumer concreti.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.78\textwidth]{componenti_specifiche_tecniche/architetturalogica/observer_uml.png}
@@ -881,6 +977,18 @@ Questa sottosezione mantiene una vista problem-oriented, separando i pattern eff
     \item \textbf{Soluzione Architetturale:} I servizi sono esportati come istanze condivise a livello modulo, con configurazione centralizzata del client HTTP.
     \item \textbf{Realizzazione:} L'interfaccia utilizza una singola fonte di configurazione per autenticazione, gestione errori e politiche di chiamata, migliorando coerenza e manutenibilita'.
 \end{itemize}
+
+\paragraph{Principi SOLID rispettati}
+L'uso controllato del Singleton a livello modulo mantiene una responsabilita' unica di configurazione e ciclo vita del client (\textbf{Single Responsibility Principle}). I componenti consumatori restano disaccoppiati dal dettaglio di inizializzazione e dipendono da un servizio gia' configurato, coerente con il \textbf{Dependency Inversion Principle} applicativo.
+
+\noindent\textbf{Caso d'uso (\texttt{cartService} + \texttt{CartProvider}):} il modulo \texttt{cartService} e' esportato come istanza condivisa e centralizza la comunicazione HTTP con il backend. In parallelo, \texttt{CartProvider} gestisce l'unica sorgente di verita' dello stato carrello per la sessione utente: la funzione \texttt{updateQty} applica aggiornamento ottimistico locale, annulla eventuali timer gia' attivi per lo stesso prodotto e persiste la modifica dopo una finestra di debounce di 600 ms. In caso di errore remoto, il provider riallinea lo stato ricaricando i dati reali dal server.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{componenti_specifiche_tecniche/architetturalogica/singleton_uml.png}
+    \caption{Pattern Singleton nel frontend: \texttt{cartService} come servizio condiviso e \texttt{CartProvider} come sorgente unica dello stato carrello.}
+    \label{fig:singleton-architettura-logica}
+\end{figure}
 
 \paragraph{Strategie applicative: Optimistic UI e Debounce}
 \begin{itemize}
@@ -920,7 +1028,7 @@ Il modello relazionale del database è logicamente suddiviso in macro-aree, cias
         \textbf{Catalogo e Assortimento} & Anagrafica articoli (\texttt{anaart}), metadati descrittivi, \textit{embeddings} vettoriali per la ricerca semantica e tabelle di visibilità/assortimento per singolo cliente (\texttt{asscli}). \\
         \textbf{Carrello e Ordini} & Record transazionali che rappresentano il carrello corrente della sessione, le singole righe prodotto con le relative quantità e lo storico degli ordini finalizzati pronti per la consultazione (Storico Ordini). \\
         \textbf{Ticketing e Chat} & Entità per la gestione dell'assistenza (\textit{Human-in-the-loop}). Include i record dei Ticket (stati: "Aperto", "In lavorazione", "Chiuso"), l'assegnazione all'Operatore (Lock) e il tracciato cronologico (Log) dei messaggi di chat scambiati. \\
-        \textbf{Log AI e Ottimizzazione} & Archiviazione diagnostica delle interazioni con il modello LLM. Comprende il \textit{Confidence Score}, i feedback degli utenti e le discrepanze generate dalle correzioni manuali ai carrelli, utili al \textit{retraining}. \\
+        \textbf{Log AI e Ottimizzazione} & Archiviazione diagnostica delle interazioni con il modello LLM. Comprende il \textit{Confidence Score}, i feedback degli utenti utili ad un possibile \textit{retraining}. \\
         \bottomrule
     \end{tabularx}
     \caption{Aree logiche del modello dati relazionale.}
@@ -995,6 +1103,18 @@ Archivia gli embedding generati dai modelli LLM per abilitare la vector search:
     \item Utilizzo: quando l'utente descrive un prodotto in linguaggio naturale, il sistema genera un embedding della query e cerca i \textit{nearest neighbors} nello spazio vettoriale per recuperare articoli semanticamente simili, anche se con descrizioni non letteralmente corrispondenti.
 \end{itemize}
 
+\subsection{Uso dei log per analisi operativa e miglioramento}
+I dati persistiti nel database non sono utilizzati solo per finalità transazionali, ma potranno anche essere usate per monitoraggio, audit e miglioramento continuo del sistema:
+\begin{itemize}
+    \item \textbf{Cronologia messaggi (\texttt{chat\_messages})}: consente di ricostruire il contesto conversazionale end-to-end, fondamentale per comprendere richieste ellittiche e analizzare casi anomali in fase di debug.
+    \item \textbf{Metadati di confidenza (\texttt{metadata} dei messaggi AI)}: permettono di valutare come il modello ha selezionato articoli e con quale affidabilita', supportando analisi causale degli errori di suggerimento.
+    \item \textbf{Feedback utenti (\texttt{message\_feedbacks})}: rendono misurabile la qualita' percepita delle risposte AI e costituiscono un dataset supervisionato per prioritizzare ottimizzazioni future (es. RLHF).
+    \item \textbf{Stato carrello e ordini (\texttt{cart\_items}, \texttt{orders}, \texttt{order\_items})}: abilita audit trail operativo su chi ha modificato cosa e quando, utile per verifica di conformità.
+    \item \textbf{Ticket di intervento (\texttt{tickets})}: forniscono indicatori sui limiti dell'automazione (frequenza takeover, tempi di gestione), utili per orientare backlog tecnico e miglioramenti di prodotto.
+\end{itemize}
+
+In prospettiva, la combinazione di questi log permette di definire KPI tecnici e di processo (precisione suggerimenti, tempo medio takeover, tasso correzioni manuali) utili per guidare decisioni di evoluzione architetturale.
+
 \subsection{Strategie di indicizzazione e performance}
 Per garantire responsiveness della ricerca e delle operazioni transazionali, il schema implementa indici compositi e strategici:
 \begin{itemize}
@@ -1017,6 +1137,53 @@ Per garantire la robustezza del sistema e prevenire l'invio di ordini commercial
 Il database di SmartOrder funge da ambiente di \textit{staging} e composizione. Al termine del processo di checkout, i dati transazionali (intestazione ordine, righe, quantità e ID cliente) estratti dalle tabelle relazionali subiscono un processo di serializzazione. 
 
 Il sistema genera un \textbf{payload strutturato in formato JSON}. Questo file viene immediatamente depositato in una cartella condivisa nel computer, che rappresenta il reale punto di aggancio e consegna formale verso il sistema ERP aziendale.
+
+\subsubsection{Struttura del payload JSON esportato}
+L'output e' un oggetto completo che include testata ordine, dettaglio righe e contesto conversazionale. Una forma semplificata del tracciato e' la seguente:
+
+\begin{lstlisting}[language=json,caption={Struttura logica del JSON esportato verso ERP.},label={lst:json-export-erp}]
+{
+    "order_id": "ORD-2026-000123",
+    "cod_cli": "CLI0456",
+    "data_ord": "2026-04-14T10:22:31Z",
+    "session_id": "sess_7f8b9c",
+    "items": [
+        {
+            "cod_art": "A001",
+            "qta_ordinata": 4,
+            "des_art": "Acqua Naturale 1L",
+            "des_um": "casse",
+            "linea": "beverage",
+            "famiglia": "standard",
+            "source": "ai",
+            "ai_confidence": 0.93
+        }
+    ],
+    "messages": [
+        {
+            "sender": "user",
+            "content": "Aggiungi altre 2 casse",
+            "feedback": null
+        }
+    ]
+}
+\end{lstlisting}
+
+\noindent\textbf{Campi principali:}
+\begin{itemize}
+        \item \textbf{Testata ordine}: \texttt{order\_id}, \texttt{cod\_cli}, \texttt{data\_ord}, \texttt{session\_id} identificano in modo univoco documento, cliente e contesto operativo.
+        \item \textbf{Dettaglio articoli (\texttt{items})}: ogni riga include identificativi ERP (\texttt{cod\_art}), quantita' (\texttt{qta\_ordinata}), metadati descrittivi e attributi di provenienza/affidabilita' (\texttt{source}, \texttt{ai\_confidence}).
+        \item \textbf{Contesto conversazionale (\texttt{messages})}: storico dei messaggi e dei feedback associati, utile per tracciabilita' delle decisioni e verifica ex-post.
+\end{itemize}
+
+\noindent\textbf{Motivazioni architetturali (Enterprise Ready):}
+\begin{itemize}
+        \item \textbf{Integrazione standard}: JSON e' interoperabile con ERP moderni e processi ETL/ELT senza conversioni proprietarie.
+        \item \textbf{Mappatura diretta}: l'uso di \texttt{cod\_cli} e \texttt{cod\_art} consente caricamento deterministico verso anagrafiche gestionali esistenti.
+        \item \textbf{Automazione batch}: la scrittura in cartella condivisa permette import incrementale da parte del gestionale senza inserimento manuale.
+        \item \textbf{Audit e compliance}: campi \texttt{source}, \texttt{ai\_confidence} e \texttt{messages} rendono spiegabile la formazione dell'ordine.
+        \item \textbf{Separazione delle responsabilita'}: SmartOrder normalizza e valida il dato; l'ERP mantiene i processi amministrativi e logistici a valle.
+\end{itemize}
 
 \textit{Nota architetturale - Disaccoppiamento tramite Adapter:} In conformità al pattern Ports and Adapters, il Core applicativo di SmartOrder \textbf{non scrive mai direttamente} nel database dell'ERP. Invece, i servizi di dominio delegano la responsabilità dell'output a un \textbf{driven adapter specializzato} (Export Adapter). Questo adapter:
 \begin{itemize}

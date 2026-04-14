@@ -1,0 +1,39 @@
+@startuml
+
+' Stile e impostazioni grafiche richieste
+skinparam monochrome false
+skinparam classBackgroundColor White/Beige
+skinparam classBorderColor Black
+skinparam dpi 300
+skinparam componentStyle uml2
+
+    class cartService << (S,#FF7700) Singleton >> {
+        + getCart(sessionId)
+        + addItem(codArt, qta, extra)
+        + removeItem(id, sessionId)
+        + updateQty(id, qta, source, sessionId)
+        + addByName(productName, qta, sessionId)
+        + addByCode(codArt, qta, sessionId)
+    }
+
+    class CartProvider {
+        - cart: CartItem[]
+        - pendingUpdates: Map<number, {timer}>
+        + refreshCart()
+        + addItem(codArt, qta, extra)
+        + removeItem(id)
+        + updateQty(id, qta, source)
+        + clearCart()
+        + hasPendingUpdates()
+    }
+
+    note right of CartProvider
+        **updateQty** implementa:
+        1. Optimistic Update (UI immediata)
+        2. Debounce (600ms)
+        3. Rollback via refreshCart()
+    end note
+
+    CartProvider ..> cartService : <<use>>
+
+@enduml
