@@ -1,6 +1,6 @@
 # Report di compilazione
 
-Compilazione basata sul commit e83a30b006d0fe310e6fef5b01430b7b624c02fc (base: e83a30b)
+Compilazione basata sul commit 97de65ce09512fb5463c8e2621d2f9cb565a1f9e (base: 97de65c)
 
 ## Falliti
 💡 Nessun errore di compilazione
