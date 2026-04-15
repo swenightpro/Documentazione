@@ -1,10 +1,10 @@
 # Report di compilazione
 
-Compilazione basata sul commit 4d119376fccb49d219f9fcf32be2d3f740114f4c (base: 4d11937)
+Compilazione basata sul commit 77192fc518798ee1a3c1a188029c08d08d597f2e (base: 77192fc)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/PB/Documentazione Esterna/Specifica_Tecnica_v1.2.pdf](docs/PB/Documentazione%20Esterna/Specifica_Tecnica_v1.2.pdf)
+✅ [docs/PB/Documentazione Esterna/Piano_di_Progetto_v2.3.pdf](docs/PB/Documentazione%20Esterna/Piano_di_Progetto_v2.3.pdf)
 
