@@ -1,0 +1,25 @@
+@startuml
+skinparam monochrome false
+skinparam classBackgroundColor White/Beige
+skinparam classBorderColor Black
+skinparam dpi 300
+skinparam componentStyle uml2
+
+class feedbackService << (M,#FFAA00) Singleton Module >> {
+  + submit(messageId: number, isPositive: boolean, reason?: string, comment?: string): Promise<Response>
+}
+
+class healthService << (M,#FFAA00) Singleton Module >> {
+  + check(): Promise<HealthStatus>
+}
+
+class apiClient << (L,#AAAAAA) Library >> {
+  + apiFetch(path: string, init?: RequestInit): Promise<Response>
+  + getApiErrorMessage(response: Response, fallback: string): Promise<string>
+  + buildApiUrl(path: string): string
+  + getApiBaseUrl(): string
+}
+
+feedbackService .up.> apiClient
+healthService .up.> apiClient
+@enduml

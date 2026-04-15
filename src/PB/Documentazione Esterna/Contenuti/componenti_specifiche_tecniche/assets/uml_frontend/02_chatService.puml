@@ -1,0 +1,15 @@
+@startuml
+skinparam monochrome false
+skinparam classBackgroundColor White/Beige
+skinparam classBorderColor Black
+skinparam dpi 300
+skinparam componentStyle uml2
+
+class chatService << (M,#FFAA00) Singleton Module >> {
+  + sendMessage(message: string, clientId: number, sessionId?: number, pendingCartEdits?: list): Promise<ChatApiResponse>
+  + getMessages(sessionId: number): Promise<Message[]>
+  + saveMessage(sessionId: number, sender: string, content: string): Promise<number>
+  + transcribe(audioBlob: Blob): Promise<string>
+  + uploadImage(imageBlob: Blob, sessionId?: number): Promise<ImageUploadResponse>
+}
+@enduml

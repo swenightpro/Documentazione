@@ -1,16 +1,16 @@
-\subsubsection{Layer 3 - Core Domain (Entities \& Value Objects)}
+\subsubsection{Core Domain (Entities \& Value Objects)}
 
 \paragraph{Cliente}
-\textbf{Descrizione della classe:} rappresenta il cliente commerciale autenticato e abilitato all'inserimento ordini.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} rappresenta il cliente commerciale autenticato e abilitato all'inserimento ordini.
 
-\textbf{Descrizione degli attributi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:}
 \begin{itemize}
     \item \texttt{id}: identificativo univoco (usato per join interne).
     \item \texttt{rag\_soc}: denominazione legale dell'azienda cliente.
     \item \texttt{email}: contatto email principale per autenticazione/comunicazioni.
 \end{itemize}
 
-\textbf{Descrizione dei metodi:} non sono definiti metodi nel diagramma per questa entita.
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:} non sono definiti metodi nel diagramma per questa entita.
 
 \begin{figure}[H]
     \centering
@@ -19,15 +19,15 @@
 \end{figure}
 
 \paragraph{Operatore}
-\textbf{Descrizione della classe:} identifica l'utente interno che prende in carico ticket e supervisiona i casi critici.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} identifica l'utente interno che prende in carico ticket e supervisiona i casi critici.
 
-\textbf{Descrizione degli attributi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:}
 \begin{itemize}
     \item \texttt{id}: identificativo univoco operatore.
     \item \texttt{nome}: nominativo operatore.
 \end{itemize}
 
-\textbf{Descrizione dei metodi:} non sono definiti metodi nel diagramma.
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:} non sono definiti metodi nel diagramma.
 
 \begin{figure}[H]
     \centering
@@ -36,9 +36,9 @@
 \end{figure}
 
 \paragraph{Order}
-\textbf{Descrizione della classe:} rappresenta l'ordine consolidato pronto per storicizzazione ed esportazione verso ERP.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} rappresenta l'ordine consolidato pronto per storicizzazione ed esportazione verso ERP.
 
-\textbf{Descrizione degli attributi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:}
 \begin{itemize}
     \item \texttt{id}: identificativo ordine.
     \item \texttt{cod\_cli}: riferimento al cliente proprietario dell'ordine.
@@ -46,7 +46,7 @@
     \item \texttt{righe}: collezione delle righe ordine derivate dal carrello.
 \end{itemize}
 
-\textbf{Descrizione dei metodi:} nel diagramma non sono mostrati metodi per questa entita.
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:} nel diagramma non sono mostrati metodi per questa entita.
 
 \begin{figure}[H]
     \centering
@@ -55,16 +55,16 @@
 \end{figure}
 
 \paragraph{Carrello}
-\textbf{Descrizione della classe:} modella lo stato temporaneo dell'ordine in costruzione per una sessione chat.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} modella lo stato temporaneo dell'ordine in costruzione per una sessione chat.
 
-\textbf{Descrizione degli attributi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:}
 \begin{itemize}
     \item \texttt{session\_id}: identificativo sessione conversazionale associata.
     \item \texttt{cod\_cli}: cliente a cui il carrello appartiene.
     \item \texttt{righe}: elenco righe prodotto correnti.
 \end{itemize}
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{calcolaTotalePezzi()}: restituisce la somma totale delle quantita nel carrello.
 \end{itemize}
@@ -76,16 +76,16 @@
 \end{figure}
 
 \paragraph{RigaCarrello}
-\textbf{Descrizione della classe:} rappresenta una singola posizione prodotto-quantita nel carrello.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} rappresenta una singola posizione prodotto-quantita nel carrello.
 
-\textbf{Descrizione degli attributi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:}
 \begin{itemize}
     \item \texttt{cod\_art}: riferimento all'articolo di catalogo.
     \item \texttt{quantity}: numero unita richieste.
     \item \texttt{confidence}: affidabilita della proposta AI su quella riga.
 \end{itemize}
 
-\textbf{Descrizione dei metodi:} non sono definiti metodi nel diagramma.
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:} non sono definiti metodi nel diagramma.
 
 \begin{figure}[H]
     \centering
@@ -94,9 +94,9 @@
 \end{figure}
 
 \paragraph{Session}
-\textbf{Descrizione della classe:} mantiene il contesto di conversazione tra cliente e sistema durante la composizione ordine.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} mantiene il contesto di conversazione tra cliente e sistema durante la composizione ordine.
 
-\textbf{Descrizione degli attributi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:}
 \begin{itemize}
     \item \texttt{id}: identificativo sessione.
     \item \texttt{user\_id}: identificativo dell'utente associato.
@@ -104,7 +104,7 @@
     \item \texttt{messages}: storico messaggi scambiati.
 \end{itemize}
 
-\textbf{Descrizione dei metodi:} non sono presenti metodi nel diagramma.
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:} non sono presenti metodi nel diagramma.
 
 \begin{figure}[H]
     \centering
@@ -113,9 +113,9 @@
 \end{figure}
 
 \paragraph{Ticket}
-\textbf{Descrizione della classe:} rappresenta una richiesta di supporto aperta per intervento umano.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} rappresenta una richiesta di supporto aperta per intervento umano.
 
-\textbf{Descrizione degli attributi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:}
 \begin{itemize}
     \item \texttt{id}: identificativo ticket.
     \item \texttt{cod\_cli}: cliente che ha aperto il ticket.
@@ -123,7 +123,7 @@
     \item \texttt{created\_at}: data e ora di apertura.
 \end{itemize}
 
-\textbf{Descrizione dei metodi:} il diagramma non esplicita metodi per questa entita.
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:} il diagramma non esplicita metodi per questa entita.
 
 \begin{figure}[H]
     \centering
@@ -132,9 +132,9 @@
 \end{figure}
 
 \paragraph{LogAI}
-\textbf{Descrizione della classe:} traccia input, output e correzioni legate alle elaborazioni AI per audit e miglioramento modello.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} traccia input, output e correzioni legate alle elaborazioni AI per audit e miglioramento modello.
 
-\textbf{Descrizione degli attributi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:}
 \begin{itemize}
     \item \texttt{id}: identificativo del log.
     \item \texttt{inputOriginario}: testo/audio trascritto ricevuto dal cliente.
@@ -143,7 +143,7 @@
     \item \texttt{stato}: stato del log nel workflow di validazione.
 \end{itemize}
 
-\textbf{Descrizione dei metodi:} non sono definiti metodi nel diagramma.
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:} non sono definiti metodi nel diagramma.
 
 \begin{figure}[H]
     \centering

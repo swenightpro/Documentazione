@@ -1,11 +1,11 @@
-\subsubsection{Layer 1 - Controllers (Inbound Ports)}
+\subsubsection{Controllers (Inbound Ports)}
 
 \paragraph{AuthController}
-\textbf{Descrizione della classe:} gestisce gli endpoint di autenticazione, cambio password, gestione cartella di esportazione e rilascio token SSE, traducendo le richieste HTTP in invocazioni ai casi d'uso applicativi.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} gestisce gli endpoint di autenticazione, cambio password, gestione cartella di esportazione e rilascio token SSE, traducendo le richieste HTTP in invocazioni ai casi d'uso applicativi.
 
-\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{login(body: LoginRequest)}: avvia autenticazione utente e genera la sessione applicativa tramite cookie JWT.
     \item \texttt{logout()}: invalida la sessione autenticata corrente cancellando i cookie.
@@ -23,11 +23,11 @@
 \end{figure}
 
 \paragraph{ConversationController}
-\textbf{Descrizione della classe:} espone gli endpoint per la conversazione multimodale (testo, audio, immagini) e il recupero dello storico chat e sessioni.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} espone gli endpoint per la conversazione multimodale (testo, audio, immagini) e il recupero dello storico chat e sessioni.
 
-\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{chat(body: ChatRequest)}: elabora input testuale inviato dall'utente tramite la pipeline AI.
     \item \texttt{chat\_image(file: UploadFile)}: gestisce input multimodale includendo immagini con OCR via GPT-5.4 Vision.
@@ -45,11 +45,11 @@
 \end{figure}
 
 \paragraph{CartController}
-\textbf{Descrizione della classe:} governa le operazioni sul carrello (inserimento, modifica, rimozione) e l'aggiunta per nome prodotto.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} governa le operazioni sul carrello (inserimento, modifica, rimozione) e l'aggiunta per nome prodotto.
 
-\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{get\_cart(session\_id: int)}: restituisce l'elenco corrente delle righe prodotto nel carrello.
     \item \texttt{cart\_action(body: CartActionRequest)}: agisce centralmente per inserire, modificare quantit\`a o rimuovere articoli dal carrello.
@@ -63,11 +63,11 @@
 \end{figure}
 
 \paragraph{OrderController}
-\textbf{Descrizione della classe:} espone le API per creazione ordini, consultazione storico, dettaglio singolo ordine, esportazione singola e batch.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} espone le API per creazione ordini, consultazione storico, dettaglio singolo ordine, esportazione singola e batch.
 
-\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{create\_order(body: CreateOrderRequest)}: tramuta un carrello finale in ordine persistente.
     \item \texttt{list\_orders(...)}: recupera lo storico ordini paginato per il cliente loggato.
@@ -84,11 +84,11 @@
 \end{figure}
 
 \paragraph{TicketController}
-\textbf{Descrizione della classe:} gestisce l'apertura, la presa in carico, la chiusura e la messaggistica dei ticket di assistenza Human-in-the-Loop, sia lato operatore che lato cliente.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} gestisce l'apertura, la presa in carico, la chiusura e la messaggistica dei ticket di assistenza Human-in-the-Loop, sia lato operatore che lato cliente.
 
-\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{list\_open\_tickets()}: restituisce la lista dei ticket pendenti (operatori).
     \item \texttt{create\_ticket(body: CreateTicketRequest)}: crea un ticket di assistenza per la sessione corrente.
@@ -110,11 +110,11 @@
 \end{figure}
 
 \paragraph{FeedbackController}
-\textbf{Descrizione della classe:} espone le API di raccolta e cancellazione feedback relativi alle risposte dell'AI.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} espone le API di raccolta e cancellazione feedback relativi alle risposte dell'AI.
 
-\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{handle\_feedback(body: FeedbackRequest)}: salva, aggiorna o cancella il feedback qualitativo relativo alle scelte deduttive dell'LLM.
 \end{itemize}
@@ -126,11 +126,11 @@
 \end{figure}
 
 \paragraph{ClientController}
-\textbf{Descrizione della classe:} espone l'endpoint di ricerca clienti per ragione sociale o codice cliente.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} espone l'endpoint di ricerca clienti per ragione sociale o codice cliente.
 
-\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{search\_clients(q: str)}: cerca clienti nel database per ragione sociale o codice.
 \end{itemize}
@@ -142,11 +142,11 @@
 \end{figure}
 
 \paragraph{HealthController}
-\textbf{Descrizione della classe:} fornisce un endpoint per l'health check e il monitoraggio dello stato di salute del backend.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} fornisce un endpoint per l'health check e il monitoraggio dello stato di salute del backend.
 
-\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{health\_check()}: verifica lo stato operativo del backend e dei servizi AI collegati.
 \end{itemize}
@@ -158,11 +158,11 @@
 \end{figure}
 
 \paragraph{ProductController}
-\textbf{Descrizione della classe:} espone l'endpoint di ricerca prodotti nel catalogo, filtrato per assortimento cliente.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} espone l'endpoint di ricerca prodotti nel catalogo, filtrato per assortimento cliente.
 
-\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{search\_products(q: str)}: cerca prodotti nel catalogo filtrando per l'assortimento del cliente autenticato.
 \end{itemize}
@@ -175,11 +175,11 @@
 
 
 \paragraph{SSEController}
-\textbf{Descrizione della classe:} gestisce le connessioni Server-Sent Events per le notifiche in streaming verso client e operatori.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} gestisce le connessioni Server-Sent Events per le notifiche in streaming verso client e operatori.
 
-\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} nessun attributo di stato esplicitato nel diagramma (controller stateless).
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{sse\_tickets()}: stream SSE per aggiornamenti lista ticket (canale operatori).
     \item \texttt{sse\_session(session\_id: int)}: stream SSE per aggiornamenti real-time su una sessione specifica.

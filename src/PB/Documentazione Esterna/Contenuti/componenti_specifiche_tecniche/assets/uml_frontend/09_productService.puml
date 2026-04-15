@@ -1,0 +1,11 @@
+@startuml
+skinparam monochrome false
+skinparam classBackgroundColor White/Beige
+skinparam classBorderColor Black
+skinparam dpi 300
+skinparam componentStyle uml2
+
+class productService << (M,#FFAA00) Singleton Module >> {
+  + search(query: string): Promise<Product[]>
+}
+@enduml

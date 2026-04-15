@@ -1,0 +1,1569 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl}
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{scrhack}
+\usepackage{placeins}
+\usepackage{tabularx}
+\usepackage{amsmath, amssymb, mathtools}
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}
+\graphicspath{{Contenuti/},{Contenuti/componenti_specifiche_tecniche/assets/},{Contenuti/componenti_specifiche_tecniche/assets/uml_backend/},{Contenuti/componenti_specifiche_tecniche/assets/uml_frontend/},{../../assets/}{../assets/}{assets/}}
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[svgnames,table]{xcolor}
+
+% --- Utility ---
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{hhline}
+\usepackage[italian]{cleveref}
+\usepackage{listings}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=DarkBlue,
+    filecolor=DarkBlue,
+    urlcolor=DarkBlue,
+    citecolor=DarkBlue,
+    pdftitle={Specifica Tecnica - NightPRO},
+    pdfauthor={Gruppo NightPRO},
+}
+
+% --- Colonne tabella personalizzate ---
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+% --- Stile codice ---
+\lstdefinelanguage{json}{
+    showstringspaces=false,
+    breaklines=true,
+    basicstyle=\ttfamily\small,
+    string=[s]{"}{"},
+    stringstyle=\color{OrangeRed},
+    comment=[l]{//},
+    commentstyle=\color{ForestGreen}\itshape,
+    literate=
+     *{0}{{{0}}}{1}
+      {1}{{{1}}}{1}
+      {2}{{{2}}}{1}
+      {3}{{{3}}}{1}
+      {4}{{{4}}}{1}
+      {5}{{{5}}}{1}
+      {6}{{{6}}}{1}
+      {7}{{{7}}}{1}
+      {8}{{{8}}}{1}
+      {9}{{{9}}}{1}
+      {:}{{{:\ }}}{1}
+      {,}{{{,\ }}}{1}
+      {\{}{{\{}}{1}
+      {\}}{{\}}}{1}
+      {[}{{[}}{1}
+      {]}{{]}}{1},
+}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    backgroundcolor=\color{gray!5},
+    rulecolor=\color{gray!40},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{DarkBlue}\bfseries,
+    stringstyle=\color{OrangeRed},
+    commentstyle=\color{ForestGreen}\itshape,
+    showstringspaces=false,
+    tabsize=2
+}
+
+% ===================================================================
+%  HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textbf{NightPRO -- Progetto Ingegneria del Software}}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{4}
+
+% ===================================================================
+%  INIZIO DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  FRONTESPIZIO
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    \includegraphics[width=0.35\textwidth]{logo.png}\\[1cm]
+
+    \vfill
+
+    {\small UNIVERSIT\`A DEGLI STUDI DI PADOVA \par}
+    {\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+    \vspace{0.5cm}
+    {\large Corso di Ingegneria del Software \par}
+    {\small Anno Accademico 2025/2026 \par}
+    \vfill
+
+    {\Huge \bfseries Specifica Tecnica \par}
+    \vspace{1cm}
+
+    \vfill
+
+    {\Large \bfseries Gruppo: NightPRO}    \vspace{0.5cm}\\
+    {\Large \bfseries Sistema: SmartOrder}    \vspace{0.5cm}
+
+    {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
+
+    {\large Data: 2026-04-15 \par}
+
+    {\Large Versione: 1.3\par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  TABELLA DELLE VERSIONI
+% -------------------------------------------------------------------
+\newpage
+\pagestyle{fancy}
+\phantomsection
+\section*{Tabella delle Versioni}
+\vspace{0.2cm}
+\begin{center}
+    \resizebox{\textwidth}{!}{
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{@{}llp{0.25\textwidth}p{0.45\textwidth}c@{}}
+            \toprule
+            \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche}                           & \textbf{Verificatore} \\
+            \midrule
+            1.3               & 2026-04-15    & Giovanni Ponso   & Migliorata e allineato stile sezione frontend  & Samuele Perozzo \\
+            1.2               & 2026-04-14    & Samuele Perozzo   & Migliorie alla documentazione dei pattern, all'architettura esagonale e frontend & Francesco Zanella \\
+            1.1               & 2026-04-13    & Davide Biasuzzi   & Revisione tecnologie, design patterns, architettura logica & Francesco Zanella \\
+            1.0               & 2026-04-09    & Giovanni Ponso   & Approvazione del documento & - \\
+            0.8               & 2026-04-09    & Samuele Perozzo & Correzioni finali & Leonardo Bilato \\
+            0.7               & 2026-04-09    & G. Ponso, S. Perozzo, F. Zanella  & Raffinamento dell'architettura di dettaglio: standardizzazione della nomenclatura (API/Backend), ottimizzazione dello strato di Dominio e consolidamento degli stati di sessione lato Frontend. Aggiornamento contestuale di tutti i diagrammi UML. & Leonardo Bilato       \\
+            0.6               & 2026-04-08    & Davide Biasuzzi   & Aggiornamento dello stato di implementazione dei requisiti e allineamento alla rimozione di un requisito & Leonardo Bilato       \\
+            0.5               & 2026-04-04    & Francesco Zanella   & Raffinamento dell'architettura (Backend e Frontend) per ottimizzare flussi asincroni e separazione dei servizi; approfondimento analitico della sezione Database. Aggiornato tabella requisiti & Leonardo Bilato       \\
+            0.4               & 2026-04-02    & G. Ponso, L. Bilato   & Stesura sezione Architettura di dettaglio & M. M. Romascu\\
+            0.3               & 2026-03-31    & D. Biasuzzi, F. Zanella, S. Perozzo    & Riorganizzazione documento, inserimento dei diagrammi PlantUML e stesura delle sezioni 4, 5, 6 e 7 & M. M. Romascu\\
+            0.2               & 2026-03-26    & Davide Biasuzzi   & Inserimento paragrafo su esecuzione e su tecnologie utilizzate & Leonardo Bilato       \\
+            0.1               & 2026-03-20    & Davide Biasuzzi   & Stesura base documento (Introduzione e Requisiti di Sistema)   & Leonardo Bilato       \\
+            \bottomrule
+        \end{tabular}
+    }
+\end{center}
+
+% -------------------------------------------------------------------
+%  INDICE
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents
+\listoffigures
+\listoftables
+\pagestyle{fancy}
+
+% -------------------------------------------------------------------
+%  COMPONENTI DEL GRUPPO
+% -------------------------------------------------------------------
+\newpage
+\section*{Componenti del Gruppo}
+\addcontentsline{toc}{section}{Componenti del Gruppo}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{@{}llc@{}}
+        \toprule
+        \textbf{Cognome} & \textbf{Nome}   & \textbf{Matricola} \\
+        \midrule
+        Biasuzzi         & Davide          & 2111000            \\
+        Bilato           & Leonardo        & 2071084            \\
+        Zanella          & Francesco       & 2116442            \\
+        Romascu          & Mihaela-Mariana & 2079726            \\
+        Ogniben          & Michele         & 2042325            \\
+        Perozzo          & Samuele         & 2110989            \\
+        Ponso            & Giovanni        & 2000558            \\
+        \bottomrule
+    \end{tabular}
+    \caption{Componenti del gruppo NightPRO.}
+\end{table}
+
+% ===================================================================
+%  1. INTRODUZIONE
+% ===================================================================
+\newpage
+\section{Introduzione}
+
+\subsection{Scopo del documento}
+Il presente documento ha lo scopo di descrivere l'architettura software del sistema \textit{SmartOrder}, definendo le scelte tecnologiche, i pattern architetturali e progettuali adottati, e l'architettura di dettaglio di ciascun componente.
+La Specifica Tecnica costituisce il riferimento principale per la fase di codifica, garantendo coerenza tra progettazione e implementazione.
+
+\subsection{Scopo del prodotto}
+\textit{SmartOrder} \`e una piattaforma B2B per l'automazione della gestione degli ordini commerciali. Il sistema consente ai clienti di formulare ordini in linguaggio naturale (testo, audio, immagini) e li converte automaticamente in ordini strutturati pronti per l'integrazione con sistemi ERP aziendali, riducendo errori e tempi di inserimento manuale.
+
+\subsection{Glossario}
+Per evitare ambiguit\`a, i termini tecnici e di dominio utilizzati nel documento sono definiti nel \textit{Glossario v2.0}.
+I termini presenti nel glossario sono contrassegnati con il simbolo \textsubscript{\textsc{g}} alla prima occorrenza in ogni sezione.
+
+\subsection{Riferimenti}
+
+\subsubsection{Riferimenti normativi}
+\begin{itemize}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/PB/Documentazione%20Interna/Norme_Di_Progetto.pdf}{Norme di Progetto v4.0} (Ultima modifica 2026-04-09)
+\end{itemize}
+
+\subsubsection{Riferimenti informativi}
+\begin{itemize}
+    \item \href{https://swenightpro.github.io/Documentazione/docs/PB/Documentazione%20Esterna/Glossario.pdf}{Glossario v3.0} (Ultima modifica 2026-04-09)
+    \item \href{https://swenightpro.github.io/Documentazione/docs/PB/Documentazione%20Esterna/Piano_Di_Qualifica.pdf}{Piano di Qualifica v3.0} (Ultima modifica 2026-04-09)
+    \item \href{https://nextjs.org/docs}{Next.js Documentation} (Ultima modifica 2026-03-20)
+    \item \href{https://fastapi.tiangolo.com/}{FastAPI Documentation} (Ultima modifica 2026-03-20)
+    \item \href{https://platform.openai.com/docs}{OpenAI API Documentation} (Ultima modifica 2026-03-20)
+    \item \href{https://www.postgresql.org/docs/}{PostgreSQL Documentation} (Ultima modifica 2026-03-20)
+    \item \href{https://www.math.unipd.it/~rcardin/swea/2022/Software%20Architecture%20Patterns.pdf}{Software Architecture Patterns, SWE 2025-2026} (Ultima modifica 2026-03-26)
+    \item \href{https://www.math.unipd.it/~rcardin/swea/2022/Design%20Pattern%20Architetturali%20-%20Dependency%20Injection.pdf}{Dependency Injection, SWE 2025-2026} (Ultima modifica 2026-03-26)
+    \item \href{https://www.math.unipd.it/~rcardin/swea/2022/Design%20Pattern%20Creazionali.pdf}{Design Pattern Creazionali, SWE 2025-2026} (Ultima modifica 2026-03-26)
+    \item \href{https://www.math.unipd.it/~rcardin/swea/2022/Design%20Pattern%20Strutturali.pdf}{Design Pattern Strutturali, SWE 2025-2026} (Ultima modifica 2026-03-26)
+
+\end{itemize}
+
+% ===================================================================
+%  2. TECNOLOGIE UTILIZZATE
+% ===================================================================
+\newpage
+
+\section{Tecnologie utilizzate}
+
+In questa sezione vengono elencate le tecnologie adottate per lo sviluppo del sistema \textit{SmartOrder}. Per ciascuna tecnologia viene indicata la versione utilizzata, la motivazione della scelta e il contesto d'impiego nel progetto.
+
+% -------------------------------------------------------------------
+\subsection{Linguaggi di programmazione}
+% -------------------------------------------------------------------
+
+\subsubsection{TypeScript}
+\begin{itemize}[noitemsep]
+\item \textbf{Versione:} 5
+\item \textbf{Documentazione ufficiale:} \href{https://www.typescriptlang.org/docs/}{TypeScript
+ Documentation} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} Frontend
+\item \textbf{Contesto di utilizzo:} linguaggio principale per l'interfaccia utente dell'applicativo Next.js, sia per i componenti React che per la gestione dello stato lato client.
+\item \textbf{Vantaggi:} tipizzazione statica che riduce errori a runtime, ottimo supporto IDE, compatibilit\`a nativa con React e Next.js.
+\item \textbf{Svantaggi:} overhead di compilazione rispetto a JavaScript puro.
+\end{itemize}
+
+\subsubsection{Python}
+\begin{itemize}[noitemsep]
+\item \textbf{Versione:} 3.11
+\item \textbf{Documentazione ufficiale:} \href{https://docs.python.org/3/}{Python 3 Documentation} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} Backend / Modulo AI
+\item \textbf{Contesto di utilizzo:} implementazione della pipeline di elaborazione degli ordini tramite intelligenza artificiale e gestione delle API tramite FastAPI.
+\item \textbf{Vantaggi:} ecosistema maturo in ambito NLP/ML, compatibilit\`a nativa con le librerie OpenAI, sintassi concisa, supporto asincrono con Uvicorn/ASGI.
+\item \textbf{Svantaggi:} prestazioni inferiori a linguaggi compilati; mitigato dall'uso di Uvicorn (ASGI asincrono).
+\end{itemize}
+
+\subsubsection{SQL}
+\begin{itemize}[noitemsep]
+\item \textbf{Documentazione ufficiale:} \href{https://www.iso.org/standard/76584.html}{ISO/IEC 9075:2023 (SQL)} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} Database
+\item \textbf{Contesto di utilizzo:} interrogazioni sul catalogo prodotti, gestione ordini, sessioni e carrelli.
+\end{itemize}
+
+% -------------------------------------------------------------------
+\subsection{Framework e librerie}
+% -------------------------------------------------------------------
+
+\subsubsection{Next.js}
+\begin{itemize}[noitemsep]
+\item \textbf{Versione:} 15.5
+\item \textbf{Documentazione ufficiale:} \href{https://nextjs.org/docs}{Next.js Documentation} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} Frontend full-stack
+\item \textbf{Contesto di utilizzo:} framework principale per il frontend. Gestisce il rendering dell'interfaccia utente (React) e la logica lato client.
+\item \textbf{Vantaggi:} App Router con Server Components, SSR e SSG, integrazione ottimale con React.
+\item \textbf{Svantaggi:} curva di apprendimento per le convenzioni App Router; vincolo a React come libreria UI.
+\end{itemize}
+
+\subsubsection{React}
+\begin{itemize}[noitemsep]
+\item \textbf{Versione:} 19
+\item \textbf{Documentazione ufficiale:} \href{https://react.dev/learn}{React Documentation} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} UI
+\item \textbf{Contesto di utilizzo:} costruzione dell'interfaccia utente tramite componenti dichiarativi, gestione dello stato con Context API e Hooks.
+\item \textbf{Vantaggi:} ecosistema vastissimo, modello a componenti riutilizzabili, Virtual DOM per aggiornamenti efficienti.
+\end{itemize}
+
+\subsubsection{Tailwind CSS}
+\begin{itemize}[noitemsep]
+\item \textbf{Versione:} 4.1
+\item \textbf{Documentazione ufficiale:} \href{https://tailwindcss.com/docs}{Tailwind CSS Documentation} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} Styling
+\item \textbf{Contesto di utilizzo:} stilizzazione dei componenti React con approccio utility-first.
+\item \textbf{Vantaggi:} prototipazione rapida, design responsive\textsubscript{\textsc{g}} integrato, nessun CSS custom da mantenere.
+\item \textbf{Svantaggi:} classi verbose nel markup; mitigato dalla composizione in componenti React.
+\end{itemize}
+
+\subsubsection{FastAPI}
+\begin{itemize}[noitemsep]
+\item \textbf{Versione:} 0.104.0
+\item \textbf{Documentazione ufficiale:} \href{https://fastapi.tiangolo.com/}{FastAPI Documentation} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} Backend / Modulo AI
+\item \textbf{Contesto di utilizzo:} espone gli endpoint \texttt{/chat} e \texttt{/transcribe} per l'elaborazione AI, gestione degli ordini e delle sessioni. Funziona come backend principale dell’applicazione.
+\item \textbf{Vantaggi:} validazione automatica dei dati tramite Pydantic\textsubscript{\textsc{g}}, documentazione OpenAPI auto-generata, supporto nativo async/await.
+\item \textbf{Svantaggi:} richiede un processo separato (Uvicorn) rispetto al runtime Node.js.
+\end{itemize}
+
+\subsubsection{Pydantic}
+\begin{itemize}[noitemsep]
+\item \textbf{Versione:} 2.5.0
+\item \textbf{Documentazione ufficiale:} \href{https://docs.pydantic.dev/latest/}{Pydantic Documentation} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} Backend / Modulo AI
+\item \textbf{Contesto di utilizzo:} definizione dei modelli di request/response per le API FastAPI, con validazione automatica dei tipi.
+\end{itemize}
+
+\subsubsection{OpenAI SDK}
+\begin{itemize}[noitemsep]
+\item \textbf{Versione:} 1.6.0
+\item \textbf{Documentazione ufficiale:} \href{https://platform.openai.com/docs}{OpenAI API Documentation} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} Backend / Modulo AI
+\item \textbf{Contesto di utilizzo:} SDK\textsubscript{\textsc{g}} ufficiale per l'integrazione con GPT-5.4, GPT-5.4-mini, Whisper e text-embedding-3-small.
+\end{itemize}
+
+% -------------------------------------------------------------------
+\subsection{Strumenti di persistenza}
+% -------------------------------------------------------------------
+
+\subsubsection{PostgreSQL}
+\begin{itemize}[noitemsep]
+\item \textbf{Versione:} 16
+\item \textbf{Documentazione ufficiale:} \href{https://www.postgresql.org/docs/16/}{PostgreSQL 16 Documentation} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} Database
+\item \textbf{Contesto di utilizzo:} unica base dati del sistema, accessibile dal modulo AI tramite Python (\texttt{psycopg2}). Tutte le operazioni sul catalogo prodotti, ordini, sessioni e carrelli avvengono tramite FastAPI.
+\item \textbf{Vantaggi:} robustezza, supporto a query complesse e full-text search, estensibilit\`a (pgvector per Vector Search\textsubscript{\textsc{g}}).
+\end{itemize}
+
+\subsubsection{psycopg2}
+\begin{itemize}[noitemsep]
+\item \textbf{Versione:} $\geq$ 2.9.9
+\item \textbf{Documentazione ufficiale:} \href{https://www.psycopg.org/docs/}{psycopg2 Documentation} (Ultima modifica 2026-03-26)
+\item \textbf{Ambito:} Modulo AI / Backend
+\item \textbf{Contesto di utilizzo:} driver Python per PostgreSQL con connection pooling\textsubscript{\textsc{g}} (\texttt{SimpleConnectionPool}).
+\end{itemize}
+
+% -------------------------------------------------------------------
+\subsection{Intelligenza artificiale}
+% -------------------------------------------------------------------
+
+\subsubsection{GPT-5.4}
+\begin{itemize}[noitemsep]
+    \item \textbf{Versione:} 2026-03-05
+    \item \textbf{Documentazione ufficiale:} \href{https://platform.openai.com/docs/models/gpt-5.4}{OpenAI GPT-5.4} (Ultima modifica 2026-03-26)
+    \item \textbf{Contesto di utilizzo:} modello linguistico principale per la comprensione degli ordini, la classificazione degli intenti e le decisioni di business. Utilizzato con temperature=0.1 per risposte deterministiche. Natively multimodale: supporta analisi di immagini e documenti caricati dagli utenti per l'estrazione di testo tramite OCR e la comprensione del contenuto visivo (es. foto di ordini cartacei).
+\end{itemize}
+
+\subsubsection{GPT-5.4-mini}
+\begin{itemize}[noitemsep]
+    \item \textbf{Versione:} 2026-03-17
+    \item \textbf{Documentazione ufficiale:} \href{https://platform.openai.com/docs/models/gpt-5.4-mini}{OpenAI GPT-5.4-mini} (Ultima modifica 2026-03-26)
+    \item \textbf{Contesto di utilizzo:} modello leggero per l'estrazione rapida dei parametri di ricerca e la classificazione semantica degli intenti utente.
+\end{itemize}
+
+\subsubsection{Whisper}
+\begin{itemize}[noitemsep]
+    \item \textbf{Versione:} 1
+    \item \textbf{Documentazione ufficiale:} \href{https://platform.openai.com/docs/guides/speech-to-text}{OpenAI Speech-to-Text (Whisper)} (Ultima modifica 2026-03-26)
+    \item \textbf{Contesto di utilizzo:} trascrizione di messaggi audio in testo, con prompt specifico per il dominio Ergon e lingua forzata a italiano.
+\end{itemize}
+
+\subsubsection{text-embedding-3-small}
+\begin{itemize}[noitemsep]
+    \item \textbf{Versione:} 3
+    \item \textbf{Documentazione ufficiale:} \href{https://platform.openai.com/docs/guides/embeddings}{OpenAI Embeddings} (Ultima modifica 2026-03-26)
+    \item \textbf{Contesto di utilizzo:} generazione di vettori di embedding (1536 dimensioni) per l'indicizzazione semantica del catalogo prodotti e il confronto vettoriale con gli input utente tramite pgvector.
+\end{itemize}
+
+% -------------------------------------------------------------------
+\subsection{Infrastruttura e DevOps}
+% -------------------------------------------------------------------
+
+\subsubsection{Docker}
+\begin{itemize}[noitemsep]
+    \item \textbf{Versione:} $\geq$ 24.0
+    \item \textbf{Documentazione ufficiale:} \href{https://docs.docker.com/}{Docker Documentation} (Ultima modifica 2026-03-26)
+    \item \textbf{Contesto di utilizzo:} containerizzazione dell'intero sistema per garantire portabilit\`a e riproducibilit\`a degli ambienti. Docker Compose ($\geq$ 2.20) orchestra l'avvio dei container.
+\end{itemize}
+
+\subsubsection{Node.js}
+\begin{itemize}[noitemsep]
+    \item \textbf{Versione:} 20
+    \item \textbf{Documentazione ufficiale:} \href{https://nodejs.org/docs/latest-v20.x/api/}{Node.js 20 Documentation} (Ultima modifica 2026-03-26)
+    \item \textbf{Contesto di utilizzo:} runtime JavaScript per l'esecuzione di Next.js in sviluppo e produzione.
+\end{itemize}
+
+\subsubsection{Uvicorn}
+\begin{itemize}[noitemsep]
+    \item \textbf{Versione:} 0.24.0
+    \item \textbf{Documentazione ufficiale:} \href{https://www.uvicorn.org/}{Uvicorn Documentation} (Ultima modifica 2026-03-26)
+    \item \textbf{Contesto di utilizzo:} server ASGI\textsubscript{\textsc{g}} per l'esecuzione di FastAPI, con supporto a richieste asincrone.
+\end{itemize}
+
+\subsubsection{GitHub Actions}
+\begin{itemize}[noitemsep]
+    \item \textbf{Documentazione ufficiale:} \href{https://docs.github.com/actions}{GitHub Actions Documentation} (Ultima modifica 2026-03-26)
+    \item \textbf{Contesto di utilizzo:} pipeline di integrazione continua per quality checks (ESLint, build verification).
+\end{itemize}
+
+\subsubsection{ESLint}
+\begin{itemize}[noitemsep]
+    \item \textbf{Versione:} 9
+    \item \textbf{Documentazione ufficiale:} \href{https://eslint.org/docs/latest/}{ESLint Documentation} (Ultima modifica 2026-03-26)
+    \item \textbf{Contesto di utilizzo:} linter\textsubscript{\textsc{g}} statico per il codice TypeScript/JavaScript.
+\end{itemize}
+\newpage
+
+\subsection{Dipendenze per categoria}
+Le seguenti tabelle organizzano le dipendenze per ambito tecnico, evidenziando per ciascun elemento il ruolo operativo nel progetto, il criterio di adozione rispetto ad alternative praticabili e l'integrazione con il resto dello stack applicativo.
+
+\subsubsection{Frontend -- Core}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{\textwidth}{@{}l l X@{}}
+        \toprule
+        \textbf{Nome} & \textbf{Versione} & \textbf{Descrizione e motivazione d'uso} \\
+        \midrule
+        Next.js & $\geq$ 15.5 & Framework di riferimento per il frontend applicativo: e' stato adottato per fornire una struttura unificata di routing, rendering e organizzazione dei moduli invece di una configurazione manuale basata su tool separati; si integra in modo nativo con React 19 e TypeScript 5 nel ciclo di sviluppo e build. \\
+        React & $\geq$ 19 & Libreria di composizione dell'interfaccia utente: e' stata scelta per il modello a componenti e per la maturita' dell'ecosistema rispetto ad approcci meno diffusi nel contesto del progetto; costituisce il livello UI eseguito all'interno dell'applicazione Next.js. \\
+        TypeScript & $\geq$ 5 & Linguaggio principale del frontend: e' stato preferito a JavaScript non tipizzato per ridurre ambiguita' contrattuali tra moduli e facilitare la manutenzione evolutiva; si integra con React e Next.js tramite tipizzazione condivisa di componenti, payload e utilita'. \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Dipendenze della categoria Frontend -- Core.}
+    \label{tab:dip_frontend_core}
+\end{table}
+
+\subsubsection{Frontend -- Styling}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{\textwidth}{@{}l l X@{}}
+        \toprule
+        \textbf{Nome} & \textbf{Versione} & \textbf{Descrizione e motivazione d'uso} \\
+        \midrule
+        Tailwind CSS & $\geq$ 4.1 & Sistema di styling adottato per definire regole visuali consistenti direttamente nei componenti: e' stato scelto rispetto a una base CSS personalizzata estesa per ridurre divergenze tra pagine e accelerare la standardizzazione grafica; si integra nel toolchain Next.js/Node.js e nelle component library React del progetto. \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Dipendenze della categoria Frontend -- Styling.}
+    \label{tab:dip_frontend_styling}
+\end{table}
+
+\subsubsection{Frontend -- Build e runtime}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{\textwidth}{@{}l l X@{}}
+        \toprule
+        \textbf{Nome} & \textbf{Versione} & \textbf{Descrizione e motivazione d'uso} \\
+        \midrule
+        Node.js & $\geq$ 20 & Runtime di esecuzione per la parte frontend e per i comandi di sviluppo/build: e' stato selezionato in quanto piattaforma di riferimento dell'ecosistema Next.js, evitando incompatibilita' di tooling presenti su versioni precedenti; costituisce il processo applicativo su cui vengono eseguiti i bundle React/TypeScript. \\
+        ESLint & $\geq$ 9 & Strumento di analisi statica del codice frontend: e' stato adottato per uniformare regole di qualita' e prevenire regressioni prima dell'integrazione, preferendolo a controlli esclusivamente manuali; si integra con TypeScript e con la pipeline di verifica automatica del repository. \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Dipendenze della categoria Frontend -- Build e runtime.}
+    \label{tab:dip_frontend_build_runtime}
+\end{table}
+
+\subsubsection{Backend -- Framework e core}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{\textwidth}{@{}l l X@{}}
+        \toprule
+        \textbf{Nome} & \textbf{Versione} & \textbf{Descrizione e motivazione d'uso} \\
+        \midrule
+        FastAPI & $\geq$ 0.104.0 & Framework di esposizione delle API applicative: e' stato scelto per la coerenza tra modellazione dei dati e gestione endpoint rispetto a framework Python piu' generici; si integra con Pydantic per la validazione e con Uvicorn come server di esecuzione ASGI. \\
+        Pydantic & $\geq$ 2.5.0 & Livello di modellazione e validazione dei dati nel backend: e' stato adottato per centralizzare i contratti applicativi in modo tipizzato invece di validazioni distribuite nei singoli handler; si integra direttamente con FastAPI nei modelli di richiesta/risposta e nei controlli di consistenza. \\
+        Uvicorn & $\geq$ 0.24.0 & Server ASGI per l'esecuzione del servizio backend: e' stato scelto come runtime leggero e allineato allo standard asincrono richiesto dal framework, in alternativa a server WSGI non adatti al medesimo modello concorrente; si integra con FastAPI come processo di avvio del servizio Python. \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Dipendenze della categoria Backend -- Framework e core.}
+    \label{tab:dip_backend_framework_core}
+\end{table}
+
+\subsubsection{Backend -- Linguaggio}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{\textwidth}{@{}l l X@{}}
+        \toprule
+        \textbf{Nome} & \textbf{Versione} & \textbf{Descrizione e motivazione d'uso} \\
+        \midrule
+        Python & $\geq$ 3.11 & Linguaggio di implementazione del backend e dei flussi AI: e' stato preferito per l'allineamento con le librerie richieste dal dominio applicativo e per la produttivita' nello sviluppo dei servizi; si integra con FastAPI/Uvicorn sul piano applicativo e con psycopg2/OpenAI SDK sul piano infrastrutturale. \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Dipendenze della categoria Backend -- Linguaggio.}
+    \label{tab:dip_backend_linguaggio}
+\end{table}
+
+\subsubsection{Backend -- Persistenza}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{\textwidth}{@{}l l X@{}}
+        \toprule
+        \textbf{Nome} & \textbf{Versione} & \textbf{Descrizione e motivazione d'uso} \\
+        \midrule
+        PostgreSQL & $\geq$ 16 & DBMS relazionale unico del sistema: e' stato adottato per garantire consistenza transazionale e gestione strutturata dei dati operativi rispetto a soluzioni non relazionali non prioritarie per il dominio; si integra con il backend Python per persistenza di catalogo, ordini, sessioni e carrelli. \\
+        psycopg2 & $\geq$ 2.9.9 & Driver di accesso a PostgreSQL nel backend: e' stato scelto per mantenere un'interfaccia diretta e stabile verso il DBMS, evitando astrazioni aggiuntive non necessarie al livello corrente di complessita'; si integra nei repository applicativi e nel meccanismo di connection pooling del servizio. \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Dipendenze della categoria Backend -- Persistenza.}
+    \label{tab:dip_backend_persistenza}
+\end{table}
+
+\subsubsection{Backend -- AI}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{\textwidth}{@{}l l X@{}}
+        \toprule
+        \textbf{Nome} & \textbf{Versione} & \textbf{Descrizione e motivazione d'uso} \\
+        \midrule
+        OpenAI SDK & $\geq$ 1.6.0 & Libreria di integrazione con i servizi AI: e' stata scelta come client ufficiale per ridurre il rischio di disallineamento rispetto alle API e semplificare la gestione delle chiamate; si integra nel backend FastAPI come adapter verso i modelli linguistici utilizzati dal dominio. \\
+        GPT-5.4 & 2026-03-05 & Modello linguistico principale per la comprensione delle richieste e la generazione delle risposte operative: e' stato adottato per privilegiare accuratezza e coerenza nelle decisioni applicative rispetto a modelli piu' leggeri; si integra nel flusso orchestrato dal backend tramite OpenAI SDK. \\
+        GPT-5.4-mini & N/D & Modello linguistico ottimizzato per task a costo e latenza contenuti: e' stato scelto per le fasi di pre-elaborazione dove la velocita' e' prioritaria rispetto alla massima capacita' inferenziale; si integra come componente complementare a GPT-5.4 nelle pipeline di classificazione e instradamento. \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Dipendenze della categoria Backend -- AI.}
+    \label{tab:dip_backend_ai}
+\end{table}
+
+\subsubsection{Infrastruttura e DevOps}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{\textwidth}{@{}l l X@{}}
+        \toprule
+        \textbf{Nome} & \textbf{Versione} & \textbf{Descrizione e motivazione d'uso} \\
+        \midrule
+        Docker & $\geq$ 24.0 & Piattaforma di containerizzazione degli artefatti applicativi: e' stata adottata per assicurare coerenza degli ambienti tra sviluppo, verifica e rilascio evitando configurazioni manuali eterogenee; si integra con i servizi frontend e backend come base comune di esecuzione. \\
+        GitHub Actions & N/D (servizio gestito) & Infrastruttura di automazione CI per validazioni tecniche: e' stata scelta per mantenere i controlli direttamente allineati al repository e al flusso di revisione, rispetto a pipeline esterne separate; si integra con i job di quality gate (lint e build) prima dell'integrazione delle modifiche. \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Dipendenze della categoria Infrastruttura e DevOps.}
+    \label{tab:dip_infra_devops}
+\end{table}
+
+\newpage
+\section{Architettura di sistema}
+Questa sezione illustra l'architettura ad alto livello del sistema SmartOrder. Vengono definiti gli obiettivi progettuali che hanno guidato le scelte tecnologiche e viene fornita una rappresentazione progressiva del sistema utilizzando il modello C4, partendo dal contesto generale fino ad arrivare ai container principali. Infine, viene motivato lo stile architetturale adottato.
+
+\subsection{Obiettivi architetturali}
+L'architettura del sistema \textit{SmartOrder} e stata definita per soddisfare i seguenti obiettivi:
+\begin{itemize}
+    \item separare in modo netto responsabilita di presentazione, logica applicativa e persistenza;
+    \item mantenere il backend indipendente dalla tecnologia client;
+    \item supportare il flusso \textit{Human-in-the-Loop} per i casi a bassa affidabilita AI;
+    \item garantire integrazione con ERP tramite output JSON su cartella condivisa;
+    \item favorire estendibilita verso nuovi canali di input (es. immagini, canali esterni).
+\end{itemize}
+
+\subsection{Vista C4 - Livello 1 (System Context)}
+Il diagramma C4 Livello 1 individua i confini del sistema e gli attori esterni principali.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{arch_c4_l1_context.jpeg}
+    \caption{Diagramma C4 L1: contesto del sistema SmartOrder.}
+\end{figure}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{\textwidth}{@{}lL@{}}
+        \toprule
+        \textbf{Elemento} & \textbf{Ruolo nel contesto} \\
+        \midrule
+        Cliente & Agente commerciale B2B che inserisce ordini in linguaggio naturale e richiede assistenza. \\
+        Operatore & Utente interno che supervisiona ticket, casi a bassa confidence e correzioni AI. \\
+        SmartOrder & Sistema oggetto della specifica; acquisisce input multimodale e genera ordini strutturati. \\
+        OpenAI API & Servizio esterno usato per comprensione linguaggio naturale e trascrizione audio. \\
+        Sistema ERP & Gestionale aziendale che riceve ordini finalizzati in formato JSON. \\
+        \bottomrule
+    \end{tabularx}
+    \caption{C4 L1 - Contesto del sistema SmartOrder.}
+\end{table}
+
+\subsection{Vista C4 - Livello 2 (Container)}
+Il diagramma C4 Livello 2 decompone SmartOrder nei container applicativi principali.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{arch_c4_l2_container.jpeg}
+    \caption{Diagramma C4 L2: vista container.}
+\end{figure}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{\textwidth}{@{}lL@{}}
+        \toprule
+        \textbf{Container} & \textbf{Responsabilita} \\
+        \midrule
+        Web Application (Next.js + React + TypeScript) & Interfaccia cliente/operatore, gestione sessione utente, rendering chat, carrello, storico, dashboard operative. \\
+        API Application (FastAPI) & Business logic di dominio: autenticazione, orchestrazione AI, gestione carrello/ordini/ticket, persistenza e pubblicazione output. \\
+        Database (PostgreSQL) & Persistenza strutturata di utenti, sessioni, carrelli, ordini, ticket, log AI e catalogo. \\
+        File Storage (cartella condivisa) & Punto di consegna ordini finalizzati in JSON verso processo ERP esterno. \\
+        \bottomrule
+    \end{tabularx}
+    \caption{C4 L2 - Container e responsabilita.}
+\end{table}
+
+\subsection{Stile architetturale adottato}
+“La soluzione adotta un'architettura client-server composta da sottosistemi modulari, con frontend e backend separati e API come contratto principale.
+All'interno del backend viene applicata una suddivisione per layer logici (Controller, Application Service, Core Domain, Outbound Ports) coerente con i principi di \textit{Ports and Adapters}.
+
+Le principali motivazioni della scelta sono:
+\begin{itemize}
+    \item isolamento della logica di business da dipendenze infrastrutturali;
+    \item testabilita delle regole applicative in assenza di interfaccia grafica;
+    \item sostituibilita di adapter esterni (servizi AI, storage, connettori DB) con impatto ridotto;
+    \item evoluzione indipendente dei rilasci frontend e backend.
+\end{itemize}
+
+% ===================================================================
+%  6. ARCHITETTURA DI DEPLOYMENT
+% ===================================================================
+\newpage
+\section{Architettura di deployment}
+
+Questa sezione descrive la distribuzione fisica dei componenti del sistema \textit{SmartOrder}, illustrando gli ambienti di esecuzione, i nodi
+     infrastrutturali coinvolti e le strategie di Continuous Integration e Continuous Deployment (CI/CD\ped{g}).
+
+\subsection{Architettura: Sottosistemi Monolitici Indipendenti}
+Il sistema \textit{SmartOrder} adotta un'architettura \textbf{Client-Server} basata su due unità di deployment indipendenti. Entrambi i componenti
+      sono strutturati internamente come monoliti, garantendo una gestione semplificata del rilascio pur mantenendo una netta separazione delle
+      responsabilità:
+
+\begin{itemize}
+    \item \textbf{Backend (Modular Monolith)}: Il server è un monolite modulare implementato in FastAPI (Python). Nonostante venga eseguito come un
+      unico processo, la logica di business è isolata verticalmente per domini funzionali, assicurando coesione interna e facilità di manutenzione.
+    \item \textbf{Frontend (Frontend Monolith)}: Il client è un'applicazione Next.js distribuita come unità singola. Gestisce interamente lo strato
+      di presentazione e lo stato dell'interfaccia utente, operando in un ambiente di runtime Node.js separato e dedicato.
+\end{itemize}
+Il disaccoppiamento tra i due sottosistemi è garantito dall'utilizzo di interfacce HTTP per lo scambio di dati in formato JSON.
+L'organizzazione del codice segue l'approccio \textbf{Monorepo}: entrambi i sottosistemi risiedono in un unico repository dei sorgenti. Questa
+scelta semplifica la gestione delle dipendenze e garantisce la coerenza tra le interfacce del frontend e le API del backend durante lo sviluppo.
+
+\subsubsection{Motivazioni della scelta architettonica}
+L'adozione di questa struttura garantisce un equilibrio ottimale tra semplicità operativa e flessibilità evolutiva, offrendo i seguenti vantaggi:
+\begin{itemize}
+    \item \textbf{Efficienza Infrastrutturale}: L'approccio monolitico riduce drasticamente l'overhead di gestione rispetto a un'architettura a
+     microservizi, pur mantenendo una chiara separazione delle responsabilità.
+    \item \textbf{Scalabilità Indipendente}: La natura disaccoppiata dei due sottosistemi permette di scalare le risorse di calcolo in modo
+     differenziato (es. aumentando le risorse del solo backend durante picchi di elaborazione AI).
+    \item \textbf{Coerenza del Ciclo di Vita}: L'organizzazione in Monorepo assicura che il rilascio di nuove funzionalità avvenga in modo atomico,
+     eliminando il rischio di disallineamento tra l'interfaccia utente e le logiche del server.
+\end{itemize}
+
+\subsection{Modularità e organizzazione dei sottosistemi}
+Il sistema garantisce un elevato grado di manutenibilità grazie all'organizzazione modulare del codice, che permette di gestire la complessità dei
+      due sottosistemi senza ricorrere a un'architettura a microservizi.
+
+\subsubsection{Isolamento verticale del Backend}
+Il backend è strutturato secondo i principi della \textbf{modularità verticale}. Ogni dominio di business (es. gestione ordini, carrello, ticket) è
+      racchiuso in un modulo indipendente che contiene sia la logica applicativa che le interfacce per l'accesso ai dati. Questo isolamento permette di:
+\begin{itemize}
+    \item Evitare dipendenze circolari tra le diverse funzionalità del sistema.
+    \item Facilitare il collaudo dei singoli moduli in isolamento.
+    \item Semplificare l'evoluzione di una specifica parte del sistema senza impatti sulle altre.
+\end{itemize}
+
+\subsubsection{Componenti di un modulo}
+Per garantire uniformità e coesione, ogni modulo del backend si articola nei seguenti componenti logici:
+\begin{enumerate}
+    \item \textbf{Controller}: Punto di ingresso per le richieste HTTP e validazione dell'input.
+    \item \textbf{Service}: Implementazione della logica di business e delle regole di dominio.
+    \item \textbf{Port}: Definizione astratta dei requisiti infrastrutturali (es. interfacce per il database).
+    \item \textbf{Schema}: Modelli di dati utilizzati per lo scambio di informazioni (DTO).
+    \item \textbf{Adapter}: Implementazione specifica delle Port per le tecnologie utilizzate (es. PostgreSQL, OpenAI).
+\end{enumerate}
+
+\subsection{Scenario di esecuzione}
+Il sistema è progettato per operare in due modalità distinte, garantendo sia l'accessibilità pubblica del servizio che la manutenibilità del codice
+      sorgente.
+
+\subsubsection{Ambiente di Produzione (Cloud)}
+È l'ambiente principale in cui l'applicazione è effettivamente erogata agli utenti finali come \textbf{Web Application} accessibile via internet.
+      L'intera infrastruttura è ospitata sulla piattaforma cloud \textbf{Railway}, che gestisce l'esecuzione dei seguenti servizi in container isolati:
+\begin{itemize}
+    \item \textbf{Frontend Service}: Un'istanza Node.js che serve l'interfaccia web (Next.js) via protocollo sicuro HTTPS.
+    \item \textbf{Backend Service}: Un'istanza Python che esegue il server FastAPI per l'elaborazione delle richieste API.
+    \item \textbf{Database Service}: Un'istanza gestita di PostgreSQL per la persistenza dei dati transazionali.
+\end{itemize}
+
+\subsubsection{Ambiente di Sviluppo e Manutenzione (Locale)}
+Questo scenario viene utilizzato esclusivamente per l'implementazione di nuove funzionalità o per attività di debugging. In questa modalità,
+l'applicazione viene eseguita localmente sulla macchina dello sviluppatore avviando i processi di frontend e backend in modo indipendente. La
+comunicazione avviene tramite l'interfaccia di rete locale (\textit{localhost}), permettendo di testare le modifiche prima del rilascio definitivo
+in produzione.
+
+\subsection{Nodi e responsabilità di deployment}
+La seguente vista descrive la mappatura tra i componenti software e le risorse cloud che li ospitano in ambiente di produzione.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{arch_c4_l2_container.jpeg}
+    \caption{Vista di deployment logico del sistema.}
+\end{figure}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{@{}lX@{}}
+        \toprule
+        \textbf{Nodo Cloud} & \textbf{Responsabilità} \\
+        \midrule
+        \textbf{Frontend Service} (Railway) & Eroga l'applicazione Next.js tramite protocollo HTTPS. Gestisce il rendering dell'interfaccia utente
+      e l'inoltro delle richieste API verso il backend. \\
+        \textbf{Backend Service} (Railway) & Esegue il server FastAPI (Uvicorn). Centralizza la logica di business, l'orchestrazione delle chiamate
+      AI e la persistenza dei dati. \\
+        \textbf{Database Service} (Railway PostgreSQL) & Istanza gestita di PostgreSQL. Garantisce l'integrità e la persistenza dei dati
+      transazionali relativi a utenti, ordini e sessioni. \\
+        \textbf{File Storage Condiviso} & Cartella accessibile nel File System utilizzata per depositare i file JSON degli ordini finalizzati,
+      facilitando l'integrazione con il sistema ERP aziendale. \\
+        \textbf{OpenAI Cloud API} & Servizio esterno richiamato dal backend per l'elaborazione del linguaggio naturale (LLM), trascrizione vocale e
+      riconoscimento immagini. \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Nodi logici di deployment e relative responsabilità.}
+\end{table}
+
+\subsection{Canali di comunicazione}
+Le interazioni tra i diversi componenti del sistema avvengono attraverso protocolli standardizzati, garantendo sicurezza e interoperabilità:
+\begin{itemize}
+    \item \textbf{Frontend $\leftrightarrow$ Backend}: La comunicazione avviene tramite chiamate API su protocollo cifrato HTTPS, con scambio
+      di payload in formato JSON.
+    \item \textbf{Backend $\leftrightarrow$ PostgreSQL}: Il backend comunica con il database tramite protocollo TCP, ottimizzato attraverso un
+      meccanismo di \textit{connection pooling} per la gestione efficiente delle sessioni.
+    \item \textbf{Backend $\leftrightarrow$ OpenAI API}: Le richieste ai servizi di intelligenza artificiale vengono effettuate tramite invocazioni
+       su canale sicuro HTTPS verso gli endpoint cloud di OpenAI.
+    \item \textbf{Backend $\rightarrow$ File Storage}: L'integrazione con il sistema ERP avviene tramite operazioni di I/O su filesystem per il
+      deposito dei file d'ordine in formato JSON.
+\end{itemize}
+
+\subsection{Aspetti operativi e Continuous Deployment}
+Il ciclo di vita del software è gestito tramite pratiche automatizzate di \textbf{Continuous Deployment} (CD\ped{g}) per assicurare rilasci
+frequenti, coordinati e privi di disservizi.
+\begin{itemize}
+    \item \textbf{Rilascio Unificato e Automatizzato}: Grazie all'adozione di un'architettura \textbf{Monorepo}, il processo di deployment è
+     centralizzato. La piattaforma \textbf{Railway} è interfacciata direttamente con il repository GitHub e, ad ogni aggiornamento sul branch principale,
+     avvia simultaneamente la build e il rilascio di entrambi i container (frontend e backend). Questo garantisce che le versioni dei due sottosistemi
+     siano sempre sincronizzate e compatibili tra loro.
+    \item \textbf{Aggiornamenti Zero-Downtime}: Il deployment avviene senza interruzioni di servizio per l'utente finale. I nuovi container vengono
+     avviati e sostituiscono quelli precedenti solo dopo aver superato con successo i controlli di integrità del sistema, assicurando la massima
+     disponibilità della piattaforma.
+    \item \textbf{Gestione delle Configurazioni}: I dati sensibili, quali chiavi API e credenziali di accesso al database, non sono memorizzati nel
+     codice sorgente. Vengono iniettati nei runtime come variabili d'ambiente criptate attraverso la dashboard di gestione della piattaforma cloud,
+     rispettando i moderni standard di sicurezza.
+\end{itemize}
+
+\subsection{Sicurezza e protezione dei dati}
+Nel progetto la sicurezza e' stata considerata in modo continuo, integrandola nelle principali scelte architetturali. Di seguito sono riportate le misure adottate:
+\begin{itemize}
+    \item \textbf{Difesa in profondita' contro il furto di sessione}: autenticazione basata su cookie \texttt{HTTPOnly} e \texttt{Secure}, preferiti allo storage nel browser per ridurre la superficie d'attacco XSS.
+    \item \textbf{Protezione credenziali con scrypt + pepper}: le password sono salvate con salt univoco, cost factor elevato e pepper lato server, cosi' da rendere non riutilizzabili gli hash anche in caso di compromissione del solo database.
+    \item \textbf{Controllo accessi real-time su SSE}: l'apertura dei canali Server-Sent Events e' subordinata a validazione JWT; gli stream sono segregati per sessione e ruolo applicativo (cliente/operatore).
+    \item \textbf{Mitigazione nativa SQL Injection}: l'accesso dati e' concentrato nei repository/adapters PostgreSQL con query parametrizzate, evitando concatenazioni manuali di input utente in statement SQL.
+    \item \textbf{Policy CORS restrittiva}: il backend accetta richieste solo da origini autorizzate tramite regole esplicite (incluse validazioni regex per ambienti certificati), riducendo rischi CSRF e chiamate cross-origin abusive.
+\end{itemize}
+
+Queste scelte permettono di proteggere l'intero ciclo operativo, dalla conversazione in chat alla persistenza dell'ordine e alla sua esportazione verso ERP.
+
+% ===================================================================
+%  7. DESIGN PATTERN
+% ===================================================================
+
+\newpage
+\section{Architettura logica}
+
+Questa sezione descrive la struttura logica di \textit{SmartOrder}, separando i due sottosistemi principali (backend e frontend) e i pattern impiegati per garantire modularita', testabilita' ed evoluzione controllata del codice.
+
+% -------------------------------------------------------------------
+\subsection{Backend}
+
+\subsubsection{Esigenze Architetturali}
+Il backend deve mantenere disaccoppiata la logica applicativa dalle tecnologie esterne (HTTP, database, servizi AI), in modo da preservare la stabilita' del dominio al variare dell'infrastruttura e semplificare il collaudo dei servizi.
+
+\subsubsection{Soluzione Architetturale}
+L'organizzazione segue un'\textbf{Architettura Esagonale (Ports and Adapters)}:
+\begin{itemize}
+    \item \textbf{Core}: servizi applicativi e regole di dominio.
+    \item \textbf{Ports}: interfacce astratte che definiscono i contratti richiesti dal Core.
+    \item \textbf{Adapters}: implementazioni concrete dei Ports e adattatori di ingresso HTTP.
+\end{itemize}
+
+\noindent\textbf{Vista di insieme:} il diagramma UML esagonale evidenzia la separazione tra controller (ingresso), servizi di dominio (Core), ports applicative e adapter infrastrutturali (PostgreSQL e OpenAI), con composizione delle dipendenze nel punto di bootstrap (\texttt{main.py}).
+
+\begin{figure}[H]
+    \centering
+    \href{https://ibb.co/pBMSfSX6}{\includegraphics[width=1\textwidth]{componenti_specifiche_tecniche/architetturalogica/esagonale_uml_drawio.png}}
+    \caption{Architettura logica backend secondo il modello esagonale (Ports and Adapters). (\href{https://ibb.co/pBMSfSX6}{Visualizza a risoluzione piena originale})}
+    \label{fig:esagonale-architettura-logica}
+\end{figure}
+
+\subsubsection{Realizzazione}
+Il Core opera operando esclusivamente su interfacce e oggetti di dominio, senza dipendere direttamente dai dettagli dei framework. Per dimostrare l'uso rigoroso del pattern Ports and Adapters, vengono applicati i seguenti principi ai confini del sistema:
+\begin{itemize}
+    \item \textbf{Adattamento in ingresso:} i controller FastAPI agiscono da \textit{driving adapters}. Ricevute le richieste esterne, il Controller non passa la rappresentazione grezza (es. il payload JSON in arrivo) direttamente al Service. Al contrario, valida e adatta l'input in interfacce di \textit{Use Case} (DTO o oggetti applicativi) immediatamente fruibili dalla logica di business.
+    \item \textbf{Adattamento in uscita:} il Service contiene la pura logica di dominio. Quando necessita di interfacciarsi con il database o servizi esterni, passa esclusivamente oggetti di dominio alle porte sottostanti (es. interfacce dei repository), senza dipendere in alcun modo da rappresentazioni esterne, query SQL o librerie tecnologiche. Gli adapter infrastrutturali (es. i driver per PostgreSQL o OpenAI) implementano queste porte ricevendo e convertendo l'oggetto di dominio nel formato tecnico richiesto.
+\end{itemize}
+Questa struttura svincola del tutto il Core dalla tecnologia, assicurando un alto grado di testabilità in isolamento.
+
+% -------------------------------------------------------------------
+\subsection{Frontend}
+
+\subsubsection{Esigenze Architetturali}
+Il frontend richiede una separazione netta tra presentazione, stato applicativo e accesso ai dati, con supporto ad aggiornamenti real-time e interazioni frequenti sul carrello senza degradare la reattivita' dell'interfaccia.
+
+\subsubsection{Soluzione Architetturale e Separazione delle Responsabilità}
+Il frontend adotta una \textbf{Component-Based Architecture} organizzata applicando rigorosamente una scomposizione a livelli delle responsabilità:
+\begin{itemize}
+    \item \textbf{Presentation Logic}: I componenti puri (\textit{dumb components} all'interno di \texttt{components/ui/}) ricevono dati dai livelli superiori e gestiscono il rendering dell'interfaccia utente. Non prendono decisioni di business.
+    \item \textbf{View Logic}: Componenti funzionali (\textit{smart components} o pages in \texttt{app/}) che formattano i dati, gestiscono lo stato dell'interazione locale e coordinano la renderizzazione.
+    \item \textbf{Application Logic (State e Orchestrazione)}: Implementata nei custom hook (\texttt{hooks/}) e nei context provider (\texttt{contexts/} come \texttt{CartContext}). Questi orchestrano eventi asincroni e mantengono coerente lo stato locale del sistema.
+    \item \textbf{Business Logic / API Abstraction Layer}: Racchiusa all'interno dei file di servizio in \texttt{services/} (es. \texttt{cartService}, \texttt{authService}). Questi agiscono come \textit{Facade}, mappando modelli di dominio ai relativi endpoint.
+\end{itemize}
+
+I pattern principali adottati nel disaccoppiamento di tali logiche includono:
+\begin{itemize}
+    \item \textbf{Facade}: il layer \texttt{services/} incapsula la comunicazione HTTP, isolando i componenti UI dai dettagli di rete.
+    \item \textbf{Observer}: Context API e flussi SSE propagano gli aggiornamenti di stato ai componenti sottoscritti.
+    \item \textbf{Singleton (module-level)}: i servizi API sono condivisi come istanze di modulo, con configurazione centralizzata.
+\end{itemize}
+
+\subsubsection{Realizzazione}
+Per la gestione dello stato globale è stata adottata la \textbf{React Context API}, con separazione in due provider principali e un service layer dedicato:
+\begin{itemize}
+    \item \textbf{SessionContext}: gestisce identita' utente (\texttt{sessionId}), cronologia dei messaggi e ciclo di vita della sessione; integra l'hook \texttt{useSSE} per ricevere aggiornamenti real-time (es. messaggi operatore) e sincronizzarli nello stato condiviso.
+    \item \textbf{CartContext}: gestisce lo stato del carrello con strategia \textit{Optimistic UI}; le modifiche alle quantita' vengono rese subito in interfaccia e inviate al backend con \textit{debounce} a 600ms, per ridurre burst di chiamate su interazioni rapide.
+    \item \textbf{Servizi disaccoppiati}: la comunicazione API e' incapsulata in \texttt{services/}, cosi' i context restano focalizzati su stato, reattivita' e sincronizzazione.
+\end{itemize}
+
+Questa soluzione e' stata scelta per mantenere un equilibrio tra leggerezza e robustezza: semplicit\`a implementativa coerente con un MVP, esperienza utente fluida grazie agli aggiornamenti ottimistici, propagazione immediata degli eventi server via SSE e maggiore modularita' nel testing (componenti dipendenti da sessione e carrello testabili in modo indipendente).
+
+\subsubsection{Overview Globale dei Componenti}
+Il seguente Component Diagram strutturale illustra la mappa delle dipendenze dell'intero applicativo React/Next.js. Esso rende visiva la netta separazione delle responsabilità (Presentation UI, State Contexts, Hooks per l'asincronia e Service Facade per il proxy HTTP/SSE) documentando il flusso unidirezionale delle chiamate dalla View verso i driver backend.
+
+\begin{figure}[H]
+    \centering
+    \href{https://ibb.co/0VM4GkB7}{\includegraphics[width=1\textwidth]{componenti_specifiche_tecniche/architetturalogica/frontend_component_diagram.png}}
+    \caption{Component Diagram globale dell'architettura logica Frontend. (\href{https://ibb.co/0VM4GkB7}{Visualizza a risoluzione piena originale})}
+    \label{fig:frontend-component-diagram}
+\end{figure}
+
+% -------------------------------------------------------------------
+\subsection{Design pattern adottati}
+
+Questa sottosezione mantiene una vista problem-oriented, separando i pattern effettivamente adottati nel backend e nel frontend.
+
+\subsubsection{Pattern backend}
+
+\paragraph{Dependency Injection}
+\begin{itemize}
+    \item \textbf{Esigenze Architetturali:} I servizi applicativi devono essere testabili e sostituibili senza modificare controller e logica di dominio. Creare dipendenze "in linea" nei componenti avrebbe introdotto accoppiamento forte e inizializzazioni duplicate.
+    \item \textbf{Soluzione Architetturale:} Le dipendenze vengono composte nel punto di avvio e iniettate nei componenti tramite provider del framework, mantenendo separati il wiring infrastrutturale e il comportamento di dominio.
+    \item \textbf{Realizzazione:} Controller e servizi ricevono istanze gia' risolte; in collaudo e test si possono iniettare implementazioni alternative (mock/stub) senza intervenire sul codice applicativo.
+\end{itemize}
+
+\paragraph{Principi SOLID rispettati}
+L'iniezione delle dipendenze applica il \textbf{Dependency Inversion Principle}: i servizi dipendono da astrazioni e non da classi concrete. Inoltre favorisce l'\textbf{Open/Closed Principle}, poiche' nuove implementazioni possono essere introdotte nel composition root senza modificare la logica di dominio esistente.
+
+\noindent\textbf{Esempio:} il composition root in \texttt{main.py} costruisce adapter e broadcaster, quindi inietta le dipendenze nei servizi applicativi (\texttt{CartService}, \texttt{AuthService}, \texttt{ConversationService}). Nei test le dipendenze possono essere sostituite (es. \texttt{FakeSessionManager}) senza modificare la logica di dominio.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.80\textwidth]{componenti_specifiche_tecniche/architetturalogica/di_uml.png}
+    \caption{Pattern Dependency Injection: composizione nel bootstrap e iniezione nei servizi applicativi.}
+    \label{fig:di-architettura-logica}
+\end{figure}
+
+\paragraph{Repository}
+\begin{itemize}
+    \item \textbf{Esigenze Architetturali:} La logica di business non deve dipendere da query SQL, transazioni e dettagli di schema, per evitare propagazione delle modifiche infrastrutturali nel Core.
+    \item \textbf{Soluzione Architetturale:} L'accesso ai dati e' mediato da interfacce repository orientate ai casi d'uso (lettura/scrittura ordini, sessioni, ticket), cosi' da mantenere stabile il contratto visto dal dominio.
+    \item \textbf{Realizzazione:} I servizi lavorano su repository astratti; gli adapter concreti gestiscono SQL, mapping e vincoli di persistenza, preservando il disaccoppiamento tra dominio e DBMS.
+\end{itemize}
+
+\paragraph{Principi SOLID rispettati}
+Il pattern supporta il \textbf{Single Responsibility Principle}: la logica applicativa resta distinta dalla persistenza. Rafforza anche il \textbf{Dependency Inversion Principle}, perche' i service dipendono dal contratto repository; il dettaglio tecnologico (PostgreSQL, mock) e' confinato negli adapter concreti.
+
+\noindent\textbf{Esempio:} \texttt{AuthService} dipende da \texttt{IUserRepository} e usa il contratto per login/lookup utenze. L'implementazione puo' essere \texttt{PostgresAdapter} in esercizio o \texttt{FakeUserRepository} in test: il servizio mantiene invariata l'interfaccia d'uso e resta indipendente dalla persistenza.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.76\textwidth]{componenti_specifiche_tecniche/architetturalogica/repo_uml.png}
+    \caption{Pattern Repository: \texttt{AuthService} dipende da \texttt{IUserRepository}, con implementazioni sostituibili.}
+    \label{fig:repository-architettura-logica}
+\end{figure}
+
+\paragraph{Adapter (Ports and Adapters)}
+\begin{itemize}
+    \item \textbf{Esigenze Architetturali:} Il Core deve integrare database e servizi AI senza conoscere SDK, payload e protocolli specifici dei provider.
+    \item \textbf{Soluzione Architetturale:} Le Ports definiscono contratti stabili; i driven adapter traducono le operazioni di dominio in chiamate tecniche verso le integrazioni esterne.
+    \item \textbf{Realizzazione:} Nel caso AI, \texttt{ConversationService} dipende da \texttt{IAIClient} e non dall'SDK OpenAI. \texttt{OpenAIAdapter} implementa l'interfaccia e converte i metodi applicativi (\texttt{interpret\_intent}, \texttt{transcribe\_audio}, \texttt{generate\_embedding}) nelle chiamate specifiche di \texttt{AsyncOpenAI}.
+\end{itemize}
+
+\paragraph{Principi SOLID rispettati}
+L'Adapter concretizza il \textbf{Dependency Inversion Principle} mantenendo stabile il contratto verso il dominio. In ottica \textbf{Open/Closed Principle}, il sistema puo' integrare nuovi provider o protocolli aggiungendo adapter dedicati senza modificare i servizi core.
+
+\noindent\textbf{Esempio:} il diagramma mostra un adattamento \textit{port-to-sdk}: il contratto applicativo resta stabile nel Core, mentre la traduzione dei payload e delle API del provider e' confinata nell'adapter. In questo modo, un cambio di provider AI impatta il layer di integrazione senza modificare il servizio di dominio.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.76\textwidth]{componenti_specifiche_tecniche/architetturalogica/adapter_uml.png}
+    \caption{Pattern Adapter applicato all'integrazione AI tramite \texttt{OpenAIAdapter}.}
+    \label{fig:adapter-architettura-logica}
+\end{figure}
+
+\subsubsection{Pattern frontend}
+
+\paragraph{Facade (Service Layer frontend)}
+\begin{itemize}
+    \item \textbf{Esigenze Architetturali:} La UI deve restare disaccoppiata da protocollo HTTP, costruzione URL, header di sicurezza, cookie CSRF e gestione degli errori applicativi.
+    \item \textbf{Soluzione Architetturale:} Il Service Layer in \texttt{services/} espone servizi specialistici (es. \texttt{cartService}, \texttt{authService}, \texttt{orderService}) che agiscono da Facade verso le API backend.
+    \item \textbf{Realizzazione:} I componenti React invocano operazioni di dominio ad alto livello; internamente i servizi orchestrano utilita' di basso livello (\texttt{apiFetch}, \texttt{buildApiUrl}, \texttt{getApiBaseUrl}, \texttt{getApiErrorMessage}) e uniformano il trattamento delle risposte HTTP non valide.
+\end{itemize}
+
+\paragraph{Principi SOLID rispettati}
+La Facade favorisce il \textbf{Single Responsibility Principle}: i componenti UI gestiscono presentazione e stato locale, mentre il layer servizi centralizza la comunicazione remota. L'approccio rispetta anche l'\textbf{Interface Segregation Principle}, esponendo API frontend mirate per casi d'uso specifici.
+
+\noindent\textbf{Caso d'uso (\texttt{cartService}):} operazioni come \texttt{addItem}, \texttt{removeItem} e \texttt{updateQty} coordinano routing endpoint, serializzazione parametri (es. \texttt{cod\_art}, \texttt{quantity}) e invocazione rete. L'incapsulamento riduce la superficie di modifica: variazioni degli endpoint o dello schema di risposta sono localizzate nel solo Service Layer.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{componenti_specifiche_tecniche/architetturalogica/facade_uml.png}
+    \caption{Pattern Facade nel frontend: \texttt{cartService} come interfaccia semplificata tra UI e client API.}
+    \label{fig:facade-architettura-logica}
+\end{figure}
+
+\paragraph{Observer (SSE broadcaster + observer client)}
+\begin{itemize}
+    \item \textbf{Esigenze Architetturali:} Gli aggiornamenti real-time di sessione (es. carrello) devono essere propagati a piu' consumer in modo coerente e senza polling.
+    \item \textbf{Soluzione Architetturale:} Il subject e' \texttt{SSEBroadcaster}, che mantiene i subscriber per sessione; gli observer implementano \texttt{IObserver} e ricevono eventi tramite \texttt{update(event)}.
+    \item \textbf{Realizzazione:} L'implementazione adottata e' unica e coincide con il diagramma: \texttt{CartService} emette eventi verso \texttt{SSEBroadcaster}, mentre \texttt{SSEClientQueue} materializza la coda asincrona del singolo subscriber SSE.
+\end{itemize}
+
+\paragraph{Principi SOLID rispettati}
+Il pattern rispetta l'\textbf{Open/Closed Principle}: nuovi observer possono essere introdotti senza modificare il subject. Inoltre supporta il \textbf{Dependency Inversion Principle}, perche' il broadcaster interagisce tramite contratto \texttt{IObserver} anziche' dipendere da consumer concreti.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{componenti_specifiche_tecniche/architetturalogica/observer_uml.png}
+    \caption{Pattern Observer per propagazione eventi real-time via SSE.}
+    \label{fig:observer-architettura-logica}
+\end{figure}
+
+\paragraph{Singleton (module-level services)}
+\begin{itemize}
+    \item \textbf{Esigenze Architetturali:} Le chiamate API devono mantenere configurazione uniforme ed evitare duplicazioni di client e logica di rete.
+    \item \textbf{Soluzione Architetturale:} I servizi sono esportati come istanze condivise a livello modulo, con configurazione centralizzata del client HTTP.
+    \item \textbf{Realizzazione:} L'interfaccia utilizza una singola fonte di configurazione per autenticazione, gestione errori e politiche di chiamata, migliorando coerenza e manutenibilita'.
+\end{itemize}
+
+\paragraph{Principi SOLID rispettati}
+L'uso controllato del Singleton a livello modulo mantiene una responsabilita' unica di configurazione e ciclo vita del client (\textbf{Single Responsibility Principle}). I componenti consumatori restano disaccoppiati dal dettaglio di inizializzazione e dipendono da un servizio gia' configurato, coerente con il \textbf{Dependency Inversion Principle} applicativo.
+
+\noindent\textbf{Caso d'uso (\texttt{cartService} + \texttt{CartProvider}):} il modulo \texttt{cartService} e' esportato come istanza condivisa e centralizza la comunicazione HTTP con il backend. In parallelo, \texttt{CartProvider} gestisce l'unica sorgente di verita' dello stato carrello per la sessione utente: la funzione \texttt{updateQty} applica aggiornamento ottimistico locale, annulla eventuali timer gia' attivi per lo stesso prodotto e persiste la modifica dopo una finestra di debounce di 600 ms. In caso di errore remoto, il provider riallinea lo stato ricaricando i dati reali dal server.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{componenti_specifiche_tecniche/architetturalogica/singleton_uml.png}
+    \caption{Pattern Singleton nel frontend: \texttt{cartService} come servizio condiviso e \texttt{CartProvider} come sorgente unica dello stato carrello.}
+    \label{fig:singleton-architettura-logica}
+\end{figure}
+
+\paragraph{Strategie applicative: Optimistic UI e Debounce}
+\begin{itemize}
+    \item \textbf{Esigenze Architetturali:} Le operazioni frequenti sul carrello devono restare reattive lato utente, ma senza generare picchi di richieste concorrenti verso il backend.
+    \item \textbf{Soluzione Architetturale:} Lo stato locale viene aggiornato in modo ottimistico e le chiamate ripetute in rapida sequenza vengono aggregate tramite debounce.
+    \item \textbf{Realizzazione:} Le modifiche sono visibili subito in UI; in caso di errore viene eseguito rollback/sincronizzazione, mentre gli update ravvicinati vengono consolidati in una richiesta finale.
+\end{itemize}
+
+% ===================================================================
+%  8. DATABASE
+% ===================================================================
+\newpage
+\section{Database}
+
+Questa sezione descrive l'architettura dei dati del sistema \textit{SmartOrder}, definendo il ruolo del database, le macro-aree informative gestite, i vincoli di integrità applicati e le modalità di interscambio dati con il sistema gestionale esterno.
+
+\subsection{Ruolo del database nel sistema}
+Il sistema si avvale di \textbf{PostgreSQL} (in hosting cloud su Railway) come unica fonte dati transazionale (Single Source of Truth) per il backend FastAPI. 
+Il database relazionale assolve a tre ruoli fondamentali:
+\begin{itemize}
+    \item \textbf{Persistenza Transazionale:} memorizza in modo consistente lo stato delle sessioni, dei carrelli in lavorazione, dei ticket di assistenza e lo storico degli ordini consolidati.
+    \item \textbf{Replica del Catalogo ERP:} ospita le tabelle anagrafiche dei prodotti e dei clienti sincronizzate dal gestionale aziendale, permettendo al sistema di operare con logiche di business locali (es. verifica assortimenti).
+    \item \textbf{Motore di Ricerca Vettoriale:} tramite l'estensione \texttt{pgvector}, il database archivia gli \textit{embeddings} generati dai modelli LLM e risolve le query semantiche di "Vector Search", mappando le descrizioni in linguaggio naturale ai codici articolo reali.
+\end{itemize}
+
+\subsection{Macro-aree informative}
+Il modello relazionale del database è logicamente suddiviso in macro-aree, ciascuna responsabile di un dominio specifico dell'applicazione.
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabularx}{\textwidth}{@{}lX@{}}
+        \toprule
+        \textbf{Area Logica} & \textbf{Contenuto principale e Responsabilità} \\
+        \midrule
+        \textbf{Identità e Accesso} & Entità relative agli utenti, ruoli (Cliente, Operatore), credenziali crittografate (hash scrypt) e gestione dei token/sessioni attive. \\
+        \textbf{Catalogo e Assortimento} & Anagrafica articoli (\texttt{anaart}), metadati descrittivi, \textit{embeddings} vettoriali per la ricerca semantica e tabelle di visibilità/assortimento per singolo cliente (\texttt{asscli}). \\
+        \textbf{Carrello e Ordini} & Record transazionali che rappresentano il carrello corrente della sessione, le singole righe prodotto con le relative quantità e lo storico degli ordini finalizzati pronti per la consultazione (Storico Ordini). \\
+        \textbf{Ticketing e Chat} & Entità per la gestione dell'assistenza (\textit{Human-in-the-loop}). Include i record dei Ticket (stati: "Aperto", "In lavorazione", "Chiuso"), l'assegnazione all'Operatore (Lock) e il tracciato cronologico (Log) dei messaggi di chat scambiati. \\
+        \textbf{Log AI e Ottimizzazione} & Archiviazione diagnostica delle interazioni con il modello LLM. Comprende il \textit{Confidence Score}, i feedback degli utenti utili ad un possibile \textit{retraining}. \\
+        \bottomrule
+    \end{tabularx}
+    \caption{Aree logiche del modello dati relazionale.}
+\end{table}
+
+\subsection{Struttura delle principali tabelle}
+In base allo schema SQL in uso, di seguito è riportata la struttura e il significato dei campi più rilevanti per le entità centrali del sistema.
+
+\paragraph{Anagrafica Articoli (\texttt{anaart})}
+Tabella fondamentale per la gestione del catalogo ordini:
+\begin{itemize}
+    \item \texttt{cod\_art}: codice articolo (Primary Key).
+    \item \texttt{des\_art}: descrizione estesa del prodotto.
+    \item \texttt{stato}: stato logico di disponibilità del prodotto.
+    \item \texttt{linea}: indica il settore reale a cui appartiene il prodotto (es. acqua, vino, ecc.).
+    \item \texttt{famiglia}: indica la fascia o qualità del prodotto (es. premium, standard, ecc.).
+    \item \texttt{des\_um}: unità di misura base di vendita (es. casse, cartone).
+    \item \texttt{des\_tipo\_um}: unità di misura dei singoli prodotti all'interno della singola confezione (es. pezzi, bottiglie).
+    \item \texttt{pezzi\_conf}: quantità calcolata in \texttt{des\_tipo\_um} situata all'interno della misura base \texttt{des\_um}.
+    \item \texttt{peso\_netto\_conf}: peso netto per singola unità di \texttt{des\_um}.
+\end{itemize}
+\textit{Nota operativa:} L'attributo nativo \texttt{settore} presente a schema non contiene in realtà i valori di business indicanti il settore del prodotto, i quali si trovano invece nel campo \texttt{linea}.
+
+\paragraph{Sessioni e Chat (\texttt{chat\_sessions}, \texttt{chat\_messages})}
+Il nucleo conversazionale salva lo stato delle interazioni in maniera persistente:
+\begin{itemize}
+    \item \texttt{status}: indica se la sessione è \textit{active}, \textit{completed} o \textit{archived}.
+    \item \texttt{sender} (\texttt{chat\_messages}): traccia l'emittente esatto del messaggio tra \textit{user}, \textit{ai}, \textit{operator} e \textit{system}.
+    \item \texttt{image\_data} e \texttt{ocr\_text}: permettono l'invio di ordini multimodali memorizzando un'immagine decodificata in base64 e l'interpretazione testuale del servizio LLM associato.
+\end{itemize}
+
+\paragraph{Carrello (\texttt{cart\_items})}
+Le righe del carrello in elaborazione prevedono una cronologia di modifica e confidenza:
+\begin{itemize}
+    \item \texttt{cod\_art} e \texttt{qta}: riferimento all'articolo in assortimento e alle quantità richieste dall'utente.
+    \item \texttt{source} e \texttt{last\_updated\_by}: attribuiscono l'inserimento/modifica iniziale e finale a un utente, all'intelligenza artificiale o a un operatore.
+    \item \texttt{ai\_confidence}: livello di certezza estrapolato dal LLM (fondamentale per far scattare controlli automatizzati o trigger per il backoffice in caso di bassi valori).
+\end{itemize}
+
+\paragraph{Ordini Finalizzati (\texttt{orders}, \texttt{order\_items})}
+Rappresentano la formalizzazione del carrello al netto delle modifiche di \textit{Human-in-the-Loop}. Gli ordini mantengono un tracciamento dei campi \texttt{source} per finalità di audit. Troviamo inoltre il flag di stato \texttt{esportato} per gestire l'avvenuta sincronizzazione JSON.
+
+\paragraph{Identità Temporanee e Persistenti (\texttt{app\_users}, \texttt{anacli}, \texttt{asscli})}
+\begin{itemize}
+    \item \texttt{app\_users}: include il ruolo autenticato (\textit{customer} o \textit{admin}), il collegamento al cliente via \texttt{cod\_cli}, e soprattutto il campo \texttt{export\_folder} che specifica il path assoluto della cartella di rete dove l'operatore desidera ricevere i file JSON degli ordini finalizzati. Questo path è configurabile per operatore ed è fondamentale per l'integrazione ERP distribuita.
+    \item \texttt{anacli}: generalità e ragione sociale del cliente.
+    \item \texttt{asscli}: tabella ponte di assortimento (collega \texttt{cod\_cli} e \texttt{cod\_art}). Esclusivamente quanto è qui presente risulta ordinabile dal Cliente interessato.
+\end{itemize}
+
+\paragraph{Gestione Ticket e Lock Operatore (\texttt{tickets})}
+Gestisce la supervisione manuale di casi a bassa confidence AI o anomalie:
+\begin{itemize}
+    \item \texttt{status}: stati discreti ("aperto", "in\_lavorazione", "chiuso") con vincoli \textit{CHECK}.
+    \item \texttt{locked\_by}: ID dell'operatore che ha preso in carico il ticket. Implementa un meccanismo di pessimistic locking per prevenire race condition: un operatore non può modificare un ticket già bloccato da un altro operatore.
+    \item \texttt{created\_at}, \texttt{updated\_at}: timestamp per audit trail e metriche di SLA.
+\end{itemize}
+
+\paragraph{Feedback e Ottimizzazione LLM (\texttt{message\_feedbacks})}
+Registra il feedback implicito ed esplicito sui messaggi AI generati:
+\begin{itemize}
+    \item \texttt{is\_positive}: valore booleano che indica se l'utente ha trovato utile il messaggio.
+    \item \texttt{reason\_category}: categorizzazione del feedback (es. "errato", "incomplete", "inappropriate").
+    \item \texttt{comment}: note testuali dell'utente. Questi dati alimentano il processo di retraining e fine-tuning del modello LLM.
+    \item Vincolo \textit{UNIQUE}(\texttt{message\_id}, \texttt{user\_id}): ogni utente può fornire un solo feedback per messaggio, evitando duplicati.
+\end{itemize}
+
+\paragraph{Embedding Vettoriali per Ricerca Semantica (\texttt{product\_embeddings})}
+Archivia gli embedding generati dai modelli LLM per abilitare la vector search:
+\begin{itemize}
+    \item \texttt{embedding}: vettore multidimensionale memorizzato tramite l'estensione PostgreSQL \texttt{pgvector}. Ciascun embedding rappresenta la "semantica" testuale dell'articolo (descrizione, linea, famiglia).
+    \item \texttt{created\_at}: timestamp di generazione dell'embedding (utile per invalidazione e rigenerazione periodica).
+    \item Utilizzo: quando l'utente descrive un prodotto in linguaggio naturale, il sistema genera un embedding della query e cerca i \textit{nearest neighbors} nello spazio vettoriale per recuperare articoli semanticamente simili, anche se con descrizioni non letteralmente corrispondenti.
+\end{itemize}
+
+\subsection{Uso dei log per analisi operativa e miglioramento}
+I dati persistiti nel database non sono utilizzati solo per finalità transazionali, ma potranno anche essere usate per monitoraggio, audit e miglioramento continuo del sistema:
+\begin{itemize}
+    \item \textbf{Cronologia messaggi (\texttt{chat\_messages})}: consente di ricostruire il contesto conversazionale end-to-end, fondamentale per comprendere richieste ellittiche e analizzare casi anomali in fase di debug.
+    \item \textbf{Metadati di confidenza (\texttt{metadata} dei messaggi AI)}: permettono di valutare come il modello ha selezionato articoli e con quale affidabilita', supportando analisi causale degli errori di suggerimento.
+    \item \textbf{Feedback utenti (\texttt{message\_feedbacks})}: rendono misurabile la qualita' percepita delle risposte AI e costituiscono un dataset supervisionato per prioritizzare ottimizzazioni future (es. RLHF).
+    \item \textbf{Stato carrello e ordini (\texttt{cart\_items}, \texttt{orders}, \texttt{order\_items})}: abilita audit trail operativo su chi ha modificato cosa e quando, utile per verifica di conformità.
+    \item \textbf{Ticket di intervento (\texttt{tickets})}: forniscono indicatori sui limiti dell'automazione (frequenza takeover, tempi di gestione), utili per orientare backlog tecnico e miglioramenti di prodotto.
+\end{itemize}
+
+In prospettiva, la combinazione di questi log permette di definire KPI tecnici e di processo (precisione suggerimenti, tempo medio takeover, tasso correzioni manuali) utili per guidare decisioni di evoluzione architetturale.
+
+\subsection{Strategie di indicizzazione e performance}
+Per garantire responsiveness della ricerca e delle operazioni transazionali, il schema implementa indici compositi e strategici:
+\begin{itemize}
+    \item \textbf{Indici Compositi su Sessioni e Chat}: \texttt{idx\_chat\_sessions\_user\_status} (user\_id, status) accelera il retrieval delle sessioni attive di un utente. \texttt{idx\_chat\_messages\_session\_id} ottimizza il caricamento della cronologia.
+    \item \textbf{Indici su Feedback}: \texttt{idx\_message\_feedbacks\_message\_user\_created} permette query efficienti sul feedback per singolo messaggio, utente e timestamp, fondamentali per il report dei contributi.
+    \item \textbf{Vincolo Unico Composito}: \texttt{uq\_cart\_session\_product} previene inserimento duplicato di uno stesso articolo in un carrello nella medesima sessione.
+    \item \textbf{Indice Vettoriale}: \texttt{idx\_product\_embeddings\_cosine} utilizza l'algoritmo IVFFlat (Inverted File Flat) con 100 liste per la ricerca vettoriale efficiente su high-dimensional space. L'operatore di distanza è la "cosine distance", appropriato per embedding semantici normalizzati.
+\end{itemize}
+
+\subsection{Vincoli dati rilevanti}
+Per garantire la robustezza del sistema e prevenire l'invio di ordini commercialmente invalidi al sistema ERP, il database impone rigorosi vincoli di integrità e di dominio:
+\begin{itemize}
+    \item \textbf{Vincolo di Assortimento (Foreign Key logica):} un prodotto può essere inserito nel carrello di una sessione solo se esiste una corrispondenza valida nella tabella degli assortimenti autorizzati (\texttt{asscli}) per il Cliente in esame.
+    \item \textbf{Vincolo di Disponibilità:} controlli a livello database (\texttt{anaart}) impediscono l'immissione in ordine di articoli marcati con stato "sospeso" o "non disponibile".
+    \item \textbf{Integrità Referenziale Standard:} chiavi esterne (Foreign Keys) con regole di propagazione \textit{ON DELETE CASCADE/RICT} collegano indissolubilmente le righe dell'ordine all'ID Ordine padre e alla relativa anagrafica Cliente, prevenendo record orfani.
+    \item \textbf{Vincolo di Quantità Commerciale:} i campi quantitativi delle righe ordine possiedono vincoli (\textit{CHECK constraints}) per impedire valori nulli, negativi o incompatibili con i multipli di vendita (es. logica a "casse").
+\end{itemize}
+
+\subsection{Output verso ERP}
+Il database di SmartOrder funge da ambiente di \textit{staging} e composizione. Al termine del processo di checkout, i dati transazionali (intestazione ordine, righe, quantità e ID cliente) estratti dalle tabelle relazionali subiscono un processo di serializzazione. 
+
+Il sistema genera un \textbf{payload strutturato in formato JSON}. Questo file viene immediatamente depositato in una cartella condivisa nel computer, che rappresenta il reale punto di aggancio e consegna formale verso il sistema ERP aziendale.
+
+\subsubsection{Struttura del payload JSON esportato}
+L'output e' un oggetto completo che include testata ordine, dettaglio righe e contesto conversazionale. Una forma semplificata del tracciato e' la seguente:
+
+\begin{lstlisting}[language=json,caption={Struttura logica del JSON esportato verso ERP.},label={lst:json-export-erp}]
+{
+    "order_id": "ORD-2026-000123",
+    "cod_cli": "CLI0456",
+    "data_ord": "2026-04-14T10:22:31Z",
+    "session_id": "sess_7f8b9c",
+    "items": [
+        {
+            "cod_art": "A001",
+            "qta_ordinata": 4,
+            "des_art": "Acqua Naturale 1L",
+            "des_um": "casse",
+            "linea": "beverage",
+            "famiglia": "standard",
+            "source": "ai",
+            "ai_confidence": 0.93
+        }
+    ],
+    "messages": [
+        {
+            "sender": "user",
+            "content": "Aggiungi altre 2 casse",
+            "feedback": null
+        }
+    ]
+}
+\end{lstlisting}
+
+\noindent\textbf{Campi principali:}
+\begin{itemize}
+        \item \textbf{Testata ordine}: \texttt{order\_id}, \texttt{cod\_cli}, \texttt{data\_ord}, \texttt{session\_id} identificano in modo univoco documento, cliente e contesto operativo.
+        \item \textbf{Dettaglio articoli (\texttt{items})}: ogni riga include identificativi ERP (\texttt{cod\_art}), quantita' (\texttt{qta\_ordinata}), metadati descrittivi e attributi di provenienza/affidabilita' (\texttt{source}, \texttt{ai\_confidence}).
+        \item \textbf{Contesto conversazionale (\texttt{messages})}: storico dei messaggi e dei feedback associati, utile per tracciabilita' delle decisioni e verifica ex-post.
+\end{itemize}
+
+\noindent\textbf{Motivazioni architetturali (Enterprise Ready):}
+\begin{itemize}
+        \item \textbf{Integrazione standard}: JSON e' interoperabile con ERP moderni e processi ETL/ELT senza conversioni proprietarie.
+        \item \textbf{Mappatura diretta}: l'uso di \texttt{cod\_cli} e \texttt{cod\_art} consente caricamento deterministico verso anagrafiche gestionali esistenti.
+        \item \textbf{Automazione batch}: la scrittura in cartella condivisa permette import incrementale da parte del gestionale senza inserimento manuale.
+        \item \textbf{Audit e compliance}: campi \texttt{source}, \texttt{ai\_confidence} e \texttt{messages} rendono spiegabile la formazione dell'ordine.
+        \item \textbf{Separazione delle responsabilita'}: SmartOrder normalizza e valida il dato; l'ERP mantiene i processi amministrativi e logistici a valle.
+\end{itemize}
+
+\textit{Nota architetturale - Disaccoppiamento tramite Adapter:} In conformità al pattern Ports and Adapters, il Core applicativo di SmartOrder \textbf{non scrive mai direttamente} nel database dell'ERP. Invece, i servizi di dominio delegano la responsabilità dell'output a un \textbf{driven adapter specializzato} (Export Adapter). Questo adapter:
+\begin{itemize}
+    \item Riceve dal Core l'ordine strutturato come entità di dominio (pura logica di business).
+    \item Trasforma l'entità in un payload JSON conforme al formato atteso dal sistema gestionale.
+    \item Scrive il file nella cartella condivisa del File System.
+\end{itemize}
+Questo disaccoppiamento consente evoluzione indipendente: se domani il sistema ERP cambia formato o destinazione (es. database diretti, API , message queue), basterà sostituire o estendere l'adapter senza toccare la logica di dominio o i servizi di business.
+
+% ===================================================================
+%  9. ARCHITETTURA DI DETTAGLIO
+% ===================================================================
+\newpage
+\section{Architettura di dettaglio}
+
+In questa sezione vengono descritti gli elementi di dettaglio architetturale del sistema, suddivisi per ambito backend e frontend.
+Per ciascun componente/classe/interfaccia sono riportati:
+\begin{itemize}
+    \item Titolo dell'elemento;
+    \item Descrizione della responsabilità;
+    \item Descrizione di attributi e metodi;
+    \item Diagramma UML dedicato.
+\end{itemize}
+
+\subsection{Backend - C4 Livello 4: Classi e interfacce}
+La sottosezione presenta classi e interfacce backend identificate nel C4 Livello 4.
+
+\input{Contenuti/componenti_specifiche_tecniche/backend_l4_controllers}
+\input{Contenuti/componenti_specifiche_tecniche/backend_l4_services}
+\input{Contenuti/componenti_specifiche_tecniche/backend_l4_domain}
+\input{Contenuti/componenti_specifiche_tecniche/backend_l4_ports}
+\input{Contenuti/componenti_specifiche_tecniche/backend_l4_adapters}
+
+\input{Contenuti/componenti_specifiche_tecniche/frontend_architettura_dettaglio}
+
+
+% ===================================================================
+%  3. STATO DEI REQUISITI FUNZIONALI
+% ===================================================================
+\newpage
+\section{Stato dei requisiti funzionali}
+
+Questa sezione riporta lo stato di implementazione dei requisiti funzionali derivati dall'ultima versione PB dell'Analisi dei Requisiti (v2.2). Per questa baseline, lo stato di ciascun requisito è indicato nella colonna \textbf{Stato} e tutti i requisiti obbligatori sono stati IMPLEMENTATI.
+
+\begin{figure}[H]
+    \centering
+    \small
+    \textbf{Requisiti funzionali obbligatori}
+    \\[0.5cm]
+    \begin{tikzpicture}[scale=1.2]
+        % Pie chart circle
+        \draw[line width=0.5pt] (0,0) circle (2cm);
+        
+        % Implemented segment (blue!60, 360 degrees = full circle)
+        \fill[blue!60, draw=blue!80] (0,0) circle (2cm);
+
+        
+        % Center circle for donut effect
+        \fill[white] (0,0) circle (1.2cm);
+        
+        % Implemented percentage text
+        \node at (0,0) {\textbf{\Large 100\%}};
+        \node at (0,-0.5) {\small Implementati};
+        
+        % External labels
+        \node[anchor=west] at (2.5, 1) {\textbf{68/68 Implementati}};
+        \node[anchor=west] at (2.5, 0) {\small\color{gray}Funzionali};
+        \node[anchor=west] at (2.5, -1) {\textbf{0/68 Non Implementati}};
+    \end{tikzpicture}
+    
+    \vspace{0.5cm}
+    
+    \raggedright
+    \textit{Nota:} All'interno di questa baseline, tutti i 68 requisiti funzionali obbligatori sono stati completamente implementati e testati.
+    
+    \caption{Riepilogo stato di implementazione dei requisiti funzionali.}
+\end{figure}
+
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{|>{\raggedright\arraybackslash}p{0.15\textwidth}|>{\raggedright\arraybackslash}p{0.16\textwidth}|>{\raggedright\arraybackslash}p{0.45\textwidth}|>{\raggedright\arraybackslash}p{0.25\textwidth}|}
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{ID} & \textbf{Importanza} & \textbf{Descrizione} & \textbf{Stato} \\
+    \hline
+    \endfirsthead
+    \hline
+    \rowcolor[gray]{0.9}
+    \textbf{ID} & \textbf{Importanza} & \textbf{Descrizione} & \textbf{Stato} \\
+    \hline
+    \endhead
+    \texttt{RF-OB\_01} & Obbligatorio & Il sistema deve permettere all'Utente di inserire il proprio indirizzo email nel campo dedicato per effettuare il login. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_02} & Obbligatorio & Il sistema deve permettere all'Utente di inserire la propria password in modo oscurato tramite il campo dedicato. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_03} & Obbligatorio & Il sistema deve fornire un pulsante o comando per confermare l'accesso e inviare le credenziali per la validazione. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_04} & Obbligatorio & Il sistema deve mostrare un errore se l'email inserita non ha un formato valido. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_05} & Obbligatorio & Il sistema deve mostrare un errore se l'email inserita non e presente nel database locale. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_06} & Obbligatorio & Il sistema deve mostrare un errore se la combinazione di email e password e sbagliata. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_07} & Obbligatorio & Dopo un login valido, il sistema deve creare la sessione e far accedere l'utente alla propria area (Cliente o Operatore). & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_08} & Obbligatorio & Il sistema deve fornire un pulsante per effettuare il logout, invalidando e chiudendo la sessione corrente lato server. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_09} & Obbligatorio & Il sistema deve mostrare i dati aziendali del Cliente (ID e Ragione Sociale) in sola lettura. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_10} & Obbligatorio & Il sistema deve rendere accessibile la pagina Area Personale tramite un elemento di navigazione dedicato, consentendo all'Utente di consultare le informazioni del proprio profilo in base al ruolo assegnato. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_11} & Obbligatorio & Il sistema deve mostrare all'Utente il proprio indirizzo email in sola lettura. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_12} & Obbligatorio & Il sistema deve esporre un comando di contatto che, alla sua attivazione, invochi il protocollo URI \textit{mailto:} per aprire il client di posta elettronica nativo dell'Utente con il campo destinatario pre-compilato con l'email di supporto aziendale. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_13} & Obbligatorio & Il sistema deve mostrare in tempo reale tutti i messaggi inviati dall'Utente nella chat corrente. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_14} & Obbligatorio & Il sistema deve mostrare in tempo reale le risposte testuali scritte dall'AI o dall'Operatore di supporto. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_15} & Obbligatorio & Il sistema deve fornire un campo di testo per l'inserimento e l'invio di messaggi testuali nella chat. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_16} & Obbligatorio & Il sistema deve bloccare l'invio e mostrare un errore se il messaggio di testo supera il limite di caratteri. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_17} & Obbligatorio & Il sistema deve permettere all'Utente la registrazione e l'invio di messaggi vocali tramite il microfono del dispositivo. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_18} & Obbligatorio & Il sistema deve convertire l'audio in testo usando un modulo Speech-to-Text. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_19} & Obbligatorio & Il sistema deve bloccare l'invio e mostrare un errore se il file audio pesa piu di 10MB. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_20} & Obbligatorio & Il sistema deve richiedere esplicitamente i permessi hardware necessari (microfono, fotocamera) al momento del primo utilizzo della relativa funzionalita e, in caso di rifiuto da parte dell'Utente, mostrare un messaggio informativo che spieghi l'impossibilita di procedere senza tali permessi. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_21} & Obbligatorio & Il Cliente deve poter resettare la chat con l'AI e svuotare il carrello attuale. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_22} & Obbligatorio & Il sistema deve disabilitare il comando di reset della sessione qualora sia presente un ticket di assistenza in stato ``Aperto'' o ``In lavorazione'' per la sessione corrente, impedendo all'Utente di azzerare il contesto durante un'assistenza attiva. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_23} & Obbligatorio & L'AI (LLM) deve capire quali prodotti vuole l'utente e in che quantita leggendo/ascoltando il messaggio. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_24} & Obbligatorio & Il sistema deve cercare i prodotti nel database usando la ricerca vettoriale (Vector Search). & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_25} & Obbligatorio & Il sistema deve aggiungere in automatico i prodotti trovati al carrello se il Confidence Score calcolato dall'AI supera la soglia definita in \texttt{RP-OB\_03}. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_26} & Obbligatorio & Vincolo Assortimento: Il sistema deve ignorare i prodotti che non fanno parte del catalogo assegnato a quel Cliente (tabella \texttt{asscli}). & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_27} & Obbligatorio & Vincolo Stato: Il sistema deve impedire l'aggiunta di prodotti segnati come ``non disponibili'' o ``sospesi'' nel database (\texttt{anaart}). & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_28} & Obbligatorio & Deduzione Formati: L'AI deve convertire automaticamente le quantita richieste nelle giuste unita di vendita (es. da bottiglie a casse). & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_29} & Obbligatorio & Il sistema deve fornire una barra di ricerca per cercare manualmente i prodotti nel catalogo tramite input testuale. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_30} & Obbligatorio & Il sistema deve mostrare i risultati della ricerca in tempo reale (Live Search). & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_31} & Obbligatorio & Il sistema deve mostrare per ogni prodotto trovato: Nome, ID, Linea, Famiglia e Modalita di Vendita. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_32} & Obbligatorio & L'Utente deve poter cliccare su un risultato per decidere quanti pezzi acquistarne. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_33} & Obbligatorio & L'Utente deve poter modificare la quantita usando i tasti +/- o scrivendo direttamente il numero. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_34} & Obbligatorio & Il sistema deve correggere in automatico la quantita se l'utente inserisce numeri negativi, zero o troppo grandi. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_35} & Obbligatorio & L'Utente deve poter confermare l'aggiunta del prodotto al carrello della sessione corrente. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_36} & Obbligatorio & Il sistema deve mostrare un avviso di ``Carrello Vuoto'' se non ci sono prodotti inseriti. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_37} & Obbligatorio & Il sistema deve mostrare i dettagli logistici e le quantita di tutti i prodotti presenti nel carrello. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_38} & Obbligatorio & L'Utente deve poter sbloccare la riga di un prodotto nel carrello per poterne modificare la quantita. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_39} & Obbligatorio & L'Utente deve poter salvare la nuova quantita modificata per un prodotto nel carrello. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_40} & Obbligatorio & L'Utente deve poter rimuovere definitivamente un articolo dal carrello. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_41} & Obbligatorio & Il sistema deve disabilitare il pulsante per inviare l'ordine se il carrello e vuoto. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_42} & Obbligatorio & L'Utente (Cliente o Operatore in subentro) deve poter chiudere il carrello e inviare l'ordine definitivo. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_43} & Obbligatorio & Il sistema deve bloccare l'invio dell'ordine e segnalare gli errori se ci sono problemi con le regole del gestionale (es. prodotto fuori catalogo). & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_44} & Obbligatorio & Dopo l'invio dell'ordine, il sistema deve svuotare la sessione e reindirizzare l'Utente alla vista appropriata al proprio ruolo: il Cliente allo Storico Ordini, l'Operatore alla chiusura del ticket e dismissione della console di subentro. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_45} & Obbligatorio & Il sistema deve creare un file JSON formattato contenente tutti i dati dell'ordine appena chiuso. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_46} & Obbligatorio & Il Cliente deve poter visualizzare la lista dei propri ordini passati, ordinati per data. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_47} & Obbligatorio & Il sistema deve mostrare per ogni ordine storico: ID, Data, totale degli articoli e una piccola anteprima dei prodotti. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_48} & Obbligatorio & Il Cliente deve poter cliccare su un ordine passato per vederne tutti i dettagli logistici. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_49} & Obbligatorio & Il sistema deve mostrare in sola lettura la chat originale tra utente e AI che ha generato quell'ordine specifico. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_50} & Obbligatorio & Il Cliente deve poter richiedere l'aiuto di un operatore umano, mettendo in pausa l'AI. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_51} & Obbligatorio & L'Operatore deve poter accedere alla dashboard con la lista dei Ticket Aperti (richieste d'aiuto). & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_52} & Obbligatorio & Nella lista dei ticket, il sistema deve mostrare da quanto tempo il Cliente sta aspettando una risposta. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_53} & Obbligatorio & L'Operatore deve poter prendere in carico un ticket bloccandolo per gli altri colleghi (Lock) per aprire la console di assistenza. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_54} & Obbligatorio & L'Operatore deve poter scrivere e inviare messaggi in chat direttamente al Cliente per fornirgli assistenza. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_55} & Obbligatorio & L'Operatore deve poter usare la ricerca per aggiungere forzatamente prodotti al carrello del Cliente che sta aiutando. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_56} & Obbligatorio & L'Operatore deve poter modificare le quantita o rimuovere prodotti dal carrello del Cliente. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_57} & Obbligatorio & L'Operatore deve poter chiudere il ticket per segnare il problema come risolto e sbloccare la sessione (rimuovere il Lock). & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_58} & Obbligatorio & L'Utente (Cliente o Operatore) deve poter chiudere il ticket da solo se risolve il problema o non ha piu bisogno di aiuto. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_59} & Obbligatorio & L'Operatore deve poter accedere alla dashboard che mostra tutti gli ordini inviati da tutti i Clienti. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_60} & Obbligatorio & L'Operatore deve poter cliccare su un ordine di qualsiasi cliente per aprirlo e vederne i dettagli. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_61} & Obbligatorio & L'Operatore deve poter cercare del testo solo all'interno di una colonna specifica (es. cercare solo l'ID Ordine). & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_62} & Obbligatorio & L'Operatore deve poter ordinare le tabelle in modo crescente o decrescente cliccando sui nomi delle colonne. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_63} & Obbligatorio & L'Operatore deve poter filtrare i dati delle tabelle scegliendo una data di inizio e di fine. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_64} & Obbligatorio & Il sistema deve salvare nel database tutto lo storico delle chat e delle decisioni prese dall'AI. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_65} & Obbligatorio & Il sistema deve mostrare la percentuale di sicurezza dell'AI (Confidence Score) solo nelle schermate dedicate all'Operatore. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_66} & Obbligatorio & Il sistema deve mostrare schermate di caricamento (spinner o barre di avanzamento) durante le operazioni che richiedono un tempo di elaborazione superiore a 1 secondo. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_67} & Obbligatorio & Le API del server (Backend) devono rifiutare qualsiasi richiesta priva di un token di accesso valido per la sessione corrente. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OB\_68} & Obbligatorio & Il sistema deve caricare i dati delle tabelle in modo incrementale tramite paginazione con pagine da massimo 50 record, per evitare il blocco dell'interfaccia in presenza di grandi volumi di dati. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_01} & Desiderabile & Il sistema deve fornire un link per accedere alla pagina di recupero della password dimenticata. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_02} & Desiderabile & L'Utente deve poter richiedere il reset della password inserendo la propria email. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_03} & Desiderabile & Il sistema deve permettere all'Utente loggato di avviare la procedura per cambiare la propria password. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_04} & Desiderabile & L'Utente deve poter inviare la vecchia password e la nuova password scelta per salvarla nel sistema. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_05} & Desiderabile & Il sistema deve bloccare il cambio password se la vecchia password e errata o se le due nuove password inserite non coincidono. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_06} & Desiderabile & Il sistema deve permettere l'invio di file immagine nella chat, mediante scatto fotografico o selezione dalla galleria del dispositivo. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_07} & Desiderabile & Il sistema deve bloccare l'invio di immagini e mostrare un errore se il file pesa piu di 5MB. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_08} & Desiderabile & Il Cliente deve poter valutare la qualita delle risposte dell'AI lasciando un feedback (es. pollice su / pollice giu). & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_09} & Desiderabile & Se il Cliente da un voto negativo all'AI, il sistema deve richiedere che indichi il tipo di errore (tramite tag predisposti). & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_10} & Desiderabile & Il Cliente deve poter aggiungere un testo libero per spiegare meglio il motivo dell'errore segnalato. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_11} & Desiderabile & Il Cliente deve poter scaricare l'elenco dei propri ordini storici in un file formato CSV. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_12} & Desiderabile & L'Operatore deve poter accedere alla dashboard per il controllo degli errori e l'addestramento dell'AI (Ottimizzazione AI). & \textbf{IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_13} & Desiderabile & Il sistema deve mostrare all'Operatore la lista degli errori segnalati dai clienti e le correzioni manuali fatte ai carrelli. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_14} & Desiderabile & L'Operatore deve poter aprire un singolo errore AI per rileggere tutta la chat originale tra il Cliente e il bot. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_15} & Desiderabile & L'Operatore deve poter approvare una segnalazione di errore, confermando che i dati verranno usati per riaddestrare l'AI. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_16} & Desiderabile & L'Operatore deve poter scartare una segnalazione se non si tratta di un vero errore dell'AI (es. l'utente ha scritto male). & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-DE\_17} & Desiderabile & L'Operatore deve poter annullare l'approvazione di una segnalazione se l'aveva confermata per sbaglio (Rollback). & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OP\_01} & Facoltativo & Il sistema deve permettere l'invio di messaggi d'ordine e la loro elaborazione tramite l'app di WhatsApp. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OP\_02} & Facoltativo & Il sistema deve permettere l'invio di messaggi d'ordine e la loro elaborazione tramite l'app di Telegram. & \textbf{NON IMPLEMENTATO} \\
+    \hline
+    \texttt{RF-OP\_03} & Facoltativo & Il sistema deve generare grafici e statistiche generali sull'uso della piattaforma, mostrandoli all'Operatore. & \textbf{IMPLEMENTATO} \\
+    \hline
+    \multicolumn{4}{c}{} \\
+    \caption{Stato dei requisiti funzionali (fonte: Analisi dei Requisiti PB v2.2)}\label{tab:stato_requisiti_funzionali}
+\end{longtable}
+
+
+\newpage
+\subsection{Riepilogo stato requisiti prestazionali e di vincolo}
+
+I requisiti prestazionali e di vincolo comprendono specifiche non-funzionali critiche per la qualità e l'usabilità del sistema. La seguente analisi distingue tra requisiti obbligatori (OB) e desiderabili (DE).
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.31\textwidth}
+        \centering
+        \textbf{RP-OB (Obbligatori)}
+        \vspace{0.3cm}
+        
+        \begin{tikzpicture}[scale=0.9]
+            % Pie chart circle
+            \draw[line width=0.5pt] (0,0) circle (1.5cm);
+            
+            % Implemented segment (blue, 360 degrees = full circle)
+            \fill[blue!60, draw=blue!80] (0,0) circle (1.5cm);
+            
+            % Center circle for donut effect
+            \fill[white] (0,0) circle (0.9cm);
+            
+            % Implemented percentage text
+            \node at (0,0) {\small\textbf{100\%}};
+        \end{tikzpicture}
+        
+        \small
+        \textbf{\textcolor{blue!80}{5/5 Implementati} (100\%)}\\
+        \textit{0/5 Non implementati}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.31\textwidth}
+        \centering
+        \textbf{RP-DE (Desiderabili)}
+        \vspace{0.3cm}
+        
+        \begin{tikzpicture}[scale=0.9]
+            % Pie chart circle
+            \draw[line width=0.5pt] (0,0) circle (1.5cm);
+            
+            % Empty donut to indicate zero implemented items (orange/gray to match piano di qualifica)
+            \fill[orange!70, draw=orange!90] (0,0) circle (1.5cm);
+            
+            % Center circle for donut effect
+            \fill[white] (0,0) circle (0.9cm);
+            
+            % Not implemented percentage text
+            \node at (0,0) {\small\textbf{0\%}};
+        \end{tikzpicture}
+        
+        \small
+        \textbf{0/1 Implementati} (0\%)\\
+        \textit{\textcolor{orange!90}{1/1 Non implementati}}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.31\textwidth}
+        \centering
+        \textbf{RV-OB (Vincoli Obbligatori)}
+        \vspace{0.3cm}
+        
+        \begin{tikzpicture}[scale=0.9]
+            % Pie chart circle
+            \draw[line width=0.5pt] (0,0) circle (1.5cm);
+            
+            % Implemented segment (blue, 360 degrees = full circle)
+            \fill[blue!60, draw=blue!80] (0,0) circle (1.5cm);
+            
+            % Center circle for donut effect
+            \fill[white] (0,0) circle (0.9cm);
+            
+            % Implemented percentage text
+            \node at (0,0) {\small\textbf{100\%}};
+        \end{tikzpicture}
+        
+        \small
+        \textbf{\textcolor{blue!80}{10/10 Implementati} (100\%)}\\
+        \textit{0/10 Non implementati}
+    \end{minipage}
+\end{figure}
+
+\vspace{0.5cm}
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{@{}lccc@{}}
+        \toprule
+        \textbf{Categoria} & \textbf{Totale} & \textbf{Implementati} & \textbf{Non implementati} \\
+        \midrule
+        RP-OB & 5  & 5  & 0 \\
+        RP-DE & 1  & 0  & 1 \\
+        RV-OB & 10 & 10 & 0 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Riepilogo implementazione requisiti prestazionali e di vincolo}
+    \label{tab:riepilogo_requisiti_non_funzionali}
+\end{table}
+
+\end{document}

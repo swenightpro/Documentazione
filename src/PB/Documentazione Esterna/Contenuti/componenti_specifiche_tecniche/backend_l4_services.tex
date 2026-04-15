@@ -1,11 +1,11 @@
-\subsubsection{Layer 2 - Application Services (Use Cases)}
+\subsubsection{Application Services (Use Cases)}
 
 \paragraph{AuthService}
-\textbf{Descrizione della classe:} incapsula i casi d'uso di autenticazione, gestione credenziali, generazione/verifica JWT e gestione profilo utente.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} incapsula i casi d'uso di autenticazione, gestione credenziali, generazione/verifica JWT e gestione profilo utente.
 
-\textbf{Descrizione degli attributi:} non sono esplicitati attributi nel diagramma; il servizio e modellato come componente applicativo stateless.
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} non sono esplicitati attributi nel diagramma; il servizio e modellato come componente applicativo stateless.
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{login(email: str, password: str)}: autentica utente. Ritorna il token e dettagli sessione.
     \item \texttt{verify\_password(...)}: gestisce l'hashing e la validazione scrypt multi-profilo.
@@ -25,11 +25,11 @@
 \end{figure}
 
 \paragraph{ConversationService}
-\textbf{Descrizione della classe:} implementa il flusso conversazionale (testo e audio), la gestione del contesto dialogico e il coordinamento con la pipeline AI.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} implementa il flusso conversazionale (testo e audio), la gestione del contesto dialogico e il coordinamento con la pipeline AI.
 
-\textbf{Descrizione degli attributi:} non sono esplicitati attributi di stato nel diagramma.
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} non sono esplicitati attributi di stato nel diagramma.
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{handle\_message(message: str, client\_id: int, ...)}: orchiestra la pipeline decisionale LLM tramite intent recognition.
     \item \texttt{transcribe\_audio(audio\_file: IO[bytes], filename: str)}: delega trascrizione al servizio AI.
@@ -47,11 +47,11 @@
 \end{figure}
 
 \paragraph{CartService}
-\textbf{Descrizione della classe:} concentra la logica di business del carrello con supporto per operazioni per utente e per sessione, e notifica SSE sugli aggiornamenti.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} concentra la logica di business del carrello con supporto per operazioni per utente e per sessione, e notifica SSE sugli aggiornamenti.
 
-\textbf{Descrizione degli attributi:} non sono indicati attributi persistenti nel diagramma.
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} non sono indicati attributi persistenti nel diagramma.
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{get\_cart(user\_id: int)}: recupera il carrello dell'utente.
     \item \texttt{get\_cart\_by\_session(session\_id: int)}: recupera il carrello della sessione.
@@ -68,11 +68,11 @@
 \end{figure}
 
 \paragraph{OrderService}
-\textbf{Descrizione della classe:} fornisce i casi d'uso di creazione ordini, consultazione storico, dettaglio ed esportazione ordini.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} fornisce i casi d'uso di creazione ordini, consultazione storico, dettaglio ed esportazione ordini.
 
-\textbf{Descrizione degli attributi:} nessun attributo esplicitato nel diagramma.
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} nessun attributo esplicitato nel diagramma.
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{create\_order(cod\_cli, user\_id, session\_id, items)}: crea un ordine validando gli articoli e chiudendo la sessione.
     \item \texttt{get\_orders\_by\_client(cod\_cli, page, limit, ...)}: recupera lo storico paginato per cliente.
@@ -90,11 +90,11 @@
 
 
 \paragraph{TicketService}
-\textbf{Descrizione della classe:} implementa l'intero ciclo di vita del ticket di assistenza, inclusa messaggistica, lock/unlock e notifiche SSE.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} implementa l'intero ciclo di vita del ticket di assistenza, inclusa messaggistica, lock/unlock e notifiche SSE.
 
-\textbf{Descrizione degli attributi:} nessun attributo esplicitato nel diagramma.
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} nessun attributo esplicitato nel diagramma.
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{create\_ticket(session\_id: int, cod\_cli: int)}: crea un nuovo ticket.
     \item \texttt{get\_open\_tickets()}: recupera i ticket aperti o in lavorazione.
@@ -116,11 +116,11 @@
 \end{figure}
 
 \paragraph{FeedbackService}
-\textbf{Descrizione della classe:} presidia la raccolta e la rimozione dei feedback qualitativi degli utenti sulle risposte AI.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} presidia la raccolta e la rimozione dei feedback qualitativi degli utenti sulle risposte AI.
 
-\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi interni.
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi interni.
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{save\_feedback(message\_id, user\_id, is\_positive, reason\_category, comment)}: salva il feedback nel database.
     \item \texttt{delete\_feedback(message\_id, user\_id)}: rimuove un feedback esistente.
@@ -133,11 +133,11 @@
 \end{figure}
 
 \paragraph{ClientService}
-\textbf{Descrizione della classe:} implementa la logica di business di ricerca clienti per ragione sociale o codice.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} implementa la logica di business di ricerca clienti per ragione sociale o codice.
 
-\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi interni.
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi interni.
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{search\_clients(query: str, limit: int)}: cerca clienti nel database delegando al repository.
 \end{itemize}
@@ -149,11 +149,11 @@
 \end{figure}
 
 \paragraph{ProductService}
-\textbf{Descrizione della classe:} incapsula la logica per la ricerca prodotti nel catalogo, filtrata per assortimento cliente.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} incapsula la logica per la ricerca prodotti nel catalogo, filtrata per assortimento cliente.
 
-\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi interni.
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi interni.
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{search\_products(query: str, cod\_cli: int, limit: int)}: cerca prodotti filtrati per assortimento cliente.
 \end{itemize}
@@ -165,11 +165,11 @@
 \end{figure}
 
 \paragraph{SSEBroadcaster}
-\textbf{Descrizione della classe:} singleton asyncio per il dispatch e la propagazione degli eventi real-time (SSE) a tutti i subscriber connessi, identificati per session\_id.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} singleton asyncio per il dispatch e la propagazione degli eventi real-time (SSE) a tutti i subscriber connessi, identificati per session\_id.
 
-\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi persistenti per questa classe.
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi persistenti per questa classe.
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{subscribe(session\_id: int)}: registra un nuovo subscriber per la sessione.
     \item \texttt{unsubscribe(session\_id: int, queue)}: rimuove uno specifico subscriber.
@@ -184,11 +184,11 @@
 \end{figure}
 
 \paragraph{ConfidenceScorer}
-\textbf{Descrizione della classe:} calcola il punteggio di affidabilit\`a (Confidence Score) delle proposte AI, combinando segnali di storico, similarit\`a, tipo di match, intento e quantit\`a.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} calcola il punteggio di affidabilit\`a (Confidence Score) delle proposte AI, combinando segnali di storico, similarit\`a, tipo di match, intento e quantit\`a.
 
-\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi persistenti.
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi persistenti.
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{score(context: ConfidenceContext)}: calcola i punteggi di confidence per tutti i prodotti nel contesto.
     \item \texttt{low\_confidence\_threshold}: propriet\`a che restituisce la soglia sotto cui un articolo viene segnalato.

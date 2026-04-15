@@ -1,0 +1,17 @@
+@startuml
+skinparam monochrome false
+skinparam classBackgroundColor White/Beige
+skinparam classBorderColor Black
+skinparam dpi 300
+skinparam componentStyle uml2
+
+class ticketService << (M,#FFAA00) Singleton Module >> {
+  + getOpenTickets(): Promise<Ticket[]>
+  + getTicketDetail(ticketId: number): Promise<OperatorTicketDetail>
+  + lockTicket(ticketId: number): Promise<void>
+  + unlockTicket(ticketId: number): Promise<void>
+  + closeTicket(ticketId: number, recap: string): Promise<void>
+  + sendMessage(ticketId: number, content: string): Promise<void>
+  + getPlatformOverview(): Promise<OperatorPlatformOverview>
+}
+@enduml

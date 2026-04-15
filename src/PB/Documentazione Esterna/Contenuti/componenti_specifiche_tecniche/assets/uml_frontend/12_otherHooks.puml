@@ -1,0 +1,19 @@
+@startuml
+skinparam monochrome false
+skinparam classBackgroundColor White/Beige
+skinparam classBorderColor Black
+skinparam dpi 300
+skinparam componentStyle uml2
+
+class useHealthCheck << (H,#00FFEE) Custom Hook >> {
+  - status: AiStatus ("loading" | "ok" | "error")
+  + (intervalMs: number): AiStatus
+}
+
+class useProductSearch << (H,#00FFEE) Custom Hook >> {
+  - searchTerm: string
+  - results: Product[]
+  - isSearching: boolean
+  + (debounceMs: number): { searchTerm, setSearchTerm, results, isSearching }
+}
+@enduml

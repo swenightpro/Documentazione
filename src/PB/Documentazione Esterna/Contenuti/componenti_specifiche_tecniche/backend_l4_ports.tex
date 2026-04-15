@@ -1,11 +1,11 @@
-\subsubsection{Layer 4 - Outbound Ports (Interfaces)}
+\subsubsection{Outbound Ports (Interfaces)}
 
 \paragraph{IUserRepository}
 \textbf{Descrizione della classe/interfaccia:} definisce il contratto di accesso ai dati utente, credenziali e informazioni cliente.
 
-\textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{find\_by\_email(email: str)}: recupera l'utente associato all'email.
     \item \texttt{find\_by\_id(user\_id: int)}: recupera l'utente per ID.
@@ -25,9 +25,9 @@
 \paragraph{ISessionManager}
 \textbf{Descrizione della classe/interfaccia:} astrae la persistenza di sessioni, messaggi e carrelli applicativi.
 
-\textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{get\_active\_session(user\_id: int)}: recupera la sessione attiva dell'utente.
     \item \texttt{create\_session(user\_id: int)}: crea una nuova sessione.
@@ -54,9 +54,9 @@
 \paragraph{IOrderRepository}
 \textbf{Descrizione della classe/interfaccia:} definisce le operazioni di persistenza e ricerca ordini.
 
-\textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{create\_order(cod\_cli, user\_id, session\_id, items)}: crea un ordine con le sue righe.
     \item \texttt{get\_orders\_by\_client(cod\_cli, page, limit, ...)}: recupera ordini del cliente con filtri.
@@ -74,9 +74,9 @@
 \paragraph{ITicketRepository}
 \textbf{Descrizione della classe/interfaccia:} astrae persistenza e query dei ticket di assistenza.
 
-\textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{create\_ticket(session\_id, cod\_cli)}: crea un nuovo ticket.
     \item \texttt{get\_ticket\_by\_session(session\_id, cod\_cli)}: recupera il ticket per sessione.
@@ -99,9 +99,9 @@
 \paragraph{IAIClient}
 \textbf{Descrizione della classe/interfaccia:} formalizza il contratto verso i servizi di AI generativa, speech-to-text e analisi immagini.
 
-\textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} non applicabile (interfaccia senza stato).
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{transcribe\_audio(audio\_file: IO[bytes], filename: str)}: converte audio in testo.
     \item \texttt{interpret\_intent(text, context, system\_prompt, model)}: classifica intenti e produce decisione AI.

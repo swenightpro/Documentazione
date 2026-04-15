@@ -1,14 +1,14 @@
-\subsubsection{Layer 5 - Infrastructure Adapters}
+\subsubsection{Infrastructure Adapters}
 
 \paragraph{PostgresAdapter}
-\textbf{Descrizione della classe:} implementa le porte IUserRepository, ISessionManager, IOrderRepository e ITicketRepository, interagendo direttamente con PostgreSQL tramite psycopg2 e connection pooling.
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} implementa le porte IUserRepository, ISessionManager, IOrderRepository e ITicketRepository, interagendo direttamente con PostgreSQL tramite psycopg2 e connection pooling. Essendo un Adapter, svolge il ruolo cruciale di trasformare i tuple-record grezzi del database in veri e propri oggetti applicativi e DTO richiesti dalle interfacce del dominio.
 
-\textbf{Descrizione degli attributi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:}
 \begin{itemize}
     \item \texttt{pool}: istanza di \texttt{SimpleConnectionPool} per la gestione ottimizzata delle connessioni al database.
 \end{itemize}
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{find\_by\_email(email)}: implementa IUserRepository — recupera utente per email.
     \item \texttt{get\_active\_session(user\_id)}: implementa ISessionManager — recupera sessione attiva.
@@ -25,11 +25,11 @@
 \end{figure}
 
 \paragraph{OpenAIAdapter}
-\textbf{Descrizione della classe:} realizza il contratto \texttt{IAIClient} mappando chiamate di dominio verso le API OpenAI (GPT-5.4, Whisper, Embeddings, Vision).
+\vspace{\baselineskip}\noindent\textbf{Descrizione della classe:} realizza il contratto \texttt{IAIClient} mappando chiamate di dominio verso le API OpenAI (GPT-5.4, Whisper, Embeddings, Vision).
 
-\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi di configurazione (caricati da config).
+\vspace{\baselineskip}\noindent\textbf{Descrizione degli attributi:} il diagramma non esplicita attributi di configurazione (caricati da config).
 
-\textbf{Descrizione dei metodi:}
+\vspace{\baselineskip}\noindent\textbf{Descrizione dei metodi:}
 \begin{itemize}
     \item \texttt{transcribe\_audio(audio\_file, filename)}: trascrizione audio via Whisper con prompt specifico per il dominio Ergon.
     \item \texttt{interpret\_intent(text, context, system\_prompt, model)}: invoca il modello LLM con sistema prompt e contesto.
