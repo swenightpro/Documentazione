@@ -7,6 +7,7 @@
 \usepackage{lmodern}             % Font "Latin Modern"
 \usepackage{scrhack}
 \usepackage{placeins}
+\usepackage{longtable}         
 \usepackage{array}
 \usepackage{tabularx}
 \usepackage{pgf-pie}             % Pacchetto per grafici a torta
@@ -98,26 +99,36 @@
     
     \vfill
     
-    {\large Data: 2026-04-04 \par}
-    {\Large Versione: 2.2 \par} 
+    {\large Data: 2026-04-10 \par}
+    {\Large Versione: 2.3 \par} 
 
 \end{titlepage}
 
-% SEZIONE: Tabella delle Versioni
+%  SEZIONE: Tabella delle Versioni
 % -------------------------------------------------------------------
-\newpage
 \pagestyle{fancy}
-\phantomsection 
+\phantomsection
 \addcontentsline{toc}{section}{Tabella delle Versioni}
 \section*{Tabella delle Versioni}
 \vspace{0.2cm}
-
-\begin{center}
+{%
 \renewcommand{\arraystretch}{1.2}
-\begin{tabularx}{\textwidth}{@{}p{0.08\textwidth}p{0.12\textwidth}p{0.20\textwidth}X>{\centering\arraybackslash}p{0.15\textwidth}@{}}
-\toprule
-\textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
-\midrule
+\setlength{\LTleft}{-0.4cm}
+\setlength{\LTright}{0pt}
+\begin{longtable}{@{}llp{0.19\textwidth}p{0.36\textwidth}p{0.19\textwidth}@{}}
+    \toprule
+    \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
+    \midrule
+    \endfirsthead
+    \toprule
+    \textbf{Versione} & \textbf{Data} & \textbf{Autore/i} & \textbf{Descrizione delle Modifiche} & \textbf{Verificatore} \\
+    \midrule
+    \endhead
+    \bottomrule
+    \endfoot
+    \bottomrule
+    \endlastfoot
+2.3 & 2026-04-10 & Giovanni Ponso & Redazione Periodo 14 & Francesco Zanella \\
 2.2 & 2026-04-04 & Giovanni Ponso & Redazione Periodo 13 e aggiornata la sezione relativa alla rotazione dei ruoli & Leonardo Bilato \\
 2.1 & 2026-03-27 & Francesco Zanella & Redazione Consultivo Periodo 12 & Leonardo Bilato \\
 2.0 & 2026-03-17 & Francesco Zanella & Approvazione del documento & - \\
@@ -134,10 +145,8 @@
 0.3 & 2025-11-29 & Giovanni Ponso & Redazione Periodo 3 & Leonardo Bilato \\
 0.2 & 2025-11-28 & Mihaela-Mariana Romascu, Samuele Perozzo, Michele Ogniben, Francesco Zanella & Redazione Periodo 1 e Periodo 2 & Leonardo Bilato \\
 0.1 & 2025-11-24 & Giovanni Ponso, Michele Ogniben, Francesco Zanella & Creazione struttura documento. Redazione di: Introduzione, Analisi dei rischi, Calendario del progetto, Stima dei costi di realizzazione e Modello di Sviluppo & Leonardo Bilato \\
-\bottomrule
-\end{tabularx}
-\end{center}
-
+\end{longtable}
+}
 % -------------------------------------------------------------------
 %  SEZIONE: indice
 % -------------------------------------------------------------------
@@ -2791,5 +2800,172 @@ Nel corso del tredicesimo periodo il gruppo ha proseguito operativamente in asse
 Considerato il ritardo accumulato rispetto alla tabella di marcia, lo sprint era particolarmente esposto ai rischi \hyperref[sec:rp3]{RP3}: Non conformità rispetto agli impegni dichiarati e \hyperref[sec:rp1]{RP1}: Mancata continuità del progetto. Tali rischi sono stati mitigati in modo efficace attraverso un coordinamento giornaliero con call Meet, monitoraggio ravvicinato dell'avanzamento e rapida riallocazione delle priorità operative.
 
 Si osserva inoltre che il contributo costante dei membri attivi ha avuto un impatto determinante nel mantenere il ritmo di lavoro e nel sostenere il recupero progressivo degli obiettivi di sprint.
+
+\newpage
+
+% ================================================================
+% PERIODO 14
+% ================================================================
+\subsection{Quattordicesimo periodo: 04/04/2026 - 10/04/2026}
+
+\subsubsection*{Sprint Planning}
+
+In coerenza con quanto deliberato nel verbale interno del 4 aprile 2026, il gruppo ha avviato il quattordicesimo periodo con un duplice obiettivo: consolidare il MVP in vista del confronto con la Proponente e completare il pacchetto documentale necessario alla candidatura per la milestone PB. La pianificazione dello sprint ha quindi integrato attivita tecniche sul prodotto, attivita di testing e un intenso lavoro di allineamento documentale finale.
+
+Le principali linee operative definite a inizio periodo sono state le seguenti:
+\begin{itemize}[noitemsep, topsep=2pt]
+    \item \textbf{Consolidamento del MVP:} completamento delle funzionalita migliorative previste per il prodotto, con particolare attenzione a Vector Search, scelta rapida in chat, caricamento immagini e confidence score;
+    \item \textbf{Qualita e testing:} scrittura dei test di unita e di integrazione per il MVP, con contestuale aggiornamento del \textit{Piano di Qualifica}, e prosecuzione della verifica del software e della documentazione;
+    \item \textbf{Allineamento documentale:} aggiornamento di \textit{Specifica Tecnica}, \textit{Manuale Cliente}, \textit{Manuale Operatore} e \textit{Analisi dei Requisiti}, anche in vista dell'incontro con la Proponente;
+    \item \textbf{Coordinamento e confronto esterno:} gestione del confronto con il referente aziendale per raccogliere un riscontro sullo stato di avanzamento del MVP e predisposizione delle eventuali successive attivita di allineamento.
+\end{itemize}
+
+\begin{figure}[!ht]
+        \vspace{0.2cm}
+        \centering
+        {\large \textbf{Attivita pianificate} (Sprint Backlog)} \\
+        \vspace{0.2cm}
+        \centering
+        \includegraphics[width=0.7\linewidth]{sprint_activity_14.png}
+\end{figure}
+\FloatBarrier
+
+\begin{table}[!ht]
+\centering
+{\large \textbf{Preventivo}} \\
+\vspace{0.3cm}
+\renewcommand{\arraystretch}{1.4}
+\rowcolors{2}{gray!10}{white}
+\begin{tabular}{|l|c|c|c|c|c|c|>{\cellcolor{green!50!black!20!white}}c|}
+\hline
+Membro           & Resp. & Amm. & Anal. & Proget. & Prog. & Ver. & Totale \\
+\hline
+Davide           & - & - & 1 & 1 & 6 & - & 8 \\
+Leonardo         & - & - & - & 1 & 5 & 6 & 12 \\
+Francesco        & - & 1 & 1 & 1 & 5 & 1 & 9 \\
+Mihaela-Mariana  & - & - & - & - & 5 & 6 & 11 \\
+Michele          & - & - & - & - & - & - & 0 \\
+Samuele          & - & 1 & - & 1 & 8 & - & 10 \\
+Giovanni         & 3 & - & - & 1 & 5 & - & 9 \\
+\hline
+\hiderowcolors
+\rowcolor{green!50!black!20!white}
+Totale           & 3 & 2 & 2 & 5 & 34 & 13 & 59 \\
+\hline
+\end{tabular}
+\end{table}
+\FloatBarrier
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection*{Rendicontazione delle Risorse}
+
+\begin{table}[!ht]
+\centering
+{\large \textbf{Consuntivo}} \\
+\vspace{0.3cm}
+\renewcommand{\arraystretch}{1.4}
+\rowcolors{2}{gray!10}{white}
+\begin{tabular}{|l|c|c|c|c|c|c|>{\cellcolor{blue!10}}c|}
+\hline
+Membro           & Resp. & Amm. & Anal. & Proget. & Prog. & Ver. & Totale \\
+\hline
+Davide           & - & - & 1 & 1 & 5 & - & 7 \\
+Leonardo         & - & - & - & 1 & 5 & 6 & 12 \\
+Francesco        & - & 1 & 1 & 1 & 5 & 1 & 9 \\
+Mihaela-Mariana  & - & - & - & - & 5 & 6 & 11 \\
+Michele          & - & - & - & - & - & - & 0 \\
+Samuele          & - & 1 & - & 1 & 8 & - & 10 \\
+Giovanni         & 2 & - & - & 1 & 5 & - & 8 \\
+\hline
+\hiderowcolors
+\rowcolor{blue!10}
+Totale           & 2 & 2 & 2 & 5 & 33 & 13 & 57 \\
+\hline
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+\begin{table}[!ht]
+\centering
+{\large \textbf{Riepilogo ore individuali}} \\
+\vspace{0.3cm}
+\renewcommand{\arraystretch}{1.4}
+\rowcolors{2}{gray!10}{white}
+\begin{tabular}{|l|c|c|>{\cellcolor{blue!10}}c|}
+\hline
+                Membro              & Ore Pregresse & Ore Periodo & Ore Totali \\
+\hline
+Biasuzzi Davide         & 80 & 7 & 87 \\
+Bilato Leonardo         & 73 & 12 & 85 \\
+Zanella Francesco       & 78 & 9 & 87 \\
+Romascu Mihaela-Mariana & 72 & 11 & 83 \\
+Ogniben Michele         & 49 & 0 & 49 \\
+Perozzo Samuele         & 77 & 10 & 87 \\
+Ponso Giovanni          & 77 & 8 & 85 \\
+\hline
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+\begin{table}[!ht]
+\centering
+{\large \textbf{Bilancio economico} (basato su \hyperref[sec:preventivo_v2]{Preventivo Costi - Seconda stesura})} \\
+\vspace{0.3cm}
+\label{tab:bilancio_p14}
+\renewcommand{\arraystretch}{1.4}
+\definecolor{light-gray}{gray}{0.95}
+\rowcolors{3}{gray!10}{white}
+\begin{tabular}{|l|Y|Y|Y|Y|>{\cellcolor{blue!10}}Y|>{\cellcolor{blue!10}}Y|}
+\hline
+\multicolumn{1}{|c|}{Ruolo} & \multicolumn{2}{c|}{Residuo Inizio} & \multicolumn{2}{c|}{Consuntivo} & \multicolumn{2}{c|}{\cellcolor{blue!10}Residuo Fine}\\
+& h & € & h & € & \cellcolor{blue!10}h & \cellcolor{blue!10}€ \\
+\hline
+Responsabile (30€/h)   & 14 &  420 & 2 &  60 & 12 & 360 \\
+Amministratore (20€/h) & 19 &  380 & 2 &  40 & 17 & 340 \\
+Analista (25€/h)       & -6 & -150 & 2 &  50 & -8 & -200 \\
+Progettista (25€/h)    &  3 &   75 & 5 & 125 & -2 &  -50 \\
+Programmatore (15€/h)  & 29 &  435 & 33 & 495 & -4 &  -60 \\
+Verificatore (15€/h)   & 65 &  975 & 13 & 195 & 52 &  780 \\
+\hline
+\rowcolor{blue!10}
+Totale & 124 & 2135 & 57 & 965 & 67 & 1170 \\
+\hline
+\end{tabular}
+\end{table}
+\FloatBarrier
+
+\subsubsection*{Sprint Review}
+
+Il quattordicesimo periodo ha rappresentato un passaggio decisivo nel consolidamento della Product Baseline. Nel corso dello sprint il gruppo ha lavorato con l'obiettivo di avanzare in modo significativo sia sul prodotto sia sulla documentazione, senza dare inizialmente per scontata la possibilita di chiudere l'intero pacchetto di attivita entro il periodo. A consuntivo, tutte le attivita considerate critiche per la chiusura dello sprint sono state completate con esito positivo.
+
+Sul piano tecnico, il gruppo ha finalizzato il consolidamento del MVP, completando le integrazioni previste e arrivando a una versione sufficientemente stabile da poter essere presentata alla Proponente durante l'incontro dell'8 aprile 2026. Tale confronto era stato inizialmente concepito come momento di verifica e raccolta di feedback sullo stato del prodotto; il riscontro ricevuto dal referente aziendale e stato pero particolarmente positivo e ha confermato la correttezza complessiva del lavoro svolto. Le limitate osservazioni emerse durante il confronto sono state recepite e sistemate rapidamente, permettendo al gruppo di completare anche le attivita conclusive e di procedere, successivamente, con la formalizzazione dell'accettazione del MVP e con la richiesta di colloquio PB.
+
+Sul piano documentale, il gruppo ha completato e riallineato l'insieme degli artefatti necessari alla consegna. In particolare:
+\begin{itemize}[noitemsep, topsep=2pt]
+    \item l'\textit{Analisi dei Requisiti} e stata aggiornata recependo le rinegoziazioni approvate durante il confronto con la Proponente ed e stata portata in approvazione alla versione 3.0;
+    \item la \textit{Specifica Tecnica} e stata completata e approvata in versione 1.0;
+    \item il \textit{Piano di Qualifica} e stato aggiornato recependo i test di unita e di integrazione scritti nel periodo e approvato in versione 3.0;
+    \item il \textit{Manuale Cliente} e il \textit{Manuale Operatore} sono stati completati e approvati entrambi in versione 1.0;
+    \item e stato predisposto e archiviato il verbale di accettazione finale del MVP, a valle del riscontro positivo della Proponente.
+\end{itemize}
+
+Dal punto di vista quantitativo, il consuntivo finale si attesta a 57~ore contro le 59~ore previste a preventivo, con uno scostamento positivo di 2~ore. Sul piano economico, il costo effettivo del periodo e pari a 965~€ rispetto ai 1.010~€ pianificati, con un risparmio netto di 45~€.
+
+Lo scostamento favorevole e riconducibile principalmente ai seguenti fattori:
+\begin{itemize}[noitemsep, topsep=2pt]
+    \item un'implementazione spedita delle ultime funzionalita MVP (Vector Search, caricamento immagini e confidence score), che ha richiesto un impegno orario da parte dei programmatori nettamente inferiore rispetto a quanto stimato in fase di planning;
+    \item il riscontro largamente positivo ricevuto dalla Proponente in data 8 aprile, che ha fortemente ridotto il numero di iterazioni correttive e di refactoring necessarie sul prodotto;
+    \item un ridotto carico di riorganizzazione per il Responsabile, data l'ottima auto-organizzazione del team e la mancata necessita di interventi invasivi post-collaudo.
+\end{itemize}
+
+\subsubsection*{Sprint Retrospective}
+
+Nel corso del quattordicesimo periodo il gruppo ha affrontato uno sprint particolarmente delicato, poiche concentrava nella medesima finestra temporale sviluppo finale del MVP, confronto con la Proponente, aggiornamento di piu documenti ufficiali e preparazione della candidatura alla milestone PB. In questa configurazione il periodo risultava esposto soprattutto ai rischi \hyperref[sec:rp3]{RP3}: Non conformita rispetto agli impegni dichiarati e \hyperref[sec:rp1]{RP1}: Mancata continuita del progetto. A questi si aggiungeva un concreto rischio operativo di \textit{rework} documentale o tecnico nel caso in cui il feedback della Proponente avesse richiesto modifiche piu invasive del previsto.
+
+Il gruppo ha gestito tale esposizione in modo efficace attraverso alcune misure pratiche: suddivisione chiara tra attivita di prodotto e attivita documentali, verifica ravvicinata dei documenti prima dell'approvazione, mantenimento di un confronto interno frequente e prioritizzazione immediata delle attivita bloccanti per la candidatura PB. Questa impostazione ha consentito di assorbire senza criticita le ultime correzioni emerse a valle dell'incontro dell'8 aprile, chiudendo con rapidita sia il ciclo di aggiornamento documentale sia il percorso di formalizzazione dell'accettazione del prodotto.
+
+Si rileva inoltre che non vi sono stati sviluppi significativi riguardo al membro del gruppo attualmente non operativo; la situazione e rimasta invariata rispetto ai periodi precedenti, ma non ha inciso in modo sostanziale sulla chiusura dello sprint. Nel complesso, la retrospettiva del periodo e positiva: i rischi potenziali sono stati contenuti, il backlog pianificato e stato completato e il gruppo ha concluso lo sprint in condizioni favorevoli per affrontare la successiva fase di colloquio PB.
 
 \end{document}
