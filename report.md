@@ -1,10 +1,10 @@
 # Report di compilazione
 
-Compilazione basata sul commit 3bace04c2f13190ade5a867babafb2217ddff103 (base: 3bace04)
+Compilazione basata sul commit 19ac0c14eb356783dd60b87e16996f3a245b133c (base: 19ac0c1)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/PB/Documentazione Esterna/Specifica_Tecnica_v1.3.pdf](docs/PB/Documentazione%20Esterna/Specifica_Tecnica_v1.3.pdf)
+✅ [docs/PB/Documentazione Esterna/Specifica_Tecnica_v2.0.pdf](docs/PB/Documentazione%20Esterna/Specifica_Tecnica_v2.0.pdf)
 
