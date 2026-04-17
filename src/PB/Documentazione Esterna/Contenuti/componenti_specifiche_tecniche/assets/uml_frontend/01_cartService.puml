@@ -1,0 +1,16 @@
+@startuml
+skinparam monochrome false
+skinparam classBackgroundColor White/Beige
+skinparam classBorderColor Black
+skinparam dpi 300
+skinparam componentStyle uml2
+
+class cartService << (M,#FFAA00) Singleton Module >> {
+  + getCart(sessionId?: number): Promise<CartItem[]>
+  + addItem(codArt: string, qta: number, extra?: dict): Promise<Response>
+  + removeItem(id: number, sessionId?: number): Promise<Response>
+  + updateQty(id: number, qta: number, source: string, sessionId?: number): Promise<Response>
+  + addByName(productName: string, qta: number, sessionId?: number): Promise<Response>
+  + addByCode(codArt: string, qta: number, sessionId?: number): Promise<Response>
+}
+@enduml

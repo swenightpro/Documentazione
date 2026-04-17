@@ -1,0 +1,18 @@
+@startuml
+skinparam monochrome false
+skinparam classBackgroundColor White/Beige
+skinparam classBorderColor Black
+skinparam dpi 300
+skinparam componentStyle uml2
+
+class CartContext << (C,#77FF77) React Context >> {
+  - cart: CartItem[]
+  - pendingUpdates: Ref<Map<number, Timer>>
+  + refreshCart(): Promise<void>
+  + addItem(codArt: string, qta: number, extra?: dict): Promise<Response>
+  + removeItem(id: number): Promise<void>
+  + updateQty(id: number, qta: number, source?: string): void
+  + clearCart(): void
+  + hasPendingUpdates(): boolean
+}
+@enduml

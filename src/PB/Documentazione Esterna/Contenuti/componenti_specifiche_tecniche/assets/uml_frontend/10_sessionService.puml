@@ -1,0 +1,12 @@
+@startuml
+skinparam monochrome false
+skinparam classBackgroundColor White/Beige
+skinparam classBorderColor Black
+skinparam dpi 300
+skinparam componentStyle uml2
+
+class sessionService << (M,#FFAA00) Singleton Module >> {
+  + getActive(): Promise<number | null>
+  + create(): Promise<number | null>
+}
+@enduml

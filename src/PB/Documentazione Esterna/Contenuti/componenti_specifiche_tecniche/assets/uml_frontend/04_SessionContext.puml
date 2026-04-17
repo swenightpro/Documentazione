@@ -1,0 +1,18 @@
+@startuml
+skinparam monochrome false
+skinparam classBackgroundColor White/Beige
+skinparam classBorderColor Black
+skinparam dpi 300
+skinparam componentStyle uml2
+
+class SessionContext << (C,#77FF77) React Context >> {
+  - sessionId: number | null
+  - chatMessages: Message[]
+  - showNewSessionModal: boolean
+  + initSession(): Promise<number | null>
+  + handleNewSession(): void
+  + confirmNewSession(): Promise<void>
+  + cancelNewSession(): void
+  + setChatMessages(messages: Message[]): void
+}
+@enduml

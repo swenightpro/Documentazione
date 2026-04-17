@@ -1,0 +1,206 @@
+@startuml
+skinparam monochrome false
+skinparam classBackgroundColor White/Beige
+skinparam classBorderColor Black
+skinparam dpi 300
+skinparam componentStyle uml2
+
+skinparam nodesep 40
+skinparam ranksep 60
+' Nessun linetype ortho per consentire flow nativo delle linee
+
+' ==========================================
+' UI COMPONENTS
+' ==========================================
+class "app/page.tsx\n<<Storefront Root>>" as PageClient << (V,#FFDDDD) View >>
+class "CartPanel" as CartPanel << (V,#FFDDDD) View >>
+class "ChatPanel" as ChatPanel << (V,#FFDDDD) View >>
+class "ProductSearch" as SearchUI << (V,#FFDDDD) View >>
+class "AuthOverlay" as AuthUI << (V,#FFDDDD) View >>
+
+class "app/operatore/page.tsx\n<<Backoffice Root>>" as PageOperator << (V,#FFDDDD) View >>
+class "TicketDashboard" as TicketUI << (V,#FFDDDD) View >>
+class "OrderManager" as OrderUI << (V,#FFDDDD) View >>
+
+' ==========================================
+' CONTEXTS
+' ==========================================
+class CartContext << (C,#77FF77) Context >> {
+  - cart: CartItem[]
+  - pendingUpdates: Ref<Map<string, Timer>>
+  + refreshCart(): Promise<void>
+  + addItem(codArt, qta, extra?): Promise<Response>
+  + removeItem(id): Promise<void>
+  + updateQty(id, qta, source?): void
+  + clearCart(): void
+  + hasPendingUpdates(): boolean
+}
+
+class SessionContext << (C,#77FF77) Context >> {
+  - sessionId: number | null
+  - chatMessages: Message[]
+  - showNewSessionModal: boolean
+  + initSession(): Promise<number | null>
+  + handleNewSession(): void
+  + confirmNewSession(): Promise<void>
+  + cancelNewSession(): void
+  + setChatMessages(messages: Message[]): void
+}
+
+' ==========================================
+' HOOKS
+' ==========================================
+class useSSE << (H,#00FFEE) Custom Hook >> {
+  - connected: boolean
+  - reconnectAttempts: number
+  - esRef: Ref<EventSource>
+  + (url: string | null, options: UseSSEOptions): UseSSEReturn
+  - connect(): Promise<void>
+  - fetchSSEToken(): Promise<string | null>
+}
+
+class useProductSearch << (H,#00FFEE) Custom Hook >> {
+  - searchTerm: string
+  - results: Product[]
+  - isSearching: boolean
+  + (debounceMs: number): { searchTerm, results }
+}
+
+class useHealthCheck << (H,#00FFEE) Custom Hook >> {
+  - status: AiStatus
+  + (intervalMs: number): AiStatus
+}
+
+' ==========================================
+' SERVICES FACADE (Strict alignment to codebase)
+' ==========================================
+class authService << (M,#FFAA00) Module >> {
+  + login(email, pwd, codCli?): Promise<{token, redirect}>
+  + getProfile(): Promise<UserProfile | null>
+  + changePassword(cur, new, confirm): Promise<void>
+  + logout(): Promise<void>
+  + getExportFolder(): Promise<string | null>
+  + setExportFolder(path: string | null): Promise<void>
+}
+
+class sessionService << (M,#FFAA00) Module >> {
+  + getActive(): Promise<number | null>
+  + create(): Promise<number | null>
+}
+
+class cartService << (M,#FFAA00) Module >> {
+  + getCart(sessionId?): Promise<CartItem[]>
+  + addItem(codArt, qta, extra?): Promise<Response>
+  + removeItem(id, sessionId?): Promise<Response>
+  + updateQty(id, qta, source, sessionId?): Promise<Response>
+  + addByName(name, qta, sessionId?): Promise<Response>
+  + addByCode(code, qta, sessionId?): Promise<Response>
+}
+
+class chatService << (M,#FFAA00) Module >> {
+  + sendMessage(msg, cliId...): Promise<ChatApiResponse>
+  + getMessages(sessId): Promise<Message[]>
+  + saveMessage(sessId, sender, content): Promise<number>
+  + transcribe(audioBlob): Promise<string>
+  + uploadImage(imageBlob, sessId?): Promise<ImageUploadResponse>
+}
+
+class orderService << (M,#FFAA00) Module >> {
+  + listAll(filters?): Promise<OrderSummary[]>
+  + list(codCli, page?, filters?): Promise<OrderSummary[]>
+  + getDetail(orderId, codCli): Promise<OrderDetail>
+  + create(codCli, sessId, items): Promise<{order_id}>
+  + exportOrder(orderId, format): Promise<{file_path}>
+  + exportBatch(filters, limit): Promise<{exported_count}>
+}
+
+class ticketService << (M,#FFAA00) Module >> {
+  + getOpenTickets(): Promise<Ticket[]>
+  + getTicketDetail(ticketId): Promise<OperatorTicketDetail>
+  + getPlatformUsageOverview(days): Promise<OperatorPlatformOverview>
+  + lockTicket(ticketId): Promise<void>
+  + unlockTicket(ticketId): Promise<void>
+  + closeTicket(ticketId, closedBy): Promise<void>
+  + openTicket(sessionId): Promise<Ticket>
+  + getTicketBySession(sessionId): Promise<Ticket | null>
+  + closeTicketBySession(sessionId): Promise<void>
+  + sendChatMessage(ticketId, content): Promise<void>
+  + sendCustomerMessage(sessionId, content): Promise<void>
+}
+
+class productService << (M,#FFAA00) Module >> {
+  + search(query: string): Promise<Product[]>
+}
+
+class feedbackService << (M,#FFAA00) Module >> {
+  + submit(msgId, isPos, reason?, comment?): Promise<Response>
+  + delete(msgId): Promise<Response>
+}
+
+class healthService << (M,#FFAA00) Module >> {
+  + check(): Promise<HealthStatus>
+}
+
+class apiClient << (L,#DDDDDD) HTTP Core >> {
+  + apiFetch(path: string, init?): Promise<Response>
+  + getApiErrorMessage(res, fallbk): Promise<string>
+  + buildApiUrl(path: string): string
+  + getApiBaseUrl(): string
+}
+
+' ==========================================
+' RELATIONSHIPS & ROUTING (No packages)
+' ==========================================
+PageClient *-- CartPanel
+PageClient *-- ChatPanel
+PageClient *-- SearchUI
+PageClient *-- AuthUI
+
+PageOperator *-- OrderUI
+PageOperator *-- TicketUI
+
+CartPanel --> CartContext
+ChatPanel --> SessionContext
+SearchUI --> useProductSearch
+AuthUI --> authService
+PageClient --> useHealthCheck
+
+OrderUI --> orderService
+TicketUI --> ticketService
+
+SessionContext --> sessionService
+SessionContext "1" o-right- "1" useSSE
+SessionContext --> chatService
+
+CartContext --> cartService
+
+useProductSearch --> productService
+useHealthCheck --> healthService
+useSSE ---> apiClient
+useSSE --> authService
+
+cartService ..> apiClient
+chatService ..> apiClient
+authService ..> apiClient
+orderService ..> apiClient
+ticketService ..> apiClient
+sessionService ..> apiClient
+productService ..> apiClient
+feedbackService ..> apiClient
+healthService ..> apiClient
+
+' Optional hidden links to maintain alignment without packages
+CartPanel -[hidden]right- ChatPanel
+OrderUI -[hidden]right- TicketUI
+
+CartContext -[hidden]right- SessionContext
+
+cartService -[hidden]right- chatService
+chatService -[hidden]right- sessionService
+sessionService -[hidden]right- authService
+
+orderService -[hidden]right- ticketService
+productService -[hidden]right- feedbackService
+feedbackService -[hidden]right- healthService
+
+@enduml

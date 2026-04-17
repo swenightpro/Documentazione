@@ -1,0 +1,16 @@
+@startuml
+skinparam monochrome false
+skinparam classBackgroundColor White/Beige
+skinparam classBorderColor Black
+skinparam dpi 300
+skinparam componentStyle uml2
+
+class useSSE << (H,#00FFEE) Custom Hook >> {
+  - connected: boolean
+  - reconnectAttempts: number
+  - esRef: Ref<EventSource>
+  + (url: string | null, options: UseSSEOptions): UseSSEReturn
+  - connect(): Promise<void>
+  - fetchSSEToken(): Promise<string>
+}
+@enduml

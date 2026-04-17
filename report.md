@@ -1,10 +1,10 @@
 # Report di compilazione
 
-Compilazione basata sul commit bd393624840bfdd4c73cf7e37a04405994548de7 (base: bd39362)
+Compilazione basata sul commit 19ac0c14eb356783dd60b87e16996f3a245b133c (base: 19ac0c1)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/PB/Documentazione Esterna/Piano_di_Qualifica_v2.4.pdf](docs/PB/Documentazione%20Esterna/Piano_di_Qualifica_v2.4.pdf)
+✅ [docs/PB/Documentazione Esterna/Specifica_Tecnica_v2.0.pdf](docs/PB/Documentazione%20Esterna/Specifica_Tecnica_v2.0.pdf)
 

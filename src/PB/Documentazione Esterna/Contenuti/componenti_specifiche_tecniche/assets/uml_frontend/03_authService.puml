@@ -1,0 +1,16 @@
+@startuml
+skinparam monochrome false
+skinparam classBackgroundColor White/Beige
+skinparam classBorderColor Black
+skinparam dpi 300
+skinparam componentStyle uml2
+
+class authService << (M,#FFAA00) Singleton Module >> {
+  + login(email, password, codCli?): Promise<{token: string, redirect: string}>
+  + getProfile(): Promise<UserProfile | null>
+  + logout(): Promise<void>
+  + changePassword(current, newPwd): Promise<void>
+  + getExportFolder(): Promise<string>
+  + setExportFolder(path: string): Promise<void>
+}
+@enduml

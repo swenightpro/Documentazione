@@ -1,0 +1,15 @@
+@startuml
+skinparam monochrome false
+skinparam classBackgroundColor White/Beige
+skinparam classBorderColor Black
+skinparam dpi 300
+skinparam componentStyle uml2
+
+class orderService << (M,#FFAA00) Singleton Module >> {
+  + listAll(filters?: OrderFilters): Promise<OrderSummary[]>
+  + list(codCli: number, page?: number, filters?: OrderFilters): Promise<OrderSummary[]>
+  + detail(orderId: number): Promise<OrderDetail | null>
+  + exportSelection(selectedIds: number[]): Promise<void>
+  + downloadExported(): Promise<Blob>
+}
+@enduml
