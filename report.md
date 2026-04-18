@@ -1,10 +1,10 @@
 # Report di compilazione
 
-Compilazione basata sul commit 931ff1cec62a5adde1fae90171f69373a7cf5454 (base: 931ff1c)
+Compilazione basata sul commit 171121501f9abdfd020a681269215d74089479f9 (base: 1711215)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/PB/Documentazione Esterna/Piano_di_Progetto_v2.4.pdf](docs/PB/Documentazione%20Esterna/Piano_di_Progetto_v2.4.pdf)
+✅ [docs/PB/Documentazione Esterna/Piano_di_Qualifica_v2.5.pdf](docs/PB/Documentazione%20Esterna/Piano_di_Qualifica_v2.5.pdf)
 
