@@ -1,0 +1,213 @@
+\documentclass[a4paper, 11pt, oneside]{scrartcl}
+
+% --- Pacchetti Fondamentali ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{lmodern}
+
+% --- Grafica e Layout ---
+\usepackage{graphicx}
+\graphicspath{{../../../assets/}}
+
+\usepackage[a4paper, top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage{tabularx}
+\usepackage[svgnames]{xcolor}
+
+% --- Utility ---
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=DarkBlue,
+	filecolor=DarkBlue,
+	urlcolor=DarkBlue,
+	citecolor=DarkBlue,
+	pdftitle={Verbale Interno 2026-04-17 - NightPRO},
+	pdfauthor={Gruppo NightPRO},
+}
+
+% ===================================================================
+%  IMPOSTAZIONE HEADER E FOOTER
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{NightPRO - Progetto Ingegneria del Software}
+\fancyhead[R]{Anno Accademico 2025/2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ===================================================================
+%  INIZIO DEL DOCUMENTO
+% ===================================================================
+\begin{document}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Frontespizio
+% -------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{titlepage}
+	\centering
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.4\textwidth]{logo.png}
+\end{figure}
+
+	\vfill
+
+	{\small UNIVERSITA DEGLI STUDI DI PADOVA \par}
+	{\small CORSO DI LAUREA IN INFORMATICA (L-31) \par}
+	\vspace{0.5cm}
+	{\large Corso di Ingegneria del Software \par}
+	{\small Anno Accademico 2025/2026 \par}
+
+	\vfill
+
+	{\Huge \bfseries Verbale di Riunione \par}
+
+	\vspace{1cm}
+
+	{\Large \itshape Verbale Interno del 17 Aprile 2026 \par}
+
+	\vfill
+
+	{\Large \bfseries Gruppo: NightPRO \par}
+	\vspace{0.5cm}
+	{\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com} \par}
+
+	\vfill
+
+	{\large Data: 2026-04-17 \par}
+
+\end{titlepage}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Indice
+% -------------------------------------------------------------------
+\newpage
+\tableofcontents
+\pagestyle{fancy}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Informazioni Generali
+% -------------------------------------------------------------------
+\newpage
+\section{Informazioni Generali}
+
+\subsection{Componenti del Gruppo}
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Nominativo} & \textbf{Matricola} & \textbf{Ruolo Operativo} \\
+\midrule
+Francesco Zanella & 2116442 & Progettista \\
+Leonardo Bilato & 2071084 & Programmatore \\
+Davide Biasuzzi & 2111000 & Responsabile \\
+Mihaela-Mariana Romascu & 2079726 & Programmatrice \\
+Michele Ogniben & 2042325 & - \\
+Samuele Perozzo & 2110989 & Progettista \\
+Giovanni Ponso & 2000558 & Progettista \\
+\bottomrule
+\end{tabular}
+\caption{Componenti del Gruppo NightPRO e ruoli ricoperti durante la seduta.}
+\end{table}
+
+\subsection{Dettagli Riunione}
+\begin{itemize}
+	\item \textbf{Data:} 2026-04-17
+	\item \textbf{Ora:} 17:00 - 18:00
+	\item \textbf{Luogo:} Google Meet
+	\item \textbf{Partecipanti:} Tutti i componenti del gruppo tranne Michele Ogniben
+	\item \textbf{Redatto da:} Davide Biasuzzi
+	\item \textbf{Verificato da:} Samuele Perozzo
+\end{itemize}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Ordine del Giorno
+% -------------------------------------------------------------------
+\newpage
+\section{Ordine del Giorno (Agenda)}
+\begin{enumerate}
+	\item Aggiornamento sul colloquio con il prof. Cardin del 16 aprile e stato della candidatura PB.
+	\item Pianificazione operativa delle attivita residue da svolgere dal 18 aprile in avanti.
+	\item Definizione dei ruoli per il nuovo periodo di lavoro.
+	\item Valutazione della durata del prossimo sprint, considerata la vicinanza alla chiusura della Product Baseline.
+\end{enumerate}
+
+% -------------------------------------------------------------------
+%  SEZIONE: Diario della Riunione
+% -------------------------------------------------------------------
+\newpage
+\section{Diario della Riunione}
+
+\subsection{Aggiornamento sul colloquio del 16 aprile con il prof. Cardin}
+Il gruppo ha riportato in apertura che in data 2026-04-16 si e svolto il colloquio con il prof. Cardin. Al momento della seduta del 17 aprile il team risulta in attesa dell'esito ufficiale.
+
+Parallelamente, e stato confermato che non sono emerse nuove macro-attivita di sviluppo sul prodotto: il lavoro residuo riguarda soprattutto il raffinamento finale della documentazione per la presentazione PB al prof. Tullio Vardanega.
+
+\subsection{Pianificazione attivita dal 18 aprile}
+La discussione si e concentrata sulle attivita operative da completare nei giorni immediatamente successivi, con obiettivo di chiudere la preparazione alla revisione PB.
+
+In particolare, il gruppo ha concordato di:
+\begin{enumerate}[noitemsep, topsep=3pt]
+	\item completare il raffinamento finale delle \textbf{Norme di Progetto} entro il 20 aprile;
+	\item preparare il materiale e le slide per il colloquio PB con il prof. Tullio;
+	\item aggiornare il \textbf{Piano di Qualifica}, con particolare attenzione al cruscotto finale relativo all'ultimo periodo;
+	\item aggiornare il \textbf{Piano di Progetto} con il consuntivo ore e gli ultimi assestamenti;
+	\item predisporre la \textbf{Lettera di Presentazione} per il colloquio PB.
+\end{enumerate}
+
+\subsection{Ruoli per il periodo successivo}
+Il gruppo ha deliberato che Davide Biasuzzi rimane nel ruolo di \textbf{Responsabile} per garantire continuita nella gestione della fase conclusiva.
+
+In aggiunta, in coerenza con la natura prevalentemente documentale e organizzativa delle attivita residue, e stata confermata una transizione dei ruoli dei progettisti verso attivita di \textbf{Amministrazione di Sistema}. In tale contesto:
+\begin{itemize}[noitemsep, topsep=3pt]
+	\item Giovanni Ponso assume il ruolo operativo di \textbf{Amministratore di Sistema};
+	\item Samuele Perozzo assume il ruolo di \textbf{Verificatore} per il controllo finale dei documenti.
+\end{itemize}
+
+\subsection{Valutazione durata del prossimo sprint}
+Considerata la fase avanzata del progetto, il team ha condiviso che potrebbe non essere necessario svolgere uno sprint completo. Si e quindi deciso di gestire il periodo successivo come \textbf{finestra di completamento mirato}, centrata sulla chiusura delle ultime attivita documentali e sulla preparazione del colloquio PB.
+
+% -------------------------------------------------------------------
+%  SEZIONE: Decisioni e Issue GitHub
+% -------------------------------------------------------------------
+\newpage
+\section{Decisioni Prese e Gestione Issue}
+
+\begin{enumerate}
+	\item \textbf{Esito colloquio Cardin:} Preso atto che il colloquio del 16 aprile e avvenuto e che il gruppo e in attesa dell'esito ufficiale.
+	\item \textbf{Focus operativo:} Deliberata la concentrazione esclusiva sulle attivita residue di raffinamento documentale e preparazione al colloquio PB.
+	\item \textbf{Ruoli periodo 16:} Confermato Davide Biasuzzi come Responsabile; formalizzati Giovanni Ponso come Amministratore di Sistema e Samuele Perozzo come Verificatore.
+	\item \textbf{Durata sprint:} Deliberata una pianificazione breve, con possibilita di chiusura anticipata del periodo se tutte le attivita risultano completate.
+\end{enumerate}
+
+\subsection{Pianificazione Issue GitHub (Periodo 16: dal 18 aprile)}
+\begin{table}[h!]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}X l c@{}}
+\toprule
+\textbf{Task} & \textbf{Assegnatario} & \textbf{ID} \\
+\midrule
+Aggiornamento finale Norme di Progetto & Giovanni Ponso & \#103 \\
+\addlinespace
+Preparazione base slide e materiale per colloquio PB & Mihaela-Mariana Romascu & \#104 \\
+\addlinespace
+Aggiornare cruscotto Piano di Qualifica con ultimo avanzamento & Francesco Zanella & \#105 \\
+\addlinespace
+Attivita del Responsabile (verbali, coordinamento, aggiornamenti PdP) & Davide Biasuzzi & \#106 \\
+\addlinespace
+Preparare Lettera di Presentazione per prof. Tullio & Davide Biasuzzi & \#107 \\
+\bottomrule
+\end{tabularx}
+\caption{Issue pianificate per il periodo successivo alla riunione del 17 aprile 2026.}
+\end{table}
+
+\end{document}
