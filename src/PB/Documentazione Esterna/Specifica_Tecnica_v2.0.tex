@@ -429,12 +429,6 @@ In questa sezione vengono elencate le tecnologie adottate per lo sviluppo del si
     \item \textbf{Contesto di utilizzo:} server ASGI\textsubscript{\textsc{g}} per l'esecuzione di FastAPI, con supporto a richieste asincrone.
 \end{itemize}
 
-\subsubsection{GitHub Actions}
-\begin{itemize}[noitemsep]
-    \item \textbf{Documentazione ufficiale:} \href{https://docs.github.com/actions}{GitHub Actions Documentation} (Ultima modifica 2026-03-26)
-    \item \textbf{Contesto di utilizzo:} pipeline di integrazione continua per quality checks (ESLint, build verification).
-\end{itemize}
-
 \subsubsection{ESLint}
 \begin{itemize}[noitemsep]
     \item \textbf{Versione:} 9
@@ -487,7 +481,7 @@ Le seguenti tabelle organizzano le dipendenze per ambito tecnico, evidenziando p
         \textbf{Nome} & \textbf{Versione} & \textbf{Descrizione e motivazione d'uso} \\
         \midrule
         Node.js & $\geq$ 20 & Runtime di esecuzione per la parte frontend e per i comandi di sviluppo/build: e' stato selezionato in quanto piattaforma di riferimento dell'ecosistema Next.js, evitando incompatibilita' di tooling presenti su versioni precedenti; costituisce il processo applicativo su cui vengono eseguiti i bundle React/TypeScript. \\
-        ESLint & $\geq$ 9 & Strumento di analisi statica del codice frontend: e' stato adottato per uniformare regole di qualita' e prevenire regressioni prima dell'integrazione, preferendolo a controlli esclusivamente manuali; si integra con TypeScript e con la pipeline di verifica automatica del repository. \\
+        ESLint & $\geq$ 9 & Strumento di analisi statica del codice frontend: e' stato adottato per uniformare regole di qualita' e prevenire regressioni prima dell'integrazione, preferendolo a controlli esclusivamente manuali; si integra in locale con TypeScript per l'ecosistema di sviluppo. \\
         \bottomrule
     \end{tabularx}
     \caption{Dipendenze della categoria Frontend -- Build e runtime.}
@@ -568,7 +562,7 @@ Le seguenti tabelle organizzano le dipendenze per ambito tecnico, evidenziando p
         \textbf{Nome} & \textbf{Versione} & \textbf{Descrizione e motivazione d'uso} \\
         \midrule
         Docker & $\geq$ 24.0 & Piattaforma di containerizzazione degli artefatti applicativi: e' stata adottata per assicurare coerenza degli ambienti tra sviluppo, verifica e rilascio evitando configurazioni manuali eterogenee; si integra con i servizi frontend e backend come base comune di esecuzione. \\
-        GitHub Actions & N/D (servizio gestito) & Infrastruttura di automazione CI per validazioni tecniche: e' stata scelta per mantenere i controlli direttamente allineati al repository e al flusso di revisione, rispetto a pipeline esterne separate; si integra con i job di quality gate (lint e build) prima dell'integrazione delle modifiche. \\
+        Railway & N/D (servizio gestito) & Piattaforma cloud di Continuous Deployment (CD): automatizza il build e il deploy ad ogni aggiornamento sul repository di riferimento, garantendo aggiornamenti zero-downtime senza implementare pipeline CI locali per i test. \\
         \bottomrule
     \end{tabularx}
     \caption{Dipendenze della categoria Infrastruttura e DevOps.}
@@ -659,7 +653,7 @@ Le principali motivazioni della scelta sono:
 \section{Architettura di deployment}
 
 Questa sezione descrive la distribuzione fisica dei componenti del sistema \textit{SmartOrder}, illustrando gli ambienti di esecuzione, i nodi
-     infrastrutturali coinvolti e le strategie di Continuous Integration e Continuous Deployment (CI/CD\ped{g}).
+     infrastrutturali coinvolti e le strategie di Continuous Deployment (CD\ped{g}).
 
 \subsection{Architettura: Sottosistemi Monolitici Indipendenti}
 Il sistema \textit{SmartOrder} adotta un'architettura \textbf{Client-Server} basata su due unità di deployment indipendenti. Entrambi i componenti

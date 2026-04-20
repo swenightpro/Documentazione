@@ -70,8 +70,8 @@
 
     {\large \href{mailto:swe.nightpro@gmail.com}{swe.nightpro@gmail.com}}\\[2cm]
 
-    {\large Data: 2026-04-09 \par}
-    {\Large Versione: 3.3 \par}
+    {\large Data: 2026-04-19 \par}
+    {\Large Versione: 3.4 \par}
 
 \end{titlepage}
 
@@ -91,6 +91,7 @@
             \toprule
             \textbf{Versione} & \textbf{Data} & \textbf{Autore/i}     & \textbf{Descrizione delle Modifiche}                                                                                                                                                                            & \textbf{Verificatore}   \\
             \midrule
+            3.4               & 2026-04-19    & G. Ponso              & Revisione e riallineamento generale per la chiusura definitiva del documento nella fase di Product Baseline. & Samuele Perozzo              \\
             3.3               & 2026-04-09    & F. Zanella            & Revisione processi di CI/CD per integrazione deploy e completamento norme di implementazione e documentazione & Leonardo Bilato\\
             3.2               & 2026-04-03    & L. Bilato             & Aggiunte le sezioni relative alla CI e al testing                                                                                                                                                               & Mihaela-Mariana Romascu \\
             3.1               & 2026-04-02    & L. Bilato             & Aggiornata la sezione relativa alla rotazione dei ruoli                                                                                                                                                         & Mihaela-Mariana Romascu \\
@@ -275,19 +276,19 @@ I seguenti documenti e risorse sono stati consultati a scopo di studio e orienta
 
 \paragraph{Procedure}
 \begin{enumerate}
-    \item \textbf{Progettazione logica}:
+    \item \textbf{Studio di fattibilità tecnica}:
           \begin{enumerate}[label=\alph*.]
               \item Selezionare lo stack tecnologico (linguaggi, framework{\scriptsize\raisebox{-0.5ex}{G}}, librerie) motivando le scelte rispetto ai requisiti.
               \item Realizzare un Proof of Concept{\scriptsize\raisebox{-0.5ex}{G}} (PoC) per validare la fattibilità tecnica delle scelte adottate.
               \item Documentare l'esito del PoC nel repository dedicato (\texttt{SmartOrder-PoC}).
           \end{enumerate}
-    \item \textbf{Progettazione di dettaglio}:
+    \item \textbf{Progettazione Architetturale}:
           \begin{enumerate}[label=\alph*.]
               \item Definire l'architettura{\scriptsize\raisebox{-0.5ex}{G}} del sistema e i pattern architetturali{\scriptsize\raisebox{-0.5ex}{G}} adottati.
-              \item Produrre il diagramma UML delle classi e i diagrammi di sequenza per le interazioni principali.
+              \item Produrre il diagramma UML delle classi.
               \item Specificare le interfacce tra i componenti e le dipendenze tra moduli.
               \item Verificare che l'architettura soddisfi tutti i requisiti classificati come Obbligatori.
-              \item Sottoporre il documento di progettazione al ciclo di verifica/approvazione.
+              \item Formalizzare l'interezza del lavoro architetturale e tecnico all'interno del documento \emph{Specifica\_Tecnica} e sottoporlo al consueto ciclo di verifica e approvazione.
           \end{enumerate}
 \end{enumerate}
 
@@ -363,6 +364,22 @@ Il codice prodotto deve rispettare i criteri di: \textbf{leggibilità}, \textbf{
     \item \textbf{GitHub Projects}: tracciamento dei task di sviluppo.
 \end{itemize}
 
+\subsubsection{Attività 4 – Documentazione Utente}
+
+\paragraph{Procedure}
+Nel corso del progetto, e in particolare con l'intento di presentare gli artefatti durante la validazione in fase di Product Baseline (PB), vengono redatti manuali d'uso che si affiancano ai software sviluppati. La redazione è in carico ai Programmatori, con possibile supporto degli Analisti e supervisione dei Verificatori.
+
+\begin{enumerate}
+    \item \textbf{Redazione del Manuale Operatore}: Documentazione d'uso dedicata al personale interno dell'azienda fornitrice, incaricato di interfacciarsi con il backoffice del sistema per monitorare lo stato degli ordini, gestire le comunicazioni di assistenza (ticket) e validare il comportamento dell'Intelligenza Artificiale.
+    \item \textbf{Redazione del Manuale Cliente}: Documentazione d'uso dedicata all'utente acquirente B2B (ad esempio il ristoratore), strutturata per illustrarne le modalità di dettatura e visualizzazione degli ordini, la gestione del carrello e la visualizzazione dello storico tramite applicativo.
+    \item Assicurarsi che ogni manuale ricalchi fedelmente la reale interfaccia utente finale prodotta e le vere procedure fornite.
+\end{enumerate}
+
+\paragraph{Strumenti}
+\begin{itemize}
+    \item \textbf{Overleaf / \LaTeX{}}: redazione dei manuali.
+\end{itemize}
+
 % ===================================================================
 %  PROCESSI DI SUPPORTO
 % ===================================================================
@@ -386,19 +403,24 @@ Il codice prodotto deve rispettare i criteri di: \textbf{leggibilità}, \textbf{
           \end{itemize}
     \item Rispettare la struttura del repository \texttt{Documentazione}:
           \begin{verbatim}
-.github/workflows/  # Workflow CI (build PDF, deploy sito)
-src/                # File .tex sorgenti dei documenti
-docs/               # PDF generati automaticamente
-site/               # Codice sorgente sito GitHub Pages
-template/           # Template e documenti base
-report.md           # Report compilazione automatica
+.github/workflows/          # Workflow CI (build PDF, deploy sito, controlli qualità)
+docs/                       # PDF generati organizzati per milestone (Candidatura, PB, RTB)
+quality/                    # Script e log per i controlli automatizzati (es. Gulpease)
+site/                       # Motore custom di build statico in Python del sito doc
+src/                        # File .tex organizzati per milestone
+    |-- assets/             # Loghi, immagini globali e grafici attività sprint
+    |-- Candidatura/        # Documenti milestone Candidatura
+    |-- RTB/                # Documenti milestone RTB
+    +-- PB/                 # Documenti milestone PB
+report.md                   # Report ultima compilazione automatica
 \end{verbatim}
+          I contenuti di \texttt{src/} e \texttt{docs/} in ogni milestone sono sistematicamente separati nelle cartelle \texttt{Documentazione Esterna/} e \texttt{Documentazione Interna/}.
     \item Caricare direttamente su \texttt{main} i documenti verificati; non usare branch intermedi per la documentazione.
     \item Per la repository \texttt{SmartOrder-MVP}:
     \begin{itemize}
         \item Il lavoro avviene su branch dedicati o direttamente su \texttt{main}.
         \item Ogni modifica viene integrata tramite push validando l'operazione con un coautore (Verificatore).
-        \item La pipeline CI si attiva automaticamente ad ogni push.
+        \item Il deployment sul cloud (Railway) si attiva automaticamente ad ogni push sul repository di riferimento.
     \end{itemize}
     \item Per la repository \texttt{SmartOrder-PoC}: si segue lo stesso approccio della repository \texttt{SmartOrder-MVP}.
 \end{enumerate}
@@ -409,27 +431,26 @@ report.md           # Report compilazione automatica
     \item \textbf{GitHub}: piattaforma di hosting, revisione codice e collaborazione.
 \end{itemize}
 
-\subsubsection{Attività 2 – Automazione CI/CD}
+\subsubsection{Attività 2 – Automazione e Deployment}
 
-L'integrazione continua (CI){\scriptsize\raisebox{-0.5ex}{G}} e la Continuous Delivery/Deployment (CD){\scriptsize\raisebox{-0.5ex}{G}} sono pratiche che automatizzano l'integrazione del codice e il suo rilascio. Nel progetto NightPRO, queste pratiche sono implementate per la repository \texttt{SmartOrder-MVP} ed entrano in funzione ad ogni push.
-L'infrastruttura si appoggia all'integrazione nativa tra \textbf{GitHub} per il tracciamento del versionamento e \textbf{Railway} come piattaforma di hosting e automazione.
+Le pratiche di Deployment automatizzato e validazione continua sono parzialmente implementate e delegate a servizi Cloud esterni.
+L'infrastruttura si appoggia all'integrazione nativa tra \textbf{GitHub} per il tracciamento del versionamento e l'esecuzione di script Actions per la sola documentazione, e \textbf{Railway} come piattaforma di hosting per il software.
 
-\subparagraph{Pipeline automatizzata per l'ambiente applicativo}
+\subparagraph{Deployment e Validazione per l'ambiente applicativo}
 
-La pipeline per il software applicativo si articola nelle seguenti fasi principali delegate a GitHub e Railway:
+In base alle architetture adottate, l'iter di deploy del software (\texttt{SmartOrder-MVP}) si articola come segue:
 
 \begin{enumerate}
-    \item \textbf{Build e Analisi Statica}:
+    \item \textbf{Testing Locale (Validazione Manaule)}:
     \begin{enumerate}[label=\alph*.]
-        \item Il workflow di build di Railway si attiva automaticamente ad ogni push registrato sui branch collegati della repository GitHub.
-        \item Il codice sorgente viene ottenuto, le dipendenze vengono installate e avviene la compilazione nei container. L'obiettivo primario è accertarsi che il software buildi senza errori.
-        \item In caso di errore di build, l'esecuzione si ferma e viene inviata una notifica su Railway (e GitHub) evidenziando il problema tecnico che il Programmatore deve risolvere.
-        \item Vengono inoltre eseguiti controlli di base forniti dagli strumenti di analisi statica per la conformità alla sintassi, senza bloccare l'infrastruttura con suite complesse di test.
+        \item Non è preconfigurata formalmente alcuna pipeline di Continous Integration (CI) in cloud.
+        \item L'esecuzione delle suite di test (unità e end-to-end) e i controlli formali tramite linter (ESLint, Prettier) sono eseguiti manualmente da riga di comando sul dispositivo in uso ai Programmatori.
+        \item La validazione completa è richiesta ai fini autorizzativi prima del merge su \texttt{main} degli incrementi o della singola feature.
     \end{enumerate}
-    \item \textbf{Continuous Deployment (CD)}:
+    \item \textbf{Continuous Deployment (CD) su Railway}:
     \begin{enumerate}[label=\alph*.]
-        \item Se la fase di build si conclude con successo senza eccezioni, Railway procede automaticamente con il deploy in ambiente cloud.
-        \item L'aggiornamento avviene in modalità zero-downtime applicando i container al web solver in automatico.
+        \item Al commit aggiornato sul repository di riferimento, il workflow di Railway si avvia in un container Docker, ottenendo i sorgenti e compilandone le dipendenze di build.
+        \item Se l'istanza non fallisce l'installazione (build-crash), il servizio esegue l'aggiornamento automatico e re-instrada le richieste sul nuovo applicativo in zero-downtime senza vincoli derivanti dalle suite di testing.
     \end{enumerate}
 \end{enumerate}
 
@@ -452,18 +473,18 @@ La pipeline per la documentazione si articola nelle seguenti fasi:
           \begin{enumerate}[label=\alph*.]
               \item Si attiva al completamento con successo del workflow di build.
               \item Sincronizza la struttura del sito con la cartella \texttt{docs/}.
-              \item Include automaticamente nuove versioni e nuovi documenti nell'indice del sito.
-              \item Pubblica il contenuto su GitHub Pages senza intervento manuale.
+              \item Include automaticamente nuove versioni e nuovi documenti nell'indice del sito tramite lo script Python \texttt{site/build\_site.py}.
+              \item Pubblica il sito aggiornato su GitHub Pages senza intervento manuale.
           \end{enumerate}
     \item \textbf{Workflow di controllo qualità}:
           \begin{enumerate}[label=\alph*.]
               \item Il workflow si attiva automaticamente al completamento del workflow di build, esclusivamente in caso di esito positivo.
               \item È possibile eseguire il workflow manualmente tramite trigger esplicito.
-              \item Il sistema esegue controlli di qualità sui file \LaTeX{}, tra cui:
+              \item Il sistema esegue controlli di qualità sui file \LaTeX{} avvalendosi di appositi script Python ospitati all'interno della directory \texttt{quality/}, tra cui:
                     \begin{itemize}
-                        \item indice di leggibilità Gulpease;
-                        \item analisi linguistica tramite LanguageTool;
-                        \item analisi statica del codice \LaTeX{} tramite ChkTeX.
+                        \item indice di leggibilità Gulpease (\texttt{check\_gulpease.py});
+                        \item analisi linguistica tramite LanguageTool (\texttt{check\_languagetool.py});
+                        \item analisi statica del codice \LaTeX{} tramite ChkTeX (\texttt{check\_chktex.py}).
                     \end{itemize}
               \item I risultati dei controlli vengono aggregati in un report (\texttt{quality\_report.md}).
               \item Il report viene salvato come artefatto del workflow con retention configurata.
@@ -474,16 +495,16 @@ La pipeline per la documentazione si articola nelle seguenti fasi:
 
 \paragraph{Strumenti}
 \begin{itemize}
-    \item \textbf{GitHub Actions}: esecuzione automatica dei workflow di build, test e deploy.
-    \item \textbf{Docker}: ambiente di compilazione isolato e riproducibile.
+    \item \textbf{GitHub Actions}: esecuzione automatica dei workflow di compilazione \LaTeX{}.
+    \item \textbf{Railway}: piattaforma cloud utilizzata per la build e il deploy automatico in zero-downtime dell'MVP (tramite la sua pipeline CI/CD integrata).
+    \item \textbf{Docker}: ambiente di compilazione isolato e riproducibile per i documenti.
     \item \textbf{Latexmk}: compilatore \LaTeX{} con gestione automatica delle dipendenze.
     \item \textbf{GitHub Pages}: hosting del sito statico di documentazione.
-    \item \textbf{LanguageTool}: analisi grammaticale e stilistica.
-    \item \textbf{ChkTeX}: analisi statica dei file \LaTeX{}.
-    \item \textbf{Pylint}: analisi statica del codice Python per identificare potenziali errori, bug e cattive abitudini di programmazione.
-    \item \textbf{Codacy}: servizio di analisi statica che verifica il codice tramite analisi automatica integrato in GitHub.
-    \item \textbf{Codecov}: servizio che traccia e mostra il code coverage come badge nel \texttt{README.md}.
-    \item \textbf{Coveralls}: servizio che traccia e mostra il code coverage integrato con GitHub Actions.
+    \item \textbf{Python}: esecuzione di script personalizzati per la build del sito web e la generazione di report di conformità formale (come l'indice Gulpease).
+    \item \textbf{LanguageTool}: analisi grammaticale e stilistica dei documenti \LaTeX{}.
+    \item \textbf{ChkTeX}: analisi periodica statica dei file \LaTeX{}.
+    \item \textbf{ESLint / Prettier}: controlli di analisi statica ed enforce di formattazione sulla codebase TypeScript (frontend).
+    \item \textbf{Playwright / pytest}: framework di test identificati per frontend e backend.
 \end{itemize}
 
 \subsubsection{Attività 3 – Gestione della comunicazione e degli strumenti collaborativi}
@@ -521,13 +542,15 @@ La pipeline per la documentazione si articola nelle seguenti fasi:
               \item Corpo del documento articolato in sezioni e sottosezioni.
               \item (Se necessario) Appendici, glossari, tabelle e riferimenti.
           \end{itemize}
-    \item Nominare i file secondo la convenzione \texttt{snake\_case}{\scriptsize\raisebox{-0.5ex}{G}}:
+    \item Nominare i file e le directory secondo le convenzioni adottate storicamente dal gruppo per facilitare la leggibilità del repository:
           \begin{itemize}
-              \item Versione: \texttt{vX.Y} — Data: formato ISO \texttt{AAAA-MM-GG}.
-              \item Esempi: \texttt{norme\_di\_progetto\_v2.1.tex}, \texttt{verbale\_interno\_2025-10-29.tex}.
+              \item \textbf{File di documentazione formale}: utilizzare il \texttt{Capitalized\_Snake\_Case} comprendente la versione (\texttt{vX.Y}). Esempi: \texttt{Norme\_di\_Progetto\_v3.3.tex}, \texttt{Analisi\_dei\_Requisiti\_v3.0.tex}.
+              \item \textbf{File per verbali}: utilizzare \texttt{Verbale\_esterno\_YYYY-MM-DD.tex} o \texttt{verbale\_interno\_YYYY-MM-DD.tex}.
+              \item \textbf{Directory categoriche}: utilizzare normale formattazione a parole separate da spazi (es. \texttt{Documentazione Interna}, \texttt{Verbali Esterni}).
           \end{itemize}
     \item Marcare la prima occorrenza di ogni termine tecnico con il simbolo {\scriptsize\raisebox{-0.5ex}{G}} in apice.
     \item Aggiornare la tabella delle versioni a ogni modifica significativa, indicando autore, data e descrizione sintetica delle modifiche.
+    \item \textbf{Modularità dei file .tex}: in caso di documenti complessi (es. Analisi dei Requisiti o manualistica), è possibile separare il documento principale in file secondari organizzati in apposite directory (es. \texttt{Contenuti/componenti\_analisi\_dei\_requisiti/\dots}). Pur non rappresentando uno standard redazionale obbligatorio, la suddivisione è caldamente raccomandata per favorire la stesura in parallelo del team.
 \end{enumerate}
 
 \paragraph{Strumenti}
@@ -643,11 +666,8 @@ La sequenza delle fasi di test è la seguente:
 
 \subsubsection{Strumenti}
 \begin{itemize}
-    \item \textbf{JUnit}: framework per la scrittura e l'esecuzione di test di unità in Java.
-    \item \textbf{Mockito}: framework per la creazione di mock e stub nei test Java.
-    \item \textbf{Jest}: framework per la scrittura e l'esecuzione di test di unità in TypeScript/JavaScript.
-    \item \textbf{Pytest}: framework per la creazione, l'organizzazione e l'esecuzione automatizzata di test in Python.
-    \item \textbf{Unittest}: libreria standard Python per la creazione e l'esecuzione di test di unità.
+    \item \textbf{Playwright}: framework end-to-end e di unit testing utilizzato per la validazione della logica utente nell'applicativo Next.js (TypeScript).
+    \item \textbf{Pytest}: framework per la creazione, l'organizzazione e l'esecuzione automatizzata di test in backend (Python).
 \end{itemize}
 
 % -------------------------------------------------------------------
