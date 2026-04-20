@@ -96,8 +96,8 @@
 
     \vfill
 
-    {\large Data: 2026-04-18 \par}
-    {\Large Versione: 2.6 \par}
+    {\large Data: 2026-04-19 \par}
+    {\Large Versione: 2.7 \par}
 
 \end{titlepage}
 
@@ -124,6 +124,8 @@
         \endfoot
         \bottomrule
         \endlastfoot
+
+        2.7               & 2026-04-19    & Leonardo Bilato         & Allineamento della suite di test allo stato implementativo, revisione strategie e aggiornamento metriche di qualità & Samuele Perozzo         \\
         2.6               & 2026-04-18    & Davide Biasuzzi         & Aggiornati grafici periodo 15 e qualità documentazione & Samuele Perozzo     \\
         2.5               & 2026-04-17    & Leonardo Bilato         & Aggiornamento della metrica QM-1, aggiunta tabella riepilogativa metriche di qualità                                                             & Francesco Zanella     \\
         2.4               & 2026-04-10    & Giovanni Ponso          & Aggiornamento dei grafici e dei valori nel cruscotto di qualità                                                                                          & Mihaela-Mariana Romascu \\
@@ -640,7 +642,7 @@ Per il monitoraggio dell'avanzamento, il gruppo utilizza la metodologia Earned V
     \textbf{Accettabile:} & - \\
 \end{tabular}
 
-\subsubsection{PM-13 - Copertura Unit Test (CI/CD)}
+\subsubsection{PM-13 - Copertura Unit Test pre-merge}
 
 \noindent
 \begin{tabular}{@{}p{0.18\textwidth}p{0.77\textwidth}@{}}
@@ -649,7 +651,7 @@ Per il monitoraggio dell'avanzamento, il gruppo utilizza la metodologia Earned V
 \end{tabular}
 
 \vspace{0.3cm}
-\noindent\textbf{Descrizione:} Misura la copertura del codice raggiunta esclusivamente dagli unit test{\scriptsize\raisebox{-0.5ex}{G}} eseguiti automaticamente nella pipeline{\scriptsize\raisebox{-0.5ex}{G}} CI/CD{\scriptsize\raisebox{-0.5ex}{G}}. Questa metrica monitora la qualità del processo di sviluppo e garantisce che ogni modifica al codice sia adeguatamente coperta da test unitari prima del merge. Le soglie sono più stringenti rispetto alla copertura generale poiché gli unit test rappresentano la prima linea di difesa contro i difetti.
+\noindent\textbf{Descrizione:} Misura la copertura del codice raggiunta dagli unit test{\scriptsize\raisebox{-0.5ex}{G}} eseguiti ciclicamente in ambiente locale (o tramite script CLI manuali). Questa metrica monitora la qualità e stabilità del processo di sviluppo, certificando che le suite automatizzate verifichino i casi elementari e l'assenza di rotture, garantendo che ogni modifica al codice sia adeguatamente coperta da test unitari prima del merge sul \texttt{main} branch per il rilascio. Le soglie sono più stringenti rispetto alla copertura generale poiché gli unit test rappresentano la prima linea di difesa contro i difetti.
 
 \vspace{0.2cm}
 \noindent\textbf{Valori di accettazione:}
@@ -724,7 +726,7 @@ Per il monitoraggio dell'avanzamento, il gruppo utilizza la metodologia Earned V
         PM-10           & Estimate to Complete                & -                    & -                    \\
         PM-11           & Estimate at Completion              & $\pm 5\%$ di PM-12   & PM-12                \\
         PM-12           & Budget at Completion                & -                    & -                    \\
-        PM-13           & Copertura Unit Test (CI/CD)         & $\ge 80\%$           & $\ge 90\%$           \\
+        PM-13           & Copertura Unit Test pre-merge       & $\ge 80\%$           & $\ge 90\%$           \\
         PM-14           & Misure di mitigazione insufficienti & $3$                  & $0$                  \\
         PM-15           & Rischi inattesi                     & $3$                  & $0$                  \\
         \bottomrule
@@ -743,7 +745,7 @@ Per il monitoraggio dell'avanzamento, il gruppo utilizza la metodologia Earned V
 Il gruppo NightPRO fa riferimento allo standard \textbf{ISO/IEC 25010}{\scriptsize\raisebox{-0.5ex}{G}} per definire le caratteristiche di qualità del prodotto software (es. Manutenibilità, Usabilità, Efficienza, Sicurezza).
 
 \vspace{0.3cm}
-\noindent\textit{\textbf{Nota:} Le metriche di qualità di prodotto presentate in questa sezione fanno riferimento allo sviluppo del \textbf{Minimum Viable Product (MVP)}{\scriptsize\raisebox{-0.5ex}{G}} e non al Proof of Concept (PoC){\scriptsize\raisebox{-0.5ex}{G}}. Tali metriche sono state definite in previsione del futuro sviluppo dell'MVP, al fine di stabilire fin da subito criteri oggettivi e misurabili per garantire la qualità del software finale.}
+\noindent\textit{\textbf{Nota:} Le metriche di qualità di prodotto presentate in questa sezione fanno riferimento allo sviluppo del \textbf{Minimum Viable Product (MVP)}{\scriptsize\raisebox{-0.5ex}{G}} e non al Proof of Concept (PoC){\scriptsize\raisebox{-0.5ex}{G}}. Tali metriche, definite fin dalle prime fasi del progetto, hanno consentito di stabilire criteri oggettivi e misurabili impiegati con successo per misurare e garantire la qualità del software finale dell'MVP appena ultimato.}
 \vspace{0.3cm}
 
 \subsection{Metriche di Qualità del Software (Statica)}
@@ -1440,11 +1442,11 @@ La verifica è non-bloccante per i build, ovvero gli errori rilevati non impedis
 
 \section{Strategie di testing}
 
-Questa sezione definisce in maniera rigorosa ed analitica le macro-strategie per la verifica del prodotto MVP. A seguito di una scrupolosa revisione dell'architettura e per evitare ridondanze, l'elenco esclude volutamente unit test superflui (es. componenti puramente estetici) concentrandosi unicamente sui Layer di logica: Controller FastAPI, Service Core e Adapter di Integrazione. In virtù di questa raffinazione, sono catalogati in modo puntuale 181 casi essenziali di Test di Unità, 22 di Integrazione e 20 di Sistema, in grado di coprire l'MVP in modalità White Box e Black Box.
+Questa sezione definisce in maniera rigorosa ed analitica le macro-strategie per la verifica del prodotto MVP. L'elenco sottostante copre i principali flussi applicativi e le logiche di business sia lato backend che frontend, adottando, per le componenti di interfaccia utente e per alcune logiche complesse che presentano difficoltà di mocking, un approccio basato sull'esecuzione manuale del test o su collaudo operativo, combinato invece a un'ampia suite automatizzata per i componenti core strategici. In virtù di questa configurazione ibrida, sono catalogati attualmente 290 casi essenziali di Test di Unità, 51 di Integrazione e 7 di Sistema, in grado di tracciare in modo puntuale sia i test automatizzati implementati che i casi di uso affrontati manualmente.
 
 
 \subsection{Test di unità}
-I Test di Unità hanno lo scopo di collaudare strutturalmente in isolamento i singoli componenti software e i metodi principali, garantendone la correttezza algoritmica e gestionale. Più nello specifico, questi test mirano a certificare l'affidabilità e il determinismo delle funzioni esclusive atte a mutare lo stato, delle complesse logiche di orchestrazione e validazione implementate nel Backend, e dei Custom Hook essenziali nel framework Frontend (React). In questo modo, eventuali vulnerabilità operative possono essere circoscritte e risolte sul nascere nel livello logico più isolato.
+I Test di Unità hanno lo scopo di collaudare in isolamento i singoli componenti software, accertando la solidità degli algoritmi e di gestione dei dati. Una considerevole frazione di tali test copre il Backend FastAPI validando le orchestrazioni di business, mentre per le componenti architetturali del Frontend React dove l'effort di unit testing automatico risultava eccessivo e fragile rispetto ai refactoring UI, i test vengono gestiti e verificati mediante esecuzione e ispezione manuale dei singoli comportamenti architetturali.
 \begin{longtable}{|p{1.9cm}|p{11.6cm}|c|}
     \hline
     \rowcolor[gray]{0.9}
@@ -1456,187 +1458,296 @@ I Test di Unità hanno lo scopo di collaudare strutturalmente in isolamento i si
     \textbf{Codice} & \textbf{Descrizione}                                                                                                                                         & \textbf{Stato} \\
     \hline
     \endhead
-    TU001           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{execute\_query} del modulo \texttt{database}.                               & Implementato   \\ \hline
-    TU002           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{execute\_query\_one} del modulo \texttt{database}.                          & Implementato   \\ \hline
-    TU003           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{find\_by\_email} del modulo \texttt{postgres\_adapter}.                     & Implementato   \\ \hline
-    TU004           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{find\_by\_id} del modulo \texttt{postgres\_adapter}.                        & Implementato   \\ \hline
-    TU005           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_user} del modulo \texttt{postgres\_adapter}.                        & Implementato   \\ \hline
-    TU006           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{update\_password} del modulo \texttt{postgres\_adapter}.                    & Implementato   \\ \hline
-    TU007           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_client\_info} del modulo \texttt{postgres\_adapter}.                   & Implementato   \\ \hline
-    TU008           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{search\_clients} del modulo \texttt{postgres\_adapter}.                     & Implementato   \\ \hline
-    TU009           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_active\_session} del modulo \texttt{postgres\_adapter}.                & Implementato   \\ \hline
-    TU010           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_session} del modulo \texttt{postgres\_adapter}.                     & Implementato   \\ \hline
-    TU011           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_messages} del modulo \texttt{postgres\_adapter}.                       & Implementato   \\ \hline
-    TU012           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{save\_message} del modulo \texttt{postgres\_adapter}.                       & Implementato   \\ \hline
-    TU013           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{save\_image\_message} del modulo \texttt{postgres\_adapter}.                & Implementato   \\ \hline
-    TU014           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_message\_by\_id} del modulo \texttt{postgres\_adapter}.                & Implementato   \\ \hline
-    TU015           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_cart\_by\_session} del modulo \texttt{postgres\_adapter}.              & Implementato   \\ \hline
-    TU016           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_cart} del modulo \texttt{postgres\_adapter}.                           & Implementato   \\ \hline
-    TU017           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{add\_to\_cart} del modulo \texttt{postgres\_adapter}.                       & Implementato   \\ \hline
-    TU018           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{add\_to\_cart\_by\_session} del modulo \texttt{postgres\_adapter}.          & Implementato   \\ \hline
-    TU019           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{remove\_from\_cart} del modulo \texttt{postgres\_adapter}.                  & Implementato   \\ \hline
-    TU020           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{remove\_from\_cart\_by\_session} del modulo \texttt{postgres\_adapter}.     & Implementato   \\ \hline
-    TU021           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{update\_cart\_quantity} del modulo \texttt{postgres\_adapter}.              & Implementato   \\ \hline
-    TU022           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{update\_cart\_quantity\_by\_session} del modulo \texttt{postgres\_adapter}. & Implementato   \\ \hline
-    TU023           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{clear\_cart} del modulo \texttt{postgres\_adapter}.                         & Implementato   \\ \hline
-    TU024           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{clear\_cart\_by\_session} del modulo \texttt{postgres\_adapter}.            & Implementato   \\ \hline
-    TU025           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_order} del modulo \texttt{postgres\_adapter}.                       & Implementato   \\ \hline
-    TU026           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_orders\_by\_client} del modulo \texttt{postgres\_adapter}.             & Implementato   \\ \hline
-    TU027           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_all\_orders} del modulo \texttt{postgres\_adapter}.                    & Implementato   \\ \hline
-    TU028           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_order\_detail} del modulo \texttt{postgres\_adapter}.                  & Implementato   \\ \hline
-    TU029           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_order\_detail\_any} del modulo \texttt{postgres\_adapter}.             & Implementato   \\ \hline
-    TU030           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{search\_products} del modulo \texttt{postgres\_adapter}.                    & Implementato   \\ \hline
-    TU031           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{find\_product\_by\_name} del modulo \texttt{postgres\_adapter}.             & Implementato   \\ \hline
-    TU032           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{find\_products\_by\_name\_fuzzy} del modulo \texttt{postgres\_adapter}.     & Implementato   \\ \hline
-    TU033           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{find\_product\_by\_name\_merged} del modulo \texttt{postgres\_adapter}.     & Implementato   \\ \hline
-    TU034           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{find\_product\_by\_code} del modulo \texttt{postgres\_adapter}.             & Implementato   \\ \hline
-    TU035           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{save\_feedback} del modulo \texttt{postgres\_adapter}.                      & Implementato   \\ \hline
-    TU036           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{delete\_feedback} del modulo \texttt{postgres\_adapter}.                    & Implementato   \\ \hline
-    TU037           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{search\_products\_for\_ai} del modulo \texttt{postgres\_adapter}.           & Implementato   \\ \hline
-    TU038           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{search\_products\_keyword} del modulo \texttt{postgres\_adapter}.           & Implementato   \\ \hline
-    TU039           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_embedding} del modulo \texttt{postgres\_adapter}.                      & Implementato   \\ \hline
-    TU040           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{upsert\_embedding} del modulo \texttt{postgres\_adapter}.                   & Implementato   \\ \hline
-    TU041           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{search\_products\_vector} del modulo \texttt{postgres\_adapter}.            & Implementato   \\ \hline
-    TU042           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{has\_embeddings} del modulo \texttt{postgres\_adapter}.                     & Implementato   \\ \hline
-    TU043           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_cart\_by\_client} del modulo \texttt{postgres\_adapter}.               & Implementato   \\ \hline
-    TU044           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_order\_history\_flat} del modulo \texttt{postgres\_adapter}.           & Implementato   \\ \hline
-    TU045           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_available\_cod\_art} del modulo \texttt{postgres\_adapter}.            & Implementato   \\ \hline
-    TU046           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_last\_orders} del modulo \texttt{postgres\_adapter}.                   & Implementato   \\ \hline
-    TU047           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_ticket} del modulo \texttt{postgres\_adapter}.                      & Implementato   \\ \hline
-    TU048           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_ticket\_by\_session} del modulo \texttt{postgres\_adapter}.            & Implementato   \\ \hline
-    TU049           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_open\_tickets} del modulo \texttt{postgres\_adapter}.                  & Implementato   \\ \hline
-    TU050           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_ticket\_by\_id} del modulo \texttt{postgres\_adapter}.                 & Implementato   \\ \hline
-    TU051           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{lock\_ticket} del modulo \texttt{postgres\_adapter}.                        & Implementato   \\ \hline
-    TU052           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{unlock\_ticket} del modulo \texttt{postgres\_adapter}.                      & Implementato   \\ \hline
-    TU053           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{close\_ticket} del modulo \texttt{postgres\_adapter}.                       & Implementato   \\ \hline
-    TU054           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_last\_message\_time} del modulo \texttt{postgres\_adapter}.            & Implementato   \\ \hline
-    TU055           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_export\_folder} del modulo \texttt{postgres\_adapter}.                 & Implementato   \\ \hline
-    TU056           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{set\_export\_folder} del modulo \texttt{postgres\_adapter}.                 & Implementato   \\ \hline
-    TU057           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{mark\_order\_exported} del modulo \texttt{postgres\_adapter}.               & Implementato   \\ \hline
-    TU058           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{mark\_orders\_exported} del modulo \texttt{postgres\_adapter}.              & Implementato   \\ \hline
-    TU059           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{send\_message} del modulo \texttt{postgres\_adapter}.                       & Implementato   \\ \hline
-    TU060           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{transcribe\_audio} del modulo \texttt{openai\_adapter}.                     & Implementato   \\ \hline
-    TU061           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{interpret\_intent} del modulo \texttt{openai\_adapter}.                     & Implementato   \\ \hline
-    TU062           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{generate\_embedding} del modulo \texttt{openai\_adapter}.                   & Implementato   \\ \hline
-    TU063           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{analyze\_image} del modulo \texttt{openai\_adapter}.                        & Implementato   \\ \hline
-    TU064           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{login} del modulo \texttt{auth\_controller}.                                &                \\ \hline
-    TU065           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{logout} del modulo \texttt{auth\_controller}.                               &                \\ \hline
-    TU066           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{me} del modulo \texttt{auth\_controller}.                                   &                \\ \hline
-    TU067           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{change\_password} del modulo \texttt{auth\_controller}.                     &                \\ \hline
-    TU068           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{register} del modulo \texttt{auth\_controller}.                             &                \\ \hline
-    TU069           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_export\_folder} del modulo \texttt{auth\_controller}.                  &                \\ \hline
-    TU070           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{set\_export\_folder} del modulo \texttt{auth\_controller}.                  &                \\ \hline
-    TU071           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_order} del modulo \texttt{order\_controller}.                       &                \\ \hline
-    TU072           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{list\_orders} del modulo \texttt{order\_controller}.                        &                \\ \hline
-    TU073           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{list\_all\_orders} del modulo \texttt{order\_controller}.                   &                \\ \hline
-    TU074           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{export\_batch\_orders} del modulo \texttt{order\_controller}.               &                \\ \hline
-    TU075           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{order\_detail} del modulo \texttt{order\_controller}.                       &                \\ \hline
-    TU076           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{export\_order} del modulo \texttt{order\_controller}.                       &                \\ \hline
-    TU077           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{search\_clients} del modulo \texttt{client\_controller}.                    &                \\ \hline
-    TU078           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{handle\_feedback} del modulo \texttt{feedback\_controller}.                 &                \\ \hline
-    TU079           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{list\_open\_tickets} del modulo \texttt{ticket\_controller}.                &                \\ \hline
-    TU080           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_ticket} del modulo \texttt{ticket\_controller}.                     &                \\ \hline
-    TU081           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_ticket\_by\_session} del modulo \texttt{ticket\_controller}.           &                \\ \hline
-    TU082           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_ticket} del modulo \texttt{ticket\_controller}.                        &                \\ \hline
-    TU083           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{lock\_ticket} del modulo \texttt{ticket\_controller}.                       &                \\ \hline
-    TU084           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{send\_ticket\_message} del modulo \texttt{ticket\_controller}.              &                \\ \hline
-    TU085           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{unlock\_ticket} del modulo \texttt{ticket\_controller}.                     &                \\ \hline
-    TU086           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{close\_ticket} del modulo \texttt{ticket\_controller}.                      &                \\ \hline
-    TU087           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{close\_ticket\_by\_session} del modulo \texttt{ticket\_controller}.         &                \\ \hline
-    TU088           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{send\_customer\_message} del modulo \texttt{ticket\_controller}.            &                \\ \hline
-    TU089           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_cart} del modulo \texttt{cart\_controller}.                            &                \\ \hline
-    TU090           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{cart\_action} del modulo \texttt{cart\_controller}.                         &                \\ \hline
-    TU091           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{add\_by\_name} del modulo \texttt{cart\_controller}.                        &                \\ \hline
-    TU092           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{register} del modulo \texttt{register\_controller}.                         &                \\ \hline
-    TU093           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{sse\_tickets} del modulo \texttt{sse\_controller}.                          &                \\ \hline
-    TU094           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{sse\_session} del modulo \texttt{sse\_controller}.                          &                \\ \hline
-    TU095           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{search\_products} del modulo \texttt{product\_controller}.                  &                \\ \hline
-    TU096           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{chat} del modulo \texttt{conversation\_controller}.                         &                \\ \hline
-    TU097           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{chat\_image} del modulo \texttt{conversation\_controller}.                  &                \\ \hline
-    TU098           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{save\_message\_to\_session} del modulo \texttt{conversation\_controller}.   &                \\ \hline
-    TU099           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{transcribe} del modulo \texttt{conversation\_controller}.                   &                \\ \hline
-    TU100           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_active\_session} del modulo \texttt{conversation\_controller}.         &                \\ \hline
-    TU101           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_session} del modulo \texttt{conversation\_controller}.              &                \\ \hline
-    TU102           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_messages} del modulo \texttt{conversation\_controller}.                &                \\ \hline
-    TU103           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{hash\_password} del modulo \texttt{auth\_service}.                          & Implementato   \\ \hline
-    TU104           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{verify\_password} del modulo \texttt{auth\_service}.                        & Implementato   \\ \hline
-    TU105           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_jwt} del modulo \texttt{auth\_service}.                             & Implementato   \\ \hline
-    TU106           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{verify\_jwt} del modulo \texttt{auth\_service}.                             & Implementato   \\ \hline
-    TU107           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{login} del modulo \texttt{auth\_service}.                                   & Implementato   \\ \hline
-    TU108           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_profile} del modulo \texttt{auth\_service}.                            & Implementato   \\ \hline
-    TU109           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_export\_folder} del modulo \texttt{auth\_service}.                     & Implementato   \\ \hline
-    TU110           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{set\_export\_folder} del modulo \texttt{auth\_service}.                     & Implementato   \\ \hline
-    TU111           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{change\_password} del modulo \texttt{auth\_service}.                        & Implementato   \\ \hline
-    TU112           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{register} del modulo \texttt{auth\_service}.                                & Implementato   \\ \hline
-    TU113           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_active\_session} del modulo \texttt{conversation\_service}.            & Implementato   \\ \hline
-    TU114           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_session} del modulo \texttt{conversation\_service}.                 & Implementato   \\ \hline
-    TU115           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_messages} del modulo \texttt{conversation\_service}.                   & Implementato   \\ \hline
-    TU116           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{transcribe\_audio} del modulo \texttt{conversation\_service}.               & Implementato   \\ \hline
-    TU117           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{save\_message\_to\_session} del modulo \texttt{conversation\_service}.      & Implementato   \\ \hline
-    TU118           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{handle\_message} del modulo \texttt{conversation\_service}.                 & Implementato   \\ \hline
-    TU119           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_ticket} del modulo \texttt{ticket\_service}.                        & Implementato   \\ \hline
-    TU120           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_open\_tickets} del modulo \texttt{ticket\_service}.                    & Implementato   \\ \hline
-    TU121           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_ticket\_by\_id} del modulo \texttt{ticket\_service}.                   & Implementato   \\ \hline
-    TU122           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{lock\_ticket} del modulo \texttt{ticket\_service}.                          & Implementato   \\ \hline
-    TU123           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{unlock\_ticket} del modulo \texttt{ticket\_service}.                        & Implementato   \\ \hline
-    TU124           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{close\_ticket} del modulo \texttt{ticket\_service}.                         & Implementato   \\ \hline
-    TU125           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{send\_chat\_message} del modulo \texttt{ticket\_service}.                   & Implementato   \\ \hline
-    TU126           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_ticket\_by\_session} del modulo \texttt{ticket\_service}.              & Implementato   \\ \hline
-    TU127           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{close\_ticket\_by\_session} del modulo \texttt{ticket\_service}.            & Implementato   \\ \hline
-    TU128           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{save\_customer\_message} del modulo \texttt{ticket\_service}.               & Implementato   \\ \hline
-    TU129           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_order} del modulo \texttt{order\_service}.                          & Implementato   \\ \hline
-    TU130           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_orders\_by\_client} del modulo \texttt{order\_service}.                & Implementato   \\ \hline
-    TU131           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_all\_orders} del modulo \texttt{order\_service}.                       & Implementato   \\ \hline
-    TU132           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_order\_detail} del modulo \texttt{order\_service}.                     & Implementato   \\ \hline
-    TU133           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{export\_order} del modulo \texttt{order\_service}.                          & Implementato   \\ \hline
-    TU134           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{export\_batch} del modulo \texttt{order\_service}.                          & Implementato   \\ \hline
-    TU135           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_broadcaster} del modulo \texttt{sse\_broadcaster}.                     & Implementato   \\ \hline
-    TU136           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{subscribe} del modulo \texttt{sse\_broadcaster}.                            & Implementato   \\ \hline
-    TU137           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{unsubscribe} del modulo \texttt{sse\_broadcaster}.                          & Implementato   \\ \hline
-    TU138           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{emit} del modulo \texttt{sse\_broadcaster}.                                 & Implementato   \\ \hline
-    TU139           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{active\_connections} del modulo \texttt{sse\_broadcaster}.                  & Implementato   \\ \hline
-    TU140           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_cart} del modulo \texttt{cart\_service}.                               & Implementato   \\ \hline
-    TU141           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_cart\_by\_session} del modulo \texttt{cart\_service}.                  & Implementato   \\ \hline
-    TU142           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{add\_to\_cart} del modulo \texttt{cart\_service}.                           & Implementato   \\ \hline
-    TU143           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{remove\_from\_cart} del modulo \texttt{cart\_service}.                      & Implementato   \\ \hline
-    TU144           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{update\_cart\_quantity} del modulo \texttt{cart\_service}.                  & Implementato   \\ \hline
-    TU145           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{clear\_cart} del modulo \texttt{cart\_service}.                             & Implementato   \\ \hline
-    TU146           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{search\_clients} del modulo \texttt{client\_service}.                       & Implementato   \\ \hline
-    TU147           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{save\_feedback} del modulo \texttt{feedback\_service}.                      & Implementato   \\ \hline
-    TU148           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{delete\_feedback} del modulo \texttt{feedback\_service}.                    & Implementato   \\ \hline
-    TU149           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{search\_products} del modulo \texttt{product\_service}.                     & Implementato   \\ \hline
-    TU150           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{was\_ordered\_before} del modulo \texttt{confidence\_scorer}.               & Implementato   \\ \hline
-    TU151           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{score} del modulo \texttt{confidence\_scorer}.                              & Implementato   \\ \hline
-    TU152           & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{low\_confidence\_threshold} del modulo \texttt{confidence\_scorer}.         & Implementato   \\ \hline
-    TU153           & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleImageUpload} nel componente/servizio \texttt{ChatPanel}.                           &                \\ \hline
-    TU154           & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleDrop} nel componente/servizio \texttt{ChatPanel}.                                  &                \\ \hline
-    TU155           & Verifica la corretta esecuzione della logica o dell'handler \texttt{sendVoiceBlob} nel componente/servizio \texttt{ChatPanel}.                               &                \\ \hline
-    TU156           & Verifica la corretta esecuzione della logica o dell'handler \texttt{stopRecording} nel componente/servizio \texttt{ChatPanel}.                               &                \\ \hline
-    TU157           & Verifica la corretta esecuzione della logica o dell'handler \texttt{startRecording} nel componente/servizio \texttt{ChatPanel}.                              &                \\ \hline
-    TU158           & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleSend} nel componente/servizio \texttt{ChatPanel}.                                  &                \\ \hline
-    TU159           & Verifica la corretta esecuzione della logica o dell'handler \texttt{processImageFile} nel componente/servizio \texttt{ChatPanel}.                            &                \\ \hline
-    TU160           & Verifica la corretta esecuzione della logica o dell'handler \texttt{sendMessageContent} nel componente/servizio \texttt{ChatPanel}.                          &                \\ \hline
-    TU161           & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleFeedback} nel componente/servizio \texttt{ChatPanel}.                              &                \\ \hline
-    TU162           & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleProductClick} nel componente/servizio \texttt{ChatPanel}.                          &                \\ \hline
-    TU163           & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleLogin} nel componente/servizio \texttt{LoginForm}.                                 &                \\ \hline
-    TU164           & Verifica la corretta esecuzione della logica o dell'handler \texttt{formatWaiting} nel componente/servizio \texttt{TicketDashboard}.                         &                \\ \hline
-    TU165           & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleTicketClosed} nel componente/servizio \texttt{TicketDashboard}.                    &                \\ \hline
-    TU166           & Verifica la corretta esecuzione della logica o dell'handler \texttt{fetchOrders} nel componente/servizio \texttt{OperatorOrderHistory}.                      &                \\ \hline
-    TU167           & Verifica la corretta esecuzione della logica o dell'handler \texttt{SortHeader} nel componente/servizio \texttt{OperatorOrderHistory}.                       &                \\ \hline
-    TU168           & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleDateChange} nel componente/servizio \texttt{OperatorOrderHistory}.                 &                \\ \hline
-    TU169           & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleClearFilters} nel componente/servizio \texttt{OperatorOrderHistory}.               &                \\ \hline
-    TU170           & Verifica la corretta esecuzione della logica o dell'handler \texttt{applyFilters} nel componente/servizio \texttt{OperatorOrderHistory}.                     &                \\ \hline
-    TU171           & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleSort} nel componente/servizio \texttt{OperatorOrderHistory}.                       &                \\ \hline
-    TU172           & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleSearchChange} nel componente/servizio \texttt{OperatorOrderHistory}.               &                \\ \hline
-    TU173           & Verifica la corretta esecuzione della logica o dell'handler \texttt{goToPage} nel componente/servizio \texttt{OperatorOrderHistory}.                         &                \\ \hline
-    TU174           & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleSelect} nel componente/servizio \texttt{ProductSearch}.                            &                \\ \hline
-    TU175           & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleSendFullOrder} nel componente/servizio \texttt{CartPanel}.                         &                \\ \hline
-    TU176           & Verifica la corretta esecuzione della logica o dell'handler \texttt{addToCart} nel componente/servizio \texttt{CartPanel}.                                   &                \\ \hline
-    TU177           & Verifica la corretta esecuzione della logica o dell'handler \texttt{removeFromCart} nel componente/servizio \texttt{CartPanel}.                              &                \\ \hline
-    TU178           & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleAssistenzaAction} nel componente/servizio \texttt{CartPanel}.                      &                \\ \hline
-    TU179           & Verifica la corretta esecuzione della logica o dell'handler \texttt{CartList} nel componente/servizio \texttt{CartPanel}.                                    &                \\ \hline
-    TU180           & Verifica la corretta esecuzione della logica o dell'handler \texttt{updateCartQty} nel componente/servizio \texttt{CartPanel}.                               &                \\ \hline
-    TU181           & Verifica la corretta esecuzione della logica o dell'handler \texttt{buildFiltersQuery} nel componente/servizio \texttt{orderService}.                        &                \\ \hline
+        TU1 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_signal\_quantity\_implicit} del modulo \texttt{test\_confidence\_scorer}. & Implementato \\ \hline
+    TU2 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_save\_feedback\_returns\_none} del modulo \texttt{test\_feedback\_service}. & Implementato \\ \hline
+    TU3 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_close\_ticket\_by\_session\_not\_found} del modulo \texttt{test\_ticket\_service     async}. & Implementato \\ \hline
+    TU4 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_remove\_from\_cart\_not\_found} del modulo \texttt{test\_cart\_service}. & Implementato \\ \hline
+    TU5 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{close\_ticket} del modulo \texttt{ticket\_controller}. & Manuale \\ \hline
+    TU6 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_format\_blocks\_and\_validation} del modulo \texttt{test\_conversation\_service\_helpers}. & Implementato \\ \hline
+    TU7 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_close\_ticket\_no\_ticket} del modulo \texttt{test\_ticket\_service     async}. & Implementato \\ \hline
+    TU8 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_unsubscribe\_nonexistent\_queue} del modulo \texttt{test\_sse\_broadcaster     async}. & Implementato \\ \hline
+    TU9 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_product\_feedback\_embedding\_and\_ticket\_paths} del modulo \texttt{test\_postgres\_adapter}. & Implementato \\ \hline
+    TU10 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_verify\_password\_correct} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU11 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_search\_products\_with\_limit} del modulo \texttt{test\_product\_service}. & Implementato \\ \hline
+    TU12 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_handle\_message\_returns\_dict} del modulo \texttt{test\_conversation\_service     async}. & Implementato \\ \hline
+    TU13 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_search\_clients\_custom\_limit} del modulo \texttt{test\_client\_service}. & Implementato \\ \hline
+    TU14 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_subscribe\_creates\_multiple\_queues} del modulo \texttt{test\_sse\_broadcaster     async}. & Implementato \\ \hline
+    TU15 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_handle\_message\_usual} del modulo \texttt{test\_conversation\_service\_extended async}. & Implementato \\ \hline
+    TU16 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{send\_ticket\_message} del modulo \texttt{ticket\_controller}. & Manuale \\ \hline
+    TU17 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_search\_products\_special\_characters} del modulo \texttt{test\_product\_service}. & Implementato \\ \hline
+    TU18 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_send\_chat\_message\_no\_session} del modulo \texttt{test\_ticket\_service     async}. & Implementato \\ \hline
+    TU19 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_extract\_and\_match\_helpers} del modulo \texttt{test\_conversation\_service\_helpers}. & Implementato \\ \hline
+    TU20 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_handle\_usual\_and\_assortment\_enrich} del modulo \texttt{test\_conversation\_service\_helpers}. & Implementato \\ \hline
+    TU21 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_delete\_feedback\_multiple\_calls} del modulo \texttt{test\_feedback\_service}. & Implementato \\ \hline
+    TU22 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleTicketClosed} nel componente/servizio \texttt{TicketDashboard}. & Manuale \\ \hline
+    TU23 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{sse\_session} del modulo \texttt{sse\_controller}. & Manuale \\ \hline
+    TU24 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_export\_order\_json\_success} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU25 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_profile\_success} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU26 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleFeedback} nel componente/servizio \texttt{ChatPanel}. & Manuale \\ \hline
+    TU27 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_recover\_hallucinations\_and\_coherence} del modulo \texttt{test\_conversation\_service\_helpers}. & Implementato \\ \hline
+    TU28 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_handle\_usual\_request} del modulo \texttt{test\_conversation\_service\_extended}. & Implementato \\ \hline
+    TU29 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_auth\_controller\_core\_paths} del modulo \texttt{test\_controller\_branches}. & Implementato \\ \hline
+    TU30 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_set\_export\_folder\_none} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU31 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_session} del modulo \texttt{conversation\_controller}. & Manuale \\ \hline
+    TU32 & Verifica la corretta esecuzione della logica o dell'handler \texttt{goToPage} nel componente/servizio \texttt{OperatorOrderHistory}. & Manuale \\ \hline
+    TU33 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_save\_feedback\_with\_reason} del modulo \texttt{test\_feedback\_service}. & Implementato \\ \hline
+    TU34 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_order} del modulo \texttt{order\_controller}. & Manuale \\ \hline
+    TU35 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_orders\_by\_client\_empty} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU36 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{handle\_feedback} del modulo \texttt{feedback\_controller}. & Manuale \\ \hline
+    TU37 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{search\_products} del modulo \texttt{product\_controller}. & Manuale \\ \hline
+    TU38 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_save\_feedback\_negative} del modulo \texttt{test\_feedback\_service}. & Implementato \\ \hline
+    TU39 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_signal\_history\_not\_ordered\_before} del modulo \texttt{test\_confidence\_scorer}. & Implementato \\ \hline
+    TU40 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_cart\_by\_session} del modulo \texttt{test\_cart\_service}. & Implementato \\ \hline
+    TU41 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_is\_greeting} del modulo \texttt{test\_conversation\_service\_extended}. & Implementato \\ \hline
+    TU42 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_low\_confidence\_threshold\_property} del modulo \texttt{test\_confidence\_scorer}. & Implementato \\ \hline
+    TU43 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_login} del modulo \texttt{test\_controller\_api\_smoke}. & Implementato \\ \hline
+    TU44 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{create\_ticket} del modulo \texttt{ticket\_controller}. & Manuale \\ \hline
+    TU45 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{register} del modulo \texttt{register\_controller}. & Manuale \\ \hline
+    TU46 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_verify\_jwt\_valid\_token} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU47 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_ticket\_details} del modulo \texttt{test\_controller\_api\_smoke}. & Implementato \\ \hline
+    TU48 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_create\_session} del modulo \texttt{test\_conversation\_service}. & Implementato \\ \hline
+    TU49 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_profile\_no\_cod\_cli} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU50 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_coerce\_positive\_quantity} del modulo \texttt{test\_conversation\_service\_extended}. & Implementato \\ \hline
+    TU51 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{lock\_ticket} del modulo \texttt{ticket\_controller}. & Manuale \\ \hline
+    TU52 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_ticket\_by\_id\_not\_found} del modulo \texttt{test\_ticket\_service}. & Implementato \\ \hline
+    TU53 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_add\_cart} del modulo \texttt{test\_controller\_api\_smoke}. & Implementato \\ \hline
+    TU54 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_create\_ticket\_no\_db\_adapter} del modulo \texttt{test\_ticket\_service}. & Implementato \\ \hline
+    TU55 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_history} del modulo \texttt{test\_controller\_api\_smoke}. & Implementato \\ \hline
+    TU56 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_all\_orders\_with\_esportato\_filter} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU57 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_handle\_message\_full\_flow} del modulo \texttt{test\_conversation\_service\_extended async}. & Implementato \\ \hline
+    TU58 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_save\_feedback\_with\_comment} del modulo \texttt{test\_feedback\_service}. & Implementato \\ \hline
+    TU59 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_unsubscribe\_removes\_queue} del modulo \texttt{test\_sse\_broadcaster     async}. & Implementato \\ \hline
+    TU60 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_orders} del modulo \texttt{test\_controller\_api\_smoke}. & Implementato \\ \hline
+    TU61 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_extract\_meaningful\_tokens} del modulo \texttt{test\_conversation\_service\_extended}. & Implementato \\ \hline
+    TU62 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{cart\_action} del modulo \texttt{cart\_controller}. & Manuale \\ \hline
+    TU63 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_unsubscribe\_removes\_session\_if\_empty} del modulo \texttt{test\_sse\_broadcaster     async}. & Implementato \\ \hline
+    TU64 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_orders\_by\_client\_with\_search} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU65 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_add\_to\_cart\_emits\_update} del modulo \texttt{test\_cart\_service}. & Implementato \\ \hline
+    TU66 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_search\_products} del modulo \texttt{test\_controller\_api\_smoke}. & Implementato \\ \hline
+    TU67 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{list\_all\_orders} del modulo \texttt{order\_controller}. & Manuale \\ \hline
+    TU68 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_orders\_by\_client\_with\_date\_filter} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU69 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_cart} del modulo \texttt{cart\_controller}. & Manuale \\ \hline
+    TU70 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_score\_computes\_confidence\_for\_products} del modulo \texttt{test\_confidence\_scorer}. & Implementato \\ \hline
+    TU71 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_broadcaster\_returns\_singleton} del modulo \texttt{test\_sse\_broadcaster}. & Implementato \\ \hline
+    TU72 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_login\_success} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU73 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_sse\_controller\_paths} del modulo \texttt{test\_controller\_branches}. & Implementato \\ \hline
+    TU74 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_send\_chat\_message\_ticket\_closed} del modulo \texttt{test\_ticket\_service     async}. & Implementato \\ \hline
+    TU75 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_emit\_sends\_to\_all\_subscribers} del modulo \texttt{test\_sse\_broadcaster     async}. & Implementato \\ \hline
+    TU76 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_openai\_adapter\_transcribe\_and\_intent} del modulo \texttt{test\_database\_and\_openai\_adapters async}. & Implementato \\ \hline
+    TU77 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_search\_clients\_default\_limit} del modulo \texttt{test\_client\_service}. & Implementato \\ \hline
+    TU78 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_add\_to\_cart\_with\_ai\_confidence} del modulo \texttt{test\_cart\_service}. & Implementato \\ \hline
+    TU79 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_emit\_does\_not\_affect\_other\_sessions} del modulo \texttt{test\_sse\_broadcaster     async}. & Implementato \\ \hline
+    TU80 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{chat\_image} del modulo \texttt{conversation\_controller}. & Manuale \\ \hline
+    TU81 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_split\_questions\_text} del modulo \texttt{test\_conversation\_service\_extended}. & Implementato \\ \hline
+    TU82 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_create\_order\_clears\_cart} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU83 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_signal\_similarity\_no\_embeddings\_order\_intent} del modulo \texttt{test\_confidence\_scorer}. & Implementato \\ \hline
+    TU84 & Verifica la corretta esecuzione della logica o dell'handler \texttt{stopRecording} nel componente/servizio \texttt{ChatPanel}. & Manuale \\ \hline
+    TU85 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_massive\_coverage} del modulo \texttt{test\_conversation\_service\_resilience async}. & Implementato \\ \hline
+    TU86 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleSort} nel componente/servizio \texttt{OperatorOrderHistory}. & Manuale \\ \hline
+    TU87 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_submit\_feedback} del modulo \texttt{test\_controller\_api\_smoke}. & Implementato \\ \hline
+    TU88 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_signal\_intent\_type\_reorder} del modulo \texttt{test\_confidence\_scorer}. & Implementato \\ \hline
+    TU89 & Verifica la corretta esecuzione della logica o dell'handler \texttt{processImageFile} nel componente/servizio \texttt{ChatPanel}. & Manuale \\ \hline
+    TU90 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_emit\_and\_save\_helpers} del modulo \texttt{test\_conversation\_service\_helpers async}. & Implementato \\ \hline
+    TU91 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_messages\_parses\_metadata} del modulo \texttt{test\_conversation\_service}. & Implementato \\ \hline
+    TU92 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_close\_ticket\_by\_session\_success} del modulo \texttt{test\_ticket\_service     async}. & Implementato \\ \hline
+    TU93 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_signal\_intent\_type\_default} del modulo \texttt{test\_confidence\_scorer}. & Implementato \\ \hline
+    TU94 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_remove\_from\_cart\_by\_session} del modulo \texttt{test\_cart\_service}. & Implementato \\ \hline
+    TU95 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_change\_password\_user\_not\_found} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU96 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_auth\_current\_user\_happy\_path} del modulo \texttt{test\_controller\_branches}. & Implementato \\ \hline
+    TU97 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_sse\_event\_stream\_internal\_generator} del modulo \texttt{test\_controller\_branches async}. & Implementato \\ \hline
+    TU98 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_create\_order\_empty\_items} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU99 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_verify\_jwt\_expired\_token} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU100 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_export\_folder\_none} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU101 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleSend} nel componente/servizio \texttt{ChatPanel}. & Manuale \\ \hline
+    TU102 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_auth\_controller\_error\_and\_admin\_paths} del modulo \texttt{test\_controller\_branches}. & Implementato \\ \hline
+    TU103 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_messages} del modulo \texttt{conversation\_controller}. & Manuale \\ \hline
+    TU104 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_orders\_by\_client\_with\_sort} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU105 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_build\_ai\_metadata\_optional\_fields} del modulo \texttt{test\_conversation\_service\_helpers}. & Implementato \\ \hline
+    TU106 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_create\_ticket} del modulo \texttt{test\_controller\_api\_smoke}. & Implementato \\ \hline
+    TU107 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_platform\_usage\_overview} del modulo \texttt{test\_ticket\_service}. & Implementato \\ \hline
+    TU108 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_export\_batch\_empty} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU109 & Verifica la corretta esecuzione della logica o dell'handler \texttt{updateCartQty} nel componente/servizio \texttt{CartPanel}. & Manuale \\ \hline
+    TU110 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_signal\_history\_ordered\_before} del modulo \texttt{test\_confidence\_scorer}. & Implementato \\ \hline
+    TU111 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_open\_tickets} del modulo \texttt{test\_ticket\_service}. & Implementato \\ \hline
+    TU112 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_send\_chat\_message\_ticket\_not\_found} del modulo \texttt{test\_ticket\_service     async}. & Implementato \\ \hline
+    TU113 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_export\_folder} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU114 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_save\_message\_to\_session\_success} del modulo \texttt{test\_conversation\_service}. & Implementato \\ \hline
+    TU115 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_active\_connections\_counts\_subscribers} del modulo \texttt{test\_sse\_broadcaster     async}. & Implementato \\ \hline
+    TU116 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{change\_password} del modulo \texttt{auth\_controller}. & Manuale \\ \hline
+    TU117 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_ticket\_by\_session\_not\_found} del modulo \texttt{test\_ticket\_service}. & Implementato \\ \hline
+    TU118 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_conversation\_controller\_standard\_paths} del modulo \texttt{test\_controller\_branches async}. & Implementato \\ \hline
+    TU119 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{export\_batch\_orders} del modulo \texttt{order\_controller}. & Manuale \\ \hline
+    TU120 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_client\_info} del modulo \texttt{test\_controller\_api\_smoke}. & Implementato \\ \hline
+    TU121 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_export\_batch\_success} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU122 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_active\_connections\_zero\_initially} del modulo \texttt{test\_sse\_broadcaster     async}. & Implementato \\ \hline
+    TU123 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_tickets} del modulo \texttt{test\_controller\_api\_smoke}. & Implementato \\ \hline
+    TU124 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_search\_products\_basic} del modulo \texttt{test\_product\_service}. & Implementato \\ \hline
+    TU125 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_clear\_cart\_success} del modulo \texttt{test\_cart\_service}. & Implementato \\ \hline
+    TU126 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_make\_business\_decision} del modulo \texttt{test\_conversation\_service\_extended}. & Implementato \\ \hline
+    TU127 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_export\_order\_no\_folder} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU128 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_cart\_returns\_items} del modulo \texttt{test\_cart\_service}. & Implementato \\ \hline
+    TU129 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_broadcaster\_is\_thread\_safe} del modulo \texttt{test\_sse\_broadcaster}. & Implementato \\ \hline
+    TU130 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_score\_clamps\_to\_01\_range} del modulo \texttt{test\_confidence\_scorer}. & Implementato \\ \hline
+    TU131 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{login} del modulo \texttt{auth\_controller}. & Manuale \\ \hline
+    TU132 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_set\_export\_folder} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU133 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_search\_products\_returns\_correct\_columns} del modulo \texttt{test\_product\_service}. & Implementato \\ \hline
+    TU134 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_active\_connections\_after\_unsubscribe} del modulo \texttt{test\_sse\_broadcaster     async}. & Implementato \\ \hline
+    TU135 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_export\_batch\_no\_folder} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU136 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_subscribe\_returns\_queue} del modulo \texttt{test\_sse\_broadcaster     async}. & Implementato \\ \hline
+    TU137 & Verifica la corretta esecuzione della logica o dell'handler \texttt{sendMessageContent} nel componente/servizio \texttt{ChatPanel}. & Manuale \\ \hline
+    TU138 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleSearchChange} nel componente/servizio \texttt{OperatorOrderHistory}. & Manuale \\ \hline
+    TU139 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_unlock\_ticket\_no\_session} del modulo \texttt{test\_ticket\_service     async}. & Implementato \\ \hline
+    TU140 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_ticket} del modulo \texttt{ticket\_controller}. & Manuale \\ \hline
+    TU141 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_search\_products\_no\_results} del modulo \texttt{test\_product\_service}. & Implementato \\ \hline
+    TU142 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_save\_message\_to\_session\_operator} del modulo \texttt{test\_conversation\_service}. & Implementato \\ \hline
+    TU143 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_create\_ticket\_success} del modulo \texttt{test\_ticket\_service}. & Implementato \\ \hline
+    TU144 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{list\_open\_tickets} del modulo \texttt{ticket\_controller}. & Manuale \\ \hline
+    TU145 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleDateChange} nel componente/servizio \texttt{OperatorOrderHistory}. & Manuale \\ \hline
+    TU146 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_create\_jwt\_generates\_valid\_token} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU147 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_all\_orders\_with\_client\_filter} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU148 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_signal\_similarity\_no\_embeddings\_other\_intent} del modulo \texttt{test\_confidence\_scorer}. & Implementato \\ \hline
+    TU149 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{send\_customer\_message} del modulo \texttt{ticket\_controller}. & Manuale \\ \hline
+    TU150 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{sse\_tickets} del modulo \texttt{sse\_controller}. & Manuale \\ \hline
+    TU151 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_handle\_message\_greeting} del modulo \texttt{test\_conversation\_service\_extended async}. & Implementato \\ \hline
+    TU152 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_login\_wrong\_password} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU153 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_handle\_message\_greeting} del modulo \texttt{test\_conversation\_service     async}. & Implementato \\ \hline
+    TU154 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_mass\_execute} del modulo \texttt{test\_conversation\_service\_resilience async}. & Implementato \\ \hline
+    TU155 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_cart} del modulo \texttt{test\_controller\_api\_smoke}. & Implementato \\ \hline
+    TU156 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_verify\_password\_incorrect} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU157 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_export\_order\_not\_found} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU158 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{me} del modulo \texttt{auth\_controller}. & Manuale \\ \hline
+    TU159 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_export\_folder} del modulo \texttt{auth\_controller}. & Manuale \\ \hline
+    TU160 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_orders\_by\_client} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU161 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_remove\_from\_cart\_success} del modulo \texttt{test\_cart\_service}. & Implementato \\ \hline
+    TU162 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_change\_password\_mismatch} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU163 & Verifica la corretta esecuzione della logica o dell'handler \texttt{applyFilters} nel componente/servizio \texttt{OperatorOrderHistory}. & Manuale \\ \hline
+    TU164 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_verify\_password\_empty\_password} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU165 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_delete\_feedback\_not\_found} del modulo \texttt{test\_feedback\_service}. & Implementato \\ \hline
+    TU166 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_search\_products\_empty\_query} del modulo \texttt{test\_product\_service}. & Implementato \\ \hline
+    TU167 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{chat} del modulo \texttt{conversation\_controller}. & Manuale \\ \hline
+    TU168 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_message\_and\_feedback\_paths} del modulo \texttt{test\_postgres\_adapter}. & Implementato \\ \hline
+    TU169 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_search\_clients\_basic} del modulo \texttt{test\_client\_service}. & Implementato \\ \hline
+    TU170 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_scorer\_initializes\_with\_settings} del modulo \texttt{test\_confidence\_scorer}. & Implementato \\ \hline
+    TU171 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleDrop} nel componente/servizio \texttt{ChatPanel}. & Manuale \\ \hline
+    TU172 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleProductClick} nel componente/servizio \texttt{ChatPanel}. & Manuale \\ \hline
+    TU173 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_send\_chat\_message\_success} del modulo \texttt{test\_ticket\_service     async}. & Implementato \\ \hline
+    TU174 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_static\_and\_question\_utilities} del modulo \texttt{test\_conversation\_service\_helpers}. & Implementato \\ \hline
+    TU175 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_open\_tickets\_empty} del modulo \texttt{test\_ticket\_service}. & Implementato \\ \hline
+    TU176 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_save\_customer\_message\_success} del modulo \texttt{test\_ticket\_service     async}. & Implementato \\ \hline
+    TU177 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{add\_by\_name} del modulo \texttt{cart\_controller}. & Manuale \\ \hline
+    TU178 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_ticket\_by\_session} del modulo \texttt{ticket\_controller}. & Manuale \\ \hline
+    TU179 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_order\_paths\_and\_helpers} del modulo \texttt{test\_postgres\_adapter}. & Implementato \\ \hline
+    TU180 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_active\_session\_exists} del modulo \texttt{test\_conversation\_service}. & Implementato \\ \hline
+    TU181 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_score\_empty\_products} del modulo \texttt{test\_confidence\_scorer}. & Implementato \\ \hline
+    TU182 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_save\_feedback\_positive} del modulo \texttt{test\_feedback\_service}. & Implementato \\ \hline
+    TU183 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_classify\_intents} del modulo \texttt{test\_conversation\_service\_extended}. & Implementato \\ \hline
+    TU184 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_all\_orders} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU185 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{save\_message\_to\_session} del modulo \texttt{conversation\_controller}. & Manuale \\ \hline
+    TU186 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_search\_products\_for\_chat\_paths} del modulo \texttt{test\_conversation\_service\_helpers}. & Implementato \\ \hline
+    TU187 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_order\_detail\_success} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU188 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{set\_export\_folder} del modulo \texttt{auth\_controller}. & Manuale \\ \hline
+    TU189 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_platform\_usage\_overview\_clamps\_high} del modulo \texttt{test\_ticket\_service}. & Implementato \\ \hline
+    TU190 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_order\_detail\_not\_found} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU191 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_merge\_recent\_proposed\_products} del modulo \texttt{test\_conversation\_service\_helpers}. & Implementato \\ \hline
+    TU192 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_clear\_cart\_without\_session} del modulo \texttt{test\_cart\_service}. & Implementato \\ \hline
+    TU193 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_database\_pool\_and\_query\_paths} del modulo \texttt{test\_database\_and\_openai\_adapters}. & Implementato \\ \hline
+    TU194 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleImageUpload} nel componente/servizio \texttt{ChatPanel}. & Manuale \\ \hline
+    TU195 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{list\_orders} del modulo \texttt{order\_controller}. & Manuale \\ \hline
+    TU196 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_active\_session\_not\_found} del modulo \texttt{test\_conversation\_service}. & Implementato \\ \hline
+    TU197 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_platform\_usage\_overview\_clamps\_days} del modulo \texttt{test\_ticket\_service}. & Implementato \\ \hline
+    TU198 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_save\_customer\_message\_no\_broadcaster} del modulo \texttt{test\_ticket\_service     async}. & Implementato \\ \hline
+    TU199 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_search\_clients\_empty\_query} del modulo \texttt{test\_client\_service}. & Implementato \\ \hline
+    TU200 & Verifica la corretta esecuzione della logica o dell'handler \texttt{removeFromCart} nel componente/servizio \texttt{CartPanel}. & Manuale \\ \hline
+    TU201 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_verify\_jwt\_invalid\_token} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU202 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_is\_quantity\_only} del modulo \texttt{test\_conversation\_service\_extended}. & Implementato \\ \hline
+    TU203 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_format\_event\_with\_nested\_data} del modulo \texttt{test\_sse\_broadcaster}. & Implementato \\ \hline
+    TU204 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_login\_user\_not\_found} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU205 & Verifica la corretta esecuzione della logica o dell'handler \texttt{sendVoiceBlob} nel componente/servizio \texttt{ChatPanel}. & Manuale \\ \hline
+    TU206 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{transcribe} del modulo \texttt{conversation\_controller}. & Manuale \\ \hline
+    TU207 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleSelect} nel componente/servizio \texttt{ProductSearch}. & Manuale \\ \hline
+    TU208 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_messages\_handles\_datetime} del modulo \texttt{test\_conversation\_service}. & Implementato \\ \hline
+    TU209 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_update\_cart\_quantity\_zero} del modulo \texttt{test\_cart\_service}. & Implementato \\ \hline
+    TU210 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_conversation\_controller\_chat\_image\_branches} del modulo \texttt{test\_controller\_branches async}. & Implementato \\ \hline
+    TU211 & Verifica la corretta esecuzione della logica o dell'handler \texttt{addToCart} nel componente/servizio \texttt{CartPanel}. & Manuale \\ \hline
+    TU212 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleClearFilters} nel componente/servizio \texttt{OperatorOrderHistory}. & Manuale \\ \hline
+    TU213 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_signal\_intent\_type\_specific} del modulo \texttt{test\_confidence\_scorer}. & Implementato \\ \hline
+    TU214 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_update\_cart\_quantity\_not\_found} del modulo \texttt{test\_cart\_service}. & Implementato \\ \hline
+    TU215 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_change\_password\_success} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU216 & Verifica la corretta esecuzione della logica o dell'handler \texttt{buildFiltersQuery} nel componente/servizio \texttt{orderService}. & Manuale \\ \hline
+    TU217 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_send\_message} del modulo \texttt{test\_controller\_api\_smoke}. & Implementato \\ \hline
+    TU218 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_search\_clients\_by\_code} del modulo \texttt{test\_client\_service}. & Implementato \\ \hline
+    TU219 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{search\_clients} del modulo \texttt{client\_controller}. & Manuale \\ \hline
+    TU220 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_cart\_empty} del modulo \texttt{test\_cart\_service}. & Implementato \\ \hline
+    TU221 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_database\_query\_error\_rolls\_back\_and\_releases} del modulo \texttt{test\_database\_and\_openai\_adapters}. & Implementato \\ \hline
+    TU222 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_is\_confirmation} del modulo \texttt{test\_conversation\_service\_extended}. & Implementato \\ \hline
+    TU223 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_export\_batch\_partial\_failure} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU224 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_create\_order} del modulo \texttt{test\_controller\_api\_smoke}. & Implementato \\ \hline
+    TU225 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_search\_clients\_returns\_full\_data} del modulo \texttt{test\_client\_service}. & Implementato \\ \hline
+    TU226 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_sequence\_and\_user\_lookup\_paths} del modulo \texttt{test\_postgres\_adapter}. & Implementato \\ \hline
+    TU227 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_save\_feedback\_with\_all\_params} del modulo \texttt{test\_feedback\_service}. & Implementato \\ \hline
+    TU228 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_unsubscribe\_keeps\_other\_subscribers} del modulo \texttt{test\_sse\_broadcaster     async}. & Implementato \\ \hline
+    TU229 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_ticket\_by\_id\_success} del modulo \texttt{test\_ticket\_service}. & Implementato \\ \hline
+    TU230 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{close\_ticket\_by\_session} del modulo \texttt{ticket\_controller}. & Manuale \\ \hline
+    TU231 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_signal\_intent\_type\_confirmation} del modulo \texttt{test\_confidence\_scorer}. & Implementato \\ \hline
+    TU232 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_token\_and\_greeting\_helpers} del modulo \texttt{test\_conversation\_service\_helpers}. & Implementato \\ \hline
+    TU233 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleSendFullOrder} nel componente/servizio \texttt{CartPanel}. & Manuale \\ \hline
+    TU234 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_clear\_cart\_with\_session} del modulo \texttt{test\_cart\_service}. & Implementato \\ \hline
+    TU235 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{unlock\_ticket} del modulo \texttt{ticket\_controller}. & Manuale \\ \hline
+    TU236 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_profile\_not\_found} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU237 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_ticket\_by\_session\_found} del modulo \texttt{test\_ticket\_service}. & Implementato \\ \hline
+    TU238 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_order\_controller\_branches} del modulo \texttt{test\_controller\_branches}. & Implementato \\ \hline
+    TU239 & Verifica la corretta esecuzione della logica o dell'handler \texttt{formatWaiting} nel componente/servizio \texttt{TicketDashboard}. & Manuale \\ \hline
+    TU240 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{order\_detail} del modulo \texttt{order\_controller}. & Manuale \\ \hline
+    TU241 & Verifica la corretta esecuzione della logica o dell'handler \texttt{SortHeader} nel componente/servizio \texttt{OperatorOrderHistory}. & Manuale \\ \hline
+    TU242 & Verifica la corretta esecuzione della logica o dell'handler \texttt{CartList} nel componente/servizio \texttt{CartPanel}. & Manuale \\ \hline
+    TU243 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_openai\_adapter\_analyze\_image} del modulo \texttt{test\_database\_and\_openai\_adapters async}. & Implementato \\ \hline
+    TU244 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_signal\_quantity\_explicit} del modulo \texttt{test\_confidence\_scorer}. & Implementato \\ \hline
+    TU245 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_messages\_calls\_db\_with\_session\_id} del modulo \texttt{test\_conversation\_service}. & Implementato \\ \hline
+    TU246 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleAssistenzaAction} nel componente/servizio \texttt{CartPanel}. & Manuale \\ \hline
+    TU247 & Verifica la corretta esecuzione della logica o dell'handler \texttt{fetchOrders} nel componente/servizio \texttt{OperatorOrderHistory}. & Manuale \\ \hline
+    TU248 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_create\_order\_success} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU249 & Verifica la corretta esecuzione della logica o dell'handler \texttt{startRecording} nel componente/servizio \texttt{ChatPanel}. & Manuale \\ \hline
+    TU250 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{register} del modulo \texttt{auth\_controller}. & Manuale \\ \hline
+    TU251 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_add\_to\_cart\_success} del modulo \texttt{test\_cart\_service}. & Implementato \\ \hline
+    TU252 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_transcribe\_audio\_success} del modulo \texttt{test\_conversation\_service     async}. & Implementato \\ \hline
+    TU253 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_cart\_paths} del modulo \texttt{test\_postgres\_adapter}. & Implementato \\ \hline
+    TU254 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_add\_to\_cart\_by\_session} del modulo \texttt{test\_cart\_service}. & Implementato \\ \hline
+    TU255 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_health} del modulo \texttt{test\_controller\_api\_smoke}. & Implementato \\ \hline
+    TU256 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_ticket\_controller\_branches} del modulo \texttt{test\_controller\_branches async}. & Implementato \\ \hline
+    TU257 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_cart\_controller\_all\_branches} del modulo \texttt{test\_controller\_branches}. & Implementato \\ \hline
+    TU258 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_change\_password\_too\_short} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU259 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_change\_password\_same\_as\_current} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU260 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_lock\_ticket\_already\_locked} del modulo \texttt{test\_ticket\_service     async}. & Implementato \\ \hline
+    TU261 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_hash\_password\_generates\_valid\_hash} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU262 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_search\_products\_case\_insensitive} del modulo \texttt{test\_product\_service}. & Implementato \\ \hline
+    TU263 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{export\_order} del modulo \texttt{order\_controller}. & Manuale \\ \hline
+    TU264 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_hash\_password\_different\_salts} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU265 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_orders\_by\_client\_with\_pagination} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU266 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_search\_products\_different\_clients} del modulo \texttt{test\_product\_service}. & Implementato \\ \hline
+    TU267 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_messages\_empty} del modulo \texttt{test\_conversation\_service}. & Implementato \\ \hline
+    TU268 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_update\_cart\_quantity\_success} del modulo \texttt{test\_cart\_service}. & Implementato \\ \hline
+    TU269 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_transcribe\_audio\_empty\_result} del modulo \texttt{test\_conversation\_service     async}. & Implementato \\ \hline
+    TU270 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_reply\_ticket} del modulo \texttt{test\_controller\_api\_smoke}. & Implementato \\ \hline
+    TU271 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_small\_controllers\_client\_product\_feedback} del modulo \texttt{test\_controller\_branches}. & Implementato \\ \hline
+    TU272 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{get\_active\_session} del modulo \texttt{conversation\_controller}. & Manuale \\ \hline
+    TU273 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_close\_ticket\_success} del modulo \texttt{test\_ticket\_service     async}. & Implementato \\ \hline
+    TU274 & Verifica la corretta esecuzione della logica o dell'handler \texttt{handleLogin} nel componente/servizio \texttt{LoginForm}. & Manuale \\ \hline
+    TU275 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_search\_clients\_no\_results} del modulo \texttt{test\_client\_service}. & Implementato \\ \hline
+    TU276 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_format\_event\_creates\_valid\_sse} del modulo \texttt{test\_sse\_broadcaster}. & Implementato \\ \hline
+    TU277 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_messages} del modulo \texttt{test\_conversation\_service}. & Implementato \\ \hline
+    TU278 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_sse\_endpoints\_role\_and\_validation} del modulo \texttt{test\_controller\_branches async}. & Implementato \\ \hline
+    TU279 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_openai\_adapter\_embedding} del modulo \texttt{test\_database\_and\_openai\_adapters}. & Implementato \\ \hline
+    TU280 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_unlock\_ticket\_success} del modulo \texttt{test\_ticket\_service     async}. & Implementato \\ \hline
+    TU281 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_signal\_similarity\_with\_cosine\_distance} del modulo \texttt{test\_confidence\_scorer}. & Implementato \\ \hline
+    TU282 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_subscribe\_different\_sessions} del modulo \texttt{test\_sse\_broadcaster     async}. & Implementato \\ \hline
+    TU283 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_auth\_current\_user\_missing\_or\_invalid\_token} del modulo \texttt{test\_controller\_branches}. & Implementato \\ \hline
+    TU284 & Verifica il comportamento corretto (successo ed eccezioni) per il metodo \texttt{logout} del modulo \texttt{auth\_controller}. & Manuale \\ \hline
+    TU285 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_delete\_feedback\_success} del modulo \texttt{test\_feedback\_service}. & Implementato \\ \hline
+    TU286 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_get\_messages\_handles\_invalid\_metadata} del modulo \texttt{test\_conversation\_service}. & Implementato \\ \hline
+    TU287 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_emit\_no\_subscribers} del modulo \texttt{test\_sse\_broadcaster     async}. & Implementato \\ \hline
+    TU288 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_export\_order\_csv\_success} del modulo \texttt{test\_order\_service}. & Implementato \\ \hline
+    TU289 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_change\_password\_wrong\_current} del modulo \texttt{test\_auth\_service}. & Implementato \\ \hline
+    TU290 & Verifica il comportamento corretto (successo ed eccezioni) per il test \texttt{test\_lock\_ticket\_success} del modulo \texttt{test\_ticket\_service     async}. & Implementato \\ \hline
     \caption{Elenco dei Test di Unità focalizzati sui Layer Logici MVP}
 \end{longtable}
 
@@ -1653,28 +1764,57 @@ I Test di Integrazione verificano sistematicamente la stabilità dei confini arc
     \textbf{Codice} & \textbf{Descrizione}                                                                                                                                                                                       & \textbf{Stato} \\
     \hline
     \endhead
-    TI001           & Verifica l'interazione e il protocollo di scambio tra \texttt{authService} e \texttt{auth\_controller} (Responsabilità: Flusso di autenticazione client-server e rilascio JWT).                            & Implementato   \\ \hline
-    TI002           & Verifica l'interazione e il protocollo di scambio tra \texttt{authService} e \texttt{auth\_controller} (Responsabilità: Integrazione GET profile per validazione sessione al refresh).                     & Implementato   \\ \hline
-    TI003           & Verifica l'interazione e il protocollo di scambio tra \texttt{cartService} e \texttt{cart\_controller} (Responsabilità: Fetch del carrello da componente React a endpoint FastAPI).                        & Implementato   \\ \hline
-    TI004           & Verifica l'interazione e il protocollo di scambio tra \texttt{cartService} e \texttt{cart\_controller} (Responsabilità: Integrazione POST add\_item con aggiornamento Reducer frontend).                   & Implementato   \\ \hline
-    TI005           & Verifica l'interazione e il protocollo di scambio tra \texttt{chatService} e \texttt{conversation\_controller} (Responsabilità: Trasmissione stringa intent e ritorno context differito).                  & Implementato   \\ \hline
-    TI006           & Verifica l'interazione e il protocollo di scambio tra \texttt{chatService} e \texttt{conversation\_controller} (Responsabilità: Integrazione upload Multipart/FormData per voice blobs).                   & Implementato   \\ \hline
-    TI007           & Verifica l'interazione e il protocollo di scambio tra \texttt{ticketService} e \texttt{ticket\_controller} (Responsabilità: Creazione ticket da modale React e binding server-side).                       & Implementato   \\ \hline
-    TI008           & Verifica l'interazione e il protocollo di scambio tra \texttt{ticketService} e \texttt{ticket\_controller} (Responsabilità: Integrazione lock ottimistico tra Operator Table e API ticket).                & Implementato   \\ \hline
-    TI009           & Verifica l'interazione e il protocollo di scambio tra \texttt{orderService} e \texttt{order\_controller} (Responsabilità: Dialogo di submit finale per l'espulsione del carrello da Client).               & Implementato   \\ \hline
-    TI010           & Verifica l'interazione e il protocollo di scambio tra \texttt{ProductSearch} e \texttt{product\_controller} (Responsabilità: Integrazione search-as-you-type client side vs query limitata backend).       & Implementato   \\ \hline
-    TI011           & Verifica l'interazione e il protocollo di scambio tra \texttt{auth\_controller} e \texttt{auth\_service} (Responsabilità: Integrazione estrazione hash database vs password request model).                & Implementato   \\ \hline
-    TI012           & Verifica l'interazione e il protocollo di scambio tra \texttt{cart\_controller} e \texttt{postgres\_adapter} (Responsabilità: Interazione DB transaction per calcolo quantitativi in tempo reale).         & Implementato   \\ \hline
-    TI013           & Verifica l'interazione e il protocollo di scambio tra \texttt{conversation\_controller} e \texttt{openai\_adapter} (Responsabilità: Raccordo stream audio FastAPI verso Whisper API).                      & Implementato   \\ \hline
-    TI014           & Verifica l'interazione e il protocollo di scambio tra \texttt{conversation\_controller} e \texttt{openai\_adapter} (Responsabilità: Trasmissione memory array all'LLM e check della structured output).    & Implementato   \\ \hline
-    TI015           & Verifica l'interazione e il protocollo di scambio tra \texttt{conversation\_service} e \texttt{postgres\_adapter} (Responsabilità: Interazione ricerca semantica Vettoriale sul motore pgvector postgres). & Implementato   \\ \hline
-    TI016           & Verifica l'interazione e il protocollo di scambio tra \texttt{order\_controller} e \texttt{database} (Responsabilità: Chiusura Transazione sicura in caso di successo Checkout).                           & Implementato   \\ \hline
-    TI017           & Verifica l'interazione e il protocollo di scambio tra \texttt{ticket\_controller} e \texttt{sse\_broadcaster} (Responsabilità: Integrazione eventi real-time per aggiornare Operator View asincronamente). & Implementato   \\ \hline
-    TI018           & Verifica l'interazione e il protocollo di scambio tra \texttt{feedback\_controller} e \texttt{postgres\_adapter} (Responsabilità: Persistenza del JSONB feedback e rating sul database documentale).       & Implementato   \\ \hline
-    TI019           & Verifica l'interazione e il protocollo di scambio tra \texttt{sse\_controller} e \texttt{EventSource} (Responsabilità: Mantenimento del Socket keep-alive HTTP unidirezionale Client-Server).              & Implementato   \\ \hline
-    TI020           & Verifica l'interazione e il protocollo di scambio tra \texttt{AuthOverlay} e \texttt{sessionService} (Responsabilità: Aggancio local storage browser e React context provider in startup).                 & Implementato   \\ \hline
-    TI021           & Verifica l'interazione e il protocollo di scambio tra \texttt{generate\_embeddings} e \texttt{openai\_adapter} (Responsabilità: Script batch ingestion crontask -> OpenAI dimension extraction).           & Implementato   \\ \hline
-    TI022           & Verifica l'interazione e il protocollo di scambio tra \texttt{generate\_embeddings} e \texttt{postgres\_adapter} (Responsabilità: Injection SQL dei Vector 1536d nel db ERP shadow).                       & Implementato   \\ \hline
+        TI001 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_change\_password\_success} del modulo \texttt{test\_auth\_controller}. & Implementato \\ \hline
+    TI002 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_change\_password\_validation\_error} del modulo \texttt{test\_auth\_controller}. & Implementato \\ \hline
+    TI003 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_change\_password\_wrong\_current} del modulo \texttt{test\_auth\_controller}. & Implementato \\ \hline
+    TI004 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_get\_export\_folder\_admin} del modulo \texttt{test\_auth\_controller}. & Implementato \\ \hline
+    TI005 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_get\_export\_folder\_customer\_forbidden} del modulo \texttt{test\_auth\_controller}. & Implementato \\ \hline
+    TI006 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_login\_invalid\_credentials} del modulo \texttt{test\_auth\_controller}. & Implementato \\ \hline
+    TI007 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_login\_missing\_fields} del modulo \texttt{test\_auth\_controller}. & Implementato \\ \hline
+    TI008 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_login\_success} del modulo \texttt{test\_auth\_controller}. & Implementato \\ \hline
+    TI009 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_logout\_success} del modulo \texttt{test\_auth\_controller}. & Implementato \\ \hline
+    TI010 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_me\_not\_found} del modulo \texttt{test\_auth\_controller}. & Implementato \\ \hline
+    TI011 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_me\_success} del modulo \texttt{test\_auth\_controller}. & Implementato \\ \hline
+    TI012 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_set\_export\_folder\_admin} del modulo \texttt{test\_auth\_controller}. & Implementato \\ \hline
+    TI013 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_add\_to\_cart} del modulo \texttt{test\_cart\_controller}. & Implementato \\ \hline
+    TI014 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_add\_to\_cart\_missing\_fields} del modulo \texttt{test\_cart\_controller}. & Implementato \\ \hline
+    TI015 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_get\_cart\_by\_session} del modulo \texttt{test\_cart\_controller}. & Implementato \\ \hline
+    TI016 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_get\_cart\_by\_user} del modulo \texttt{test\_cart\_controller}. & Implementato \\ \hline
+    TI017 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_invalid\_action} del modulo \texttt{test\_cart\_controller}. & Implementato \\ \hline
+    TI018 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_remove\_from\_cart} del modulo \texttt{test\_cart\_controller}. & Implementato \\ \hline
+    TI019 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_remove\_from\_cart\_not\_found} del modulo \texttt{test\_cart\_controller}. & Implementato \\ \hline
+    TI020 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_update\_quantity} del modulo \texttt{test\_cart\_controller}. & Implementato \\ \hline
+    TI021 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_all\_orders\_admin} del modulo \texttt{test\_order\_controller}. & Implementato \\ \hline
+    TI022 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_all\_orders\_admin\_only} del modulo \texttt{test\_order\_controller}. & Implementato \\ \hline
+    TI023 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_create\_order\_admin\_requires\_cod\_cli} del modulo \texttt{test\_order\_controller}. & Implementato \\ \hline
+    TI024 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_create\_order\_empty\_items} del modulo \texttt{test\_order\_controller}. & Implementato \\ \hline
+    TI025 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_create\_order\_success} del modulo \texttt{test\_order\_controller}. & Implementato \\ \hline
+    TI026 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_export\_batch\_admin} del modulo \texttt{test\_order\_controller}. & Implementato \\ \hline
+    TI027 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_export\_batch\_customer\_forbidden} del modulo \texttt{test\_order\_controller}. & Implementato \\ \hline
+    TI028 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_export\_order\_admin} del modulo \texttt{test\_order\_controller}. & Implementato \\ \hline
+    TI029 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_export\_order\_customer\_forbidden} del modulo \texttt{test\_order\_controller}. & Implementato \\ \hline
+    TI030 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_export\_order\_invalid\_format} del modulo \texttt{test\_order\_controller}. & Implementato \\ \hline
+    TI031 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_list\_orders\_customer} del modulo \texttt{test\_order\_controller}. & Implementato \\ \hline
+    TI032 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_list\_orders\_with\_filters} del modulo \texttt{test\_order\_controller}. & Implementato \\ \hline
+    TI033 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_order\_detail\_not\_found} del modulo \texttt{test\_order\_controller}. & Implementato \\ \hline
+    TI034 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_order\_detail\_success} del modulo \texttt{test\_order\_controller}. & Implementato \\ \hline
+    TI035 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_close\_ticket\_by\_session} del modulo \texttt{test\_ticket\_controller}. & Implementato \\ \hline
+    TI036 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_close\_ticket\_not\_found} del modulo \texttt{test\_ticket\_controller}. & Implementato \\ \hline
+    TI037 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_close\_ticket\_operator} del modulo \texttt{test\_ticket\_controller}. & Implementato \\ \hline
+    TI038 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_create\_ticket\_success} del modulo \texttt{test\_ticket\_controller}. & Implementato \\ \hline
+    TI039 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_get\_ticket\_by\_session} del modulo \texttt{test\_ticket\_controller}. & Implementato \\ \hline
+    TI040 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_get\_ticket\_by\_session\_not\_found} del modulo \texttt{test\_ticket\_controller}. & Implementato \\ \hline
+    TI041 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_get\_ticket\_not\_found} del modulo \texttt{test\_ticket\_controller}. & Implementato \\ \hline
+    TI042 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_get\_ticket\_operator} del modulo \texttt{test\_ticket\_controller}. & Implementato \\ \hline
+    TI043 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_list\_tickets\_customer\_forbidden} del modulo \texttt{test\_ticket\_controller}. & Implementato \\ \hline
+    TI044 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_list\_tickets\_operator} del modulo \texttt{test\_ticket\_controller}. & Implementato \\ \hline
+    TI045 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_lock\_ticket\_conflict} del modulo \texttt{test\_ticket\_controller}. & Implementato \\ \hline
+    TI046 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_lock\_ticket\_customer\_forbidden} del modulo \texttt{test\_ticket\_controller}. & Implementato \\ \hline
+    TI047 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_lock\_ticket\_success} del modulo \texttt{test\_ticket\_controller}. & Implementato \\ \hline
+    TI048 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_send\_customer\_message} del modulo \texttt{test\_ticket\_controller}. & Implementato \\ \hline
+    TI049 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_send\_message\_customer\_forbidden} del modulo \texttt{test\_ticket\_controller}. & Implementato \\ \hline
+    TI050 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_send\_message\_operator} del modulo \texttt{test\_ticket\_controller}. & Implementato \\ \hline
+    TI051 & Verifica l'interazione e il protocollo di scambio per il test \texttt{test\_unlock\_ticket\_success} del modulo \texttt{test\_ticket\_controller}. & Implementato \\ \hline
     \caption{Elenco dei Test di Integrazione sui Raccordi e Adapter MVP}
 \end{longtable}
 
@@ -1691,26 +1831,13 @@ I Test di Sistema costituiscono il livello finale di verifica e si adoperano per
     \textbf{Codice} & \textbf{Descrizione}                                                                                                                                            & \textbf{Stato} \\
     \hline
     \endhead
-    TS001           & Verifica end-to-end utenza logica: Inizializzazione sessione ospite con corretta limitazione middleware e reindirizzamento Login Screen.                        & Implementato   \\ \hline
-    TS002           & Verifica end-to-end utenza logica: Fallimento intenzionale Login (401) e validazione messaggistica d'errore all'utente bloccando flussi successivi.             & Implementato   \\ \hline
-    TS003           & Verifica end-to-end utenza logica: Completamento Login Cliente, estrazione corretta JWT Token e mount dei pannelli operativi (Cart/Chat).                       & Implementato   \\ \hline
-    TS004           & Verifica end-to-end utenza logica: Emissione ricerca testo manuale per prodotto specifico e aggiunta incrementale al carrello locale.                           & Implementato   \\ \hline
-    TS005           & Verifica end-to-end utenza logica: Aggiunta prodotto Multiplo da parte del Cliente ed elaborazione corretta subtotali al ricalcolo.                             & Implementato   \\ \hline
-    TS006           & Verifica end-to-end utenza logica: Uso Voice Recording (WebRTC), check corretta trascrizione OpenAI Whisper e rendering bolla testuale in chat.                 & Implementato   \\ \hline
-    TS007           & Verifica end-to-end utenza logica: Emissione ordine via NLP 'Voglio due pepsi', vector match del NLP, aggiunta autonoma a Cart senza interazione manuale GUI.   & Implementato   \\ \hline
-    TS008           & Verifica end-to-end utenza logica: Esecuzione rimozione estrema (riduzione quantity a zero), conseguente delete riga DB e Aggiornamento UI in realtime.         & Implementato   \\ \hline
-    TS009           & Verifica end-to-end utenza logica: Generazione File JSON asincrono su FileSystem locale in seguito al completamento Checkout Ordine.                            & Implementato   \\ \hline
-    TS010           & Verifica end-to-end utenza logica: Visione lato Cliente dello Storico Ordini (read-only) tramite interfaccia accordion estesa.                                  & Implementato   \\ \hline
-    TS011           & Verifica end-to-end utenza logica: Emissione Handoff al Support Ticket da parte di Cliente con generazione notifica badge in TopBar Operatore remoto.           & Implementato   \\ \hline
-    TS012           & Verifica end-to-end utenza logica: Aggancio operatore (Subentro Lock), congelazione AI Bot conversazionale e messaggistica diretta H2H Operatore->Cliente.      & Implementato   \\ \hline
-    TS013           & Verifica end-to-end utenza logica: Modifica cart del cliente in tempo reale da parte dell'Operatore mediante la Ticket Dashboard remota (Sync WebSocket/SSE).   & Implementato   \\ \hline
-    TS014           & Verifica end-to-end utenza logica: Rilascio e chiusura del ticket (Resolve), sgancio della linea diretta Operatore e riattivazione pipeline automatica GPT.     & Implementato   \\ \hline
-    TS015           & Verifica end-to-end utenza logica: Filtro backend table Operatore storico Ordini mediante combination DateTime start, DateTime end e filter query Like.         & Implementato   \\ \hline
-    TS016           & Verifica end-to-end utenza logica: Scarto dei file Audio client-side se eccessivi ai limiti MimeType/Grandezza per preservare larghezza di banda Server.        & Implementato   \\ \hline
-    TS017           & Verifica end-to-end utenza logica: Riconnessione Server Sent Events a monte di una caduta rete client intenzionale senza causare deadlocks sulla pipeline HTTP. & Implementato   \\ \hline
-    TS018           & Verifica end-to-end utenza logica: Processo di Logout esplicito dell'Operatore con purgazione istantanea Session DB ed evocazione Cleanup Context Frontend.     & Implementato   \\ \hline
-    TS019           & Verifica end-to-end utenza logica: Check Feedback Cycle: utente assegna ThumbsDown, compila Form modal Survey, dati raggiungono persistenza DB intatti.         & Implementato   \\ \hline
-    TS020           & Verifica end-to-end utenza logica: Reset Carrello e Chat Log contestuale (Svuota Tutto) da parte del cliente senza errori in Foreign Key relazionali DB.        & Implementato   \\ \hline
+        TS001 & Verifica end-to-end utenza logica: test \texttt{test\_login\_then\_access\_protected\_resource} del modulo \texttt{test\_login\_flow}. & Implementato \\ \hline
+    TS002 & Verifica end-to-end utenza logica: test \texttt{test\_login\_then\_logout\_clears\_session} del modulo \texttt{test\_login\_flow}. & Implementato \\ \hline
+    TS003 & Verifica end-to-end utenza logica: test \texttt{test\_add\_to\_cart\_then\_create\_order} del modulo \texttt{test\_order\_flow}. & Implementato \\ \hline
+    TS004 & Verifica end-to-end utenza logica: test \texttt{test\_modify\_cart\_then\_order} del modulo \texttt{test\_order\_flow}. & Implementato \\ \hline
+    TS005 & Verifica end-to-end utenza logica: test \texttt{test\_remove\_from\_cart\_then\_add\_new\_then\_order} del modulo \texttt{test\_order\_flow}. & Implementato \\ \hline
+    TS006 & Verifica end-to-end utenza logica: test \texttt{test\_customer\_opens\_ticket\_operator\_handles\_and\_closes} del modulo \texttt{test\_ticket\_flow}. & Implementato \\ \hline
+    TS007 & Verifica end-to-end utenza logica: test \texttt{test\_customer\_sends\_message\_and\_closes\_own\_ticket} del modulo \texttt{test\_ticket\_flow}. & Implementato \\ \hline
     \caption{Elenco dei Flussi Esplorativi dei Test di Sistema}
 \end{longtable}
 
@@ -2309,7 +2436,7 @@ Le cause di questa dinamica si ricollegano a:
                 height=9cm,
                 xlabel={Data Verbale},
                 ylabel={Indice di Gulpease},
-                symbolic x coords={2025-10-14, 2025-10-15, 2025-10-20, 2025-10-22, 2025-10-27, 2025-10-29, 2025-11-04, 2025-11-10, 2025-11-12, 2025-11-21, 2025-11-24, 2025-11-28, 2025-12-05, 2025-12-11, 2025-12-12, 2025-12-19, 2026-01-02, 2026-01-13, 2026-01-14, 2026-01-16, 2026-01-30, 2026-02-21, 2026-02-27, 2026-03-13, 2026-03-20, 2026-03-25, 2026-03-26, 2026-03-27, 2026-04-01, 2026-04-04, 2026-04-08, 2026-04-09},
+                symbolic x coords={2025-10-14, 2025-10-15, 2025-10-20, 2025-10-22, 2025-10-27, 2025-10-29, 2025-11-04, 2025-11-10, 2025-11-12, 2025-11-21, 2025-11-24, 2025-11-28, 2025-12-05, 2025-12-11, 2025-12-12, 2025-12-19, 2026-01-02, 2026-01-13, 2026-01-14, 2026-01-16, 2026-01-30, 2026-02-21, 2026-02-27, 2026-03-13, 2026-03-20, 2026-03-25, 2026-03-26, 2026-03-27, 2026-04-01, 2026-04-04, 2026-04-08, 2026-04-09, 2026-04-17},
                 xtick={2025-10-14, 2025-10-15, 2025-10-20, 2025-10-22, 2025-10-27, 2025-10-29, 2025-11-04, 2025-11-10, 2025-11-12, 2025-11-21, 2025-11-24, 2025-11-28, 2025-12-05, 2025-12-11, 2025-12-12, 2025-12-19, 2026-01-02, 2026-01-13, 2026-01-14, 2026-01-16, 2026-01-30, 2026-02-21, 2026-02-27, 2026-03-13, 2026-03-20, 2026-03-25, 2026-03-26, 2026-03-27, 2026-04-01, 2026-04-04, 2026-04-08, 2026-04-09},
                 xticklabel style={rotate=90, anchor=east, font=\tiny},
                 ymin=40, ymax=75,
@@ -2320,26 +2447,26 @@ Le cause di questa dinamica si ricollegano a:
             ]
             % Verbali Interni
             \addplot[blue, thick, mark=*, mark size=2pt] coordinates {
-                    (2025-10-14, 55.67) (2025-10-15, 51.93) (2025-10-20, 50.34)
-                    (2025-10-27, 54.29) (2025-10-29, 55.27) (2025-11-04, 50.88)
-                    (2025-11-10, 70.88) (2025-11-21, 55.10) (2025-11-24, 50.16)
-                    (2025-11-28, 50.55) (2025-12-05, 55.30) (2025-12-12, 53.68)
-                    (2025-12-19, 51.25) (2026-01-02, 50.36) (2026-01-13, 45.75)
-                    (2026-01-16, 49.53) (2026-01-30, 51.55) (2026-02-21, 52.17)
-                    (2026-02-27, 51.96) (2026-03-13, 49.85) (2026-03-20, 52.47) (2026-03-25, 50.05) (2026-03-27, 44.68) (2026-04-01, 44.45) (2026-04-04, 43.42) (2026-04-09, 46.03)
+                    (2025-10-14, 55.67) (2025-10-15, 51.93) (2025-10-20, 50.34) (2025-10-27, 54.29) (2025-10-29, 55.27) 
+                    (2025-11-04, 50.88) (2025-11-10, 70.88) (2025-11-21, 55.1) (2025-11-24, 50.16) 
+                    (2025-11-28, 50.55) (2025-12-05, 55.3) (2025-12-12, 53.68) (2025-12-19, 51.25) 
+                    (2026-01-02, 50.36) (2026-01-13, 45.75) (2026-01-16, 49.53) (2026-01-30, 51.55) 
+                    (2026-02-21, 52.17) (2026-02-27, 51.96) (2026-03-13, 49.85) (2026-03-20, 52.47) 
+                    (2026-03-25, 50.05) (2026-03-27, 44.68) (2026-04-01, 44.45) (2026-04-04, 43.42) 
+                    (2026-04-09, 46.03) (2026-04-17, 50.19)
                 };
             % Verbali Esterni (aggiungendo i finali)
             \addplot[red, thick, mark=square*, mark size=2pt] coordinates {
-                    (2025-10-22, 51.94) (2025-11-12, 67.22) (2025-12-05, 65.50)
-                    (2025-12-11, 59.26) (2026-01-14, 58.83) (2026-03-26, 53.40) (2026-03-27, 51.28) (2026-04-08, 53.40) (2026-04-09, 52.27)
+                    (2025-10-22, 51.94) (2025-11-12, 67.22) (2025-12-05, 65.5) (2025-12-11, 59.26) (2026-01-14, 58.83) 
+                    (2026-03-26, 53.4) (2026-03-27, 51.28) (2026-04-08, 53.4) (2026-04-09, 52.27)
                 };
             % Soglia accettabile (45)
             \addplot[red, thick, dashed, const plot] coordinates {
-                    (2025-10-14, 45) (2026-04-09, 45)
+                    (2025-10-14, 45) (2026-04-17, 45)
                 };
             % Soglia preferibile (60)
             \addplot[orange, thick, dashed, const plot] coordinates {
-                    (2025-10-14, 60) (2026-04-09, 60)
+                    (2025-10-14, 60) (2026-04-17, 60)
                 };
             \legend{Verbali Interni, Verbali Esterni, Valore Accettabile (45), Valore Preferibile (60)}
         \end{axis}
@@ -2375,7 +2502,7 @@ Le cause di questa dinamica si ricollegano a:
                     (NdP, 58.93)
                     (AdR, 53.67)
                     (PdP, 62.65)
-                    (PdQ, 70.32)
+                    (PdQ, 70.75)
                 };
             % Soglia accettabile (45)
             \addplot[red, thick, dashed, const plot] coordinates {
@@ -2410,7 +2537,7 @@ Per i documenti principali alla baseline PB, i valori aggiornati restano tutti s
                 height=9cm,
                 xlabel={Data Verbale},
                 ylabel={Errori Critici (LanguageTool)},
-                symbolic x coords={2025-10-14, 2025-10-15, 2025-10-20, 2025-10-22, 2025-10-27, 2025-10-29, 2025-11-04, 2025-11-10, 2025-11-12, 2025-11-21, 2025-11-24, 2025-11-28, 2025-12-05, 2025-12-11, 2025-12-12, 2025-12-19, 2026-01-02, 2026-01-13, 2026-01-14, 2026-01-16, 2026-01-30, 2026-02-21, 2026-02-27, 2026-03-13, 2026-03-20, 2026-03-25, 2026-03-26, 2026-03-27, 2026-04-01, 2026-04-04, 2026-04-08, 2026-04-09},
+                symbolic x coords={2025-10-14, 2025-10-15, 2025-10-20, 2025-10-22, 2025-10-27, 2025-10-29, 2025-11-04, 2025-11-10, 2025-11-12, 2025-11-21, 2025-11-24, 2025-11-28, 2025-12-05, 2025-12-11, 2025-12-12, 2025-12-19, 2026-01-02, 2026-01-13, 2026-01-14, 2026-01-16, 2026-01-30, 2026-02-21, 2026-02-27, 2026-03-13, 2026-03-20, 2026-03-25, 2026-03-26, 2026-03-27, 2026-04-01, 2026-04-04, 2026-04-08, 2026-04-09, 2026-04-17},
                 xtick={2025-10-14, 2025-10-15, 2025-10-20, 2025-10-22, 2025-10-27, 2025-10-29, 2025-11-04, 2025-11-10, 2025-11-12, 2025-11-21, 2025-11-24, 2025-11-28, 2025-12-05, 2025-12-11, 2025-12-12, 2025-12-19, 2026-01-02, 2026-01-13, 2026-01-14, 2026-01-16, 2026-01-30, 2026-02-21, 2026-02-27, 2026-03-13, 2026-03-20, 2026-03-25, 2026-03-26, 2026-03-27, 2026-04-01, 2026-04-04, 2026-04-08, 2026-04-09},
                 xticklabel style={rotate=90, anchor=east, font=\tiny},
                 ymin=0, ymax=8,
@@ -2421,22 +2548,22 @@ Per i documenti principali alla baseline PB, i valori aggiornati restano tutti s
             ]
             % Verbali Interni - errori critici
             \addplot[blue, thick, mark=*, mark size=2pt] coordinates {
-                    (2025-10-14, 0) (2025-10-15, 2) (2025-10-20, 0)
-                    (2025-10-27, 0) (2025-10-29, 0) (2025-11-04, 6)
-                    (2025-11-10, 0) (2025-11-21, 0) (2025-11-24, 2)
-                    (2025-11-28, 0) (2025-12-05, 2) (2025-12-12, 3)
-                    (2025-12-19, 0) (2026-01-02, 0) (2026-01-13, 0)
-                    (2026-01-16, 0) (2026-01-30, 1) (2026-02-21, 6) (2026-02-27, 0)
-                    (2026-03-13, 0) (2026-03-20, 0) (2026-03-25, 0) (2026-03-27, 0) (2026-04-01, 1) (2026-04-04, 0) (2026-04-09, 1)
+                    (2025-10-14, 0) (2025-10-15, 2) (2025-10-20, 0) (2025-10-27, 0) (2025-10-29, 0) 
+                    (2025-11-04, 6) (2025-11-10, 0) (2025-11-21, 0) (2025-11-24, 2) 
+                    (2025-11-28, 0) (2025-12-05, 0) (2025-12-12, 3) (2025-12-19, 0) 
+                    (2026-01-02, 0) (2026-01-13, 0) (2026-01-16, 0) (2026-01-30, 1) 
+                    (2026-02-21, 6) (2026-02-27, 0) (2026-03-13, 0) (2026-03-20, 0) 
+                    (2026-03-25, 0) (2026-03-27, 0) (2026-04-01, 1) (2026-04-04, 0) 
+                    (2026-04-17, 1) (2026-04-17, 0)
                 };
             % Verbali Esterni - errori critici
             \addplot[green!70!black, thick, mark=square*, mark size=2pt] coordinates {
-                    (2025-10-22, 2) (2025-11-12, 6) (2025-12-05, 2)
-                    (2025-12-11, 1) (2026-01-14, 2) (2026-03-26, 0) (2026-04-08, 1)
+                    (2025-10-22, 2) (2025-11-12, 6) (2025-12-05, 2) (2025-12-11, 1) (2026-01-14, 2) 
+                    (2026-03-26, 0) (2026-03-27, 0) (2026-04-08, 1) (2026-04-17, 0)
                 };
             % Soglia accettabile (3 errori)
             \addplot[red, thick, dashed, const plot] coordinates {
-                    (2025-10-14, 3) (2026-04-09, 3)
+                    (2025-10-14, 3) (2026-04-17, 3)
                 };
             \legend{Verbali Interni, Verbali Esterni, Soglia Accettabile (3 errori)}
         \end{axis}
@@ -2457,7 +2584,7 @@ Per i documenti principali alla baseline PB, i valori aggiornati restano tutti s
                 symbolic x coords={Glossario, Norme, AdR, PdP, PdQ, Lettera, Prev. Costi, Val. Cap.},
                 xtick=data,
                 xticklabel style={rotate=45, anchor=east, font=\small},
-                ymin=0, ymax=3,
+                ymin=0, ymax=10,
                 bar width=20pt,
                 legend style={at={(0.5,-0.30)}, anchor=north, legend columns=2},
                 grid=major,
@@ -2470,10 +2597,10 @@ Per i documenti principali alla baseline PB, i valori aggiornati restano tutti s
             \addplot[fill=red!60, draw=red!80] coordinates {
                     (Glossario, 0)
                     (Norme, 0)
-                    (AdR, 0)
+                    (AdR, 8)
                     (PdP, 0)
                     (PdQ, 1)
-                    (Lettera, 0)
+                    (Lettera, 1)
                     (Prev. Costi, 0)
                     (Val. Cap., 0)
                 };
@@ -2492,7 +2619,7 @@ Per i documenti principali alla baseline PB, i valori aggiornati restano tutti s
 
 L'analisi della qualità linguistica mostra risultati complessivamente positivi. Per i verbali, l'andamento resta variabile ma sotto controllo: i picchi critici sono concentrati in pochi casi isolati (ad esempio 2025-11-12 e 2026-02-21), mentre gran parte delle date resta tra 0 e 2 errori. I documenti principali mostrano un quadro molto stabile, con un solo rilievo critico residuo sul Piano di Qualifica e assenza di errori critici sugli altri documenti monitorati.
 
-Per quanto riguarda l'indice di Gulpease, i verbali mantengono un andamento fisiologico coerente con la loro natura operativa. Nei documenti principali PB, tutti i valori restano sopra la soglia accettabile: Glossario 46.53, Norme di Progetto 58.93, Analisi dei Requisiti 53.67, Piano di Progetto 62.65 e Piano di Qualifica 70.32. Il gruppo continua ad avvalersi del supporto di LanguageTool integrato in CI/CD per mantenere il controllo sistematico della qualità linguistica.
+Per quanto riguarda l'indice di Gulpease, i verbali mantengono un andamento fisiologico coerente con la loro natura operativa. Nei documenti principali PB, tutti i valori restano sopra la soglia accettabile: Glossario 46.53, Norme di Progetto 58.93, Analisi dei Requisiti 53.67, Piano di Progetto 62.65 e Piano di Qualifica 70.75. Il gruppo continua ad avvalersi del supporto di LanguageTool integrato in CI/CD per mantenere il controllo sistematico della qualità linguistica.
 
 \subsection{Coverage Totale dei Test}
 
@@ -2537,25 +2664,30 @@ La coverage dei test di unità è del 81\%, basata su 222 test di unità eseguit
     \begin{tikzpicture}
         \begin{axis}[
                 ybar,
-                width=10cm,
-                height=6cm,
+                width=16cm,
+                height=9cm,
                 xlabel={Metrica},
                 ylabel={Valore},
-                symbolic x coords={Complessità Ciclomatica},
-                xtick=data,
-                ymin=0, ymax=30,
-                bar width=2cm,
+                symbolic x coords={Complessità Ciclomatica, Dummy},
+                xtick={Complessità Ciclomatica},
+                enlarge x limits=0.5,
+                ymin=0, ymax=100,
+                bar width=40pt,
+                legend style={at={(0.5,-0.20)}, anchor=north, legend columns=3},
+                grid=major,
+                ymajorgrids=true,
+                grid style={dashed, gray!30},
                 nodes near coords,
                 nodes near coords style={font=\small},
             ]
             \addplot[fill=blue!60, draw=blue!80] coordinates {
                     (Complessità Ciclomatica, 13)
                 };
-            \addplot[red, thick, dashed, const plot] coordinates {
-                    (Complessità Ciclomatica, 10)
+            \addplot[green!70!black, thick, dashed, sharp plot] coordinates {
+                    (Complessità Ciclomatica, 10) (Dummy, 10)
                 };
-            \addplot[orange, thick, dashed, const plot] coordinates {
-                    (Complessità Ciclomatica, 20)
+            \addplot[orange, thick, dashed, sharp plot] coordinates {
+                    (Complessità Ciclomatica, 20) (Dummy, 20)
                 };
             \legend{Valore Attuale, Soglia Ottima (10), Soglia Accettabile (20)}
         \end{axis}
