@@ -68,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
     {name:"Zanella Francesco", git:"frazane04", id:"2116442"},
     {name:"Romascu Mihaela-Mariana", git:"Mihaela-Mariana", id:"2079726"},
     {name:"Perozzo Samuele", git:"samuele-perozzo", id:"2110989"},
-    {name:"Ogniben Michele", git:"Micheleogniben", id:"2042325"}
   ];
 
   // Render team as modern card grid

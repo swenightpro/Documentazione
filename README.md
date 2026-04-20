@@ -48,7 +48,6 @@ Il gruppo di lavoro NightPro è composto dai seguenti membri:
 | Bilato          | Leonardo        | 2071084   |
 | Zanella         | Francesco       | 2116442   |
 | Romascu         | Mihaela-Mariana | 2079726   |
-| Ogniben         | Michele         | 2042325   |
 | Perozzo         | Samuele         | 2110989   |
 | Ponso           | Giovanni        | 2000558   |
 
