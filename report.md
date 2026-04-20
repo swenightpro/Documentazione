@@ -1,10 +1,12 @@
 # Report di compilazione
 
-Compilazione basata sul commit 138c314e8f6fc2c8926716a20eb3b5c0b4e58251 (base: 138c314)
+Compilazione basata sul commit 80e52730ffcd84a0e30131ed716b9f18f027352e (base: 80e5273)
 
 ## Falliti
 💡 Nessun errore di compilazione
 
 ## Compilati
-✅ [docs/PB/Documentazione Esterna/Piano_di_Qualifica_v2.7.pdf](docs/PB/Documentazione%20Esterna/Piano_di_Qualifica_v2.7.pdf)
+✅ [docs/PB/Documentazione Interna/Norme_di_Progetto_v3.4.pdf](docs/PB/Documentazione%20Interna/Norme_di_Progetto_v3.4.pdf)
+
+✅ [docs/PB/Documentazione Esterna/Specifica_Tecnica_v2.0.pdf](docs/PB/Documentazione%20Esterna/Specifica_Tecnica_v2.0.pdf)
 
